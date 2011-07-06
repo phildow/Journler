@@ -1,0 +1,34 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                cancel = id; 
+                enableLockedOutControls = id; 
+                hide = id; 
+                hideProgressIndicator = id; 
+                okay = id; 
+                showProgressIndicator = id; 
+                unhide = id; 
+            }; 
+            CLASS = LockoutController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                attemptsField = NSTextField; 
+                gradient = PDGradientView; 
+                hideButton = NSButton; 
+                lockoutField = NSTextField; 
+                okButton = NSButton; 
+                passwordField = NSTextField; 
+                progress = NSProgressIndicator; 
+                progressLabel = NSTextField; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = NSLevelIndicator; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
+        {CLASS = PDBorderedView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = PDGradientView; LANGUAGE = ObjC; SUPERCLASS = PDBorderedView; }, 
+        {CLASS = RoundedBox; LANGUAGE = ObjC; SUPERCLASS = NSBox; }
+    ); 
+    IBVersion = 1; 
+}

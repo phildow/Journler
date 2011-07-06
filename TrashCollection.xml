@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>combinationStyle</key>
+	<integer>0</integer>
+	<key>childrenIDs</key>
+	<array/>
+	<key>entryIDs</key>
+	<array/>
+	<key>parentID</key>
+	<integer>-1</integer>
+	<key>predicates</key>
+	<array/>
+	<key>tagID</key>
+	<integer>1</integer>
+	<key>title</key>
+	<string>Trash</string>
+	<key>typeID</key>
+	<integer>50</integer>
+</dict>
+</plist>

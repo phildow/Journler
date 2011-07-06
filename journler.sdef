@@ -1,0 +1,775 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+<!-- @version(10.4) -->
+<!--
+
+File: Skeleton.sdef
+
+Abstract: Starting sdef for a scriptable application.
+
+Version: 1.0
+
+© Copyright 2005 Apple Computer, Inc. All rights reserved.
+
+IMPORTANT:  This Apple software is supplied to 
+you by Apple Computer, Inc. ("Apple") in 
+consideration of your agreement to the following 
+terms, and your use, installation, modification 
+or redistribution of this Apple software 
+constitutes acceptance of these terms.  If you do 
+not agree with these terms, please do not use, 
+install, modify or redistribute this Apple 
+software.
+
+In consideration of your agreement to abide by 
+the following terms, and subject to these terms, 
+Apple grants you a personal, non-exclusive 
+license, under Apple's copyrights in this 
+original Apple software (the "Apple Software"), 
+to use, reproduce, modify and redistribute the 
+Apple Software, with or without modifications, in 
+source and/or binary forms; provided that if you 
+redistribute the Apple Software in its entirety 
+and without modifications, you must retain this 
+notice and the following text and disclaimers in 
+all such redistributions of the Apple Software. 
+Neither the name, trademarks, service marks or 
+logos of Apple Computer, Inc. may be used to 
+endorse or promote products derived from the 
+Apple Software without specific prior written 
+permission from Apple.  Except as expressly 
+stated in this notice, no other rights or 
+licenses, express or implied, are granted by 
+Apple herein, including but not limited to any 
+patent rights that may be infringed by your 
+derivative works or by other works in which the 
+Apple Software may be incorporated.
+
+The Apple Software is provided by Apple on an "AS 
+IS" basis.  APPLE MAKES NO WARRANTIES, EXPRESS OR 
+IMPLIED, INCLUDING WITHOUT LIMITATION THE IMPLIED 
+WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY 
+AND FITNESS FOR A PARTICULAR PURPOSE, REGARDING 
+THE APPLE SOFTWARE OR ITS USE AND OPERATION ALONE 
+OR IN COMBINATION WITH YOUR PRODUCTS.
+
+IN NO EVENT SHALL APPLE BE LIABLE FOR ANY 
+SPECIAL, INDIRECT, INCIDENTAL OR CONSEQUENTIAL 
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS 
+OF USE, DATA, OR PROFITS; OR BUSINESS 
+INTERRUPTION) ARISING IN ANY WAY OUT OF THE USE, 
+REPRODUCTION, MODIFICATION AND/OR DISTRIBUTION OF 
+THE APPLE SOFTWARE, HOWEVER CAUSED AND WHETHER 
+UNDER THEORY OF CONTRACT, TORT (INCLUDING 
+NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN 
+IF APPLE HAS BEEN ADVISED OF THE POSSIBILITY OF 
+SUCH DAMAGE.
+
+-->
+<dictionary title="Journler Terminology">
+	<!--
+		STANDARD SUITE
+	-->
+	<suite name="Standard Suite" code="core" description="Common classes and commands for all applications.">
+		<cocoa name="NSCoreSuite"/>
+		<!--
+				According to TN2106, 'open' should return the resulting document
+				object.  However, the Cocoa implementation does not do this yet.
+			<result type="specifier"/>
+			-->
+		<enumeration name="save options" code="savo">
+			<enumerator name="yes" code="yes " description="Save the file."/>
+			<enumerator name="no" code="no  " description="Do not save the file."/>
+			<enumerator name="ask" code="ask " description="Ask the user whether or not to save the file."/>
+		</enumeration>
+		<enumeration name="printing error handling" code="enum">
+			<enumerator name="standard" code="lwst" description="Standard PostScript error handling"/>
+			<enumerator name="detailed" code="lwdt" description="print a detailed report of PostScript errors"/>
+		</enumeration>
+		<record-type name="print settings" code="pset">
+			<property name="copies" code="lwcp" description="the number of copies of a document to be printed" type="integer">
+				<cocoa key="NSCopies"/>
+			</property>
+			<property name="collating" code="lwcl" description="Should printed copies be collated?" type="boolean">
+				<cocoa key="NSMustCollate"/>
+			</property>
+			<property name="starting page" code="lwfp" description="the first page of the document to be printed" type="integer">
+				<cocoa key="NSFirstPage"/>
+			</property>
+			<property name="ending page" code="lwlp" description="the last page of the document to be printed" type="integer">
+				<cocoa key="NSLastPage"/>
+			</property>
+			<property name="pages across" code="lwla" description="number of logical pages laid across a physical page" type="integer">
+				<cocoa key="NSPagesAcross"/>
+			</property>
+			<property name="pages down" code="lwld" description="number of logical pages laid out down a physical page" type="integer">
+				<cocoa key="NSPagesDown"/>
+			</property>
+			<property name="error handling" code="lweh" description="how errors are handled" type="printing error handling">
+				<cocoa key="NSDetailedErrorReporting"/>
+			</property>
+			<property name="fax number" code="faxn" description="for fax number" type="text">
+				<cocoa key="NSFaxNumber"/>
+			</property>
+			<property name="target printer" code="trpr" description="for target printer" type="text">
+				<cocoa key="NSPrinterName"/>
+			</property>
+		</record-type>
+		<class name="document" code="docu" description="A document.">
+			<cocoa class="NSDocument"/>
+			<property name="name" code="pnam" description="The document&apos;s name." type="text" access="r">
+				<cocoa key="displayName"/>
+			</property>
+			<property name="modified" code="imod" description="Has the document been modified since the last save?" type="boolean" access="r">
+				<cocoa key="isDocumentEdited"/>
+			</property>
+			<property name="file" code="file" description="The document&apos;s location on disk." type="file" access="r">
+				<cocoa key="fileURL"/>
+			</property>
+			<responds-to name="close">
+				<cocoa method="handleCloseScriptCommand:"/>
+			</responds-to>
+			<responds-to name="print">
+				<cocoa method="handlePrintScriptCommand:"/>
+			</responds-to>
+			<responds-to name="save">
+				<cocoa method="handleSaveScriptCommand:"/>
+			</responds-to>
+		</class>
+		<command name="open" code="aevtodoc" description="Open a document."/>
+		<command name="close" code="coreclos" description="Close a document.">
+			<cocoa class="NSCloseCommand"/>
+			<direct-parameter description="the document(s) or window(s) to close." type="specifier"/>
+			<parameter name="saving" code="savo" description="Whether or not changes should be saved before closing." type="save options" optional="yes">
+				<cocoa key="SaveOptions"/>
+			</parameter>
+			<parameter name="saving in" code="kfil" description="The file in which to save the document." type="file" optional="yes">
+				<cocoa key="File"/>
+			</parameter>
+		</command>
+		<command name="save" code="coresave" description="Save a document.">
+			<direct-parameter description="The document(s) or window(s) to save." type="specifier"/>
+			<parameter name="in" code="kfil" description="The file in which to save the document." type="file" optional="yes">
+				<cocoa key="File"/>
+			</parameter>
+			<parameter name="as" code="fltp" description="The type of file to save." type="text" optional="yes">
+				<cocoa key="FileType"/>
+			</parameter>
+		</command>
+		<command name="print" code="aevtpdoc" description="Print a document.">
+			<parameter name="with properties" code="prdt" description="The print settings to use." type="print settings" optional="yes">
+				<cocoa key="PrintSettings"/>
+			</parameter>
+			<parameter name="print dialog" code="pdlg" description="Should the application show the print dialog?" type="boolean" optional="yes">
+				<cocoa key="ShowPrintDialog"/>
+			</parameter>
+		</command>
+		<command name="quit" code="aevtquit" description="Quit the application.">
+			<cocoa class="NSQuitCommand"/>
+			<parameter name="saving" code="savo" description="Whether or not changed documents should be saved before closing." type="save options" optional="yes">
+				<cocoa key="SaveOptions"/>
+			</parameter>
+		</command>
+		<command name="count" code="corecnte" description="Return the number of elements of a particular class within an object.">
+			<cocoa class="NSCountCommand"/>
+			<direct-parameter description="the object whose elements are to be counted" type="specifier"/>
+			<parameter name="each" code="kocl" description="The class of objects to be counted." type="type" optional="yes">
+				<cocoa key="ObjectClass"/>
+			</parameter>
+			<result description="the number of elements" type="integer"/>
+		</command>
+		<command name="delete" code="coredelo" description="Delete an object.">
+			<cocoa class="NSDeleteCommand"/>
+			<direct-parameter description="the object to delete" type="specifier"/>
+		</command>
+		<command name="duplicate" code="coreclon" description="Copy object(s) and put the copies at a new location.">
+			<cocoa class="NSCloneCommand"/>
+			<direct-parameter description="the object(s) to duplicate" type="specifier"/>
+			<parameter name="to" code="insh" description="The location for the new object(s)." type="location specifier" optional="yes">
+				<cocoa key="ToLocation"/>
+			</parameter>
+			<parameter name="with properties" code="prdt" description="Properties to be set in the new duplicated object(s)." type="record" optional="yes">
+				<cocoa key="WithProperties"/>
+			</parameter>
+			<result description="the duplicated object(s)" type="specifier"/>
+		</command>
+		<command name="exists" code="coredoex" description="Verify if an object exists.">
+			<cocoa class="NSExistsCommand"/>
+			<direct-parameter description="the object in question" type="any"/>
+			<result description="true if it exists, false if not" type="boolean"/>
+		</command>
+		<command name="make" code="corecrel" description="Make a new object.">
+			<cocoa class="JourlerScriptingMakeCommand"/>
+			<parameter name="new" code="kocl" description="The class of the new object." type="type">
+				<cocoa key="ObjectClass"/>
+			</parameter>
+			<parameter name="at" code="insh" description="The location at which to insert the object." type="location specifier" optional="yes">
+				<cocoa key="Location"/>
+			</parameter>
+			<parameter name="with data" code="data" description="The initial contents of the object." type="any" optional="yes">
+				<cocoa key="ObjectData"/>
+			</parameter>
+			<parameter name="with properties" code="prdt" description="The initial values for properties of the object." type="record" optional="yes">
+				<cocoa key="KeyDictionary"/>
+			</parameter>
+			<result description="to the new object" type="specifier"/>
+		</command>
+		<command name="move" code="coremove" description="Move object(s) to a new location.">
+			<cocoa class="NSMoveCommand"/>
+			<direct-parameter description="the object(s) to move" type="specifier"/>
+			<parameter name="to" code="insh" description="The new location for the object(s)." type="location specifier">
+				<cocoa key="ToLocation"/>
+			</parameter>
+			<result description="the moved object(s)" type="specifier"/>
+		</command>
+	</suite>
+	<!--
+		TEXT SUITE
+	-->
+	<suite name="Text Suite" code="TEXT" description="A set of basic classes for text processing.">
+		<cocoa name="NSTextSuite"/>
+		<value-type name="color" code="cRGB">
+			<cocoa class="NSColor"/>
+		</value-type>
+		<!-- this "type" element and the ones that follow, while they
+				contradict the DTD, are NOT errors.  Cocoa Scripting in 10.4
+				uses them to accomplish certain type conversions. -->
+		<class name="rich text" code="ctxt" description="Rich (styled) text" plural="rich text">
+			<cocoa class="NSTextStorage"/>
+			<element type="character"/>
+			<element type="paragraph"/>
+			<element type="word"/>
+			<element type="attribute run"/>
+			<element type="attachment"/>
+			<property name="color" code="colr" description="The color of the first character." type="color">
+				<cocoa key="foregroundColor"/>
+			</property>
+			<property name="font" code="font" description="The name of the font of the first character." type="text">
+				<cocoa key="fontName"/>
+			</property>
+			<property name="size" code="ptsz" description="The size in points of the first character." type="integer">
+				<cocoa key="fontSize"/>
+			</property>
+			<type type="text"/>
+		</class>
+		<class name="character" code="cha " description="This subdivides the text into characters.">
+			<cocoa class="NSTextStorage"/>
+			<element type="character"/>
+			<element type="paragraph"/>
+			<element type="word"/>
+			<element type="attribute run"/>
+			<element type="attachment"/>
+			<property name="color" code="colr" description="The color of the first character." type="color">
+				<cocoa key="foregroundColor"/>
+			</property>
+			<property name="font" code="font" description="The name of the font of the first character." type="text">
+				<cocoa key="fontName"/>
+			</property>
+			<property name="size" code="ptsz" description="The size in points of the first character." type="integer">
+				<cocoa key="fontSize"/>
+			</property>
+			<type type="text"/>
+		</class>
+		<class name="paragraph" code="cpar" description="This subdivides the text into paragraphs.">
+			<cocoa class="NSTextStorage"/>
+			<element type="character"/>
+			<element type="paragraph"/>
+			<element type="word"/>
+			<element type="attribute run"/>
+			<element type="attachment"/>
+			<property name="color" code="colr" description="The color of the first character." type="color">
+				<cocoa key="foregroundColor"/>
+			</property>
+			<property name="font" code="font" description="The name of the font of the first character." type="text">
+				<cocoa key="fontName"/>
+			</property>
+			<property name="size" code="ptsz" description="The size in points of the first character." type="integer">
+				<cocoa key="fontSize"/>
+			</property>
+			<type type="text"/>
+		</class>
+		<class name="word" code="cwor" description="This subdivides the text into words.">
+			<cocoa class="NSTextStorage"/>
+			<element type="character"/>
+			<element type="paragraph"/>
+			<element type="word"/>
+			<element type="attribute run"/>
+			<element type="attachment"/>
+			<property name="color" code="colr" description="The color of the first character." type="color">
+				<cocoa key="foregroundColor"/>
+			</property>
+			<property name="font" code="font" description="The name of the font of the first character." type="text">
+				<cocoa key="fontName"/>
+			</property>
+			<property name="size" code="ptsz" description="The size in points of the first character." type="integer">
+				<cocoa key="fontSize"/>
+			</property>
+			<type type="text"/>
+		</class>
+		<class name="attribute run" code="catr" description="This subdivides the text into chunks that all have the same attributes.">
+			<cocoa class="NSTextStorage"/>
+			<element type="character"/>
+			<element type="paragraph"/>
+			<element type="word"/>
+			<element type="attribute run"/>
+			<element type="attachment"/>
+			<property name="color" code="colr" description="The color of the first character." type="color">
+				<cocoa key="foregroundColor"/>
+			</property>
+			<property name="font" code="font" description="The name of the font of the first character." type="text">
+				<cocoa key="fontName"/>
+			</property>
+			<property name="size" code="ptsz" description="The size in points of the first character." type="integer">
+				<cocoa key="fontSize"/>
+			</property>
+			<type type="text"/>
+		</class>
+		<class name="attachment" code="atts" description="Represents an inline text attachment. This class is used mainly for make commands." inherits="rich text">
+			<cocoa class="NSAttachmentTextStorage"/>
+			<property name="file name" code="atfn" description="The path to the file for the attachment" type="text">
+				<cocoa key="filename"/>
+			</property>
+		</class>
+	</suite>
+	<suite name="Journler Suite" code="jRLR" description="The Journler Suite">
+		<enumeration name="folder type" code="eFTY" description="describes the kind of folder, ie smart folder or trash">
+			<enumerator name="journal" code="ftLI" description="The journal folder which contains all of your entries. Similar to the library in iTunes"/>
+			<enumerator name="trash" code="ftTR" description="The trash can. Prevents you from accidentally deleting an entry"/>
+			<enumerator name="regular folder" code="ftFL" description="A regular folder."/>
+			<enumerator name="smart folder" code="flSF" description="A smart folder. Set it up with conditions and it will automatically collect your entries."/>
+		</enumeration>
+		<enumeration name="resource type" code="eRST" description="describes the kind of resource, ie website or contact">
+			<enumerator name="contact" code="rtCO" description="An address book record."/>
+			<enumerator name="website" code="rtWE" description="An online web address."/>
+			<enumerator name="internal" code="rtIN" description="Describes a journler object using the uri representation, for example a link to another entry."/>
+			<enumerator name="media" code="rtME" description="A file stored on your computer."/>
+		</enumeration>
+		<enumeration name="label color" code="eLAB" description="The color associated with a Journler object.">
+			<enumerator name="clear" code="lcCE" description="No label"/>
+			<enumerator name="red" code="lcRE" description="red"/>
+			<enumerator name="orange" code="lcOR" description="orange"/>
+			<enumerator name="yellow" code="lcYE" description="yellow"/>
+			<enumerator name="green" code="lcGN" description="green"/>
+			<enumerator name="blue" code="lcBL" description="blue"/>
+			<enumerator name="purple" code="lcPU" description="purple"/>
+			<enumerator name="grey" code="lcGY" description="grey"/>
+		</enumeration>
+		<enumeration name="export file type" code="eEFT" description="The file type which an exported entry produces.">
+			<enumerator name="rtf" code="etRT" description="Rich Text Format"/>
+			<enumerator name="rtfd" code="etRD" description="Rich Text Format Directory"/>
+			<enumerator name="pdf" code="etPD" description="Portable Document Format"/>
+			<enumerator name="doc" code="etDO" description="Microsoft Word Document"/>
+			<enumerator name="txt" code="etTX" description="Plain Text"/>
+			<enumerator name="xhtml" code="etXH" description="Extensible Hypertext Markup Language"/>
+			<enumerator name="webarchive" code="etWA" description="Web Archive"/>
+		</enumeration>
+		<enumeration name="marking type" code="eMTY" description="Describes the mark associated with an entry, eg flagged or checked.">
+			<enumerator name="unmarked" code="emUM" description="The entry is neither flagged nor checked."/>
+			<enumerator name="flagged" code="emFL" description="The entry is flagged."/>
+			<enumerator name="checked" code="emCH" description="The entry is checked."/>
+		</enumeration>
+		<class name="application" code="capp" description="The application&apos;s top-level scripting object.">
+			<cocoa class="JournlerApplication"/>
+			<element description="The journal&apos;s folders." type="folder">
+				<cocoa key="JSFolders"/>
+			</element>
+			<element description="A journal&apos;s entries." type="entry">
+				<cocoa key="JSEntries"/>
+			</element>
+			<element description="The journal&apos;s online blogging accounts." type="blog">
+				<cocoa key="JSBlogs"/>
+			</element>
+			<element description="The journal&apos;s links to other media, including contacts, urls, other entries and files of any kind" type="resource">
+				<cocoa key="JSReferences"/>
+			</element>
+			<element type="window" access="r">
+				<cocoa key="orderedWindows"/>
+			</element>
+			<element type="document">
+				<cocoa key="orderedDocuments"/>
+			</element>
+			<property name="selected entries" code="psEN" description="A list of the selected entries in the selected tab of the foremost window.">
+				<cocoa key="scriptSelectedEntries"/>
+				<type type="entry" list="yes"/>
+			</property>
+			<property name="selected date" code="psDA" description="The single active date in the selected tab of the foremost window." type="date">
+				<cocoa key="scriptSelectedDate"/>
+			</property>
+			<property name="selected folders" code="psFO" description="A list of the selected folders in the selected tab of the foremost window.">
+				<cocoa key="scriptSelectedFolders"/>
+				<type type="folder" list="yes"/>
+			</property>
+			<property name="selected resources" code="psRE" description="A list of the tab&apos;s selected resources.">
+				<cocoa key="scriptSelectedResources"/>
+				<type type="resource" list="yes"/>
+			</property>
+			<property name="journal viewer" code="psJV" description="The main window used to view the entire journal, as opposed to entry or media windows." type="window" access="r">
+				<cocoa key="JSJournalViewer"/>
+			</property>
+			<property name="categories" code="paCA" description="A list of categories available when adding new entries to the journal.">
+				<cocoa key="JSCategories"/>
+				<type type="text" list="yes"/>
+			</property>
+			<property name="name" code="pnam" description="The name of the application." type="text" access="r"/>
+			<property name="frontmost" code="pisf" description="Is this the active application?" type="boolean" access="r">
+				<cocoa key="isActive"/>
+			</property>
+			<property name="version" code="vers" description="The version number of the application." type="text" access="r">
+				<cocoa key="JSJournalVersion"/>
+			</property>
+			<responds-to name="open">
+				<cocoa method="handleOpenScriptCommand:"/>
+			</responds-to>
+			<responds-to name="print">
+				<cocoa method="handlePrintScriptCommand:"/>
+			</responds-to>
+			<responds-to name="quit">
+				<cocoa method="handleQuitScriptCommand:"/>
+			</responds-to>
+		</class>
+		<class name="window" code="cwin" description="A window.">
+			<cocoa class="JournlerWindow"/>
+			<element description="The tabs that are a part of the window, if the window is a Journler window" type="tib">
+				<cocoa key="JSTabs"/>
+			</element>
+			<property name="bounds" code="pbnd" description="The bounding rectangle of the window." type="rectangle">
+				<cocoa key="boundsAsQDRect"/>
+			</property>
+			<property name="name" code="pnam" description="The full title of the window." type="text" access="r">
+				<cocoa key="title"/>
+			</property>
+			<property name="index" code="pidx" description="The index of the window, ordered front to back." type="integer">
+				<cocoa key="orderedIndex"/>
+			</property>
+			<property name="id" code="ID  " description="The unique identifier of the window." type="integer" access="r">
+				<cocoa key="uniqueID"/>
+			</property>
+			<property name="closeable" code="hclb" description="Whether the window has a close box." type="boolean" access="r">
+				<cocoa key="hasCloseBox"/>
+			</property>
+			<property name="minimizable" code="ismn" description="Whether the window can be minimized." type="boolean" access="r">
+				<cocoa key="isMiniaturizable"/>
+			</property>
+			<property name="minimized" code="pmnd" description="Whether the window is currently minimized." type="boolean">
+				<cocoa key="isMiniaturized"/>
+			</property>
+			<property name="resizable" code="prsz" description="Whether the window can be resized." type="boolean" access="r">
+				<cocoa key="isResizable"/>
+			</property>
+			<property name="visible" code="pvis" description="Whether the window is currently visible." type="boolean">
+				<cocoa key="isVisible"/>
+			</property>
+			<property name="zoomable" code="iszm" description="Whether the window can be zoomed." type="boolean" access="r">
+				<cocoa key="isZoomable"/>
+			</property>
+			<property name="zoomed" code="pzum" description="Whether the window is currently zoomed." type="boolean">
+				<cocoa key="isZoomed"/>
+			</property>
+			<property name="document" code="docu" description="The document whose contents are being displayed in the window." type="document" access="r"/>
+			<property name="selected tib" code="wpST" description="The window&apos;s currently selected tab." type="tib">
+				<cocoa key="scriptSelectedTab"/>
+			</property>
+			<responds-to name="save">
+				<cocoa method="handleSaveScriptCommand:"/>
+			</responds-to>
+			<responds-to name="print">
+				<cocoa method="handlePrintScriptCommand:"/>
+			</responds-to>
+			<responds-to name="close">
+				<cocoa method="handleCloseScriptCommand:"/>
+			</responds-to>
+		</class>
+		<class name="tib" code="cTAB" description="A single tab in a window, containing selection information. Named &quot;tib&quot; to avoid namespace conflict with &quot;tab&quot;. Tibs for tabs!">
+			<cocoa class="TabController"/>
+			<property name="name" code="pnam" description="The tab&apos;s title, depending on the currently selected item." type="text" access="r">
+				<cocoa key="title"/>
+			</property>
+			<property name="selected entries" code="psEN" description="A list of the tab&apos;s selected entries.">
+				<cocoa key="scriptSelectedEntries"/>
+				<type type="entry" list="yes"/>
+			</property>
+			<property name="selected date" code="psDA" description="The single date selected in the tab" type="date">
+				<cocoa key="scriptSelectedDate"/>
+			</property>
+			<property name="selected folders" code="psFO" description="A list of the tab&apos;s selected folders.">
+				<cocoa key="scriptSelectedFolders"/>
+				<type type="folder" list="yes"/>
+			</property>
+			<property name="selected resources" code="psRE" description="A list of the tab&apos;s selected resources.">
+				<cocoa key="scriptSelectedResources"/>
+				<type type="resource" list="yes"/>
+			</property>
+			<property name="visible entries" code="psVE" description="The list of entries currently visible in the tab" access="r">
+				<cocoa key="scriptVisibleEntries"/>
+				<type type="entry" list="yes"/>
+			</property>
+		</class>
+		<class name="entry" code="jENT" description="The basic object for every entry in your journal." plural="entries">
+			<contents name="contents" code="pcnt" description="An entry&apos;s rich text contents" type="rich text"/>
+			<cocoa class="JournlerEntry"/>
+			<element description="The folders that contain the entry. An entry may be in any number of folders, both smart and regular." type="folder" access="r">
+				<cocoa key="JSFolders"/>
+			</element>
+			<element description="The references which belong to this particular entry" type="resource" access="r">
+				<cocoa key="JSReferences"/>
+			</element>
+			<property name="name" code="pnam" description="An entry&apos;s name. The name property is the same as the title property." type="text">
+				<cocoa key="title"/>
+			</property>
+			<property name="wikiname" code="pWNM" description="An entry&apos;s name in wiki form, if the entry&apos;s name can be represented in that way" type="text" access="r">
+				<cocoa key="scriptWikiName"/>
+			</property>
+			<property name="id" code="ID  " description="An entry&apos;s unique numerical identifier, the preferred means for referring to an entry." type="integer" access="r">
+				<cocoa key="tagID"/>
+			</property>
+			<property name="date created" code="pDCD" description="The date on which an entry was created." type="date">
+				<cocoa key="dateCreated"/>
+			</property>
+			<property name="date modified" code="pDMD" description="The date on which the entry was last modified." type="date">
+				<cocoa key="dateModified"/>
+			</property>
+			<property name="category" code="pCAT" description="An entry&apos;s category." type="text">
+				<cocoa key="category"/>
+			</property>
+			<property name="comments" code="pKWD" description="An entry&apos;s comments, referred to as &quot;tags&quot; prior to v2.5.4." type="text">
+				<cocoa key="keywords"/>
+			</property>
+			<property name="label" code="pLBL" description="An entry&apos;s label color. See the label color enumeration for more information." type="label color">
+				<cocoa key="scriptLabel"/>
+			</property>
+			<property name="mark" code="pFLD" description="Indicates if an entry has been checked or flagged" type="marking type">
+				<cocoa key="scriptMark"/>
+			</property>
+			<property name="uri representation" code="pURI" description="A universal representation of the reference which may be used in any application as a link." type="text" access="r">
+				<cocoa key="URIRepresentationAsString"/>
+			</property>
+			<property name="text" code="ctxt" description="An entry&apos;s contents." type="rich text">
+				<cocoa key="contents"/>
+			</property>
+			<property name="date due" code="pDDU" description="The date on which an entry is due." type="date">
+				<cocoa key="dateDue"/>
+			</property>
+			<property name="package path" code="pEPP" description="The posix style path to the entry&apos;s package." type="text" access="r">
+				<cocoa key="packagePath"/>
+			</property>
+			<property name="rich text path" code="pRTP" description="The posix style path to the entry&apos;s rich text file." type="text" access="r">
+				<cocoa key="attributedContentPath"/>
+			</property>
+			<property name="resource selection" code="pRSC" description="The resource which is automatically displayed when the entry is selected, rather than the entry&apos;s text. Set to an empty list to clear the default resource. You will always receive a single resource when getting this property.">
+				<cocoa key="scriptSelectedResource"/>
+				<type type="resource"/>
+				<type type="resource" list="yes"/>
+			</property>
+			<property name="trashed" code="pTRA" description="Indicates if the entry is in the trash can." type="boolean" access="r">
+				<cocoa key="markedForTrash"/>
+			</property>
+			<property name="html text" code="pHTT" description="The html equivalent of an entry&apos;s text. Images and other embedded elements are stripped. The resulting html conforms to the html preferences for blogging entries." type="text" access="r">
+				<cocoa key="htmlString"/>
+			</property>
+			<property name="tags" code="pTAG" description="An entry&apos;s tags.">
+				<cocoa key="tags"/>
+				<type type="text" list="yes"/>
+			</property>
+			<responds-to name="add">
+				<cocoa method="jsAddEntryToFolder:"/>
+			</responds-to>
+			<responds-to name="remove">
+				<cocoa method="jsRemoveEntryFromFolder:"/>
+			</responds-to>
+			<responds-to name="export">
+				<cocoa method="jsExport:"/>
+			</responds-to>
+			<responds-to name="trash">
+				<cocoa method="jsTrash:"/>
+			</responds-to>
+		</class>
+		<class name="folder" code="cOLL" description="The journal&apos;s folders, including the library folder as well as regular and smart folders.">
+			<cocoa class="JournlerCollection"/>
+			<element description="The entries contained in the folder. An entry may belong to more than one folder." type="entry" access="r">
+				<cocoa key="JSEntries"/>
+			</element>
+			<element description="The subfolders belonging to this folder. A folder may have an unlimited number of subfolders, but it may only have one parent." type="folder" access="r">
+				<cocoa key="JSFolders"/>
+			</element>
+			<property name="name" code="pnam" description="The collection&apos;s name. The name property is the same as the title property." type="text">
+				<cocoa key="title"/>
+			</property>
+			<property name="id" code="ID  " description="The collection&apos;s unique numerical identifier." type="integer" access="r">
+				<cocoa key="tagID"/>
+			</property>
+			<property name="type" code="pTYP" description="The folder&apos;s type" type="folder type">
+				<cocoa key="scriptType"/>
+			</property>
+			<property name="parent" code="cpPA" description="The folder&apos;s single parent." type="folder">
+				<cocoa key="parent"/>
+			</property>
+			<property name="conditions" code="cpCO" description="A smart collection&apos;s conditions. Be very careful when setting conditions. Journler will not check your syntax for errors, and an error will crash the program.">
+				<cocoa key="conditions"/>
+				<type type="text" list="yes"/>
+			</property>
+			<property name="combo style" code="cpCS" description="Indicates how a smart collection combines its conditions, 0 matches an entry that meets any of the conditions, 1 = matches an entry that meets all of the conditions" type="integer">
+				<cocoa key="combinationStyle"/>
+			</property>
+			<property name="uri representation" code="pURI" description="A universal representation of the reference which may be used in any application as a link." type="text" access="r">
+				<cocoa key="URIRepresentationAsString"/>
+			</property>
+			<property name="label" code="pLBL" description="An entry&apos;s label color. See the label color enumeration for more information." type="label color">
+				<cocoa key="scriptLabel"/>
+			</property>
+			<property name="autotags" code="pAUT" description="Indicates if a smart folder is capable of autotagging an entry. Smart folders whose conditions target the title, category, tags, label and marking of entries can autotag them" type="boolean" access="r">
+				<cocoa key="scriptCanAutotag"/>
+			</property>
+			<property name="position" code="pPOS" description="The position of a folder in the folders list. For example the journal is in the first position, the trash in the second. Position is relative to the parent for subfolders." type="integer" access="r">
+				<cocoa key="scriptPosition"/>
+			</property>
+			<responds-to name="add">
+				<cocoa method="jsAddFolderToFolder:"/>
+			</responds-to>
+			<responds-to name="export">
+				<cocoa method="jsExport:"/>
+			</responds-to>
+		</class>
+		<class name="resource" code="cREF" description="A journal&apos;s references. Reference are accessed managed by the journal, but they each belong to an invididual entry.">
+			<cocoa class="JournlerResource"/>
+			<element description="The entries with which these resources is associated. A resource may be associated with more than one entry, although it only has a single owner. Refer also to the owner attribute." type="entry" access="r">
+				<cocoa key="JSEntries"/>
+			</element>
+			<property name="id" code="ID  " description="The reference&apos;s unique identifier." type="integer" access="r">
+				<cocoa key="tagID"/>
+			</property>
+			<property name="name" code="pnam" description="The reference&apos;s title." type="text">
+				<cocoa key="title"/>
+			</property>
+			<property name="type" code="pTYP" description="The reference type identifier. For more information see the reference type enumeration." type="resource type" access="r">
+				<cocoa key="scriptType"/>
+			</property>
+			<property name="uti" code="prUT" description="If the reference represents a file, the UTI which describes the references&apos;s file type" type="text" access="r">
+				<cocoa key="uti"/>
+			</property>
+			<property name="label" code="pLBL" description="An entry&apos;s label color. See the label color enumeration for more information." type="label color">
+				<cocoa key="scriptLabel"/>
+			</property>
+			<property name="searches" code="prSE" description="Indicates if the reference is indexed for searching. Some references, for example urls, are not indexed regardless the value." type="boolean">
+				<cocoa key="searches"/>
+			</property>
+			<property name="owner" code="prOW" description="The entry which owns this resource. Refer also to the entry element." type="entry" access="r">
+				<cocoa key="entry"/>
+			</property>
+			<property name="uri representation" code="pURI" description="A universal representation of the reference which may be used in any application as a link." type="text" access="r">
+				<cocoa key="URIRepresentationAsString"/>
+			</property>
+			<property name="original path" code="prPA" description="If a file reference, the POSIX style path to the reference" type="text" access="r">
+				<cocoa key="originalPath"/>
+			</property>
+			<property name="url" code="prUR" description="If the reference represents a web address, the url in text form" type="text">
+				<cocoa key="urlString"/>
+			</property>
+			<property name="contact id" code="prCI" description="If the reference represents a contact, the unique id which identifies the contact. May be used with Address Book scripting" type="text">
+				<cocoa key="uniqueId"/>
+			</property>
+			<property name="journler uri" code="prIU" description="If an internal Jourler link, such as a wiki link or a link to a folder, the uri which represents the object. May be used to identify an Entry or Folder" type="text">
+				<cocoa key="uriString"/>
+			</property>
+			<property name="aliased" code="prAL" description="True if the resource represents a file and the file has not been copied to the Journler directory, but rather linked from it. Path will still provide the path to the original document." type="boolean" access="r">
+				<cocoa key="scriptAliased"/>
+			</property>
+			<responds-to name="export">
+				<cocoa method="jsExport:"/>
+			</responds-to>
+		</class>
+		<class name="blog" code="cBLG" description="A single blog account">
+			<cocoa class="BlogPref"/>
+			<property name="name" code="pnam" description="A name that identifies the blog to Journler and to the user" type="text">
+				<cocoa key="name"/>
+			</property>
+			<property name="type" code="bpTY" description="The type of blog, ie Blogger.com, LiveJournal or MetaWeblog API" type="text">
+				<cocoa key="blogType"/>
+			</property>
+			<property name="location" code="bpLO" description="The URL address of the blog" type="text">
+				<cocoa key="httpLocation"/>
+			</property>
+			<property name="login" code="bpLG" description="The account username used to access and edit the blog " type="text">
+				<cocoa key="login"/>
+			</property>
+			<property name="password" code="bpPA" description="The account password used to access and edit the blog" type="text">
+				<cocoa key="password"/>
+			</property>
+			<property name="interface" code="bpIN" description="For blogs that have an xml-rpc interface, the URL address of the interface " type="text">
+				<cocoa key="xmlrpcLocation"/>
+			</property>
+			<property name="blog id" code="bpID" description="Some blogging systems associate an id with each blog, the default value is 1" type="text">
+				<cocoa key="blogID"/>
+			</property>
+			<property name="uri representation" code="pURI" description="A universal representation of the reference which may be used in any application as a link." type="text" access="r">
+				<cocoa key="URIRepresentation"/>
+			</property>
+		</class>
+		<command name="add" code="aevtcADD" description="Adds an entry or a folder to the specificed folder. For entries, the folder must be a regular collection. The entry is copied. For a folder, the folder is moved.">
+			<direct-parameter>
+				<type type="entry"/>
+				<type type="folder"/>
+			</direct-parameter>
+			<parameter name="to" code="pcTO" description="The folder to which the entry or folder will be added." type="folder">
+				<cocoa key="targetCollection"/>
+			</parameter>
+		</command>
+		<command name="remove" code="aevtcRMV" description="Removes an entry from the specified folder without deleting it. The folder must be a regular collection.">
+			<direct-parameter type="entry"/>
+			<parameter name="from" code="pFRM" description="The collection from which the entry should be removed. Regular collections only." type="specifier">
+				<cocoa key="targetCollection"/>
+			</parameter>
+		</command>
+		<command name="export" code="aevtcEXP" description="Export an entry, folder or resource. Path should be a full directory path.">
+			<direct-parameter>
+				<type type="entry"/>
+				<type type="resource"/>
+				<type type="folder"/>
+			</direct-parameter>
+			<parameter name="in" code="peIN" description="The directory in which the file should be created. The directory must already exist. If a filename is specified, there is no guarantee it will be used." type="file">
+				<cocoa key="exportLocation"/>
+			</parameter>
+			<parameter name="as" code="peAS" description="The format in which an entry is to be exported. The default is rich text. This value is ignored when exporting resources." type="export file type" optional="yes">
+				<cocoa key="exportFormat"/>
+			</parameter>
+			<parameter name="subfolders" code="peSU" description="When exporting a folder, also export subfolders. Default is no." type="boolean" optional="yes">
+				<cocoa key="exportSubfolders"/>
+			</parameter>
+			<parameter name="header" code="peHE" description="Specfies whether to include an entry&apos;s header when exporting it. Default is yes." type="boolean" optional="yes">
+				<cocoa key="includeHeader"/>
+			</parameter>
+		</command>
+		<command name="import" code="aevtcIMP" description="Import&apos;s the provided path, converting its contents to an entry if possible.">
+			<cocoa class="JournlerScriptingImportCommand"/>
+			<direct-parameter description="The location of the file to be imported" type="file"/>
+			<parameter name="error reporting" code="pPRE" description="Determines whether an error should be presented when the file cannot be converted to an entry. The default is yes." type="boolean" optional="yes">
+				<cocoa key="presentsError"/>
+			</parameter>
+			<result description="The entry returned by the import command when the import is successful" type="entry"/>
+		</command>
+		<command name="save changes" code="aevtcSVC" description="Save any changes you&apos;ve made via AppleScript, writing the data to disk and updating smart folders.">
+			<cocoa class="JournlerScriptingSaveChangesCommand"/>
+		</command>
+		<command name="trash" code="aevtcTRE" description="Send an entry to the trash.">
+			<direct-parameter type="entry"/>
+		</command>
+		<command name="highlight" code="aevtcHLG">
+			<cocoa class="JournlerScriptingHighlightCommand"/>
+			<direct-parameter description="The word or whole phrase to highlight" type="text"/>
+		</command>
+		<command name="find in journal" code="aevtcFIJ" description="Perform a search in the main journal window">
+			<cocoa class="JournlerScriptingFindInJournal"/>
+			<direct-parameter description="The string or phrase to be searched" type="text"/>
+		</command>
+		<command name="drop box" code="aevtDRBX" description="Simulate sending a file or list of files to the drop box, opening the JPanel. The files are not actually sent to the drop box location.">
+			<cocoa class="JournlerDropBoxCommand"/>
+			<direct-parameter description="The file or files Journler will open with JPanel.">
+				<type type="file"/>
+				<type type="file" list="yes"/>
+			</direct-parameter>
+			<parameter name="delete original" code="pDOR" description="Delete the original file or files sent to the drop box. If the user cancels or the file cannot be imported, this option is ignored. Default is no." type="boolean" optional="yes">
+				<cocoa key="deletesOriginal"/>
+			</parameter>
+		</command>
+	</suite>
+</dictionary>

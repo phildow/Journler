@@ -1,0 +1,160 @@
+{
+    IBClasses =     (
+                {
+            ACTIONS =             {
+                addCondition = id;
+                changeCondition = id;
+                changeConditionKey = id;
+                changeDateCondition = id;
+                changeMarkingCondition = id;
+                changeStringCondition = id;
+                changeTagsCondition = id;
+                removeCondition = id;
+            };
+            CLASS = ConditionController;
+            LANGUAGE = ObjC;
+            OUTLETS =             {
+                conditionView = NSView;
+                dateAndLabel = NSTextField;
+                dateConditionAValue = NSDatePicker;
+                dateConditionBValue = NSDatePicker;
+                dateConditionView = NSView;
+                dateDatedView = NSView;
+                dateDetailsPlaceholder = NSView;
+                dateNumberedPop = NSPopUpButton;
+                dateNumberedValue = NSTextField;
+                dateNumberedView = NSView;
+                dateOperationPop = NSPopUpButton;
+                keyPop = NSPopUpButton;
+                labelConditionView = NSView;
+                labelOperationPop = NSPopUpButton;
+                labelPicker = LabelPicker;
+                markingConditionView = NSView;
+                markingOperationPop = NSPopUpButton;
+                removeButton = NSButton;
+                resourcesConditionView = NSView;
+                resourcesOperationPop = NSPopUpButton;
+                resourcesTypePop = NSPopUpButton;
+                specifiedConditionView = NSView;
+                stringConditionValue = NSTextField;
+                stringConditionView = NSView;
+                stringOperationPop = NSPopUpButton;
+                tagsField = NSTokenField;
+                tagsOperationPop = NSPopUpButton;
+                tagsView = NSView;
+                target = id;
+            };
+            SUPERCLASS = NSObject;
+        },
+                {
+            ACTIONS =             {
+                "" = id;
+            };
+            CLASS = FirstResponder;
+            LANGUAGE = ObjC;
+            SUPERCLASS = NSObject;
+        },
+                {
+            ACTIONS =             {
+                addCondition = id;
+                changeCondition = id;
+                changeConditionKey = id;
+                changeDateCondition = id;
+                changeMarkingCondition = id;
+                changeStringCondition = id;
+                changeTagsCondition = id;
+                removeCondition = id;
+            };
+            CLASS = JournlerConditionController;
+            LANGUAGE = ObjC;
+            OUTLETS =             {
+                dateAndLabel = NSTextField;
+                dateConditionAValue = NSDatePicker;
+                dateConditionBValue = NSDatePicker;
+                dateConditionView = NSView;
+                dateDatedView = NSView;
+                dateDetailsPlaceholder = NSView;
+                dateNumberedPop = NSPopUpButton;
+                dateNumberedValue = NSTextField;
+                dateNumberedView = NSView;
+                dateOperationPop = NSPopUpButton;
+                labelConditionView = NSView;
+                labelOperationPop = NSPopUpButton;
+                labelPicker = LabelPicker;
+                markingConditionView = NSView;
+                markingOperationPop = NSPopUpButton;
+                resourcesConditionView = NSView;
+                resourcesOperationPop = NSPopUpButton;
+                resourcesTypePop = NSPopUpButton;
+                stringConditionValue = NSTextField;
+                stringConditionView = NSView;
+                stringOperationPop = NSPopUpButton;
+                tagsField = NSTokenField;
+                tagsOperationPop = NSPopUpButton;
+                tagsView = NSView;
+            };
+            SUPERCLASS = ConditionController;
+        },
+                {
+            CLASS = JournlerPopUpButton;
+            LANGUAGE = ObjC;
+            SUPERCLASS = NSPopUpButton;
+        },
+                {
+            CLASS = LabelPicker;
+            LANGUAGE = ObjC;
+            SUPERCLASS = NSView;
+        },
+                {
+            ACTIONS =             {
+                relaunch = id;
+            };
+            CLASS = NSApplication;
+            LANGUAGE = ObjC;
+            SUPERCLASS = NSResponder;
+        },
+                {
+            CLASS = NSCell;
+            LANGUAGE = ObjC;
+            SUPERCLASS = NSObject;
+        },
+                {
+            CLASS = NSDatePicker;
+            LANGUAGE = ObjC;
+            SUPERCLASS = NSControl;
+        },
+                {
+            ACTIONS =             {
+                perfomCustomMediabarItemAction = PDMediabarItem;
+            };
+            CLASS = NSObject;
+            LANGUAGE = ObjC;
+        },
+                {
+            CLASS = NSTokenFieldCell;
+            LANGUAGE = ObjC;
+            SUPERCLASS = NSTextFieldCell;
+        },
+                {
+            CLASS = NSView;
+            LANGUAGE = ObjC;
+            SUPERCLASS = NSResponder;
+        },
+                {
+            CLASS = PDCircleButton;
+            LANGUAGE = ObjC;
+            SUPERCLASS = NSButton;
+        },
+                {
+            CLASS = PDMediabarItem;
+            LANGUAGE = ObjC;
+            SUPERCLASS = NSButton;
+        },
+                {
+            CLASS = PDPopUpButton;
+            LANGUAGE = ObjC;
+            SUPERCLASS = NSPopUpButton;
+        }
+    );
+    IBVersion = 1;
+}

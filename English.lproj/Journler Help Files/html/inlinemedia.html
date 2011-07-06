@@ -1,0 +1,82 @@
+<HTML>
+
+	<HEAD>
+		
+		<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso-8859-1">
+		<TITLE>Journler Inline Media</TITLE>
+		<META NAME="APPLEPLATFORMS" CONTENT="MAC,WIN">
+		<META NAME="KEYWORDS" CONTENT="iphoto, itunes, ilife, integration, address, book, wiki, link, wikilink, finder, movie, file, files, external, document, import, export">
+		<META NAME="DESCRIPTION" CONTENT="Integrate your entries with iLife, the Finder and other entries">
+		<link href="../journler_help.css" rel="stylesheet" type="text/css" />
+		<link href="../journler_help_print.css" rel="stylesheet" type="text/css" media="print" />
+	</HEAD>
+
+	<BODY>
+		<a name="BuiltInDocumentViewing"></a>
+		<div id="header">
+			<a href="../index.html" title="Journler - Wherever Life Takes You">
+			  <div id="logo"></div>
+			</a>
+			
+			<a href="topics.html"><h1 id="title">Journler Help</h1></a>
+			<a href=""><h2 id="subject"><img src="../graphics/topicmediaintegration.png" align="absbottom">Built-in Media Support</h2></a>
+			
+			<div id="righter">
+				<a href="topics.html"><h1 id="toc">Table of Contents<img src="../new_graphics/toc.png" align="absbottom"></h1></a>
+				<h1 id="nav"><a href="resources.html">Previous</a> | <a href="infopanel.html">Next</a></h1>
+			</div>
+			
+		</div>
+		
+		<div id="content">
+		
+		<div class="padding">
+			
+			Journler includes native support for all kinds of media. Once you've added a file or other media to an entry, click on it to bring up its 
+			media viewer. View pictures in their full glory, 
+			play movies and listen to music, surf the web or browse a pdf document. 
+			Even look at <a href="abintegration.html">Address Book contacts</a> and <a href="mailintegration.html">Mail messages</a>, 
+			all without ever leaving your journal. 
+			Journler's media viewers are distinct entities, designed specifically for the kind of media they display. 
+			The PDF viewer is excellent at handling PDF documents, while the built-in web viewer is adept at viewing web sites and web archives.
+			<p>
+			<a name="CustomizableMediabar"></a>
+			<h3>The Customizable Mediabar</h3>
+			<img src="../graphics/custommediabaritem.png" align="right" width="300" style="padding-left:10px;padding-bottom:10px;">
+			<img src="../graphics/mediabar.png">
+			</p><p>
+			At the top of each media viewer you wil find the customizable media bar. 
+			The media bar is like a miniature toolbar that belongs to the media viewer. The default installation includes buttons for 
+			getting information about the resource, opening the resource in the Finder or launching it with its default application.  
+			You may customize the media bar individually for each type of media Journler supports, 
+			adding your own actions using 3rd party applications or AppleScrpt.
+			</p><p>
+			Begin a customizaton by right-clicking on the mediabar. From the context menu select <strong>Add Custom Item</strong>.
+			The Custom Mediabar Item dialog that begins is a simple enough affair, 
+			although to take full advantage of its power you will want to be familiar with AppleScript.
+			Specify a title and tooltip, replace the default icon and set the script that will be called when your mediabar item is pressed.
+			Alternatively, you may specify an application with which to open the file-based resource. When you're finished save your changes.
+			Journler adds the mediabar item to the mediabar for this particular file type.
+			</p><p>
+			A few important notes. The title is not currently used for your custom mediabar item, so be sure to include a helpful tooltip.
+			Additionally, the code which passes the selected resource to the AppleScript handler is not working properly. Instead of using the 
+			variables provided, call the AppleScript command <span style="color:blue;"><strong>get</strong> selected resources</span> on the Journler application.
+			<p style="clear:both;"></p>
+			<h3>Opening Journler Media in 3rd Party Applications</h3>
+			If you do not want to use Journler to view the files and links you add to your entries, that's no problem. 
+			In <a href="prefmedia.html">media preferences</a> set Journler to view media in an external editor or 
+			open all media in a new window. You can do the same on the fly. Hold down the <strong>option</strong> 
+			and <strong>command</strong> keys when clicking a media link and Journler will open it in a new window. 
+			Hold down the <strong>command</strong> key alone and Journler will launch the default application for that media's type.
+			<a href="modifiers.html">Read more about keyboard modifiers</a>.
+			</p><p>
+			For more information on file and media management, refer to <a href="resources.html">resources</a>.
+			</p>
+			<br />
+		</div>
+		</div>
+		
+		<div id="footer"></div>
+	</BODY>
+</HTML>
+

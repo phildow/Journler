@@ -1,0 +1,465 @@
+/* English String Localizations */
+
+"multi info num" = "Editing %i entries";
+
+/* word for journal (notebook, diary) */
+"journal" = "Journal";
+
+/* dynamically updated menu titles */
+"show topics" = "Show Topics";
+"hide topics" = "Hide Topics";
+
+"show header" = "Show Journal Header";
+"hide header" = "Hide Journal Header";
+
+"flag entry" = "Mark as Flagged";
+"deflag entry" = "Unmark as Flagged";
+
+
+"Select Target Blog" = "Select Target Blog";
+
+/* contextual menu items */
+"menuitem insert" = "Insert";
+"menuitem scripts" = "Scripts";
+
+"menuitem checkbox" = "Checkbox";
+"menuitem table" = "Table…";
+"menuitem list" = "List…";
+"menuitem url" = "URL…";
+
+"menuitem color" = "Color…";
+"menuitem font" = "Font…";
+"menuitem spacing" = "Spacing…";
+"menuitem spacing no ellipse" = "Spacing";
+
+"menuitem strike" = "Strike";
+"menuitem highlight" = "Highlight";
+
+"menuitem yellow" = "Yellow";
+"menuitem blue" = "Blue";
+"menuitem green" = "Green";
+"menuitem orange" = "Orange";
+"menuitem red" = "Red";
+"menuitem clear" = "Remove Highlight";
+
+/* undo actions */
+"undo date" = "Insert Date";
+"undo time" = "Insert Time";
+"undo datetime" = "Insert Date & Time";
+
+"undo highlight" = "Highlight Text";
+
+
+/* new entry */
+"new entry" = "New Entry";
+"untitled title" = "Untitled";
+
+
+/* response to services menu import */
+"autoimport" = "Import";
+
+/* importing and exporting */
+"export panel title" = "Export Journal";
+"export panel text" = "Select a folder where you would like to save your journal";
+"export panel prompt" = "Save";
+"import panel text" = "Select a text, richtext, web, or word document whose contents you would like to import";
+
+
+/* notifications */
+"import failure" = "Unable to import the selected file";
+"search number" = "The search returned %i matches";
+"launch notice" = "Journler launched - %i entries";
+"random launch" = "Journler launched with random entry - %i entries";
+"random entry" = "Grabbing random entry";
+"one entry" = "1 entry";
+"num entries" = "%i entries";
+
+"export journal" = "Exporting entry %i : %@";
+"jexport singe underway" = "Preparing journal for single file export";
+"jexport complete" = "Finished exporting journal, %i entries saved";
+"jexport single complete" = "Finished exporting journal as a single file";
+"jexport error" = "Encountered error, unable to export the journal";
+
+"browsing" = "Browsing %i entries";
+"printing" = "Preparing %@ for printing…";
+"quiting" = "Saving journal and cleaning up…";
+
+
+/* blog center notifications */
+"posting entry" = "Attemping to post entry…";
+"entry posted" = "%@ successfully posted to %@ : %@";
+"entry saved" = "%@ successfully saved as an HTML document";
+"post failure" = "Unable to post %@ to %@ : %@";
+"center launched" = "Blog center launched";
+"ljconnect" = "Connecting to the LiveJournal server…";
+"ljconnect yes" = "Connection established. See Details for more options";
+"ljconnect no" = "Unable to connect to the LiveJournal server";
+"bloggerconnect" = "Connecting to the Blogger.com server…";
+"bloggerconnect yes" = "Connection established. See Details for more options";
+"bloggerconnect no" = "Unable to connect to Blogger.com";
+
+
+/* recording */
+"mp3 prepare" = "Preparing to convert audio recording to mp3…";
+"mp3 convert" = "Converting audio recording to mp3…";
+"mp3 tag" = "Tagging mp3…";
+"mp3 import" = "Adding recording to iTunes…";
+"mp3 save" = "Saving mp3 to disk…";
+"mp3 clean" = "Cleaning up…";
+
+"mov tag" = "Tagging movie…";
+
+/* recording errors */
+"no record title" = "Recording Unavailable";
+"no record message" = "Journler recording requires Quicktime 7, the LAME encoding component and an audio input device.";
+"record error" = "Record Center Error";
+"re nodetach" = "Unable to begin conversion, could not detach movie from current thread";
+"re noretach" = "Unable to begin conversion, could not attach movie to current thread";
+"re nobegin" = "Unable to begin conversion, could not read saved audio file";
+"re nocomp" = "Unable to load MP3 encoder. It may be necessary to relaunch Journler before it is available. You may still save your recording as a QuickTime movie.";
+"re nowrite" = "Error exporting mp3 to path %@";
+"re noscript" = "Could not locate mp3 import script";
+"re noexec" = "Could not execute mp3 import script";
+"re nocopy" = "Unable to copy recording to final destination";
+
+
+
+
+/* window and browse table reset */
+"window nix" = "Window and browse frames successfully reset";
+
+
+/* search manager reset */
+"search reset yes" = "Search manager successfuly reset";
+"search reset no" = "Unable to reset search manager";
+
+
+/* errors */
+"setup error" = "Error creating and seting up the initial journal data. This is a critical error. Journler must quit. Please contact support@journler.com for additional support.";
+
+"journal creation error" = "Journler was unable to load your journal. This is a critical error. Journler must shut down. Please let Journler's creator know about this via support@journler.com.";
+"creation error 4" = "Journler was unable to load your journal: no journal at default path. Journler must shut down. Please let Journler's creator know about this via support@journler.com.";	
+
+
+/* alerts */
+
+
+"confirm fremove title" = "Delete Folder";
+"confirm fremove msg" = "Are you sure you want to delete the collection titled \"%@\"?";
+"confirm fremove info" = "Deleting this folder will permanently remove it from your journal.";
+"confirm fremove yes" = "Delete";
+"confirm fremove no" = "Cancel";
+
+
+"qt7 media title" = "QuickTime 7 Required";
+"qt7 media msg" = "The Journler media browser requires QuickTime 7.";
+"qt7 media info" = "Please consider upgrading to QT7. If you do not require pro features, the upgrade is free.";
+"qt7 media yes" = "Okay";
+"qt7 media no" = "Cancel";
+
+/* applescript error */
+"applescript error title" = "AppleScript Error";
+"applescript error msg" = "An unknown error was encountered while compiling or executing the script.";
+"applescript error info" = "Journler must halt execution of the script.";
+"applescript error yes" = "Okay";
+"applescript error no" = "Cancel";
+
+/* audio recording error */
+"critical audio error title" = "Critical Audio Error";
+"critical audio error msg" = "A critical error was encountered by the record center.";
+"critical audio error info" = "It is necessary to shut the record center down.";
+"critical audio error close" = "Close";
+"critical audio error cancel" = "Cancel";
+
+"livejournal error title" = "Live journal error";
+"server message title" = "Message from the server";
+
+
+/* updating */
+"connection attempt" = "Connecting to server…";
+"connection impossible" = "Unable to connect to server";
+"connection error" = "An error occurred while checking for update";
+"connection cancelling" = "Cancelling connection…";
+"connection cancelled" = "Download update cancelled";
+"checking update" = "Checking for update…";
+"update no" = "You are running the latest version of Journler!";
+"update yes" = "An update is available. Click update to download";
+
+
+/* importing a url */
+"urlImport downloading" = "Downloading data…";
+"urlImport converting" = "Converting data…";
+
+
+/* encryption & decryption */
+"pref encrypting" = "Journler is encrypting your entries…";
+"pref decrypting" = "Journler is decrypting your entries…";
+
+
+/* miscellaneous */
+"word insert" = "Insert";
+
+
+/* services */
+"services category" = "Services Import";
+"dropbox category" = "Drop Box";
+"services window title" = "jPanel - Journler Service";
+"dropbox window title" = "jPanel - Journler Drop Box";
+
+"dropbox note singular" = "Place the import in a folder or add tags and a category.";
+"dropbox note plural" = "Place the imports in a folder or add tags and a category.";
+
+/* applescript */
+"applescript category" = "AppleScript Addition";
+
+
+
+
+/* 2.0 Additions */
+
+
+"resource original" = "Original";
+"resource alias" = "Alias";
+
+"resource original delete okay" = "Delete";
+"resource original delete cancel" = "Cancel";
+
+"resource original delete title" = "Delete Resource File";
+"resource original delete message" = "You are deleting the actual file. You cannot undo this action. Are you sure you want to do this?";
+
+"resource alias delete title" = "Delete Resource Alias";
+"resource alias delete message" = "You are deleting the an alias. The original file will not be efffected. Are you sure you want to do this?";
+
+
+"foldertitle searchresults" = "Search Results";
+
+
+"localized categories" = "-,Personal,Dreams,Thoughts & Aphorisms,Observations,Work";
+"localized default category" = "Personal";
+
+
+"tutorial category" = "Journler";
+"tutorial keywords" = "Journler Welcome";
+
+"tutorial general title" = "Welcome to Journler";
+"tutorial media title" = "Journler Tutorial 2 - Media";
+"tutorial collections title" = "Journler Tutorial 3 - Collections";
+
+"collection manual title" = "Journler Manual";
+"collection trash title" = "Trash";
+
+"no selection" = "None";
+
+"saved entry" = "%@ saved";
+"saved entry error" = "Unable to save %@";
+
+
+"metaweblog connect" = "Connecting to the Meta Weblog server";
+"metaweblog connect yes" = "Connection established. See Details for more options";
+"metaweblog connect no" = "Unable to connect to the Meta Weblog interface";
+
+/* calendar segment tooltips */
+
+"to previous month" = "Show the previous month";
+"to previous day" = "Select the previous day";
+"to today" = "Jump to today's date";
+"to next day" = "Select the next day";
+"to next month" = "Show the next month";
+
+"previous month description" = "Previous Month";
+"previous day description" = "Previous Day";
+"today description" = "Today";
+"next day description" = "Next Day";
+"next month description" = "Next month";
+
+"stop description" = "Stop";
+"play description" = "Play";
+
+"import finished close" = "Close";
+
+
+/* MORE 2.0.1 changes */
+
+"menuitem remove formatting" = "Remove Formatting";
+
+"dated untitled title" = "%@ Untitled";
+"update title" = "Journler v%@ Updating";
+"bug report" = "Type of Problem:\n(ie bug, crash, feature request, etc):\n\n\nPlease Describe the Problem:\n(short, precise descriptions are more likely to be addressed)\n\n\nFeel free to send a screenshot.\nIf you are reporting a crash, please attach the file called journler.crash.log located in your Home folder > Library > Logs > Crashreporter.";
+
+
+
+"check entry" = "Mark as Checked";
+"decheck entry" = "Unmark as Checked";
+
+
+"menuitem space single" = "1 Line";
+"menuitem space double" = "2 Lines";
+"menuitem space single half" = "1.5 Lines";
+
+"menuitem open link" = "Open Link";
+"menuitem open tab" = "Open Link";
+"menuitem open new tab" = "Open in New Tab";
+"menuitem open window" = "Open in New Window";
+"menuitem finder reveal" = "Reveal Original in Finder";
+"menuitem finder open" = "Open with Finder";
+
+
+"folder image select title" = "Select Image";
+"folder image select prompt" = "Select";
+"folder image select message" = "Select a new image for the folder, best one whose length and width are equal.";
+
+
+/* 2.1 changes */
+"preferences panel 1" = "Licensing";
+"preferences panel 2" = "General";
+"preferences panel 3" = "Advanced";
+"preferences panel 4" = "Web";
+"preferences panel 6" = "Appearance";
+"preferences panel 12" = "Media";
+"preferences panel 16" = "Editing";
+"preferences panel 17" = "Labels";
+
+"live count" = "%i paragraphs, %i words, %i characters";
+"num entries num resources" = "%i entries, %i resources";
+
+"undo autourl" = "Link URL";
+"undo autowiki" = "Entry Link";
+"undo autospelling" = "Correct Spelling";
+
+"resource node folder" = "Containing Folders";
+"resource node internal" = "Journler Links";
+"resource node contacts" = "Contacts";
+"resource node urls" = "Websites";
+"resource node pdfs" = "PDFs";
+"resource node archives" = "Web Archives";
+"resource node images" = "Images";
+"resource node av" = "Audio/Video";
+"resource node docs" = "Documents";
+"resource node correspondence" = "Messages";
+
+"copy menu item" = "Copy";
+"entry link menu item" = "Copy Link to Entry";
+"folder link menu item" = "Copy Link to Folder";
+"resource link menu item" = "Copy Link to Resource";
+
+"menuitem insert date" = "Date";
+"menuitem insert time" = "Time";
+"menuitem insert datetime" = "Date & Time";
+
+"video recording" = "Video Recording";
+"audio recording" = "Audio Recording";
+"snapshot recording" = "Snapshot";
+
+"mditem kind name" = "Kind";
+"mditem size name" = "Size";
+"mditem size kb" = "KB on disk";
+"mditem size mb" = "MB on disk";
+"mditem size gb" = "GB on disk";
+"mditem created name" = "Created";
+"mditem modified name" = "Modified";
+"mditem lastopened name" = "Last opened";
+
+"html rep entries" = "Entries";
+"html rep folder" = "Folder";
+"html rep library" = "Library";
+"html rep trash" = "Trash";
+"html rep regfolder" = "Folder";
+"html rep smartfolder" = "Smart Folder";
+
+"title label" = "Title";
+"date label" = "Date";
+"category label" = "Category";
+"tags label" = "Tags";
+"summary label" = "Summary";
+
+"duplicated entry" = "Copy";
+
+"menuitem insert linebreak" = "Linebreak";
+"menuitem insert paragraphbreak" = "Paragraph Break";
+
+"csv select title" = "Select Document";
+"csv select prompt" = "Select";
+"csv select message" = "Select a text file whose word pairs are separated by a comma with each pair on its own line.";
+
+"menuitem open with finder" = "Open with Finder";
+"menuitem open link with finder" = "Open Link with Finder";
+"menuitem reveal link in finder" = "Reveal Link in Finder";
+"menuitem append image" = "Append Image to Entry";
+
+"choose button" = "Choose";
+
+"export resources panel prompt" = "Export";
+"export resources panel title" = "Select a destination";
+"export resources panel text" = "Where would you like to save the selected resources?";
+
+"menuitem export resources" = "Export Selected Resources…";
+"menuitem export entries" = "Export Selected Entries…";
+"menuitem export" = "Export…";
+
+"menuitem new folder" = "New Folder";
+"menuitem new folder with selection" = "New Folder with Selection";
+
+"enter license" = "Enter License";
+"invalidate license" = "Invalidate";
+
+"alert valid license title" = "Valid License!";
+"alert invalid license title" = "Invalid License!";
+
+"alert valid personal use" = "This license is valid for personal use. Thanks for your donation!";
+"alert valid nonpersonal use" = "This is a valid license for non-personal use. Thanks for your support!";
+"alert valid beta" = "This is a valid license for beta testing. Thanks for your support!";
+"alert valid journler" ="This is a valid Journler Friends license. Thanks for your support!";
+"alert valid full" = "This is a valid Journler license. Thanks for your support!";
+
+"alert invalid msg" = "This is not a valid license. Please ensure you have entered your license code correctly.";
+
+"new entry with clipboard" = "New Entry with Contents of Clipboard";
+"menuitem linkto" = "Link To";
+
+"resource tooltip bad alias" = "Journler is unable to find the original file associated with this resource. The alias seems to be broken.";
+"resource tooltip no file" = "Journler is unable to find the file associated with this resource";
+
+"integration copying files" = "Copying Files…";
+"integration creating archive" = "Creating archive…";
+"integration reading messages" = "Reading messages…";
+
+"show resources" = "Show Resources";
+"hide resources" = "Hide Resources";
+
+"terms label" = "terms";
+"documents label" = "items";
+
+"file manager error title" = "Journler encountered a file error";
+"file manager error msg" = "Description: %@\nPath: %@";
+
+"menuitem lexicon" = "All Documents with Term";
+
+"import review note" = "Review, edit and remove entries.";
+"import review target folder" = "The target root folder is %@";
+
+"reading dropbox" = "Reading Drop Box";
+
+"pdf service filename" = "Save PDF to Journler";
+
+"term header title" = "Term";
+"document header title" = "Document";
+
+"find in journal" = "Find in Journal";
+"find in folder" = "Find in Folder";
+
+"LabelName1" = "Red";
+"LabelName2" = "Orange";
+"LabelName3" = "Yellow";
+"LabelName4" = "Green";
+"LabelName5" = "Blue";
+"LabelName6" = "Purple";
+"LabelName7" = "Gray";
+
+"menuitem new entry quick" = "New Entry";
+"menuitem new entry extended" = "New Entry…";
+
+// 2.5.4 changes
+
+"menuitem tag entry" = "Make Tag";
+"locate weblog editor" = "Where is your weblog application or Apple Script?";
+"loading journal" = "Loading Journal…";

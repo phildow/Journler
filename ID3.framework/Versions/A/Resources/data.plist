@@ -1,0 +1,2636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>2.0</key>
+		<dict>
+			<key>BUF</key>
+			<dict>
+				<key>2.3</key>
+				<string>RBUF</string>
+				<key>2.4</key>
+				<string>RBUF</string>
+				<key>description</key>
+				<string>Recommended buffer size</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>CNT</key>
+			<dict>
+				<key>2.3</key>
+				<string>PCNT</string>
+				<key>2.4</key>
+				<string>PCNT</string>
+				<key>description</key>
+				<string>Play counter</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>COM</key>
+			<dict>
+				<key>2.3</key>
+				<string>COMM</string>
+				<key>2.4</key>
+				<string>COMM</string>
+				<key>description</key>
+				<string>Comments</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>CRA</key>
+			<dict>
+				<key>2.3</key>
+				<string></string>
+				<key>2.4</key>
+				<string>AENC</string>
+				<key>description</key>
+				<string>Audio encryption</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>CRM</key>
+			<dict>
+				<key>description</key>
+				<string>Encrypted meta frame</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>EQU</key>
+			<dict>
+				<key>2.3</key>
+				<string>EQUA</string>
+				<key>description</key>
+				<string>Equalization</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>ETC</key>
+			<dict>
+				<key>2.3</key>
+				<string>ETCO</string>
+				<key>2.4</key>
+				<string>ETCO</string>
+				<key>description</key>
+				<string>Event timing codes</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>GEO</key>
+			<dict>
+				<key>2.3</key>
+				<string>GEOB</string>
+				<key>2.4</key>
+				<string>GEOB</string>
+				<key>description</key>
+				<string>General encapsulated object</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>IPL</key>
+			<dict>
+				<key>2.3</key>
+				<string>IPLS</string>
+				<key>2.4</key>
+				<string>TIPL</string>
+				<key>description</key>
+				<string>Involved people list</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>LNK</key>
+			<dict>
+				<key>2.3</key>
+				<string>LINK</string>
+				<key>2.4</key>
+				<string>LINK</string>
+				<key>description</key>
+				<string>Linked information</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>MCI</key>
+			<dict>
+				<key>2.3</key>
+				<string>MCDI</string>
+				<key>2.4</key>
+				<string>MCDI</string>
+				<key>description</key>
+				<string>Music CD Identifier</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>MLL</key>
+			<dict>
+				<key>2.3</key>
+				<string>MLLT</string>
+				<key>2.4</key>
+				<string>MLLT</string>
+				<key>description</key>
+				<string>MPEG location lookup</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>PIC</key>
+			<dict>
+				<key>description</key>
+				<string>Attached picture</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>POP</key>
+			<dict>
+				<key>2.3</key>
+				<string>POPM</string>
+				<key>2.4</key>
+				<string>POPM</string>
+				<key>description</key>
+				<string>Popularimeter</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>REV</key>
+			<dict>
+				<key>2.3</key>
+				<string>RVRB</string>
+				<key>2.4</key>
+				<string>RVRB</string>
+				<key>description</key>
+				<string>Reverb</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>RVA</key>
+			<dict>
+				<key>2.3</key>
+				<string>RVAD</string>
+				<key>description</key>
+				<string>Relative volume adjustment</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>SLT</key>
+			<dict>
+				<key>2.3</key>
+				<string>SYLT</string>
+				<key>2.4</key>
+				<string>SYLT</string>
+				<key>description</key>
+				<string>Synchronized lyric/text</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>STC</key>
+			<dict>
+				<key>2.3</key>
+				<string>SYTC</string>
+				<key>2.4</key>
+				<string>SYTC</string>
+				<key>description</key>
+				<string>Synced tempo codes</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>TAL</key>
+			<dict>
+				<key>2.3</key>
+				<string>TALB</string>
+				<key>2.4</key>
+				<string>TALB</string>
+				<key>description</key>
+				<string>Album/Movie/Show title</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TBP</key>
+			<dict>
+				<key>2.3</key>
+				<string>TBPM</string>
+				<key>2.4</key>
+				<string>TBPM</string>
+				<key>description</key>
+				<string>BPM (Beats Per Minute)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TCM</key>
+			<dict>
+				<key>2.3</key>
+				<string>TCOM</string>
+				<key>2.4</key>
+				<string>TCOM</string>
+				<key>description</key>
+				<string>Composer</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TCO</key>
+			<dict>
+				<key>2.3</key>
+				<string>TCON</string>
+				<key>2.4</key>
+				<string>TCON</string>
+				<key>description</key>
+				<string>Content type</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TCR</key>
+			<dict>
+				<key>2.3</key>
+				<string>TCOP</string>
+				<key>2.4</key>
+				<string>TCOP</string>
+				<key>description</key>
+				<string>Copyright message</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TDA</key>
+			<dict>
+				<key>2.3</key>
+				<string>TDAT</string>
+				<key>description</key>
+				<string>Date</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TDY</key>
+			<dict>
+				<key>2.3</key>
+				<string>TDLY</string>
+				<key>2.4</key>
+				<string>TDLY</string>
+				<key>description</key>
+				<string>Playlist delay</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TEN</key>
+			<dict>
+				<key>2.3</key>
+				<string>TENC</string>
+				<key>2.4</key>
+				<string>TENC</string>
+				<key>description</key>
+				<string>Encoded by</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TFT</key>
+			<dict>
+				<key>2.3</key>
+				<string>TFLT</string>
+				<key>2.4</key>
+				<string>TFLT</string>
+				<key>description</key>
+				<string>File type</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TIM</key>
+			<dict>
+				<key>2.3</key>
+				<string>TIME</string>
+				<key>description</key>
+				<string>Time</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TKE</key>
+			<dict>
+				<key>2.3</key>
+				<string>TKEY</string>
+				<key>2.4</key>
+				<string>TKEY</string>
+				<key>description</key>
+				<string>Initial key</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TLA</key>
+			<dict>
+				<key>2.3</key>
+				<string>TLAN</string>
+				<key>2.4</key>
+				<string>TLAN</string>
+				<key>description</key>
+				<string>Language(s)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TLE</key>
+			<dict>
+				<key>2.3</key>
+				<string>TLEN</string>
+				<key>2.4</key>
+				<string>TLEN</string>
+				<key>description</key>
+				<string>Length</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TMT</key>
+			<dict>
+				<key>2.3</key>
+				<string>TMED</string>
+				<key>2.4</key>
+				<string>TMED</string>
+				<key>description</key>
+				<string>Media type</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TOA</key>
+			<dict>
+				<key>2.3</key>
+				<string>TOPE</string>
+				<key>2.4</key>
+				<string>TOPE</string>
+				<key>description</key>
+				<string>Original artist(s)/performer(s)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TOF</key>
+			<dict>
+				<key>2.3</key>
+				<string>TOFN</string>
+				<key>2.4</key>
+				<string>TOFN</string>
+				<key>description</key>
+				<string>Original filename</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TOL</key>
+			<dict>
+				<key>2.3</key>
+				<string>TOLY</string>
+				<key>2.4</key>
+				<string>TOLY</string>
+				<key>description</key>
+				<string>Original Lyricist(s)/text writer(s)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TOR</key>
+			<dict>
+				<key>2.3</key>
+				<string>TORY</string>
+				<key>description</key>
+				<string>Original release year(s)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TOT</key>
+			<dict>
+				<key>2.3</key>
+				<string>TOAL</string>
+				<key>2.4</key>
+				<string>TOAL</string>
+				<key>description</key>
+				<string>Original album/Movie/Show title</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TP1</key>
+			<dict>
+				<key>2.3</key>
+				<string>TPE1</string>
+				<key>2.4</key>
+				<string>TPE1</string>
+				<key>description</key>
+				<string>Lead artist(s)/Lead performer(s)/Soloist(s)/Performing group</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TP2</key>
+			<dict>
+				<key>2.3</key>
+				<string>TPE2</string>
+				<key>2.4</key>
+				<string>TPE2</string>
+				<key>description</key>
+				<string>Band/Orchestra/Accompaniment</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TP3</key>
+			<dict>
+				<key>2.3</key>
+				<string>TPE3</string>
+				<key>2.4</key>
+				<string>TPE3</string>
+				<key>description</key>
+				<string>Conductor/Performer refinement</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TP4</key>
+			<dict>
+				<key>2.3</key>
+				<string>TPE4</string>
+				<key>2.4</key>
+				<string>TPE4</string>
+				<key>description</key>
+				<string>Interpreted, remixed, or otherwise modified by</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TPA</key>
+			<dict>
+				<key>2.3</key>
+				<string>TPOS</string>
+				<key>2.4</key>
+				<string>TPOS</string>
+				<key>description</key>
+				<string>Part of a set</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TPB</key>
+			<dict>
+				<key>2.3</key>
+				<string>TPUB</string>
+				<key>2.4</key>
+				<string>TPUB</string>
+				<key>description</key>
+				<string>Publisher</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TRC</key>
+			<dict>
+				<key>2.3</key>
+				<string>TSRC</string>
+				<key>2.4</key>
+				<string>TSRC</string>
+				<key>description</key>
+				<string>ISRC (International Standard Recording Code)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TRD</key>
+			<dict>
+				<key>2.3</key>
+				<string>TRDA</string>
+				<key>description</key>
+				<string>Recording dates</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TRK</key>
+			<dict>
+				<key>2.3</key>
+				<string>TRCK</string>
+				<key>2.4</key>
+				<string>TRCK</string>
+				<key>description</key>
+				<string>Track number/Position in set</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TSI</key>
+			<dict>
+				<key>2.3</key>
+				<string>TSIZ</string>
+				<key>description</key>
+				<string>Size</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TSS</key>
+			<dict>
+				<key>2.3</key>
+				<string>TSSE</string>
+				<key>2.4</key>
+				<string>TSSE</string>
+				<key>description</key>
+				<string>Software/hardware and settings used for encoding</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TT1</key>
+			<dict>
+				<key>2.3</key>
+				<string>TIT1</string>
+				<key>2.4</key>
+				<string>TIT1</string>
+				<key>description</key>
+				<string>Content group description</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TT2</key>
+			<dict>
+				<key>2.3</key>
+				<string>TIT2</string>
+				<key>2.4</key>
+				<string>TIT2</string>
+				<key>New item</key>
+				<string></string>
+				<key>description</key>
+				<string>Title/Songname/Content description</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TT3</key>
+			<dict>
+				<key>2.3</key>
+				<string>TIT3</string>
+				<key>2.4</key>
+				<string>TIT3</string>
+				<key>description</key>
+				<string>Subtitle/Description refinement</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TXT</key>
+			<dict>
+				<key>2.3</key>
+				<string>TEXT</string>
+				<key>2.4</key>
+				<string>TEXT</string>
+				<key>description</key>
+				<string>Lyricist/text writer</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TXX</key>
+			<dict>
+				<key>2.3</key>
+				<string>TXXX</string>
+				<key>2.4</key>
+				<string>TXXX</string>
+				<key>description</key>
+				<string>User defined text information frame</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TYE</key>
+			<dict>
+				<key>2.3</key>
+				<string>TYER</string>
+				<key>description</key>
+				<string>Year</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>UFI</key>
+			<dict>
+				<key>2.0</key>
+				<string>UFID</string>
+				<key>2.4</key>
+				<string>UFID</string>
+				<key>description</key>
+				<string>Unique file identifier</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>ULT</key>
+			<dict>
+				<key>2.3</key>
+				<string>USLT</string>
+				<key>2.4</key>
+				<string>USLT</string>
+				<key>description</key>
+				<string>Unsychronized lyric/text transcription</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WAF</key>
+			<dict>
+				<key>2.3</key>
+				<string>WOAF</string>
+				<key>2.4</key>
+				<string>WOAF</string>
+				<key>description</key>
+				<string>Official audio file webpage</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WAR</key>
+			<dict>
+				<key>2.3</key>
+				<string>WOAR</string>
+				<key>2.4</key>
+				<string>WOAR</string>
+				<key>description</key>
+				<string>Official artist/performer webpage</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WAS</key>
+			<dict>
+				<key>2.3</key>
+				<string>WOAS</string>
+				<key>2.4</key>
+				<string>WOAS</string>
+				<key>description</key>
+				<string>Official audio source webpage</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WCM</key>
+			<dict>
+				<key>2.3</key>
+				<string>WCOM</string>
+				<key>2.4</key>
+				<string>WCOM</string>
+				<key>description</key>
+				<string>Commercial information</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WCP</key>
+			<dict>
+				<key>2.3</key>
+				<string>WCOP</string>
+				<key>2.4</key>
+				<string>WCOP</string>
+				<key>description</key>
+				<string>Copyright/Legal information</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WPB</key>
+			<dict>
+				<key>2.3</key>
+				<string>WPUB</string>
+				<key>2.4</key>
+				<string>WPUB</string>
+				<key>description</key>
+				<string>Publishers official webpage</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WXX</key>
+			<dict>
+				<key>2.3</key>
+				<string>WXXX</string>
+				<key>2.4</key>
+				<string>WXXX</string>
+				<key>description</key>
+				<string>User defined URL link frame</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+		</dict>
+		<key>2.3</key>
+		<dict>
+			<key>AENC</key>
+			<dict>
+				<key>2.0</key>
+				<string>CRA</string>
+				<key>2.4</key>
+				<string>AENC</string>
+				<key>description</key>
+				<string>Audio encryption</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>APIC</key>
+			<dict>
+				<key>2.4</key>
+				<string>APIC</string>
+				<key>description</key>
+				<string>Attached picture</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>COMM</key>
+			<dict>
+				<key>2.0</key>
+				<string>COM</string>
+				<key>2.4</key>
+				<string>COMM</string>
+				<key>description</key>
+				<string>Comments</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>COMR</key>
+			<dict>
+				<key>2.4</key>
+				<string>COMR</string>
+				<key>description</key>
+				<string>Commercial frame</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>ENCR</key>
+			<dict>
+				<key>2.4</key>
+				<string>ENCR</string>
+				<key>description</key>
+				<string>Encryption method registration</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>EQUA</key>
+			<dict>
+				<key>2.0</key>
+				<string>EQU</string>
+				<key>description</key>
+				<string>Equalization</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>ETCO</key>
+			<dict>
+				<key>2.0</key>
+				<string>ETC</string>
+				<key>2.4</key>
+				<string>ETCO</string>
+				<key>description</key>
+				<string>Event timing codes</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>GEOB</key>
+			<dict>
+				<key>2.0</key>
+				<string>GEO</string>
+				<key>2.4</key>
+				<string>GEOB</string>
+				<key>description</key>
+				<string>General encapsulated object</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>GRID</key>
+			<dict>
+				<key>2.4</key>
+				<string>GRID</string>
+				<key>description</key>
+				<string>Group identification registration</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>IPLS</key>
+			<dict>
+				<key>2.0</key>
+				<string>IPL</string>
+				<key>2.4</key>
+				<string>TIPL</string>
+				<key>description</key>
+				<string>Involved people list</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>LINK</key>
+			<dict>
+				<key>2.0</key>
+				<string>LNK</string>
+				<key>2.4</key>
+				<string>LINK</string>
+				<key>description</key>
+				<string>LINK Linked information</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>MCDI</key>
+			<dict>
+				<key>2.0</key>
+				<string>MCI</string>
+				<key>2.4</key>
+				<string>MCDI</string>
+				<key>description</key>
+				<string>Music CD identifier</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>MLLT</key>
+			<dict>
+				<key>2.0</key>
+				<string>MLL</string>
+				<key>2.4</key>
+				<string>MLLT</string>
+				<key>description</key>
+				<string>MPEG location lookup table</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>OWNE</key>
+			<dict>
+				<key>2.4</key>
+				<string>OWNE</string>
+				<key>description</key>
+				<string>Ownership frame</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>PCNT</key>
+			<dict>
+				<key>2.0</key>
+				<string>CNT</string>
+				<key>2.4</key>
+				<string>PCNT</string>
+				<key>description</key>
+				<string>Play counter</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>POPM</key>
+			<dict>
+				<key>2.0</key>
+				<string>POP</string>
+				<key>2.4</key>
+				<string>POPM</string>
+				<key>description</key>
+				<string>Popularimeter</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>POSS</key>
+			<dict>
+				<key>2.4</key>
+				<string>POSS</string>
+				<key>description</key>
+				<string>Position synchronisation frame</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>PRIV</key>
+			<dict>
+				<key>2.4</key>
+				<string>PRIV</string>
+				<key>description</key>
+				<string>Private frame</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>RBUF</key>
+			<dict>
+				<key>2.0</key>
+				<string>BUF</string>
+				<key>2.4</key>
+				<string>RBUF</string>
+				<key>description</key>
+				<string>Recommended buffer size</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>RVAD</key>
+			<dict>
+				<key>2.0</key>
+				<string>RVAD</string>
+				<key>description</key>
+				<string>Relative volume adjustment</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>RVRB</key>
+			<dict>
+				<key>2.0</key>
+				<string>RVRB</string>
+				<key>2.4</key>
+				<string>REV</string>
+				<key>description</key>
+				<string>Reverb</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>SYLT</key>
+			<dict>
+				<key>2.0</key>
+				<string>SLT</string>
+				<key>2.4</key>
+				<string>SYLT</string>
+				<key>description</key>
+				<string>Synchronized lyric/text</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>SYTC</key>
+			<dict>
+				<key>2.0</key>
+				<string>STC</string>
+				<key>2.4</key>
+				<string>SYTC</string>
+				<key>description</key>
+				<string>Synchronized tempo codes</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>TALB</key>
+			<dict>
+				<key>2.0</key>
+				<string>TAL</string>
+				<key>2.4</key>
+				<string>TALB</string>
+				<key>description</key>
+				<string>Album/Movie/Show title</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TBPM</key>
+			<dict>
+				<key>2.0</key>
+				<string>TBP</string>
+				<key>2.4</key>
+				<string>TBPM</string>
+				<key>description</key>
+				<string>BPM (beats per minute)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TCOM</key>
+			<dict>
+				<key>2.0</key>
+				<string>TCM</string>
+				<key>2.4</key>
+				<string>TCOM</string>
+				<key>description</key>
+				<string>Composer</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TCON</key>
+			<dict>
+				<key>2.0</key>
+				<string>TCO</string>
+				<key>2.4</key>
+				<string>TCON</string>
+				<key>description</key>
+				<string>Content type</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TCOP</key>
+			<dict>
+				<key>2.0</key>
+				<string>TCR</string>
+				<key>2.4</key>
+				<string>TCOP</string>
+				<key>description</key>
+				<string>Copyright message</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TDAT</key>
+			<dict>
+				<key>2.0</key>
+				<string>TDA</string>
+				<key>description</key>
+				<string>Date</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TDLY</key>
+			<dict>
+				<key>2.0</key>
+				<string>TDY</string>
+				<key>2.4</key>
+				<string>TDLY</string>
+				<key>description</key>
+				<string>Playlist delay</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TENC</key>
+			<dict>
+				<key>2.0</key>
+				<string>TEN</string>
+				<key>2.4</key>
+				<string>TENC</string>
+				<key>description</key>
+				<string>Encoded by</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TEXT</key>
+			<dict>
+				<key>2.0</key>
+				<string>TXT</string>
+				<key>2.4</key>
+				<string>TEXT</string>
+				<key>description</key>
+				<string>Lyricist/Text writer</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TFLT</key>
+			<dict>
+				<key>2.0</key>
+				<string>TFT</string>
+				<key>2.4</key>
+				<string>TFLT</string>
+				<key>New item</key>
+				<string></string>
+				<key>description</key>
+				<string>File type</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TIME</key>
+			<dict>
+				<key>2.0</key>
+				<string>TIM</string>
+				<key>description</key>
+				<string>Time</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TIT1</key>
+			<dict>
+				<key>2.0</key>
+				<string>TT1</string>
+				<key>2.4</key>
+				<string>TIT1</string>
+				<key>description</key>
+				<string>Content group description</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TIT2</key>
+			<dict>
+				<key>2.0</key>
+				<string>TT2</string>
+				<key>2.4</key>
+				<string>TIT2</string>
+				<key>description</key>
+				<string>Title/songname/content description</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TIT3</key>
+			<dict>
+				<key>2.0</key>
+				<string>TT3</string>
+				<key>2.4</key>
+				<string>TIT3</string>
+				<key>description</key>
+				<string>Subtitle/Description refinement</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TKEY</key>
+			<dict>
+				<key>2.0</key>
+				<string>TKE</string>
+				<key>2.4</key>
+				<string>TKEY</string>
+				<key>description</key>
+				<string>Initial key</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TLAN</key>
+			<dict>
+				<key>2.0</key>
+				<string>TLA</string>
+				<key>2.4</key>
+				<string>TLAN</string>
+				<key>description</key>
+				<string>Language(s)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TLEN</key>
+			<dict>
+				<key>2.0</key>
+				<string>TLE</string>
+				<key>2.4</key>
+				<string>TLEN</string>
+				<key>description</key>
+				<string>Length</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TMED</key>
+			<dict>
+				<key>2.0</key>
+				<string>TMT</string>
+				<key>2.4</key>
+				<string>TMED</string>
+				<key>description</key>
+				<string>Media type</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TOAL</key>
+			<dict>
+				<key>2.0</key>
+				<string>TAL</string>
+				<key>2.4</key>
+				<string>TOAL</string>
+				<key>description</key>
+				<string>Original album/movie/show title</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TOFN</key>
+			<dict>
+				<key>2.0</key>
+				<string>TOF</string>
+				<key>2.4</key>
+				<string>TOFN</string>
+				<key>description</key>
+				<string>Original filename</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TOLY</key>
+			<dict>
+				<key>2.0</key>
+				<string>TOL</string>
+				<key>2.4</key>
+				<string>TOLY</string>
+				<key>description</key>
+				<string>Original lyricist(s)/text writer(s)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TOPE</key>
+			<dict>
+				<key>2.0</key>
+				<string>TOA</string>
+				<key>2.4</key>
+				<string>TOPE</string>
+				<key>description</key>
+				<string>Original artist(s)/performer(s)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TORY</key>
+			<dict>
+				<key>2.0</key>
+				<string>TOR</string>
+				<key>description</key>
+				<string>Original release year</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TOWN</key>
+			<dict>
+				<key>2.4</key>
+				<string>TOWN</string>
+				<key>description</key>
+				<string>File owner/licensee</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TPE1</key>
+			<dict>
+				<key>2.0</key>
+				<string>TP1</string>
+				<key>2.4</key>
+				<string>TPE1</string>
+				<key>description</key>
+				<string>Lead performer(s)/Soloist(s)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TPE2</key>
+			<dict>
+				<key>2.0</key>
+				<string>TP2</string>
+				<key>2.4</key>
+				<string>TPE2</string>
+				<key>description</key>
+				<string>Band/orchestra/accompaniment</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TPE3</key>
+			<dict>
+				<key>2.0</key>
+				<string>TP3</string>
+				<key>2.4</key>
+				<string>TPE3</string>
+				<key>description</key>
+				<string>Conductor/performer refinement</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TPE4</key>
+			<dict>
+				<key>2.0</key>
+				<string>TP4</string>
+				<key>2.4</key>
+				<string>TPE4</string>
+				<key>description</key>
+				<string>Interpreted, remixed, or otherwise modified by</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TPOS</key>
+			<dict>
+				<key>2.0</key>
+				<string>TPA</string>
+				<key>2.4</key>
+				<string>TPOS</string>
+				<key>description</key>
+				<string>Part of a set</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TPUB</key>
+			<dict>
+				<key>2.0</key>
+				<string>TPB</string>
+				<key>2.4</key>
+				<string>TPUB</string>
+				<key>description</key>
+				<string>Publisher</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TRCK</key>
+			<dict>
+				<key>2.0</key>
+				<string>TRK</string>
+				<key>2.4</key>
+				<string>TRCK</string>
+				<key>description</key>
+				<string>Track number/Position in set</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TRDA</key>
+			<dict>
+				<key>2.0</key>
+				<string>TRD</string>
+				<key>description</key>
+				<string>Recording dates</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TRSN</key>
+			<dict>
+				<key>2.4</key>
+				<string>TRSN</string>
+				<key>description</key>
+				<string>Internet radio station name</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TRSO</key>
+			<dict>
+				<key>2.4</key>
+				<string>TRSO</string>
+				<key>description</key>
+				<string>Internet radio station owner</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TSIZ</key>
+			<dict>
+				<key>2.0</key>
+				<string>TSI</string>
+				<key>description</key>
+				<string>Size</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TSRC</key>
+			<dict>
+				<key>2.0</key>
+				<string>TRC</string>
+				<key>description</key>
+				<string>ISRC (international standard recording code)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TSSE</key>
+			<dict>
+				<key>2.0</key>
+				<string>TSS</string>
+				<key>2.4</key>
+				<string>TSSE</string>
+				<key>description</key>
+				<string>Software/Hardware and settings used for encoding</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TXXX</key>
+			<dict>
+				<key>2.0</key>
+				<string>TXX</string>
+				<key>2.4</key>
+				<string>TXXX</string>
+				<key>description</key>
+				<string>User defined text information frame</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TYER</key>
+			<dict>
+				<key>2.0</key>
+				<string>TYE</string>
+				<key>description</key>
+				<string>Year</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>UFID</key>
+			<dict>
+				<key>2.0</key>
+				<string>UFI</string>
+				<key>2.4</key>
+				<string>UFID</string>
+				<key>description</key>
+				<string>Unique file identifier</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>USER</key>
+			<dict>
+				<key>2.4</key>
+				<string>USER</string>
+				<key>description</key>
+				<string>Terms of use</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>USLT</key>
+			<dict>
+				<key>2.0</key>
+				<string>ULT</string>
+				<key>2.4</key>
+				<string>USLT</string>
+				<key>description</key>
+				<string>Unsychronized lyric/text transcription</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WCOM</key>
+			<dict>
+				<key>2.0</key>
+				<string>WCM</string>
+				<key>2.4</key>
+				<string>WCOM</string>
+				<key>description</key>
+				<string>Commercial information</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WCOP</key>
+			<dict>
+				<key>2.0</key>
+				<string>WCP</string>
+				<key>2.4</key>
+				<string>WCOP</string>
+				<key>description</key>
+				<string>Copyright/Legal information</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WOAF</key>
+			<dict>
+				<key>2.0</key>
+				<string>WAF</string>
+				<key>2.4</key>
+				<string>WOAF</string>
+				<key>description</key>
+				<string>Official audio file webpage</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WOAR</key>
+			<dict>
+				<key>2.0</key>
+				<string>WAR</string>
+				<key>2.4</key>
+				<string>WOAR</string>
+				<key>description</key>
+				<string>Official artist/performer webpage</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WOAS</key>
+			<dict>
+				<key>2.0</key>
+				<string>WAS</string>
+				<key>2.4</key>
+				<string>WOAS</string>
+				<key>description</key>
+				<string>Official audio source webpage</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WORS</key>
+			<dict>
+				<key>2.4</key>
+				<string>WORS</string>
+				<key>description</key>
+				<string>Official internet radio station homepage</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WPAY</key>
+			<dict>
+				<key>2.4</key>
+				<string>WPAY</string>
+				<key>description</key>
+				<string>Payment</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WPUB</key>
+			<dict>
+				<key>2.0</key>
+				<string>WPB</string>
+				<key>2.4</key>
+				<string>WPUB</string>
+				<key>description</key>
+				<string>Publishers official webpage</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WXXX</key>
+			<dict>
+				<key>2.0</key>
+				<string>WXX</string>
+				<key>2.4</key>
+				<string>WXXX</string>
+				<key>description</key>
+				<string>User defined URL link frame</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+		</dict>
+		<key>2.4</key>
+		<dict>
+			<key>AENC</key>
+			<dict>
+				<key>description</key>
+				<string>Audio encryption</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>APIC</key>
+			<dict>
+				<key>description</key>
+				<string>Attached picture</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>COMM</key>
+			<dict>
+				<key>description</key>
+				<string>Comments</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>COMR</key>
+			<dict>
+				<key>description</key>
+				<string>Commercial frame</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>ENCR</key>
+			<dict>
+				<key>description</key>
+				<string>Encryption method registration</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>EQU2</key>
+			<dict>
+				<key>description</key>
+				<string>Equalization (2)</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>ETCO</key>
+			<dict>
+				<key>description</key>
+				<string>Event timing codes</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>GEOB</key>
+			<dict>
+				<key>description</key>
+				<string>General encapsulated object</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>GRID</key>
+			<dict>
+				<key>description</key>
+				<string>Group identification registration</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>LINK</key>
+			<dict>
+				<key>description</key>
+				<string>LINK Linked information</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>MCDI</key>
+			<dict>
+				<key>description</key>
+				<string>Music CD identifier</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>MLLT</key>
+			<dict>
+				<key>description</key>
+				<string>MPEG location lookup table</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>OWNE</key>
+			<dict>
+				<key>description</key>
+				<string>Ownership frame</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>PCNT</key>
+			<dict>
+				<key>description</key>
+				<string>Play counter</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>POPM</key>
+			<dict>
+				<key>description</key>
+				<string>Popularimeter</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>POSS</key>
+			<dict>
+				<key>description</key>
+				<string>Position synchronisation frame</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>PRIV</key>
+			<dict>
+				<key>description</key>
+				<string>Private frame</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>RBUF</key>
+			<dict>
+				<key>description</key>
+				<string>Recommended buffer size</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>RVA2</key>
+			<dict>
+				<key>description</key>
+				<string>Relative volume adjustment (2)</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>RVRB</key>
+			<dict>
+				<key>description</key>
+				<string>Reverb</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>SIGN</key>
+			<dict>
+				<key>description</key>
+				<string>Signature frame</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>SYLT</key>
+			<dict>
+				<key>description</key>
+				<string>Synchronized lyric/text</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>SYTC</key>
+			<dict>
+				<key>description</key>
+				<string>Synchronized tempo codes</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>TALB</key>
+			<dict>
+				<key>description</key>
+				<string>Album/Movie/Show title</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TBPM</key>
+			<dict>
+				<key>description</key>
+				<string>BPM (beats per minute)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TCOM</key>
+			<dict>
+				<key>description</key>
+				<string>Composer</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TCON</key>
+			<dict>
+				<key>description</key>
+				<string>Content type</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TCOP</key>
+			<dict>
+				<key>description</key>
+				<string>Copyright message</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TDLY</key>
+			<dict>
+				<key>description</key>
+				<string>Playlist delay</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TDOR</key>
+			<dict>
+				<key>description</key>
+				<string>Original release time</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TDRC</key>
+			<dict>
+				<key>description</key>
+				<string>Recording time</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TDRL</key>
+			<dict>
+				<key>description</key>
+				<string>Release time</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>TDTG</key>
+			<dict>
+				<key>description</key>
+				<string>Tagging time</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>TENC</key>
+			<dict>
+				<key>description</key>
+				<string>Encoded by</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TEXT</key>
+			<dict>
+				<key>description</key>
+				<string>Lyricist/Text writer</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TFLT</key>
+			<dict>
+				<key>description</key>
+				<string>File type</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TIPL</key>
+			<dict>
+				<key>description</key>
+				<string>Involved people list</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TIT1</key>
+			<dict>
+				<key>description</key>
+				<string>Content group description</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TIT2</key>
+			<dict>
+				<key>description</key>
+				<string>Title/songname/content description</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TIT3</key>
+			<dict>
+				<key>description</key>
+				<string>Subtitle/Description refinement</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TKEY</key>
+			<dict>
+				<key>description</key>
+				<string>Initial key</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TLAN</key>
+			<dict>
+				<key>description</key>
+				<string>Language(s)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TLEN</key>
+			<dict>
+				<key>description</key>
+				<string>Length</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TMCL</key>
+			<dict>
+				<key>description</key>
+				<string>Musician credits list</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TMED</key>
+			<dict>
+				<key>description</key>
+				<string>Media type</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TOAL</key>
+			<dict>
+				<key>description</key>
+				<string>Original album/movie/show title</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TOFN</key>
+			<dict>
+				<key>description</key>
+				<string>Original filename</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TOLY</key>
+			<dict>
+				<key>description</key>
+				<string>Original lyricist(s)/text writer(s)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TOPE</key>
+			<dict>
+				<key>description</key>
+				<string>Original artist(s)/performer(s)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TOWN</key>
+			<dict>
+				<key>description</key>
+				<string>File owner/licensee</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TPE1</key>
+			<dict>
+				<key>description</key>
+				<string>Lead performer(s)/Soloist(s)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TPE2</key>
+			<dict>
+				<key>description</key>
+				<string>Band/orchestra/accompaniment</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TPE3</key>
+			<dict>
+				<key>description</key>
+				<string>Conductor/performer refinement</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TPE4</key>
+			<dict>
+				<key>description</key>
+				<string>Interpreted, remixed, or otherwise modified by</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TPOS</key>
+			<dict>
+				<key>description</key>
+				<string>Part of a set</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TPRO</key>
+			<dict>
+				<key>description</key>
+				<string>Producer notice</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>TPUB</key>
+			<dict>
+				<key>description</key>
+				<string>Publisher</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TRCK</key>
+			<dict>
+				<key>description</key>
+				<string>Track number/Position in set</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TRSN</key>
+			<dict>
+				<key>description</key>
+				<string>Internet radio station name</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TRSO</key>
+			<dict>
+				<key>description</key>
+				<string>Internet radio station owner</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TSOA</key>
+			<dict>
+				<key>description</key>
+				<string>Album sort order</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>TSOT</key>
+			<dict>
+				<key>description</key>
+				<string>Title sort order</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>TSRC</key>
+			<dict>
+				<key>description</key>
+				<string>ISRC (international standard recording code)</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TSSE</key>
+			<dict>
+				<key>description</key>
+				<string>Software/Hardware and settings used for encoding</string>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>TSST</key>
+			<dict>
+				<key>description</key>
+				<string>Set subtitle</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>TXXX</key>
+			<dict>
+				<key>description</key>
+				<string>User defined text information frame</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<true/>
+			</dict>
+			<key>UFID</key>
+			<dict>
+				<key>description</key>
+				<string>Unique file identifier</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>USER</key>
+			<dict>
+				<key>description</key>
+				<string>Terms of use</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>USLT</key>
+			<dict>
+				<key>description</key>
+				<string>Unsychronized lyric/text transcription</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WCOM</key>
+			<dict>
+				<key>description</key>
+				<string>Commercial information</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WCOP</key>
+			<dict>
+				<key>description</key>
+				<string>Copyright/Legal information</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WOAF</key>
+			<dict>
+				<key>description</key>
+				<string>Official audio file webpage</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WOAR</key>
+			<dict>
+				<key>description</key>
+				<string>Official artist/performer webpage</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WOAS</key>
+			<dict>
+				<key>description</key>
+				<string>Official audio source webpage</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WORS</key>
+			<dict>
+				<key>description</key>
+				<string>Official internet radio station homepage</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WPAY</key>
+			<dict>
+				<key>description</key>
+				<string>Payment</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WPUB</key>
+			<dict>
+				<key>description</key>
+				<string>Publishers official webpage</string>
+				<key>text</key>
+				<false/>
+			</dict>
+			<key>WXXX</key>
+			<dict>
+				<key>description</key>
+				<string>User defined URL link frame</string>
+				<key>multi</key>
+				<true/>
+				<key>text</key>
+				<false/>
+			</dict>
+		</dict>
+		<key>iTunes_comment</key>
+		<array>
+			<string>iTunes_CDDB_</string>
+			<string>iTunNORM</string>
+			<string>iTunSMPB</string>
+		</array>
+	</dict>
+	<key>genreIndexes</key>
+	<dict>
+		<key>-1</key>
+		<integer>125</integer>
+		<key>0</key>
+		<string>Blues</string>
+		<key>1</key>
+		<string>Classic Rock</string>
+		<key>10</key>
+		<string>New Age</string>
+		<key>100</key>
+		<string>Humour</string>
+		<key>101</key>
+		<string>Speech</string>
+		<key>102</key>
+		<string>Chanson</string>
+		<key>103</key>
+		<string>Opera</string>
+		<key>104</key>
+		<string>Chamber Music</string>
+		<key>105</key>
+		<string>Sonata</string>
+		<key>106</key>
+		<string>Symphony</string>
+		<key>107</key>
+		<string>Booty Bass</string>
+		<key>108</key>
+		<string>Primus</string>
+		<key>109</key>
+		<string>Porn Groove</string>
+		<key>11</key>
+		<string>Oldies</string>
+		<key>110</key>
+		<string>Satire</string>
+		<key>111</key>
+		<string>Slow Jam</string>
+		<key>112</key>
+		<string>Club</string>
+		<key>113</key>
+		<string>Tango</string>
+		<key>114</key>
+		<string>Samba</string>
+		<key>115</key>
+		<string>Folklore</string>
+		<key>116</key>
+		<string>Ballad</string>
+		<key>117</key>
+		<string>Power Ballad</string>
+		<key>118</key>
+		<string>Rhythmic Soul</string>
+		<key>119</key>
+		<string>Freestyle</string>
+		<key>12</key>
+		<string>Other</string>
+		<key>120</key>
+		<string>Duet</string>
+		<key>121</key>
+		<string>Punk Rock</string>
+		<key>122</key>
+		<string>Drum Solo</string>
+		<key>123</key>
+		<string>A capella</string>
+		<key>124</key>
+		<string>Euro-House</string>
+		<key>125</key>
+		<string>Dance Hall</string>
+		<key>13</key>
+		<string>Pop</string>
+		<key>14</key>
+		<string>R&amp;B</string>
+		<key>15</key>
+		<string>Rap</string>
+		<key>16</key>
+		<string>Reggae</string>
+		<key>17</key>
+		<string>Rock</string>
+		<key>18</key>
+		<string>Techno</string>
+		<key>19</key>
+		<string>Industrial</string>
+		<key>2</key>
+		<string>Country</string>
+		<key>20</key>
+		<string>Alternative</string>
+		<key>21</key>
+		<string>Ska</string>
+		<key>22</key>
+		<string>Death Metal</string>
+		<key>23</key>
+		<string>Pranks</string>
+		<key>24</key>
+		<string>Soundtrack</string>
+		<key>25</key>
+		<string>Euro-Techno</string>
+		<key>26</key>
+		<string>Ambient</string>
+		<key>27</key>
+		<string>Trip-Hop</string>
+		<key>28</key>
+		<string>Vocal</string>
+		<key>29</key>
+		<string>Jazz+Funk</string>
+		<key>3</key>
+		<string>Dance</string>
+		<key>30</key>
+		<string>Fusion</string>
+		<key>31</key>
+		<string>Trance</string>
+		<key>32</key>
+		<string>Classical</string>
+		<key>33</key>
+		<string>Instrumental</string>
+		<key>34</key>
+		<string>Acid</string>
+		<key>35</key>
+		<string>House</string>
+		<key>36</key>
+		<string>Game</string>
+		<key>37</key>
+		<string>Sound Clip</string>
+		<key>38</key>
+		<string>Gospel</string>
+		<key>39</key>
+		<string>Noise</string>
+		<key>4</key>
+		<string>Disco</string>
+		<key>40</key>
+		<string>AlternRock</string>
+		<key>41</key>
+		<string>Bass</string>
+		<key>42</key>
+		<string>Soul</string>
+		<key>43</key>
+		<string>Punk</string>
+		<key>44</key>
+		<string>Space</string>
+		<key>45</key>
+		<string>Meditative</string>
+		<key>46</key>
+		<string>Instrumental Pop</string>
+		<key>47</key>
+		<string>Instrumental Rock</string>
+		<key>48</key>
+		<string>Ethnic</string>
+		<key>49</key>
+		<string>Gothic</string>
+		<key>5</key>
+		<string>Funk</string>
+		<key>50</key>
+		<string>Darkwave</string>
+		<key>51</key>
+		<string>Techno-Industrial</string>
+		<key>52</key>
+		<string>Electronic</string>
+		<key>53</key>
+		<string>Pop-Folk</string>
+		<key>54</key>
+		<string>Eurodance</string>
+		<key>55</key>
+		<string>Dream</string>
+		<key>56</key>
+		<string>Southern Rock</string>
+		<key>57</key>
+		<string>Comedy</string>
+		<key>58</key>
+		<string>Cult</string>
+		<key>59</key>
+		<string>Gangsta</string>
+		<key>6</key>
+		<string>Grunge</string>
+		<key>60</key>
+		<string>Top 40</string>
+		<key>61</key>
+		<string>Christian Rap</string>
+		<key>62</key>
+		<string>Pop/Funk</string>
+		<key>63</key>
+		<string>Jungle</string>
+		<key>64</key>
+		<string>Native American</string>
+		<key>65</key>
+		<string>Cabaret</string>
+		<key>66</key>
+		<string>New Wave</string>
+		<key>67</key>
+		<string>Psychadelic</string>
+		<key>68</key>
+		<string>Rave</string>
+		<key>69</key>
+		<string>Showtunes</string>
+		<key>7</key>
+		<string>Hip-Hop</string>
+		<key>70</key>
+		<string>Trailer</string>
+		<key>71</key>
+		<string>Lo-Fi</string>
+		<key>72</key>
+		<string>Tribal</string>
+		<key>73</key>
+		<string>Acid Punk</string>
+		<key>74</key>
+		<string>Acid Jazz</string>
+		<key>75</key>
+		<string>Polka</string>
+		<key>76</key>
+		<string>Retro</string>
+		<key>77</key>
+		<string>Musical</string>
+		<key>78</key>
+		<string>Rock &amp; Roll</string>
+		<key>79</key>
+		<string>Hard Rock</string>
+		<key>8</key>
+		<string>Jazz</string>
+		<key>80</key>
+		<string>Folk</string>
+		<key>81</key>
+		<string>Folk-Rock</string>
+		<key>82</key>
+		<string>National Folk</string>
+		<key>83</key>
+		<string>Swing</string>
+		<key>84</key>
+		<string>Fast Fusion</string>
+		<key>85</key>
+		<string>Bebob</string>
+		<key>86</key>
+		<string>Latin</string>
+		<key>87</key>
+		<string>Revival</string>
+		<key>88</key>
+		<string>Celtic</string>
+		<key>89</key>
+		<string>Bluegrass</string>
+		<key>9</key>
+		<string>Metal</string>
+		<key>90</key>
+		<string>Avantgarde</string>
+		<key>91</key>
+		<string>Gothic Rock</string>
+		<key>92</key>
+		<string>Progressive Rock</string>
+		<key>93</key>
+		<string>Psychedelic Rock</string>
+		<key>94</key>
+		<string>Symphonic Rock</string>
+		<key>95</key>
+		<string>Slow Rock</string>
+		<key>96</key>
+		<string>Big Band</string>
+		<key>97</key>
+		<string>Chorus</string>
+		<key>98</key>
+		<string>Easy Listening</string>
+		<key>99</key>
+		<string>Acoustic</string>
+	</dict>
+	<key>genres</key>
+	<dict>
+		<key>A capella</key>
+		<integer>123</integer>
+		<key>Acid</key>
+		<integer>34</integer>
+		<key>Acid Jazz</key>
+		<integer>74</integer>
+		<key>Acid Punk</key>
+		<integer>73</integer>
+		<key>Acoustic</key>
+		<integer>99</integer>
+		<key>AlternRock</key>
+		<integer>40</integer>
+		<key>Alternative</key>
+		<integer>20</integer>
+		<key>Ambient</key>
+		<integer>26</integer>
+		<key>Avantgarde</key>
+		<integer>90</integer>
+		<key>Ballad</key>
+		<integer>116</integer>
+		<key>Bass</key>
+		<integer>41</integer>
+		<key>Bebob</key>
+		<integer>85</integer>
+		<key>Big Band</key>
+		<integer>96</integer>
+		<key>Bluegrass</key>
+		<integer>89</integer>
+		<key>Blues</key>
+		<integer>0</integer>
+		<key>Booty Bass</key>
+		<integer>107</integer>
+		<key>Cabaret</key>
+		<integer>65</integer>
+		<key>Celtic</key>
+		<integer>88</integer>
+		<key>Chamber Music</key>
+		<integer>104</integer>
+		<key>Chanson</key>
+		<integer>102</integer>
+		<key>Chorus</key>
+		<integer>97</integer>
+		<key>Christian Rap</key>
+		<integer>61</integer>
+		<key>Classic Rock</key>
+		<integer>1</integer>
+		<key>Classical</key>
+		<integer>32</integer>
+		<key>Club</key>
+		<integer>112</integer>
+		<key>Comedy</key>
+		<integer>57</integer>
+		<key>Country</key>
+		<integer>2</integer>
+		<key>Cult</key>
+		<integer>58</integer>
+		<key>Dance</key>
+		<integer>3</integer>
+		<key>Dance Hall</key>
+		<integer>125</integer>
+		<key>Darkwave</key>
+		<integer>50</integer>
+		<key>Death Metal</key>
+		<integer>22</integer>
+		<key>Disco</key>
+		<integer>4</integer>
+		<key>Dream</key>
+		<integer>55</integer>
+		<key>Drum Solo</key>
+		<integer>122</integer>
+		<key>Duet</key>
+		<integer>120</integer>
+		<key>Easy Listening</key>
+		<integer>98</integer>
+		<key>Electronic</key>
+		<integer>52</integer>
+		<key>Ethnic</key>
+		<integer>48</integer>
+		<key>Euro-House</key>
+		<integer>124</integer>
+		<key>Euro-Techno</key>
+		<integer>25</integer>
+		<key>Eurodance</key>
+		<integer>54</integer>
+		<key>Fast Fusion</key>
+		<integer>84</integer>
+		<key>Folk</key>
+		<integer>80</integer>
+		<key>Folk-Rock</key>
+		<integer>81</integer>
+		<key>Folklore</key>
+		<integer>115</integer>
+		<key>Freestyle</key>
+		<integer>119</integer>
+		<key>Funk</key>
+		<integer>5</integer>
+		<key>Fusion</key>
+		<integer>30</integer>
+		<key>Game</key>
+		<integer>36</integer>
+		<key>Gangsta</key>
+		<integer>59</integer>
+		<key>Gospel</key>
+		<integer>38</integer>
+		<key>Gothic</key>
+		<integer>49</integer>
+		<key>Gothic Rock</key>
+		<integer>91</integer>
+		<key>Grunge</key>
+		<integer>6</integer>
+		<key>Hard Rock</key>
+		<integer>79</integer>
+		<key>Hip-Hop</key>
+		<integer>7</integer>
+		<key>House</key>
+		<integer>35</integer>
+		<key>Humour</key>
+		<integer>100</integer>
+		<key>Industrial</key>
+		<integer>19</integer>
+		<key>Instrumental</key>
+		<integer>33</integer>
+		<key>Instrumental Pop</key>
+		<integer>46</integer>
+		<key>Instrumental Rock</key>
+		<integer>47</integer>
+		<key>Jazz</key>
+		<integer>8</integer>
+		<key>Jazz+Funk</key>
+		<integer>29</integer>
+		<key>Jungle</key>
+		<integer>63</integer>
+		<key>Latin</key>
+		<integer>86</integer>
+		<key>Lo-Fi</key>
+		<integer>71</integer>
+		<key>Meditative</key>
+		<integer>45</integer>
+		<key>Metal</key>
+		<integer>9</integer>
+		<key>Musical</key>
+		<integer>77</integer>
+		<key>National Folk</key>
+		<integer>82</integer>
+		<key>Native American</key>
+		<integer>64</integer>
+		<key>New Age</key>
+		<integer>10</integer>
+		<key>New Wave</key>
+		<integer>66</integer>
+		<key>Noise</key>
+		<integer>39</integer>
+		<key>Oldies</key>
+		<integer>11</integer>
+		<key>Opera</key>
+		<integer>103</integer>
+		<key>Other</key>
+		<integer>12</integer>
+		<key>Polka</key>
+		<integer>75</integer>
+		<key>Pop</key>
+		<integer>13</integer>
+		<key>Pop-Folk</key>
+		<integer>53</integer>
+		<key>Pop/Funk</key>
+		<integer>62</integer>
+		<key>Porn Groove</key>
+		<integer>109</integer>
+		<key>Power Ballad</key>
+		<integer>117</integer>
+		<key>Pranks</key>
+		<integer>23</integer>
+		<key>Primus</key>
+		<integer>108</integer>
+		<key>Progressive Rock</key>
+		<integer>92</integer>
+		<key>Psychadelic</key>
+		<integer>67</integer>
+		<key>Psychedelic Rock</key>
+		<integer>93</integer>
+		<key>Punk</key>
+		<integer>43</integer>
+		<key>Punk Rock</key>
+		<integer>121</integer>
+		<key>R&amp;B</key>
+		<integer>14</integer>
+		<key>Rap</key>
+		<integer>15</integer>
+		<key>Rave</key>
+		<integer>68</integer>
+		<key>Reggae</key>
+		<integer>16</integer>
+		<key>Retro</key>
+		<integer>76</integer>
+		<key>Revival</key>
+		<integer>87</integer>
+		<key>Rhythmic Soul</key>
+		<integer>118</integer>
+		<key>Rock</key>
+		<integer>17</integer>
+		<key>Rock &amp; Roll</key>
+		<integer>78</integer>
+		<key>Samba</key>
+		<integer>114</integer>
+		<key>Satire</key>
+		<integer>110</integer>
+		<key>Showtunes</key>
+		<integer>69</integer>
+		<key>Ska</key>
+		<integer>21</integer>
+		<key>Slow Jam</key>
+		<integer>111</integer>
+		<key>Slow Rock</key>
+		<integer>95</integer>
+		<key>Sonata</key>
+		<integer>105</integer>
+		<key>Soul</key>
+		<integer>42</integer>
+		<key>Sound Clip</key>
+		<integer>37</integer>
+		<key>Soundtrack</key>
+		<integer>24</integer>
+		<key>Southern Rock</key>
+		<integer>56</integer>
+		<key>Space</key>
+		<integer>44</integer>
+		<key>Speech</key>
+		<integer>101</integer>
+		<key>Swing</key>
+		<integer>83</integer>
+		<key>Symphonic Rock</key>
+		<integer>94</integer>
+		<key>Symphony</key>
+		<integer>106</integer>
+		<key>Tango</key>
+		<integer>113</integer>
+		<key>Techno</key>
+		<integer>18</integer>
+		<key>Techno-Industrial</key>
+		<integer>51</integer>
+		<key>Top 40</key>
+		<integer>60</integer>
+		<key>Trailer</key>
+		<integer>70</integer>
+		<key>Trance</key>
+		<integer>31</integer>
+		<key>Tribal</key>
+		<integer>72</integer>
+		<key>Trip-Hop</key>
+		<integer>27</integer>
+		<key>Vocal</key>
+		<integer>28</integer>
+	</dict>
+	<key>preferences</key>
+	<dict>
+		<key>Default V2 tag - Major number</key>
+		<integer>3</integer>
+		<key>Default V2 tag - Minor number</key>
+		<integer>0</integer>
+		<key>Drop V1</key>
+		<false/>
+		<key>Parse V1</key>
+		<false/>
+		<key>Parse V1 only if V2 does not exist</key>
+		<true/>
+		<key>V1 auto - fallback</key>
+		<true/>
+		<key>Write V1 Always</key>
+		<false/>
+		<key>Write V2 Always</key>
+		<true/>
+		<key>iTunes v2.4 compatability mode</key>
+		<false/>
+	</dict>
+</dict>
+</plist>

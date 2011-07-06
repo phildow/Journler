@@ -1,0 +1,155 @@
+"no search index msg" = "Søgning ikke tilgængelig";
+"no search index info" = "Journler kan ikke indlæse søgeindekset. Vil du nulstille det? Det anbefales, selv om det tager lidt tid.";
+"no search index default" = "Nulstil";
+"no search index alt" = "Afbryd";
+
+"no media msg" = "Intet tilgængeligt medie";
+"no media info" = "Føj en sang, billede, film, vCard, PDF eller web arkiv til din tekst og klik på den passende link, for at se det i Journler.";
+"no media default" = "Fortsæt";
+
+"services error msg" = "Tjenester fejl";
+"services error info" = "Journler kan ikke konvertere valgte til en læselig type. Der er ingen tekst oprettet.";
+
+"pasteboard import error msg" = "Importfejl";
+"pasteboard import error info" = "Journler kan ikke konvertere disse data til en læselig type. Der er ingen tekst oprettet.";
+
+"import error msg" = "Import fejl";
+"import error info" = "Journler kan ikke importere filen eller filerne. Mappens indhold kan ikke importeres på denne måde. Vælg i stedet Import fra Arkiv menuen.";
+
+"uri error msg" = "URL fejl";
+"uri error info" = "Journler kan ikke konvertere denne url til et kendt Journler objekt.";
+
+"favorite error msg" = "Favoritter fejl";
+"favorite error info" = "Journler kan ikke finde emnet for denne favorit. Måske er den blevet slettet.";
+
+"nil image error msg" = "Ugyldig billed data";
+"nil image error info" = "Journler kan ikke oprette et billede fra indholdet af valgte fil.";
+
+"save error msg" = "Arkiveringsfejl";
+"save error info" = "Journler kan ikke arkivere journalen til dets disk baserede lager. Det kan føre til tab af data. Se konsol log for mere information.";
+
+"wordlist save error msg" = "Ordlisten kan ikke arkiveres";
+"wordlist save error info" = "Journler kan ikke arkivere ændringerne til ordlisten. Der er et problem med skrivning af listen til disk.";
+
+"wordlist creation error msg" = "Fejl ved oprettelse af ordlisten";
+"wordlist creation error info" = "Journler kan ikke bruge ordlisten fra denne fil. Sørg for at ord-par er adskilt med et komma uden ordmellerum, og at hvert ord-par er på en ny linje.";
+
+"entry export error msg" = "Eksportfejl";
+"entry export error info" = "Journler opdagede en fejl under eksport af valgte tekster. Alle tekster er måske ikke eksporteret korrekt.";
+
+"md5digest cannot create msg" = "Fejl ved oprettelse af password strukturen";
+"md5digest cannot create info" = "Jourler kan ikke oprette strukturen for dit password. Prøv istedet et andet password.";
+
+"passfile creation error msg" = "Fejl ved tilføjelse af password";
+"passfile creation error info" = "Journler kan ikke aktivere password beskyttelse af din journal. Prøv venligst igen.";
+
+"passfile deletion error msg" = "Fejl ved fjernelse af password";
+"passfile deletion error info" = "Journler kan ikke de-aktivere journalens password beskyttelse. Prøv venligst igen.";
+
+"media unreadable msg" = "Kan ikke læse mediet";
+"media unreadable info" = "Journler forstår ikke det medie, du prøver at åbne";
+
+"resource not found msg" = "Kilde ikke fundet";
+"resource not found info" = "Journler kan ikke finde disse kilder. Måske er kilderne slettet.";
+
+"lameinstall success title" = "Komponenter er installeret";
+"lameinstall success msg" = "LAME kode komponenterne er blevet installeret. Det kan være nødvendigt at genstarte computeren, før de er tilgængelige.";
+	
+"lameinstall failure title" = "Komponenter er ikke installeret";
+"lameinstall failure msg" = "Journler kunne ikke installere LAME kode komponenterne. Du kan læse om manuel installering af LAME i de dokumenter, der er i Journler download.";
+
+"lameinstall required title" = "Installere MP3 koder?";
+"lameinstall required msg" = "Journler kræver LAME mp3 koder for at kunne arkivere dine lydemner som mp3 filer. Vil du installere det nu?";
+"lameinstall required yes" = "Installer";
+"lameinstall required no" = "Afbryd";
+
+"confirm delete multiple msg" = "Er du sikker på, du vil slette valgte tekster?";
+"confirm delete multiple info" = "Sletning af disse tekster fjerner dem permanent fra journalen.";
+"confirm delete multiple yes" = "Slet";
+"confirm delete multiple no" = "Afbryd";
+
+"delete resources msg" = "Er du sikker på, du vil slette valgte kilder?";
+"delete resources info" = "Operationen fjerner kilderne fra de valgte tekster. Kilder, der er knyttet til andre tekster berøres ikke. Originale kopier af af henviste filer berøres ikke.";
+"delete resources yes" = "Slet";
+"delete resources no" = "Afbryd";
+
+"delete folders msg" = "Er du sikker på, du vil slette valgte mapper?";
+"delete folders info" = "Sletningen fjerner dem permanent fra din journal. Emnerne, som er i dem, berøres ikke.";
+"delete folders yes" = "Slet";
+"delete folders no" = "Afbryd";
+
+"empty trash msg" = "Er du sikker på, du vil tømme papirkurven?";
+"empty trash info" = "Alle tekster i papirkurven fjernes permanent fra journalen.";
+"empty trash yes" = "Slet";
+"empty trash no" = "Afbryd";
+
+"error create overwrite msg" = "Der er fundet gamle journal data";
+"error create overwrite info" = "Der ser ud til at være gamle journal data, hvor Journler arkiverer dine tekster. Vil du overskrive disse data? Overskrivning sletter dem permanent.";
+"error create overwrite yes" = "Overskriv";
+"error create overwrite no" = "Afslut";
+
+"no ipod connected msg" = "Ingen iPod tilgængelig";
+"no ipod connected info" = "Der er ikke sluttet en iPod til computeren. Tilslut din iPod og prøv igen.";
+
+"no ipod notes msg" = "Der er ingen tilgængelig note mappe";
+"no ipod notes info" = "Der ser ikke ud til at være nogen note mappe på denne iPod. Sørg for at disk use er aktiveret via iPod indstillinger i iTunes. Ældre iPod understøtter eventuelt ikke tekst noter.";
+
+"no ipod journler folder msg" = "Ingen Journler mappe";
+"no ipod journler folder info" = "Journler kan ikke føje en Journler mappe til dine iPod Noter. Opret mappen manuelt og prøv igen.";
+
+"no iweb msg" = "Kan ikke finde iWeb";
+"no iweb info" = "Journler kan ikek finde iWeb. Sørg for at du har installeret iLife programmerne på computeren.";
+
+"bad conditions msg" = "Formatfejl";
+"bad conditions info" = "Journler kan ikke bekræfte dine betingelser. Prøv at fjerne alle punkteringer incl. anførselstegn og apostroffer.";
+
+"no video capture msg" = "Video optagelse er ikke tilgængelig";
+"no video capture info" = "Journler kan ikke oprette forbindelse til en video enhed. Tjek om det er tilsluttet og prøv igen.";
+
+"no audio capture msg" = "Lyd optagelse er ikke tilgængelig";
+"no audio capture info" = "Journler kan ikke oprette forbindelse til en lyd enhed. Tjek om det er tilsluttet og prøv igen.";
+
+"no snapshot capture msg" = "Snapshot er ikke tilgængelig";
+"no snapshot capture info" = "Journler kan ikke skabe forbindelse til dit kamera. Tjek om det er tilsluttet og prøv igen.";
+
+"media error msg" = "Mediefejl";
+"media error info" = "Fejl opstod under læsning af medie. Journler kan ikke vise det. For at åbne mediet i et andet program, holdes Æble-tasten nede, mens du klikker på dets link i teksten.";
+
+"google search error msg" = "Fejl under Google søgning";
+"google search error info" = "Journler opdgede en fejl under Google søgningen. Tjek din søgetekst, internet forbindelse og prøv igen.";
+
+"blogger cant get blog list" = "Journler kunne ikke finde blog listen igen";
+"blogger cant post" = "Journler kunne ikke poste teksten";
+
+"metaweblog cant get categories" = "Journler kunne ikke finde kategori listen igen";
+"metaweblog cant post" = "Journler kunne ikke poste teksten";
+
+"pasteboard folder warning msg" = "Du importerer en mappe";
+"pasteboard folder warning info" = "Mappens indhold vil ikke blive importeret som individuelle emner, emn nærmere som selve mappen. For at importere hvert emne i en mappe, benyttes Import kommandoen. Er det ok?";
+"pasteboard folder warning ok" = "Fortsæt";
+"pasteboard folder warning cancel" = "Afbryd";
+
+"blogcenter mode warning msg" = "HTML redigeringsmåde";
+"blogcenter mode warning info" = "Det anbefales ikke at benytte både normal og html måde, da formattering så kan mistes. Bedste resultat fås ved kun at benytte enredigeringsmåde, ved at bruge web preview så ofte det er nødvendigt.";
+
+"mail preference msg" = "Hvordan vil du sende e-mail fra Journler?";
+"mail preference info" = "Journler kan benytte Mail eller din standard e-mail klient til at sende beskeder. Fil vedhæftning understøttes kun af Mail. Du kan senere ændre dine indstillinger i Journler Indstillinger/Generelt.";
+"mail preferece use mail" = "Benyt Mail";
+"mail preference use default" = "Benyt standard klient";
+
+"error pre117 format msg" = "Journal data formatet er for gammelt";
+"error pre117 format info" = "Før du bruger seneste Journler version, skal du først benytte v1.17 en gang, for at opdatere dine journal data. Version 1.17 kan findes her...\nhttp://journler.com/download/";
+"error pre117 format quit" = "Afslut";
+"error pre117 format website" = "Besøg Journler.com";
+
+"resourcetoentry error msg" = "Fejl ved tilføjning af medie";
+"resourcetoentry error info" = "Et problem opstod, da du ville føje valgte medie til din tekst. Nogle af filerne kan måske ikke vises."; 
+
+"dropbox error msg" = "Fejl ved læsning af drop boks";
+"dropbox error info" = "Journler opdagede en fejl under læsning af drop boksen. Nogle filer er eventuelt ikke blevet importeret. De er blevet flyttet til Finders papirkurv.";
+
+"load error msg" = "Journler kunne ikke indlæse din journal";
+"load error info" = "Journler kunne enten ikke finde din journal eller indlæse den. Hvad vil du nu? Hvis du er usikker, så kontakt support@journler.com for mere hjælpp";
+"load error locate" = "Find journalen";
+"load error create" = "Opret journal";
+"load error quit" = "Afslutt";

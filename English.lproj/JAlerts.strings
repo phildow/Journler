@@ -1,0 +1,155 @@
+"no search index msg" = "Search unavailable";
+"no search index info" = "Journler was not able to load the search index. Would you like to reset it? This may take a few moments but is recommended.";
+"no search index default" = "Reset";
+"no search index alt" = "Cancel";
+
+"no media msg" = "No media available";
+"no media info" = "Add a song, picture, movie, vCard, PDF or web archive to your entry and click on the corresponding link to view it in Journler.";
+"no media default" = "Continue";
+
+"services error msg" = "Services Error";
+"services error info" = "Journler was unable to convert the selection to a readable type. No entry has been created.";
+
+"pasteboard import error msg" = "Import Error";
+"pasteboard import error info" = "Journler was unable to convert the available data to a readable type. No entry has been created.";
+
+"import error msg" = "Import Error";
+"import error info" = "Journler was unable to import the specified file or files. The contents of a folder may not be imported in this manner. Select Import from the File menu instead.";
+
+"uri error msg" = "URL Error";
+"uri error info" = "Journler was unable to convert the specified url to a known Journler object.";
+
+"favorite error msg" = "Favorites Error";
+"favorite error info" = "Journler was unable to locate the item for this favorite. It would appear that it has been deleted.";
+
+"nil image error msg" = "Invalid Image Data";
+"nil image error info" = "Journler was not able to create an image from the contents of the selected file.";
+
+"save error msg" = "Save Error";
+"save error info" = "Journler was unable to save the journal to it's disk based store. This may lead to data loss. Check the console logs for more information.";
+
+"wordlist save error msg" = "Wordlist could not be saved";
+"wordlist save error info" = "Journler was unable to save your changes to the wordlist. There was a problem writing the list to disk.";
+
+"wordlist creation error msg" = "Error creating wordlist";
+"wordlist creation error info" = "Journler was unable to derive a wordlist from the selected file. Make sure the word pairs are separated by a comma and that each wordpair is on its own line.";
+
+"entry export error msg" = "Export Error";
+"entry export error info" = "Journler encountered errors while exporting the selected entries. All of the entries may not have been properly exported.";
+
+"md5digest cannot create msg" = "Error creating password digest";
+"md5digest cannot create info" = "Jourler cannot create the digest for your password. Try using a different password instead.";
+
+"passfile creation error msg" = "Error adding password";
+"passfile creation error info" = "Journler was unable to activate password protection for your journal. Please try again.";
+
+"passfile deletion error msg" = "Error removing password";
+"passfile deletion error info" = "Journler was unable to de-activate password protection for your journal. Please try again.";
+
+"media unreadable msg" = "Unable to read media";
+"media unreadable info" = "Journler does not understand the media you are trying to open";
+
+"resource not found msg" = "Resource Not Found";
+"resource not found info" = "Journler was unable to find the specified resource. It would appear that the resource has been deleted.";
+
+"lameinstall success title" = "Components successfully installed";
+"lameinstall success msg" = "The LAME encoding components were successfully installed. It may be necessary to relaunch Journler before they are available.";
+	
+"lameinstall failure title" = "Components not installed";
+"lameinstall failure msg" = "Journler was unable to install the LAME encoding components. For instructions on installing LAME yourself, please see the additional documents that came with the Journler download.";
+
+"lameinstall required title" = "Install MP3 encoder?";
+"lameinstall required msg" = "Journler requires the LAME mp3 encoder to save your audio entries as mp3 files. Would you like to install it now?";
+"lameinstall required yes" = "Install";
+"lameinstall required no" = "Cancel";
+
+"confirm delete multiple msg" = "Are you sure you want to delete the selected entries?";
+"confirm delete multiple info" = "Deleting these entries will permanently remove them from your journal.";
+"confirm delete multiple yes" = "Delete";
+"confirm delete multiple no" = "Cancel";
+
+"delete resources msg" = "Delete the selected resources?";
+"delete resources info" = "This operation removes the resources from the selected entries. Resources associated with other entries will remain in those entries. Original copies of aliased files are not affected.";
+"delete resources yes" = "Delete";
+"delete resources no" = "Cancel";
+
+"delete folders msg" = "Are you sure you want to delete the selected folders?";
+"delete folders info" = "Deleting these folders will permanently remove them from your journal. The entries contained in them will not be affected.";
+"delete folders yes" = "Delete";
+"delete folders no" = "Cancel";
+
+"empty trash msg" = "Are you sure you want to empty the trash?";
+"empty trash info" = "Any entries in the trash will be permanently removed from your journal.";
+"empty trash yes" = "Delete";
+"empty trash no" = "Cancel";
+
+"error create overwrite msg" = "Old journal data found";
+"error create overwrite info" = "There appears to be old journal data where Journler saves your entries. Would you like to overwrite this data? Overwriting it will permanently delete it.";
+"error create overwrite yes" = "Overwrite";
+"error create overwrite no" = "Quit";
+
+"no ipod connected msg" = "No iPod available";
+"no ipod connected info" = "There does not appear to be an iPod connected to your computer. Please connect your iPod and try again.";
+
+"no ipod notes msg" = "No notes folder available";
+"no ipod notes info" = "There does not appear to be a notes folder on this iPod. Make sure disk use is enabled via the iPod preferences in iTunes. Older iPods may not support text notes.";
+
+"no ipod journler folder msg" = "No Journler folder";
+"no ipod journler folder info" = "Journler was unable to add a Journler folder to your iPod Notes. Create the folder manually and try again.";
+
+"no iweb msg" = "Could not find iWeb";
+"no iweb info" = "Journler could not locate iWeb. Make sure you have installed the iLife suite of applications on your computer.";
+
+"bad conditions msg" = "Format error";
+"bad conditions info" = "Journler was unable to verify your conditions. Try removing any punctuation, including quotation marks and apostrophes. Empty conditions are not allowed.";
+
+"no video capture msg" = "Video capture unavailable";
+"no video capture info" = "Journler was unable to connect to a video device. Check your device connections and try again.";
+
+"no audio capture msg" = "Audio recording unavailable";
+"no audio capture info" = "Journler was unable to connect to an audio device. Check your device connections and try again.";
+
+"no snapshot capture msg" = "Snapshot is unavailable";
+"no snapshot capture info" = "Journler was unable to connect to your camera. Check your device connections and try again.";
+
+"media error msg" = "Media error";
+"media error info" = "An error occurred while reading the media. Journler is unable to display it. To open the media in another application hold down the command key as you click on its link in the entry.";
+
+"google search error msg" = "Error running Google search";
+"google search error info" = "Journler encountered an error preparing for the Google search. Please check your search string and internet connection then try again.";
+
+"blogger cant get blog list" = "Journler was unable to retrieve blog list";
+"blogger cant post" = "Journler was unable to post the entry";
+
+"metaweblog cant get categories" = "Journler was unable to retrieve categories list";
+"metaweblog cant post" = "Journler was unable to post the entry";
+
+"pasteboard folder warning msg" = "You are importing a folder";
+"pasteboard folder warning info" = "The contents of the folder will not be imported as individual items, but rather the folder itself. To import each item of a folder use the Import command. Is this ok?";
+"pasteboard folder warning ok" = "Continue";
+"pasteboard folder warning cancel" = "Cancel";
+
+"blogcenter mode warning msg" = "HTML editing mode";
+"blogcenter mode warning info" = "Using both normal and html mode is not recommended, as formatting may be lost. For best results, limit editing to one mode, using the web preview as often as needed.";
+
+"mail preference msg" = "How would you like to send emails from Journler?";
+"mail preference info" = "Journler can use Mail or your default email client to send messages. File attachments are supported with Mail only. You may change your setting at a later time in Journler General preferences.";
+"mail preferece use mail" = "Use Mail";
+"mail preference use default" = "Use Default Client";
+
+"error pre117 format msg" = "Journal data format is too old";
+"error pre117 format info" = "Before running the latest version of Journler you must first run v1.17 once to update your journal data. Version 1.17 may be found at...\nhttp://journler.com/download/";
+"error pre117 format quit" = "Quit";
+"error pre117 format website" = "Visit Journler.com";
+
+"resourcetoentry error msg" = "Error adding media";
+"resourcetoentry error info" = "There was a problem adding the selected media to your entry. Some of the files may not be available for viewing."; 
+
+"dropbox error msg" = "Error reading drop box";
+"dropbox error info" = "Journler encountered an error reading the drop box. Some files may not have been imported.";
+
+"load error msg" = "Journler could not load your journal";
+"load error info" = "Journler could not locate your journal or was unable to load it. What would you like to do? If you are unsure, contact support@journler.com for additional help";
+"load error locate" = "Locate Journal";
+"load error create" = "Create Journal";
+"load error quit" = "Quit";	

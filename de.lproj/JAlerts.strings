@@ -1,0 +1,155 @@
+"no search index msg" = "Suche nicht verfügbar";
+"no search index info" = "Der Suchindex konnte nicht geladen werden. Möchten Sie ihn zurücksetzen? Dies kann einige Momente dauern, wird aber empfohlen.";
+"no search index default" = "Zurücksetzen";
+"no search index alt" = "Abbrechen";
+
+"no media msg" = "Keine Medien verfügbar";
+"no media info" = "Fügen Sie ein Lied, Bild, Film, eine vCard oder PDF-Datei oder ein Webarchiv zu Ihrem Eintrag hinzu, und klicken Sie auf den entsprechenden Link, um es in Journler anzuzeigen.";
+"no media default" = "Fortfahren";
+
+"services error msg" = "Fehler Dienstemenü";
+"services error info" = "Jounler konnte die Auswahl nicht konvertieren. Es wurde kein Eintrag erstellt.";
+
+"pasteboard import error msg" = "Importfehler";
+"pasteboard import error info" = "Journler konnte die Daten nicht konvertieren. Es wurde kein Eintrag erstellt.";
+
+"import error msg" = "Importfehler";
+"import error info" = "Journler konnte die ausgewählte(n) Datei(en) nicht importieren. Der Inhalt eines Ordners kann möglicherweise auf diese Art nicht importiert werden. Wählen Sie stattdessen die Import-Funktion aus dem Datei-Menü.";
+
+"uri error msg" = "URL-Fehler";
+"uri error info" = "Journler konnte die ausgewählte URL nicht konvertieren.";
+
+"favorite error msg" = "Fehler betreffend Favoriten";
+"favorite error info" = "Journler konnte das Objekt für diesen Favoriten nicht finden. Möglicherweise wurde es gelöscht.";
+
+"nil image error msg" = "Ungültige Bilddaten";
+"nil image error info" = "Journler konnte aus der ausgewählten Datei kein Bild erstellen.";
+
+"save error msg" = "Fehler beim Sichern";
+"save error info" = "Journler konnte das Journal nicht am vorgesehenen Ort abspeichern. Dies kann zu Datenverlust führen. Für weitere Informationen konsultieren Sie bitte die Log-Dateien der Konsole.";
+
+"wordlist save error msg" = "Wörterlisten konnten nicht gesichert werden";
+"wordlist save error info" = "Journler konnte die vorgenommenen Änderungen an der Wörterliste nicht sichern. Es ist ein Schreibfehler aufgetreten.";
+
+"wordlist creation error msg" = "Fehler beim Erstellen der Wörterliste";
+"wordlist creation error info" = "Journler konnte aus der ausgewählten Datei keine Wörterliste erstellen.";
+
+"entry export error msg" = "Fehler beim Exportieren";
+"entry export error info" = "Beim Exportieren der ausgewählten Einträge sind Fehler aufgetreten. Möglicherweise sind nicht alle Einträge korrekt exportiert worden.";
+
+"md5digest cannot create msg" = "Fehler beim Verarbeiten des Kennworts";
+"md5digest cannot create info" = "Journler kann Ihr Kennwort nicht verarbeiten. Wählen Sie bitte ein anderes Kennwort.";
+
+"passfile creation error msg" = "Fehler beim Hinzufügen des Kennworts";
+"passfile creation error info" = "Journler konnte den Passwortschutz für Ihr Journal nicht aktivieren. Bitte versuchen Sie es noch einmal.";
+
+"passfile deletion error msg" = "Fehler beim Entfernen des Kennworts";
+"passfile deletion error info" = "Journler konnte den Passwortschutz für Ihr Journal nicht aufheben. Bitte versuchen Sie es noch einmal.";
+
+"media unreadable msg" = "Medien konnten nicht gelesen werden";
+"media unreadable info" = "Journler kann mit den Medien nicht umgehen, die Sie zu öffnen versuchen";
+
+"resource not found msg" = "Anhang nicht gefunden";
+"resource not found info" = "Journler konnte den ausgewählten Anhang nicht finden. Möglicherweise ist der Anhang gelöscht worden.";
+
+"lameinstall success title" = "Komponenten erfolgreich installiert";
+"lameinstall success msg" = "Die LAME-encoding-Komponenten wurden erfolgreich installiert. Möglicherweise müssen Sie Ihren Computer neu starten, damit Journler darauf zugreifen kann.";
+
+"lameinstall failure title" = "Komponenten nicht installiert";
+"lameinstall failure msg" = "Journler konnte die LAME-encoding-Komponenten nicht installieren. Informationen, wie Sie LAME selber installieren können, finden Sie in den Dokumenten, die Sie mit Journler heruntergeladen haben.";
+
+"lameinstall required title" = "MP3-Kodierer installieren?";
+"lameinstall required msg" = "Journler benötigt den LAME MP3-Kodierer, um Ihre Audio-Einträge als MP3-Datei zu sichern. Möchten Sie den MP3-Kodierer jetzt installieren?";
+"lameinstall required yes" = "Installieren";
+"lameinstall required no" = "Abbrechen";
+
+"confirm delete multiple msg" = "Wollen Sie die ausgewählten Einträge wirklich löschen?";
+"confirm delete multiple info" = "Wenn Sie diese Einträge löschen, werden sie unwiderruflich aus Ihrem Journal entfernt.";
+"confirm delete multiple yes" = "Löschen";
+"confirm delete multiple no" = "Abbrechen";
+
+"delete resources msg" = "Wollen Sie die ausgewählten Anhänge wirklich löschen?";
+"delete resources info" = "Sie entfernen die Anhänge der ausgewählten Einträge. Anhänge, die mit anderen Einträgen verknüpft sind, bleiben den jeweiligen Einträgen zugeordnet. Kopien von Alias-Dateien sind nicht betroffen.";
+"delete resources yes" = "Löschen";
+"delete resources no" = "Abbrechen";
+
+"delete folders msg" = "Wollen Sie die ausgewählten Ordner wirklich löschen?";
+"delete folders info" = "Wenn Sie diese Ordner löschen, werden Sie unwiderruflich aus dem Journal entfernt. Die im Ordner enthaltenen Einträge sind davon nicht betroffen.";
+"delete folders yes" = "Löschen";
+"delete folders no" = "Abbrechen";
+
+"empty trash msg" = "Wollen Sie den Papierkorb wirklich leeren?";
+"empty trash info" = "Alle Einträge im Papierkorb werden endgültig aus Ihrem Journal entfernt.";
+"empty trash yes" = "Löschen";
+"empty trash no" = "Abbrechen";
+
+"error create overwrite msg" = "Alte Journal-Dateien gefunden";
+"error create overwrite info" = "Offenbar befinden sich alte Journal-Dateien am Ort, wo Journler Ihre Einträge speichert. Wollen Sie diese Dateien überschreiben? Dabei würden die Dateien unwiderruflich gelöscht.";
+"error create overwrite yes" = "Überschreiben";
+"error create overwrite no" = "Beenden";
+
+"no ipod connected msg" = "Kein iPod angeschlossen";
+"no ipod connected info" = "Es scheint kein iPod an Ihren Computer angeschlossen zu sein. Schliessen Sie Ihren iPod an, und versuchen Sie es erneut.";
+
+"no ipod notes msg" = "Kein Notizenordner verfügbar";
+"no ipod notes info" = "Auf Ihrem iPod scheint kein Notizenordner verfügbar zu sein. Vergewissern Sie sich, dass die Verwendung Ihres iPods als Volume aktiviert ist. Beachten Sie, dass erst iPods ab der dritten Generation das Anzeigen von Notizen unterstützen.";
+
+"no ipod journler folder msg" = "Ordner \"Journler\" nicht vorhanden";
+"no ipod journler folder info" = "Der Ordner \"Journler\" konnte nicht zum Notizenordner auf Ihrem iPod hinzugefügt werden. Erstellen Sie diesen Ordner von Hand, und versuchen Sie es noch einmal.";
+
+"no iweb msg" = "iWeb konnte nicht gefunden werden";
+"no iweb info" = "iWeb konnte nicht gefunden werden. Vergewissern Sie sich, dass Sie die iLife-Suite vollständig installiert haben.";
+
+"bad conditions msg" = "Formatfehler";
+"bad conditions info" = "Ihre Bedingungen konnten nicht überprüft werden. Versuchen Sie es noch einmal, indem Sie Satzzeichen (inkl. Anführungszeichen und Apostrophe) entfernen. Leere Bedingungen sind nicht erlaubt.";
+
+"no video capture msg" = "Videoaufnahme nicht verfügbar";
+"no video capture info" = "Journler konnte keine Verbindung zu einer Videokamera/Webcam herstellen. Prüfen Sie die Anschlüsse an Ihre Videokamera/Webcam, und versuchen Sie es erneut.";
+
+"no audio capture msg" = "Audioaufnahme nicht verfügbar";
+"no audio capture info" = "Journler konnte keine Verbindung zu einer Tonquelle herstellen. Prüfen Sie die Anschlüsse an Ihre Tonquelle, und versuchen Sie es erneut.";
+
+"no snapshot capture msg" = "Schnappschuss ist nicht verfügbar";
+"no snapshot capture info" = "Journler konnte keine Verbindung zu Ihrer Kamera herstellen. Prüfen Sie die Anschlüsse an Ihre Kamera, und versuchen Sie es erneut.";
+
+"media error msg" = "Medienfehler";
+"media error info" = "Beim Lesen der Medien ist ein Fehler aufgetreten. Journler kann die Medien nicht anzeigen. Um die Medien in einem anderen Programm zu öffnen, klicken Sie bei gedrückter Befehlstaste auf den entsprechenden Verweis im Eintrag.";
+
+"google search error msg" = "Fehler bei der Google-Suche";
+"google search error info" = "Bei der Google-Suche ist ein Fehler aufgetreten. Überprüfen Sie Ihren Suchtext und Ihre Internetverbindung, und versuchen Sie es erneut.";
+
+"blogger cant get blog list" = "Journler konnte die Blogliste nicht auffinden.";
+"blogger cant post" = "Journler konnte den Eintrag nicht veröffentlichen";
+
+"metaweblog cant get categories" = "Journler konnte die Liste mit den Kategorien nicht abfragen";
+"metaweblog cant post" = "Journler konnte den Eintrag nicht veröffentlichen";
+
+"pasteboard folder warning msg" = "Sie importieren einen Ordner";
+"pasteboard folder warning info" = "Der Ordnerinhalt wird als ganzes importiert. Um die Dateien im Ordner einzeln zu importieren, verwenden Sie bitte die Funktion \"Importieren\". Sind Sie damit einverstanden?";
+"pasteboard folder warning ok" = "Fortfahren";
+"pasteboard folder warning cancel" = "Abbrechen";
+
+"blogcenter mode warning msg" = "HTML-Eingabemodus";
+"blogcenter mode warning info" = "Wenn Sie sowohl den normalen als auch den HTML-Modus benützen, kann die Formatierung verlorengehen. Für optimale Resultate beschränken Sie sich auf einen Modus, und benützen Sie die Webvorschau so oft wie nötig.";
+
+"mail preference msg" = "Wie möchten Sie E-Mails aus Journler heraus versenden?";
+"mail preference info" = "Journler kann auf Apple Mail oder Ihr bevorzugtes Mailprogramm zurückgreifen, um Nachrichten zu versenden. Anhänge werden jedoch nur mit Apple Mail unterstützt. Sie können Ihre Einstellungen auch später in den allgemeinen Einstellungen von Journler ändern.";
+"mail preferece use mail" = "Mail benutzen";
+"mail preference use default" = "Anderes Mailprogramm benutzen";
+
+"error pre117 format msg" = "Das verwendete Journal-Dateiformat ist zu alt.";
+"error pre117 format info" = "Bevor Sie die aktuelle Version von Journler verwenden können, müssen Sie zunächst die Version 1.17 starten, damit Ihre Journaldateien aktualisieren werden können. Sie finden Version 1.17 unter ...\nhttp://journler.com/download/";
+"error pre117 format quit" = "Beenden";
+"error pre117 format website" = "Journler.com besuchen";
+
+"resourcetoentry error msg" = "Fehler beim Hinzufügen von Medien";
+"resourcetoentry error info" = "Beim Hinzufügen der ausgewählten Medien zu Ihrem Eintrag ist ein Fehler aufgetreten. Einige dieser Dateien können daher möglicherweise nicht angezeigt werden.";
+
+"dropbox error msg" = "Fehler beim Lesen des Briefkastens";
+"dropbox error info" = "Es ist ein Fehler beim Lesen des Briefkastens aufgetreten. Einige Dateien sind möglicherweise nicht importiert worden. Sie finden nicht verschobene Dateien im Papierkorb des Finders.";
+
+"load error msg" = "Journler konnte Ihr Journal nicht laden";
+"load error info" = "Journler konnte Ihr Journal nicht finden oder aber nicht laden. Was möchten Sie jetzt tun? (Falls Sie unsicher sind, kontaktieren Sie support@journler.com für zusätzliche Hilfe.)";
+"load error locate" = "Journal suchen";
+"load error create" = "Neues Journal erstellen";
+"load error quit" = "Beenden";

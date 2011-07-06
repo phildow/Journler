@@ -1,0 +1,143 @@
+body {
+	background-color: #666666;
+	margin: 0px;
+	padding: 30px 0px;
+}
+
+img {
+	border: 0px;
+}
+
+#header {
+	background-image: url(new_graphics/header_bg.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	margin: auto;
+	height: 167px;
+	width: 800px;
+	position: relative;
+	color:#FFFFFF;
+}
+
+#header #righter
+{
+	float:right;
+	margin:0px;
+	margin-right:20px;
+	padding:0px;
+	text-align:right;
+}
+
+#header h1#toc {
+	padding: 0px;
+	margin: 0px;
+	margin-top:10px;
+	font-size:18px;
+}
+
+#header h1#nav {
+	padding: 0px;
+	margin: 0px;
+	margin-top:10px;
+	font-size:18px;
+}
+
+#header h2#support {
+	padding: 0px;
+	margin: 0px;
+	margin-top:10px;
+	font-size:18px;
+}
+
+#header a {
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+#header h1#title {
+	height: 40px;
+	padding: 0px;
+	margin: 0px;
+	position: relative;
+	top: 50px;
+	left: 85px;
+	width:400px;
+}
+
+#header h2#subject {
+	height: 20px;
+	padding: 0px;
+	margin: 0px;
+	position: relative;
+	top: 50px;
+	left: 85px;
+	width:400px;
+}
+
+#header img {
+	margin-right: 10px;
+	margin-left: 10px;
+	height:32px;
+	width:32px;
+}
+		
+#content {
+	background-image: url(new_graphics/content_BG.png);
+	margin: auto;
+	width: 800px;
+	min-height: 300px;
+	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 16px;
+	color: #222222;
+	position: relative;
+}
+
+#content .padding {
+	padding: 25px 30px 0px;
+}
+
+#content table {
+	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 16px;
+	color: #222222;
+	width:100%;
+}
+
+#content h3 {
+	font-size: 12px;
+	line height: 16px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	text-decoration: emphasis;
+}
+
+#footer {
+	background-image: url(new_graphics/footer_bg.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	margin: auto;
+	height: 32px;
+	width: 800px;
+}
+
+#logo {
+	background-image: url(new_graphics/journler_icon_new.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	position: absolute;
+	height: 133px;
+	width: 133px;
+	left: -15px;
+	top: 30px;
+	position:absolute;
+	z-index:1;
+	border: none;
+}
+/* CSS Document */
+
+p.breakhere {
+	display: none;
+}
+

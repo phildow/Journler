@@ -1,0 +1,25 @@
+global originalLoc
+
+tell application "Finder" to set fs to POSIX file "%@"
+
+tell application "iTunes"
+	try
+		with timeout of 600 seconds
+			
+			set addedTrack to (add fs)
+			set dbid to addedTrack's database ID
+			set myPlaylist to "%@" as string
+			
+			if not (exists playlist myPlaylist) then make new user playlist with properties {name:myPlaylist}
+			
+			if not (exists (some track of playlist myPlaylist whose database ID is dbid)) then
+				duplicate addedTrack to playlist myPlaylist
+			end if
+			
+			set originalLoc to location of addedTrack
+			
+		end timeout
+	end try
+end tell
+
+tell me to return (POSIX path of originalLoc)

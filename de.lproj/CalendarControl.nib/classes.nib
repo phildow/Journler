@@ -1,0 +1,50 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                contexutalDateChange = id; 
+                dayToLeft = id; 
+                dayToRight = id; 
+                monthToLeft = id; 
+                monthToRight = id; 
+                performContextMenuCommand = id; 
+                resetToday = id; 
+                selectMonth = id; 
+                toToday = id; 
+            }; 
+            CLASS = Calendar; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {dataSource = DatesController; delegate = id; }; 
+            SUPERCLASS = NSView; 
+        }, 
+        {
+            ACTIONS = {discloseCalendar = id; toggleSmallCalendar = id; }; 
+            CLASS = CalendarController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                calendar = Calendar; 
+                calendarButton = PDCalendarButton; 
+                contextMenu = NSMenu; 
+                dateField = NSTextField; 
+                datePicker = NSDatePicker; 
+                datePickerContainer = JournlerGradientView; 
+                delegate = id; 
+                discloseButton = NSButton; 
+                objectController = NSObjectController; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {"" = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = JournlerGradientView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = NSDatePicker; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
+        {CLASS = NSObject; LANGUAGE = ObjC; }, 
+        {CLASS = PDCalendarButton; LANGUAGE = ObjC; SUPERCLASS = NSImageView; }, 
+        {CLASS = PDGradientView; LANGUAGE = ObjC; SUPERCLASS = NSView; }
+    ); 
+    IBVersion = 1; 
+}

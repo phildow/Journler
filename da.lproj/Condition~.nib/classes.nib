@@ -1,0 +1,66 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                addCondition = id; 
+                changeCondition = id; 
+                changeConditionKey = id; 
+                changeDateCondition = id; 
+                changeMarkingCondition = id; 
+                changeStringCondition = id; 
+                changeTagsCondition = id; 
+                removeCondition = id; 
+            }; 
+            CLASS = ConditionController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                conditionView = NSView; 
+                dateAndLabel = NSTextField; 
+                dateConditionAValue = NSDatePicker; 
+                dateConditionBValue = NSDatePicker; 
+                dateConditionView = NSView; 
+                dateDatedView = NSView; 
+                dateDetailsPlaceholder = NSView; 
+                dateNumberedPop = NSPopUpButton; 
+                dateNumberedValue = NSTextField; 
+                dateNumberedView = NSView; 
+                dateOperationPop = NSPopUpButton; 
+                keyPop = NSPopUpButton; 
+                labelConditionView = NSView; 
+                labelOperationPop = NSPopUpButton; 
+                labelPicker = LabelPicker; 
+                markingConditionView = NSView; 
+                markingOperationPop = NSPopUpButton; 
+                removeButton = NSButton; 
+                resourcesConditionView = NSView; 
+                resourcesOperationPop = NSPopUpButton; 
+                resourcesTypePop = NSPopUpButton; 
+                specifiedConditionView = NSView; 
+                stringConditionValue = NSTextField; 
+                stringConditionView = NSView; 
+                stringOperationPop = NSPopUpButton; 
+                tagsField = NSTokenField; 
+                tagsOperationPop = NSPopUpButton; 
+                tagsView = NSView; 
+                target = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {"" = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = LabelPicker; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = NSDatePicker; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
+        {CLASS = NSObject; LANGUAGE = ObjC; }, 
+        {CLASS = PDButton; LANGUAGE = ObjC; SUPERCLASS = NSButton; }, 
+        {CLASS = PDButtonCell; LANGUAGE = ObjC; SUPERCLASS = NSButtonCell; }, 
+        {CLASS = PDCircleButton; LANGUAGE = ObjC; SUPERCLASS = NSButton; }, 
+        {CLASS = PDCircleButtonCell; LANGUAGE = ObjC; SUPERCLASS = NSButtonCell; }, 
+        {CLASS = PDPopUpButton; LANGUAGE = ObjC; SUPERCLASS = NSPopUpButton; }, 
+        {CLASS = PDPopUpButtonCell; LANGUAGE = ObjC; SUPERCLASS = NSPopUpButtonCell; }
+    ); 
+    IBVersion = 1; 
+}

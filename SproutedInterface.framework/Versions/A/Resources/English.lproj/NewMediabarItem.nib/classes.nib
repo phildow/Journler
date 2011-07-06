@@ -1,0 +1,36 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = JournlerGradientView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            CLASS = MediabarItemApplicationPicker; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {delegate = id; }; 
+            SUPERCLASS = JournlerGradientView; 
+        }, 
+        {CLASS = NSObject; LANGUAGE = ObjC; }, 
+        {
+            ACTIONS = {
+                cancel = id; 
+                chooseApplication = id; 
+                help = id; 
+                save = id; 
+                verifyDraggedImage = id; 
+            }; 
+            CLASS = NewMediabarItemController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                appImageView = NSImageView; 
+                applicationField = MediabarItemApplicationPicker; 
+                appnameField = NSTextField; 
+                delegate = id; 
+                objectController = NSObjectController; 
+                representedObject = id; 
+                scriptText = NSTextView; 
+                titleField = NSTextField; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

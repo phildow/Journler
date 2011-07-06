@@ -1,0 +1,16 @@
+"attempting import" = "Importing entry";
+"import success" = "Successfully imported entry on %@";
+"import failure" = "Unable to import entry";
+
+"link pasted" = "Link added to entry";
+"link not pasted" = "Could not add link to entry";
+
+"web selection pasted" = "Selection added to entry";
+"web selection not pasted" = "Could not add selection to entry";
+
+"web error" = "Error - %@";
+"web loading" = "Loading…";
+
+"ipod export underway" = "Exporting entries to iPod";
+"ipod export success" = "Successfully exported entries to iPod";
+"ipod export error" = "There were errors exporting to iPod";

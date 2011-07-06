@@ -1,0 +1,140 @@
+<HTML>
+
+	<HEAD>
+		<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso-8859-1">
+		<TITLE>The New Tags System</TITLE>
+		<META NAME="APPLEPLATFORMS" CONTENT="MAC,WIN">
+		<META NAME="KEYWORDS" CONTENT="tags, comments, convert">
+		<link href="../journler_help.css" rel="stylesheet" type="text/css" />
+		<link href="../journler_help_print.css" rel="stylesheet" type="text/css" media="print" />
+		<META NAME="DESCRIPTION" CONTENT="Introducing Journler's improved tagging system">
+	</HEAD>
+
+	<BODY>
+		<a name="DataStorage"></a>
+		<div id="header">
+			
+			<a href="../index.html" title="Journler - Wherever Life Takes You"><div id="logo"></div></a>
+			
+			<a href="topics.html"><h1 id="title">Journler Help</h1></a>
+			<A href=""><h2 id="subject"><img src="../graphics/topictags.png" align="absbottom">The New Tags</h2></A>
+			
+			<div id="righter">
+				<a href="topics.html"><h1 id="toc">Table of Contents<img src="../new_graphics/toc.png" align="absbottom"></h1></a>
+				<h1 id="nav"><a href="datastorage.html">Previous</a> | <a href="licensing.html">Next</a></h1>
+			</div>
+			
+		</div>
+		
+		<div id="content">
+		
+		<div class="padding">
+			
+			<p>
+			<h3>Introduction</h3>
+			Journler 2.5.4 introduces a significant change to its handling of tags. 
+			In previous versions of Journler, tags were simply a string of text. 
+			You edited an entry's tag attribute and typed whatever you wanted. 
+			It could be a sentence, a phrase, or keywords separated by commas, semicolons or a mixture of the two. 
+			It was left to the user to format that text in a way most useful to him or her.
+			</p><p>
+			<img src="../graphics/tags_and_comments.png" align="right">
+			Beginning with Journler 2.5.4, tags are formatted in a precise manner which renders them visually and programmatically distinct from one another. 
+			A tag is now a single word or phrase visually encompassed by a blue lozenge and separated from the other tags associated with an entry. 
+			Tags are tokens. For example:
+			
+			</p><p>
+			
+			<h3>What happened to my old tags?</h3>
+			In order to facilitate to the move from the old style tags to the new style tags, 
+			Journler 2.5.4 also introduces the comments entry attribute. 
+			Because there is no way to determine in every case how a user formatted his or her tags for conversion to the new format, 
+			Journler instead moves the old tags into the new comments attribute and leaves the new tags blank.
+			</p><p>
+			This means that <u><em>your old style tags have been renamed <strong>comments</strong> 
+			while the new style tags are simply called <strong>tags</strong>.</em></u>
+			</p><p>
+			If you don't see the comments attribute in the entry list it may simply be invisible. 
+			From Journler's <strong>View > Entries List > Columns</strong> menu make sure the <strong>Comments</strong> item is checked on.
+			</p><p>
+			All of your smart folders and filtering will still work. 
+			This change is at the user interface level only. 
+			When you click on a smart folder that had been set up to collect entries with certain tags, 
+			it is now set up to collect entries with the same set of comments. 
+			When you perform live filtering on your entries, filter for comments instead of tags.
+			</p><p>
+			For information on converting your old style tags to the new style tags 
+			so that you can filter and build smart folders for them, read on to the last section.
+			</p><p>
+			
+			<h3>Advantages of the new tags system</h3>
+			<em>Expectations</em><br>
+			There are many advantages to Journler's new tags. Expectations play a large role. 
+			Properly speaking, Journler's old tags weren't really tags. Users familiar with de.lico.us, 
+			technorati and tag clouds have come to expect the words "tags" to carry a precise meaning. 
+			The tags implementation in Journler 2.5.4 more closely fits that meaning.
+			</p><p>
+			<em>Autocompletion</em><br>
+			The new implementation supports autocompletion. 
+			Because Journler could not know what to expect when the user edited the older style of tags, 
+			it was not possible to offer autocompletion. Should Journler complete a word? A sentence? 
+			Up to a comma or semicolon? Because the new tags are distinct entities, however, 
+			when the user begins typing Journler can immediately search its internal database of known tags 
+			and offer completions to the user given the letters already typed.
+			</p>
+			
+			<!--
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br> -->
+			
+			<p>
+			<img src="../graphics/tags_cross_referencing.png" align="right" style="border-left: 1px solid grey;">
+			<em>Entry linking</em><br>
+			One of the most powerful advantages of the new tags implementation is cross referencing of entries that share the same tags. 
+			You are now able to click the blue lozenge surrounding a tag to see a list of every other entry in the journal 
+			that has also been tagged with the same word or phrase. Selecting an entry from the list jumps to it in Journler's browser.
+			</p><p>
+			<em>Upcoming</em><br>
+			Future versions of Journler will expand on the new tags implementation to offer a tag cloud, 
+			entries organized by tags and other ways of accessing one's entries through tags instead of folders or dates.
+			</p><p>
+			
+			<h3>Converting old style tags to new style tags</h3>
+			Depending on how you used the old style tags it may be to your advantage to convert them to the new style tags. 
+			If you kept your tags distinct from one another, separating them with commas or in an otherwise consistent manner 
+			and using the same tags repeatedly, the news tags implementation will definitely be an advantage to you. 
+			If instead you wrote sentences or phrases and did not often repeat the same text, you may want to keep that information 
+			in the comments attribute. Commenting, after all, better describes what you were doing in the first place.
+			</p><p>
+			NovaScotian from the Journler forums has been kind enough to write an Apple Script to help you convert your old style tags to the new style. 
+			<a href="http://journler.com/applescripts/Convert%20Comments%20to%20Tags.zip">Download the Apple Script</a>
+			</p><p>
+			Place the script in either your Home/Library/Scripts/Journler folder or your Home/Library/Scripts/Applications/Journler 
+			folder and restart Journler so that you can use it directly from the Scripts menu in the program.
+			</p><p>
+			The script works only on the entries you have selected in your journal, allowing you to experiment for the best results. 
+			Specify the character you use to distinguish your tags and the script converts the comments to tags while also leaving the comments in place. 
+			For example, if you specify the comma as your distinguishing character, and an entry's comments are "one, two, three", 
+			the script will convert the text into three distinct tags: [one] [two] [three].
+			</p><p>
+			Some cleaning up may be necessary afterwards, and you may need to convert some of the tags manually. 
+			Before clearing out the comments field don't forget to change any smart folders that had been 
+			targeting the old style tags and will stop working if you clear the comments field. 
+			It's a little bit of work but well worth it if you are a diligent tagger.
+			</p>
+			<br />
+		</div>
+		</div>
+		
+		<div id="footer"></div>
+		
+	</BODY>
+
+</HTML>
+

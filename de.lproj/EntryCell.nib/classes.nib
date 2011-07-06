@@ -1,0 +1,80 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                performFindPanelAction = id; 
+                printDocument = id; 
+                scaleText = id; 
+                setMargin = id; 
+            }; 
+            CLASS = EntryCellController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                categoryField = NSTextField; 
+                contentView = PDBorderedView; 
+                dateField = NSTextField; 
+                delegate = id; 
+                headerView = PDGradientView; 
+                marginPop = NSPopUpButton; 
+                objectController = NSObjectController; 
+                scalePop = NSPopUpButton; 
+                statusBar = JournlerGradientView; 
+                statusText = NSTextField; 
+                tagsField = NSTokenField; 
+                titleField = NSTextField; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = EtchedPopUpButton; LANGUAGE = ObjC; SUPERCLASS = NSPopUpButton; }, 
+        {
+            CLASS = EtchedPopUpButtonCell; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSPopUpButtonCell; 
+        }, 
+        {CLASS = EtchedText; LANGUAGE = ObjC; SUPERCLASS = NSTextField; }, 
+        {CLASS = EtchedTextCell; LANGUAGE = ObjC; SUPERCLASS = NSTextFieldCell; }, 
+        {
+            ACTIONS = {entryInformation = id; markAsDirty = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = JournlerGradientView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            ACTIONS = {
+                applyDefaultRuler = id; 
+                applyDefaultStyle = id; 
+                copyAsHTML = id; 
+                createLinkDefinition = id; 
+                highlightSelection = id; 
+                insertCheckbox = id; 
+                insertDateTime = id; 
+                insertLink = id; 
+                makeBlockQuote = id; 
+                modifyingAttributes = id; 
+                openLinkInNewWindow = id; 
+                openLinkWthFinder = id; 
+                pasteAndMatchStyle = id; 
+                removeFormatting = id; 
+                revealLinkInFinder = id; 
+                scaleText = id; 
+                setDefaultFont = id; 
+                setDefaultRuler = id; 
+                setSpacing = id; 
+                showStats = id; 
+            }; 
+            CLASS = LinksOnlyNSTextView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {header = MyHeaderView; }; 
+            SUPERCLASS = NSTextView; 
+        }, 
+        {CLASS = NSObject; LANGUAGE = ObjC; }, 
+        {CLASS = PDAutoCompleteTextField; LANGUAGE = ObjC; SUPERCLASS = NSTextField; }, 
+        {CLASS = PDBorderedView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = PDGradientView; LANGUAGE = ObjC; SUPERCLASS = PDBorderedView; }, 
+        {CLASS = PDPopUpButton; LANGUAGE = ObjC; SUPERCLASS = NSPopUpButton; }, 
+        {CLASS = PDPopUpButtonCell; LANGUAGE = ObjC; SUPERCLASS = NSPopUpButtonCell; }, 
+        {CLASS = PDTokenField; LANGUAGE = ObjC; SUPERCLASS = NSTokenField; }
+    ); 
+    IBVersion = 1; 
+}

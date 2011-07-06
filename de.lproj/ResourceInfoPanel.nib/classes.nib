@@ -1,0 +1,15 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = NFHUDWindow; LANGUAGE = ObjC; SUPERCLASS = NSPanel; }, 
+        {CLASS = ResourceHUDWindow; LANGUAGE = ObjC; SUPERCLASS = NFHUDWindow; }, 
+        {
+            CLASS = ResourceInfoController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {infoView = ResourceInfoView; }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = ResourceInfoView; LANGUAGE = ObjC; SUPERCLASS = NSView; }
+    ); 
+    IBVersion = 1; 
+}

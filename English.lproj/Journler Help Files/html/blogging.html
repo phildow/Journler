@@ -1,0 +1,142 @@
+
+<HTML>
+
+	<HEAD>
+		<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso-8859-1">
+		<TITLE>Journler Blogging</TITLE>
+		<META NAME="APPLEPLATFORMS" CONTENT="MAC,WIN">
+		<META NAME="KEYWORDS" CONTENT="email, blog, blogging, bloging, journal, weblog, livejournal, live, blogger, word, press, wordpress, meta, metaweblog, movable, type">
+		<META NAME="DESCRIPTION" CONTENT="Use your entries in a networked environment">
+		<link href="../journler_help.css" rel="stylesheet" type="text/css" />
+		<link href="../journler_help_print.css" rel="stylesheet" type="text/css" media="print" />
+	</HEAD>
+
+	<BODY>
+		<a name="JournlerBlogging"></a>
+		<div id="header">
+			<a href="../index.html" title="Journler - Wherever Life Takes You">
+			  <div id="logo"></div>
+			</a>
+			
+			<a href="topics.html"><h1 id="title">Journler Help</h1></a>
+			<a href=""><h2 id="subject"><img src="../graphics/topicblog.tiff" align="absbottom">Blogging</h2></a>
+			
+			<div id="righter">
+				<a href="topics.html"><h1 id="toc">Table of Contents<img src="../new_graphics/toc.png" align="absbottom"></h1></a>
+				<h1 id="nav"><a href="emailandblog.html">Previous</a> | <a href="importing.html">Next</a></h1>
+			</div>
+			
+		</div>
+		
+		<div id="content">
+		
+		<div class="padding">
+			
+			A blog, or weblog, is an online journal. Blogging is a simple way to share your thoughts with anyone who has internet access.
+			In prior versions Journler included basic support for LiveJournal and MetaWeblog systems. After a great deal of discussion
+			on the Journler forums, it has been decided to remove this support until it can be substantially improved.
+			<p>
+			If you relied heavily on Journler for blogging, you will need to find a 3rd party application to fill that void. A number of 
+			excellent options are available, among them MarsEdit and Ecto. To fascilitate 3rd party integration, Journler 2.5.4 implements
+			the Weblog editor protocol supported by a number of these applications and also allows you to send entries to other applications 
+			or use Apple Scripts to post your entries to the web.
+			</p>
+			<p>
+			<h3>Setting up 3rd Party Integration</h3>
+			You'll find a single setting for 3rd party blogging integration in Journler's <a href="prefadvanced.html">advanced preferences</a>.
+			Next to the <strong>Post to Weblog Using</strong> label you'll find a popup button. Click it once and select the <strong>Choose...</strong> option.
+			</p>
+			<p>
+			You may choose one of three kinds of files:
+			<ol>
+			<li>An application that supports the weblog editor protocol, including...</li>
+				<ul>
+				<li>MarsEdit</li>
+				<li>Ecto</li>
+				<li>Xjournal</li>
+				<li>Blapp</li>
+				<li>BlogThing</li>
+				</ul>
+			<li>Any other application</li>
+			<li>An Apple Script</li>
+			</ol>
+			</p>
+			<p>
+			When you choose an application that supports the weblog editor protocol, Journler makes use of a behind the scenes technology and special variables to send your entry to it.
+			When you select any other application, Journler sends a rich text version of the entry to the application. If you choose an Apple Script, the script
+			has complete control over how the entry is presented to the 3rd party application. An Apple Script can even send your entry directly to a blog!
+			</p>
+			<p>
+			Tip: By default Journler sends a plain text version of the entry to applications that support the weblog editor protocol. 
+			If you would rather have Journler send an html version of the entry you may enable a hidden preference. 
+			Open up the Terminal application in your /Applications/Utilities folder and type "defaults write com.phildow.journler SendHTMLToWeblogEditor 1" without the quotes. Press return.
+			You can disable that option by replacing the 1 with a 0. When enabled, Journler will use the XHTML/HTML and css preferences you've set for exporting to render the entry's (x)html.
+			</p>
+			<!--
+			
+			Journler can post your entries to a blog*, tracking which entries have been posted to which accounts.
+			<p>
+			Before posting an entry to the net you must first provide your blog's account information to Journler.
+			From the <a href="prefblogs.html">Blog Preferences</a> or when blogging an entry, register your account with the account assistant.
+			If you do not alread have one, you can establish a blog with one of Journler's supported systems, including 
+			<a href="http://www.livejournal.com">LiveJournal</a> and blogs running the 
+			<a href="http://en.wikipedia.org/wiki/MetaWeblog">MetaWeblog API</a>. The assistant will walk you through the process.
+			</p><p>
+		 	Using iWeb instead? No problem. Read about Journler's <a href="emailandblog.html">Mail and iWeb</a> integration.
+			</p><p>
+			Once you have entered your account information, use the <strong>Blog Entry</strong> command from the <strong>Entry</strong> menu 
+			or the <strong>Blog</strong> toolbar button to take an entry 
+			to the Blog Center. Journler's Blog Center makes it easy to add formatting to your entry so a web browser like Safari can 
+			properly display it. Add links, image links, paragraphs and other text styling, then preview it all before going live.
+			<p>
+			<img src="../graphics/blogcenter.png" align="left" style="padding-right:10px; padding-bottom:10px;">
+			</p><p>
+			<h3>Links</h3>
+			To add a new link to your entry specifically for display on the web, click the <strong>Link</strong> toolbar button. 
+			At a minimum you'll need to enter the link's <strong>text</strong> and the link <strong>URL</strong>. 
+			</p><p>
+			The link appears <a href="http://journler.com">underlined blue</a> in a web browser. A user can click it to go to the webpage 
+			pointed to by the link URL. 
+			The URL will look something like http://journler.com. It is the same line of text displayed at the top of your 
+			web browser whenever you visit an internet site.
+			</p><p>
+			<h3>Images</h3>
+			To add an image to your entry choose the <strong>Image</strong> toolbar button. 
+			The image must already be online in order for you to include it in 
+			an entry, and you must know the <strong>URL</strong> at which it is located. 
+			Journler cannot itself upload media to your blog at this time.
+			</p><p>
+			<h3>Posting or Saving Your Entry</h3>
+			Use the Web Preview option to see how your entry will appear online. Click the small <strong>browser icon</strong> 
+			at the top left of the window. Web preview uses the same 
+			technology as Safari and will give you a  good idea of how your entry will look once posted.
+			Once you are satisfied with the entry's appearance, save it as an HTML document or post it to one of your blogs. 
+			Press the <strong>Save</strong> toolbar button near the top right or <strong>Select an Account</strong>, 
+			set a few options and press the <strong>Post</strong> button.
+			</p><p>
+			<h3>Blogging Modes</h3>
+			The blogging center supports three modes, although you should only use two of them: Text, HTML and Preview mode.
+			Preview mode may be used as often as you wish to check how your entry will appear online. 
+			However, you should choose between Text and HTML mode. Moving back and forth between those two modes <em>will result in a loss of formatting</em>.
+			If you are HTML savy, use the HTML mode in comination with Preview. If HTML is not one of your strong points, go with Text mode, using Preview as often as needed.
+			</p><p>
+			* Journler's support for blogging is still quite limited at this time. Journler only supports the LiveJournal system and some blogs
+			running the Metaweblog API. Journler has only been thorougly tested with LiveJournal and WordPress, so blogging with your particular setup
+			may not work. Additionally, images and other media attachments cannot be uploaded to your blog.
+			</p><p>
+			If you are a serious blogger and are looking for a way to manage multiple sites, Journler is not the solution for you, and it is 
+			strongly recommended that you go with one of the many, fine blogging programs available fo the Mac. 
+			Journler blogging may be overhauled in a future release, but no timeframe is available.
+			</p>
+			
+			-->
+			<br />
+		</div>
+		</div>
+		
+		<div id="footer"></div>
+		
+		
+	</BODY>
+
+</HTML>

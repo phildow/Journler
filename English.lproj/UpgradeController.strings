@@ -1,0 +1,69 @@
+"backing up" = "Backing up your Journal…";
+"converting collections" = "Converting folders…";
+"converting entries" = "Converting entries…";
+
+"saving collections" = "Saving folders…";
+"updating preferences" = "Updating preferences…";
+"creating search indexes" = "Preparing search…";
+"installing lame" ="Preparing audio recording…";
+
+"processing entries" = "Processing entries…";
+"saving journal" = "Saving journal…";
+
+"upgrade complete" = "Upgrade complete";
+"upgrade complete success" = "Journler has successfully upgraded your entries.";
+"upgrade complete error" = "Journler encountered %i errors while upgrading your journal. Please refer to the log for more information.";
+
+"backup directory no create msg" = "Journler is unable to backup your journal.";
+"backup directory no create info" = "Journler could not create a backup directory. You should manually archive your old entries before proceeding. For instructions, refer to the additional documents that came with the download.";
+"backup directory no create default" = "Quit";
+"backup directory no create alt" = "Continue";
+
+"backup zip fail msg" = "Journler is unable to backup your journal.";
+"backup zip fail info" = "Journler could not archive your entries. You should manually archive your old entries before proceeding. For instructions, refer to the additional documents that came with the download.";
+"backup zip fail default" = "Quit";
+"backup zip fail alt" = "Continue";
+
+"collections folder create fail msg" = "Journler is unable to create a folders directory.";
+"collections folder create fail info" = "A folders directory is required. This is a critical error. You may attempt the upgrade again, and if that does not work please contact support@journler.com.";
+"collections folder create fail default" = "Quit";
+
+"resources folder create fail msg" = "Journler is unable to create a resources directory.";
+"resources folder create fail info" = "A resources directory is required. This is a critical error. You may attempt the upgrade again, and if that does not work please contact support@journler.com.";
+"resources folder create fail default" = "Quit";
+
+"reset search index fail msg" = "Journler is unable to reset the search index.";
+"reset search index fail info" = "The search index is necessary for internal journal searches. You may proceed with the upgrade, although it will be necessary to rebuild the search index at a later time.";
+"reset search index fail default" = "Continue";
+"reset search index fail alt" = "Quit";
+
+"no encryption support msg" = "Journler 2.5 does not support encryption";
+"no encryption support info" = "Journler no longer supports encryption. You must decrypt your journal using the previous version of Journler before running this upgrade.\n\nhttp://journler.com/encryption/";
+"no encryption support default" = "Quit";
+
+"210250 upgrade" = "Running 2.1 to 2.5 Upgrade";
+
+"253 upgrade window title" = "Journler 2.5.3";
+"253 reset folder icons msg" = "Journler 2.5.3 Upgrade";
+"253 reset folder icons info" = "Journler 2.5.3 must reset your custom folder icons. Journler will save the icons to your desktop so that you can restore them afterwards.";
+
+
+"Some time may be required" = "Some time may be required";
+"Data Storage Update" = "Data Storage Update";
+
+"2.5.4 store move message" = "Journler data storage update";
+"2.5.4 store move info" = "Journler needs to change where it stores your data. This operation may take a moment. You may cancel if you would prefer to back up your journal first. Click help for more information.";
+"2.5.4 store move ok" = "OK";
+"2.5.4 store move cancel" = "Cancel";
+
+"2.5.4 store already in library message" = "Data storage update error";
+"2.5.4 store already in library info" = "It seems there is already a folder with the name of Journler in your ~/Library directory. Please move this folder and try again. For more information click help.";
+"2.5.4 store already in library quit" = "Quit";
+
+"2.5.4 store moved successfully message" = "Data storage update successful";
+"2.5.4 store moved successfully info" = "Journler successfully changed where your data is stored. Happy journaling!";
+"2.5.4 store moved successfully ok" = "OK";
+
+"2.5.4 store moved failure message" = "Data storage update failed";
+"2.5.4 store moved failure info" = "Journler was unable to change where your data is stored. You should perform this operation manually. Click help for more information.";
+"2.5.4 store moved failure ok" = "OK";

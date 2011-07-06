@@ -1,0 +1,197 @@
+
+
+/* main window toolbar items */
+"export label" = "Exportieren";
+"export tip" = "Eintrag als unabhängige Datei sichern";
+
+"email label" = "E-Mail";
+"email tip" = "Text als E-Mail versenden";
+
+"header label" = "Kopfzeile";
+"header tip" = "Kopfzeile des Journals anzeigen/verbergen";
+
+"entry label" = "Neuer Eintrag";
+"entry tip" = "Datierten Eintrag hinzufügen";
+
+"topic label" = "Neues Thema";
+"topic tip" = "Undatierten Eintrag hinzufügen";
+
+"delete label" = "Löschen";
+"delete tip" = "Ausgewählte Einträge in den Papierkorb verschieben oder löschen, falls sie bereits im Papierkorb sind";
+
+"record label" = "Audio";
+"record tip" = "Audioaufnahme zum Eintrag hinzufügen";
+
+"blog label" = "Blog";
+"blog tip" = "Eintrag zum Blog-Center senden";
+
+"topics label" = "Themen";
+"topics tip" = "Themen-Schublade ein/ausblenden";
+
+"browse label" = "Ansehen";
+"browse tip" = "Alle Einträge in der Tabelle ansehen";
+
+"search label" = "Suchen";
+"search tip" = "In der Auswahl suchen";
+
+"address label" = "Kontakte";
+"address tip" = "Einen Kontakt zu Ihrem Eintrag hinzufügen";
+
+"links label" = "Links";
+"links tip" = "Zu einem anderen Eintrag verweisen oder eine Verweis-ID für diesen Eintrag ertellen";
+
+"print label" = "Drucken";
+"print tip" = "Eintrag drucken";
+
+"photos label" = "Fotos";
+"photos tip" = "Photo zum Eintrag hinzufügen";
+
+"tunes label" = "Musik";
+"tunes tip" = "Lied zum Eintrag hinzufügen";
+
+"ruler label" = "Lineal";
+"ruler tip" = "Lineal und Stilleiste ein/ausblenden";
+
+"calendar label" = "Kalender";
+"calendar tip" = "Kalender ein/ausblenden";
+
+"entryinfo label" = "Information";
+"entryinfo tip" = "Eigenschaften des Eintrags ändern";
+
+"flag label" = "Markieren";
+"flag tip" = "Eintrag markieren/Markierung aufheben";
+
+"subscript label" = "Tiefgestellt";
+"subscript tip" = "Ausgewählten Text tiefstellen";
+
+"superscript label" = "Hochgestellt";
+"superscript tip" = "Ausgewählten Text hochstellen";
+
+"highlight label" = "Hervorheben";
+"highlight tip" = "Ausgewählten Text hervorheben";
+
+"record video label" = "Video";
+"record video tip" = "Eine Videoaufzeichnung zum Eintrag hinzufügen";
+
+"snapshot label" = "Schnappschuss";
+"snapshot tip" = "Einen Schnappschuss zum Eintrag hinzufügen";
+
+"newtab label" = "Neuer Tab";
+"newtab tip" = "Einen neuen, leeren Tab erstellen";
+
+"lockout label" = "Abschließen";
+"lockout tip" = "Alle offenen Journler-Fenster schließen und Zugang zum Journal abschließen";
+
+"post label" = "Beitragen";
+"post tip" = "Eintrag zum ausgewählten Blog senden";
+
+"target label" = "Ziel-Blog";
+"target tip" = "Blog auswählen, zu dem der Eintrag gesendet werden soll";
+
+"link label" = "Verweis";
+"link tip" = "Einen Weblink zum Eintrag hinzufügen";
+
+"image label" = "Bild";
+"image tip" = "Ein Internetbild zum Eintrag hinzufügen";
+
+"html label" = "Zusätzliche Textauszeichnung";
+"html tip" = "HTML-Tags zum Eintrag hinzufügen";
+
+"details label" = "Details";
+"details tip" = "Blog-spezifische Optionen angeben";
+
+
+/* preference toolbar items */
+"genpref label" = "Allgemein";
+"genpref tip" = "Allgemeine Einstellungen";
+
+"blogpref label" = "Internet";
+"blogpref tip" = "Einstellungen zum Blog-Konto";
+
+"donpref label" = "Lizenz";
+"donpref tip" = "Machen Sie eine Spende und sichern Sie sich so eine Lizenz";
+
+"appearpref label" = "Darstellung";
+"appearpref tip" = "Allgemeines Erscheinungsbild ändern";
+
+"pref editing label" = "Bearbeiten";
+"pref editing tip" = "Das Verhalten von Journler beim Schreiben von Einträgen ändern";
+
+"pref media label" = "Medien";
+"pref media tip" = "Einstellungen, um Medien in Journler anzuschauen, zu kopieren und zu verlinken";
+
+"pref advanced label" = "Erweitert";
+"pref advanced tip" = "Einstellungen für Fortgeschrittene";
+
+/* 2.0 toolbar changes */
+
+"filter label" = "Filter";
+"filter tip" = "Durchsuchte Einträge filtern. Sie können die Filtereinstellungen als intelligenten Ordner sichern, indem Sie die alt-Taste drücken.";
+
+"iweb label" = "iWeb";
+"iweb tip" = "Eintrag fürs Bloggen an iWeb senden";
+
+"ilife label" = "Medien";
+"ilife tip" = "Musik, Bilder und Filme aus iLife zum Eintrag hinzufügen";
+
+"nav label" = "Verlauf";
+"nav tip" = "Vorangehenden oder nächsten Eintrag anzeigen";
+
+"htmlsave label" = "Exportieren";
+"htmlsave tip" = "Änderungen als HTML-Datei exportieren";
+
+"ipod label" = "Notiz";
+"ipod tip" = "Auswahl auf iPod übertragen";
+
+"view blog label" = "Blog anschauen";
+"view blog tip" = "Ausgewählten Blog anschauen";
+
+"blog mode label" = "Modus";
+"blog mode tip" = "Eintrag bearbeiten oder anschauen";
+
+/* 2.0.2 changes */
+
+"blockquote label" = "Zitat";
+"blockquote tip" = "Auswahl als Zitat einrücken";
+
+"newfolder label" = "Ordner";
+"newfolder tip" = "Einen neuen Ordner zu Ihrem Journal hinzufügen";
+
+"newsmartfolder label" = "Intelligenter Ordner";
+"newsmartfolder tip" = "Einen neuen intelligenten Ordner zu Ihrem Journal hinzufügen";
+
+
+/* 2.1 changes */
+
+"insert checkbox label" = "Ankreuzfeld";
+"insert checkbox tip" = "Ein Ankreuzfeld zu Ihrem Eintrag hinzufügen";
+
+"insert table label" = "Tabelle";
+"insert table tip" = "Eine Tabelle zu Ihrem Eintrag hinzufügen";
+
+"insert link label" = "Verweis";
+"insert link tip" = "Einen Verweis zu Ihrem Eintrag hinzufügen";
+
+"insert list label" = "Liste";
+"insert list tip" = "Eine Liste zu Ihrem Eintrag hinzufügen";
+
+"insert datetime label" = "Datum/Zeit";
+"insert datetime tip" = "Datum und/oder Zeit zu Ihrem Eintrag hinzufügen";
+
+"correspondence label" = "Nachrichten";
+"correspondence tip" = "Nachrichten aus Mail oder iChat zu Ihrem Eintrag hinzufügen";
+
+"synonyms label" = "Synonyme";
+"synonyms tip" = "Begriffe im Journal explizit miteinander verknüpfen";
+
+"stoplist label" = "Stoppwörter";
+"stoplist tip" = "Schliessen Sie Wörter aus, die Sie nicht indizieren wollen (z. B. Präpositionen und Artikel)";
+
+"letters label" = "Zu Buchstabe springen";
+"letters tip" = "Springt sofort zum ersten Eintrag in der ausgewählten Liste, der mit diesem Buchstaben beginnt.";
+
+"lexicon label" = "Lexikon";
+"lexicon tip" = "Finden Sie Beziehungen zwischen Ihren Einträgen, von denen Sie nicht einmal gewusst haben, dass sie überhaupt existieren.";
+
+"pref labels label" = "Etiketten";
+"pref labels tip" = "Geben Sie an, wie Journler Ihre Etiketten benennen soll.";

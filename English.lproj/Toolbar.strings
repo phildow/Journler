@@ -1,0 +1,197 @@
+/* toolbars */
+
+/* main window toolbar items */
+"export label" = "Export";
+"export tip" = "Save your entry as an independent file";
+
+"email label" = "E-Mail";
+"email tip" = "Email your entry's text with your preferred mail client";
+
+"header label" = "Header";
+"header tip" = "Hide or show the entry header";
+
+"entry label" = "New Entry";
+"entry tip" = "Add a dated entry to your journal";
+
+"topic label" = "New Topic";
+"topic tip" = "Add an undated topic to your journal";
+
+"delete label" = "Delete";
+"delete tip" = "Move the selected entries to the trash or delete them if already there";
+
+"record label" = "Audio";
+"record tip" = "Add a voice recording to your entry";
+
+"blog label" = "Blog";
+"blog tip" = "Send your entry to the blog center";
+
+"topics label" = "Topics";
+"topics tip" = "Toggle the topics drawer";
+
+"browse label" = "Browse";
+"browse tip" = "See all of your entries in the browse table";
+
+"search label" = "Search";
+"search tip" = "Search the currently selected collection";
+
+"address label" = "Contacts";
+"address tip" = "Add a contact to your entry";
+
+"links label" = "Links";
+"links tip" = "Connect to another entry or create a link ID for this entry";
+
+"print label" = "Print";
+"print tip" = "Print your entry";
+
+"photos label" = "Photos";
+"photos tip" = "Add a photo to your entry";
+
+"tunes label" = "Music";
+"tunes tip" = "Add a song to your entry";
+
+"ruler label" = "Ruler";
+"ruler tip" = "Toggle the ruler and styles bar";
+
+"calendar label" = "Calendar";
+"calendar tip" = "Toggle the calendar";
+
+"entryinfo label" = "Info";
+"entryinfo tip" = "Edit this entry's properties";
+
+"flag label" = "Flag";
+"flag tip" = "Mark the entry as flag/unflagged";
+
+"subscript label" = "Subscript";
+"subscript tip" = "Subscript the currently selected text";
+
+"superscript label" = "Superscript";
+"superscript tip" = "Superscript the currently selected text";
+
+"highlight label" = "Highlight";
+"highlight tip" = "Highlight the currently selected text";
+
+"record video label" = "Video";
+"record video tip" = "Add a video recording to your entry";
+
+"snapshot label" = "Photo";
+"snapshot tip" = "Add a snapshot to your entry";
+
+"newtab label" = "New Tab";
+"newtab tip" = "Create a new, empty tab";
+
+"lockout label" = "Lockout";
+"lockout tip" = "Close all of Journler's open windows and lock access to your journal";
+
+"post label" = "Post";
+"post tip" = "Post this entry to the selected blog";
+
+"target label" = "Target Blog";
+"target tip" = "Select the blog to which you would like this entry posted";
+
+"link label" = "Link";
+"link tip" = "Add a web link to your entry";
+
+"image label" = "Image";
+"image tip" = "Add a web image to your entry";
+
+"html label" = "Additional Markup";
+"html tip" = "Add HTML tags to your entry";
+
+"details label" = "Details";
+"details tip" = "Specify blog specific options";
+
+
+/* preference toolbar items */
+"genpref label" = "General";
+"genpref tip" = "General preferences";
+
+"blogpref label" = "Blogging";
+"blogpref tip" = "Intert related preferences";
+
+"donpref label" = "Licensing";
+"donpref tip" = "Make a donation and secure a license";
+
+"appearpref label" = "Appearance";
+"appearpref tip" = "Customize general appearance settings";
+
+"pref editing label" = "Editing";
+"pref editing tip" = "Change the way Journler behaves when writing entries";
+
+"pref media label" = "Media";
+"pref media tip" = "Settings for viewing, copying and linking media inside Journler";
+
+"pref advanced label" = "Advanced";
+"pref advanced tip" = "Additional settings for advanced customization";
+
+/* 2.0 toolbar changes */
+
+"filter label" = "Filter";
+"filter tip" = "Filter the browsed entries, hold the alt key to save the filter";
+
+"iweb label" = "iWeb";
+"iweb tip" = "Send the entry to iWeb for blogging";
+
+"ilife label" = "Media";
+"ilife tip" = "Add your iLife music, pictures and movies to an entry";
+
+"nav label" = "History";
+"nav tip" = "Show the previous or next entry";
+
+"htmlsave label" = "Export";
+"htmlsave tip" = "Export your modifications to an HTML file";
+
+"ipod label" = "Note";
+"ipod tip" = "Export the selection to your iPod";
+
+"view blog label" = "View Blog";
+"view blog tip" = "View the selected blog";
+
+"blog mode label" = "Mode";
+"blog mode tip" = "Edit your entry or preview it";
+
+/* 2.0.2 changes */
+
+"blockquote label" = "Quote";
+"blockquote tip" = "Indent selection as block quote";
+
+"newfolder label" = "Folder";
+"newfolder tip" = "Add a new folder to your journal";
+
+"newsmartfolder label" = "Smart Folder";
+"newsmartfolder tip" = "Add a new smart folder to your journal";
+
+
+/* 2.1 changes */
+
+"insert checkbox label" = "Checkbox";
+"insert checkbox tip" = "Add a checkbox to your entry";
+
+"insert table label" = "Table";
+"insert table tip" = "Add a table to your entry";
+
+"insert link label" = "Link";
+"insert link tip" = "Add a link to your entry";
+
+"insert list label" = "List";
+"insert list tip" = "Add a list to your entry";
+
+"insert datetime label" = "Date/Time";
+"insert datetime tip" = "Add the date and/or time to your entry";
+
+"correspondence label" = "Messages";
+"correspondence tip" = "Add Mail messages and iChat transcripts to your entry";
+
+"synonyms label" = "Synonyms";
+"synonyms tip" = "Explicity establish relationships between terms in your journal";
+
+"stoplist label" = "Stop Words";
+"stoplist tip" = "Filter out words you do not want indexed, such as prepositions and articles";
+
+"letters label" = "Jump to Letter";
+"letters tip" = "Quickly jump to the first item in the selected list that begins with this letter.";
+
+"lexicon label" = "Lexicon";
+"lexicon tip" = "Infinit depth term-document relationships. Discover connections you never knew existed.";
+
+"pref labels label" = "Labels";
+"pref labels tip" = "Specify how Journler should name the labels you use";

@@ -1,0 +1,197 @@
+/* toolbars */
+
+/* main window toolbar items */
+"export label" = "Eksporter";
+"export tip" = "Arkiver teksten som en selvstændig fil";
+
+"email label" = "E-mail";
+"email tip" = "E-mail teksten via dit normale e-mail program";
+
+"header label" = "Overskrift";
+"header tip" = "Skjul/vis tekstens overskrift";
+
+"entry label" = "Ny tekst";
+"entry tip" = "Føj en dateret tekst til journalen";
+
+"topic label" = "Nyt emne";
+"topic tip" = "Føj et u-dateret emne til journalen";
+
+"delete label" = "Slet";
+"delete tip" = "Flyt valgte tekster til papirkurven eller slet dem, hvis de allerede er der";
+
+"record label" = "Lyd";
+"record tip" = "Føj en lydoptagelse til teksten";
+
+"blog label" = "Blog";
+"blog tip" = "Send teksten til blog center";
+
+"topics label" = "Emner";
+"topics tip" = "Vis/skjul emner skuffen";
+
+"browse label" = "Browse";
+"browse tip" = "Se alle teksterne i browse panelet";
+
+"search label" = "Søg";
+"search tip" = "Søg i valgte samling";
+
+"address label" = "Kontakter";
+"address tip" = "Føj en kontakt til teksten";
+
+"links label" = "Link";
+"links tip" = "Link til en anden tekst eller opret en link ID for denne tekst";
+
+"print label" = "Udskriv";
+"print tip" = "Udskriv teksten";
+
+"photos label" = "Billede";
+"photos tip" = "Føj et billede til teksten";
+
+"tunes label" = "Musik";
+"tunes tip" = "Føj en sang til teksten";
+
+"ruler label" = "Lineal";
+"ruler tip" = "Vis/skjul lineal og skriftsnit";
+
+"calendar label" = "Kalender";
+"calendar tip" = "Vis/skjul kalenderen";
+
+"entryinfo label" = "Oplysning";
+"entryinfo tip" = "Rediger tekstens oplysninger";
+
+"flag label" = "Flag";
+"flag tip" = "Marker teksten som flagget/ikke-flagget";
+
+"subscript label" = "Sænket";
+"subscript tip" = "Sænk valgte tekst";
+
+"superscript label" = "Hævet";
+"superscript tip" = "Hæv valgte tekst";
+
+"highlight label" = "Marker";
+"highlight tip" = "Marker valgte tekst";
+
+"record video label" = "Video";
+"record video tip" = "Føj en video optagelse til teksten";
+
+"snapshot label" = "Snapshot";
+"snapshot tip" = "Føj et snapshot til teksten";
+
+"newtab label" = "Nyt faneblad";
+"newtab tip" = "Opret et nyt, tomt faneblad";
+
+"lockout label" = "Lås";
+"lockout tip" = "Luk alle Journlers åbne vinduer og lås adgangen til journalen";
+
+"post label" = "Post";
+"post tip" = "Send denne tekst til valgte blog";
+
+"target label" = "Mål-blog";
+"target tip" = "Vælg den blog du vil sende teksten til";
+
+"link label" = "Link";
+"link tip" = "Føj et web link til teksten";
+
+"image label" = "Billede";
+"image tip" = "Føj et web billede til teksten";
+
+"html label" = "Flere Markup";
+"html tip" = "Føj HTML tags til teksten";
+
+"details label" = "Oplysninger";
+"details tip" = "Vælg blog specifikke valgmuligheder";
+
+
+/* preference toolbar items */
+"genpref label" = "Generelt";
+"genpref tip" = "Generelt indstillinger";
+
+"blogpref label" = "Web";
+"blogpref tip" = "Blog konto indstillinger";
+
+"donpref label" = "Licens";
+"donpref tip" = "Doner og få en licens";
+
+"appearpref label" = "Udseende";
+"appearpref tip" = "Tilpas udseende indstillingerne";
+
+"pref editing label" = "Redigering";
+"pref editing tip" = "Vælg Journler indstillinger til skrivning af tekster";
+
+"pref media label" = "Medie";
+"pref media tip" = "Indstillinger for visning, kopiering og link af medier i Journler";
+
+"pref advanced label" = "Avanceret";
+"pref advanced tip" = "Yderligere indstillinger for avancerede muligheder";
+
+/* 2.0 toolbar changes */
+
+"filter label" = "Filtrer";
+"filter tip" = "Filtrer emnerne, hold alt-tasten nede for at arkivere filteret";
+
+"iweb label" = "iWeb";
+"iweb tip" = "Send teksten til iWeb for blogging";
+
+"ilife label" = "Medie";
+"ilife tip" = "Føj iLife musik, billeder og film til en tekst";
+
+"nav label" = "Historie";
+"nav tip" = "Vis forrige eller næste tekst";
+
+"htmlsave label" = "Eksport";
+"htmlsave tip" = "Eksporter ændringerne til en HTML fil";
+
+"ipod label" = "Note";
+"ipod tip" = "Ekporter valgte til din iPod";
+
+"view blog label" = "Vis Blog";
+"view blog tip" = "Se valgte blog";
+
+"blog mode label" = "Måde";
+"blog mode tip" = "Rediger tekster eller prøvekig dem";
+
+/* 2.0.2 changes */
+
+"blockquote label" = "Citat";
+"blockquote tip" = "Indryk valgte som citat blok";
+
+"newfolder label" = "Mappe";
+"newfolder tip" = "Føj ny mappe til journalen";
+
+"newsmartfolder label" = "Smart mappe";
+"newsmartfolder tip" = "Føj ny smart mappe til journalen";
+
+
+/* 2.1 changes */
+
+"insert checkbox label" = "Tjekfelt";
+"insert checkbox tip" = "Føj et tjekfelt til teksten ved markøren";
+
+"insert table label" = "Tabel";
+"insert table tip" = "Føj en tabel til teksten ved markøren";
+
+"insert link label" = "Link";
+"insert link tip" = "Føj en link til teksten ved markøren";
+
+"insert list label" = "Liste";
+"insert list tip" = "Føj en liste til teksten";
+
+"insert datetime label" = "Dato/Tid";
+"insert datetime tip" = "Føj datoen og/eller klokkeslæt til teksten";
+
+"correspondence label" = "Beskeder";
+"correspondence tip" = "Føj mail beskeder og iChat kopier til din tekst";
+
+"synonyms label" = "Synonymer";
+"synonyms tip" = "Explicity establish relationships between terms in your journal";
+
+"stoplist label" = "Stop ord";
+"stoplist tip" = "Filtrer de ord, du ikke vil kave indekseret, såsom forholdsord og artikler.";
+
+"letters label" = "Hop til bogstav";
+"letters tip" = "Hop hurtigt til det første emne i valgte liste, som starter med dette bogstav.";
+
+"lexicon label" = "Leksikon";
+"lexicon top" = "Uendelig dyb udtryk-dokument relationer. Opdag forbindelser du ikke vidste eksisterede.";
+
+"pref labels label" = "Label";
+"pref labels tip" = "Vælg, hvordan Journler navngiver de label du bruger";

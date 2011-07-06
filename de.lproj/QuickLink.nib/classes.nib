@@ -1,0 +1,66 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {search = id; }; 
+            CLASS = FiltersArrayController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {resultField = NSTextField; }; 
+            SUPERCLASS = NSArrayController; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = JObject; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {myContainer = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = JournlerCollection; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {myContainer = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = JournlerEntry; LANGUAGE = ObjC; SUPERCLASS = JObject; }, 
+        {
+            CLASS = JournlerJournal; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {owner = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = PDBorderedView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = PDButton; LANGUAGE = ObjC; SUPERCLASS = NSButton; }, 
+        {CLASS = PDButtonCell; LANGUAGE = ObjC; SUPERCLASS = NSButtonCell; }, 
+        {CLASS = PDDateDisplayCell; LANGUAGE = ObjC; SUPERCLASS = NSTextFieldCell; }, 
+        {CLASS = PDGradientView; LANGUAGE = ObjC; SUPERCLASS = PDBorderedView; }, 
+        {CLASS = PDPopUpButton; LANGUAGE = ObjC; SUPERCLASS = NSPopUpButton; }, 
+        {CLASS = PDPopUpButtonCell; LANGUAGE = ObjC; SUPERCLASS = NSPopUpButtonCell; }, 
+        {
+            CLASS = QuickLinkArrayController; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = FiltersArrayController; 
+        }, 
+        {
+            ACTIONS = {
+                "_openEntryInNewTab" = id; 
+                "_openEntryInNewWindow" = id; 
+                "_openEntryInSelectedTab" = id; 
+                "_showPreview" = id; 
+                contextualCommand = id; 
+                selectCollection = id; 
+            }; 
+            CLASS = QuickLinkController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                "_collections_pop" = NSPopUpButton; 
+                entriesTable = QuickLinkTable; 
+                entryController = FiltersArrayController; 
+                gradient = PDGradientView; 
+                previewText = NSTextView; 
+                previewWin = NSWindow; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = QuickLinkTable; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }
+    ); 
+    IBVersion = 1; 
+}

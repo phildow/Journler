@@ -1,0 +1,12 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = IntegrationCopyFiles; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {controller = NSObjectController; progress = NSProgressIndicator; }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

@@ -1,0 +1,17 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {genericCancel = id; genericOkay = id; }; 
+            CLASS = LinkController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                linkField = NSTextField; 
+                objectController = NSObjectController; 
+                urlField = NSTextField; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

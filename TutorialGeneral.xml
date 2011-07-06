@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Entry Category</key>
+	<string>Journler</string>
+	<key>Entry Keywords</key>
+	<string>Journler Welcome</string>
+	<key>Entry Tag</key>
+	<integer>0</integer>
+	<key>Entry Title</key>
+	<string>Welcome to Journler</string>
+</dict>
+</plist>

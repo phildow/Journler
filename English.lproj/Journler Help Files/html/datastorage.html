@@ -1,0 +1,100 @@
+﻿<HTML>
+
+	<HEAD>
+		<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso-8859-1">
+		<TITLE>Data Storage</TITLE>
+		<META NAME="APPLEPLATFORMS" CONTENT="MAC,WIN">
+		<META NAME="KEYWORDS" CONTENT="data, storage, application support, documents, backup, sync">
+		<META NAME="DESCRIPTION" CONTENT="Sophisticated data storage for your journal entries">
+		<link href="../journler_help.css" rel="stylesheet" type="text/css" />
+		<link href="../journler_help_print.css" rel="stylesheet" type="text/css" media="print" />
+	</HEAD>
+
+	<BODY>
+		<a name="DataStorage"></a>
+		<div id="header">
+			
+			<a href="../index.html" title="Journler - Wherever Life Takes You"><div id="logo"></div></a>
+			
+			<a href="topics.html"><h1 id="title">Journler Help</h1></a>
+			<A href=""><h2 id="subject"><img src="../graphics/datastorage.png" align="absbottom">Data Storage</h2></A>
+			
+			<div id="righter">
+				<a href="topics.html"><h1 id="toc">Table of Contents<img src="../new_graphics/toc.png" align="absbottom"></h1></a>
+				<h1 id="nav"><a href="speakable.html">Previous</a> | <a href="newtags.html">Next</a></h1>
+			</div>
+			
+		</div>
+		
+		<div id="content">
+		
+		<div class="padding">
+			
+			Journler's data management techniques have evolved to become a sophisticated system 
+			that combines open standards with semi-proprietary technology and the single database architecture with independently existing files.
+			But first something simpler.
+			<p>
+			<h3>Where Is My Data?</h3>
+			<img src="../graphics/journallocation.png" align="right" style="padding-left:10px; padding-bottom:10px;">
+			Journler stores the entire contents of your journal, including entries as well as the files it manages, in one of two places:
+				<ol type="a">
+				<li>Home > Library > Application Support</li>
+				<li>Home > Documents</li>
+				</ol>
+			The location depends on when you first began using Journler.
+			Open up a window in the Finder and navigate to your Application Support or Documents folder
+			where you'll find a folder called <strong>Journler</strong>. If you're backing up your data you should back up <em>the entire folder</em>.
+			You may also want to copy the preferences file, <strong>com.phildow.journler.plist</strong> in <strong>Home > Library > Preferences</strong>.
+			</p><p>
+			<h3>Can I Move My Journal? What about Syncing and Multiple Computers?</h3>
+			Yes, you may move your journal to a different location. Some people prefer to keep it in <strong>Documents</strong> along with the rest of their important files.
+			Quit Journler and move the entire <strong>Journler</strong> folder to your documents folder. 
+			Next time you launch Journler you will be asked you to locate the journal. Select the <strong>Journler</strong> folder you just moved. 
+			Make sure to select the actual folder and not any of its contents.
+			</p><p>
+			Syncing is a bit more difficult and not officially supported at this time. Users have proposed alternatives. 
+			Because you may move your journal, one solution keeps the data on a dedicated USB stick. Whenever you move to another computer take the stick with you.
+			Another option uses the offline iDisk option combined with syncing. Place your journal on the iDisk but take it offline. Whenever you switch computers, 
+			put the iDisk back online and sync its contents. For more information about syncing and using your journal on more than one computer, 
+			please refer to the <a href="http://journler.com/community/wiki/">Journler Wiki</a>.
+			</p><p>
+			<h3>Data Storage Proper</h3>
+			The Journler data management system distinguishes between two disk based entities: the single journal database and individually existing object files.
+			A further distinction with regard to individual entry files may be made between content and metadata.
+			</p><p>
+			The metadata for your entire journal is stored in a single database based on Apple's archiver technology.
+			Attributes such as title, category and date as well as the relationships between the entities in your journal, 
+			for example what entries belong to what folders, are all stored in this single file. 
+			When Journler starts up it loads only this file, an inexpensive and fast operation. 
+			When you quit, Journler saves out all of you journal's metadata to this same file.
+			No matter how big your journal becomes the database will remain relatively small and so fast to work with.
+			</p><p>
+			Simultaneously, Journler maintains individual metadata files for all of the objects in your journal. Every entry, folder, resource and blog has 
+			a corresponding file on your computer. The files only include metadata and are also for this reason quite small. During normal use these individual files are 
+			saved anytime the selection changes or an autosave operation is performed. If Journler crashes or does not shut down properly it 
+			avoids the database at the next launch and instead loads from these files. The dual system minimizes the possibility of data loss while ensuring 
+			fast disk access.
+			</p><p>
+			<h3>The Rich Text Standard</h3>
+			Journler stores the actual, textual content of your entries in their own files, away from the metadata. Journler uses the well established RTFd standard,
+			guaranteeing that you always have access to the content of your entries no matter what happens to their metadata.
+			</p><p>
+			You will find the rich text files for an entry inside the <strong>Journler</strong> folder discussed above. 
+			Descend into the <strong>Journler Entries</strong> folder and again into one of the entry folders, where you will see a file named <strong>_Text.jrtfd</strong>.
+			Right-click on the file and choose <strong>Show Package Contents</strong> from the menu. 
+			Inside is the <strong>Entry.rtfd</strong> document which corresponds to the actual content of the entry.
+			</p><p>
+			It is strongly recommended that you do not alter the content of your entries outside Journler. 
+			Your changes will not be recorded by the program and so not reflected when searching or using smart folders.
+			Entry content is kept in .jrtfd packages in order to hide it from Spotlight.
+			</p>
+			<br />
+		</div>
+		</div>
+		
+		<div id="footer"></div>
+		
+	</BODY>
+
+</HTML>
+

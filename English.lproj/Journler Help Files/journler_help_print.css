@@ -1,0 +1,123 @@
+body {
+	/*background-color: #666666;*/
+	margin: 0px;
+	/*padding: 30px 0px;*/
+}
+
+#header {
+	margin: 0px;
+	padding: 0px;
+	height: 50px;
+	/*width: 800px;*/
+	width:100%
+	position: relative;
+}
+
+#header #righter {
+	display: none;
+}
+
+#header h1#toc {
+	display:none;
+}
+
+#header h1#nav {
+	display:none;
+}
+
+#header h2#support {
+	display:none;
+}
+
+#header a {
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+#header h1#title {
+	display:none;
+}
+
+#header h2#subject {
+	height: 20px;
+	/*padding: 0px;
+	margin: 0px;
+	margin-left: 10px;*/
+	position: relative;
+	top: 0px;
+	left: 10px;
+	/*width:400px;*/
+	color: black;
+}
+
+#header img {
+	margin-right: 10px;
+	margin-left: 10px;
+	height:32px;
+	width:32px;
+}
+		
+#content {
+	/*background-image: url(new_graphics/content_BG.png);*/
+	/*margin: auto;*/
+	/*min-height: 300px;*/
+	margin: 0px;
+	padding: 0px;
+	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	line-height: 18px;
+	color: #222222;
+	position: relative;
+	width:720px;
+}
+
+#content .padding {
+	/*padding: 25px 30px 0px;*/
+}
+
+#content table {
+	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 16px;
+	color: #222222;
+	width:100%;
+}
+
+#content h3 {
+	font-size: 12px;
+	line height: 16px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	text-decoration: emphasis;
+}
+
+#footer {
+	display:none;
+}
+
+#logo {
+	display: none;
+}
+/* CSS Document */
+
+/* Print Specific */
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+p {
+	windows: 5;
+	orphans: 10;
+}
+
+img {
+	page-break-inside: avoid;
+	border: 0px;
+}
+
+p.breakhere {
+	page-break-before: always;
+}
+

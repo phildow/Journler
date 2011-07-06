@@ -1,0 +1,132 @@
+<HTML>
+
+	<HEAD>
+		<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=iso-8859-1">
+		<TITLE>Journler Smart Folders</TITLE>
+		<META NAME="APPLEPLATFORMS" CONTENT="MAC,WIN">
+		<META NAME="KEYWORDS" CONTENT="collection, collections, folder, folders, smart, journal, date, autotag, autotagging, auto-tag, auto-tagging, families">
+		<META NAME="DESCRIPTION" CONTENT="Organize your entries into folders and smart folders">
+		<link href="../journler_help.css" rel="stylesheet" type="text/css" />
+		<link href="../journler_help_print.css" rel="stylesheet" type="text/css" media="print" />
+	</HEAD>
+
+	<BODY>
+		<a name="SmartFolders"></a>
+		<div id="header">
+			<a href="../index.html" title="Journler - Wherever Life Takes You">
+			  <div id="logo"></div>
+			</a>
+			
+			<a href="topics.html"><h1 id="title">Journler Help</h1></a>
+			<a href=""><h2 id="subject"><img src="../graphics/topiccollection.png" align="absbottom">Smart Folders &amp; Smart Families</h2></a>
+			
+			<div id="righter">
+				<a href="topics.html"><h1 id="toc">Table of Contents<img src="../new_graphics/toc.png" align="absbottom"></h1></a>
+				<h1 id="nav"><a href="collections.html">Previous</a> | <a href="searchandfilter.html">Next</a></h1>
+			</div>
+			
+		</div>
+		
+		<div id="content">
+		
+		<div class="padding">
+			
+			Folders come into their own when they are smart. Smart folders allow you to group entries according to  
+			inherent properties such as title, category or date. Whenever you change an entry's properties or a smart folder's criteria, 
+			Journler automatically updates the content of the folder to reflect those changes. 
+			<p>
+			Looking for information about regular folders instead? <a href="collections.html">Read about regular folders.</a>
+			</p><p>
+			<h3>Creating Smart Folders</h3>
+			Select <strong>New Smart Folder</strong> from the <strong>folder worktool</strong> button at the bottom left of the window to create a new folder.
+			The smart folder dialog appears, your workcenter for specifying which entries Journler includes in the folder.
+			</p><p>
+			<img src="../graphics/smartexample.png" align="left" style="padding-right:10px; padding-bottom:10px;">
+			</p><p>
+			A smart folder may include any number of conditions, but between one and four are recommended.
+			Add and remove conditions using the <strong>plus</strong> and <strong>minus</strong> buttons as needed.
+			</p><p>
+			Set a condition's targeted attribute by selecting one of the options from the 
+			popup at the left. Your remaining choices will be modified to reflect the nature of that property.
+			</p><p>
+			Because text is interpreted as a whole, use words sparingly when testing against the title, category or keywords of an entry.
+			For example, if an entry's title is "My Journler Entry" and you enter "My Entry" for the criterion's title, 
+			the entry will not show up in the folder. 
+			You may change how the condition is applied, ie <strong>is</strong>, <strong>contains</strong> or <strong>begins with</strong>, 
+			but words you place together must be one next to the other in an entry for a match to occur. 
+			</p><p>
+			On the other hand, text conditions are not case sensitive and ignore diacritical marks. "My Journler Entry" 
+			is the same as "my journler entry," "My journler entry" or "My J&ouml;&uuml;rnler Entry." 
+			Punctuation is permitted but you should not include apostrophes or quotation marks.
+			</p><p>
+			<a name="SmartFolderAutotagging"></a>
+			<h3>Auto-tagging</h3>
+			</p><p>
+			Take advantage of the power of smart folders without tagging your entries manually.
+			Auto-tagging allows you to modify an entry's metadata such as title and category just by dragging the entry into a smart folder.
+			Add your entries to a smart folder like you do a regular folder and Journler alters the entry so that it matches the folder's criteria.
+			</p><p>
+			You may also take advantage of auto-tagging when creating a new entry or importing a file.
+			Select the smart folder that should include the entry or choose the folder from the folder popup in the New Entry or Import dialog.
+			</p><p>
+			Not all folder criteria support auto-tagging. Text properties such as title, category and keywords are supported as well as label and marking.
+			Dates are not supported and neither are blogs, attached media or the actual contents of the entry. When Journler auto-tags an entry 
+			the fewest possible attributes are modified. Smart folders with the <strong>any</strong> option selected will often use only the first condition when
+			altering an entry.
+			</p><p>
+			
+			<!--
+			<br>
+			<br>
+			<br>
+			<br>-->
+			
+			<a name="SmartFamiliesHelp"></a>
+			<h3>Smart Families</h3>
+			Smart families are smart folders inside one another and occur automatically whenever you create subfolders. 
+			They are a Journler first and a powerful way to organize your entries.
+			Two rules govern the actions of smart families:
+			</p><p>
+			<blockquote>
+			1. <em>A family's smart subfolders only match the entries that are also matched by its parents.</em>
+			<br />
+			2. <em>Regular folders do not change the interaction between other folders in a family in any way.</em>
+			</blockquote>
+			</p><p>
+			Let's look at an example.
+			</p><p>
+			<img src="../graphics/smartfamily.png" align="right" style="padding-right:10px; padding-bottom:10px;">
+			In the setup to the right, the Journler folder is the head of a family. Its single condition, "title contains journler,"
+			affects every smart folder contained within it. That condition does not, however, affect any of the regular subfolders.
+			</p><p>
+			The first child folder is <em>Life in Imst</em>, whose single condition is "category contains 'imst'".
+			Normally, the <em>Imst</em> smart folder would match any entry whose category includes the word "Imst", but because it 
+			is inside the <em>Journler</em> folder, it also takes on that folder's conditions. <em>Life in Imst</em> now collects only those entries 
+			whose title contains journler and whose category contains imst.
+			</p>
+			<p>
+			The same applies to the <em>Online Articles</em> folder whose single condition is "category contains 'online article'".			</p>
+			<p>
+			<em>Nonsensing</em> is a regular folder, so it contains any entries you want without affecting or being 
+			affected by any member of the family, neither its parents nor its children. 
+			It doesn't matter that this folder is underneath <em>Life in Imst</em>, which in turn is the child of <em>Journler</em>.
+			Regular folders in a family have complete freedom.			</p>
+			<p>
+			If a smart folder is inside a regular folder, it will look through the regular folder for any additional smart parents.
+		  	Thus the <em>Guitar</em> folder, whose condition is "keywords contains guitar," will only match those entries with 
+			1) guitar in the keywords, 2) imst in the category and 3) journler in the title. 
+			It has a smart grandparent and a smart great-grandparent, and so takes on the conditions of both.			</p>
+			<p>
+			<strong>Read about Journler's <a href="collections.html">other folders</a></strong>
+			</p>
+			<br />
+		</div>
+		</div>
+		
+		<div id="footer"></div>
+		
+		
+	</BODY>
+
+</HTML>
+

@@ -1,0 +1,464 @@
+/* English String Localizations */
+
+"multi in…fo num" = "Redigerer %i tekster";
+
+/* word for journal (notebook, diary) */
+"journal" = "Journal";
+
+/* dynamically updated menu titles */
+"show topics" = "Vis emner";
+"hide topics" = "Skjul emner";
+
+"show header" = "Vis Journal overskrift";
+"hide header" = "Skjul Journal overskrift";
+
+"flag entry" = "Mærk som flagget";
+"deflag entry" = "Fjern flagget";
+
+
+"Select Target Blog" = "Vælg mål-blog";
+
+/* contextual menu items */
+"menuitem insert" = "Indsæt";
+"menuitem scripts" = "Scripts";
+
+"menuitem checkbox" = "Indsæt tjekfelt";
+"menuitem table" = "Indsæt tabel…";
+"menuitem list" = "Indsæt liste…";
+"menuitem url" = "Indsæt URL…";
+
+"menuitem color" = "Farve…";
+"menuitem font" = "Skrift…";
+"menuitem spacing" = "Luft…";
+"menuitem spacing no ellipse" = "Luft";
+
+"menuitem strike" = "Gennemstreget";
+"menuitem highlight" = "Marker tekst";
+
+"menuitem yellow" = "Gul";
+"menuitem blue" = "Blå";
+"menuitem green" = "Grøn";
+"menuitem orange" = "Orange";
+"menuitem red" = "Rød";
+"menuitem clear" = "Fjern markering";
+
+/* undo actions */
+"undo date" = "Indsæt dato";
+"undo time" = "Indsæt klokkeslæt";
+"undo datetime" = "Indsæt dato & tid";
+
+"undo highlight" = "Marker tekst";
+
+/* new entry */
+"new entry" = "Ny tekst";
+"untitled title" = "Uden navn";
+
+/* response to services menu import */
+"autoimport" = "Importer";
+
+/* importing and exporting */
+"export panel title" = "Eksporter journal";
+"export panel text" = "Vælg en mappe til arkivering af journalen";
+"export panel prompt" = "Arkiver";
+"import panel text" = "Vælg det tekst, richtext, web eller Word dokument, hvis indhold du vil importere";
+
+
+/* notifications */
+"import failure" = "Kan ikke importere valgte fil";
+"search number" = "Søgningen viste %i resultater";
+"launch notice" = "Journler indlæste - %i tekster";
+"random launch" = "Journler er indlæst med tilfældig tekst - %i tekster";
+"random entry" = "Henter tilfældig tekst";
+"one entry" = "1 tekst";
+"num entries" = "%i tekster";
+
+"export journal" = "Eksporterer tekst %i : %@";
+"jexport singe underway" = "Forbereder journal for enkelt fil eksport";
+"jexport complete" = "Færdig med journal eksport, %i tekster arkiveret";
+"jexport single complete" = "Færdig med journal eksport som enkelt fil";
+"jexport error" = "Fejl opdaget, kan ikke eksportere journalen";
+
+"browsing" = "Browser %i tekster";
+"printing" = "Forbereder %@ til udskrivning…";
+"quiting" = "Arkiverer journal og renser op…";
+
+
+/* blog center notifications */
+"posting entry" = "Prøver at poste tekst…";
+"entry posted" = "%@ postet til %@ : %@";
+"entry saved" = "%@ arkiveret som HTML dokument";
+"post failure" = "Kan ikke poste %@ til %@ : %@";
+"center launched" = "Blog center indlæst";
+"ljconnect" = "Opkobler til LiveJournal serveren…";
+"ljconnect yes" = "Forbindelse etableret. Se Oplysninger med flere valgmuligheder";
+"ljconnect no" = "Kan ikke koble op til LiveJournal serveren";
+"bloggerconnect" = "Opkobler til Blogger.com serveren…";
+"bloggerconnect yes" = "Forbindelse etableret. Se Oplysninger med flere valgmuligheder";
+"bloggerconnect no" = "Kan ikke koble op til Blogger.com";
+
+
+/* recording */
+"mp3 prepare" = "Forbereder konvertering af lydoptagelse til mp3…";
+"mp3 convert" = "Konverterer lydoptagelse til mp3…";
+"mp3 tag" = "Tagger mp3…";
+"mp3 import" = "Føjer mp3 til iTunes…";
+"mp3 save" = "Arkiverer mp3 til disk…";
+"mp3 clean" = "Renser op…";
+
+"mov tag" = "Tagging movie…";
+
+/* recording errors */
+"no record title" = "Optagelse utilgængelig";
+"no record message" = "Journler optagelser kræver Quicktime 7, LAME kode komponent og en lyd enhed (mikrofon).";
+"record error" = "Optager Center fejl";
+"re nodetach" = "Kan ikke starte konvertering, kan ikke frigøre film fra den aktuelle filmstrimmel";
+"re noretach" = "Kan ikke starte konvertering, kan ikke fastgøre film til den aktuelle filmstrimmel";
+"re nobegin" = "Kan ikke starte konvertering, kan ikke læse arkiverede lydfil";
+"re nocomp" = "Kan ikke starte LAME mp3 kode komponent";
+"re nowrite" = "Fejl af eksport af mp3 til sti %@";
+"re noscript" = "Kan ikke finde mp3 import script";
+"re noexec" = "Kan ikke udføre mp3 import script";
+"re nocopy" = "Kan ikke kopiere optagelsen til den endelige destination";
+
+
+
+
+/* window and browse table reset */
+"window nix" = "Vindue og browse rammer er nulstillet";
+
+
+/* search manager reset */
+"search reset yes" = "Søge manager er nulstillet";
+"search reset no" = "Kan ikke nulstille søge manager";
+
+
+/* errors */
+"setup error" = "Fejl under oprettelse og indstiiling af journal data. Dette er en kritisk fejl. Journler skal afsluttes. Kontakt venligst support@journler.com for mere support.";
+
+"journal creation error" = "Journler kan ikke indlæse din journal. Dette er en kritisk fejl. Journler skal afsluttes. Giv venligst Journlers opretter besked om dette via support@journler.com.";
+"creation error 4" = "Journler kan ikke indlæse din  journal: ingen journal i standardstien. Journler skal afsluttes. Giv venligst Journlers opretter besked om dette via support@journler.com.";
+
+
+/* alerts */
+
+
+"confirm fremove title" = "Slet mappe";
+"confirm fremove msg" = "Er du sikker på, du vil slette samlingen \"%@\"?";
+"confirm fremove info" = "Sletning af mappen vil fjerne den permanent fra journalen.";
+"confirm fremove yes" = "Slet";
+"confirm fremove no" = "Afbryd";
+
+
+"qt7 media title" = "QuickTime 7 kræves";
+"qt7 media msg" = "Journler Medie browseren kræver QuickTime 7.";
+"qt7 media info" = "Overvej at opgradere til QT7. Det er gratis, hvis du ikke behøver Pro udgaven.";
+"qt7 media yes" = "OK";
+"qt7 media no" = "Afbryd";
+
+/* applescript error */
+"applescript error title" = "AppleScript fejl";
+"applescript error msg" = "Der opstod en ukendt fejl i forbindelse med compiling eller udførelse af denne script.";
+"applescript error info" = "Journler må stoppe udførelsen af denne script.";
+"applescript error yes" = "OK";
+"applescript error no" = "Afbryd";
+
+/* audio recording error */
+"critical audio error title" = "Kritisk lyd fejl";
+"critical audio error msg" = "Der opstod en kritisk fejl i Optager center.";
+"critical audio error info" = "Det er nødvendigt at lukke Optager center.";
+"critical audio error close" = "Luk";
+"critical audio error cancel" = "Afbryd";
+
+"livejournal error title" = "Live journal fejl";
+"server message title" = "Besked fra serveren";
+
+
+/* updating */
+"connection attempt" = "Opkobler til serveren…";
+"connection impossible" = "Kan ikke opkoble til serveren";
+"connection error" = "Der opstod en fejl under opdateringstjek";
+"connection cancelling" = "Afbryder forbindelsen…";
+"connection cancelled" = "Download af opdateringen er afbrudt";
+"checking update" = "Ser efter opdatering…";
+"update no" = "Du har nyeste Journler version!";
+"update yes" = "Der findes en opdatering. Klik på Opdater for at downloade";
+
+
+/* importing a url */
+"urlImport downloading" = "Downloader data…";
+"urlImport converting" = "Konverterer data…";
+
+
+/* encryption & decryption */
+"pref encrypting" = "Journler krypterer dine tekster…";
+"pref decrypting" = "Journler af-krypterer dine tekster…";
+
+
+/* miscellaneous */
+"word insert" = "Indsæt";
+
+
+/* services */
+"services category" = "Tjenester import";
+"dropbox category" = "Drop boks";
+"services window title" = "jPanel - Journler tjeneste";
+"dropbox window title" = "jPanel - Journler Drop boks";
+
+"dropbox note singular" = "Placer importen i en mappe eller tilføj stikord og en kategori.";
+"dropbox note plural" = "Placer importen i en mappe eller tilføj stikord og en kategori.";
+
+/* applescript */
+"applescript category" = "AppleScript tilføjelse";
+
+
+
+
+/* 2.0 Additions */
+
+
+"resource original" = "Original";
+"resource alias" = "Henvisning";
+
+"resource original delete okay" = "Slet";
+"resource original delete cancel" = "Afbryd";
+
+"resource original delete title" = "Slet kildefil";
+"resource original delete message" = "Du sletter den faktiske fil. Aktionen kan ikke fortrydes. Er du sikker på, du vil gøre dette?";
+
+"resource alias delete title" = "Slet kildehenvisning";
+"resource alias delete message" = "Du sletter en henvisning. Dette har ingen indflydelse på original filen. Er du sikker på, du vil gøre dette?";
+
+
+"foldertitle searchresults" = "Søgeresultater";
+
+
+"localized categories" = "-,Personlig,Drømme,Tanker,Observationer,Arbejde";
+"localized default category" = "Personlig";
+
+
+"tutorial category" = "Journler";
+"tutorial keywords" = "Journler velkommen";
+
+"tutorial general title" = "Velkommen til Journler";
+"tutorial media title" = "Journler guide 2 - Medie";
+"tutorial collections title" = "Journler guide 3 - Samlinger";
+
+"collection manual title" = "Journler manual";
+"collection trash title" = "Papirkurv";
+
+"no selection" = "Ingen";
+
+"saved entry" = "%@ arkiveret";
+"saved entry error" = "Kan ikke arkivere %@";
+
+
+"metaweblog connect" = "Opkobler til Meta Weblog serveren";
+"metaweblog connect yes" = "Forbindelse etableret. Se Oplysninger med flere valgmuligheder";
+"metaweblog connect no" = "Kan ikke opkoble til Meta Weblog brugerfladen";
+
+/* calendar segment tooltips */
+
+"to previous month" = "Vis forrige måned";
+"to previous day" = "Vælg forrige dag";
+"to today" = "Hop til dags dato";
+"to next day" = "Vælg næste dag";
+"to next month" = "Vis næste måned";
+
+"previous month description" = "Forrige måned";
+"previous day description" = "Forrige dag";
+"today description" = "I dag";
+"next day description" = "Næste dag";
+"next month description" = "Næste måned";
+
+"stop description" = "Stop";
+"play description" = "Afspil";
+
+"import finished close" = "Luk";
+
+
+/* MORE 2.0.1 changes */
+
+"menuitem remove formatting" = "Fjern formattering";
+
+"dated untitled title" = "%@ Uden navn";
+"update title" = "Journler v%@ opdaterer";
+"bug report" = "Type of Problem:\n(ie bug, crash, feature request, etc):\n\n\nPlease Describe the Problem:\n(short, precise descriptions are more likely to be addressed)\n\n\nFeel free to send a screenshot.\nIf you are reporting a crash, please attach the file called journler.crash.log located in your Home folder > Library > Logs > Crashreporter.";
+
+
+"check entry" = "Marker som tjekket";
+"decheck entry" = "Fjern tjekket";
+
+
+"menuitem space single" = "1 Linje";
+"menuitem space double" = "2 Linjer";
+"menuitem space single half" = "1.5 linjer";
+
+"menuitem open link" = "Åben link";
+"menuitem open tab" = "Åben link";
+"menuitem open new tab" = "Open i nyt faneblad";
+"menuitem open window" = "Åben i nyt vindue";
+"menuitem finder reveal" = "Vis original i Finder";
+"menuitem finder open" = "Åben med Finder";
+
+
+"folder image select title" = "Vælg billede";
+"folder image select prompt" = "Vælg";
+"folder image select message" = "Vælg et nyt billede til mappen; helst kvadratisk.";
+
+
+/* 2.1 changes */
+"preferences panel 1" = "Licens";
+"preferences panel 2" = "Generelt";
+"preferences panel 3" = "Avanceret";
+"preferences panel 4" = "Web";
+"preferences panel 6" = "Udseende";
+"preferences panel 12" = "Medie";
+"preferences panel 16" = "Redigering";
+"preferences panel 17" = "Label";
+
+"live count" = "%i afsnit, %i ord, %i tegn";
+"num entries num resources" = "%i tekster, %i kilder";
+
+"undo autourl" = "Link URL";
+"undo autowiki" = "Tekst link";
+"undo autospelling" = "Ret stavning";
+
+"resource node folder" = "Indeholder mapper";
+"resource node internal" = "Journler link";
+"resource node contacts" = "Kontakter";
+"resource node urls" = "Websites";
+"resource node pdfs" = "PDF'er";
+"resource node archives" = "Web arkiver";
+"resource node images" = "Billeder";
+"resource node av" = "Lyd/Video";
+"resource node docs" = "Dokumenter";
+"resource node correspondence" = "Beskeder";
+
+"copy menu item" = "Kopier";
+"entry link menu item" = "Kopier link til tekst";
+"folder link menu item" = "Kopier link til mappe";
+"resource link menu item" = "Kopier link til kilde";
+
+"menuitem insert date" = "Indsæt dato";
+"menuitem insert time" = "Indsæt klokkeslæt";
+"menuitem insert datetime" = "Indsæt dato & tid";
+
+"video recording" = "Video optagelse";
+"audio recording" = "Lydoptagelse";
+"snapshot recording" = "Snapshot";
+
+"mditem kind name" = "Art";
+"mditem size name" = "Størrelse";
+"mditem size kb" = "KB på disk";
+"mditem size mb" = "MB på disk";
+"mditem size gb" = "GB på disk";
+"mditem created name" = "Oprettet";
+"mditem modified name" = "Ændret";
+"mditem lastopened name" = "Sidst åbnet";
+
+"html rep entries" = "Tekster";
+"html rep folder" = "Mappe";
+"html rep library" = "Bibliotek";
+"html rep trash" = "Papirkurv";
+"html rep regfolder" = "Mappe";
+"html rep smartfolder" = "Smart mappe";
+
+"title label" = "Titel";
+"date label" = "Dato";
+"category label" = "Kategori";
+"tags label" = "Stikord";
+"summary label" = "Resume";
+
+"duplicated entry" = "Kopi";
+
+"menuitem insert linebreak" = "Indsæt linjestop";
+"menuitem insert paragraphbreak" = "Indsæt afsnitsstop";
+
+"csv select title" = "Vælg dokument";
+"csv select prompt" = "Vælg";
+"csv select message" = "Vælg en tekst fil, hvis ord-par er adskilt af komma, uden ordmellemrum, hvor hvert par står på sin egen linje.";
+
+"menuitem open with finder" = "Åben med Finder";
+"menuitem open link with finder" = "Åben link med Finder";
+"menuitem reveal link in finder" = "Vis link i Finder";
+"menuitem append image" = "Føj billede til tekst";
+
+"choose button" = "Vælg";
+
+"export resources panel prompt" = "Eksporter";
+"export resources panel title" = "Vælg en destination";
+"export resources panel text" = "Hvor skal valgte kilder arkiveres?";
+
+"menuitem export resources" = "Eksporter valgte kilder…";
+"menuitem export entries" = "Eksporter valgte tekster…";
+"menuitem export" = "Eksporter…";
+
+"menuitem new folder" = "Ny mappe";
+"menuitem new folder with selection" = "Ny mappe med valgte…";
+
+"enter license" = "Skriv licens";
+"invalidate license" = "Kasser";
+
+"alert valid license title" = "Gyldig licens!";
+"alert invalid license title" = "Ugyldig licens!";
+
+"alert valid personal use" = "Licensen gælder til personlig brug. Tak for din donation!";
+"alert valid nonpersonal use" = "Dette er en gyldig licens til ikke-personlig brug. Tak for din støtte!";
+"alert valid beta" = "Dette er en gyldig licens til beta test. Tak for din støtte!";
+"alert valid journler" ="Dette er en gyldig licens speciel for Journler venner. Tak for din støtte!";
+"alert valid full" = "Dette er en gyldig Journler licens. Tak for din støtte!";
+
+"alert invalid msg" = "Dette er ikke en gyldig licens. Sørg venligst for at skrive licenskoden korrekt.";
+
+"new entry with clipboard" = "Ny tekst fra klippebordet";
+"menuitem linkto" = "Link til";
+
+"resource tooltip bad alias" = "Journler kan ikke finde den originale fil, der er knyttet til denne kilde. henvisningen synes at være brudt.";
+"resource tooltip no file" = "Journler kan ikke finde filen, der er knyttet til denne kilde";
+
+"integration copying files" = "Kopierer filer…";
+"integration creating archive" = "Opretter arkiv…";
+"integration reading messages" = "Læser beskeder…";
+
+"show resources" = "Vis kilder";
+"hide resources" = "Skjul kilder";
+
+"terms label" = "udtryk";
+"documents label" = "emner";
+
+"file manager error title" = "Journler opdagede en fil fejl";
+"file manager error msg" = "Beskrivelse: %@\nSti: %@";
+
+"menuitem lexicon" = "Alle dokumenter med udtryk";
+
+"import review note" = "Gennemse, rediger og fjern emner.";
+"import review target folder" = "Destinationsmappen er %@";
+
+"reading dropbox" = "Læser Drop boks";
+
+"pdf service filename" = "Arkiver PDF til Journler";
+
+"term header title" = "Udtryk";
+"document header title" = "Dokument";
+
+"find in journal" = "Find i journal";
+"find in folder" = "Find i mappe";
+
+"LabelName1" = "Rød";
+"LabelName2" = "Orange";
+"LabelName3" = "Gul";
+"LabelName4" = "Grøn";
+"LabelName5" = "Blå";
+"LabelName6" = "Lilla";
+"LabelName7" = "Grå";
+
+"menuitem new entry quick" = "Ny tekst";
+"menuitem new entry extended" = "Ny tekst…";
+
+"close tab tip" = "Luk dette faneblad";
+
+// 2.5.4 changes
+
+"menuitem tag entry" = "Opret stikord";
+"locate weblog editor" = "Hvor er dit weblog-program eller Apple Script?";
+"loading journal" = "Åbner journal…";
