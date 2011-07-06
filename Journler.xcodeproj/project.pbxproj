@@ -1072,40 +1072,6 @@
 		7290DB1E0DAAB6B2001B30B6 /* MediaBarEquals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MediaBarEquals.png; sourceTree = "<group>"; };
 		729852040CD2611500BB4A53 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
 		729852570CD26F5100BB4A53 /* HUDCloseButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = HUDCloseButton.tiff; sourceTree = "<group>"; };
-		729854220CD28EE900BB4A53 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		729854230CD28EEB00BB4A53 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		729854260CD28F5600BB4A53 /* da */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/LoadError.strings; sourceTree = "<group>"; };
-		729854270CD28F5800BB4A53 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LoadError.strings; sourceTree = "<group>"; };
-		729854280CD28F6F00BB4A53 /* da */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Toolbar.strings; sourceTree = "<group>"; };
-		729854290CD28F7200BB4A53 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Toolbar.strings; sourceTree = "<group>"; };
-		7298542A0CD28FA100BB4A53 /* da */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/UpgradeController.strings; sourceTree = "<group>"; };
-		7298542B0CD28FA300BB4A53 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/UpgradeController.strings; sourceTree = "<group>"; };
-		7298542C0CD28FDF00BB4A53 /* da */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/PDAboutBox.strings; sourceTree = "<group>"; };
-		7298542D0CD28FE200BB4A53 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PDAboutBox.strings; sourceTree = "<group>"; };
-		7298542F0CD28FFF00BB4A53 /* da */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/JAlerts.strings; sourceTree = "<group>"; };
-		729854310CD2900100BB4A53 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/JAlerts.strings; sourceTree = "<group>"; };
-		729854320CD2903400BB4A53 /* da */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/JNotifications.strings; sourceTree = "<group>"; };
-		729854340CD2903600BB4A53 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/JNotifications.strings; sourceTree = "<group>"; };
-		729854350CD2905B00BB4A53 /* da */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
-		729854370CD2905D00BB4A53 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		7298543A0CD290F900BB4A53 /* da */ = {isa = PBXFileReference; lastKnownFileType = text; name = da; path = da.lproj/AutoCorrectWordPairs.csv; sourceTree = "<group>"; };
-		7298543B0CD290FB00BB4A53 /* de */ = {isa = PBXFileReference; lastKnownFileType = text; name = de; path = de.lproj/AutoCorrectWordPairs.csv; sourceTree = "<group>"; };
-		7298543C0CD2911E00BB4A53 /* da */ = {isa = PBXFileReference; lastKnownFileType = wrapper.rtfd; name = da; path = da.lproj/WelcomeEntry.rtfd; sourceTree = "<group>"; };
-		7298543D0CD2911F00BB4A53 /* de */ = {isa = PBXFileReference; lastKnownFileType = wrapper.rtfd; name = de; path = de.lproj/WelcomeEntry.rtfd; sourceTree = "<group>"; };
-		7298543F0CD2923600BB4A53 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = da; path = da.lproj/MailMessageError.html; sourceTree = "<group>"; };
-		729854400CD2923800BB4A53 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/MailMessageError.html; sourceTree = "<group>"; };
-		729854410CD2924900BB4A53 /* da */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = da; path = da.lproj/LicenseJournlerSpecial.html; sourceTree = "<group>"; };
-		729854420CD2924B00BB4A53 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = de; path = de.lproj/LicenseJournlerSpecial.html; sourceTree = "<group>"; };
-		729854430CD2926500BB4A53 /* da */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = da; path = da.lproj/LicenseNonPersonalUse.html; sourceTree = "<group>"; };
-		729854440CD2926700BB4A53 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = de; path = de.lproj/LicenseNonPersonalUse.html; sourceTree = "<group>"; };
-		729854450CD2927900BB4A53 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = da; path = da.lproj/LicenseInformation.html; sourceTree = "<group>"; };
-		729854470CD2927B00BB4A53 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = de; path = de.lproj/LicenseInformation.html; sourceTree = "<group>"; };
-		729854480CD2928000BB4A53 /* da */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = da; path = da.lproj/LicenseBetaTesting.html; sourceTree = "<group>"; };
-		729854490CD2928100BB4A53 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = de; path = de.lproj/LicenseBetaTesting.html; sourceTree = "<group>"; };
-		7298544A0CD2928500BB4A53 /* da */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = da; path = da.lproj/LicensePersonalUse.html; sourceTree = "<group>"; };
-		7298544B0CD2928700BB4A53 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = de; path = de.lproj/LicensePersonalUse.html; sourceTree = "<group>"; };
-		7298545A0CD2935D00BB4A53 /* da */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = da; path = da.lproj/DefaultJournal.zip; sourceTree = "<group>"; };
-		7298545B0CD2935F00BB4A53 /* de */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = de; path = de.lproj/DefaultJournal.zip; sourceTree = "<group>"; };
 		729EC2940DA6AC1100E5DAE4 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/WebArchiveView_105.nib; sourceTree = "<group>"; };
 		729EC3330DA6B5C700E5DAE4 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MovieFileView_105.nib; sourceTree = "<group>"; };
 		729EC36D0DA6B88E00E5DAE4 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/PDFContentView_105.nib; sourceTree = "<group>"; };
@@ -1121,8 +1087,6 @@
 		72D2E5EF0DAEC897007E549F /* JournlerLicenseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournlerLicenseManager.m; sourceTree = "<group>"; };
 		72EE33EE0E2A84B60096A312 /* Journler QuickLook.qlgenerator */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Journler QuickLook.qlgenerator"; sourceTree = "<group>"; };
 		72FBA6DD0D57E2FB008317E5 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = English; path = English.lproj/LicenseFull.html; sourceTree = "<group>"; };
-		72FBA6E10D57E308008317E5 /* da */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = da; path = da.lproj/LicenseFull.html; sourceTree = "<group>"; };
-		72FBA6E20D57E309008317E5 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = de; path = de.lproj/LicenseFull.html; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Journler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -2715,8 +2679,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				089C165DFE840E0CC02AAC07 /* English */,
-				729854220CD28EE900BB4A53 /* da */,
-				729854230CD28EEB00BB4A53 /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -3157,8 +3119,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				728879080CCA970500733960 /* English */,
-				7298543A0CD290F900BB4A53 /* da */,
-				7298543B0CD290FB00BB4A53 /* de */,
 			);
 			name = AutoCorrectWordPairs.csv;
 			sourceTree = "<group>";
@@ -3167,8 +3127,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				7288790E0CCA974F00733960 /* English */,
-				7298544A0CD2928500BB4A53 /* da */,
-				7298544B0CD2928700BB4A53 /* de */,
 			);
 			name = LicensePersonalUse.html;
 			sourceTree = "<group>";
@@ -3177,8 +3135,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				728879100CCA974F00733960 /* English */,
-				729854480CD2928000BB4A53 /* da */,
-				729854490CD2928100BB4A53 /* de */,
 			);
 			name = LicenseBetaTesting.html;
 			sourceTree = "<group>";
@@ -3187,8 +3143,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				728879120CCA974F00733960 /* English */,
-				7298543F0CD2923600BB4A53 /* da */,
-				729854400CD2923800BB4A53 /* de */,
 			);
 			name = MailMessageError.html;
 			sourceTree = "<group>";
@@ -3197,8 +3151,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				728879140CCA974F00733960 /* English */,
-				729854450CD2927900BB4A53 /* da */,
-				729854470CD2927B00BB4A53 /* de */,
 			);
 			name = LicenseInformation.html;
 			sourceTree = "<group>";
@@ -3207,8 +3159,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				728879160CCA974F00733960 /* English */,
-				729854430CD2926500BB4A53 /* da */,
-				729854440CD2926700BB4A53 /* de */,
 			);
 			name = LicenseNonPersonalUse.html;
 			sourceTree = "<group>";
@@ -3217,8 +3167,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				728879180CCA974F00733960 /* English */,
-				729854410CD2924900BB4A53 /* da */,
-				729854420CD2924B00BB4A53 /* de */,
 			);
 			name = LicenseJournlerSpecial.html;
 			sourceTree = "<group>";
@@ -3227,8 +3175,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				728879200CCA978800733960 /* English */,
-				7298543C0CD2911E00BB4A53 /* da */,
-				7298543D0CD2911F00BB4A53 /* de */,
 			);
 			name = WelcomeEntry.rtfd;
 			sourceTree = "<group>";
@@ -3237,8 +3183,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				728879290CCA97A900733960 /* English */,
-				729854350CD2905B00BB4A53 /* da */,
-				729854370CD2905D00BB4A53 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3247,8 +3191,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				7288792B0CCA97A900733960 /* English */,
-				7298542C0CD28FDF00BB4A53 /* da */,
-				7298542D0CD28FE200BB4A53 /* de */,
 			);
 			name = PDAboutBox.strings;
 			sourceTree = "<group>";
@@ -3257,8 +3199,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				7288792D0CCA97A900733960 /* English */,
-				7298542A0CD28FA100BB4A53 /* da */,
-				7298542B0CD28FA300BB4A53 /* de */,
 			);
 			name = UpgradeController.strings;
 			sourceTree = "<group>";
@@ -3267,8 +3207,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				7288792F0CCA97A900733960 /* English */,
-				729854280CD28F6F00BB4A53 /* da */,
-				729854290CD28F7200BB4A53 /* de */,
 			);
 			name = Toolbar.strings;
 			sourceTree = "<group>";
@@ -3277,8 +3215,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				728879350CCA97CB00733960 /* English */,
-				729854320CD2903400BB4A53 /* da */,
-				729854340CD2903600BB4A53 /* de */,
 			);
 			name = JNotifications.strings;
 			sourceTree = "<group>";
@@ -3287,8 +3223,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				728879370CCA97CB00733960 /* English */,
-				7298542F0CD28FFF00BB4A53 /* da */,
-				729854310CD2900100BB4A53 /* de */,
 			);
 			name = JAlerts.strings;
 			sourceTree = "<group>";
@@ -3297,8 +3231,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				728879520CCA981400733960 /* English */,
-				729854260CD28F5600BB4A53 /* da */,
-				729854270CD28F5800BB4A53 /* de */,
 			);
 			name = LoadError.strings;
 			sourceTree = "<group>";
@@ -3323,8 +3255,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				728878EC0CCA94D300733960 /* English */,
-				7298545A0CD2935D00BB4A53 /* da */,
-				7298545B0CD2935F00BB4A53 /* de */,
 			);
 			name = DefaultJournal.zip;
 			sourceTree = "<group>";
@@ -3381,8 +3311,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				72FBA6DD0D57E2FB008317E5 /* English */,
-				72FBA6E10D57E308008317E5 /* da */,
-				72FBA6E20D57E309008317E5 /* de */,
 			);
 			name = LicenseFull.html;
 			sourceTree = "<group>";
