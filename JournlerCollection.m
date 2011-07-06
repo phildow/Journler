@@ -500,7 +500,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 
 - (void) setEntryTableState:(NSArray*)anArray
 {
-	NSLog(@"%@ %s", [self className], _cmd);
+	NSLog(@"%s", __PRETTY_FUNCTION__);
 	[_properties setObject:(anArray?anArray:[NSArray array]) forKey:PDCollectionEntryTableState];
 	[self setDirty:BooleanNumber(YES)];
 }
@@ -608,14 +608,14 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	NSString *urlString = [NSString stringWithFormat:@"journler://folder/%@", [self valueForKey:@"tagID"]];
 	if ( urlString == nil )
 	{
-		NSLog(@"%@ %s - unable to create string representation of entry #%@", [self className], _cmd, [self valueForKey:@"tagID"]);
+		NSLog(@"%s - unable to create string representation of entry #%@", __PRETTY_FUNCTION__, [self valueForKey:@"tagID"]);
 		return nil;
 	}
 	
 	NSURL *url = [NSURL URLWithString:urlString];
 	if ( url == nil )
 	{
-		NSLog(@"%@ %s - unable to create url representation of entry #%@", [self className], _cmd, [self valueForKey:@"tagID"]);
+		NSLog(@"%s - unable to create url representation of entry #%@", __PRETTY_FUNCTION__, [self valueForKey:@"tagID"]);
 		return nil;
 	}
 	
@@ -647,7 +647,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 				initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/SitesFolderIcon.icns"] autorelease];
 		if ( icon == nil ) 
 		{
-			NSLog(@"%@ %s - unable to locate SitesFolderIcon", [self className], _cmd);
+			NSLog(@"%s - unable to locate SitesFolderIcon", __PRETTY_FUNCTION__);
 			icon = [NSImage imageNamed:@"FolderWebarchives.png"];
 		}
 		
@@ -660,7 +660,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 				initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/MusicFolderIcon.icns"] autorelease];
 		if ( icon == nil ) 
 		{
-			NSLog(@"%@ %s - unable to locate MusicFolderIcon", [self className], _cmd);
+			NSLog(@"%s - unable to locate MusicFolderIcon", __PRETTY_FUNCTION__);
 			icon = [NSImage imageNamed:@"FolderMusic.png"];
 		}
 		
@@ -673,7 +673,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 				initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/MovieFolderIcon.icns"] autorelease];
 		if ( icon == nil ) 
 		{
-			NSLog(@"%@ %s - unable to locate MovieFolderIcon", [self className], _cmd);
+			NSLog(@"%s - unable to locate MovieFolderIcon", __PRETTY_FUNCTION__);
 			icon = [NSImage imageNamed:@"FolderMovies.png"];
 		}
 		
@@ -686,7 +686,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 				initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/PicturesFolderIcon.icns"] autorelease];
 		if ( icon == nil ) 
 		{
-			NSLog(@"%@ %s - unable to locate PicturesFolderIcon", [self className], _cmd);
+			NSLog(@"%s - unable to locate PicturesFolderIcon", __PRETTY_FUNCTION__);
 			icon = [NSImage imageNamed:@"FolderImages.png"];
 		}
 		
@@ -699,7 +699,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 				initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/DocumentsFolderIcon.icns"] autorelease];
 		if ( icon == nil ) 
 		{
-			NSLog(@"%@ %s - unable to locate DocumentsFolderIcon", [self className], _cmd);
+			NSLog(@"%s - unable to locate DocumentsFolderIcon", __PRETTY_FUNCTION__);
 			icon = [NSImage imageNamed:@"FolderDocuments.png"];
 		}
 		
@@ -1138,7 +1138,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	// go through each condition, looking for "inthelast" or "inthenext" predicates
 	while ( aCondition = [conditionEnumerator nextObject] )
 	{
-		//NSLog(@"%@ %s - condition: %@", [self className], _cmd, aCondition);
+		//NSLog(@"%s - condition: %@", __PRETTY_FUNCTION__, aCondition);
 		
 		if ( [aCondition rangeOfString:@"inthelast" options:NSLiteralSearch range:NSMakeRange(0,[aCondition length])].location != NSNotFound )
 		{
@@ -1164,7 +1164,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 			NSString *replacementCondition = [NSString stringWithFormat:@"%@ between { %@ , %@ }", keyValue, targetString, todayString];
 			[dynamicDatePredicates setObject:replacementCondition forKey:aCondition];
 			
-			//NSLog(@"%@ %s - set %@ for %@", [self className], _cmd, replacementCondition, aCondition );
+			//NSLog(@"%s - set %@ for %@", __PRETTY_FUNCTION__, replacementCondition, aCondition );
 			
 			madeChanges = YES;
 		}
@@ -1192,7 +1192,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 			NSString *replacementCondition = [NSString stringWithFormat:@"%@ between { %@ , %@ }", keyValue, todayString, targetString];
 			[dynamicDatePredicates setObject:replacementCondition forKey:aCondition];
 			
-			//NSLog(@"%@ %s - set %@ for %@", [self className], _cmd, replacementCondition, aCondition );
+			//NSLog(@"%s - set %@ for %@", __PRETTY_FUNCTION__, replacementCondition, aCondition );
 			
 			madeChanges = YES;
 		}
@@ -1291,8 +1291,8 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 		}
 		@catch (NSException *exception)
 		{
-			NSLog(@"%@ %s exception encountered while building predicate from string %@, exception %@", 
-			[self className], _cmd, predicateString, exception);
+			NSLog(@"%s exception encountered while building predicate from string %@, exception %@", 
+			__PRETTY_FUNCTION__, predicateString, exception);
 		}
 	}
 
@@ -1338,8 +1338,8 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 		}
 		@catch (NSException *exception)
 		{
-			NSLog(@"%@ %s exception encountered while building predicate from string %@, exception %@", 
-			[self className], _cmd, completePredicateString, exception);
+			NSLog(@"%s exception encountered while building predicate from string %@, exception %@", 
+			__PRETTY_FUNCTION__, completePredicateString, exception);
 		}
 	}
 	
@@ -1957,7 +1957,7 @@ bail:
 	NSInteger entriesCount = [[self entries] count];
 	NSInteger totalCount = 0;
 	
-	//NSLog(@"%@ %s - total count: %i", [self className], _cmd, childCount + entriesCount);
+	//NSLog(@"%s - total count: %i", __PRETTY_FUNCTION__, childCount + entriesCount);
 	
 	// check if we're adding entries
 	if ( menuRepresentationOptions & kJournlerFolderMenuIncludesEntries )
@@ -2522,7 +2522,7 @@ bail:
 	if ( pathURL == nil || ![pathURL isKindOfClass:[NSURL class]] ) 
 	{
 		// raise an error
-		NSLog(@"%@ %s - nil path or path other than url, but path is required", [self className], _cmd);
+		NSLog(@"%s - nil path or path other than url, but path is required", __PRETTY_FUNCTION__);
 		[self returnError:errOSACantAssign string:nil];
 		return;
 	}
@@ -2575,7 +2575,7 @@ bail:
 	// write the file, error checking on the way
 	if ( ![self writeEntriesToFolder:path format:fileType considerChildren:includeSubfolders includeHeaders:includeHeader] )
 	{
-		NSLog(@"%@ %s - unable to export entry to path %@ as type %i", [self className], _cmd, path, fileType);
+		NSLog(@"%s - unable to export entry to path %@ as type %i", __PRETTY_FUNCTION__, path, fileType);
 		[self returnError:OSAParameterMismatch string:@"File path is not valid or an error occurred creating the file."];
 	}
 	

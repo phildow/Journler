@@ -134,7 +134,7 @@ static NSArray *JObjectValues()
 - (id)copyWithZone:(NSZone *)zone 
 {	
 	#if DEBUG
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	JournlerEntry *newObject = [[[self class] allocWithZone:zone] init];
@@ -283,7 +283,7 @@ static NSArray *JObjectValues()
 {		
 	if ( ![encoder allowsKeyedCoding] ) 
 	{
-		NSLog(@"%@ %s - cannot encode entry without a keyed archiver", [self className], _cmd);
+		NSLog(@"%s - cannot encode entry without a keyed archiver", __PRETTY_FUNCTION__);
 		return;
 	}
 	
@@ -595,14 +595,14 @@ static NSArray *JObjectValues()
 	
 	if ( ![[NSFileManager defaultManager] fileExistsAtPath:path] )
 	{
-		NSLog(@"%@ %s - no rich text content at path %@", [self className], _cmd, path);
+		NSLog(@"%s - no rich text content at path %@", __PRETTY_FUNCTION__, path);
 		return NO;
 	}
 	
 	NSAttributedString *attrString = [[[NSAttributedString alloc] initWithPath:path documentAttributes:nil] autorelease];
 	if ( attrString == nil )
 	{
-		NSLog(@"%@ %s - unable to initialize attributed string from content at path %@", [self className], _cmd, path);
+		NSLog(@"%s - unable to initialize attributed string from content at path %@", __PRETTY_FUNCTION__, path);
 		return NO;
 	}
 	
@@ -950,14 +950,14 @@ static NSArray *JObjectValues()
 	NSString *urlString = [NSString stringWithFormat:@"journler://entry/%@", [self valueForKey:@"tagID"]];
 	if ( urlString == nil )
 	{
-		NSLog(@"%@ %s - unable to create string representation of entry #%@", [self className], _cmd, [self valueForKey:@"tagID"]);
+		NSLog(@"%s - unable to create string representation of entry #%@", __PRETTY_FUNCTION__, [self valueForKey:@"tagID"]);
 		return nil;
 	}
 	
 	NSURL *url = [NSURL URLWithString:urlString];
 	if ( url == nil )
 	{
-		NSLog(@"%@ %s - unable to create url representation of entry #%@", [self className], _cmd, [self valueForKey:@"tagID"]);
+		NSLog(@"%s - unable to create url representation of entry #%@", __PRETTY_FUNCTION__, [self valueForKey:@"tagID"]);
 		return nil;
 	}
 	
@@ -1427,7 +1427,7 @@ static NSArray *JObjectValues()
 	NSString *resourcePath = [[[self pathToResourcesCreatingIfNecessary:YES] stringByAppendingPathComponent:filename] 
 			stringByStandardizingPath];
 	if ( !resourcePath ) {
-		NSLog(@"%@ %s -  no resource for entry %@ and filename %@", [self className], _cmd, [self tagID], filename);
+		NSLog(@"%s -  no resource for entry %@ and filename %@", __PRETTY_FUNCTION__, [self tagID], filename);
 		return nil;
 	}
 	
@@ -1437,7 +1437,7 @@ static NSArray *JObjectValues()
 	
 	resourceURL = [NSURL fileURLWithPath:(symbolicContents?symbolicContents:resourcePath)];
 	if ( !resourceURL ) {
-		NSLog(@"%@ %s - unable to convert resource string to resource url: %@", [self className], _cmd, resourcePath);
+		NSLog(@"%s - unable to convert resource string to resource url: %@", __PRETTY_FUNCTION__, resourcePath);
 		return nil;
 	}
 	
@@ -1461,13 +1461,13 @@ static NSArray *JObjectValues()
 	// initial error checking
 	if ( path == nil ) 
 	{
-		NSLog(@"%@ %s - nil path", [self className], _cmd);
+		NSLog(@"%s - nil path", __PRETTY_FUNCTION__);
 		return nil;
 	}
 	
 	if ( ![fm fileExistsAtPath:path] ) 
 	{
-		NSLog(@"%@ %s - no file at path %@", [self className], _cmd, path);
+		NSLog(@"%s - no file at path %@", __PRETTY_FUNCTION__, path);
 		return nil;
 	}
 
@@ -1485,7 +1485,7 @@ static NSArray *JObjectValues()
 		NSString *resourcePath = [self resourcesPathCreating:YES];
 		if ( !resourcePath ) 
 		{
-			NSLog(@"%@ %s - unable to create reference directory for entry, bailing on copy", [self className], _cmd);
+			NSLog(@"%s - unable to create reference directory for entry, bailing on copy", __PRETTY_FUNCTION__);
 			return nil;
 		}
 		
@@ -1497,7 +1497,7 @@ static NSArray *JObjectValues()
 			// actually copy the file
 			if ( ![fm copyPath:path toPath:fullLocalPath handler:self] )
 			 {
-				NSLog(@"%@ %s - unable to copy %@ to %@", [self className], _cmd, path, fullLocalPath);
+				NSLog(@"%s - unable to copy %@ to %@", __PRETTY_FUNCTION__, path, fullLocalPath);
 				return nil;
 			}
 			
@@ -1513,7 +1513,7 @@ static NSArray *JObjectValues()
 			// actually move the file
 			if ( ![fm movePath:path toPath:fullLocalPath handler:self] )
 			 {
-				NSLog(@"%@ %s - unable to move %@ to %@", [self className], _cmd, path, fullLocalPath);
+				NSLog(@"%s - unable to move %@ to %@", __PRETTY_FUNCTION__, path, fullLocalPath);
 				return nil;
 			}
 			
@@ -1530,7 +1530,7 @@ static NSArray *JObjectValues()
 			NDAlias *alias = [[NDAlias alloc] initWithPath:path];
 			if ( ![alias writeToFile:fullLocalPath] ) 
 			{
-				NSLog(@"%@ %s - unable to link %@ to %@", [self className], _cmd, fullLocalPath, path);
+				NSLog(@"%s - unable to link %@ to %@", __PRETTY_FUNCTION__, fullLocalPath, path);
 				return nil;
 			}
 		}
@@ -1538,7 +1538,7 @@ static NSArray *JObjectValues()
 		else
 		{
 			// no default operation ?
-			NSLog(@"%@ %s - no operation specified for new file resource", [self className], _cmd);
+			NSLog(@"%s - no operation specified for new file resource", __PRETTY_FUNCTION__);
 		}
 		
 		// create a resource that encapsulates this information
@@ -1839,7 +1839,7 @@ static NSArray *JObjectValues()
 	{
 		if ( ![[NSFileManager defaultManager] createDirectoryAtPath:resourcePath attributes:nil] ) 
 		{
-			NSLog(@"%@ %s - unable to create resource directory at %@", resourcePath, _cmd, [self className] );
+			NSLog(@"%s - unable to create resource directory at %@", resourcePath, _cmd, [self className] );
 			resourcePath = nil;
 		}
 	}
@@ -1869,7 +1869,7 @@ static NSArray *JObjectValues()
 	{
 		if ( ![[NSFileManager defaultManager] createDirectoryAtPath:resourcePath attributes:nil] ) 
 		{
-			NSLog(@"%@ %s - unable to create resource directory at %@", resourcePath, _cmd, [self className]);
+			NSLog(@"%s - unable to create resource directory at %@", resourcePath, _cmd, [self className]);
 			resourcePath = nil;
 		}
 	}
@@ -2229,7 +2229,7 @@ static NSArray *JObjectValues()
 	// check the uti
 	if ( import_uti == nil ) 
 	{
-		NSLog(@"%@ %s - unable to determine uti for file at path %@", [self className], _cmd, fullpath);
+		NSLog(@"%s - unable to determine uti for file at path %@", __PRETTY_FUNCTION__, fullpath);
 		return nil;
 	}
 	else
@@ -2323,7 +2323,7 @@ static NSArray *JObjectValues()
 		if ( rtfData == nil )
 		{
 			import_content = nil;
-			NSLog(@"%@ %s - problem reading rtf data for file at path %@, error: %@", [self className], _cmd, fullpath, error);
+			NSLog(@"%s - problem reading rtf data for file at path %@, error: %@", __PRETTY_FUNCTION__, fullpath, error);
 		}
 		else
 		{
@@ -2345,7 +2345,7 @@ static NSArray *JObjectValues()
 		}
 		else
 		{
-			NSLog(@"%@ %s - problem reading rtfd wrapper for file at path %@", [self className], _cmd, fullpath);
+			NSLog(@"%s - problem reading rtfd wrapper for file at path %@", __PRETTY_FUNCTION__, fullpath);
 		}
 	}
 	
@@ -2361,7 +2361,7 @@ static NSArray *JObjectValues()
 		if ( wordData == nil )
 		{
 			import_content = nil;
-			NSLog(@"%@ %s - problem reading rtf data for file at path %@, error: %@", [self className], _cmd, fullpath, error);
+			NSLog(@"%s - problem reading rtf data for file at path %@, error: %@", __PRETTY_FUNCTION__, fullpath, error);
 		}
 		else
 		{
@@ -2396,7 +2396,7 @@ static NSArray *JObjectValues()
 			if ( plainText == nil )
 			{
 				import_content = nil;
-				NSLog(@"%@ %s - problem reading plain text file at path %@, error: %@", [self className], _cmd, fullpath, error);
+				NSLog(@"%s - problem reading plain text file at path %@, error: %@", __PRETTY_FUNCTION__, fullpath, error);
 			}
 			else
 			{
@@ -2459,7 +2459,7 @@ static NSArray *JObjectValues()
 		[mime_type release];
 	if ( import_content == nil ) 
 	{
-		NSLog(@"%@ %s unable to prepare import content for file at path %@", [self className], _cmd, fullpath);
+		NSLog(@"%s unable to prepare import content for file at path %@", __PRETTY_FUNCTION__, fullpath);
 		return nil;
 	}
 	
@@ -2512,14 +2512,14 @@ static NSArray *JObjectValues()
 			PDWeblocFile *webloc = [[[PDWeblocFile alloc] initWithContentsOfFile:_import_path] autorelease];
 			if ( webloc == nil )
 			{
-				NSLog(@"%@ %s - unable to get location information for webloc at path %@", [self className], _cmd, _import_path);
+				NSLog(@"%s - unable to get location information for webloc at path %@", __PRETTY_FUNCTION__, _import_path);
 				return NO;
 			}
 			
 			importedResource = [self resourceForURL:[[webloc url] absoluteString] title:[webloc displayName]];
 			if ( importedResource == nil )
 			{
-				NSLog(@"%@ %s - unable to get resource for webloc at path %@", [self className], _cmd, _import_path);
+				NSLog(@"%s - unable to get resource for webloc at path %@", __PRETTY_FUNCTION__, _import_path);
 				return NO;
 			}
 		}
@@ -2528,7 +2528,7 @@ static NSArray *JObjectValues()
 			importedResource = [self resourceForFile:_import_path operation:operation];
 			if ( importedResource == nil )
 			{
-				NSLog(@"%@ %s - unable to get resource for file at path %@", [self className], _cmd, _import_path );
+				NSLog(@"%s - unable to get resource for file at path %@", __PRETTY_FUNCTION__, _import_path );
 				return NO;
 			}
 		}
@@ -2568,7 +2568,7 @@ static NSArray *JObjectValues()
 			NSImage *img = [[[NSImage alloc] initWithContentsOfFile:importedFilePath] autorelease];
 			if ( !img ) 
 			{
-				NSLog(@"%@ %s - unable to create img from %@", [self className], _cmd, importedFilePath);
+				NSLog(@"%s - unable to create img from %@", __PRETTY_FUNCTION__, importedFilePath);
 				return NO;
 			}
 			
@@ -2578,7 +2578,7 @@ static NSArray *JObjectValues()
 			if ( attributed_img == nil )
 			{ 
 				[img release];
-				NSLog(@"%@ %s - unable to derive attributed string from img %@", [self className], _cmd, importedFilePath);
+				NSLog(@"%s - unable to derive attributed string from img %@", __PRETTY_FUNCTION__, importedFilePath);
 				return NO;
 			}
 			
@@ -2616,7 +2616,7 @@ static NSArray *JObjectValues()
 					NSBitmapImageRep *bitmapRep = [[[NSBitmapImageRep alloc] initWithData:[resizedImage TIFFRepresentation]] autorelease];
 					if ( bitmapRep == nil )
 					{
-						NSLog(@"%@ %s - unable to create bitmap rep from image", [self className], _cmd);
+						NSLog(@"%s - unable to create bitmap rep from image", __PRETTY_FUNCTION__);
 					}
 					else 
 					{
@@ -2627,7 +2627,7 @@ static NSArray *JObjectValues()
 								
 						if ( iconWrapper == nil )
 						{
-							NSLog(@"%@ %s - unable to create icon file wrapper from bitmap", [self className], _cmd);
+							NSLog(@"%s - unable to create icon file wrapper from bitmap", __PRETTY_FUNCTION__);
 						}
 						else 
 						{
@@ -2639,7 +2639,7 @@ static NSArray *JObjectValues()
 							NSTextAttachment *iconAttachment = [[[NSTextAttachment alloc] initWithFileWrapper:iconWrapper] autorelease];
 							if ( iconAttachment == nil )
 							{
-								NSLog(@"%@ %s - unable to create icon text attachment from file wrapper", [self className], _cmd);
+								NSLog(@"%s - unable to create icon text attachment from file wrapper", __PRETTY_FUNCTION__);
 							}
 							else 
 							{
@@ -2986,7 +2986,7 @@ static NSArray *JObjectValues()
 		
 		if ( ![archiveWrapper writeToFile:saveWithExtension atomically:YES updateFilenames:YES] )
 		{
-			NSLog(@"%@ %s - unable to write entry as webarchive '%@' to location '%@'", [self className], _cmd, [self title], saveWithExtension);
+			NSLog(@"%s - unable to write entry as webarchive '%@' to location '%@'", __PRETTY_FUNCTION__, [self title], saveWithExtension);
 			return NO;
 		}
 		
@@ -3163,7 +3163,7 @@ static NSArray *JObjectValues()
 		BOOL wroteWorked = [mutable_string writeToFile:[path stringByAppendingPathComponent:actualPath] atomically:YES encoding:NSUnicodeStringEncoding error:&error];
 		if ( !wroteWorked )
 		{
-			NSLog(@"%@ %s - unable to write the note to %@, error: %@", [self className], _cmd, [path stringByAppendingPathComponent:actualPath], error);
+			NSLog(@"%s - unable to write the note to %@, error: %@", __PRETTY_FUNCTION__, [path stringByAppendingPathComponent:actualPath], error);
 		}
 		
 		return wroteWorked;
@@ -3243,7 +3243,7 @@ static NSArray *JObjectValues()
 		}
 		@catch (NSException *localException)
 		{
-			NSLog(@"%@ %s - encountered exception: %@", [self className], _cmd, [localException description]);
+			NSLog(@"%s - encountered exception: %@", __PRETTY_FUNCTION__, [localException description]);
 			return NO;
 		}
 		@finally
@@ -3442,7 +3442,7 @@ static NSArray *JObjectValues()
 		incomingAttributedContent = [[[NSAttributedString alloc] initWithString:[anObject substringWithRange:NSMakeRange(0,[anObject length])] 
 		attributes:[JournlerEntry defaultTextAttributes]] autorelease];
 	else
-		NSLog(@"%@ %s - unable to dervie textual contents from object of class %@", [self className], _cmd, [anObject className]);
+		NSLog(@"%s - unable to dervie textual contents from object of class %@", __PRETTY_FUNCTION__, [anObject className]);
 	
 	// process the attributed content for links, leopard only
 	if ( [incomingAttributedContent respondsToSelector:@selector(URLAtIndex:effectiveRange:)] && [self journal] != nil 
@@ -3582,7 +3582,7 @@ static NSArray *JObjectValues()
 				CFRelease(tokenizer);
 			}
 			else
-				NSLog(@"%@ %s - unable to create string tokenizer, bypassing link processing", [self className], _cmd);
+				NSLog(@"%s - unable to create string tokenizer, bypassing link processing", __PRETTY_FUNCTION__);
 			
 			CFRelease(locale);
 		}
@@ -3891,7 +3891,7 @@ static NSArray *JObjectValues()
 	if ( pathURL == nil || ![pathURL isKindOfClass:[NSURL class]] ) 
 	{
 		// raise an error
-		NSLog(@"%@ %s - nil path or path other than url, but path is required", [self className], _cmd);
+		NSLog(@"%s - nil path or path other than url, but path is required", __PRETTY_FUNCTION__);
 		[self returnError:errOSACantAssign string:nil];
 		return;
 	}
@@ -3943,7 +3943,7 @@ static NSArray *JObjectValues()
 	
 	if ( ![self writeToFile:path as:fileType flags:flags] )
 	{
-		NSLog(@"%@ %s - unable to export entry to path %@ as type %i", [self className], _cmd, path, fileType);
+		NSLog(@"%s - unable to export entry to path %@ as type %i", __PRETTY_FUNCTION__, path, fileType);
 		[self returnError:OSAParameterMismatch string:@"File path is not valid or an error occurred creating the file."];
 	}
 	
