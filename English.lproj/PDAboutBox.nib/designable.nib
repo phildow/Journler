@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
+	<data>
+		<int key="IBDocument.SystemTarget">1060</int>
+		<string key="IBDocument.SystemVersion">11A511</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1615</string>
+		<string key="IBDocument.AppKitVersion">1138</string>
+		<string key="IBDocument.HIToolboxVersion">566.00</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
+			<string key="NS.object.0">1615</string>
+		</object>
+		<array key="IBDocument.IntegratedClassDependencies">
+			<string>NSView</string>
+			<string>NSTextField</string>
+			<string>NSWindowTemplate</string>
+			<string>NSScrollView</string>
+			<string>NSTextFieldCell</string>
+			<string>NSCustomView</string>
+			<string>NSTextView</string>
+			<string>NSImageCell</string>
+			<string>NSImageView</string>
+			<string>NSScroller</string>
+			<string>NSCustomObject</string>
+		</array>
+		<array key="IBDocument.PluginDependencies">
+			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+		</array>
+		<dictionary class="NSMutableDictionary" key="IBDocument.Metadata"/>
+		<array class="NSMutableArray" key="IBDocument.RootObjects" id="313048121">
+			<object class="NSCustomObject" id="9922507">
+				<string key="NSClassName">PDAboutBoxController</string>
+			</object>
+			<object class="NSCustomObject" id="664928843">
+				<string key="NSClassName">FirstResponder</string>
+			</object>
+			<object class="NSCustomObject" id="411063142">
+				<string key="NSClassName">NSApplication</string>
+			</object>
+			<object class="NSWindowTemplate" id="941864623">
+				<int key="NSWindowStyleMask">3</int>
+				<int key="NSWindowBacking">2</int>
+				<string key="NSWindowRect">{{291, 369}, {479, 240}}</string>
+				<int key="NSWTFlags">813170688</int>
+				<string key="NSWindowTitle"/>
+				<object class="NSMutableString" key="NSWindowClass">
+					<characters key="NS.bytes">NSWindow</characters>
+				</object>
+				<object class="NSMutableString" key="NSViewClass">
+					<characters key="NS.bytes">View</characters>
+				</object>
+				<nil key="NSUserInterfaceItemIdentifier"/>
+				<string key="NSWindowContentMinSize">{213, 107}</string>
+				<object class="NSView" key="NSWindowView" id="415153892">
+					<reference key="NSNextResponder"/>
+					<int key="NSvFlags">256</int>
+					<array class="NSMutableArray" key="NSSubviews">
+						<object class="NSCustomView" id="435396766">
+							<reference key="NSNextResponder" ref="415153892"/>
+							<int key="NSvFlags">274</int>
+							<array class="NSMutableArray" key="NSSubviews">
+								<object class="NSImageView" id="19709078">
+									<reference key="NSNextResponder" ref="435396766"/>
+									<int key="NSvFlags">256</int>
+									<set class="NSMutableSet" key="NSDragTypes">
+										<string>Apple PDF pasteboard type</string>
+										<string>Apple PICT pasteboard type</string>
+										<string>Apple PNG pasteboard type</string>
+										<string>NSFilenamesPboardType</string>
+										<string>NeXT Encapsulated PostScript v1.2 pasteboard type</string>
+										<string>NeXT TIFF v4.0 pasteboard type</string>
+									</set>
+									<string key="NSFrame">{{17, 72}, {128, 128}}</string>
+									<reference key="NSSuperview" ref="435396766"/>
+									<bool key="NSEnabled">YES</bool>
+									<object class="NSImageCell" key="NSCell" id="737106656">
+										<int key="NSCellFlags">130560</int>
+										<int key="NSCellFlags2">33554432</int>
+										<object class="NSCustomResource" key="NSContents">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">NSApplicationIcon</string>
+										</object>
+										<int key="NSAlign">0</int>
+										<int key="NSScale">0</int>
+										<int key="NSStyle">0</int>
+										<bool key="NSAnimates">NO</bool>
+									</object>
+									<bool key="NSEditable">YES</bool>
+								</object>
+								<object class="NSTextField" id="48868220">
+									<reference key="NSNextResponder" ref="435396766"/>
+									<int key="NSvFlags">256</int>
+									<string key="NSFrame">{{17, 45}, {128, 19}}</string>
+									<reference key="NSSuperview" ref="435396766"/>
+									<bool key="NSEnabled">YES</bool>
+									<object class="NSTextFieldCell" key="NSCell" id="819601140">
+										<int key="NSCellFlags">67239424</int>
+										<int key="NSCellFlags2">138412032</int>
+										<string key="NSContents">AppName</string>
+										<object class="NSFont" key="NSSupport">
+											<string key="NSName">LucidaGrande-Bold</string>
+											<double key="NSSize">15</double>
+											<int key="NSfFlags">16</int>
+										</object>
+										<reference key="NSControlView" ref="48868220"/>
+										<object class="NSColor" key="NSBackgroundColor" id="908667048">
+											<int key="NSColorSpace">6</int>
+											<string key="NSCatalogName">System</string>
+											<string key="NSColorName">controlColor</string>
+											<object class="NSColor" key="NSColor" id="1027440367">
+												<int key="NSColorSpace">3</int>
+												<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
+											</object>
+										</object>
+										<object class="NSColor" key="NSTextColor" id="381259269">
+											<int key="NSColorSpace">6</int>
+											<string key="NSCatalogName">System</string>
+											<string key="NSColorName">controlTextColor</string>
+											<object class="NSColor" key="NSColor" id="274337511">
+												<int key="NSColorSpace">3</int>
+												<bytes key="NSWhite">MAA</bytes>
+											</object>
+										</object>
+									</object>
+								</object>
+								<object class="NSTextField" id="148997526">
+									<reference key="NSNextResponder" ref="435396766"/>
+									<int key="NSvFlags">256</int>
+									<string key="NSFrame">{{14, 13}, {134, 28}}</string>
+									<reference key="NSSuperview" ref="435396766"/>
+									<bool key="NSEnabled">YES</bool>
+									<object class="NSTextFieldCell" key="NSCell" id="643536648">
+										<int key="NSCellFlags">67239424</int>
+										<int key="NSCellFlags2">138412032</int>
+										<string key="NSContents">&lt;&lt; Version &gt;&gt;</string>
+										<object class="NSFont" key="NSSupport">
+											<string key="NSName">LucidaGrande</string>
+											<double key="NSSize">11</double>
+											<int key="NSfFlags">3100</int>
+										</object>
+										<reference key="NSControlView" ref="148997526"/>
+										<reference key="NSBackgroundColor" ref="908667048"/>
+										<reference key="NSTextColor" ref="381259269"/>
+									</object>
+								</object>
+								<object class="NSScrollView" id="681481965">
+									<reference key="NSNextResponder" ref="435396766"/>
+									<int key="NSvFlags">256</int>
+									<array class="NSMutableArray" key="NSSubviews">
+										<object class="NSClipView" id="436081782">
+											<reference key="NSNextResponder" ref="681481965"/>
+											<int key="NSvFlags">2304</int>
+											<array class="NSMutableArray" key="NSSubviews">
+												<object class="NSTextView" id="1030702977">
+													<reference key="NSNextResponder" ref="436081782"/>
+													<int key="NSvFlags">2322</int>
+													<string key="NSFrameSize">{303, 975}</string>
+													<reference key="NSSuperview" ref="436081782"/>
+													<object class="NSTextContainer" key="NSTextContainer" id="1012408885">
+														<object class="NSLayoutManager" key="NSLayoutManager">
+															<object class="NSTextStorage" key="NSTextStorage">
+																<object class="NSMutableString" key="NSString">
+																	<bytes key="NS.bytes">Sm91cm5sZXIKQnkgUGhpbGlwIERvdwoKTWFueSB0aGFua3MgdG8gbWFueSBpbmRpdmlkdWFscyBmb3Ig
+dGhlaXIgaWRlYXMsIHN1cHBvcnQsIGNvbnRyaWJ1dGlvbnMgYW5kIHB1YmxpY2x5IGF2YWlsYWJsZSB3
+b3JrLgoKSm91cm5sZXIgdXNlcyB0aGUgZm9sbG93aW5nIG9wZW4gc291cmNlIHNvZnR3YXJlOgoKCeKA
+oglSQlNwbGl0VmlldyBieSBSYWluZXIgQnJvY2tlcmhvZmYKCeKAoglMSktpdCBieSBCZW5qYW1pbiBQ
+ZXRlciBSYWdoZWIKCeKAoglJRDMgRnJhbWV3b3JrIGJ5IENocmlzIERyZXcKCeKAoglYTUxSUENDb2Nv
+YSBieSBCcmVudCBTaW1tb25zCgnigKIJQ1VSTEhhbmRsZStleHRyYXMgYnkgRGFuIFdvb2QKCeKAoglU
+aGUgTEFNRSBlbmNvZGVyIGJ5IHRoZSBsYW1lIGdyb3VwIGF0IG1wM2Rldi5vcmcKCeKAoglUaGUgTEFN
+RSBGcmFtZXdvcmsgYW5kIFF1aWNrdGltZSBDb21wb25lbnQgYnkgTHlubiBQeWUKCeKAoglOREFsaWFz
+IGJ5IE5hdGhhbiBEYXkKCeKAoglLRkFwcGxlU2NyaXB0IEFkZGl0aW9ucyBieSBLZW4gRmVycnkKCeKA
+oglpTWVkaWFCcm93c2VyIGJ5IEdyZWcgSHVsYW5kcyBhbmQgdGhlIGNyZXcKCeKAoglMMGlQb2QgYnkg
+RW1hbnVlbGUgVnVsY2FubwoJ4oCiCUNvY29hU2VxdWVuY2VHcmFiYmVyIGJ5IFRpbSBPbWVybmljawoJ
+4oCiCVNwYXJrbGUgZnJhbWV3b3JrIGJ5IEFuZHkgTWF0dXNjaGFrCgnigKIJQ29vbCB3aW5kb3dzIGFu
+ZCBvdGhlciB2aXN1YWwgY2FuZHkgYnkgTWF0dCBHZW1tZWxsCgnigKIJTW9yZSBjb29sIHdpbmRvd3Mg
+YW5kIGNhbmR5IGJ5IENoYWQgV2VpZGVyCgnigKIJTVVQaG90b1ZpZXcgYnkgQmxha2UgU2VlbHkKCeKA
+oglUaGUgUGFudG9taW1lIGZyYW1ld29yayBieSBMdWRvdmljIE1hcmNvdHRlCgnigKIJVUtLUXVldWUg
+YnkgTS4gVWxpIEt1c3RlcmVyCgnigKIJR1RSZXNvdXJjZUZvcmsgYnkgSm9uYXRoYW4gR3J5bnNwYW4K
+CeKAoglLQldvcmRDb3VudGluZ1RleHRTdG9yYWdlIGJ5IEtlaXRoIEJsb3VudAoKQSB2ZXJ5IHNwZWNp
+YWwgdGhhbmtzIHRvIHRoZSBmb2xsb3dpbmcgZm9yIHRoZWlyIGNvbnRyaWJ1dGlvbnM6IAoKVHJhbnNs
+YXRvcnMKCeKAoglEYW5pc2ggYnkgUHJlYmVuIE5pZWxzZW4gYW5kIFRva2UgRWJiZXNlbgoJ4oCiCUdl
+cm1hbiBieSBBbmRyZWFzIEjDpG5lIGFuZCBSZWluZXIgQmF1cgoJ4oCiCUFkZGl0aW9uYWwgbG9jYWxp
+emF0aW9ucyBhcmUgZm9ydGhjb21pbmcKCldlYiBQYWdlOiBFdmFuIEFnZWUKSm91cm5sZXIgSWNvbjog
+TWlrZSBSb2hkZQpEaXNrIEltYWdlOiBLZXZpbiBWYWVzZW4KCklkZWFzLCBCZXRhIFRlc3RlcnMgYW5k
+IENvbnRyaWJ1dG9ycwoJ4oCiCVNhdmFubmEKCeKAoglUZXJyeSBIYXRtYWtlcgoJ4oCiCUpheSBTaW1z
+CgnigKIJQW5uZWxpZXNlIEFtYWNoZXIKCeKAoglLZWl0YSBFbmRvCgnigKIJTWFydGluIEthaXNlcgoJ
+4oCiCVJlaW5lciBCYXVyCgnigKIJUmVpbmFyZCBTY2htaXR6CgnigKIJU3RldmVuIEpheSBDb2hlbgoJ
+4oCiCUdyw6lnb2lyZSBEZWx1YnJpYQoJ4oCiCWNvcm11bGxpb25AbWFjLmNvbQoJ4oCiCUFteSBVbnJ1
+aAoJ4oCiCVRvbnkgU3RpbnNvbgoJ4oCiCU5pa29sYXMgTGF1ZmVyLUVkZWwKCeKAoglNaWtlIFdlbGZs
+CgnigKIJSm9zw6kgRmVybmFuZG8gSGVycmVyYQoJ4oCiCUFwYXJhaml0YSBGaXNobWFuCgnigKIJQWRh
+bSBCZWxsCgpMZWdhbCAKSm91cm5sZXIgY29tZXMgd2l0aCBubyB3YXJyYW50eSwgbmVpdGhlciBleHBy
+ZXNzZWQgbm9yIGltcGxpZWQuIEhhdmUgZnVuIGFuZCBkb24ndCBzdWUgbWUuCgpDb21tZXJjaWFsIGRp
+c3RyaWJ1dGlvbiBvZiBKb3VybmxlciBpcyByZXN0cmljdGVkLiBQbGVhc2UgY29udGFjdCBzYWxlc0Bq
+b3Vybmxlci5jb20gZm9yIGxpY2Vuc2luZyB0ZXJtcy4KCkNvcHlyaWdodCDCqSAyMDA1LTIwMDggU3By
+b3V0ZWQsIFBoaWxpcCBEb3cuIEFsbCByaWdodHMgcmVzZXJ2ZWQuCgpodHRwOi8vam91cm5sZXIuY29t
+A</bytes>
+																</object>
+																<array class="NSMutableArray" key="NSAttributes">
+																	<dictionary>
+																		<object class="NSFont" key="NSFont" id="50408292">
+																			<string key="NSName">LucidaGrande</string>
+																			<double key="NSSize">11</double>
+																			<int key="NSfFlags">16</int>
+																		</object>
+																		<object class="NSParagraphStyle" key="NSParagraphStyle">
+																			<int key="NSAlignment">4</int>
+																			<double key="NSDefaultTabInterval">36</double>
+																			<array key="NSTabStops" id="0"/>
+																			<int key="NSWritingDirection">1</int>
+																		</object>
+																	</dictionary>
+																	<dictionary>
+																		<reference key="NSFont" ref="50408292"/>
+																		<object class="NSParagraphStyle" key="NSParagraphStyle">
+																			<int key="NSAlignment">4</int>
+																			<double key="NSHeadIndent">36</double>
+																			<double key="NSDefaultTabInterval">36</double>
+																			<array key="NSTabStops">
+																				<object class="NSTextTab" id="304053496">
+																					<double key="NSLocation">11</double>
+																				</object>
+																				<object class="NSTextTab" id="384412161">
+																					<double key="NSLocation">36</double>
+																				</object>
+																			</array>
+																			<array key="NSTextLists">
+																				<object class="NSTextList">
+																					<string key="NSMarkerFormat">{disc}</string>
+																				</object>
+																			</array>
+																			<int key="NSWritingDirection">1</int>
+																		</object>
+																	</dictionary>
+																	<dictionary>
+																		<reference key="NSFont" ref="50408292"/>
+																		<object class="NSParagraphStyle" key="NSParagraphStyle">
+																			<int key="NSAlignment">4</int>
+																			<double key="NSHeadIndent">36</double>
+																			<double key="NSDefaultTabInterval">36</double>
+																			<array key="NSTabStops">
+																				<reference ref="304053496"/>
+																				<reference ref="384412161"/>
+																			</array>
+																			<array key="NSTextLists">
+																				<object class="NSTextList">
+																					<string key="NSMarkerFormat">{disc}</string>
+																				</object>
+																			</array>
+																			<int key="NSWritingDirection">1</int>
+																		</object>
+																	</dictionary>
+																	<dictionary>
+																		<reference key="NSFont" ref="50408292"/>
+																		<object class="NSParagraphStyle" key="NSParagraphStyle">
+																			<int key="NSAlignment">4</int>
+																			<double key="NSDefaultTabInterval">36</double>
+																			<array key="NSTabStops">
+																				<object class="NSTextTab" id="454196730">
+																					<double key="NSLocation">0.0</double>
+																				</object>
+																				<reference ref="454196730"/>
+																			</array>
+																			<array key="NSTextLists">
+																				<object class="NSTextList">
+																					<string key="NSMarkerFormat">{disc}</string>
+																				</object>
+																			</array>
+																			<int key="NSWritingDirection">1</int>
+																		</object>
+																	</dictionary>
+																	<dictionary>
+																		<reference key="NSFont" ref="50408292"/>
+																		<object class="NSParagraphStyle" key="NSParagraphStyle">
+																			<int key="NSAlignment">4</int>
+																			<double key="NSDefaultTabInterval">36</double>
+																			<array key="NSTabStops">
+																				<reference ref="384412161"/>
+																			</array>
+																			<int key="NSWritingDirection">1</int>
+																		</object>
+																	</dictionary>
+																	<dictionary>
+																		<reference key="NSFont" ref="50408292"/>
+																		<object class="NSParagraphStyle" key="NSParagraphStyle">
+																			<int key="NSAlignment">4</int>
+																			<double key="NSHeadIndent">36</double>
+																			<double key="NSDefaultTabInterval">36</double>
+																			<array key="NSTabStops">
+																				<reference ref="304053496"/>
+																				<reference ref="384412161"/>
+																			</array>
+																			<int key="NSWritingDirection">1</int>
+																		</object>
+																	</dictionary>
+																	<dictionary>
+																		<reference key="NSFont" ref="50408292"/>
+																		<object class="NSParagraphStyle" key="NSParagraphStyle">
+																			<int key="NSAlignment">4</int>
+																			<double key="NSHeadIndent">36</double>
+																			<double key="NSDefaultTabInterval">36</double>
+																			<array key="NSTabStops">
+																				<reference ref="304053496"/>
+																				<reference ref="384412161"/>
+																			</array>
+																			<array key="NSTextLists">
+																				<object class="NSTextList">
+																					<string key="NSMarkerFormat">{disc}</string>
+																				</object>
+																			</array>
+																			<int key="NSWritingDirection">1</int>
+																		</object>
+																	</dictionary>
+																	<dictionary>
+																		<reference key="NSFont" ref="50408292"/>
+																		<object class="NSURL" key="NSLink">
+																			<nil key="NS.base"/>
+																			<string key="NS.relative">mailto:sales@journler.com</string>
+																		</object>
+																		<object class="NSParagraphStyle" key="NSParagraphStyle">
+																			<int key="NSAlignment">4</int>
+																			<double key="NSDefaultTabInterval">36</double>
+																			<reference key="NSTabStops" ref="0"/>
+																			<int key="NSWritingDirection">1</int>
+																		</object>
+																	</dictionary>
+																	<dictionary>
+																		<reference key="NSFont" ref="50408292"/>
+																		<integer value="0" key="NSLigature"/>
+																		<object class="NSParagraphStyle" key="NSParagraphStyle" id="447682030">
+																			<int key="NSAlignment">4</int>
+																			<double key="NSDefaultTabInterval">36</double>
+																			<array key="NSTabStops">
+																				<object class="NSTextTab" id="1043683072">
+																					<double key="NSLocation">24</double>
+																				</object>
+																				<object class="NSTextTab" id="885373763">
+																					<double key="NSLocation">48</double>
+																				</object>
+																				<object class="NSTextTab" id="310584230">
+																					<double key="NSLocation">72</double>
+																				</object>
+																				<object class="NSTextTab" id="328401210">
+																					<double key="NSLocation">96</double>
+																				</object>
+																				<object class="NSTextTab" id="71025072">
+																					<double key="NSLocation">120</double>
+																				</object>
+																				<object class="NSTextTab" id="787161250">
+																					<double key="NSLocation">144</double>
+																				</object>
+																				<object class="NSTextTab" id="477439432">
+																					<double key="NSLocation">168</double>
+																				</object>
+																				<object class="NSTextTab" id="30199258">
+																					<double key="NSLocation">192</double>
+																				</object>
+																				<object class="NSTextTab" id="892154763">
+																					<double key="NSLocation">216</double>
+																				</object>
+																				<object class="NSTextTab" id="100914448">
+																					<double key="NSLocation">240</double>
+																				</object>
+																				<object class="NSTextTab" id="1069105389">
+																					<double key="NSLocation">264</double>
+																				</object>
+																				<object class="NSTextTab" id="833475346">
+																					<double key="NSLocation">288</double>
+																				</object>
+																				<object class="NSTextTab" id="277566645">
+																					<double key="NSLocation">312</double>
+																				</object>
+																				<object class="NSTextTab" id="172234862">
+																					<double key="NSLocation">336</double>
+																				</object>
+																				<object class="NSTextTab" id="378901847">
+																					<double key="NSLocation">360</double>
+																				</object>
+																				<object class="NSTextTab" id="409695349">
+																					<double key="NSLocation">384</double>
+																				</object>
+																				<object class="NSTextTab" id="424716368">
+																					<double key="NSLocation">408</double>
+																				</object>
+																				<object class="NSTextTab" id="989467383">
+																					<double key="NSLocation">432</double>
+																				</object>
+																				<object class="NSTextTab" id="824848241">
+																					<double key="NSLocation">456</double>
+																				</object>
+																				<object class="NSTextTab" id="860112134">
+																					<double key="NSLocation">480</double>
+																				</object>
+																				<object class="NSTextTab" id="1038334604">
+																					<double key="NSLocation">504</double>
+																				</object>
+																				<object class="NSTextTab" id="973844767">
+																					<double key="NSLocation">528</double>
+																				</object>
+																				<object class="NSTextTab" id="695035359">
+																					<double key="NSLocation">552</double>
+																				</object>
+																				<object class="NSTextTab" id="345850050">
+																					<double key="NSLocation">576</double>
+																				</object>
+																				<object class="NSTextTab" id="581582909">
+																					<double key="NSLocation">600</double>
+																				</object>
+																				<object class="NSTextTab" id="57373318">
+																					<double key="NSLocation">624</double>
+																				</object>
+																				<object class="NSTextTab" id="396257342">
+																					<double key="NSLocation">648</double>
+																				</object>
+																				<object class="NSTextTab" id="885633407">
+																					<double key="NSLocation">672</double>
+																				</object>
+																				<object class="NSTextTab" id="441782481">
+																					<double key="NSLocation">696</double>
+																				</object>
+																				<object class="NSTextTab" id="850451074">
+																					<double key="NSLocation">720</double>
+																				</object>
+																				<object class="NSTextTab" id="259571615">
+																					<double key="NSLocation">744</double>
+																				</object>
+																				<object class="NSTextTab" id="411721730">
+																					<double key="NSLocation">768</double>
+																				</object>
+																				<object class="NSTextTab" id="662083012">
+																					<double key="NSLocation">792</double>
+																				</object>
+																				<object class="NSTextTab" id="570154845">
+																					<double key="NSLocation">816</double>
+																				</object>
+																				<object class="NSTextTab" id="740121940">
+																					<double key="NSLocation">840</double>
+																				</object>
+																				<object class="NSTextTab" id="733105086">
+																					<double key="NSLocation">864</double>
+																				</object>
+																				<object class="NSTextTab" id="283572273">
+																					<double key="NSLocation">888</double>
+																				</object>
+																				<object class="NSTextTab" id="143817550">
+																					<double key="NSLocation">912</double>
+																				</object>
+																				<object class="NSTextTab" id="763303345">
+																					<double key="NSLocation">936</double>
+																				</object>
+																				<object class="NSTextTab" id="101983213">
+																					<double key="NSLocation">960</double>
+																				</object>
+																				<object class="NSTextTab" id="244730998">
+																					<double key="NSLocation">984</double>
+																				</object>
+																				<object class="NSTextTab" id="758666909">
+																					<double key="NSLocation">1008</double>
+																				</object>
+																				<object class="NSTextTab" id="935457560">
+																					<double key="NSLocation">1032</double>
+																				</object>
+																				<object class="NSTextTab" id="522296643">
+																					<double key="NSLocation">1056</double>
+																				</object>
+																				<object class="NSTextTab" id="930900771">
+																					<double key="NSLocation">1080</double>
+																				</object>
+																				<object class="NSTextTab" id="240615584">
+																					<double key="NSLocation">1104</double>
+																				</object>
+																				<object class="NSTextTab" id="931988994">
+																					<double key="NSLocation">1128</double>
+																				</object>
+																				<object class="NSTextTab" id="281873316">
+																					<double key="NSLocation">1152</double>
+																				</object>
+																				<object class="NSTextTab" id="156341142">
+																					<double key="NSLocation">1176</double>
+																				</object>
+																				<object class="NSTextTab" id="683093412">
+																					<double key="NSLocation">1200</double>
+																				</object>
+																				<object class="NSTextTab" id="68241628">
+																					<double key="NSLocation">1224</double>
+																				</object>
+																				<object class="NSTextTab" id="120931923">
+																					<double key="NSLocation">1248</double>
+																				</object>
+																				<object class="NSTextTab" id="583194356">
+																					<double key="NSLocation">1272</double>
+																				</object>
+																				<object class="NSTextTab" id="763275987">
+																					<double key="NSLocation">1296</double>
+																				</object>
+																				<object class="NSTextTab" id="466780973">
+																					<double key="NSLocation">1320</double>
+																				</object>
+																				<object class="NSTextTab" id="91033442">
+																					<double key="NSLocation">1344</double>
+																				</object>
+																				<object class="NSTextTab" id="820646308">
+																					<double key="NSLocation">1368</double>
+																				</object>
+																				<object class="NSTextTab" id="863037315">
+																					<double key="NSLocation">1392</double>
+																				</object>
+																				<object class="NSTextTab" id="976665849">
+																					<double key="NSLocation">1416</double>
+																				</object>
+																				<object class="NSTextTab" id="188686964">
+																					<double key="NSLocation">1440</double>
+																				</object>
+																				<object class="NSTextTab" id="639744567">
+																					<double key="NSLocation">1464</double>
+																				</object>
+																				<object class="NSTextTab" id="162495639">
+																					<double key="NSLocation">1488</double>
+																				</object>
+																				<object class="NSTextTab" id="600407695">
+																					<double key="NSLocation">1512</double>
+																				</object>
+																				<object class="NSTextTab" id="228083756">
+																					<double key="NSLocation">1536</double>
+																				</object>
+																				<object class="NSTextTab" id="732647487">
+																					<double key="NSLocation">1560</double>
+																				</object>
+																				<object class="NSTextTab" id="266785812">
+																					<double key="NSLocation">1584</double>
+																				</object>
+																				<object class="NSTextTab" id="961187843">
+																					<double key="NSLocation">1608</double>
+																				</object>
+																				<object class="NSTextTab" id="1016218760">
+																					<double key="NSLocation">1632</double>
+																				</object>
+																				<object class="NSTextTab" id="410602362">
+																					<double key="NSLocation">1656</double>
+																				</object>
+																				<object class="NSTextTab" id="650749363">
+																					<double key="NSLocation">1680</double>
+																				</object>
+																				<object class="NSTextTab" id="44460148">
+																					<double key="NSLocation">1704</double>
+																				</object>
+																				<object class="NSTextTab" id="655330362">
+																					<double key="NSLocation">1728</double>
+																				</object>
+																				<object class="NSTextTab" id="335672449">
+																					<double key="NSLocation">1752</double>
+																				</object>
+																				<object class="NSTextTab" id="979916708">
+																					<double key="NSLocation">1776</double>
+																				</object>
+																				<object class="NSTextTab" id="103883182">
+																					<double key="NSLocation">1800</double>
+																				</object>
+																				<object class="NSTextTab" id="192829397">
+																					<double key="NSLocation">1824</double>
+																				</object>
+																				<object class="NSTextTab" id="146788469">
+																					<double key="NSLocation">1848</double>
+																				</object>
+																				<object class="NSTextTab" id="1035871176">
+																					<double key="NSLocation">1872</double>
+																				</object>
+																				<object class="NSTextTab" id="474701713">
+																					<double key="NSLocation">1896</double>
+																				</object>
+																				<object class="NSTextTab" id="303128612">
+																					<double key="NSLocation">1920</double>
+																				</object>
+																				<object class="NSTextTab" id="645222763">
+																					<double key="NSLocation">1944</double>
+																				</object>
+																				<object class="NSTextTab" id="542942341">
+																					<double key="NSLocation">1968</double>
+																				</object>
+																				<object class="NSTextTab" id="424059535">
+																					<double key="NSLocation">1992</double>
+																				</object>
+																				<object class="NSTextTab" id="154673296">
+																					<double key="NSLocation">2016</double>
+																				</object>
+																				<object class="NSTextTab" id="232474506">
+																					<double key="NSLocation">2040</double>
+																				</object>
+																				<object class="NSTextTab" id="890839509">
+																					<double key="NSLocation">2064</double>
+																				</object>
+																				<object class="NSTextTab" id="245705738">
+																					<double key="NSLocation">2088</double>
+																				</object>
+																				<object class="NSTextTab" id="1053119814">
+																					<double key="NSLocation">2112</double>
+																				</object>
+																				<object class="NSTextTab" id="680133001">
+																					<double key="NSLocation">2136</double>
+																				</object>
+																				<object class="NSTextTab" id="148629763">
+																					<double key="NSLocation">2160</double>
+																				</object>
+																				<object class="NSTextTab" id="168062955">
+																					<double key="NSLocation">2184</double>
+																				</object>
+																				<object class="NSTextTab" id="246133745">
+																					<double key="NSLocation">2208</double>
+																				</object>
+																				<object class="NSTextTab" id="311122404">
+																					<double key="NSLocation">2232</double>
+																				</object>
+																				<object class="NSTextTab" id="768467652">
+																					<double key="NSLocation">2256</double>
+																				</object>
+																				<object class="NSTextTab" id="474216502">
+																					<double key="NSLocation">2280</double>
+																				</object>
+																				<object class="NSTextTab" id="1043768891">
+																					<double key="NSLocation">2304</double>
+																				</object>
+																				<object class="NSTextTab" id="1035252465">
+																					<double key="NSLocation">2328</double>
+																				</object>
+																				<object class="NSTextTab" id="361662520">
+																					<double key="NSLocation">2352</double>
+																				</object>
+																				<object class="NSTextTab" id="986245826">
+																					<double key="NSLocation">2376</double>
+																				</object>
+																				<object class="NSTextTab" id="372111004">
+																					<double key="NSLocation">2400</double>
+																				</object>
+																			</array>
+																		</object>
+																	</dictionary>
+																	<dictionary>
+																		<reference key="NSFont" ref="50408292"/>
+																		<reference key="NSParagraphStyle" ref="447682030"/>
+																	</dictionary>
+																	<dictionary>
+																		<reference key="NSFont" ref="50408292"/>
+																		<object class="NSURL" key="NSLink">
+																			<nil key="NS.base"/>
+																			<string key="NS.relative">http://journler.com</string>
+																		</object>
+																		<object class="NSParagraphStyle" key="NSParagraphStyle">
+																			<int key="NSAlignment">4</int>
+																			<double key="NSDefaultTabInterval">36</double>
+																			<array key="NSTabStops">
+																				<reference ref="1043683072"/>
+																				<reference ref="885373763"/>
+																				<reference ref="310584230"/>
+																				<reference ref="328401210"/>
+																				<reference ref="71025072"/>
+																				<reference ref="787161250"/>
+																				<reference ref="477439432"/>
+																				<reference ref="30199258"/>
+																				<reference ref="892154763"/>
+																				<reference ref="100914448"/>
+																				<reference ref="1069105389"/>
+																				<reference ref="833475346"/>
+																				<reference ref="277566645"/>
+																				<reference ref="172234862"/>
+																				<reference ref="378901847"/>
+																				<reference ref="409695349"/>
+																				<reference ref="424716368"/>
+																				<reference ref="989467383"/>
+																				<reference ref="824848241"/>
+																				<reference ref="860112134"/>
+																				<reference ref="1038334604"/>
+																				<reference ref="973844767"/>
+																				<reference ref="695035359"/>
+																				<reference ref="345850050"/>
+																				<reference ref="581582909"/>
+																				<reference ref="57373318"/>
+																				<reference ref="396257342"/>
+																				<reference ref="885633407"/>
+																				<reference ref="441782481"/>
+																				<reference ref="850451074"/>
+																				<reference ref="259571615"/>
+																				<reference ref="411721730"/>
+																				<reference ref="662083012"/>
+																				<reference ref="570154845"/>
+																				<reference ref="740121940"/>
+																				<reference ref="733105086"/>
+																				<reference ref="283572273"/>
+																				<reference ref="143817550"/>
+																				<reference ref="763303345"/>
+																				<reference ref="101983213"/>
+																				<reference ref="244730998"/>
+																				<reference ref="758666909"/>
+																				<reference ref="935457560"/>
+																				<reference ref="522296643"/>
+																				<reference ref="930900771"/>
+																				<reference ref="240615584"/>
+																				<reference ref="931988994"/>
+																				<reference ref="281873316"/>
+																				<reference ref="156341142"/>
+																				<reference ref="683093412"/>
+																				<reference ref="68241628"/>
+																				<reference ref="120931923"/>
+																				<reference ref="583194356"/>
+																				<reference ref="763275987"/>
+																				<reference ref="466780973"/>
+																				<reference ref="91033442"/>
+																				<reference ref="820646308"/>
+																				<reference ref="863037315"/>
+																				<reference ref="976665849"/>
+																				<reference ref="188686964"/>
+																				<reference ref="639744567"/>
+																				<reference ref="162495639"/>
+																				<reference ref="600407695"/>
+																				<reference ref="228083756"/>
+																				<reference ref="732647487"/>
+																				<reference ref="266785812"/>
+																				<reference ref="961187843"/>
+																				<reference ref="1016218760"/>
+																				<reference ref="410602362"/>
+																				<reference ref="650749363"/>
+																				<reference ref="44460148"/>
+																				<reference ref="655330362"/>
+																				<reference ref="335672449"/>
+																				<reference ref="979916708"/>
+																				<reference ref="103883182"/>
+																				<reference ref="192829397"/>
+																				<reference ref="146788469"/>
+																				<reference ref="1035871176"/>
+																				<reference ref="474701713"/>
+																				<reference ref="303128612"/>
+																				<reference ref="645222763"/>
+																				<reference ref="542942341"/>
+																				<reference ref="424059535"/>
+																				<reference ref="154673296"/>
+																				<reference ref="232474506"/>
+																				<reference ref="890839509"/>
+																				<reference ref="245705738"/>
+																				<reference ref="1053119814"/>
+																				<reference ref="680133001"/>
+																				<reference ref="148629763"/>
+																				<reference ref="168062955"/>
+																				<reference ref="246133745"/>
+																				<reference ref="311122404"/>
+																				<reference ref="768467652"/>
+																				<reference ref="474216502"/>
+																				<reference ref="1043768891"/>
+																				<reference ref="1035252465"/>
+																				<reference ref="361662520"/>
+																				<reference ref="986245826"/>
+																				<reference ref="372111004"/>
+																			</array>
+																		</object>
+																	</dictionary>
+																</array>
+																<object class="NSMutableData" key="NSAttributeInfo">
+																	<bytes key="NS.bytes">sQEAlgYBTwCDAQIBAy4EGQUmALsCBqYBABIHFwAqCBgJEwo</bytes>
+																</object>
+																<nil key="NSDelegate"/>
+															</object>
+															<array class="NSMutableArray" key="NSTextContainers">
+																<reference ref="1012408885"/>
+															</array>
+															<int key="NSLMFlags">6</int>
+															<nil key="NSDelegate"/>
+														</object>
+														<reference key="NSTextView" ref="1030702977"/>
+														<double key="NSWidth">303</double>
+														<int key="NSTCFlags">1</int>
+													</object>
+													<object class="NSTextViewSharedData" key="NSSharedData">
+														<int key="NSFlags">67111781</int>
+														<int key="NSTextCheckingTypes">0</int>
+														<nil key="NSMarkedAttributes"/>
+														<object class="NSColor" key="NSBackgroundColor" id="936875862">
+															<int key="NSColorSpace">3</int>
+															<bytes key="NSWhite">MQA</bytes>
+														</object>
+														<dictionary key="NSSelectedAttributes">
+															<object class="NSColor" key="NSBackgroundColor">
+																<int key="NSColorSpace">6</int>
+																<string key="NSCatalogName">System</string>
+																<string key="NSColorName">selectedTextBackgroundColor</string>
+																<reference key="NSColor" ref="1027440367"/>
+															</object>
+															<object class="NSColor" key="NSColor">
+																<int key="NSColorSpace">6</int>
+																<string key="NSCatalogName">System</string>
+																<string key="NSColorName">selectedTextColor</string>
+																<reference key="NSColor" ref="274337511"/>
+															</object>
+														</dictionary>
+														<reference key="NSInsertionColor" ref="274337511"/>
+														<dictionary key="NSLinkAttributes">
+															<object class="NSColor" key="NSColor">
+																<int key="NSColorSpace">1</int>
+																<bytes key="NSRGB">MCAwIDEAA</bytes>
+															</object>
+															<integer value="1" key="NSUnderline"/>
+														</dictionary>
+														<nil key="NSDefaultParagraphStyle"/>
+														<nil key="NSTextFinder"/>
+														<int key="NSPreferredTextFinderStyle">0</int>
+													</object>
+													<int key="NSTVFlags">6</int>
+													<string key="NSMaxSize">{314, 10000000}</string>
+													<string key="NSMinize">{303, 240}</string>
+													<nil key="NSDelegate"/>
+												</object>
+											</array>
+											<string key="NSFrame">{{1, 1}, {303, 240}}</string>
+											<reference key="NSSuperview" ref="681481965"/>
+											<reference key="NSNextKeyView" ref="1030702977"/>
+											<reference key="NSDocView" ref="1030702977"/>
+											<reference key="NSBGColor" ref="936875862"/>
+											<object class="NSCursor" key="NSCursor">
+												<string key="NSHotSpot">{4, 5}</string>
+												<object class="NSImage" key="NSImage">
+													<int key="NSImageFlags">12582912</int>
+													<array class="NSMutableArray" key="NSReps">
+														<array>
+															<integer value="0"/>
+															<object class="NSBitmapImageRep">
+																<object class="NSData" key="NSTIFFRepresentation">
+																	<bytes key="NS.bytes">TU0AKgAAAHCAFUqgBVKsAAAAwdVQUqwaEQeIRGJRGFlYqwWLQ+JxuOQpVRmEx2RROKwOQyOUQSPyaUym
+SxqWyKXyeYxyZzWbSuJTScRCbz2Nz+gRKhUOfTqeUai0OSxiWTiBQSHSGFquGwekxyAgAAAOAQAAAwAA
+AAEAEAAAAQEAAwAAAAEAEAAAAQIAAwAAAAIACAAIAQMAAwAAAAEABQAAAQYAAwAAAAEAAQAAAREABAAA
+AAEAAAAIARIAAwAAAAEAAQAAARUAAwAAAAEAAgAAARYAAwAAAAEAEAAAARcABAAAAAEAAABnARwAAwAA
+AAEAAQAAAT0AAwAAAAEAAgAAAVIAAwAAAAEAAQAAAVMAAwAAAAIAAQABAAAAAA</bytes>
+																</object>
+															</object>
+														</array>
+													</array>
+													<object class="NSColor" key="NSColor">
+														<int key="NSColorSpace">3</int>
+														<bytes key="NSWhite">MCAwAA</bytes>
+													</object>
+												</object>
+											</object>
+											<int key="NScvFlags">4</int>
+										</object>
+										<object class="NSScroller" id="57579726">
+											<reference key="NSNextResponder" ref="681481965"/>
+											<int key="NSvFlags">256</int>
+											<string key="NSFrame">{{304, 1}, {11, 240}}</string>
+											<reference key="NSSuperview" ref="681481965"/>
+											<bool key="NSEnabled">YES</bool>
+											<int key="NSsFlags">256</int>
+											<reference key="NSTarget" ref="681481965"/>
+											<string key="NSAction">_doScroller:</string>
+											<double key="NSPercent">0.24615384638309479</double>
+										</object>
+										<object class="NSScroller" id="467165908">
+											<reference key="NSNextResponder" ref="681481965"/>
+											<int key="NSvFlags">-2147483392</int>
+											<string key="NSFrame">{{-100, -100}, {87, 18}}</string>
+											<reference key="NSSuperview" ref="681481965"/>
+											<int key="NSsFlags">257</int>
+											<reference key="NSTarget" ref="681481965"/>
+											<string key="NSAction">_doScroller:</string>
+											<double key="NSCurValue">1</double>
+											<double key="NSPercent">0.94565218687057495</double>
+										</object>
+									</array>
+									<string key="NSFrame">{{163, -1}, {316, 242}}</string>
+									<reference key="NSSuperview" ref="435396766"/>
+									<reference key="NSNextKeyView" ref="436081782"/>
+									<int key="NSsFlags">133202</int>
+									<reference key="NSVScroller" ref="57579726"/>
+									<reference key="NSHScroller" ref="467165908"/>
+									<reference key="NSContentView" ref="436081782"/>
+									<bytes key="NSScrollAmts">AAAAAAAAAAAAAAAAQMAAAA</bytes>
+								</object>
+							</array>
+							<string key="NSFrameSize">{479, 240}</string>
+							<reference key="NSSuperview" ref="415153892"/>
+							<string key="NSClassName">PDGradientView</string>
+							<string key="NSExtension">NSView</string>
+						</object>
+					</array>
+					<string key="NSFrameSize">{479, 240}</string>
+					<reference key="NSSuperview"/>
+				</object>
+				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
+				<string key="NSMinSize">{213, 129}</string>
+				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
+				<bool key="NSWindowIsRestorable">YES</bool>
+			</object>
+		</array>
+		<object class="IBObjectContainer" key="IBDocument.Objects">
+			<array class="NSMutableArray" key="connectionRecords">
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">imageView</string>
+						<reference key="source" ref="9922507"/>
+						<reference key="destination" ref="19709078"/>
+					</object>
+					<int key="connectionID">14</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">versionField</string>
+						<reference key="source" ref="9922507"/>
+						<reference key="destination" ref="148997526"/>
+					</object>
+					<int key="connectionID">16</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">appnameField</string>
+						<reference key="source" ref="9922507"/>
+						<reference key="destination" ref="48868220"/>
+					</object>
+					<int key="connectionID">17</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">window</string>
+						<reference key="source" ref="9922507"/>
+						<reference key="destination" ref="941864623"/>
+					</object>
+					<int key="connectionID">18</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="941864623"/>
+						<reference key="destination" ref="9922507"/>
+					</object>
+					<int key="connectionID">19</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">aboutText</string>
+						<reference key="source" ref="9922507"/>
+						<reference key="destination" ref="1030702977"/>
+					</object>
+					<int key="connectionID">27</int>
+				</object>
+			</array>
+			<object class="IBMutableOrderedSet" key="objectRecords">
+				<array key="orderedObjects">
+					<object class="IBObjectRecord">
+						<int key="objectID">0</int>
+						<reference key="object" ref="0"/>
+						<reference key="children" ref="313048121"/>
+						<nil key="parent"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">-2</int>
+						<reference key="object" ref="9922507"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">File's Owner</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">-1</int>
+						<reference key="object" ref="664928843"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">First Responder</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">-3</int>
+						<reference key="object" ref="411063142"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">Application</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">5</int>
+						<reference key="object" ref="941864623"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="415153892"/>
+						</array>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">Window</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">6</int>
+						<reference key="object" ref="415153892"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="435396766"/>
+						</array>
+						<reference key="parent" ref="941864623"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">24</int>
+						<reference key="object" ref="435396766"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="19709078"/>
+							<reference ref="48868220"/>
+							<reference ref="148997526"/>
+							<reference ref="681481965"/>
+						</array>
+						<reference key="parent" ref="415153892"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">7</int>
+						<reference key="object" ref="19709078"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="737106656"/>
+						</array>
+						<reference key="parent" ref="435396766"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">8</int>
+						<reference key="object" ref="48868220"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="819601140"/>
+						</array>
+						<reference key="parent" ref="435396766"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">9</int>
+						<reference key="object" ref="148997526"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="643536648"/>
+						</array>
+						<reference key="parent" ref="435396766"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">25</int>
+						<reference key="object" ref="681481965"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="1030702977"/>
+							<reference ref="57579726"/>
+							<reference ref="467165908"/>
+						</array>
+						<reference key="parent" ref="435396766"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">26</int>
+						<reference key="object" ref="1030702977"/>
+						<reference key="parent" ref="681481965"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">29</int>
+						<reference key="object" ref="737106656"/>
+						<reference key="parent" ref="19709078"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">30</int>
+						<reference key="object" ref="819601140"/>
+						<reference key="parent" ref="48868220"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">31</int>
+						<reference key="object" ref="643536648"/>
+						<reference key="parent" ref="148997526"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">32</int>
+						<reference key="object" ref="57579726"/>
+						<reference key="parent" ref="681481965"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">33</int>
+						<reference key="object" ref="467165908"/>
+						<reference key="parent" ref="681481965"/>
+					</object>
+				</array>
+			</object>
+			<dictionary class="NSMutableDictionary" key="flattenedProperties">
+				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="-3.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="25.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="30.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="33.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+			</dictionary>
+			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
+			<nil key="activeLocalization"/>
+			<dictionary class="NSMutableDictionary" key="localizations"/>
+			<nil key="sourceID"/>
+			<int key="maxID">33</int>
+		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<int key="IBDocument.localizationMode">0</int>
+		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
+			<real value="1060" key="NS.object.0"/>
+		</object>
+		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
+		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">NSApplicationIcon</string>
+			<string key="NS.object.0">{128, 128}</string>
+		</object>
+	</data>
+</archive>
