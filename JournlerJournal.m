@@ -2,7 +2,7 @@
 #import "JournlerEntry.h"
 #import "JournlerCollection.h"
 #import "JournlerResource.h"
-#import "BlogPref.h";
+#import "BlogPref.h"
 #import "JournlerSearchManager.h"
 #import "JournlerIndexServer.h"
 
@@ -574,7 +574,7 @@
 
 	if ( ![[NSFileManager defaultManager] fileExistsAtPath:[self propertiesPath]] ) {
 		
-		NSLog(@"%@ %s - critical error: journal is in old format, requires 1.17 update", [self className], _cmd);
+		NSLog(@"%s - critical error: journal is in old format, requires 1.17 update", __PRETTY_FUNCTION__);
 		[self setError:PDJournalFormatTooOld];
 		*err = PDJournalFormatTooOld;
 		return kJournalCouldNotLoad;
@@ -591,7 +591,7 @@
 	if ( [jVersionObj isKindOfClass:[NSString class]] ) {
 		NSMutableString *journalVersion = [[_properties objectForKey:PDJournalVersion] mutableCopy];
 		if ( !journalVersion ) {
-			NSLog(@"%@ %s - critical Error : no journal version at %@", [self className], _cmd, [self propertiesPath]);
+			NSLog(@"%s - critical Error : no journal version at %@", __PRETTY_FUNCTION__, [self propertiesPath]);
 			[self setError:PDUnreadableProperties];
 			*err = PDUnreadableProperties;
 			return kJournalCouldNotLoad;
@@ -609,7 +609,7 @@
 	
 	if ( versionNumber < 112 ) 
 	{
-		NSLog(@"%@ %s - critical error: journal is in old format, requires 1.17 update", [self className], _cmd);
+		NSLog(@"%s - critical error: journal is in old format, requires 1.17 update", __PRETTY_FUNCTION__);
 		[self setError:PDJournalFormatTooOld];
 		*err = PDJournalFormatTooOld;
 		return kJournalCouldNotLoad;
@@ -680,7 +680,7 @@
 	if ( !loadSuccess )
 	{
 		//#warning indicate the error
-		NSLog(@"%@ %s - unable to initialize journal from path %@", [self className], _cmd, path);
+		NSLog(@"%s - unable to initialize journal from path %@", __PRETTY_FUNCTION__, path);
 		*err = PDJournalStoreAndPathFailure;
 		return kJournalCouldNotLoad;
 	}
@@ -736,7 +736,7 @@
 		NSMutableDictionary *journal_collection_dic = [NSMutableDictionary dictionaryWithContentsOfFile:journal_collection_path];
 	
 		journal_collection = [[JournlerCollection alloc] initWithProperties:journal_collection_dic];
-		if ( !journal_collection ) NSLog(@"%@ %s - could not create the journal collection", [self className], _cmd);
+		if ( !journal_collection ) NSLog(@"%s - could not create the journal collection", __PRETTY_FUNCTION__);
 	
 		// set the image on the journal dictionary
 		[journal_collection determineIcon];
@@ -767,7 +767,7 @@
 		NSMutableDictionary *trash_collection_dic = [NSMutableDictionary dictionaryWithContentsOfFile:trash_collection_path];
 		
 		trash_collection = [[JournlerCollection alloc] initWithProperties:trash_collection_dic];
-		if ( !trash_collection ) NSLog(@"%@ %s - could not create the trash collection", [self className], _cmd);
+		if ( !trash_collection ) NSLog(@"%s - could not create the trash collection", __PRETTY_FUNCTION__);
 		
 		// set the image and title the tutorial dictionary
 		[trash_collection determineIcon];
@@ -992,7 +992,7 @@
 	if ( ![searchManager loadIndexAtPath:[self journalPath]] )
 	{
 		#warning - flags an error on locate journal that prevents the app from loading
-		NSLog(@"%@ %s - Unable to get or create the search indexes", [self className], _cmd);
+		NSLog(@"%s - Unable to get or create the search indexes", __PRETTY_FUNCTION__);
 		*err = PDJournalNoSearchIndexError;
 		loadResult |= kJournalNoSearchIndex;
 	}
@@ -1042,7 +1042,7 @@
 - (JournalLoadFlag) loadFromStore:(int*)err
 {	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	int i, c;
@@ -1055,28 +1055,28 @@
 	
 	if ( store == nil )
 	{
-		NSLog(@"%@ %s - unable to initialize store dictionary from path %@", [self className], _cmd, [self storePath]);
+		NSLog(@"%s - unable to initialize store dictionary from path %@", __PRETTY_FUNCTION__, [self storePath]);
 		return kJournalCouldNotLoad;
 	}
 	
 	encodedEntries = [store valueForKey:@"Entries"];
 	if ( encodedEntries == nil )
 	{
-		NSLog(@"%@ %s - store does not contain any entries", [self className], _cmd);
+		NSLog(@"%s - store does not contain any entries", __PRETTY_FUNCTION__);
 		return kJournalCouldNotLoad;
 	}
 	
 	encodedBlogs = [store valueForKey:@"Blogs"];
 	if ( encodedBlogs == nil )
 	{
-		NSLog(@"%@ %s - store does not contain any blogs", [self className], _cmd);
+		NSLog(@"%s - store does not contain any blogs", __PRETTY_FUNCTION__);
 		return kJournalCouldNotLoad;
 	}
 	
 	encodedCollections = [store valueForKey:@"Collections"];
 	if ( encodedCollections == nil )
 	{
-		NSLog(@"%@ %s - store does not contain any collections", [self className], _cmd);
+		NSLog(@"%s - store does not contain any collections", __PRETTY_FUNCTION__);
 		return kJournalCouldNotLoad;
 	}
 	
@@ -1085,7 +1085,7 @@
 		encodedResources = [store valueForKey:@"Resources"];
 		if ( encodedResources == nil )
 		{
-			NSLog(@"%@ %s - store does not contain any resources", [self className], _cmd);
+			NSLog(@"%s - store does not contain any resources", __PRETTY_FUNCTION__);
 			return kJournalCouldNotLoad;
 		}
 	}
@@ -1101,7 +1101,7 @@
 		
 		if ( rawData == nil )
 		{
-			NSLog(@"%@ %s - no data for entry %i in store", [self className], _cmd, i);
+			NSLog(@"%s - no data for entry %i in store", __PRETTY_FUNCTION__, i);
 			continue;
 		}
 		
@@ -1112,7 +1112,7 @@
 		@catch (NSException *localException)
 		{
 			anEntry = nil;
-			NSLog(@"%@ %s - unable to unarchive entry %i in store, exception %@", [self className], _cmd, i, localException);
+			NSLog(@"%s - unable to unarchive entry %i in store, exception %@", __PRETTY_FUNCTION__, i, localException);
 			[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
 					[NSNumber numberWithInt:0], @"objectType",
 					[NSString stringWithFormat:@"Entry %i in Store", i], @"errorString",
@@ -1122,7 +1122,7 @@
 		{
 			if ( anEntry == nil )
 			{
-				NSLog(@"%@ %s - error unarchiving entry %i in store", [self className], _cmd, i);
+				NSLog(@"%s - error unarchiving entry %i in store", __PRETTY_FUNCTION__, i);
 				continue;
 			}
 			else
@@ -1162,7 +1162,7 @@
 		@catch (NSException *localException)
 		{
 			aCollection = nil;
-			NSLog(@"%@ %s - unable to unarchive folder %i in store, exception %@", [self className], _cmd, i, localException);
+			NSLog(@"%s - unable to unarchive folder %i in store, exception %@", __PRETTY_FUNCTION__, i, localException);
 			[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
 					[NSNumber numberWithInt:1], @"objectType",
 					[NSString stringWithFormat:@"Folder %i in Store", i], @"errorString",
@@ -1172,7 +1172,7 @@
 		{
 			if ( aCollection == nil )
 			{
-				NSLog(@"%@ %s - error unarchiving collection %i in store", [self className], _cmd, i);
+				NSLog(@"%s - error unarchiving collection %i in store", __PRETTY_FUNCTION__, i);
 				continue;
 			}
 			else
@@ -1210,7 +1210,7 @@
 			
 			if ( resourceData == nil )
 			{
-				NSLog(@"%@ %s - no data for resource %i in store", [self className], _cmd, i);
+				NSLog(@"%s - no data for resource %i in store", __PRETTY_FUNCTION__, i);
 				continue;
 			}
 			
@@ -1221,7 +1221,7 @@
 			@catch (NSException *localException)
 			{
 				aResource = nil;
-				NSLog(@"%@ %s - unable to unarchive resource %i in store, exception %@", [self className], _cmd, i, localException);
+				NSLog(@"%s - unable to unarchive resource %i in store, exception %@", __PRETTY_FUNCTION__, i, localException);
 				[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
 						[NSNumber numberWithInt:3], @"objectType",
 						[NSString stringWithFormat:@"Resource %i in Store", i], @"errorString",
@@ -1231,7 +1231,7 @@
 			{
 				if ( aResource == nil )
 				{
-					NSLog(@"%@ %s - error unarchiving resource %i in store", [self className], _cmd, i);
+					NSLog(@"%s - error unarchiving resource %i in store", __PRETTY_FUNCTION__, i);
 					continue;
 				}
 				else
@@ -1271,7 +1271,7 @@
 		@catch (NSException *localException)
 		{
 			aBlog = nil;
-			NSLog(@"%@ %s - unable to unarchive blog %i in store, exception %@", [self className], _cmd, i, localException);
+			NSLog(@"%s - unable to unarchive blog %i in store, exception %@", __PRETTY_FUNCTION__, i, localException);
 			[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
 					[NSNumber numberWithInt:2], @"objectType",
 					[NSString stringWithFormat:@"Blog %i in Store", i], @"errorString",
@@ -1281,7 +1281,7 @@
 		{
 			if ( aBlog == nil )
 			{
-				NSLog(@"%@ %s - error unarchiving blog %i in store", [self className], _cmd, i);
+				NSLog(@"%s - error unarchiving blog %i in store", __PRETTY_FUNCTION__, i);
 				continue;
 			}
 			else
@@ -1328,7 +1328,7 @@
 {
 		
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	int c;
@@ -1390,7 +1390,7 @@
 			}
 			else 
 			{
-				NSLog(@"%@ %s - Unable to read blog at path %@", [self className], _cmd, [[self blogsPath] stringByAppendingPathComponent:pname]);
+				NSLog(@"%s - Unable to read blog at path %@", __PRETTY_FUNCTION__, [[self blogsPath] stringByAppendingPathComponent:pname]);
 			}
 		}
 	}
@@ -1427,7 +1427,7 @@
 			}
 			else 
 			{
-				NSLog(@"%@ %s - Unable to load entry at path %@", [self className], _cmd, [[self entriesPath] stringByAppendingPathComponent:pname]);
+				NSLog(@"%s - Unable to load entry at path %@", __PRETTY_FUNCTION__, [[self entriesPath] stringByAppendingPathComponent:pname]);
 			}
 		}
 		
@@ -1453,7 +1453,7 @@
 			@catch (NSException *localException)
 			{
 				readEntry = nil;
-				NSLog(@"%@ %s - unable to unarchive entry at path %@, exception %@", [self className], _cmd, [[self entriesPath] stringByAppendingPathComponent:pname], localException);
+				NSLog(@"%s - unable to unarchive entry at path %@, exception %@", __PRETTY_FUNCTION__, [[self entriesPath] stringByAppendingPathComponent:pname], localException);
 				[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
 						[NSNumber numberWithInt:0], @"objectType",
 						[[self entriesPath] stringByAppendingPathComponent:pname], @"errorString",
@@ -1481,7 +1481,7 @@
 				}
 				else 
 				{
-					NSLog(@"%@ %s - Unable to load entry at path %@", [self className], _cmd, [[self entriesPath] stringByAppendingPathComponent:pname]);
+					NSLog(@"%s - Unable to load entry at path %@", __PRETTY_FUNCTION__, [[self entriesPath] stringByAppendingPathComponent:pname]);
 					readEntry = nil;
 				}
 			}
@@ -1522,7 +1522,7 @@
 			}
 			else 
 			{
-				NSLog(@"%@ %s - Unable to load collection at path %@", [self className], _cmd, [[self collectionsPath] stringByAppendingPathComponent:pname]);
+				NSLog(@"%s - Unable to load collection at path %@", __PRETTY_FUNCTION__, [[self collectionsPath] stringByAppendingPathComponent:pname]);
 			}
 		}
 	}
@@ -1565,7 +1565,7 @@
 				}
 				else 
 				{
-					NSLog(@"%@ %s - Unable to load resource at path %@", [self className], _cmd, [[self resourcesPath] stringByAppendingPathComponent:pname]);
+					NSLog(@"%s - Unable to load resource at path %@", __PRETTY_FUNCTION__, [[self resourcesPath] stringByAppendingPathComponent:pname]);
 				}
 			}
 		}
@@ -1624,7 +1624,7 @@
 	if ( [filteredArray count] > 0 )
 	{
 		#ifdef __DEBUG__
-		NSLog(@"%@ %s - updating the title on %i resources", [self className], _cmd, [filteredArray count]);
+		NSLog(@"%s - updating the title on %i resources", __PRETTY_FUNCTION__, [filteredArray count]);
 		#endif
 		
 		JournlerResource *aResources;
@@ -1812,7 +1812,7 @@
 
 - (BOOL) resetSearchManager 
 {
-	NSLog(@"%@ %s - Rebuilding search index", [self className], _cmd);
+	NSLog(@"%s - Rebuilding search index", __PRETTY_FUNCTION__);
 	
 	// Clear out the old manager
 	if ( searchManager ) 
@@ -1824,7 +1824,7 @@
 	// Realloc
 	searchManager = [[JournlerSearchManager alloc] initWithJournal:self];
 	if ( !searchManager ) {
-		NSLog(@"%@ %s - Unable to reallocate search manager, searching disabled", [self className], _cmd);
+		NSLog(@"%s - Unable to reallocate search manager, searching disabled", __PRETTY_FUNCTION__);
 		return NO;
 	}
 	
@@ -1834,7 +1834,7 @@
 	// reload the index
 	if ( ![searchManager createIndexAtPath:[self journalPath]] || ![searchManager loadIndexAtPath:[self journalPath]] )
 	{
-		NSLog(@"%@ %s - Unable to recreate or reload index at journal path %@", [self className], _cmd, [self journalPath]);
+		NSLog(@"%s - Unable to recreate or reload index at journal path %@", __PRETTY_FUNCTION__, [self journalPath]);
 		return NO;
 	}
 	
@@ -1847,7 +1847,7 @@
 	// Rebuild the indexes
 	[searchManager rebuildIndex];
 		
-	NSLog(@"%@ %s - Search reset successful", [self className], _cmd);
+	NSLog(@"%s - Search reset successful", __PRETTY_FUNCTION__);
 	return YES;
 }
 
@@ -1927,8 +1927,8 @@
 						if ( theResource == nil )
 						{
 							completeSuccess = NO;
-							NSLog(@"%@ %s - unable to produce new resource for entry %@ with path %@",
-									[self className], _cmd, [anEntry tagID], [theURL path]);
+							NSLog(@"%s - unable to produce new resource for entry %@ with path %@",
+									__PRETTY_FUNCTION__, [anEntry tagID], [theURL path]);
 						}
 						else
 						{
@@ -1972,7 +1972,7 @@
 		JournlerEntry *representedEntry = [aResource journlerObject];
 		if ( representedEntry == nil )
 		{
-			NSLog(@"%@ %s - unable to produce entry for uri %@", [self className], _cmd, [aResource uriString]);
+			NSLog(@"%s - unable to produce entry for uri %@", __PRETTY_FUNCTION__, [aResource uriString]);
 			continue;
 		}
 		
@@ -2015,7 +2015,7 @@
 		else
 		{
 			completeSucces = NO;
-			NSLog(@"%@ %s - original file missing for resource %@-%@ %@", [self className], _cmd, 
+			NSLog(@"%s - original file missing for resource %@-%@ %@", __PRETTY_FUNCTION__, 
 			[[aResource entry] tagID], [aResource tagID], [aResource title]);
 		}
 	}
@@ -2036,7 +2036,7 @@
 			[orphanedResources addObject:aResource];
 		
 		if ( [aResource entry] == nil && [[aResource entries] count] > 0 )
-			NSLog(@"%@ %s - resource %@:%@ does not have an owner but does belong to entries", [self className], _cmd, [aResource tagID], [aResource title]);
+			NSLog(@"%s - resource %@:%@ does not have an owner but does belong to entries", __PRETTY_FUNCTION__, [aResource tagID], [aResource title]);
 	}
 	
 	return orphanedResources;
@@ -2270,7 +2270,7 @@
 		archivePath = [packagePath stringByAppendingPathComponent:[archivePossibilities objectAtIndex:0]];
 	else
 	{
-		NSLog(@"%@ %s - unable to locate entry contents at package path %@", [self className], _cmd, packagePath);
+		NSLog(@"%s - unable to locate entry contents at package path %@", __PRETTY_FUNCTION__, packagePath);
 		return nil;
 	}
 	
@@ -2342,7 +2342,7 @@
 	@catch (NSException *localException)
 	{
 		unarchivedObject = nil;
-		NSLog(@"%@ %s - unable to unarchive entry at path %@, exception %@", [self className], _cmd, filepath, localException);
+		NSLog(@"%s - unable to unarchive entry at path %@, exception %@", __PRETTY_FUNCTION__, filepath, localException);
 		[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
 				[NSNumber numberWithInt:0], @"objectType",
 				filepath, @"errorString",
@@ -2488,8 +2488,8 @@ bail:
 	}
 	else 
 	{
-		NSLog(@"%@ %s - unable to create file wrapper for entry content %@", 
-				[self className], _cmd, [entry valueForKey:@"tagID"]);
+		NSLog(@"%s - unable to create file wrapper for entry content %@", 
+				__PRETTY_FUNCTION__, [entry valueForKey:@"tagID"]);
 	}
 	
 	BOOL success;
@@ -2590,7 +2590,7 @@ bail:
 	@catch (NSException *localException)
 	{
 		aCollection = nil;
-		NSLog(@"%@ %s - unable to unarchive folder at path %@, exception %@", [self className], _cmd, path, localException);
+		NSLog(@"%s - unable to unarchive folder at path %@, exception %@", __PRETTY_FUNCTION__, path, localException);
 		[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
 				[NSNumber numberWithInt:1], @"objectType",
 				path, @"errorString",
@@ -2618,7 +2618,7 @@ bail:
 	@catch (NSException *localException)
 	{
 		blogPref = nil;
-		NSLog(@"%@ %s - unable to unarchive blog at path %@, exception %@", [self className], _cmd, path, localException);
+		NSLog(@"%s - unable to unarchive blog at path %@, exception %@", __PRETTY_FUNCTION__, path, localException);
 		[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
 				[NSNumber numberWithInt:2], @"objectType",
 				path, @"errorString",
@@ -2641,7 +2641,7 @@ bail:
 	@catch (NSException *localException)
 	{
 		aResource = nil;
-		NSLog(@"%@ %s - unable to unarchive resource at path %@, exception %@", [self className], _cmd, path, localException);
+		NSLog(@"%s - unable to unarchive resource at path %@, exception %@", __PRETTY_FUNCTION__, path, localException);
 		[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
 				[NSNumber numberWithInt:3], @"objectType",
 				path, @"errorString",
@@ -2932,7 +2932,7 @@ bail:
 	success = [store writeToFile:[self storePath] atomically:YES];
 	if ( !success )
 	{
-		NSLog(@"%@ %s - unable to write store to path %@", [self className], _cmd, [self storePath]);
+		NSLog(@"%s - unable to write store to path %@", __PRETTY_FUNCTION__, [self storePath]);
 	}
 	
 	// save the individual entries, collections and resources that are marked as dirty
@@ -2989,7 +2989,7 @@ bail:
 		return NO;
 	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s - %@ %@", [self className], _cmd, [entry valueForKey:@"tagID"], [entry valueForKey:@"title"]);
+	NSLog(@"%s - %@ %@", __PRETTY_FUNCTION__, [entry valueForKey:@"tagID"], [entry valueForKey:@"title"]);
 	#endif
 	
 	BOOL dir;
@@ -3018,7 +3018,7 @@ bail:
 	if ( (![fm fileExistsAtPath:packagePath isDirectory:&dir] || !dir) && ![fm createDirectoryAtPath:packagePath attributes:nil] )
 	{
 		// critical error - unable to save entry
-		NSLog(@"%@ %s - unable to create package for entry at path %@", [self className], _cmd, packagePath);
+		NSLog(@"%s - unable to create package for entry at path %@", __PRETTY_FUNCTION__, packagePath);
 		return NO;
 	}
 	
@@ -3029,14 +3029,14 @@ bail:
 	
 	if ( rtfdWrapper == nil && attributedContent != nil )
 	{
-		NSLog(@"%@ %s - unable to create file wrapper for entry content %@", 
-				[self className], _cmd, [entry valueForKey:@"tagID"]);
+		NSLog(@"%s - unable to create file wrapper for entry content %@", 
+				__PRETTY_FUNCTION__, [entry valueForKey:@"tagID"]);
 	}
 	
 	// write the encoded properties
 	if ( ![encodedProperties writeToFile:propertiesPath options:NSAtomicWrite error:&writeError] )
 	{
-		NSLog(@"%@ %s - unable to write encoded properties to file %@, error %@", [self className], _cmd, propertiesPath, writeError);
+		NSLog(@"%s - unable to write encoded properties to file %@, error %@", __PRETTY_FUNCTION__, propertiesPath, writeError);
 		return NO;
 	}
 	else
@@ -3051,14 +3051,14 @@ bail:
 	// ensure that a directory exists for the entry text
 	if ( ![fm fileExistsAtPath:RTFDContainer] && ![fm createDirectoryAtPath:RTFDContainer attributes:nil] )
 	{
-		NSLog(@"%@ %s - unable to create text container at path %@", [self className], _cmd, RTFDContainer);
+		NSLog(@"%s - unable to create text container at path %@", __PRETTY_FUNCTION__, RTFDContainer);
 		return NO;
 	}
 	
 	// write the rich text
 	if ( rtfdWrapper != nil && ![rtfdWrapper writeToFile:RTFDPath atomically:YES updateFilenames:YES] )
 	{
-		NSLog(@"%@ %s - unable to write rtfd to file %@", [self className], _cmd, RTFDPath);
+		NSLog(@"%s - unable to write rtfd to file %@", __PRETTY_FUNCTION__, RTFDPath);
 		return NO;
 	}
 	
@@ -3098,8 +3098,8 @@ bail:
 		BOOL success = [NSKeyedArchiver archiveRootObject:aResource toFile:path];
 		if ( !success )
 		{
-			NSLog(@"%@ %s - unable to archive resource %@ to path %@", 
-					[self className], _cmd, [aResource valueForKey:@"tagID"], path);
+			NSLog(@"%s - unable to archive resource %@ to path %@", 
+					__PRETTY_FUNCTION__, [aResource valueForKey:@"tagID"], path);
 			return NO;
 		}
 	}
@@ -3129,8 +3129,8 @@ bail:
 	BOOL success = [NSKeyedArchiver archiveRootObject:aCollection toFile:path];
 	if ( !success )
 	{
-		NSLog(@"%@ %s - unable to archive collection %@ to path %@", 
-				[self className], _cmd, [aCollection valueForKey:@"tagID"], path);
+		NSLog(@"%s - unable to archive collection %@ to path %@", 
+				__PRETTY_FUNCTION__, [aCollection valueForKey:@"tagID"], path);
 		return NO;
 	}
 	
@@ -3187,8 +3187,8 @@ bail:
 	BOOL success = [NSKeyedArchiver archiveRootObject:aBlog toFile:path];
 	if ( !success)
 	{
-		NSLog(@"%@ %s - unable to archive blog %@ to path %@", 
-				[self className], _cmd, [aBlog valueForKey:@"tagID"], path);
+		NSLog(@"%s - unable to archive blog %@ to path %@", 
+				__PRETTY_FUNCTION__, [aBlog valueForKey:@"tagID"], path);
 		return NO;
 	}
 	
@@ -3336,7 +3336,7 @@ bail:
 	if ( ![self removeResources:[anEntry resources] fromEntries:[NSArray arrayWithObject:anEntry] errors:&errors] )
 	{
 		// need a way of getting these entries to the user
-		NSLog(@"%@ %s - there were problems removing the resource from entry %@", [self className], _cmd, [anEntry tagID]);
+		NSLog(@"%s - there were problems removing the resource from entry %@", __PRETTY_FUNCTION__, [anEntry tagID]);
 	}
 
 	// path info for the physical delete
@@ -3416,13 +3416,13 @@ bail:
 			&& ![[NSFileManager defaultManager] removeFileAtPath:[aResource path] handler:self] )
 		{
 			success = NO;
-			NSLog(@"%@ %s - problem removing file based resource at path %@", [self className], _cmd, [aResource path]);
+			NSLog(@"%s - problem removing file based resource at path %@", __PRETTY_FUNCTION__, [aResource path]);
 		}
 		
 		if ( [[NSFileManager defaultManager] fileExistsAtPath:[aResource _pathForFileThumbnail]] 
 				&& ![[NSFileManager defaultManager] removeFileAtPath:[aResource _pathForFileThumbnail] handler:self] )
 		{
-			NSLog(@"%@ %s - problem removing icon for file based resource at path %@", [self className], _cmd, [aResource path]);
+			NSLog(@"%s - problem removing icon for file based resource at path %@", __PRETTY_FUNCTION__, [aResource path]);
 		}
 	}
 	else if ( [aResource representsJournlerObject] )
@@ -3434,7 +3434,7 @@ bail:
 			JournlerEntry *theReverseEntry = [self objectForURIRepresentation:uri];
 			if ( theReverseEntry == nil )
 			{
-				NSLog(@"%@ %s - error deriving entry for reverse link delete", [self className], _cmd);
+				NSLog(@"%s - error deriving entry for reverse link delete", __PRETTY_FUNCTION__);
 			}
 			else
 			{
@@ -3472,7 +3472,7 @@ bail:
 	
 	if ( [[NSFileManager defaultManager] fileExistsAtPath:journalResourcePath] 
 			&& ![[NSFileManager defaultManager] removeFileAtPath:journalResourcePath handler:self] )
-		NSLog(@"%@ %s - problem deleting the physical representation of the resource at %@", [self className], _cmd, journalResourcePath);
+		NSLog(@"%s - problem deleting the physical representation of the resource at %@", __PRETTY_FUNCTION__, journalResourcePath);
 	
 	// mark the entry as deleted
 	[aResource setValue:BooleanNumber(YES) forKey:@"deleted"];
@@ -3593,7 +3593,7 @@ bail:
 
 	if ( [[NSFileManager defaultManager] fileExistsAtPath:path] ) {
 		if ( ![[NSFileManager defaultManager] removeFileAtPath:path handler:self] )
-			NSLog(@"%@ %s - trouble removing blog at path %@", [self className], _cmd, path);
+			NSLog(@"%s - trouble removing blog at path %@", __PRETTY_FUNCTION__, path);
 	}
 	
 	// update the dictionary
@@ -3825,7 +3825,7 @@ bail:
 	BOOL success = YES;
 	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
+	NSLog(@"%s", __PRETTY_FUNCTION__);
 	#endif
 	
 	JournlerResource *aResource;
@@ -3857,7 +3857,7 @@ bail:
 					[activity appendString:@"Resource no longer belongs to any entries, deleting it\n"];
 					
 					#ifdef __DEBUG__
-					NSLog(@"%@ %s - resource %@ no longer belongs to any entries, deleting it", [self className], _cmd, [aResource tagID]);
+					NSLog(@"%s - resource %@ no longer belongs to any entries, deleting it", __PRETTY_FUNCTION__, [aResource tagID]);
 					#endif
 				
 					[self deleteResource:aResource];
@@ -3880,8 +3880,8 @@ bail:
 							success = NO;
 							[activity appendFormat:@"** Moving resource to new entry, but there was a problem creating the new destination directory...\n\t-- Destination Entry: %@\n\t-- Destination ID: %@\n", [newParent title], [newParent tagID]];
 							
-							NSLog(@"%@ %s - problem creating resource directory for entry %@ to move entry %@",
-							[self className], _cmd, [newParent tagID], [aResource tagID]);
+							NSLog(@"%s - problem creating resource directory for entry %@ to move entry %@",
+							__PRETTY_FUNCTION__, [newParent tagID], [aResource tagID]);
 						}
 						else
 						{
@@ -3890,7 +3890,7 @@ bail:
 							NSString *newFilename = [newPath lastPathComponent];
 							
 							#ifdef __DEBUG__
-							NSLog(@"%@ %s - moving resource %@ from %@ to %@", [self className], _cmd, [aResource tagID], oldPath, newPath);
+							NSLog(@"%s - moving resource %@ from %@ to %@", __PRETTY_FUNCTION__, [aResource tagID], oldPath, newPath);
 							#endif
 							
 							if ( [[NSFileManager defaultManager] movePath:oldPath toPath:newPath handler:self] )
@@ -3915,7 +3915,7 @@ bail:
 								
 								[activity appendFormat:@"** There was a problem moving the entry to a new parent...\n\t-- Old Parent: %@\n\t-- Old Parent ID: %@\n\t-- Destination Entry: %@\n\t-- Destination ID: %@\n", [oldParent title], [oldParent tagID], [newParent title], [newParent tagID]];
 								
-								NSLog(@"%@ %s - problem moving resource %@ from %@ to %@", [self className], _cmd, [aResource tagID], oldPath, newPath);
+								NSLog(@"%s - problem moving resource %@ from %@ to %@", __PRETTY_FUNCTION__, [aResource tagID], oldPath, newPath);
 								
 								// set the resource back in the entry
 								[[aResource entry] addResource:aResource];
@@ -3933,15 +3933,15 @@ bail:
 					}
 					
 					#ifdef __DEBUG__
-					NSLog(@"%@ %s - moved resource %@ from entry %@ to entry %@", [self className], _cmd, [aResource tagID], [oldParent tagID], [newParent tagID]);
+					NSLog(@"%s - moved resource %@ from entry %@ to entry %@", __PRETTY_FUNCTION__, [aResource tagID], [oldParent tagID], [newParent tagID]);
 					#endif
 					
 					// save the resource
 					if ( ![self saveResource:aResource] )
 					{
 						success = NO;
-						NSLog(@"%@ %s - problem saving resource %@ after changing its parent to entry %@",
-						[self className], _cmd, [aResource tagID], [newParent tagID]);
+						NSLog(@"%s - problem saving resource %@ after changing its parent to entry %@",
+						__PRETTY_FUNCTION__, [aResource tagID], [newParent tagID]);
 					}
 					
 				}
@@ -3960,7 +3960,7 @@ bail:
 		if ( ![self saveEntry:anEntry] )
 		{
 			success = NO;
-			NSLog(@"%@ %s - problem saving entry %@", [self className], _cmd, [anEntry tagID]);
+			NSLog(@"%s - problem saving entry %@", __PRETTY_FUNCTION__, [anEntry tagID]);
 		}
 	}
 	
@@ -3987,8 +3987,7 @@ bail:
 
 - (BOOL)fileManager:(NSFileManager *)manager shouldProceedAfterError:(NSDictionary *)errorInfo 
 {
-	NSLog(@"\n%@ %s - Encountered file manager error: source = %@, error = %@, destination = %@\n", [self className], _cmd,
-			[errorInfo objectForKey:@"Path"], [errorInfo objectForKey:@"Error"], [errorInfo objectForKey:@"ToPath"]);
+	NSLog(@"\n%s - Encountered file manager error: source = %@, error = %@, destination = %@\n", __PRETTY_FUNCTION__,[errorInfo objectForKey:@"Path"], [errorInfo objectForKey:@"Error"], [errorInfo objectForKey:@"ToPath"]);
 	
 	return NO;
 	
@@ -4005,7 +4004,7 @@ bail:
 - (void) checkMemoryUse:(id)anObject
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	// run this in the background
@@ -4037,7 +4036,7 @@ bail:
 		&& [anEntry attributedContentIfLoaded] != nil )
 		{
 			#ifdef __DEBUG__
-			NSLog(@"%@ %s - releasing the content for entry %@-%@", [self className], _cmd, [anEntry tagID], [anEntry title]);
+			NSLog(@"%s - releasing the content for entry %@-%@", __PRETTY_FUNCTION__, [anEntry tagID], [anEntry title]);
 			#endif
 			
 			// save the entry if it is dirty
@@ -4058,7 +4057,7 @@ bail:
 		&& [aResource previewIfLoaded] != nil )
 		{
 			#ifdef __DEBUG__
-			NSLog(@"%@ %s - releasing the content for entry %@-%@", [self className], _cmd, [aResource tagID], [aResource title]);
+			NSLog(@"%s - releasing the content for entry %@-%@", __PRETTY_FUNCTION__, [aResource tagID], [aResource title]);
 			#endif
 			
 			// save the resource if it is dirty - not necessary
@@ -4092,7 +4091,7 @@ bail:
 	NSEnumerator *enumerator = [[self resources] objectEnumerator];
 	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s - beginning at %@",[self className],_cmd,[NSDate date]);
+	NSLog(@"%s - beginning at %@",__PRETTY_FUNCTION__,[NSDate date]);
 	#endif
 	
 	while ( aResource = [enumerator nextObject] )
@@ -4111,7 +4110,7 @@ bail:
 				&& [savedDateModified compare:actualDateModified] == NSOrderedAscending )
 				{
 					#ifdef __DEBUG__
-					NSLog(@"%@ %s - resource has been modified, path %@", [self className], _cmd, path);
+					NSLog(@"%s - resource has been modified, path %@", __PRETTY_FUNCTION__, path);
 					#endif
 					
 					[aResource reloadIcon];
@@ -4125,7 +4124,7 @@ bail:
 	}
 	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s - ending at %@",[self className],_cmd,[NSDate date]);
+	NSLog(@"%s - ending at %@",__PRETTY_FUNCTION__,[NSDate date]);
 	#endif
 	
 	[pool release];
