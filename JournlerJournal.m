@@ -558,9 +558,9 @@
 		
 	// Complete failure if there is no directory at this path
 	// ----------------------------------------------------------
-
+    
 	if ( ![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&dir] || !dir ) {
-		NSLog(@"%@ %s - critical Error : Unable to create journal : No journal at path %@", [self className], _cmd, path);
+		NSLog(@"%s - critical Error : Unable to create journal : No journal at path %@", __PRETTY_FUNCTION__, path);
 		[self setError:PDNoJournalAtPath];
 		*err = PDNoJournalAtPath;
 		return kJournalCouldNotLoad;
