@@ -1308,7 +1308,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	JournlerCollection *aParent = self;
 	NSMutableString *completePredicateString = [[[NSMutableString alloc] initWithFormat:@"( %@ )", [self predicateString]] autorelease];
 				
-	while ( aParent = [aParent parent] ) 
+	while ( (aParent = [aParent parent]) ) 
 	{
 		NSString *predicateFormat;
 	
@@ -1368,7 +1368,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 			[allConditions addObject:firstDictionary];
 		}
 		
-		while ( aParent = [aParent parent] ) 
+		while ( (aParent = [aParent parent]) ) 
 		{
 			// break out of the loop if this is the parent
 			if ( aParent == nil || [[aParent valueForKey:@"tagID"] intValue] == -1 ) break;
@@ -1391,7 +1391,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 		// not grouped, I take all the conditions in an array
 		[allConditions addObjectsFromArray:[self conditions]];
 		
-		while ( aParent = [aParent parent] ) 
+		while ( (aParent = [aParent parent]) ) 
 		{
 			// break out of the loop if this is the parent
 			if ( aParent == nil || [[aParent valueForKey:@"tagID"] intValue] == -1 ) break;
@@ -1527,7 +1527,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	BOOL added = YES;
 	
 	NSArray *allConditions = [self allConditions:YES];
-	#ifdef __DEBUG __
+	#ifdef __DEBUG__
 	NSLog([allConditions description]);
 	#endif
 	
@@ -2037,7 +2037,7 @@ bail:
 	
 	BOOL inSmart = NO;
 	JournlerCollection *aParent = self;
-	while ( aParent = [aParent parent] ) 
+	while ( (aParent = [aParent parent]) ) 
 	{
 		if ( aParent == nil || [[aParent valueForKey:@"tagID"] intValue] == -1 ) 
 			break;
