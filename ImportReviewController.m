@@ -94,7 +94,7 @@
 - (void) dealloc 
 {	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[_entries release];
@@ -108,7 +108,7 @@
 - (void)windowWillClose:(NSNotification *)aNotification 
 {	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	if ( [aNotification object] == [self window] )
@@ -269,7 +269,7 @@
 	else 
 	{
 		if ( ![objectController commitEditing] )
-			NSLog(@"%@ %s - unable to commit editing", [self className], _cmd);
+			NSLog(@"%s - unable to commit editing", __PRETTY_FUNCTION__);
 		
 		_importHasBegun = YES;
 		[tipField setHidden:YES];

@@ -381,7 +381,7 @@
 		htmlData = [self dataFromRange:NSMakeRange(0,[self length]) documentAttributes:docAttributes error:&conversionError];
 		if ( htmlData == nil )
 		{
-			NSLog(@"%@ %s - unable to generate html data from rich text", [self className], _cmd );
+			NSLog(@"%s - unable to generate html data from rich text", __PRETTY_FUNCTION__ );
 			htmlString = nil;
 			goto bail;
 		}

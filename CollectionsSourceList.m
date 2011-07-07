@@ -60,7 +60,7 @@ static NSString *kMailMessagePboardType = @"MV Super-secret message transfer pas
 - (void) dealloc
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[self unregisterDraggedTypes];
@@ -348,13 +348,13 @@ static NSString *kMailMessagePboardType = @"MV Super-secret message transfer pas
 /*
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender
 {
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	return [sender draggingSourceOperationMask];
 }
 
 - (void)draggingExited:(id <NSDraggingInfo>)sender
 {
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 }
 */
 

@@ -48,7 +48,7 @@
 - (void) dealloc
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[collection release];
@@ -171,7 +171,7 @@
 - (IBAction) okay:(id)sender
 {
 	if ( ![objectController commitEditing] )
-		NSLog(@"%@ %s - unable to commit editing", [self className], _cmd);
+		NSLog(@"%s - unable to commit editing", __PRETTY_FUNCTION__);
 	
 	[collection setValue:[self valueForKey:@"image"] forKey:@"icon"];
 	[collection setValue:[self valueForKey:@"title"] forKey:@"title"];
@@ -229,7 +229,7 @@
 		{
 			NSBeep();
 			[[NSAlert nilImageError] runModal];
-			NSLog(@"%@ %s - unable to initalize image from contents of file %@", [self className], _cmd, filename);
+			NSLog(@"%s - unable to initalize image from contents of file %@", __PRETTY_FUNCTION__, filename);
 		}
 		else
 		{

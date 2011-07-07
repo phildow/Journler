@@ -295,7 +295,7 @@
 {
 	// let the delegate know that we become first responder
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	BOOL didBecome = [super becomeFirstResponder];

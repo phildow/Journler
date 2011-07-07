@@ -9,7 +9,7 @@
 
 - (id)init 
 {
-	//NSLog(@"%@ %s - beginning", [self className], _cmd);
+	//NSLog(@"%s - beginning", __PRETTY_FUNCTION__);
 	
 	if ( self = [self initWithWindowNibName:@"IntelligentCollection"] ) 
 	{
@@ -36,7 +36,7 @@
 		//NSLog(@"if ( self = [self initWithWindowNibName:@\"IntelligentCollection\"] ) - ending ");
     }
 	
-	//NSLog(@"%@ %s - ending", [self className], _cmd);
+	//NSLog(@"%s - ending", __PRETTY_FUNCTION__);
     return self;
 }
 

@@ -118,7 +118,7 @@
 	// create a url request from the url
 	NSURLRequest *request = [NSURLRequest requestWithURL:aURL];
 	if ( !request ) {
-		NSLog(@"%@ %s - unable to derive url request from url %@", [self className], _cmd, aURL);
+		NSLog(@"%s - unable to derive url request from url %@", __PRETTY_FUNCTION__, aURL);
 		NSBeep();
 		[[NSAlert mediaError] runModal];
 		return NO;
@@ -463,36 +463,36 @@
  request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id<WebPolicyDecisionListener>)listener
 {
 	if ( [actionInformation objectForKey:WebActionNavigationTypeKey] == nil )
-		NSLog(@"%@ %s - no WebActionNavigationTypeKey",[self className],_cmd);
+		NSLog(@"%s - no WebActionNavigationTypeKey",__PRETTY_FUNCTION__);
 	
 	switch ( [[actionInformation objectForKey:WebActionNavigationTypeKey] intValue] )
 	{
 	case WebNavigationTypeLinkClicked:
-		NSLog(@"%@ %s - WebNavigationTypeLinkClicked",[self className],_cmd);
+		NSLog(@"%s - WebNavigationTypeLinkClicked",__PRETTY_FUNCTION__);
 		break;
 		
     case WebNavigationTypeFormSubmitted:
-		NSLog(@"%@ %s - WebNavigationTypeFormSubmitted",[self className],_cmd);
+		NSLog(@"%s - WebNavigationTypeFormSubmitted",__PRETTY_FUNCTION__);
 		break;
 
     case WebNavigationTypeBackForward:
-		NSLog(@"%@ %s - WebNavigationTypeBackForward",[self className],_cmd);
+		NSLog(@"%s - WebNavigationTypeBackForward",__PRETTY_FUNCTION__);
 		break;
 
     case WebNavigationTypeReload:
-		NSLog(@"%@ %s - WebNavigationTypeReload",[self className],_cmd);
+		NSLog(@"%s - WebNavigationTypeReload",__PRETTY_FUNCTION__);
 		break;
 
     case WebNavigationTypeFormResubmitted:
-		NSLog(@"%@ %s - WebNavigationTypeFormResubmitted",[self className],_cmd);
+		NSLog(@"%s - WebNavigationTypeFormResubmitted",__PRETTY_FUNCTION__);
 		break;
 
     case WebNavigationTypeOther:
-		NSLog(@"%@ %s - WebNavigationTypeOther",[self className],_cmd);
+		NSLog(@"%s - WebNavigationTypeOther",__PRETTY_FUNCTION__);
 		break;
 	
 	default:
-		NSLog(@"%@ %s - default",[self className],_cmd);
+		NSLog(@"%s - default",__PRETTY_FUNCTION__);
 		break;
 
 	}
@@ -510,36 +510,36 @@ request:(NSURLRequest *)request newFrameName:(NSString *)frameName decisionListe
 {	
 	#ifdef __DEBUG__
 	if ( [actionInformation objectForKey:WebActionNavigationTypeKey] == nil )
-		NSLog(@"%@ %s - no WebActionNavigationTypeKey",[self className],_cmd);
+		NSLog(@"%s - no WebActionNavigationTypeKey",__PRETTY_FUNCTION__);
 	
 	switch ( [[actionInformation objectForKey:WebActionNavigationTypeKey] intValue] )
 	{
 	case WebNavigationTypeLinkClicked:
-		NSLog(@"%@ %s - WebNavigationTypeLinkClicked",[self className],_cmd);
+		NSLog(@"%s - WebNavigationTypeLinkClicked",__PRETTY_FUNCTION__);
 		break;
 		
     case WebNavigationTypeFormSubmitted:
-		NSLog(@"%@ %s - WebNavigationTypeFormSubmitted",[self className],_cmd);
+		NSLog(@"%s - WebNavigationTypeFormSubmitted",__PRETTY_FUNCTION__);
 		break;
 
     case WebNavigationTypeBackForward:
-		NSLog(@"%@ %s - WebNavigationTypeBackForward",[self className],_cmd);
+		NSLog(@"%s - WebNavigationTypeBackForward",__PRETTY_FUNCTION__);
 		break;
 
     case WebNavigationTypeReload:
-		NSLog(@"%@ %s - WebNavigationTypeReload",[self className],_cmd);
+		NSLog(@"%s - WebNavigationTypeReload",__PRETTY_FUNCTION__);
 		break;
 
     case WebNavigationTypeFormResubmitted:
-		NSLog(@"%@ %s - WebNavigationTypeFormResubmitted",[self className],_cmd);
+		NSLog(@"%s - WebNavigationTypeFormResubmitted",__PRETTY_FUNCTION__);
 		break;
 
     case WebNavigationTypeOther:
-		NSLog(@"%@ %s - WebNavigationTypeOther",[self className],_cmd);
+		NSLog(@"%s - WebNavigationTypeOther",__PRETTY_FUNCTION__);
 		break;
 	
 	default:
-		NSLog(@"%@ %s - default",[self className],_cmd);
+		NSLog(@"%s - default",__PRETTY_FUNCTION__);
 		break;
 	}
 	#endif
@@ -562,7 +562,7 @@ request:(NSURLRequest *)request newFrameName:(NSString *)frameName decisionListe
 	JournlerMediaViewer *mediaViewer = [[[JournlerMediaViewer alloc] initWithURL:mediaURL uti:(NSString*)kUTTypeURL] autorelease];
 	if ( mediaViewer == nil )
 	{
-		NSLog(@"%@ %s - problem allocating media viewer for url %@", [self className], _cmd, mediaURL);
+		NSLog(@"%s - problem allocating media viewer for url %@", __PRETTY_FUNCTION__, mediaURL);
 		[[NSWorkspace sharedWorkspace] openURL:mediaURL];
 	}
 	else
@@ -806,7 +806,7 @@ bail:
 	if ( theArchive == nil )
 	{
 		NSBeep();
-		NSLog(@"%@ %s - unable to get archive for url", [self className], _cmd, [theURL absoluteString]);
+		NSLog(@"%s - unable to get archive for url", __PRETTY_FUNCTION__, [theURL absoluteString]);
 		return;
 	}
 	
@@ -814,7 +814,7 @@ bail:
 	if ( archiveData == nil )
 	{
 		NSBeep();
-		NSLog(@"%@ %s - unable to get archive data for url", [self className], _cmd, [theURL absoluteString]);
+		NSLog(@"%s - unable to get archive data for url", __PRETTY_FUNCTION__, [theURL absoluteString]);
 		return;
 	}
 	
@@ -971,7 +971,7 @@ bail:
 	tiffData = [sender representedObject];
 	if ( tiffData == nil )
 	{
-		NSLog(@"%@ %s - no tiff data associated with the menu item", [self className], _cmd);
+		NSLog(@"%s - no tiff data associated with the menu item", __PRETTY_FUNCTION__);
 		NSBeep(); return;
 	}
 	
@@ -1017,7 +1017,7 @@ bail:
 	else
 	{
 		NSBeep();
-		NSLog(@"%@ %s - application does not respond to importFile method, cannot import archive", [self className], _cmd);
+		NSLog(@"%s - application does not respond to importFile method, cannot import archive", __PRETTY_FUNCTION__);
 	}
 }
 
@@ -1049,7 +1049,7 @@ bail:
 	JournlerMediaViewer *mediaViewer = [[[JournlerMediaViewer alloc] initWithURL:mediaURL uti:(NSString*)kUTTypeURL] autorelease];
 	if ( mediaViewer == nil )
 	{
-		NSLog(@"%@ %s - problem allocating media viewer for url %@", [self className], _cmd, mediaURL);
+		NSLog(@"%s - problem allocating media viewer for url %@", __PRETTY_FUNCTION__, mediaURL);
 		[[NSWorkspace sharedWorkspace] openURL:[self URL]];
 	}
 	else

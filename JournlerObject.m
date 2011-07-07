@@ -88,7 +88,7 @@ static NSString *JournlerObjectDefaultIconKey = @"icon";
 - (id)initWithCoder:(NSCoder *)decoder 
 {
 	// ** concrete subclasses must override **
-	NSLog(@"%@ %s - ** concrete subclasses must override **", [self className], _cmd);
+	NSLog(@"%s - ** concrete subclasses must override **", __PRETTY_FUNCTION__);
 	
 	// decode the archive
 	NSDictionary *archivedProperties = [decoder decodeObjectForKey:@"properties"];
@@ -102,11 +102,11 @@ static NSString *JournlerObjectDefaultIconKey = @"icon";
 - (void)encodeWithCoder:(NSCoder *)encoder 
 {
 	// ** concrete subclasses must override	**
-	NSLog(@"%@ %s - ** concrete subclasses must override **", [self className], _cmd);
+	NSLog(@"%s - ** concrete subclasses must override **", __PRETTY_FUNCTION__);
 	
 	if ( ![encoder allowsKeyedCoding] ) 
 	{
-		NSLog(@"%@ %s - keyed archiving required", [self className], _cmd);
+		NSLog(@"%s - keyed archiving required", __PRETTY_FUNCTION__);
 		return;
 	}
 	
@@ -218,7 +218,7 @@ static NSString *JournlerObjectDefaultIconKey = @"icon";
 - (NSScriptObjectSpecifier *)objectSpecifier
 {
 	// ** concrete subclasses must override	**
-	NSLog(@"%@ %s - ** concrete subclasses must override **", [self className], _cmd);
+	NSLog(@"%s - ** concrete subclasses must override **", __PRETTY_FUNCTION__);
 
 	return nil;
 }
@@ -228,7 +228,7 @@ static NSString *JournlerObjectDefaultIconKey = @"icon";
 - (NSURL*) URIRepresentation
 {
 	// ** concrete subclasses must override	**
-	NSLog(@"%@ %s - ** concrete subclasses must override **", [self className], _cmd);
+	NSLog(@"%s - ** concrete subclasses must override **", __PRETTY_FUNCTION__);
 	return nil;
 }
 
@@ -258,14 +258,14 @@ static NSString *JournlerObjectDefaultIconKey = @"icon";
 - (unsigned)hash 
 {
 	// ** concrete subclasses must override	**
-	NSLog(@"%@ %s - ** concrete subclasses must override **", [self className], _cmd);
+	NSLog(@"%s - ** concrete subclasses must override **", __PRETTY_FUNCTION__);
 	return 0;
 }
 
 - (BOOL)isEqual:(id)anObject 
 {
 	// ** concrete subclasses must override	**
-	NSLog(@"%@ %s - ** concrete subclasses must override **", [self className], _cmd);
+	NSLog(@"%s - ** concrete subclasses must override **", __PRETTY_FUNCTION__);
 	return NO;
 }
 
@@ -337,7 +337,7 @@ static NSString *JournlerObjectDefaultIconKey = @"icon";
 
 - (BOOL)fileManager:(NSFileManager *)manager shouldProceedAfterError:(NSDictionary *)errorInfo 
 {
-	NSLog(@"\n%@ %s - file manager error working with path: %@\n", [self className], _cmd, [errorInfo description]);
+	NSLog(@"\n%s - file manager error working with path: %@\n", __PRETTY_FUNCTION__, [errorInfo description]);
 	return NO;
 }
 

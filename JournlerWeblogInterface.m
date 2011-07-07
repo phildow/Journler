@@ -121,7 +121,7 @@ typedef void (*JournlerWeblogInterfaceDidChoosePreferredEditorIMP)(id, SEL, id, 
 				&& [[[self weblogEditorIdentifiers] allKeysForObject:appName] containsObject:appIdentifier] )
 		{
 			// this app should support the weblog protocol
-			NSLog(@"%@ %s - sending entries using weblog editor protocol: %@", [self className], _cmd, editorFilename);
+			NSLog(@"%s - sending entries using weblog editor protocol: %@", __PRETTY_FUNCTION__, editorFilename);
 			success = [self sendEntries:theEntries 
 					toWeblogProtocolPreferredEditor:appIdentifier 
 					options:options 
@@ -130,7 +130,7 @@ typedef void (*JournlerWeblogInterfaceDidChoosePreferredEditorIMP)(id, SEL, id, 
 		else
 		{
 			// regular application
-			NSLog(@"%@ %s - sending entries to regular application: %@", [self className], _cmd, editorFilename);
+			NSLog(@"%s - sending entries to regular application: %@", __PRETTY_FUNCTION__, editorFilename);
 			success = [self sendEntries:theEntries 
 					toApplicationPreferredEditor:editorFilename 
 					options:options 
@@ -141,7 +141,7 @@ typedef void (*JournlerWeblogInterfaceDidChoosePreferredEditorIMP)(id, SEL, id, 
 				|| [executableExtensions containsObject:[editorFilename pathExtension]] )
 	{
 		// applescript
-		NSLog(@"%@ %s - sending entries using applescript: %@", [self className], _cmd, editorFilename);
+		NSLog(@"%s - sending entries using applescript: %@", __PRETTY_FUNCTION__, editorFilename);
 		success = [self sendEntries:theEntries 
 				toAppleScriptPreferredEditor:editorFilename 
 				options:options 
@@ -260,7 +260,7 @@ typedef void (*JournlerWeblogInterfaceDidChoosePreferredEditorIMP)(id, SEL, id, 
 			// error
 			success = NO;
 			*anError = nil;
-			NSLog(@"%@ %s - unable to write entry to file at path %@", [self className], _cmd, filename);
+			NSLog(@"%s - unable to write entry to file at path %@", __PRETTY_FUNCTION__, filename);
 		}
 	}
 	

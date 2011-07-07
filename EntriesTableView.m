@@ -128,7 +128,7 @@
 - (void) dealloc 
 {	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[_searchString release];
@@ -263,7 +263,7 @@
 - (void)draggedImage:(NSImage *)anImage beganAt:(NSPoint)aPoint
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:EntriesTableViewDidBeginDragNotification object:self userInfo:nil];
@@ -272,7 +272,7 @@
 - (void)draggedImage:(NSImage *)anImage endedAt:(NSPoint)aPoint operation:(NSDragOperation)operation
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:EntriesTableViewDidEndDragNotification object:self userInfo:nil];
@@ -418,11 +418,11 @@
 
 - (void) setStateArray:(NSArray*)anArray
 {
-	NSLog(@"%@ %s", [self className], _cmd);
+	NSLog(@"%s", __PRETTY_FUNCTION__);
 	// only restore the state if there is data to be restored
 	if ( anArray != nil && [anArray count] != 0 && anArray != _stateArray )
 	{
-		NSLog(@"%@ %s", [self className], _cmd);
+		NSLog(@"%s", __PRETTY_FUNCTION__);
 		[self restoreStateWithArray:anArray];
 		[_stateArray release];
 		_stateArray = [anArray copyWithZone:[self zone]];
@@ -475,7 +475,7 @@
 		}
 		else 
 		{
-			NSLog(@"%@ %s - unable to restore table column with state %@", [self className], _cmd, columnState);
+			NSLog(@"%s - unable to restore table column with state %@", __PRETTY_FUNCTION__, columnState);
 		}
 	}
 }

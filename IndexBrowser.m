@@ -85,7 +85,7 @@
 - (void) dealloc
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[columns makeObjectsPerformSelector:@selector(ownerWillClose:) withObject:nil];
@@ -191,7 +191,7 @@
 	if ( columnCount == 0 )
 	{
 		NSBeep();
-		NSLog(@"%@ %s - cannot set initial content when there are no columns", [self className], _cmd);
+		NSLog(@"%s - cannot set initial content when there are no columns", __PRETTY_FUNCTION__);
 	}
 	
 	else if ( columnCount == 1 )
@@ -221,7 +221,7 @@
 	unsigned total = [[self columns] count] - 1;
 	if ( index > total )
 	{
-		NSLog(@"%@ %s - index %i beyond bounds %i", [self className], _cmd, index, total);
+		NSLog(@"%s - index %i beyond bounds %i", __PRETTY_FUNCTION__, index, total);
 		return NO;
 	}
 	

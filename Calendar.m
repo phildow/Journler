@@ -147,7 +147,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 - (void) dealloc
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -1149,7 +1149,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	// sets both the cursor rects and the tooltips
 	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	int col, row, offset, i;
@@ -1588,7 +1588,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 				}
 				else
 				{
-					NSLog(@"%@ %s - trouble converting entry uri to actual entry %@", [self className], _cmd, [theURI absoluteString]);
+					NSLog(@"%s - trouble converting entry uri to actual entry %@", __PRETTY_FUNCTION__, [theURI absoluteString]);
 					success = NO;
 				}
 			}

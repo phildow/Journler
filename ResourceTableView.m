@@ -77,7 +77,7 @@
 - (void) dealloc
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[self unregisterDraggedTypes];
@@ -341,7 +341,7 @@
 				NSArray *objects = ( [[self dataSource] respondsToSelector:@selector(resourceNodes)] ? [[self dataSource] resourceNodes] : [[self dataSource] arrangedObjects] );
 				[_searchString appendString:new_characters];
 				
-				//NSLog(@"%@ %s - search string is %@, object count is %i", [self className], _cmd, _searchString, [objects count]);
+				//NSLog(@"%s - search string is %@, object count is %i", __PRETTY_FUNCTION__, _searchString, [objects count]);
 				
 				for ( i = 0; i < [objects count]; i++ ) 
 				{
@@ -350,7 +350,7 @@
 					if ( [[aNode valueForKey:@"label"] boolValue] == NO 
 							&& [[aNode valueForKeyPath:@"resource.title"] rangeOfString:_searchString options:NSCaseInsensitiveSearch].location == 0 ) 
 					{
-						NSLog(@"%@ %s - object %i title %@", [self className], _cmd, i, [aNode valueForKeyPath:@"resource.title"] );
+						NSLog(@"%s - object %i title %@", __PRETTY_FUNCTION__, i, [aNode valueForKeyPath:@"resource.title"] );
 						
 						//int targetRow = [self rowForItem:[objects objectAtIndex:i]];
 						int targetRow = i;

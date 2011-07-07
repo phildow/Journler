@@ -63,7 +63,7 @@
 {
 	if ( !uniqueID ) 
 	{
-		NSLog(@"%@ %s - Cannot accept a nil address book ID", [self className], _cmd);
+		NSLog(@"%s - Cannot accept a nil address book ID", __PRETTY_FUNCTION__);
 		return NO;
 	}
 	
@@ -71,7 +71,7 @@
 	
 	if ( !record ) 
 	{
-		NSLog(@"%@ %s - Unable to convert address book ID to record", [self className], _cmd);
+		NSLog(@"%s - Unable to convert address book ID to record", __PRETTY_FUNCTION__);
 		return NO;
 	}
 

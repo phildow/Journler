@@ -99,7 +99,7 @@
 - (void) dealloc
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -108,7 +108,7 @@
 	[rootCollection release];
 	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s - ending",[self className],_cmd);
+	NSLog(@"%s - ending",__PRETTY_FUNCTION__);
 	#endif
 	
 	[super dealloc];
@@ -833,7 +833,7 @@
 		}
 		else
 		{
-			NSLog(@"%@ %s - attempting to add import to something other than a regular folder", [self className], _cmd);
+			NSLog(@"%s - attempting to add import to something other than a regular folder", __PRETTY_FUNCTION__);
 		}
 	}
 
@@ -1116,7 +1116,7 @@
 - (void) _entriesDidBeginDrag:(NSNotification*)aNotification
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	if ( [sourceList window] != nil )
@@ -1129,7 +1129,7 @@
 - (void) _entriesDidEndDrag:(NSNotification*)aNotification
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	if ( [sourceList window] != nil )

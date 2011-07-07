@@ -14,9 +14,9 @@
 
 // #define __DEBUG__
 
-#define LogEntry() NSLog(@"%@ %s - beginning", [self className], _cmd)
-#define LogExit() NSLog(@"%@ %s - ending", [self className], _cmd)
+#define LogEntry() NSLog(@"%s - beginning", __PRETTY_FUNCTION__)
+#define LogExit() NSLog(@"%s - ending", __PRETTY_FUNCTION__)
 
 #define LogIfDebugging(x,y) if ( [[NSUserDefaults standardUserDefaults] integerForKey:@"DebugLevel"] >= x ) NSLog(y)
-#define MethodEntryDescription() [NSString stringWithFormat:@"%@ %s - beginning", [self className], _cmd]
-#define MethodExitDescription() [NSString stringWithFormat:@"%@ %s - ending", [self className], _cmd]
+#define MethodEntryDescription() [NSString stringWithFormat:@"%s - beginning", __PRETTY_FUNCTION__]
+#define MethodExitDescription() [NSString stringWithFormat:@"%s - ending", __PRETTY_FUNCTION__]

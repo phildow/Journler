@@ -136,7 +136,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 			{
 				NSError *error = nil;
 				if ( ![log117 writeToFile:upgradeLogPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-					NSLog(@"%@ %s - unable to write upgrade log to %@, error %@", [self className], _cmd, error);
+					NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
 				
 				[log117 release];
 				[self quit210Upgrade:self];
@@ -160,7 +160,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 			{
 				NSError *error = nil;
 				if ( ![log117 writeToFile:upgradeLogPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-					NSLog(@"%@ %s - unable to write upgrade log to %@, error %@", [self className], _cmd, error);
+					NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
 				
 				[log117 release];
 				[self quit210Upgrade:self];
@@ -194,7 +194,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 		
 		NSError *error = nil;
 		if ( ![log117 writeToFile:upgradeLogPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-			NSLog(@"%@ %s - unable to write upgrade log to %@, error %@", [self className], _cmd, error);
+			NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
 					
 		[log117 release];
 		[self quit210Upgrade:self];
@@ -214,7 +214,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 				
 			NSError *error = nil;
 			if ( ![log117 writeToFile:upgradeLogPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-				NSLog(@"%@ %s - unable to write upgrade log to %@, error %@", [self className], _cmd, error);
+				NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
 			
 			[log117 release];
 			[self quit210Upgrade:self];
@@ -555,7 +555,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 	{
 		if ( ![[NSFileManager defaultManager] copyPath:wordlistSource toPath:wordlistDestination handler:self] )
 		{
-			[log210 appendFormat:@"%@ %s - unable to copy wordlist from %@ to %@\n\n", [self className], _cmd, wordlistSource, wordlistDestination];
+			[log210 appendFormat:@"%s - unable to copy wordlist from %@ to %@\n\n", __PRETTY_FUNCTION__, wordlistSource, wordlistDestination];
 			[ud setBool:NO forKey:@"EntryTextAutoCorrectSpelling"];
 			[ud setBool:NO forKey:@"EntryTextAutoCorrectSpellingUseWordList"];
 		}
@@ -795,7 +795,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 	
 	NSError *error = nil;
 	if ( ![log117 writeToFile:upgradeLogPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-		NSLog(@"%@ %s - unable to write upgrade log to %@, error %@", [self className], _cmd, error);
+		NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
 						
 	[log117 release];
 	[NSApp relaunch:self];
@@ -1002,7 +1002,7 @@ bail:
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	
 	log210 = [[NSMutableString alloc] init];
-	[log210 appendFormat:@"%@ %s - Beginning 2.0 to 2.5 Upgrade\n", [self className], _cmd];
+	[log210 appendFormat:@"%s - Beginning 2.0 to 2.5 Upgrade\n", __PRETTY_FUNCTION__];
 	
 	session210 = [NSApp beginModalSessionForWindow:[self window]];
 	[[self window] display];
@@ -1019,7 +1019,7 @@ bail:
 	[progressText210 setStringValue:NSLocalizedStringFromTable(@"backing up", @"UpgradeController", @"")];
 	[NSApp runModalSession:session210];
 	
-	[log210 appendFormat:@"%@ %s - Backing up Journler 2.0 data to %@\n", [self className], _cmd, backupPath];
+	[log210 appendFormat:@"%s - Backing up Journler 2.0 data to %@\n", __PRETTY_FUNCTION__, backupPath];
 	
 	if ( ![fm fileExistsAtPath:backupDir] ) 
 	{
@@ -1031,9 +1031,9 @@ bail:
 				NSError *error = nil;
 				NSString *logPath = [[_journal journalPath] stringByAppendingPathComponent:kLogFilepath210];
 				
-				[log210 appendFormat:@"%@ %s - unable to create backup directory, quitting upgrade\n", [self className], _cmd];
+				[log210 appendFormat:@"%s - unable to create backup directory, quitting upgrade\n", __PRETTY_FUNCTION__];
 				if ( ![log210 writeToFile:logPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-					NSLog(@"%@ %s - unable to write upgrade log to %@, error %@", [self className], _cmd, error);
+					NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
 				
 				[log210 release];
 				[self quit210Upgrade:self];
@@ -1053,9 +1053,9 @@ bail:
 				NSError *error = nil;
 				NSString *logPath = [[_journal journalPath] stringByAppendingPathComponent:kLogFilepath210];
 					
-				[log210 appendFormat:@"%@ %s - unable to backup entries, quitting upgrade\n", [self className], _cmd];
+				[log210 appendFormat:@"%s - unable to backup entries, quitting upgrade\n", __PRETTY_FUNCTION__];
 				if ( ![log210 writeToFile:logPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-					NSLog(@"%@ %s - unable to write upgrade log to %@, error %@", [self className], _cmd, error);
+					NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
 				
 				[log210 release];
 				[self quit210Upgrade:self];
@@ -1073,7 +1073,7 @@ bail:
 		NSError *error = nil;
 		NSString *logPath = [[_journal journalPath] stringByAppendingPathComponent:kLogFilepath210];
 		if ( ![log210 writeToFile:logPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-			NSLog(@"%@ %s - unable to write upgrade log to %@, error %@", [self className], _cmd, error);
+			NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
 		
 		[log210 release];
 		[self quit210Upgrade:self];
@@ -1095,12 +1095,12 @@ bail:
 	if ( ![[journal searchManager] createIndexAtPath:[journal journalPath]] )
 	{
 		//#warning warn the user
-		[log210 appendFormat:@"%@ %s - unable to create search indexes at path %@\n", [self className], _cmd, [journal journalPath]];
+		[log210 appendFormat:@"%s - unable to create search indexes at path %@\n", __PRETTY_FUNCTION__, [journal journalPath]];
 	}
 	if ( ![[journal searchManager] loadIndexAtPath:[journal journalPath]] )
 	{
 		//#warning warn the user
-		[log210 appendFormat:@"%@ %s - unable to load search indexes at path %@\n", [self className], _cmd, [journal journalPath]];
+		[log210 appendFormat:@"%s - unable to load search indexes at path %@\n", __PRETTY_FUNCTION__, [journal journalPath]];
 	}
 	*/
 	
@@ -1120,7 +1120,7 @@ bail:
 	[progressText210 setStringValue:NSLocalizedStringFromTable(@"processing entries", @"UpgradeController", @"")];
 	[NSApp runModalSession:session210];
 	
-	[log210 appendFormat:@"%@ %s - Processing entries\n\n", [self className], _cmd, [journal journalPath]];
+	[log210 appendFormat:@"%s - Processing entries\n\n", __PRETTY_FUNCTION__, [journal journalPath]];
 	
 	// disable collection but not indexing
 	//[_journal setSaveEntryOptions:kEntrySaveDoNotCollect];
@@ -1139,7 +1139,7 @@ bail:
 		{
 			// #warning alert the user
 			completeSuccess = NO;
-			[log210 appendFormat:@"****\n%@ %s - unable to process resources for entry %@\n****\n", [self className], _cmd, [anEntry valueForKey:@"tagID"]];
+			[log210 appendFormat:@"****\n%s - unable to process resources for entry %@\n****\n", __PRETTY_FUNCTION__, [anEntry valueForKey:@"tagID"]];
 		}
 		
 		// convert the existing resource urls to new format urls
@@ -1147,7 +1147,7 @@ bail:
 		{
 			// #warning alert the user
 			completeSuccess = NO;
-			[log210 appendFormat:@"****\n%@ %s - unable to process resource links for entry %@\n****\n", [self className], _cmd, [anEntry valueForKey:@"tagID"]];
+			[log210 appendFormat:@"****\n%s - unable to process resource links for entry %@\n****\n", __PRETTY_FUNCTION__, [anEntry valueForKey:@"tagID"]];
 		}
 		
 		// upgrade the entry's internal format
@@ -1160,7 +1160,7 @@ bail:
 		if ( ![[NSFileManager defaultManager] movePath:[anEntry pathToPackage] toPath:[anEntry packagePath] handler:self] )
 		{
 			completeSuccess = NO;
-			[log210 appendFormat:@"****\n%@ %s - unable to rename entry %@\n****\n", [self className], _cmd, [anEntry valueForKey:@"tagID"]];
+			[log210 appendFormat:@"****\n%s - unable to rename entry %@\n****\n", __PRETTY_FUNCTION__, [anEntry valueForKey:@"tagID"]];
 		}
 		
 		// only once the package is renamed is it possible to process file:// type links
@@ -1168,7 +1168,7 @@ bail:
 		{
 			// #warning alert the user
 			completeSuccess = NO;
-			[log210 appendFormat:@"****\n%@ %s - unable to process file links for entry %@\n****\n", [self className], _cmd, [anEntry valueForKey:@"tagID"]];
+			[log210 appendFormat:@"****\n%s - unable to process file links for entry %@\n****\n", __PRETTY_FUNCTION__, [anEntry valueForKey:@"tagID"]];
 		}
 		
 		// delete the encrypted marking
@@ -1180,7 +1180,7 @@ bail:
 		if ( ![_journal saveEntry:anEntry] )
 		{
 			completeSuccess = NO;
-			[log210 appendFormat:@"****\n%@ %s - unable to save entry %@\n****\n", [self className], _cmd, [anEntry valueForKey:@"tagID"]];
+			[log210 appendFormat:@"****\n%s - unable to save entry %@\n****\n", __PRETTY_FUNCTION__, [anEntry valueForKey:@"tagID"]];
 		}
 		
 		[anEntry setValue:dateModified forKey:@"calDateModified"];
@@ -1193,7 +1193,7 @@ bail:
 	[progressIndicator210 startAnimation:self];
 	[NSApp runModalSession:session210];
 	
-	[log210 appendFormat:@"%@ %s - Saving Journal\n\n", [self className], _cmd, [journal journalPath]];
+	[log210 appendFormat:@"%s - Saving Journal\n\n", __PRETTY_FUNCTION__, [journal journalPath]];
 	
 	// re-set the folder icons
 	[[_journal valueForKey:@"collections"] makeObjectsPerformSelector:@selector(determineIcon)];
@@ -1233,7 +1233,7 @@ bail:
 		if ( password == nil )
 		{
 			//#warning let the user know
-			[log210 appendFormat:@"%@ %s - unable to get password from keychain", [self className], _cmd];
+			[log210 appendFormat:@"%s - unable to get password from keychain", __PRETTY_FUNCTION__];
 		}
 		else
 		{
@@ -1244,7 +1244,7 @@ bail:
 			NSString *passwordDigest = [password journlerMD5Digest];
 			if ( passwordDigest == nil )
 			{
-				[log210 appendFormat:@"%@ %s - unable to get digest of password", [self className], _cmd];
+				[log210 appendFormat:@"%s - unable to get digest of password", __PRETTY_FUNCTION__];
 			}
 			else
 			{
@@ -1253,7 +1253,7 @@ bail:
 				NSString *encryptedFilename = [[_journal journalPath] stringByAppendingPathComponent:PDJournalPasswordProtectedLoc];
 				
 				if ( ![passwordDigest writeToFile:encryptedFilename atomically:YES encoding:NSUnicodeStringEncoding error:&error] )
-					[log210 appendFormat:@"%@ %s - unable to write password to path %@, error %@", [self className], _cmd, encryptedFilename, error];
+					[log210 appendFormat:@"%s - unable to write password to path %@, error %@", __PRETTY_FUNCTION__, encryptedFilename, error];
 			}
 		}
 	}
@@ -1272,7 +1272,7 @@ bail:
 	{
 		if ( ![[NSFileManager defaultManager] copyPath:wordlistSource toPath:wordlistDestination handler:self] )
 		{
-			[log210 appendFormat:@"%@ %s - unable to copy wordlist from %@ to %@\n\n", [self className], _cmd, wordlistSource, wordlistDestination];
+			[log210 appendFormat:@"%s - unable to copy wordlist from %@ to %@\n\n", __PRETTY_FUNCTION__, wordlistSource, wordlistDestination];
 			[ud setBool:NO forKey:@"EntryTextAutoCorrectSpelling"];
 			[ud setBool:NO forKey:@"EntryTextAutoCorrectSpellingUseWordList"];
 		}
@@ -1385,7 +1385,7 @@ bail:
 	[ud setInteger:0 forKey:@"AudioRecordingFormat"];
 	[ud setInteger:0 forKey:@"ScriptsInstallationDirectory"];
 	
-	[log210 appendFormat:@"%@ %s - Completed 2.0 to 2.5 Upgrade\n\n", [self className], _cmd];
+	[log210 appendFormat:@"%s - Completed 2.0 to 2.5 Upgrade\n\n", __PRETTY_FUNCTION__];
 	
 	[progressText210 setStringValue:NSLocalizedStringFromTable(@"upgrade complete", @"UpgradeController", @"")];
 	
@@ -1397,12 +1397,12 @@ bail:
 	[NSApp requestUserAttention:NSInformationalRequest];
 	[NSApp runModalForWindow:licenseChanged210];
 	
-	[log210 appendFormat:@"%@ %s - Relaunching Journler\n\n", [self className], _cmd];
+	[log210 appendFormat:@"%s - Relaunching Journler\n\n", __PRETTY_FUNCTION__];
 	
 	NSError *error = nil;
 	NSString *logPath = [[_journal journalPath] stringByAppendingPathComponent:kLogFilepath210];
 	if ( ![log210 writeToFile:logPath atomically:YES encoding:NSUnicodeStringEncoding error:&error] )
-		NSLog(@"%@ %s - unable to write upgrade log to %@, error %@", [self className], _cmd, logPath, error);
+		NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, logPath, error);
 	
 	[log210 release];
 	[NSApp relaunch:self];
@@ -1436,7 +1436,7 @@ bail:
 			NSError *error = nil;
 			NSString *uniqueId = [NSString stringWithContentsOfFile:path usedEncoding:NULL error:&error];
 			if ( uniqueId == nil )
-				NSLog(@"%@ %s - there was a problem reading the unique id at path %@, error %@", [self className], _cmd, path, error);
+				NSLog(@"%s - there was a problem reading the unique id at path %@, error %@", __PRETTY_FUNCTION__, path, error);
 			else
 				aResource = [anEntry resourceForABPerson:(ABPerson*)[[ABAddressBook sharedAddressBook] recordForUniqueId:uniqueId]];
 		}
@@ -1445,7 +1445,7 @@ bail:
 		else
 		{
 			if ( uti == nil )
-				[log210 appendFormat:@"****\n%@ %s - unknown uti for file at path %@\n****\n", [self className], _cmd, path];
+				[log210 appendFormat:@"****\n%s - unknown uti for file at path %@\n****\n", __PRETTY_FUNCTION__, path];
 			
 			aResource = [[JournlerResource alloc] initFileResource:path];				
 			[aResource setValue:[NSNumber numberWithInt:[_journal newResourceTag]] forKey:@"tagID"];
@@ -1458,7 +1458,7 @@ bail:
 		if ( aResource == nil )
 		{
 			completeSuccess = NO;
-			[log210 appendFormat:@"****\n%@ %s - unable to create resource for file at path %@\n****\n", [self className], _cmd, path];
+			[log210 appendFormat:@"****\n%s - unable to create resource for file at path %@\n****\n", __PRETTY_FUNCTION__, path];
 		}
 		else
 		{
@@ -1567,8 +1567,8 @@ bail:
 				if ( theResource == nil ) 
 				{
 					completeSuccess = NO;
-					[log210 appendFormat:@"****\n%@ %s - unable to derive new resource link for old resource link %@\n****\n", 
-							[self className], _cmd, originalURLString];
+					[log210 appendFormat:@"****\n%s - unable to derive new resource link for old resource link %@\n****\n", 
+							__PRETTY_FUNCTION__, originalURLString];
 				}
 				else 
 				{
@@ -1680,8 +1680,8 @@ bail:
 					if ( theResource == nil )
 					{
 						completeSuccess = NO;
-						[log210 appendFormat:@"****\n%@ %s - unable to produce new resource for entry %@ with path %@\n****\n", 
-								[self className], _cmd, [anEntry tagID], [theURL path]];
+						[log210 appendFormat:@"****\n%s - unable to produce new resource for entry %@ with path %@\n****\n", 
+								__PRETTY_FUNCTION__, [anEntry tagID], [theURL path]];
 					}
 					else
 					{
@@ -1752,7 +1752,7 @@ bail:
 		&& ![[NSFileManager defaultManager] createDirectoryAtPath:resourcesPath attributes:nil] )
 	{
 		NSBeep();
-		NSLog(@"%@ %s - unable to create resources path at %@", [self className], _cmd, resourcesPath);
+		NSLog(@"%s - unable to create resources path at %@", __PRETTY_FUNCTION__, resourcesPath);
 	}
 	
 	// 2. set the journal version
@@ -1772,7 +1772,7 @@ bail:
 	{
 		JournlerEntry *theOwner = [aResource entry];
 		if ( theOwner == nil )
-			NSLog(@"%@ %s - resource %@ does not have an owning entry", [self className], _cmd, [aResource tagID]);
+			NSLog(@"%s - resource %@ does not have an owning entry", __PRETTY_FUNCTION__, [aResource tagID]);
 		else
 			[aResource setEntries:[NSArray arrayWithObject:theOwner]];
 		
@@ -1842,7 +1842,7 @@ bail:
 	
 	if ( success == NO )
 	{
-		NSLog(@"%@ %s - there was a problem saving the journal", [self className], _cmd);
+		NSLog(@"%s - there was a problem saving the journal", __PRETTY_FUNCTION__);
 	}
 	
 	// 7. show the license request and relaunch
@@ -1867,7 +1867,7 @@ bail:
 	// save folder images, remove folder images, reload folder images, save folders
 	// update the version number, save the journal
 	
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	NSLog(@"Performing 2.5.3 upgrade...");
 	
 	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
@@ -1891,7 +1891,7 @@ bail:
 	NSString *folderIconsPath = [desktop stringByAppendingPathComponent:@"Journler Folder Icons"];
 	
 	if ( ![[NSFileManager defaultManager] fileExistsAtPath:folderIconsPath] && ![[NSFileManager defaultManager] createDirectoryAtPath:folderIconsPath attributes:nil] )
-		NSLog(@"%@ %s - unable to create folder at path %@", [self className], _cmd, folderIconsPath);
+		NSLog(@"%s - unable to create folder at path %@", __PRETTY_FUNCTION__, folderIconsPath);
 	
 	// do not index or collect entries while saving them
 	[aJournal setSaveEntryOptions:kEntrySaveDoNotIndex|kEntrySaveDoNotCollect];
@@ -1937,7 +1937,7 @@ bail:
 		stringByAppendingPathExtension:@"tif"] pathWithoutOverwritingSelf];
 		
 		if ( ![tiffRepresentation writeToFile:thePath options:0 error:nil] )
-			NSLog(@"%@ %s - unable to write icon for folder %@ to path %@", [self className], _cmd, [aFolder title], thePath);
+			NSLog(@"%s - unable to write icon for folder %@ to path %@", __PRETTY_FUNCTION__, [aFolder title], thePath);
 		
 		[aFolder perform253Maintenance];
 		[aFolder setDirty:BooleanNumber(YES)];
@@ -1996,12 +1996,12 @@ bail:
 	NSString *userDocuments = [self documentsFolder];
 	//NSString *userAppSupport = [self applicationSupportFolder];
 	
-	//NSLog(@"%@ %s\napp support:%@\n library: %@\njournal parent: %@", [self className], _cmd, userLibrary, userAppSupport, journalParentFolder );
+	//NSLog(@"%s\napp support:%@\n library: %@\njournal parent: %@", __PRETTY_FUNCTION__, userLibrary, userAppSupport, journalParentFolder );
 	
 	if ( userDocuments == nil )
 	{
 		success = NO;
-		NSLog(@"%@ %s - unable to locate user's documents folder, journal move cancelled", [self className], _cmd);
+		NSLog(@"%s - unable to locate user's documents folder, journal move cancelled", __PRETTY_FUNCTION__);
 	}
 	else
 	{
@@ -2009,7 +2009,7 @@ bail:
 		NSFileManager *fileManager = [NSFileManager defaultManager];
 		NSString *journalInDocumentsFolder = [userDocuments stringByAppendingPathComponent:@"Journler"];
 		
-		NSLog(@"%@ %s - need to move the journal out of app support at %@", [self className], _cmd, [NSDate date]);
+		NSLog(@"%s - need to move the journal out of app support at %@", __PRETTY_FUNCTION__, [NSDate date]);
 		
 		NSInteger alertResult = [[self alertForMovingJournalOutOfApplicationSupport] runModal];
 		if ( alertResult == NSAlertSecondButtonReturn )
@@ -2080,7 +2080,7 @@ bail:
 						}
 						else
 						{
-							NSLog(@"%@ %s - error saving journal", [self className], _cmd);
+							NSLog(@"%s - error saving journal", __PRETTY_FUNCTION__);
 							
 							NSBeep();
 							if ( error != nil ) [NSApp presentError:error];
@@ -2091,13 +2091,13 @@ bail:
 					}
 					
 					// note the success and let the user know
-					NSLog(@"%@ %s - move from %@ to %@ successful", [self className], _cmd, journalPath, journalInDocumentsFolder);
+					NSLog(@"%s - move from %@ to %@ successful", __PRETTY_FUNCTION__, journalPath, journalInDocumentsFolder);
 					[[self alertWhenDataStoreMoveSucceeds] runModal];
 				}
 				else
 				{
 					// note the problem and put up an alert
-					NSLog(@"*** %@ %s - move from %@ to %@ not successful! ***", [self className], _cmd, journalPath, journalInDocumentsFolder);
+					NSLog(@"*** %s - move from %@ to %@ not successful! ***", __PRETTY_FUNCTION__, journalPath, journalInDocumentsFolder);
 					[[self alertWhenDataStoreMoveFails] runModal];
 				}
 				
@@ -2106,7 +2106,7 @@ bail:
 			}
 		}
 			
-		NSLog(@"%@ %s - finished moving the journal out of app support at %@", [self className], _cmd, [NSDate date]);
+		NSLog(@"%s - finished moving the journal out of app support at %@", __PRETTY_FUNCTION__, [NSDate date]);
 	}
 	
 	return success;
@@ -2211,9 +2211,9 @@ bail:
 	NSString *errorString;
 	NSString *localizedDescription = [error localizedDescription];
 	if ( localizedDescription != nil )
-		errorString = [NSString stringWithFormat:@"****\n%@ %s - Encountered file manager error: %@\n****\n", [self className], _cmd, localizedDescription];
+		errorString = [NSString stringWithFormat:@"****\n%s - Encountered file manager error: %@\n****\n", __PRETTY_FUNCTION__, localizedDescription];
 	else
-		errorString = [NSString stringWithFormat:@"****\n%@ %s - Encountered file manager error: no description\n****\n", [self className], _cmd];
+		errorString = [NSString stringWithFormat:@"****\n%s - Encountered file manager error: no description\n****\n", __PRETTY_FUNCTION__];
 	
 	if ( upgradeMode == 0 )
 		[log117 appendString:errorString];
@@ -2229,7 +2229,7 @@ bail:
 - (BOOL)fileManager:(NSFileManager *)manager shouldProceedAfterError:(NSDictionary *)errorInfo 
 {
 	// log the error and return no
-	NSString *errorString = [NSString stringWithFormat:@"****\n%@ %s - Encountered file manager error: %@\n****\n", [self className], _cmd, errorInfo];
+	NSString *errorString = [NSString stringWithFormat:@"****\n%s - Encountered file manager error: %@\n****\n", __PRETTY_FUNCTION__, errorInfo];
 	
 	if ( upgradeMode == 0 )
 		[log117 appendString:errorString];

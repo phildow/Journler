@@ -79,26 +79,26 @@
 
 - (IBAction) okay:(id)sender 
 {
-	//NSLog(@"%@ %s - beginning",[self className],_cmd);
+	//NSLog(@"%s - beginning",__PRETTY_FUNCTION__);
 	
 	NSString *passwordCheck = [passwordField stringValue];
 	
 	if ( mode == kLockoutModePassword )
 	{
-		//NSLog(@"%@ %s - kLockoutModePassword, beginning",[self className],_cmd);
+		//NSLog(@"%s - kLockoutModePassword, beginning",__PRETTY_FUNCTION__);
 		
 		if ( [passwordCheck isEqualToString:password] ) 
 		{
-			//NSLog(@"%@ %s - correct password, stopping modal, beginning",[self className],_cmd);
+			//NSLog(@"%s - correct password, stopping modal, beginning",__PRETTY_FUNCTION__);
 			
 			validatedPassword = [passwordCheck retain];
 			[NSApp stopModal];
 			
-			//NSLog(@"%@ %s - correct password, stopping modal, ending",[self className],_cmd);
+			//NSLog(@"%s - correct password, stopping modal, ending",__PRETTY_FUNCTION__);
 		}
 		else 
 		{
-			//NSLog(@"%@ %s - incorrect password, beginning",[self className],_cmd);
+			//NSLog(@"%s - incorrect password, beginning",__PRETTY_FUNCTION__);
 			
 			NSBeep();
 			if ( ++numAttempts > 3 )
@@ -106,28 +106,28 @@
 				
 			[attemptsField setStringValue:[NSString stringWithFormat:@"%i/3",numAttempts]];
 			
-			//NSLog(@"%@ %s - incorrect password, ending",[self className],_cmd);
+			//NSLog(@"%s - incorrect password, ending",__PRETTY_FUNCTION__);
 		}
 		
-		//NSLog(@"%@ %s - kLockoutModePassword, ending",[self className],_cmd);
+		//NSLog(@"%s - kLockoutModePassword, ending",__PRETTY_FUNCTION__);
 	}
 	else if ( mode == kLockoutModeChecksum )
 	{
-		//NSLog(@"%@ %s - kLockoutModeChecksum, beginning",[self className],_cmd);
+		//NSLog(@"%s - kLockoutModeChecksum, beginning",__PRETTY_FUNCTION__);
 		
 		NSString *aDigest = [passwordCheck journlerMD5Digest];
 		if ( [aDigest isEqualToString:checksum] ) 
 		{
-			//NSLog(@"%@ %s - correct password, stopping modal, beginning",[self className],_cmd);
+			//NSLog(@"%s - correct password, stopping modal, beginning",__PRETTY_FUNCTION__);
 			
 			validatedPassword = [passwordCheck retain];
 			[NSApp stopModal];
 			
-			//NSLog(@"%@ %s - correct password, stopping modal, ending",[self className],_cmd);
+			//NSLog(@"%s - correct password, stopping modal, ending",__PRETTY_FUNCTION__);
 		}
 		else 
 		{
-			//NSLog(@"%@ %s - incorrect password, beginning",[self className],_cmd);
+			//NSLog(@"%s - incorrect password, beginning",__PRETTY_FUNCTION__);
 			
 			NSBeep();
 			if ( ++numAttempts > 3 )
@@ -135,13 +135,13 @@
 				
 			[attemptsField setStringValue:[NSString stringWithFormat:@"%i/3",numAttempts]];
 			
-			//NSLog(@"%@ %s - incorrect password, ending",[self className],_cmd);
+			//NSLog(@"%s - incorrect password, ending",__PRETTY_FUNCTION__);
 		}
 		
-		//NSLog(@"%@ %s - kLockoutModeChecksum, ending",[self className],_cmd);
+		//NSLog(@"%s - kLockoutModeChecksum, ending",__PRETTY_FUNCTION__);
 	}
 	
-	//NSLog(@"%@ %s - ending",[self className],_cmd);
+	//NSLog(@"%s - ending",__PRETTY_FUNCTION__);
 }
 
 - (IBAction) cancel:(id)sender 
@@ -162,7 +162,7 @@
 
 - (IBAction) showProgressIndicator:(id)sender
 {
-	//NSLog(@"%@ %s - beginning",[self className],_cmd);
+	//NSLog(@"%s - beginning",__PRETTY_FUNCTION__);
 	
 	if ( ![self isWindowLoaded] )
 		[self window];
@@ -184,7 +184,7 @@
 	
 	//[[self window] display];
 	
-	//NSLog(@"%@ %s - ending",[self className],_cmd);
+	//NSLog(@"%s - ending",__PRETTY_FUNCTION__);
 }
 
 - (IBAction) hideProgressIndicator:(id)sender

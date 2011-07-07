@@ -284,7 +284,7 @@
 - (BOOL) textViewIsInFullscreenMode:(LinksOnlyNSTextView*)aTextView
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	return YES;

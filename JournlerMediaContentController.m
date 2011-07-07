@@ -36,7 +36,7 @@
 - (void) dealloc
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
+	NSLog(@"%s", __PRETTY_FUNCTION__);
 	#endif
 	
 	// top level nib objects
@@ -248,7 +248,7 @@
 - (NSResponder*) preferredResponder
 {
 	// meant to be overridden by subclasses
-	NSLog(@"%@ %s - **** subclasses must override ****", [self className], _cmd);
+	NSLog(@"%s - **** subclasses must override ****", __PRETTY_FUNCTION__);
 	return nil;
 }
 
@@ -269,7 +269,7 @@
 	// meant to be overridden by subclasses
 	// establish a connection between the two provided views if you don't need them
 	[previous setNextKeyView:next];
-	NSLog(@"%@ %s - **** subclasses must override ****", [self className], _cmd);
+	NSLog(@"%s - **** subclasses must override ****", __PRETTY_FUNCTION__);
 	return;
 }
 
@@ -330,7 +330,7 @@
 
 - (BOOL)fileManager:(NSFileManager *)manager shouldProceedAfterError:(NSDictionary *)errorInfo
 {
-	NSLog(@"%@ %s - file error: %@", [self className], _cmd, errorInfo);
+	NSLog(@"%s - file error: %@", __PRETTY_FUNCTION__, errorInfo);
 	fileError = [errorInfo retain];
 	return NO;
 }
@@ -406,7 +406,7 @@
 		}
 		else
 		{
-			NSLog(@"%@ %s - curretly, only file based urls are supported %@", [self className], _cmd, [applicationURI absoluteString]);
+			NSLog(@"%s - curretly, only file based urls are supported %@", __PRETTY_FUNCTION__, [applicationURI absoluteString]);
 			success = NO;
 		}
 	}
@@ -426,7 +426,7 @@
 		if ( script == nil )
 		{
 			success = NO;
-			NSLog(@"%@ %s - unable to initalize script with source %@", [self className], _cmd, scriptSource);
+			NSLog(@"%s - unable to initalize script with source %@", __PRETTY_FUNCTION__, scriptSource);
 			
 			NSBeep();
 			AppleScriptAlert *scriptAlert = [[[AppleScriptAlert alloc] initWithSource:[anItem targetScript] error:[NSString string]] autorelease];
@@ -439,7 +439,7 @@
 		if ( [script compileAndReturnError:&errorDictionary] == NO )
 		{
 			success = NO;
-			NSLog(@"%@ %s - unable to compile the script %@, error: %@", [self className], _cmd, scriptSource, errorDictionary);
+			NSLog(@"%s - unable to compile the script %@, error: %@", __PRETTY_FUNCTION__, scriptSource, errorDictionary);
 			AppleScriptAlert *scriptAlert = [[[AppleScriptAlert alloc] initWithSource:[anItem targetScript] error:errorDictionary] autorelease];
 			
 			NSBeep();
@@ -451,7 +451,7 @@
 			 && [[errorDictionary objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
 		{
 			success = NO;
-			NSLog(@"%@ %s - unable to execute handler of script %@, error: %@", [self className], _cmd, scriptSource, errorDictionary);
+			NSLog(@"%s - unable to execute handler of script %@, error: %@", __PRETTY_FUNCTION__, scriptSource, errorDictionary);
 			
 			id theSource = [script richTextSource];
 			if ( theSource == nil ) theSource = [script source];
@@ -528,7 +528,7 @@ bail:
 			
 			if ( ![[NSWorkspace sharedWorkspace] getInfoForFile:filename application:&appName type:&fileType] || appName == nil )
 			{
-				NSLog(@"%@ %s - unable to get workspace information for file at path %@", [self className], _cmd, filename);
+				NSLog(@"%s - unable to get workspace information for file at path %@", __PRETTY_FUNCTION__, filename);
 				// use the default image
 				[anItem setImage:[self defaultOpenWithFinderImage:mediabar]];
 			}
@@ -538,7 +538,7 @@ bail:
 				
 				if ( appPath == nil )
 				{
-					NSLog(@"%@ %s - unable to get application path for file at path %@", [self className], _cmd, filename);
+					NSLog(@"%s - unable to get application path for file at path %@", __PRETTY_FUNCTION__, filename);
 					// use the default image
 					[anItem setImage:[self defaultOpenWithFinderImage:mediabar]];
 				}
@@ -556,7 +556,7 @@ bail:
 					
 					if ( imageIcon == nil )
 					{
-						NSLog(@"%@ %s - unable to get icon path for application at path %@", [self className], _cmd, appPath);
+						NSLog(@"%s - unable to get icon path for application at path %@", __PRETTY_FUNCTION__, appPath);
 						// use the default image
 						[anItem setImage:[self defaultOpenWithFinderImage:mediabar]];
 					}

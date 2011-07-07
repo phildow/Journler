@@ -72,7 +72,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 - (id) initWithJournal:(JournlerJournal*)aJournal
 {
 	// ** concrete subclasses must override **
-	NSLog(@"%@ %s - ** concrete subclasses must override **", [self className], _cmd);
+	NSLog(@"%s - ** concrete subclasses must override **", __PRETTY_FUNCTION__);
 	return nil;
 }
 
@@ -90,13 +90,13 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 - (void) dealloc 
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	if ( ![self respondsToSelector:@selector(isFullScreenController)] )
 	{
 		#ifdef __DEBUG__
-		NSLog(@"%@ %s - not full screen controller, releasing view components", [self className], _cmd);
+		NSLog(@"%s - not full screen controller, releasing view components", __PRETTY_FUNCTION__);
 		#endif
 		
 		[tabControllers release];
@@ -123,7 +123,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 {
 	// subclasses must override this method to list the key paths they oberserve on the tab
 	// these paths will be observed and unobserved for back/forward purposes automatically as tabs are created and destroyed
-	NSLog(@"**** %@ %s - subclasses must override this method ****", [self className], _cmd);
+	NSLog(@"**** %s - subclasses must override this method ****", __PRETTY_FUNCTION__);
 	return nil;
 }
 
@@ -313,7 +313,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 - (void) toolbarDidShow:(PDToolbar*)aToolbar
 {
 	/*
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	
 	// none of this should be necessary
 	// adjust the height of the content or one of the bars
@@ -346,7 +346,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 - (void) toolbarDidHide:(PDToolbar*)aToolbar
 {
 	/*
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	
 	// none of this should be necessary
 	// adjust the height of the content or one of the bars
@@ -518,9 +518,9 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 
 - (void)windowWillClose:(NSNotification *)aNotification
 {
-	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
-	#endif __DEBUG__
+#ifdef __DEBUG__
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+#endif
 	
 	// subclasses should call super's implementation or otherwise perform autosave themselves
 	[self performAutosave:aNotification];
@@ -628,7 +628,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 			Class tabClass = [[NSBundle mainBundle] classNamed:tabClassName];
 			if ( tabClass == NULL ) 
 			{
-				NSLog(@"%@ %s - unable to load interface for class %@", [self className], _cmd, tabClassName);
+				NSLog(@"%s - unable to load interface for class %@", __PRETTY_FUNCTION__, tabClassName);
 			}
 			else
 			{
@@ -667,7 +667,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 {
 	if ( index >= [tabControllers count] ) 
 	{
-		NSLog(@"%@ %s - tabs view requesting tab beyond bounds", [self className], _cmd );
+		NSLog(@"%s - tabs view requesting tab beyond bounds", __PRETTY_FUNCTION__ );
 		return nil;
 	}
 
@@ -680,12 +680,12 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 - (void) tabsView:(PDTabsView*)aTabView removedTabAtIndex:(int)index 
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	if ( index == -1 || index >= [[self tabControllers] count] )
 	{
-		NSLog(@"%@ %s - index either -1 or beyond bounds", [self className], _cmd);
+		NSLog(@"%s - index either -1 or beyond bounds", __PRETTY_FUNCTION__);
 	}
 	else
 	{
@@ -697,12 +697,12 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 - (void) tabsView:(PDTabsView*)aTabView selectedTabAtIndex:(int)index 
 {	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	if ( index == -1 || index >= [[self tabControllers] count] )
 	{
-		NSLog(@"%@ %s - index either -1 or beyond bounds", [self className], _cmd);
+		NSLog(@"%s - index either -1 or beyond bounds", __PRETTY_FUNCTION__);
 	}
 	else
 	{
@@ -715,7 +715,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 
 - (int) favoritesBar:(PDFavoritesBar*)aFavoritesBar labelOfItemWithIdentifier:(id)anIdentifier
 {
-	//NSLog(@"%@ %s - identifier: %@", [self className], _cmd, anIdentifier);
+	//NSLog(@"%s - identifier: %@", __PRETTY_FUNCTION__, anIdentifier);
 	if ( [anIdentifier isKindOfClass:[NSNumber class]] )
 		anIdentifier = [NSString stringWithFormat:@"journler://entry/%@", anIdentifier];
 		
@@ -777,7 +777,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 - (void) removeTabAtIndex:(unsigned int)index 
 {	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	int tabToSelect = -99;
@@ -835,7 +835,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	//[tabsBar setNeedsDisplayInRect:invalidatedRect];
 	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s - ending",[self className],_cmd);
+	NSLog(@"%s - ending",__PRETTY_FUNCTION__);
 	#endif
 	
 }
@@ -845,7 +845,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	// the current tab, checking bounds
 	if ( index > [tabControllers count] ) 
 	{
-		NSLog(@"%@ %s - index out of bounds", [self className], _cmd);
+		NSLog(@"%s - index out of bounds", __PRETTY_FUNCTION__);
 		return;
 	}
 	
@@ -853,7 +853,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	
 	if ( [currentTabController isMemberOfClass:[aTab class]] ) 
 	{
-		NSLog(@"%@ %s - user requested same tab", [self className], _cmd);
+		NSLog(@"%s - user requested same tab", __PRETTY_FUNCTION__);
 		NSBeep(); return;
 	}
 	
@@ -882,7 +882,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 - (void) selectTabAtIndex:(unsigned int)index force:(BOOL)force
 {	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	if ( index == -1 )
@@ -1188,7 +1188,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 {
 	if ( ![sender isKindOfClass:[PDFavoritesBar class]] )
 	{
-		NSLog(@"%@ %s - request coming from bogus object of class %@", [self className], _cmd, [sender className]);
+		NSLog(@"%s - request coming from bogus object of class %@", __PRETTY_FUNCTION__, [sender className]);
 		NSBeep(); return;
 	}
 	
@@ -1210,7 +1210,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	{
 		NSBeep();
 		[[NSAlert favoriteError] runModal];
-		NSLog(@"%@ %s - unable to derive object for uri representation %@", [self className], _cmd, [link absoluteString]);
+		NSLog(@"%s - unable to derive object for uri representation %@", __PRETTY_FUNCTION__, [link absoluteString]);
 		return;
 	}
 	
@@ -1272,7 +1272,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	JournlerWindowController *fullScreenController = [[[FullScreenController alloc] initWithJournal:[self journal] callingController:self] autorelease];
 	if ( fullScreenController == nil )
 	{
-		NSLog(@"%@ %s - fullscreen not supported for my class: %@", [self className], _cmd, [self className]);
+		NSLog(@"%s - fullscreen not supported for my class: %@", __PRETTY_FUNCTION__, [self className]);
 		NSBeep();
 		return;
 	}
@@ -1385,7 +1385,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	}
 	else
 	{
-		NSLog(@"%@ %s - no resource or entry selection for full screen mode", [self className], _cmd);
+		NSLog(@"%s - no resource or entry selection for full screen mode", __PRETTY_FUNCTION__);
 		
 		
 		//[[fullScreenController selectedTab] selectDate:[theSelectedTab valueForKey:@"selectedDate"] 
@@ -1771,7 +1771,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 - (void) performAutosave:(NSNotification*)aNotification
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	// iterate through each tab, saving the selected entries

@@ -153,7 +153,7 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 - (void) dealloc 
 {
 	#ifdef __DEBUG__
-		NSLog(@"%@ %s",[self className],_cmd);
+		NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[category release];
@@ -606,7 +606,7 @@ bail:
     result = [NSApp runModalForWindow: [self window]];
 	
 	if ( ![objectController commitEditing] )
-		NSLog(@"%@ %s - unable to commit editing", [self className], _cmd);
+		NSLog(@"%s - unable to commit editing", __PRETTY_FUNCTION__);
 	
 	if ( sheet )
 		[NSApp endSheet: [self window]];
@@ -693,7 +693,7 @@ bail:
 - (NSArray *)tokenField:(NSTokenField *)tokenField completionsForSubstring:(NSString *)substring 
 	indexOfToken:(int)tokenIndex indexOfSelectedItem:(int *)selectedIndex
 {
-	//NSLog(@"%@ %s",[self className],_cmd);
+	//NSLog(@"%s",__PRETTY_FUNCTION__);
 	
 	//NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith[cd] %@", substring];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith %@", substring];
@@ -703,7 +703,7 @@ bail:
 
 - (NSArray *)tokenField:(NSTokenField *)tokenField shouldAddObjects:(NSArray *)tokens atIndex:(unsigned)index
 {
-	//NSLog(@"%@ %s - %@",[self className],_cmd,tokens);
+	//NSLog(@"%s - %@",__PRETTY_FUNCTION__,tokens);
 	
 	NSMutableArray *modifiedArray = [NSMutableArray array];
 	

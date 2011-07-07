@@ -126,7 +126,7 @@
 - (IBAction) changeFileType:(id)sender
 {
 	// 0 rtf	1 doc	2 rtfd	3 pdf	4 html	5 txt	8 webarchive
-	//NSLog(@"%@ %s - %i", [self className], _cmd, [sender tag]);
+	//NSLog(@"%s - %i", __PRETTY_FUNCTION__, [sender tag]);
 	
 	// do nothing if this is not an actual save panel
 	if ( ![[_contentView window] isKindOfClass:[NSSavePanel class]] )
@@ -170,7 +170,7 @@
 		
 		// set the required file type
 		[(NSSavePanel*)[_contentView window] setRequiredFileType:extension];
-		//NSLog(@"%@ %s - %@", [self className], _cmd, extension);
+		//NSLog(@"%s - %@", __PRETTY_FUNCTION__, extension);
 	}
 	else
 	{
@@ -188,7 +188,7 @@
 - (BOOL) commitEditing
 {
 	BOOL success = [objectController commitEditing];
-	if ( !success ) NSLog(@"%@ %s - unable to commit editing", [self className], _cmd);
+	if ( !success ) NSLog(@"%s - unable to commit editing", __PRETTY_FUNCTION__);
 	return success;
 }
 

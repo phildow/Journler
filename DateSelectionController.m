@@ -46,7 +46,7 @@
 - (void) dealloc 
 {
 	#ifdef __DEBUG__
-		NSLog(@"%@ %s",[self className],_cmd);
+		NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[date release];
@@ -179,7 +179,7 @@
 		result = [NSApp runModalForWindow: targetWindow];
 		
 		if ( ![objectController commitEditing] )
-			NSLog(@"%@ %s - unable to commit editing", [self className], _cmd);
+			NSLog(@"%s - unable to commit editing", __PRETTY_FUNCTION__);
 	}
 	
 	if ( !isSheet && result == NSRunAbortedResponse ) 
@@ -207,7 +207,7 @@
 - (void) sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo 
 {	
 	if ( ![objectController commitEditing] )
-		NSLog(@"%@ %s - unable to commit editing", [self className], _cmd);
+		NSLog(@"%s - unable to commit editing", __PRETTY_FUNCTION__);
 	
 	if ( returnCode == NSRunAbortedResponse && [delegate respondsToSelector:@selector(dateSelectorDidCancelDateSelection:)] )
 		[delegate dateSelectorDidCancelDateSelection:self];

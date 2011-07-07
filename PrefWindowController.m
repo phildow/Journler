@@ -86,7 +86,7 @@ typedef enum {
 - (void)dealloc 
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[journal release];
@@ -430,7 +430,7 @@ typedef enum {
 			//NSString *licenseHTML = [NSString stringWithContentsOfFile:dLicensePath usedEncoding:NULL error:&error];
 			NSString *licenseHTML = [NSString stringWithContentsOfFile:dLicensePath encoding:NSUTF8StringEncoding error:&error];
 			if ( licenseHTML == nil )
-				NSLog(@"%@ %s - there was a problem reading the LicensePersonalUse.html file, error %@", [self className], _cmd, error);
+				NSLog(@"%s - there was a problem reading the LicensePersonalUse.html file, error %@", __PRETTY_FUNCTION__, error);
 			else
 			{
 				// make sure name does not have ampersand in it nor any characters beyond the standard english that fit in a url
@@ -452,7 +452,7 @@ typedef enum {
 			//NSString *licenseHTML = [NSString stringWithContentsOfFile:dLicensePath usedEncoding:NULL error:&error];
 			NSString *licenseHTML = [NSString stringWithContentsOfFile:dLicensePath encoding:NSUTF8StringEncoding error:&error];
 			if ( licenseHTML == nil )
-				NSLog(@"%@ %s - there was a problem reading the LicenseNonPersonalUse.html file, error %@", [self className], _cmd, error);
+				NSLog(@"%s - there was a problem reading the LicenseNonPersonalUse.html file, error %@", __PRETTY_FUNCTION__, error);
 			else
 			{
 				NSString *completedLicenseHTML = [NSString stringWithFormat:licenseHTML, dLicenseName, dLicenseCode];
@@ -465,7 +465,7 @@ typedef enum {
 			//NSString *licenseHTML = [NSString stringWithContentsOfFile:dLicensePath usedEncoding:NULL error:&error];
 			NSString *licenseHTML = [NSString stringWithContentsOfFile:dLicensePath encoding:NSUTF8StringEncoding error:&error];
 			if ( licenseHTML == nil )
-				NSLog(@"%@ %s - there was a problem reading the LicenseBetaTesting.html file, error %@", [self className], _cmd, error);
+				NSLog(@"%s - there was a problem reading the LicenseBetaTesting.html file, error %@", __PRETTY_FUNCTION__, error);
 			else
 			{
 				NSString *completedLicenseHTML = [NSString stringWithFormat:licenseHTML, dLicenseName, dLicenseCode];
@@ -478,7 +478,7 @@ typedef enum {
 			//NSString *licenseHTML = [NSString stringWithContentsOfFile:dLicensePath usedEncoding:NULL error:&error];
 			NSString *licenseHTML = [NSString stringWithContentsOfFile:dLicensePath encoding:NSUTF8StringEncoding error:&error];
 			if ( licenseHTML == nil )
-				NSLog(@"%@ %s - there was a problem reading the LicenseJournlerSpecial.html file, error %@", [self className], _cmd, error);
+				NSLog(@"%s - there was a problem reading the LicenseJournlerSpecial.html file, error %@", __PRETTY_FUNCTION__, error);
 			else
 			{
 				NSString *completedLicenseHTML = [NSString stringWithFormat:licenseHTML, dLicenseName, dLicenseCode];
@@ -491,7 +491,7 @@ typedef enum {
 			//NSString *licenseHTML = [NSString stringWithContentsOfFile:dLicensePath usedEncoding:NULL error:&error];
 			NSString *licenseHTML = [NSString stringWithContentsOfFile:dLicensePath encoding:NSUTF8StringEncoding error:&error];
 			if ( licenseHTML == nil )
-				NSLog(@"%@ %s - there was a problem reading the LicenseFull.html file, error %@", [self className], _cmd, error);
+				NSLog(@"%s - there was a problem reading the LicenseFull.html file, error %@", __PRETTY_FUNCTION__, error);
 			else
 			{
 				NSString *completedLicenseHTML = [NSString stringWithFormat:licenseHTML, dLicenseName, dLicenseCode];
@@ -537,7 +537,7 @@ typedef enum {
 		{
 			NSBeep();
 			[[NSAlert wordlistCreationError] runModal];
-			NSLog(@"%@ %s - unable to load wordlist from path %@", [self className], _cmd, wordlistPath);
+			NSLog(@"%s - unable to load wordlist from path %@", __PRETTY_FUNCTION__, wordlistPath);
 		}
 		else
 		{
@@ -546,7 +546,7 @@ typedef enum {
 	}
 	else
 	{
-		NSLog(@"%@ %s - no wordlist for auto-correct spelling", [self className], _cmd);
+		NSLog(@"%s - no wordlist for auto-correct spelling", __PRETTY_FUNCTION__);
 	}
 
 }
@@ -559,7 +559,7 @@ typedef enum {
 		NSDictionary *wordlist = [[NSApp delegate] autoCorrectWordList];
 		if ( wordlist == nil )
 		{
-			NSLog(@"%@ %s - nil word list, building from scratch", [self className], _cmd);
+			NSLog(@"%s - nil word list, building from scratch", __PRETTY_FUNCTION__);
 			[self setAutoCorrectWordPairs:[NSArray array]];
 		}
 		else
@@ -622,7 +622,7 @@ typedef enum {
 		{
 			NSBeep();
 			[[NSAlert wordlistSaveError] runModal];
-			NSLog(@"%@ %s - unable to write new autocorrect dictionary to path %@", [self className], _cmd, autocorrectPath);
+			NSLog(@"%s - unable to write new autocorrect dictionary to path %@", __PRETTY_FUNCTION__, autocorrectPath);
 		}
 	}
 	
@@ -658,7 +658,7 @@ typedef enum {
 	{
 		NSBeep();
 		[[NSAlert wordlistCreationError] runModal];
-		NSLog(@"%@ %s - unable to load wordlist from path %@", [self className], _cmd, wordlistSource);
+		NSLog(@"%s - unable to load wordlist from path %@", __PRETTY_FUNCTION__, wordlistSource);
 		return;
 	}
 	
@@ -667,7 +667,7 @@ typedef enum {
 	{
 		NSBeep();
 		[[NSAlert wordlistCreationError] runModal];
-		NSLog(@"%@ %s - unable to derive dictionary from wordlist at path %@", [self className], _cmd, wordlistSource);
+		NSLog(@"%s - unable to derive dictionary from wordlist at path %@", __PRETTY_FUNCTION__, wordlistSource);
 		return;
 	}
 	
@@ -703,7 +703,7 @@ typedef enum {
 		{
 			NSBeep();
 			[[NSAlert wordlistCreationError] runModal];
-			NSLog(@"%@ %s - unable to derive dictionary from wordlist at path %@", [self className], _cmd, wordlistSource);
+			NSLog(@"%s - unable to derive dictionary from wordlist at path %@", __PRETTY_FUNCTION__, wordlistSource);
 			return;
 		}
 		
@@ -878,7 +878,7 @@ typedef enum {
 				NSBeep();
 				[[NSAlert digestCreationError] runModal];
 				
-				NSLog(@"%@ %s - unable to create digest for password", [self className], _cmd);
+				NSLog(@"%s - unable to create digest for password", __PRETTY_FUNCTION__);
 				[self setPassed:NO];
 			}
 			else
@@ -891,7 +891,7 @@ typedef enum {
 					[[NSAlert passfileCreationError] runModal];
 					
 					[self setPassed:NO];
-					NSLog(@"%@ %s - unable to write encrypted password to file %@, error %@", [self className], _cmd, encryptedFilename, error);
+					NSLog(@"%s - unable to write encrypted password to file %@, error %@", __PRETTY_FUNCTION__, encryptedFilename, error);
 				}
 				else
 				{
@@ -910,7 +910,7 @@ typedef enum {
 			if ( availableDigest == nil )
 			{
 				// problem reading the file
-				NSLog(@"%@ %s - there was a problem reading the digest file at path %@, error %@", [self className], _cmd, encryptedFilename, error);
+				NSLog(@"%s - there was a problem reading the digest file at path %@, error %@", __PRETTY_FUNCTION__, encryptedFilename, error);
 				NSBeep();
 				return;
 			}
@@ -1039,7 +1039,7 @@ typedef enum {
 - (IBAction) blogAccountWizard:(id)sender 
 {
 	NSBeep();
-	NSLog(@"%@ %s - this method is deprecated", [self className], _cmd);
+	NSLog(@"%s - this method is deprecated", __PRETTY_FUNCTION__);
 	
 	int result;
 	BlogAccountWizardController *account_creator = [[BlogAccountWizardController alloc] init];
@@ -1322,7 +1322,7 @@ typedef enum {
 
 - (BOOL)fileManager:(NSFileManager *)manager shouldProceedAfterError:(NSDictionary *)errorInfo 
 {
-	NSLog(@"\n%@ %s - file manager error working with path: %@\n", [self className], _cmd, [errorInfo description]);
+	NSLog(@"\n%s - file manager error working with path: %@\n", __PRETTY_FUNCTION__, [errorInfo description]);
 	return NO;
 }
 

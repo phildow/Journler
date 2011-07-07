@@ -88,7 +88,7 @@
 - (void) dealloc 
 {	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[view release];
@@ -476,7 +476,7 @@ bail:
 - (BOOL) commitEditing
 {
 	BOOL success = [objectController commitEditing];
-	if ( !success ) NSLog(@"%@ %s - unable to commit editing", [self className], _cmd);
+	if ( !success ) NSLog(@"%s - unable to commit editing", __PRETTY_FUNCTION__);
 	return success;
 }
 

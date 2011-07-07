@@ -176,7 +176,7 @@ static NSImage* AlertBadge()
 {
 	if ( ![encoder allowsKeyedCoding] ) 
 	{
-		NSLog(@"%@ %s - cannot encode Resource without a keyed archiver", [self className], _cmd);
+		NSLog(@"%s - cannot encode Resource without a keyed archiver", __PRETTY_FUNCTION__);
 		return;
 	}
 	
@@ -548,14 +548,14 @@ static NSImage* AlertBadge()
 	NSString *urlString = [NSString stringWithFormat:@"journler://reference/%@", [self valueForKey:@"tagID"]];
 	if ( urlString == nil )
 	{
-		NSLog(@"%@ %s - unable to create string representation of resource #%@", [self className], _cmd, [self valueForKey:@"tagID"]);
+		NSLog(@"%s - unable to create string representation of resource #%@", __PRETTY_FUNCTION__, [self valueForKey:@"tagID"]);
 		return nil;
 	}
 	
 	NSURL *url = [NSURL URLWithString:urlString];
 	if ( url == nil )
 	{
-		NSLog(@"%@ %s - unable to create url representation of resource #%@", [self className], _cmd, [self valueForKey:@"tagID"]);
+		NSLog(@"%s - unable to create url representation of resource #%@", __PRETTY_FUNCTION__, [self valueForKey:@"tagID"]);
 		return nil;
 	}
 	
@@ -684,7 +684,7 @@ bail:
 	NSError *error = nil;
 	//if ( ![[icon TIFFRepresentation] writeToFile:[[self path] stringByAppendingString:@"_t.tif"] options:0 error:nil] )
 	if ( ![[icon pngData] writeToFile:[[self path] stringByAppendingString:@"_t.png"] options:0 error:&error] )
-		NSLog(@"%@ %s - unable to write resource thumbnail to %@, error: %@", [self className], _cmd, [[self path] stringByAppendingString:@"_t.png"], error);
+		NSLog(@"%s - unable to write resource thumbnail to %@, error: %@", __PRETTY_FUNCTION__, [[self path] stringByAppendingString:@"_t.png"], error);
 	
 	return icon;
 	
@@ -737,7 +737,7 @@ bail:
 	// delete the thumbnail
 	NSString *thumbnailPath = [self _pathForFileThumbnail];
 	if ( [[NSFileManager defaultManager] fileExistsAtPath:thumbnailPath] && ![[NSFileManager defaultManager] removeFileAtPath:thumbnailPath handler:self] )
-		NSLog(@"%@ %s - unable to remove thumbnail at path %@", [self className], _cmd, thumbnailPath);
+		NSLog(@"%s - unable to remove thumbnail at path %@", __PRETTY_FUNCTION__, thumbnailPath);
 	
 	// reload the icon
 	[self loadIcon];
@@ -751,11 +751,11 @@ bail:
 		return;
 	
 	//else if ( ![[theIcon TIFFRepresentation] writeToFile:[[self path] stringByAppendingString:@"_t.tif"] options:0 error:nil] )
-	//	NSLog(@"%@ %s - unable to write resource thumbnail to %@", [self className], _cmd, [[self path] stringByAppendingString:@"_t.tif"]);
+	//	NSLog(@"%s - unable to write resource thumbnail to %@", __PRETTY_FUNCTION__, [[self path] stringByAppendingString:@"_t.tif"]);
 	
 	NSError *error = nil;
 	if ( ![[theIcon pngData] writeToFile:[[self path] stringByAppendingString:@"_t.png"] options:0 error:&error] )
-		NSLog(@"%@ %s - unable to write resource thumbnail to %@, error: %@", [self className], _cmd, [[self path] stringByAppendingString:@"_t.png"], error);
+		NSLog(@"%s - unable to write resource thumbnail to %@, error: %@", __PRETTY_FUNCTION__, [[self path] stringByAppendingString:@"_t.png"], error);
 }
 
 - (void) addMissingFileBadge
@@ -799,7 +799,7 @@ bail:
 	if ( filename == nil )
 	{
 		// bail if we're still nil
-		NSLog(@"%@ %s - unable to derive original path from alias %@, resource %@", [self className], _cmd, originalFilename, [self tagID]);
+		NSLog(@"%s - unable to derive original path from alias %@, resource %@", __PRETTY_FUNCTION__, originalFilename, [self tagID]);
 	}
 	else
 	{
@@ -812,7 +812,7 @@ bail:
 		MailMessageParser *mailParser = [[[MailMessageParser alloc] initWithFile:filename] autorelease];
 		if ( mailParser == nil )
 		{
-			NSLog(@"%@ %s - unable to load mail message parser for mail message at path %@", [self className], _cmd, filename);
+			NSLog(@"%s - unable to load mail message parser for mail message at path %@", __PRETTY_FUNCTION__, filename);
 			return;
 		}
 		
@@ -830,7 +830,7 @@ bail:
 				NSAttributedString *attributedHTML = [[[NSAttributedString alloc] initWithHTML:htmlData documentAttributes:nil] autorelease];
 				if ( attributedHTML == nil ) 
 				{	
-					NSLog(@"%@ %s - unable to convert mail message to attributed string %@", [self className], _cmd, filename);
+					NSLog(@"%s - unable to convert mail message to attributed string %@", __PRETTY_FUNCTION__, filename);
 					return;
 				}
 				
@@ -838,14 +838,14 @@ bail:
 			}
 			@catch (NSException *localException)
 			{
-				NSLog(@"%@ %s - exception encountered while parsing mail message, file: %@, exception: %@",
-				 [self className], _cmd, filename, [localException description]);
+				NSLog(@"%s - exception encountered while parsing mail message, file: %@, exception: %@",
+				 __PRETTY_FUNCTION__, filename, [localException description]);
 				return;
 			}
 			@catch (id undefinedException)
 			{
-				NSLog(@"%@ %s - undefined exception encountered while parsing mail message, file: %@, exception: %@",
-				 [self className], _cmd, filename, [undefinedException description]);
+				NSLog(@"%s - undefined exception encountered while parsing mail message, file: %@, exception: %@",
+				 __PRETTY_FUNCTION__, filename, [undefinedException description]);
 				return;
 			}
 			@finally
@@ -861,7 +861,7 @@ bail:
 		// build the searchable string
 		if ( plainContent == nil )
 		{
-			NSLog(@"%@ %s - unable to derive plain content for mail message at path %@", [self className], _cmd, filename);
+			NSLog(@"%s - unable to derive plain content for mail message at path %@", __PRETTY_FUNCTION__, filename);
 			return;
 		}
 		
@@ -886,14 +886,14 @@ bail:
 		}
 		@catch (NSException *localException)
 		{
-			NSLog(@"%@ %s - exception encountered while parsing mail message, file: %@, exception: %@",
-			 [self className], _cmd, filename, [localException description]);
+			NSLog(@"%s - exception encountered while parsing mail message, file: %@, exception: %@",
+			 __PRETTY_FUNCTION__, filename, [localException description]);
 			return;
 		}
 		@catch (id undefinedException)
 		{
-			NSLog(@"%@ %s - undefined exception encountered while parsing mail message, file: %@, exception: %@",
-			 [self className], _cmd, filename, [undefinedException description]);
+			NSLog(@"%s - undefined exception encountered while parsing mail message, file: %@, exception: %@",
+			 __PRETTY_FUNCTION__, filename, [undefinedException description]);
 			return;
 		}
 		@finally
@@ -903,7 +903,7 @@ bail:
 	}
 	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s - textRepresentation: %@", [self className], _cmd, textRepresentation);
+	NSLog(@"%s - textRepresentation: %@", __PRETTY_FUNCTION__, textRepresentation);
 	#endif
 	
 	// set the textRepresentation
@@ -970,7 +970,7 @@ bail:
 		
 		if ( filename == nil || destination == nil )
 		{
-			NSLog(@"%@ %s - unable to prepare paths for copy, source: %@, destination: %@", [self className], _cmd, original, destination);
+			NSLog(@"%s - unable to prepare paths for copy, source: %@, destination: %@", __PRETTY_FUNCTION__, original, destination);
 			actualPath = nil;
 		}
 		else
@@ -988,14 +988,14 @@ bail:
 		ABPerson *person = (ABPerson*)[[ABAddressBook sharedAddressBook] recordForUniqueId:uniqueID];
 		if ( person == nil ) 
 		{
-			NSLog(@"%@ %s - unable to derive person from id %@", [self className], _cmd, uniqueID);
+			NSLog(@"%s - unable to derive person from id %@", __PRETTY_FUNCTION__, uniqueID);
 		}
 		else 
 		{
 			NSData *data = [person vCardRepresentation];
 			if ( data == nil ) 
 			{
-				NSLog(@"%@ %s - unable to derive data from person %@", [self className], _cmd, [person description]);
+				NSLog(@"%s - unable to derive data from person %@", __PRETTY_FUNCTION__, [person description]);
 			}
 			else 
 			{
@@ -1172,7 +1172,7 @@ bail:
 		}
 		else
 		{
-			NSLog(@"%@ %s - original file missing for resource %@-%@ %@", [self className], _cmd, [[self entry] tagID], [self tagID], [self title]);
+			NSLog(@"%s - original file missing for resource %@-%@ %@", __PRETTY_FUNCTION__, [[self entry] tagID], [self tagID], [self title]);
 		}
 	}
 }
@@ -1241,7 +1241,7 @@ bail:
 - (void) setRelativePath:(NSString*)aString
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s - %@", [self className], _cmd, aString);
+	NSLog(@"%s - %@", __PRETTY_FUNCTION__, aString);
 	#endif
 	
 	[_properties setValue:( aString ? aString : [NSString string] ) forKey:ResourceRelativePathKey];
@@ -1312,7 +1312,7 @@ bail:
 				@catch (NSException *localException)
 				{
 					strippedPath = nil;
-					NSLog(@"%@ %s exception: %@, entry: %@ resource path: %@", [self className], _cmd, localException, [self valueForKeyPath:@"entry.title"], originalPath);
+					NSLog(@"%s exception: %@, entry: %@ resource path: %@", __PRETTY_FUNCTION__, localException, [self valueForKeyPath:@"entry.title"], originalPath);
 				}
 			}
 			
@@ -1888,7 +1888,7 @@ bail:
 	if ( pathURL == nil || ![pathURL isKindOfClass:[NSURL class]] ) 
 	{
 		// raise an error
-		NSLog(@"%@ %s - nil path or path other than url, but path is required", [self className], _cmd);
+		NSLog(@"%s - nil path or path other than url, but path is required", __PRETTY_FUNCTION__);
 		[self returnError:errOSACantAssign string:nil];
 		return;
 	}
@@ -1902,7 +1902,7 @@ bail:
 	// write the file, error checking on the way
 	if ( [self createFileAtDestination:path] == nil )
 	{
-		NSLog(@"%@ %s - unable to export resource to path %@", [self className], _cmd, path);
+		NSLog(@"%s - unable to export resource to path %@", __PRETTY_FUNCTION__, path);
 		[self returnError:OSAParameterMismatch string:@"File path is not valid or an error was encountered writing the file."];
 	}
 	

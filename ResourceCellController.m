@@ -100,7 +100,7 @@
 - (void) dealloc
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[fileErrorController release];
@@ -422,7 +422,7 @@
 				[self setActiveContentView:[fileErrorController contentView]];
 				
 				NSBeep();
-				NSLog(@"%@ %s - no resource at original path for path %@", [self className], _cmd, [aResource path]);
+				NSLog(@"%s - no resource at original path for path %@", __PRETTY_FUNCTION__, [aResource path]);
 			}
 		}	
 	}
@@ -431,7 +431,7 @@
 	{
 		// if no suitable plugin has been found, go the default route
 		//[self showInfoForResource:aResource];
-		NSLog(@"%@ %s - wants to call showInfoForResource -- definitely shouldn't be here", [self className], _cmd);
+		NSLog(@"%s - wants to call showInfoForResource -- definitely shouldn't be here", __PRETTY_FUNCTION__);
 	}
 }
 
@@ -464,7 +464,7 @@
 - (void) ownerWillClose
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[photoView unbind:@"photoSize"];
@@ -490,7 +490,7 @@
 		if ( theArchive == nil )
 		{
 			NSBeep();
-			NSLog(@"%@ %s - unable to get archive for default web view", [self className], _cmd);
+			NSLog(@"%s - unable to get archive for default web view", __PRETTY_FUNCTION__);
 			return;
 		}
 		
@@ -498,7 +498,7 @@
 		if ( archiveData == nil )
 		{
 			NSBeep();
-			NSLog(@"%@ %s - unable to get archive data for default web view", [self className], _cmd);
+			NSLog(@"%s - unable to get archive data for default web view", __PRETTY_FUNCTION__);
 			return;
 		}
 		
@@ -552,7 +552,7 @@
 	else
 	{
 		NSBeep();
-		NSLog(@"%@ %s - nothing selected that Journler knows how to print", [self className], _cmd);
+		NSLog(@"%s - nothing selected that Journler knows how to print", __PRETTY_FUNCTION__);
 	}
 }
 
@@ -665,7 +665,7 @@
 
 - (void) contentController:(JournlerMediaContentController*)aController didLoadURL:(NSURL*)aURL
 {
-	//NSLog(@"%@ %s",[self className],_cmd);
+	//NSLog(@"%s",__PRETTY_FUNCTION__);
 	
 	
 	Class pd_pdf_view_controller_class = NSClassFromString(@"PDPDFViewController");
@@ -674,7 +674,7 @@
 	{
 		// special case for pdf documents
 		// take the opportunity to generate a new preview icon for the resource
-		//NSLog(@"%@ %s - we have a pdf document",[self className],_cmd);
+		//NSLog(@"%s - we have a pdf document",__PRETTY_FUNCTION__);
 		
 		PDFDocument *pdfDoc = [(PDPDFViewController*)aController pdfDocument];
 		if ( pdfDoc != nil && [pdfDoc pageCount] != 0 )
@@ -777,7 +777,7 @@
 - (void)photoView:(MUPhotoView *)view doubleClickOnPhotoAtIndex:(unsigned)index withFrame:(NSRect)frame
 {
 	// do something *cool* here
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	
 	if ( index >= [[self selectedResources] count] )
 		return;
@@ -900,14 +900,14 @@
 	NSString *uti = [[NSWorkspace sharedWorkspace] UTIForFile:[[NSWorkspace sharedWorkspace] resolveForAliases:path]];
 	if ( uti == nil ) 
 	{
-		NSLog(@"%@ %s - unable to determine uti file at path %@, launching with Finder", [self className], _cmd, path);
+		NSLog(@"%s - unable to determine uti file at path %@, launching with Finder", __PRETTY_FUNCTION__, path);
 		[[NSWorkspace sharedWorkspace] openFile:path];
 		return nil;
 	}
 	
 	if ( ![JournlerMediaViewer canDisplayMediaOfType:uti url:aURL] )
 	{
-		NSLog(@"%@ %s - cannot view file with Journler at url %@", [self className], _cmd, aURL);
+		NSLog(@"%s - cannot view file with Journler at url %@", __PRETTY_FUNCTION__, aURL);
 		[[NSWorkspace sharedWorkspace] openFile:path];
 		return nil;
 	}
@@ -916,7 +916,7 @@
 	JournlerMediaViewer *mediaViewer = [[[JournlerMediaViewer alloc] initWithURL:aURL uti:uti] autorelease];
 	if ( mediaViewer == nil )
 	{
-		NSLog(@"%@ %s - problem allocating media viewer for url %@", [self className], _cmd, aURL);
+		NSLog(@"%s - problem allocating media viewer for url %@", __PRETTY_FUNCTION__, aURL);
 		[[NSWorkspace sharedWorkspace] openFile:path];
 		return nil;
 	}
@@ -974,7 +974,7 @@
 			[items insertObject:openWithFinderItem atIndex:i];
 		}
 		
-		//NSLog(@"%@ %s",[aMenuItem title],[aMenuItem action]);
+		//NSLog(@"%s",[aMenuItem title],[aMenuItem action]);
 	}
 	
 	return items;
@@ -1201,7 +1201,7 @@
 		else
 		{
 			NSBeep();
-			NSLog(@"%@ %s - curretly, only file based urls are supported %@", [self className], _cmd, [applicationURI absoluteString]);
+			NSLog(@"%s - curretly, only file based urls are supported %@", __PRETTY_FUNCTION__, [applicationURI absoluteString]);
 			success = NO;
 		}
 	}
@@ -1218,7 +1218,7 @@
 		{
 			success = NO;
 			NSBeep();
-			NSLog(@"%@ %s - no media url %@", [self className], _cmd);
+			NSLog(@"%s - no media url %@", __PRETTY_FUNCTION__);
 			return;
 		}
 		
@@ -1230,7 +1230,7 @@
 		if ( script == nil )
 		{
 			success = NO;
-			NSLog(@"%@ %s - unable to initalize script with source %@", [self className], _cmd, scriptSource);
+			NSLog(@"%s - unable to initalize script with source %@", __PRETTY_FUNCTION__, scriptSource);
 			
 			NSBeep();
 			AppleScriptAlert *scriptAlert = [[[AppleScriptAlert alloc] initWithSource:[anItem targetScript] error:[NSString string]] autorelease];
@@ -1243,7 +1243,7 @@
 		if ( [script compileAndReturnError:&errorDictionary] == NO )
 		{
 			success = NO;
-			NSLog(@"%@ %s - unable to compile the script %@, error: %@", [self className], _cmd, scriptSource, errorDictionary);
+			NSLog(@"%s - unable to compile the script %@, error: %@", __PRETTY_FUNCTION__, scriptSource, errorDictionary);
 			
 			id theSource = [script richTextSource];
 			if ( theSource == nil ) theSource = [script source];
@@ -1258,7 +1258,7 @@
 			&& [[errorDictionary objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
 		{
 			success = NO;
-			NSLog(@"%@ %s - unable to execute handler of script %@, error: %@", [self className], _cmd, scriptSource, errorDictionary);
+			NSLog(@"%s - unable to execute handler of script %@, error: %@", __PRETTY_FUNCTION__, scriptSource, errorDictionary);
 			
 			id theSource = [script richTextSource];
 			if ( theSource == nil ) theSource = [script source];
@@ -1344,7 +1344,7 @@ bail:
 			
 			if ( ![[NSWorkspace sharedWorkspace] getInfoForFile:filename application:&appName type:&fileType] || appName == nil )
 			{
-				NSLog(@"%@ %s - unable to get workspace information for file at path %@", [self className], _cmd, filename);
+				NSLog(@"%s - unable to get workspace information for file at path %@", __PRETTY_FUNCTION__, filename);
 				// use the default image
 				[anItem setImage:[self defaultOpenWithFinderImage:mediabar]];
 			}
@@ -1354,7 +1354,7 @@ bail:
 				
 				if ( appPath == nil )
 				{
-					NSLog(@"%@ %s - unable to get application path for file at path %@", [self className], _cmd, filename);
+					NSLog(@"%s - unable to get application path for file at path %@", __PRETTY_FUNCTION__, filename);
 					// use the default image
 					[anItem setImage:[self defaultOpenWithFinderImage:mediabar]];
 				}
@@ -1372,7 +1372,7 @@ bail:
 					
 					if ( imageIcon == nil )
 					{
-						NSLog(@"%@ %s - unable to get icon path for application at path %@", [self className], _cmd, appPath);
+						NSLog(@"%s - unable to get icon path for application at path %@", __PRETTY_FUNCTION__, appPath);
 						// use the default image
 						[anItem setImage:[self defaultOpenWithFinderImage:mediabar]];
 					}
@@ -1425,7 +1425,7 @@ bail:
 			&& [[self mediaURL] isFileURL] && ![[self mediaURL] isEqualTo:[NSURL fileURLWithPath:[aResource originalPath]]] )
 	{
 		// the loaded url takes precedence over the resource's url
-		NSLog(@"%@ %s - loaded url is file url and different than resource url", [self className], _cmd);
+		NSLog(@"%s - loaded url is file url and different than resource url", __PRETTY_FUNCTION__);
 	}
 	
 	ResourceInfoController *infoController = [[[ResourceInfoController alloc] init] autorelease];
@@ -1448,7 +1448,7 @@ bail:
 			&& [[self mediaURL] isFileURL] && ![[self mediaURL] isEqualTo:[NSURL fileURLWithPath:[aResource originalPath]]] )
 	{
 		// the loaded url takes precedence over the resource's url
-		NSLog(@"%@ %s - loaded url is file url and different than resource url", [self className], _cmd);
+		NSLog(@"%s - loaded url is file url and different than resource url", __PRETTY_FUNCTION__);
 		
 		NSString *path = [[self mediaURL] path];
 		[[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:[path stringByDeletingLastPathComponent]];
@@ -1472,7 +1472,7 @@ bail:
 			&& [[self mediaURL] isFileURL] && ![[self mediaURL] isEqualTo:[NSURL fileURLWithPath:[aResource originalPath]]] )
 	{
 		// the loaded url takes precedence over the resource's url
-		NSLog(@"%@ %s - loaded url is file url different than resource url", [self className], _cmd);
+		NSLog(@"%s - loaded url is file url different than resource url", __PRETTY_FUNCTION__);
 		
 		[[NSWorkspace sharedWorkspace] openURL:[self mediaURL]];
 	}

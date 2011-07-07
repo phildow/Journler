@@ -109,7 +109,7 @@ static NSArray *DefaultDocumentsSort()
 	}
 	else
 	{
-		NSLog(@"%@ %s - unable to locate lexiconinlexicon.html in Journler Help Files/html", [self className], _cmd);
+		NSLog(@"%s - unable to locate lexiconinlexicon.html in Journler Help Files/html", __PRETTY_FUNCTION__);
 	}
 	
 	//int borders[4] = {1,1,1,1};
@@ -121,7 +121,7 @@ static NSArray *DefaultDocumentsSort()
 - (void) dealloc
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[entryCellController release];
@@ -253,7 +253,7 @@ static NSArray *DefaultDocumentsSort()
 	
 	if ( ![indexServer loadRootTerms] )
 	{
-		NSLog(@"%@ %s - unable to load root terms from index server", [self className], _cmd);
+		NSLog(@"%s - unable to load root terms from index server", __PRETTY_FUNCTION__);
 		rootTerms = [NSArray array];
 	}
 	else
@@ -336,7 +336,7 @@ static NSArray *DefaultDocumentsSort()
 			if ( _breakTermLoadingThread )
 			{
 				#ifdef __DEBUG__
-				NSLog(@"%@ %s - killing thread", [self className],_cmd);
+				NSLog(@"%s - killing thread", __PRETTY_FUNCTION__);
 				#endif
 				goto bail;
 				//[pool release];
@@ -371,7 +371,7 @@ bail:
 	if ( setContent ) 
 	{
 		#ifdef __DEBUG__
-		NSLog(@"%@ %s - setting content", [self className],_cmd);
+		NSLog(@"%s - setting content", __PRETTY_FUNCTION__);
 		#endif
 		NSDictionary *contentDictionary = [NSDictionary dictionaryWithObjectsAndKeys:content, @"content", [NSNumber numberWithUnsignedInt:anIndex], @"index", nil];
 		[indexBrowser performSelectorOnMainThread:@selector(setContentAtIndex:) withObject:contentDictionary waitUntilDone:YES];
@@ -924,7 +924,7 @@ bail:
 			if ( [selectedTerm isKindOfClass:[NSString class]] )
 			{
 				#ifdef __DEBUG__
-				NSLog(@"%@ %s - selected term: %@", [self className], _cmd, selectedTerm);
+				NSLog(@"%s - selected term: %@", __PRETTY_FUNCTION__, selectedTerm);
 				#endif
 				
 				if ( [self activeContentView] == [entryCellController contentView] )

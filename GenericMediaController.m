@@ -28,12 +28,12 @@ static NSString *kQLFrameworkPath = @"/System/Library/PrivateFrameworks/QuickLoo
 			NSBundle *qlPreviewBundle = [NSBundle bundleWithPath:kQLFrameworkPath];
 			if ( ![qlPreviewBundle isLoaded] && ![qlPreviewBundle load] )
 			{
-				NSLog(@"%@ %s - unable to load QuickLookUI.framework bundle at path %@", [self className], _cmd, kQLFrameworkPath);
+				NSLog(@"%s - unable to load QuickLookUI.framework bundle at path %@", __PRETTY_FUNCTION__, kQLFrameworkPath);
 			}
 		}
 		else
 		{
-			NSLog(@"%@ %s - no quicklook framework at path %@", [self className], _cmd, kQLFrameworkPath);
+			NSLog(@"%s - no quicklook framework at path %@", __PRETTY_FUNCTION__, kQLFrameworkPath);
 		}
 		
 		usesQuickLook = NO;
@@ -81,7 +81,7 @@ static NSString *kQLFrameworkPath = @"/System/Library/PrivateFrameworks/QuickLoo
 	Class ql_preview_view = NSClassFromString(@"QLPreviewView");
 	if ( ql_preview_view == nil )
 	{
-		NSLog(@"%@ %s - unable to find the QLPreviewView class in the runtime", [self className], _cmd);
+		NSLog(@"%s - unable to find the QLPreviewView class in the runtime", __PRETTY_FUNCTION__);
 	}
 	else
 	{

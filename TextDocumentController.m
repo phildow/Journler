@@ -40,7 +40,7 @@
 {
 	if ( ![aURL isFileURL] )
 	{
-		NSLog(@"%@ %s - cannot load mail message from remote location %@", [self className], _cmd, aURL);
+		NSLog(@"%s - cannot load mail message from remote location %@", __PRETTY_FUNCTION__, aURL);
 		NSBeep();
 		[[NSAlert mediaError] runModal];
 		return NO;
@@ -49,7 +49,7 @@
 	NSString *path = [aURL path];
 	if ( ![[NSFileManager defaultManager] fileExistsAtPath:path] )
 	{
-		NSLog(@"%@ %s - no message appears to exist for the specified file %@", [self className], _cmd, path);
+		NSLog(@"%s - no message appears to exist for the specified file %@", __PRETTY_FUNCTION__, path);
 		NSBeep();
 		[[NSAlert mediaError] runModal];
 		return NO;
@@ -60,7 +60,7 @@
 	NSString *fileUTI = [[NSWorkspace sharedWorkspace] UTIForFile:path];
 	if ( fileUTI == nil )
 	{
-		NSLog(@"%@ %s - unable to determine uti for file at path %@", [self className], _cmd, path);
+		NSLog(@"%s - unable to determine uti for file at path %@", __PRETTY_FUNCTION__, path);
 		NSBeep();
 		[[NSAlert mediaError] runModal];
 		return NO;
@@ -78,7 +78,7 @@
 	{
 		NSFileWrapper *wrapper = [[[NSFileWrapper alloc] initWithPath:path] autorelease];
 		if ( wrapper == nil )
-			NSLog(@"%@ %s - unable to create file wrapper for rtfd at path %@", [self className], _cmd, path);
+			NSLog(@"%s - unable to create file wrapper for rtfd at path %@", __PRETTY_FUNCTION__, path);
 		else
 			attributedContent = [[[NSAttributedString alloc] initWithRTFDFileWrapper:wrapper documentAttributes:nil] autorelease];
 	}
@@ -106,7 +106,7 @@
 	// if we have attributed content then we're good to go
 	if ( attributedContent == nil )
 	{
-		NSLog(@"%@ %s - unable to load content for file at path %@", [self className], _cmd, path);
+		NSLog(@"%s - unable to load content for file at path %@", __PRETTY_FUNCTION__, path);
 		
 		NSBeep();
 		if ( error != nil ) [NSApp presentError:error];

@@ -73,7 +73,7 @@ static NSString *kMediabarItemComposeMessage = @"kMediabarItemComposeMessage";
 {
 	if ( ![aURL isFileURL] )
 	{
-		NSLog(@"%@ %s - cannot load mail message from remote location %@", [self className], _cmd, aURL);
+		NSLog(@"%s - cannot load mail message from remote location %@", __PRETTY_FUNCTION__, aURL);
 		NSBeep();
 		[[NSAlert mediaError] runModal];
 		return NO;
@@ -82,7 +82,7 @@ static NSString *kMediabarItemComposeMessage = @"kMediabarItemComposeMessage";
 	NSString *path = [aURL path];
 	if ( ![[NSFileManager defaultManager] fileExistsAtPath:path] )
 	{
-		NSLog(@"%@ %s - no message appears to exist for the specified file %@", [self className], _cmd, path);
+		NSLog(@"%s - no message appears to exist for the specified file %@", __PRETTY_FUNCTION__, path);
 		NSBeep();
 		[[NSAlert mediaError] runModal];
 		return NO;
@@ -91,7 +91,7 @@ static NSString *kMediabarItemComposeMessage = @"kMediabarItemComposeMessage";
 	MailMessageParser *parser = [[[MailMessageParser alloc] initWithFile:path] autorelease];
 	if ( parser == nil )
 	{
-		NSLog(@"%@ %s - unable to initialize parser for file at path %@", [self className], _cmd, path);
+		NSLog(@"%s - unable to initialize parser for file at path %@", __PRETTY_FUNCTION__, path);
 		NSBeep();
 		[[NSAlert mediaError] runModal]; 
 		return NO;
@@ -153,7 +153,7 @@ static NSString *kMediabarItemComposeMessage = @"kMediabarItemComposeMessage";
 			[[webView mainFrame] loadRequest:errorMsgReqeust];
 		}
 		
-		NSLog(@"%@ %s - unable to derive message body for email at path %@", [self className], _cmd, path);
+		NSLog(@"%s - unable to derive message body for email at path %@", __PRETTY_FUNCTION__, path);
 		NSBeep(); return NO;
 	}	
 	
@@ -317,7 +317,7 @@ static NSString *kMediabarItemComposeMessage = @"kMediabarItemComposeMessage";
 	NSString *toAddress = [sender representedObject];
 	if ( toAddress == nil )
 	{
-		NSLog(@"%@ %s - no represented object associated with sender", [self className], _cmd);
+		NSLog(@"%s - no represented object associated with sender", __PRETTY_FUNCTION__);
 		NSBeep(); return;
 	}
 	
@@ -331,7 +331,7 @@ static NSString *kMediabarItemComposeMessage = @"kMediabarItemComposeMessage";
 		
 		if ( parsedAddress == nil )
 		{
-			NSLog(@"%@ %s - unable to parse provided email address %@", [self className], _cmd, toAddress);
+			NSLog(@"%s - unable to parse provided email address %@", __PRETTY_FUNCTION__, toAddress);
 			NSBeep(); return;
 		}
 	}
@@ -346,7 +346,7 @@ static NSString *kMediabarItemComposeMessage = @"kMediabarItemComposeMessage";
 	if ( ![JournlerApplicationDelegate sendRichMail:[[[NSAttributedString alloc] initWithString:[NSString string] attributes:nil] autorelease] 
 			to:parsedAddress subject:[NSString string] isMIME:NO withNSMail:NO] )
 	{
-		NSLog(@"%@ %s - unable to send email message", [self className], _cmd);
+		NSLog(@"%s - unable to send email message", __PRETTY_FUNCTION__);
 		NSBeep(); return;
 	}
 }
@@ -357,7 +357,7 @@ static NSString *kMediabarItemComposeMessage = @"kMediabarItemComposeMessage";
 	NSString *toAddress = [self defaultSender];
 	if ( toAddress == nil )
 	{
-		NSLog(@"%@ %s - no represented object associated with sender", [self className], _cmd);
+		NSLog(@"%s - no represented object associated with sender", __PRETTY_FUNCTION__);
 		NSBeep(); return;
 	}
 	
@@ -371,7 +371,7 @@ static NSString *kMediabarItemComposeMessage = @"kMediabarItemComposeMessage";
 		
 		if ( parsedAddress == nil )
 		{
-			NSLog(@"%@ %s - unable to parse provided email address %@", [self className], _cmd, toAddress);
+			NSLog(@"%s - unable to parse provided email address %@", __PRETTY_FUNCTION__, toAddress);
 			NSBeep(); return;
 		}
 	}
@@ -386,7 +386,7 @@ static NSString *kMediabarItemComposeMessage = @"kMediabarItemComposeMessage";
 	if ( ![JournlerApplicationDelegate sendRichMail:[[[NSAttributedString alloc] initWithString:[NSString string] attributes:nil] autorelease] 
 			to:parsedAddress subject:[NSString string] isMIME:NO withNSMail:NO] )
 	{
-		NSLog(@"%@ %s - unable to send email message", [self className], _cmd);
+		NSLog(@"%s - unable to send email message", __PRETTY_FUNCTION__);
 		NSBeep(); return;
 	}
 }

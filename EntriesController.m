@@ -38,7 +38,7 @@
 - (void) dealloc
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[[NSNotificationCenter defaultCenter] removeObserver:self 
@@ -79,13 +79,13 @@
 
 - (NSArray*) stateArray
 {
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	return nil;
 }
 
 - (void) setStateArray:(NSArray*)anArray
 {
-	NSLog(@"%@ %s - %@",[self className],_cmd, anArray);
+	NSLog(@"%s - %@",__PRETTY_FUNCTION__, anArray);
 }
 
 #pragma mark -
@@ -254,7 +254,7 @@
 - (BOOL)selectionShouldChangeInTableView:(NSTableView *)aTableView
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd );
+	NSLog(@"%s", __PRETTY_FUNCTION__ );
 	#endif
 	
 	// this method must return immediately or the table is left in an inconsisten state
@@ -431,13 +431,13 @@
 
 - (BOOL)tokenFieldCell:(NSTokenFieldCell *)tokenFieldCell hasMenuForRepresentedObject:(id)representedObject
 {
-	//NSLog(@"%@ %s",[self className],_cmd);
+	//NSLog(@"%s",__PRETTY_FUNCTION__);
 	return YES;
 }
 
 - (NSMenu *)tokenFieldCell:(NSTokenFieldCell *)tokenFieldCell menuForRepresentedObject:(id)representedObject
 {
-	//NSLog(@"%@ %s",[self className],_cmd);
+	//NSLog(@"%s",__PRETTY_FUNCTION__);
 	
 	NSMenu *theMenu = nil;
 	
@@ -473,7 +473,7 @@
 	}
 	else
 	{
-		NSLog(@"%@ %s - filter returned no objects", [self className], _cmd);
+		NSLog(@"%s - filter returned no objects", __PRETTY_FUNCTION__);
 	}
 	
 	return theMenu;
@@ -482,7 +482,7 @@
 - (NSArray *)tokenFieldCell:(NSTokenFieldCell *)tokenFieldCell completionsForSubstring:(NSString *)substring 
 indexOfToken:(int)tokenIndex indexOfSelectedItem:(int)selectedIndex
 {
-	//NSLog(@"%@ %s",[self className],_cmd);
+	//NSLog(@"%s",__PRETTY_FUNCTION__);
 	
 	NSArray *tagsArray = [[[[self delegate] journal] entryTags] allObjects];
 	//NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith[cd] %@", substring];
@@ -493,7 +493,7 @@ indexOfToken:(int)tokenIndex indexOfSelectedItem:(int)selectedIndex
 
 - (NSArray *)tokenFieldCell:(NSTokenFieldCell *)tokenFieldCell shouldAddObjects:(NSArray *)tokens atIndex:(unsigned)index
 {
-	//NSLog(@"%@ %s - %@",[self className],_cmd,tokens);
+	//NSLog(@"%s - %@",__PRETTY_FUNCTION__,tokens);
 	
 	NSMutableArray *modifiedArray = [NSMutableArray array];
 	
@@ -513,7 +513,7 @@ indexOfToken:(int)tokenIndex indexOfSelectedItem:(int)selectedIndex
 
 - (void)tokenFieldCell:(PDTokenFieldCell *)tokenFieldCell didReadTokens:(NSArray*)theTokens fromPasteboard:(NSPasteboard *)pboard
 {
-	//NSLog(@"%@ %s - %@", [self className], _cmd, theTokens);
+	//NSLog(@"%s - %@", __PRETTY_FUNCTION__, theTokens);
 	[[self selectedObjects] makeObjectsPerformSelector:@selector(setTags:) withObject:theTokens];
 }
 

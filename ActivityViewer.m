@@ -49,9 +49,9 @@ static NSString *kActivityViewerContext = @"ActivityViewerContext";
 
 - (void) dealloc
 {
-	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
-	#endif __DEBUG__
+#ifdef __DEBUG__
+	NSLog(@"%s", __PRETTY_FUNCTION__);
+#endif
 	
 	[journal release];
 	[super dealloc];
@@ -59,9 +59,9 @@ static NSString *kActivityViewerContext = @"ActivityViewerContext";
 
 - (void)windowWillClose:(NSNotification *)aNotification 
 {
-	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
-	#endif __DEBUG__
+#ifdef __DEBUG__
+	NSLog(@"%s", __PRETTY_FUNCTION__);
+#endif
 	
 	//[journal removeObserver:self forKeyPath:@"activity"];
 	//[self autorelease];

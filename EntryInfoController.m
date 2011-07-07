@@ -29,7 +29,7 @@
 - (void) dealloc 
 {
 	#ifdef __DEBUG__
-		NSLog(@"%@ %s",[self className],_cmd);
+		NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[entryLocation release];
@@ -256,7 +256,7 @@
 
 - (NSArray *)tokenFieldCell:(NSTokenFieldCell *)tokenFieldCell shouldAddObjects:(NSArray *)tokens atIndex:(unsigned)index
 {
-	//NSLog(@"%@ %s - %@",[self className],_cmd,tokens);
+	//NSLog(@"%s - %@",__PRETTY_FUNCTION__,tokens);
 	
 	NSMutableArray *modifiedArray = [NSMutableArray array];
 	
@@ -284,7 +284,7 @@
 - (IBAction)saveChanges:(id)sender
 {
 	if ( ![objectController commitEditing] )
-		NSLog(@"%@ %s - unable to commit editing", [self className], _cmd);
+		NSLog(@"%s - unable to commit editing", __PRETTY_FUNCTION__);
 	
 	NSCalendarDate *newDate, *newDateDue;
 	

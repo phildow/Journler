@@ -53,7 +53,7 @@
 - (void) dealloc 
 {	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[importOptions release];
@@ -170,13 +170,13 @@
 		// c. stopping the modal
 		// d. closing the sheet
 		
-		//NSLog(@"%@ %s - starting progress indicator",[self className],_cmd);
+		//NSLog(@"%s - starting progress indicator",__PRETTY_FUNCTION__);
 		//[progress setHidden:NO];
 		//[progressLabel setHidden:NO];
 		//[progress startAnimation:self];
-		//NSLog(@"%@ %s - finished starting progress indicator",[self className],_cmd);
+		//NSLog(@"%s - finished starting progress indicator",__PRETTY_FUNCTION__);
 		
-		//NSLog(@"%@ %s - [[self window] display]",[self className],_cmd);
+		//NSLog(@"%s - [[self window] display]",__PRETTY_FUNCTION__);
 		//[[self window] display];
 		
 	}
@@ -213,7 +213,7 @@
 	
 	if ( _userInteraction ) 
 	{
-		//NSLog(@"%@ %s - [progress stopAnimation:self]",[self className],_cmd);
+		//NSLog(@"%s - [progress stopAnimation:self]",__PRETTY_FUNCTION__);
 		//[progress stopAnimation:self];
 		
 		if (sheet ) [NSApp endSheet: [self window]];

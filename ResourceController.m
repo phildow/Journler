@@ -155,7 +155,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 - (void) dealloc
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[[NSNotificationCenter defaultCenter] removeObserver:self 
@@ -1142,7 +1142,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 	{
 		JournlerResource *aReference = [[objects objectAtIndex:i] resource];
 		if ( [aReference createFileAtDestination:rootPath] == nil )
-			NSLog(@"%@ %s - problem exporing the resource out of journler: resource %@", [self className], _cmd, [aReference tagID]);
+			NSLog(@"%s - problem exporing the resource out of journler: resource %@", __PRETTY_FUNCTION__, [aReference tagID]);
 		
 		[titles addObject:[aReference valueForKey:@"title"]];
 	}
@@ -1250,7 +1250,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 		
 		if ( !URLArray || !titleArray || [URLArray count] != [titleArray count] ) 
 		{
-			NSLog(@"%@ %s - malformed WebURLsWithTitlesPboardType data", [self className], _cmd);
+			NSLog(@"%s - malformed WebURLsWithTitlesPboardType data", __PRETTY_FUNCTION__);
 			success = NO;
 		}
 		else 
@@ -1497,7 +1497,7 @@ bail:
 	id collapsedObject = [[notification userInfo] objectForKey:@"NSObject"];
 	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s - %@", [self className], _cmd, [collapsedObject labelTitle]);
+	NSLog(@"%s - %@", __PRETTY_FUNCTION__, [collapsedObject labelTitle]);
 	#endif
 	
 	if ( [[collapsedObject valueForKey:@"label"] boolValue] == YES )
@@ -1509,7 +1509,7 @@ bail:
 	id expandedObject = [[notification userInfo] objectForKey:@"NSObject"];
 	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s - %@", [self className], _cmd, [expandedObject labelTitle]);
+	NSLog(@"%s - %@", __PRETTY_FUNCTION__, [expandedObject labelTitle]);
 	#endif
 	
 	if ( [[expandedObject valueForKey:@"label"] boolValue] == YES )
@@ -1734,7 +1734,7 @@ bail:
 - (IBAction) tableDoubleClick:(id)sender
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	NSArray *selection = [self selectedResources];
@@ -2387,7 +2387,7 @@ bail:
 	
 	if ( script == nil )
 	{
-		NSLog(@"%@ %s - unable to initialize the mail message script: %@", [self className], _cmd, errorDictionary);
+		NSLog(@"%s - unable to initialize the mail message script: %@", __PRETTY_FUNCTION__, errorDictionary);
 		
 		id theSource = [script richTextSource];
 		if ( theSource == nil ) theSource = [script source];
@@ -2405,7 +2405,7 @@ bail:
 		eventDescriptor = [script executeAndReturnError:&errorDictionary];
 		if ( eventDescriptor == nil && [[errorDictionary objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
 		{
-			NSLog(@"%@ %s - problem compiling mail message selection script: %@", [self className], _cmd, errorDictionary);
+			NSLog(@"%s - problem compiling mail message selection script: %@", __PRETTY_FUNCTION__, errorDictionary);
 			
 			id theSource = [script richTextSource];
 			if ( theSource == nil ) theSource = [script source];
@@ -2419,7 +2419,7 @@ bail:
 		}
 		else if ( [eventDescriptor numberOfItems] == 0 )
 		{
-			NSLog(@"%@ %s - mail messasge drag, the return event descriptor contains no items: %@", [self className], _cmd, eventDescriptor);
+			NSLog(@"%s - mail messasge drag, the return event descriptor contains no items: %@", __PRETTY_FUNCTION__, eventDescriptor);
 			success = NO;
 			goto bail;
 		}
@@ -2440,7 +2440,7 @@ bail:
 				
 				if ( [itemDescriptor numberOfItems] != 2 )
 				{
-					NSLog(@"%@ %s - the item descriptor is not properly formatted", [self className], _cmd);
+					NSLog(@"%s - the item descriptor is not properly formatted", __PRETTY_FUNCTION__);
 					success = NO;
 					continue;
 				}
@@ -2479,7 +2479,7 @@ bail:
 	
 	JournlerResource *resource = [anEntry resourceForABPerson:aPerson];
 	if ( resource == nil )
-		NSLog(@"%@ %s - unable to create resource for ABPerson %@", [self className], _cmd, [aPerson uniqueId]);
+		NSLog(@"%s - unable to create resource for ABPerson %@", __PRETTY_FUNCTION__, [aPerson uniqueId]);
 	else
 		success = YES;
 	
@@ -2500,7 +2500,7 @@ bail:
 	{
 		JournlerResource *resource = [anEntry resourceForURL:[aURL absoluteString] title:title];
 		if ( resource == nil )
-			NSLog(@"%@ %s - unable to create resource for url %@", [self className], _cmd, [aURL absoluteString]);
+			NSLog(@"%s - unable to create resource for url %@", __PRETTY_FUNCTION__, [aURL absoluteString]);
 		else
 			success = YES;
 	}
@@ -2514,7 +2514,7 @@ bail:
 	
 	JournlerObject *theObject = [[self valueForKeyPath:@"delegate.journal"] objectForURIRepresentation:aURL];
 	if ( theObject == nil )
-		NSLog(@"%@ %s - unable to produce object for uri %@", [self className], _cmd, [aURL absoluteString]);
+		NSLog(@"%s - unable to produce object for uri %@", __PRETTY_FUNCTION__, [aURL absoluteString]);
 	else
 	{
 		if ( [theObject isKindOfClass:[JournlerEntry class]] || [theObject isKindOfClass:[JournlerCollection class]] )
@@ -2522,7 +2522,7 @@ bail:
 			// establish the relationship with the entry - note I don't actually use this resource for anything
 			JournlerResource *resource = [anEntry resourceForJournlerObject:theObject];
 			if ( resource == nil )
-				NSLog(@"%@ %s - unable to produce new resource for uri %@", [self className], _cmd, [aURL absoluteString]);
+				NSLog(@"%s - unable to produce new resource for uri %@", __PRETTY_FUNCTION__, [aURL absoluteString]);
 			else
 				success = YES;
 		}
@@ -2542,21 +2542,21 @@ bail:
 	
 	NSFileWrapper *fileWrapper = [anAttributedString RTFDFileWrapperFromRange:NSMakeRange(0,[anAttributedString length]) documentAttributes:nil];
 	if ( fileWrapper == nil )
-		NSLog(@"%@ %s - unable to create file wrapper for attributed string", [self className], _cmd);
+		NSLog(@"%s - unable to create file wrapper for attributed string", __PRETTY_FUNCTION__);
 	else
 	{
 		NSString *destination = [[TempDirectory() stringByAppendingPathComponent:NSLocalizedString(@"untitled title",@"")]
 				stringByAppendingPathExtension:@"rtfd"];
 		if ( destination == nil )
-			NSLog(@"%@ %s - unable to temporary path for file wrapper", [self className], _cmd);
+			NSLog(@"%s - unable to temporary path for file wrapper", __PRETTY_FUNCTION__);
 		else
 		{
 			if ( ![fileWrapper writeToFile:destination atomically:YES updateFilenames:YES] )
-				NSLog(@"%@ %s - unable to save attributed string file wrapper to %@", [self className], _cmd, destination);
+				NSLog(@"%s - unable to save attributed string file wrapper to %@", __PRETTY_FUNCTION__, destination);
 			else
 			{
 				if ( ![anEntry resourceForFile:destination operation:kNewResourceForceCopy] )
-					NSLog(@"%@ %s - unable to convert path to resource: %@", [self className], _cmd, destination);
+					NSLog(@"%s - unable to convert path to resource: %@", __PRETTY_FUNCTION__, destination);
 				else
 					success = YES;
 			}
@@ -2573,16 +2573,16 @@ bail:
 	NSString *destination = [[TempDirectory() stringByAppendingPathComponent:NSLocalizedString(@"untitled title",@"")]
 			stringByAppendingPathExtension:@"txt"];
 	if ( destination == nil )
-		NSLog(@"%@ %s - unable to prepare temporary path for string", [self className], _cmd);
+		NSLog(@"%s - unable to prepare temporary path for string", __PRETTY_FUNCTION__);
 	else
 	{
 		NSError *error;
 		if ( ![aString writeToFile:destination atomically:YES encoding:NSUTF8StringEncoding error:&error] )
-			NSLog(@"%@ %s - unable to write string to file %@, error %@", [self className], _cmd, destination, error);
+			NSLog(@"%s - unable to write string to file %@, error %@", __PRETTY_FUNCTION__, destination, error);
 		else
 		{
 			if ( ![anEntry resourceForFile:destination operation:kNewResourceForceCopy] )
-				NSLog(@"%@ %s - unable to convert path to resource: %@", [self className], _cmd, destination);
+				NSLog(@"%s - unable to convert path to resource: %@", __PRETTY_FUNCTION__, destination);
 			else
 				success = YES;
 		}
@@ -2613,7 +2613,7 @@ bail:
 	if ( [[[web_view mainFrame] dataSource] isLoading] )
 	{
 		[[web_view mainFrame] stopLoading];
-		NSLog(@"%@ %s - operation timed out loading url %@", [self className], _cmd, [aURL absoluteString] );
+		NSLog(@"%s - operation timed out loading url %@", __PRETTY_FUNCTION__, [aURL absoluteString] );
 		destination = nil;
 		goto bail;
 	}
@@ -2624,7 +2624,7 @@ bail:
 	
 	if ( services_archive == nil ) 
 	{
-		NSLog(@"%@ %s - unable to derive webarchive from url %@", [self className], _cmd, [aURL absoluteString] );
+		NSLog(@"%s - unable to derive webarchive from url %@", __PRETTY_FUNCTION__, [aURL absoluteString] );
 		destination = nil;
 		goto bail;
 	}
@@ -2633,7 +2633,7 @@ bail:
 	
 	if ( ![[services_archive data] writeToFile:destination options:NSAtomicWrite error:nil]	) 
 	{
-		NSLog(@"%@ %s - unable to write webarchive to %@", [self className], _cmd, destination);
+		NSLog(@"%s - unable to write webarchive to %@", __PRETTY_FUNCTION__, destination);
 		destination = nil;
 		goto bail;
 	}
@@ -2667,14 +2667,14 @@ bail:
 	// make sure the file exists at this path
 	if ( ![[NSFileManager defaultManager] fileExistsAtPath:filename isDirectory:&dir] ) 
 	{
-		NSLog(@"%@ %s - file does not exist at path %@", [self className], _cmd, filename);
+		NSLog(@"%s - file does not exist at path %@", __PRETTY_FUNCTION__, filename);
 		return NO;
 	}
 	
 	// get the file's type
 	if ( ![[NSWorkspace sharedWorkspace] getInfoForFile:filename application:&appName type:&fileType] ) 
 	{
-		NSLog(@"%@ %s - unable to get file type at path %@", [self className], _cmd, filename);
+		NSLog(@"%s - unable to get file type at path %@", __PRETTY_FUNCTION__, filename);
 		//return NO;
 	}
 	
@@ -2704,7 +2704,7 @@ bail:
 
 	if ( resource == nil ) 
 	{
-		NSLog(@"%@ %s - unable to create resource for file at path %@", [self className], _cmd, filename);
+		NSLog(@"%s - unable to create resource for file at path %@", __PRETTY_FUNCTION__, filename);
 		return NO;
 	}
 	

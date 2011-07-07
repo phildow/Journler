@@ -15,7 +15,7 @@
 {
 	// override to retarget find panel actions
 	
-	//NSLog(@"%@ %s - action: %s, target: %@, from: %@", [self className], _cmd, anAction, aTarget, sender);
+	//NSLog(@"%s - action: %s, target: %@, from: %@", __PRETTY_FUNCTION__, anAction, aTarget, sender);
 	id theTarget = aTarget;
 	
 	if ( anAction == @selector(performFindPanelAction:) )
@@ -26,7 +26,7 @@
 		if ( theTarget == nil )
 		{
 			// if the target is nil retarget at the current document
-			// NSLog(@"%@ %s - attempting to retarget for find panel action", [self className], _cmd);
+			// NSLog(@"%s - attempting to retarget for find panel action", __PRETTY_FUNCTION__);
 			
 			if ( [[[self mainWindow] windowController] respondsToSelector:@selector(handlesFindCommand)] && [[[self mainWindow] windowController] handlesFindCommand] )
 				theTarget = [[self mainWindow] windowController];
@@ -35,7 +35,7 @@
 		else if ( theTarget != nil )
 		{
 			// the target may invalidate the menu item. if so retarget at the current document
-			// NSLog(@"%@ %s - action: %s, established target: %@, from: %@", [self className], _cmd, anAction, theTarget, sender);
+			// NSLog(@"%s - action: %s, established target: %@, from: %@", __PRETTY_FUNCTION__, anAction, theTarget, sender);
 			
 			if ( [sender isKindOfClass:[NSMenuItem class]] 
 			&& ( ( [theTarget respondsToSelector:@selector(validateMenuItem:)] && ![theTarget validateMenuItem:sender] ) 
@@ -81,7 +81,7 @@
 - (BOOL)sendAction:(SEL)anAction to:(id)aTarget from:(id)sender
 {
 	// it may be necessary to retarget for a find panel action or a text size action
-	//NSLog(@"%@ %s - action: %s, target: %@, from: %@", [self className], _cmd, anAction, aTarget, sender);
+	//NSLog(@"%s - action: %s, target: %@, from: %@", __PRETTY_FUNCTION__, anAction, aTarget, sender);
 	
 	id theTarget = aTarget;
 	

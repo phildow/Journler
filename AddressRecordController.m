@@ -121,7 +121,7 @@ static NSString *kMediabarItemOpenHomepage = @"kMediabarItemOpenHomepage";
 	if ( aPerson == nil )
 	{
 		NSBeep();
-		NSLog(@"%@ %s - unable to get address record for unique id", [self className], _cmd, uid);
+		NSLog(@"%s - unable to get address record for unique id", __PRETTY_FUNCTION__, uid);
 		return;
 	}
 	
@@ -129,7 +129,7 @@ static NSString *kMediabarItemOpenHomepage = @"kMediabarItemOpenHomepage";
 	if ( vcfData == nil )
 	{
 		NSBeep();
-		NSLog(@"%@ %s - unable to get vcf data from address record with uinque id", [self className], _cmd, uid);
+		NSLog(@"%s - unable to get vcf data from address record with uinque id", __PRETTY_FUNCTION__, uid);
 		return;
 	}
 	
@@ -266,7 +266,7 @@ static NSString *kMediabarItemOpenHomepage = @"kMediabarItemOpenHomepage";
 	JournlerMediaViewer *mediaViewer = [[[JournlerMediaViewer alloc] initWithURL:[self URL] uti:(NSString*)kUTTypePDF] autorelease];
 	if ( mediaViewer == nil )
 	{
-		NSLog(@"%@ %s - problem allocating media viewer for url %@", [self className], _cmd, [self URL]);
+		NSLog(@"%s - problem allocating media viewer for url %@", __PRETTY_FUNCTION__, [self URL]);
 		[[NSWorkspace sharedWorkspace] openURL:[self URL]];
 	}
 	else

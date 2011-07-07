@@ -137,12 +137,12 @@
 			if ( ![fm removeFileAtPath:resourcePath handler:self] )
 			{
 				success = NO;
-				NSLog(@"%@ %s - unable to delete file at path %@", [self className], _cmd, resourcePath);
+				NSLog(@"%s - unable to delete file at path %@", __PRETTY_FUNCTION__, resourcePath);
 			}
 		}
 		else
 		{
-			//NSLog(@"%@ %s - no file to delete at path %@", [self className], _cmd, resourcePath);
+			//NSLog(@"%s - no file to delete at path %@", __PRETTY_FUNCTION__, resourcePath);
 		}
 		
 		
@@ -152,12 +152,12 @@
 			if ( ![fm removeFileAtPath:thumbnailPath handler:self] )
 			{
 				success = NO;
-				NSLog(@"%@ %s - unable to delete thumnail at path %@", [self className], _cmd, thumbnailPath);
+				NSLog(@"%s - unable to delete thumnail at path %@", __PRETTY_FUNCTION__, thumbnailPath);
 			}
 		}
 		else
 		{
-			//NSLog(@"%@ %s - no thumbnail to delete at path %@", [self className], _cmd, thumbnailPath);
+			//NSLog(@"%s - no thumbnail to delete at path %@", __PRETTY_FUNCTION__, thumbnailPath);
 		}
 		
 		
@@ -168,7 +168,7 @@
 			if ( ![fm copyPath:filename toPath:newResourcePath handler:self] )
 			{
 				success = NO;
-				NSLog(@"%@ %s - unable to copy %@ to %@", [self className], _cmd, filename, newResourcePath);
+				NSLog(@"%s - unable to copy %@ to %@", __PRETTY_FUNCTION__, filename, newResourcePath);
 			}
 			else
 			{
@@ -188,7 +188,7 @@
 			if ( ![alias writeToFile:newResourcePath] ) 
 			{
 				success = NO;
-				NSLog(@"%@ %s - unable to link %@ to %@", [self className], _cmd, filename, newResourcePath);
+				NSLog(@"%s - unable to link %@ to %@", __PRETTY_FUNCTION__, filename, newResourcePath);
 			}
 		}
 		
@@ -216,7 +216,7 @@
 
 - (BOOL)fileManager:(NSFileManager *)manager shouldProceedAfterError:(NSDictionary *)errorInfo 
 {
-	NSLog(@"\n%@ %s - file manager error working with path: %@\n", [self className], _cmd, [errorInfo description]);
+	NSLog(@"\n%s - file manager error working with path: %@\n", __PRETTY_FUNCTION__, [errorInfo description]);
 	return NO;
 }
 

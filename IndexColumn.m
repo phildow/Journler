@@ -77,7 +77,7 @@ static NSString *kIndexColumnObserver = @"IndexColumnObserver";
 - (void) dealloc
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[title release];
@@ -333,9 +333,9 @@ static NSString *kIndexColumnObserver = @"IndexColumnObserver";
 	
 	#ifdef __DEBUG__
 	if ( aPredicate == nil )
-		NSLog(@"%@ %s - nil predicate", [self className], _cmd);
+		NSLog(@"%s - nil predicate", __PRETTY_FUNCTION__);
 	else
-		NSLog(@"%@ %s - %@", [self className], _cmd, [aPredicate description]);
+		NSLog(@"%s - %@", __PRETTY_FUNCTION__, [aPredicate description]);
 	#endif
 
 }
@@ -482,7 +482,7 @@ static NSString *kIndexColumnObserver = @"IndexColumnObserver";
 - (void) determineCompoundPredicate
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s - min: %i max: %i", [self className], _cmd, minCount, maxCount);
+	NSLog(@"%s - min: %i max: %i", __PRETTY_FUNCTION__, minCount, maxCount);
 	#endif
 	
 	NSPredicate *countPredicate = nil;

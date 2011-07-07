@@ -154,17 +154,17 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 - (void) ownerWillClose 
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[super ownerWillClose];
 	
 	// commit editing
 	if ( ![entryCellController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the entries cell controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the entries cell controller", __PRETTY_FUNCTION__);
 		
 	if ( ![resourceController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the folders controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the folders controller", __PRETTY_FUNCTION__);
 
 	
 	[self unbind:@"selectedResources"];
@@ -295,7 +295,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 - (void) setSelectedResources:(NSArray*)anArray 
 {	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	// call super's implementation
@@ -529,7 +529,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 
 - (void) _updateResourceToggleImage
 {
-	//NSLog(@"%@ %s",[self className],_cmd);
+	//NSLog(@"%s",__PRETTY_FUNCTION__);
 	
 	if ( [[contentResourceSplit subviewAtPosition:1] isHidden] )
 	{
@@ -776,7 +776,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 			JournlerMediaViewer *mediaViewer = [[[JournlerMediaViewer alloc] initWithURL:mediaURL uti:(NSString*)kUTTypeURL] autorelease];
 			if ( mediaViewer == nil )
 			{
-				NSLog(@"%@ %s - problem allocating media viewer for url %@", [self className], _cmd, mediaURL);
+				NSLog(@"%s - problem allocating media viewer for url %@", __PRETTY_FUNCTION__, mediaURL);
 				[[NSWorkspace sharedWorkspace] openURL:mediaURL];
 			}
 			else
@@ -827,7 +827,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 			JournlerMediaViewer *mediaViewer = [[[JournlerMediaViewer alloc] initWithURL:mediaURL uti:(NSString*)kUTTypeURL] autorelease];
 			if ( mediaViewer == nil )
 			{
-				NSLog(@"%@ %s - problem allocating media viewer for url %@", [self className], _cmd, mediaURL);
+				NSLog(@"%s - problem allocating media viewer for url %@", __PRETTY_FUNCTION__, mediaURL);
 				[[NSWorkspace sharedWorkspace] openURL:mediaURL];
 			}
 			else
@@ -924,7 +924,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 - (void) sproutedVideoRecorder:(SproutedRecorder*)recorder insertRecording:(NSString*)path title:(NSString*)title
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s %@",[self className],_cmd,path);
+	NSLog(@"%s %@",__PRETTY_FUNCTION__,path);
 	#endif
 	
 	NSArray *theEntries = [self selectedEntries];
@@ -940,7 +940,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 - (void) sproutedAudioRecorder:(SproutedRecorder*)recorder insertRecording:(NSString*)path title:(NSString*)title
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s %@",[self className],_cmd,path);
+	NSLog(@"%s %@",__PRETTY_FUNCTION__,path);
 	#endif
 	
 	NSArray *theEntries = [self selectedEntries];
@@ -956,7 +956,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 - (void) sproutedSnapshot:(SproutedRecorder*)recorder insertRecording:(NSString*)path title:(NSString*)title
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s %@",[self className],_cmd,path);
+	NSLog(@"%s %@",__PRETTY_FUNCTION__,path);
 	#endif
 	
 	NSArray *theEntries = [self selectedEntries];
@@ -1169,8 +1169,8 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 	if ( !success )
 	{
 		NSBeep();
-		NSLog(@"%@ %s - problems removing the resources { %@ } from the entries { %@ }, errors: %@",
-		[self className], _cmd, [theResources valueForKey:@"tagID"], [theEntries valueForKey:@"tagID"], errors);
+		NSLog(@"%s - problems removing the resources { %@ } from the entries { %@ }, errors: %@",
+		__PRETTY_FUNCTION__, [theResources valueForKey:@"tagID"], [theEntries valueForKey:@"tagID"], errors);
 	}
 	
 	/*
@@ -1237,7 +1237,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 - (IBAction) insertNewResource:(id)sender
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s - %i",[self className],_cmd,[sender tag]);
+	NSLog(@"%s - %i",__PRETTY_FUNCTION__,[sender tag]);
 	#endif
 	
 	switch ( [sender tag] )
@@ -1273,7 +1273,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 - (IBAction) addFileFromFinder:(id)sender 
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	int result;
