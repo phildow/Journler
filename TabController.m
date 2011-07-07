@@ -2392,7 +2392,7 @@
 - (void) jsPrintTab:(NSScriptCommand *)command
 {
 	NSDictionary *args = [command evaluatedArguments];
-	NSLog([args description]);
+	NSLog(@"%@",[args description]);
 }
 
 @end
