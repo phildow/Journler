@@ -3,7 +3,7 @@
 //  Journler
 //
 //  Created by Philip Dow on 4/10/08.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//  Copyright 2008 Sprouted, Philip Dow. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

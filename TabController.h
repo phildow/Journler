@@ -3,7 +3,7 @@
 //  Journler
 //
 //  Created by Philip Dow on 10/24/06.
-//  Copyright 2006 __MyCompanyName__. All rights reserved.
+//  Copyright 2006 Sprouted, Philip Dow. All rights reserved.
 //
 //	The tab controller is the base class for all tabs.
 //	It manages the selection and interacts with the owning window controller

@@ -3,7 +3,7 @@
 //  Cocoa Journler
 //
 //  Created by Philip Dow on 4/4/05.
-//  Copyright 2005 __MyCompanyName__. All rights reserved.
+//  Copyright 2005 Sprouted, Philip Dow. All rights reserved.
 //
 
 #import "BlogPref.h"

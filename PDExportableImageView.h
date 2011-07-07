@@ -3,7 +3,7 @@
 //  Journler
 //
 //  Created by Philip Dow on 10/30/07.
-//  Copyright 2007 __MyCompanyName__. All rights reserved.
+//  Copyright 2007 Sprouted, Philip Dow. All rights reserved.
 //
 //	Supports editing to the extent that images may be 
 //	copied and dragged out of the view 

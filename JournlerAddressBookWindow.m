@@ -3,7 +3,7 @@
 //  Journler
 //
 //  Created by Philip Dow on 11/12/07.
-//  Copyright 2007 __MyCompanyName__. All rights reserved.
+//  Copyright 2007 Sprouted, Philip Dow. All rights reserved.
 //
 
 #import "JournlerAddressBookWindow.h"

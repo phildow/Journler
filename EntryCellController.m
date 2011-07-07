@@ -3,7 +3,7 @@
 //  Journler
 //
 //  Created by Philip Dow on 10/25/06.
-//  Copyright 2006 __MyCompanyName__. All rights reserved.EntryTextAutoCorrectSpelling
+//  Copyright 2006 Sprouted, Philip Dow. All rights reserved.EntryTextAutoCorrectSpelling
 //
 
 #import "EntryCellController.h"

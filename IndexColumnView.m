@@ -3,7 +3,7 @@
 //  Journler
 //
 //  Created by Philip Dow on 2/7/07.
-//  Copyright 2007 __MyCompanyName__. All rights reserved.
+//  Copyright 2007 Sprouted, Philip Dow. All rights reserved.
 //
 
 #import "IndexColumnView.h"

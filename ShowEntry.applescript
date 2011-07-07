@@ -2,7 +2,7 @@
 -- Journler
 
 --  Created by Philip Dow on 3/10/06.
---  Copyright 2006 __MyCompanyName__. All rights reserved.
+--  Copyright 2006 Sprouted, Philip Dow. All rights reserved.
 
 tell application "Journler"
 	set anEntry to entry id %i
