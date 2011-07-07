@@ -2,7 +2,7 @@
 //  JournalWindowController.h
 //  Journler
 //
-//  Created by Phil Dow on 10/24/06.
+//  Created by Philip Dow on 10/24/06.
 //  Copyright 2006 __MyCompanyName__. All rights reserved.
 //
 //	The JournalWindowController manages the presentation of the main journal window

@@ -1,0 +1,76 @@
+{
+    IBClasses = (
+        {
+            CLASS = AOSegmentedControl; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSSegmentedControl; 
+        }, 
+        {CLASS = BrowseTableFieldEditor; LANGUAGE = ObjC; SUPERCLASS = NSTextView; }, 
+        {
+            CLASS = EntryWindowController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                browseTableFieldEditor = BrowseTableFieldEditor; 
+                dateTimeButton = PDPopUpButtonToolbarItem; 
+                highlightButton = PDPopUpButtonToolbarItem; 
+                initalTabPlaceholder = NSView; 
+                navBack = NSButton; 
+                navForward = NSButton; 
+                navOutlet = NSView; 
+            }; 
+            SUPERCLASS = JournlerWindowController; 
+        }, 
+        {
+            ACTIONS = {
+                browseBookmarks = id; 
+                browseMovies = id; 
+                browsePhotos = id; 
+                highlightSelection = id; 
+                insertDateTime = id; 
+                launchAddressPanel = id; 
+                setViewMode = id; 
+                showQuickLinksBrowser = id; 
+                showTunes = id; 
+                showiLifeMedia = id; 
+            }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = FloatingEntryWindowController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                browseTableFieldEditor = BrowseTableFieldEditor; 
+                initalTabPlaceholder = NSView; 
+            }; 
+            SUPERCLASS = JournlerWindowController; 
+        }, 
+        {CLASS = JRLRFooter; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            ACTIONS = {
+                navigateBack = id; 
+                navigateForward = id; 
+                newTab = id; 
+                selectFavorite = id; 
+                selectNextTab = id; 
+                selectPreviousTab = id; 
+                toggleBookmarksBar = id; 
+                toggleFullScreen = id; 
+                toggleTabBar = id; 
+            }; 
+            CLASS = JournlerWindowController; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = NFHUDWindow; LANGUAGE = ObjC; SUPERCLASS = NSPanel; }, 
+        {CLASS = NSSegmentedControl; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
+        {
+            CLASS = PDPopUpButtonToolbarItem; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSPopUpButton; 
+        }, 
+        {CLASS = PolishedWindow; LANGUAGE = ObjC; SUPERCLASS = NSWindow; }
+    ); 
+    IBVersion = 1; 
+}

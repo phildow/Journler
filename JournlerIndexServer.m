@@ -2,7 +2,7 @@
 //  JournlerIndexServer.m
 //  Journler
 //
-//  Created by Phil Dow on 2/13/07.
+//  Created by Philip Dow on 2/13/07.
 //  Copyright 2007 __MyCompanyName__. All rights reserved.
 //
 

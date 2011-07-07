@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {exportSelection = id; printDocument = id; save = id; }; 
+            CLASS = MediaViewer; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {contentPlaceholder = NSView; }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

@@ -1,0 +1,51 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = IndexServerTextView; LANGUAGE = ObjC; SUPERCLASS = NSTextView; }, 
+        {CLASS = JournlerGradientView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            ACTIONS = {
+                exportSelection = id; 
+                getInfo = id; 
+                openInFinder = id; 
+                performCustomFindPanelAction = id; 
+                performCustomTextSizeAction = id; 
+                printDocument = id; 
+                showInFinder = id; 
+            }; 
+            CLASS = MediaContentController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                bar = PDMediaBar; 
+                contentView = NSView; 
+                delegate = id; 
+                representedObject = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {perfomCustomMediabarItemAction = id; }; 
+            CLASS = NSObject; 
+            LANGUAGE = ObjC; 
+        }, 
+        {CLASS = NSView; LANGUAGE = ObjC; SUPERCLASS = NSResponder; }, 
+        {
+            ACTIONS = {
+                addCustomMediabarItem = id; 
+                editCustomMediabarItem = id; 
+                removeCustomMediabarItem = id; 
+            }; 
+            CLASS = PDMediaBar; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {delegate = id; }; 
+            SUPERCLASS = JournlerGradientView; 
+        }, 
+        {
+            CLASS = WordDocumentController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {textView = IndexServerTextView; }; 
+            SUPERCLASS = MediaContentController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

@@ -1,0 +1,93 @@
+{
+    IBClasses = (
+        {CLASS = EtchedText; LANGUAGE = ObjC; SUPERCLASS = NSTextField; }, 
+        {CLASS = EtchedTextCell; LANGUAGE = ObjC; SUPERCLASS = NSTextFieldCell; }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = ImageAndTextCell; LANGUAGE = ObjC; SUPERCLASS = NSTextFieldCell; }, 
+        {
+            ACTIONS = {addColumn = id; removeColumn = id; }; 
+            CLASS = IndexBrowser; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {delegate = id; }; 
+            SUPERCLASS = NSView; 
+        }, 
+        {
+            ACTIONS = {addColumn = id; performSearch = id; removeColumn = id; }; 
+            CLASS = IndexColumn; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                columnView = IndexColumnView; 
+                delegate = id; 
+                footer = PDGradientView; 
+                outlineController = NSTreeController; 
+                outlineView = NSOutlineView; 
+                rootController = NSArrayController; 
+                searchField = NSSearchField; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = IndexNode; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {representedObject = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = JournlerEntry; LANGUAGE = ObjC; SUPERCLASS = JournlerObject; }, 
+        {CLASS = JournlerGradientView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = JournlerLexiconBrowser; LANGUAGE = ObjC; SUPERCLASS = NSBrowser; }, 
+        {CLASS = JournlerObject; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = JournlerResource; LANGUAGE = ObjC; SUPERCLASS = JournlerObject; }, 
+        {CLASS = NSObject; LANGUAGE = ObjC; }, 
+        {CLASS = PDGradientView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            ACTIONS = {
+                blogDocument = id; 
+                editEntryLabel = id; 
+                editEntryProperty = id; 
+                editFolderLabel = id; 
+                editResourceLabel = id; 
+                exportEntry = id; 
+                exportResource = id; 
+                exportSelection = id; 
+                getEntryInfo = id; 
+                getFolderInfo = id; 
+                getInfo = id; 
+                getResourceInfo = id; 
+                navigateBack = id; 
+                navigateForward = id; 
+                openEntryInNewTab = id; 
+                openEntryInNewWindow = id; 
+                performCustomFindPanelAction = id; 
+                performCustomTextSizeAction = id; 
+                revealEntryInFinder = id; 
+                sendEntryToiPod = id; 
+                sendEntryToiWeb = id; 
+            }; 
+            CLASS = TabController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {tabContent = NSView; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {
+                addTermsToStopList = id; 
+                gotoLetter = id; 
+                openDocumentInFinder = id; 
+                openDocumentInNewTab = id; 
+                openDocumentInNewWindow = id; 
+                revealDocumentInFinder = id; 
+            }; 
+            CLASS = TermIndexTab; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                contentPlaceholder = WebView; 
+                documentContextMenu = NSMenu; 
+                indexBrowser = IndexBrowser; 
+                mainSplit = RBSplitView; 
+                termContextMenu = NSMenu; 
+            }; 
+            SUPERCLASS = TabController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

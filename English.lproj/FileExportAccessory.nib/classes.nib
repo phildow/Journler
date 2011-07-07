@@ -1,0 +1,26 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {changeFileMode = id; changeFileType = id; }; 
+            CLASS = EntryExportController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                "_contentView" = NSView; 
+                "_dataFormat" = NSPopUpButton; 
+                "_fileMode" = NSMatrix; 
+                "_includeHeaderCheck" = NSButton; 
+                "_modifiesFileCreation" = NSButton; 
+                "_modifiesFileModified" = NSButton; 
+                objectController = NSObjectController; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {"" = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

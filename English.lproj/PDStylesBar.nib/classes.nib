@@ -1,0 +1,55 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {"" = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = PDBorderedFill; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = PDButtonColorWell; LANGUAGE = ObjC; SUPERCLASS = NSButton; }, 
+        {CLASS = PDButtonColorWellCell; LANGUAGE = ObjC; SUPERCLASS = NSButtonCell; }, 
+        {CLASS = PDButtonTextOnImage; LANGUAGE = ObjC; SUPERCLASS = NSButton; }, 
+        {CLASS = PDButtonTextOnImageCell; LANGUAGE = ObjC; SUPERCLASS = NSButtonCell; }, 
+        {
+            ACTIONS = {
+                bigger = id; 
+                bold = id; 
+                despand = id; 
+                discloseExtendedAction = id; 
+                expand = id; 
+                italic = id; 
+                launchColorPanel = id; 
+                launchFontPanel = id; 
+                shadow = id; 
+                smaller = id; 
+                strikethrough = id; 
+            }; 
+            CLASS = PDStylesBar; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                buttonBigger = PDStylesButton; 
+                buttonBold = PDStylesButton; 
+                buttonColor = PDButtonColorWell; 
+                buttonDespand = PDStylesButton; 
+                buttonExpand = PDStylesButton; 
+                buttonFont = PDStylesButton; 
+                buttonItalic = PDStylesButton; 
+                buttonShadow = PDStylesButton; 
+                buttonSmaller = PDStylesButton; 
+                buttonStrike = PDStylesButton; 
+                buttonSubscript = PDStylesButton; 
+                buttonSuperscript = PDStylesButton; 
+                buttonUnderline = PDStylesButton; 
+                extendedDisclosure = NSButton; 
+                extendedPlaceholder = NSView; 
+                extendedStyles = NSView; 
+                view = PDBorderedFill; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = PDStylesButton; LANGUAGE = ObjC; SUPERCLASS = NSButton; }, 
+        {CLASS = PDStylesButtonCell; LANGUAGE = ObjC; SUPERCLASS = NSButtonCell; }
+    ); 
+    IBVersion = 1; 
+}

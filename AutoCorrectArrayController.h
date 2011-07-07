@@ -2,7 +2,7 @@
 //  AutoCorrectArrayController.h
 //  Journler
 //
-//  Created by Phil Dow on 11/17/06.
+//  Created by Philip Dow on 11/17/06.
 //  Copyright 2006 __MyCompanyName__. All rights reserved.
 //
 

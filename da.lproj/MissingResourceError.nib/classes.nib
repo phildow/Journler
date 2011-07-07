@@ -1,0 +1,34 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {"" = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = JournlerGradientView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            ACTIONS = {
+                deleteMissingFile = id; 
+                locateMissingFile = id; 
+                returnToEntry = id; 
+                searchForMissingFile = id; 
+            }; 
+            CLASS = MissingFileController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                delegate = id; 
+                errorBar = JournlerGradientView; 
+                errorContent = NSView; 
+                locateAccessory = NSView; 
+                locateOption = NSMatrix; 
+                missingFileImageView = NSImageView; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = NSObject; LANGUAGE = ObjC; }, 
+        {CLASS = PDButton; LANGUAGE = ObjC; SUPERCLASS = NSButton; }, 
+        {CLASS = PDButtonCell; LANGUAGE = ObjC; SUPERCLASS = NSButtonCell; }
+    ); 
+    IBVersion = 1; 
+}

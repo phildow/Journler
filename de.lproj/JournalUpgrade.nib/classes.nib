@@ -1,0 +1,24 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {quit210Upgrade = id; relaunchJournler = id; }; 
+            CLASS = JournalUpgradeController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                box210 = NSBox; 
+                container210 = PDGradientView; 
+                headerText210 = NSTextField; 
+                licenseChanged210 = NSWindow; 
+                progressIndicator210 = NSProgressIndicator; 
+                progressText210 = NSTextField; 
+                relaunch210 = NSButton; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = PDBorderedView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = PDCenteredImage; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = PDGradientView; LANGUAGE = ObjC; SUPERCLASS = PDBorderedView; }
+    ); 
+    IBVersion = 1; 
+}

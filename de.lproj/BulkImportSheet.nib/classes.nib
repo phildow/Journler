@@ -1,0 +1,20 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {cancel = id; help = id; okay = id; }; 
+            CLASS = BulkImportController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                gradient = PDGradientView; 
+                optionsPlace = NSView; 
+                progress = NSProgressIndicator; 
+                progressLabel = NSTextField; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = PDBorderedView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = PDGradientView; LANGUAGE = ObjC; SUPERCLASS = PDBorderedView; }
+    ); 
+    IBVersion = 1; 
+}

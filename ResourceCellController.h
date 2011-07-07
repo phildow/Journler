@@ -2,7 +2,7 @@
 //  ResourceCellController.h
 //  Journler
 //
-//  Created by Phil Dow on 10/28/06.
+//  Created by Philip Dow on 10/28/06.
 //  Copyright 2006 __MyCompanyName__. All rights reserved.
 //
 
