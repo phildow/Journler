@@ -136,7 +136,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 			{
 				NSError *error = nil;
 				if ( ![log117 writeToFile:upgradeLogPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-					NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
+					NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, upgradeLogPath, error);
 				
 				[log117 release];
 				[self quit210Upgrade:self];
@@ -160,7 +160,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 			{
 				NSError *error = nil;
 				if ( ![log117 writeToFile:upgradeLogPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-					NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
+					NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, upgradeLogPath, error);
 				
 				[log117 release];
 				[self quit210Upgrade:self];
@@ -214,7 +214,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 				
 			NSError *error = nil;
 			if ( ![log117 writeToFile:upgradeLogPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-				NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
+				NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, upgradeLogPath, error);
 			
 			[log117 release];
 			[self quit210Upgrade:self];
@@ -1033,7 +1033,7 @@ bail:
 				
 				[log210 appendFormat:@"%s - unable to create backup directory, quitting upgrade\n", __PRETTY_FUNCTION__];
 				if ( ![log210 writeToFile:logPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-					NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
+					NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, logPath, error);
 				
 				[log210 release];
 				[self quit210Upgrade:self];
@@ -1055,7 +1055,7 @@ bail:
 					
 				[log210 appendFormat:@"%s - unable to backup entries, quitting upgrade\n", __PRETTY_FUNCTION__];
 				if ( ![log210 writeToFile:logPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-					NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
+					NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, logPath, error);
 				
 				[log210 release];
 				[self quit210Upgrade:self];
@@ -1073,7 +1073,7 @@ bail:
 		NSError *error = nil;
 		NSString *logPath = [[_journal journalPath] stringByAppendingPathComponent:kLogFilepath210];
 		if ( ![log210 writeToFile:logPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-			NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
+			NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, logPath, error);
 		
 		[log210 release];
 		[self quit210Upgrade:self];
@@ -2206,7 +2206,8 @@ bail:
 #pragma mark -
 #pragma mark File Manager Delegation
 
-- (BOOL)fileManager:(NSFileManager *)fileManager shouldProceedAfterError:(NSError *)error movingItemAtPath:(NSString *)srcPath toPath:(NSString *)dstPath
+- (BOOL)fileManager:(NSFileManager *)fileManager shouldProceedAfterError:(NSError *)error 
+   movingItemAtPath:(NSString *)srcPath toPath:(NSString *)dstPath
 {
 	NSString *errorString;
 	NSString *localizedDescription = [error localizedDescription];
@@ -2215,12 +2216,9 @@ bail:
 	else
 		errorString = [NSString stringWithFormat:@"****\n%s - Encountered file manager error: no description\n****\n", __PRETTY_FUNCTION__];
 	
-	if ( upgradeMode == 0 )
-		[log117 appendString:errorString];
-	else if ( upgradeMode == 1 )
-		[log210 appendString:errorString];
-	else
-		NSLog(errorString);
+	if ( upgradeMode == 0 ) [log117 appendString:errorString];
+	else if ( upgradeMode == 1 ) [log210 appendString:errorString];
+	else NSLog(@"%@",errorString);
 	
 	return NO;
 }
@@ -2231,12 +2229,9 @@ bail:
 	// log the error and return no
 	NSString *errorString = [NSString stringWithFormat:@"****\n%s - Encountered file manager error: %@\n****\n", __PRETTY_FUNCTION__, errorInfo];
 	
-	if ( upgradeMode == 0 )
-		[log117 appendString:errorString];
-	else if ( upgradeMode == 1 )
-		[log210 appendString:errorString];
-	else
-		NSLog(errorString);
+	if ( upgradeMode == 0 ) [log117 appendString:errorString];
+	else if ( upgradeMode == 1 ) [log210 appendString:errorString];
+	else NSLog(@"%@",errorString);
 	
 	return NO;
 }

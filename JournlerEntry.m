@@ -2893,8 +2893,10 @@ static NSArray *JObjectValues()
 		[pdfView sizeToFit];
 		
 		printOp = [NSPrintOperation printOperationWithView:pdfView printInfo:printInfo];
-		[printOp setShowPanels:NO];
-		
+		//[printOp setShowPanels:NO]; DEPRECATED
+        [printOp setShowsProgressPanel:NO];
+        [printOp setShowsPrintPanel:NO];
+            
 		if ( ![printOp runOperation] )
 		{
 			[pdfView release];

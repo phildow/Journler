@@ -961,7 +961,9 @@
 						[printView sizeToFit];
 					
 						printOp = [NSPrintOperation printOperationWithView:printView printInfo:printInfo];
-						[printOp setShowPanels:NO];
+						//[printOp setShowPanels:NO]; DEPRECATED
+                        [printOp setShowsProgressPanel:NO];
+                        [printOp setShowsPrintPanel:NO];
 						
 						if ( ![printOp runOperation] ) 
 						{
