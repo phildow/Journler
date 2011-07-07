@@ -397,7 +397,6 @@ static NSDictionary * StatusAttributes()
 		else
 		{
 			[self setSelectedEntry:nil];
-			//[self showContentForMultipleEntries:selectedEntries];
 		}
 	}
 	
@@ -767,13 +766,12 @@ static NSDictionary * StatusAttributes()
 	if ( aString == nil || [aString length] == 0 )
 		return NO;
 	
+    NSArray *components = [aString componentsSeparatedByString:@" "];
+    NSMutableArray *allRanges = [NSMutableArray array];
 	BOOL schonScrolled = NO;
-	NSString *aComponent;
-	NSEnumerator *enumerator = [[aString componentsSeparatedByString:@" "] objectEnumerator];
-	NSMutableArray *allRanges = [NSMutableArray array];
 	
-	while ( aComponent = [enumerator nextObject] )
-	{
+    for ( NSString *aComponent in components )
+    {
 		// get the range of the string and highlight it
 		NSArray *ranges = [[textView string] rangesOfString:aComponent options:NSCaseInsensitiveSearch range:NSMakeRange(0,[[textView string] length])];
 		if ( ranges != nil && [ranges count] != 0 )
@@ -882,34 +880,6 @@ static NSDictionary * StatusAttributes()
 	[textView readSelectionFromPasteboard:pboard type:type];
 	[textView insertText:@"\n\n"];
 }
-
-//#warning is this used?
-/*
-- (void) showContentForMultipleEntries:(NSArray*)anArray
-{
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [anArray objectEnumerator];
-	NSMutableAttributedString *entryContent = [[[NSMutableAttributedString alloc] init] autorelease];
-	
-	while ( anEntry = [enumerator nextObject] )
-	{
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-			
-		// handle the entry's text
-		NSAttributedString *preppedEntry = [anEntry prepWithTitle:YES category:YES smallDate:YES];
-		
-		//text only or pictures as well?
-		[entryContent appendAttributedString:preppedEntry];
-		[entryContent replaceCharactersInRange:NSMakeRange([entryContent length],0) withString:@"\n\n"];
-		
-		[pool release];
-	}
-	
-	[[textView textStorage] beginEditing];
-	[[textView textStorage] setAttributedString:entryContent];
-	[[textView textStorage] endEditing];
-}
-*/
 
 #pragma mark -
 #pragma mark TextView Delegation
@@ -1914,13 +1884,10 @@ static NSDictionary * StatusAttributes()
 	
 	if ( [results count] > 0 )
 	{
-		NSSize size = NSMakeSize(0,0);
-		JournlerEntry *anEntry;
-		NSEnumerator *enumerator = [results objectEnumerator];
-		
 		theMenu = [[[NSMenu alloc] initWithTitle:[NSString string]] autorelease];
+        NSSize size = NSMakeSize(0,0);
 		
-		while ( anEntry = [enumerator nextObject] )
+        for ( JournlerEntry *anEntry in results )
 		{
 			NSMenuItem *anItem = [anEntry menuItemRepresentation:size];
 			if ( anItem != nil )
@@ -1958,10 +1925,7 @@ static NSDictionary * StatusAttributes()
 	
 	NSMutableArray *modifiedArray = [NSMutableArray array];
 	
-	NSString *aString;
-	NSEnumerator *enumerator = [tokens objectEnumerator];
-	
-	while ( aString = [enumerator nextObject] )
+    for ( NSString *aString in tokens )
 	{
 		if ( ![aString isOnlyWhitespace] )
 			//[modifiedArray addObject:[aString lowercaseString]];
@@ -2002,11 +1966,9 @@ static NSDictionary * StatusAttributes()
 	}
 	else
 	{
-		NSValue *aRangeValue;
-		NSEnumerator *enumerator = [selectedRanges objectEnumerator];
 		selectedText = [[[NSMutableAttributedString alloc] init] autorelease];
-		
-		while ( aRangeValue = [enumerator nextObject] )
+	
+        for ( NSValue *aRangeValue in selectedRanges )
 		{
 			NSRange aRange = [aRangeValue rangeValue];
 			NSAttributedString *aSelection = [textView attributedSubstringFromRange:aRange];

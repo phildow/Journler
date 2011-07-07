@@ -233,11 +233,8 @@
 {
 	// add together the widths of the currently available columns
 	float minWidth = 0.0;
-	
-	IndexColumn *aColumn;
-	NSEnumerator *enumerator = [[self columns] objectEnumerator];
-	
-	while ( aColumn = [enumerator nextObject] )
+    
+    for ( IndexColumn *aColumn in [self columns] )
 		minWidth += ( [[aColumn columnView] bounds].size.width + 2 );
 	
 	minWidth -= 2;
@@ -541,10 +538,7 @@
 
 - (void) columnDidResize:(NSNotification*)aNotification
 {
-	IndexColumn *aColumn;
-	NSEnumerator *enumerator = [[self columns] objectEnumerator];
-	
-	while (aColumn = [enumerator nextObject] )
+    for ( IndexColumn *aColumn in [self columns] )
 		[[aColumn columnView] setAutoresizingMask:NSViewHeightSizable|NSViewMaxXMargin];
 }
 

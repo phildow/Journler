@@ -666,10 +666,8 @@
 	}
 	
 	BOOL first = YES;
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [[self selectedResources] objectEnumerator];
 	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in [self selectedResources] )
 	{
 		ResourceInfoController *infoController = [[[ResourceInfoController alloc] init] autorelease];
 	
@@ -696,10 +694,8 @@
 	}
 	
 	BOOL first = YES;
-	JournlerCollection *aFolder;
-	NSEnumerator *enumerator = [[self selectedFolders] objectEnumerator];
 	
-	while ( aFolder = [enumerator nextObject] )
+    for ( JournlerCollection *aFolder in [self selectedFolders] )
 	{
 		FolderInfoController *folderInfo = [[[FolderInfoController alloc] init] autorelease];
 		
@@ -1057,10 +1053,7 @@
 	{
 		NSString *path = [openPanel directory];
 		
-		JournlerResource *aResource;
-		NSEnumerator *enumerator = [[self selectedResources] objectEnumerator];
-		
-		while (aResource = [enumerator nextObject] )
+        for ( JournlerResource *aResource in [self selectedResources] )
 			[aResource createFileAtDestination:path];
 	}
 }
@@ -1129,10 +1122,7 @@
 		NSNumber *prompt = [NSNumber numberWithBool:NO];
 		NSMutableArray *resourcePaths = [NSMutableArray arrayWithCapacity:[resources count]];
 		
-		JournlerResource *aResource;
-		NSEnumerator *enumerator = [resources objectEnumerator];
-		
-		while ( aResource = [enumerator nextObject] )
+        for ( JournlerResource *aResource in resources )
 		{
 			if ( [aResource representsFile] )
 				[resourcePaths addObject:[aResource originalPath]];
@@ -1273,10 +1263,7 @@
 			return;
 		}
 		
-		JournlerEntry *anEntry;
-		NSEnumerator *enumerator = [theEntries objectEnumerator];
-		
-		while ( anEntry = [enumerator nextObject] )
+        for ( JournlerEntry *anEntry in theEntries )
 		{
 			// put together the file paths and content
 			
@@ -1288,10 +1275,7 @@
 			NSArray *resources = [anEntry resources];
 			NSMutableArray *resourcePaths = [NSMutableArray arrayWithCapacity:[resources count]];
 			
-			JournlerResource *aResource;
-			NSEnumerator *enumerator = [resources objectEnumerator];
-			
-			while ( aResource = [enumerator nextObject] )
+            for ( JournlerResource *aResource in resources )
 			{
 				if ( [aResource representsFile] )
 					[resourcePaths addObject:[aResource originalPath]];
@@ -1316,11 +1300,7 @@
 	else
 	{
 		// use default messaging
-		
-		JournlerEntry *anEntry;
-		NSEnumerator *enumerator = [theEntries objectEnumerator];
-		
-		while ( anEntry = [enumerator nextObject] )
+        for ( JournlerEntry *anEntry in theEntries )
 		{
 			NSAttributedString *content = [anEntry valueForKey:@"attributedContent"];
 			NSString *title = [anEntry valueForKey:@"title"];
@@ -1643,11 +1623,9 @@
 	}
 	
 	// actually export the entries to the iPod
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [theEntries objectEnumerator];
-	BOOL completeSucces = YES;
-	
-	while ( anEntry = [enumerator nextObject] )
+    BOOL completeSucces = YES;
+    
+    for ( JournlerEntry *anEntry in theEntries )
 		completeSucces = ( [anEntry writeToFile:journlerPath as:6 flags:kEntryIncludeHeader] && completeSucces );
 	
 	//#warning report errors?
@@ -1657,10 +1635,8 @@
 
 - (IBAction) openEntryInNewTab:(id)sender
 {
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [[self selectedEntries] objectEnumerator];
 	
-	while ( anEntry = [enumerator nextObject] )
+    for ( JournlerEntry *anEntry in [self selectedEntries] )
 	{
 		[[self valueForKey:@"owner"] newTab:sender];
 		TabController *theTab =[[self valueForKeyPath:@"owner.tabControllers"] lastObject];
@@ -1674,10 +1650,7 @@
 
 - (IBAction) openEntryInNewWindow:(id)sender
 {
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [[self selectedEntries] objectEnumerator];
-	
-	while ( anEntry = [enumerator nextObject] )
+    for ( JournlerEntry *anEntry in [self selectedEntries] )
 	{
 		// put the  controller up
 		EntryWindowController *entryWindow = [[[EntryWindowController alloc] initWithJournal:[self journal]] autorelease];
@@ -1694,10 +1667,7 @@
 
 - (IBAction) openEntryInNewFloatingWindow:(id)sender
 {
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [[self selectedEntries] objectEnumerator];
-	
-	while ( anEntry = [enumerator nextObject] )
+    for ( JournlerEntry *anEntry in [self selectedEntries] )
 	{
 		// put the  controller up
 		FloatingEntryWindowController *entryWindow = [[[FloatingEntryWindowController alloc] initWithJournal:[self journal]] autorelease];		
@@ -1819,11 +1789,8 @@
 		NSBeep();
 		return;
 	}
-	
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [theResourceSelection objectEnumerator];
-	
-	while ( aResource = [enumerator nextObject] )
+#warning why not just call makeObjectsPerformSelector on the array?
+    for ( JournlerResource *aResource in theResourceSelection )
 		[aResource revealInFinder];
 }
 
@@ -1836,10 +1803,7 @@
 		return;
 	}
 	
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [theResourceSelection objectEnumerator];
-	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in theResourceSelection )
 		[aResource openWithFinder];
 	
 }
@@ -1863,10 +1827,7 @@
 		NSBeep(); return;
 	}
 	
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [[self selectedResources] objectEnumerator];
-	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in [self selectedResources] )
 	{
 		// put the  controller up
 		EntryWindowController *entryWindow = [[[EntryWindowController alloc] initWithJournal:[self journal]] autorelease];		
@@ -1912,10 +1873,7 @@
 
 - (IBAction) openResourceInNewFloatingWindow:(id)sender
 {
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [[self selectedResources] objectEnumerator];
-	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerEntry *aResource in [self selectedResources] )
 	{
 		// put the  controller up
 		FloatingEntryWindowController *entryWindow = [[[FloatingEntryWindowController alloc] initWithJournal:[self journal]] autorelease];		
@@ -1949,9 +1907,7 @@
 		NSBeep(); return;
 	}
 	
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [[self selectedResources] objectEnumerator];
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in [self selectedResources] )
 	{
 		[aResource setValue:nil forKey:@"icon"];
 		[aResource reloadIcon];
@@ -1965,9 +1921,7 @@
 		NSBeep(); return;
 	}
 	
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [[self selectedResources] objectEnumerator];
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in [self selectedResources] )
 	{
 		if ( [aResource representsFile] )
 			[aResource setValue:[[NSWorkspace sharedWorkspace] UTIForFile:[aResource originalPath]] forKey:@"uti"];
@@ -2118,10 +2072,7 @@
 	// subclasses may override
 	if ( [[self selectedResources] count] > 0 ) 
 	{
-		JournlerResource *aResource;
-		NSEnumerator *enumerator = [[self selectedResources] objectEnumerator];
-		
-		while ( aResource = [enumerator nextObject] )
+        for ( JournlerResource *aResource in [self selectedResources] )
 		{
 			// select the entry in a new window
 			EntryWindowController *entryWindow = [[[EntryWindowController alloc] initWithJournal:[self journal]] autorelease];
@@ -2139,10 +2090,7 @@
 	}
 	else if ( [[self selectedEntries] count] > 0 )
 	{
-		JournlerEntry *anEntry;
-		NSEnumerator *enumerator = [[self selectedEntries] objectEnumerator];
-		
-		while ( anEntry = [enumerator nextObject] )
+        for ( JournlerEntry *anEntry in [self selectedEntries] )
 		{
 			// select the entry in a new window
 			EntryWindowController *entryWindow = [[[EntryWindowController alloc] initWithJournal:[self journal]] autorelease];
@@ -2164,10 +2112,7 @@
 	// subclasses may override
 	if ( [[self selectedResources] count] > 0 ) 
 	{
-		JournlerResource *aResource;
-		NSEnumerator *enumerator = [[self selectedResources] objectEnumerator];
-		
-		while ( aResource = [enumerator nextObject] )
+        for ( JournlerResource *aResource in [self selectedResources] )
 		{
 			// select the entry in a new window
 			FloatingEntryWindowController *entryWindow = [[[FloatingEntryWindowController alloc] initWithJournal:[self journal]] autorelease];
@@ -2185,10 +2130,7 @@
 	}
 	else if ( [[self selectedEntries] count] > 0 )
 	{
-		JournlerEntry *anEntry;
-		NSEnumerator *enumerator = [[self selectedEntries] objectEnumerator];
-		
-		while ( anEntry = [enumerator nextObject] )
+        for ( JournlerEntry *anEntry in [self selectedEntries] )
 		{
 			// select the entry in a new window
 			FloatingEntryWindowController *entryWindow = [[[FloatingEntryWindowController alloc] initWithJournal:[self journal]] autorelease];

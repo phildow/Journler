@@ -158,9 +158,8 @@ static JournlerKQueue * gUKKQueueSharedQueueSingleton = nil;
 		keepThreadRunning = NO;
 	
 	// Close all our file descriptors so the files can be deleted:
-	NSEnumerator*	enny = [watchedFDs objectEnumerator];
-	NSNumber*		fdNum;
-	while( (fdNum = [enny nextObject]) )
+	
+    for ( NSNumber *fdNum in watchedFDs )
 	{
     	if( close( [fdNum intValue] ) == -1 )
             NSLog(@"dealloc: Couldn't close file descriptor (%d)", errno);
@@ -303,10 +302,8 @@ static JournlerKQueue * gUKKQueueSharedQueueSingleton = nil;
 {
     AT_SYNCHRONIZED( self )
     {
-        NSEnumerator *  fdEnumerator = [watchedFDs objectEnumerator];
-        NSNumber     *  anFD;
-        
-        while( (anFD = [fdEnumerator nextObject]) != nil )
+       
+        for ( NSNumber *anFD in watchedFDs )
             close( [anFD intValue] );
 
         [watchedFDs removeAllObjects];

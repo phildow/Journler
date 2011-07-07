@@ -1494,10 +1494,7 @@ bail:
 	}
 	
 	BOOL first = YES;
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [theResources objectEnumerator];
-	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in theResources )
 	{
 		ResourceInfoController *infoController = [[[ResourceInfoController alloc] init] autorelease];
 		
@@ -1519,13 +1516,11 @@ bail:
 	NSArray *theResources = [self selectedResources];
 	if ( theResources == nil || [theResources count] == 0 )
 	{
-		NSBeep(); return;
+		NSBeep(); 
+        return;
 	}
 	
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [theResources objectEnumerator];
-	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in theResources )
 		// the resource knows what to do
 		[aResource revealInFinder];
 }
@@ -1535,13 +1530,11 @@ bail:
 	NSArray *theResources = [self selectedResources];
 	if ( theResources == nil || [theResources count] == 0 )
 	{
-		NSBeep(); return;
+		NSBeep(); 
+        return;
 	}
 	
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [theResources objectEnumerator];
-	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in theResources )
 		// the resource knows what to do
 		[aResource openWithFinder];
 }

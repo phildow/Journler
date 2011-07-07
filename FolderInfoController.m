@@ -72,10 +72,8 @@
 	[imageGradient setBorders:borders];
 	
 	// prepare the images for the buttons
-	NSView *aView;
-	NSEnumerator *enumerator = [[imageGradient subviews] objectEnumerator];
 	
-	while ( aView = [enumerator nextObject] )
+    for ( NSView *aView in [imageGradient subviews] )
 	{
 		if ( [aView isKindOfClass:[NSButton class]] )
 			[(NSButton*)aView setImage:[[JournlerCollection defaultImageForID:[aView tag]] imageWithWidth:48 height:48]];

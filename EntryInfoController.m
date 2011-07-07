@@ -260,10 +260,7 @@
 	
 	NSMutableArray *modifiedArray = [NSMutableArray array];
 	
-	NSString *aString;
-	NSEnumerator *enumerator = [tokens objectEnumerator];
-	
-	while ( aString = [enumerator nextObject] )
+    for ( NSString *aString in tokens )
 	{
 		if ( ![aString isOnlyWhitespace] )
 			//[modifiedArray addObject:[aString lowercaseString]];

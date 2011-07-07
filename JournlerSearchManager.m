@@ -273,9 +273,6 @@ static NSString *referenceIndexFile = @"Index References";
 	NSString *entryText = [anEntry searchableContent];
 	NSURL *entryIdentifier = [anEntry URIRepresentation];
 	
-	JournlerResource *aResource;
-	NSArray *resources = [anEntry valueForKey:@"resources"];
-	
 	SKDocumentRef entryDocumentRef = SKDocumentCreateWithURL((CFURLRef)entryIdentifier);
 	
 	if ( entryDocumentRef == NULL ) 
@@ -298,9 +295,8 @@ static NSString *referenceIndexFile = @"Index References";
 	}
 	
 	// iterate through the entry's references, adding them to the index in an appropriate manner
-	NSEnumerator *enumerator = [resources objectEnumerator];
-	
-	while ( aResource = [enumerator nextObject] )
+
+    for ( JournlerResource *aResource in [anEntry valueForKey:@"resources"] )
 		[self indexResource:aResource owner:anEntry];
 	
 	// I am unlocking before indexing the resource because the thread is crashing when an exception is not caught
@@ -566,13 +562,12 @@ static NSString *referenceIndexFile = @"Index References";
 		return NO;
 	}
 	
-	JournlerResource *aReference;
-	NSArray *references = [anEntry valueForKey:@"resources"];
+	
 	
 	// iterate through the entry's references, adding them to the index in an appropriate manner
-	NSEnumerator *enumerator = [references objectEnumerator];
-	while ( aReference = [enumerator nextObject] ) 
-		[self removeResource:aReference owner:anEntry];
+	
+    for ( JournlerResource *aResource in [anEntry valueForKey:@"resources"] )
+		[self removeResource:aResource owner:anEntry];
 	
 	CFRelease(entryDocumentRef);
 	return YES;
@@ -837,11 +832,6 @@ static NSString *referenceIndexFile = @"Index References";
 			NSURL *referenceURI = [NSURL URLWithString:[documentProperties objectForKey:@"reference"]];
 			NSURL *entryURI = [NSURL URLWithString:[documentProperties objectForKey:@"entry"]];
 			
-			NSArray *entryURIs = [documentProperties objectForKey:@"entries"];
-			
-			NSString *anEntryURI;
-			NSEnumerator *uriEnumerator = [entryURIs objectEnumerator];
-			
 			JournlerResource *theReference = [owningJournal objectForURIRepresentation:referenceURI];
 			JournlerEntry *theEntry = [owningJournal objectForURIRepresentation:entryURI];
 			
@@ -867,7 +857,8 @@ static NSString *referenceIndexFile = @"Index References";
 			[theEntry setRelevance:( referenceRelevance > entryRelevance ? referenceRelevance : entryRelevance )];
 			
 			// set the relevance on all of the associated entries
-			while ( anEntryURI = [uriEnumerator nextObject] )
+            
+            for ( NSString *anEntryURI in [documentProperties objectForKey:@"entries"] )
 			{
 				JournlerEntry *anOwningEntry = [owningJournal objectForURIRepresentation:[NSURL URLWithString:anEntryURI]];
 				if ( anOwningEntry == nil )
@@ -963,14 +954,11 @@ bail:
 
 - (BOOL) rebuildIndex 
 {
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [[owningJournal valueForKey:@"entries"] objectEnumerator];
-	
 	BOOL threadedIndex = [self indexesOnSeparateThread];
 	[self setIndexesOnSeparateThread:NO];
 	NSLog(@"%s - beginning at %@", __PRETTY_FUNCTION__, [NSDate date]);
 	
-	while ( anEntry = [enumerator nextObject] )
+    for ( JournlerEntry *anEntry in [owningJournal valueForKey:@"entries"] )
 		[self indexEntry:anEntry];
 	
 	NSLog(@"%s - finished at %@", __PRETTY_FUNCTION__, [NSDate date]);
@@ -1215,13 +1203,10 @@ bail:
 	NSArray *allTerms = [self allTerms:options];
 	NSMutableArray *termsAndDocumentsArray = [NSMutableArray arrayWithCapacity:[allTerms count]];
 	
-	NSString *aTerm;
-	NSEnumerator *enumerator = [allTerms objectEnumerator];
-	
 	//CFIndex maxEntryIndex = SKIndexGetMaximumTermID(entryIndex);
 	//CFIndex maxResourceIndex = SKIndexGetMaximumTermID(referenceIndex);
 	
-	while ( aTerm = [enumerator nextObject] ) 
+    for ( NSString *aTerm in allTerms )
 	{
 		NSString *theTerm = aTerm;
 		NSArray *journlerObjects = [self journlerObjectsForTerm:aTerm options:options];

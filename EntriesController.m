@@ -453,13 +453,10 @@
 	
 	if ( [results count] > 0 )
 	{
-		NSSize size = NSMakeSize(0,0);
-		JournlerEntry *anEntry;
-		NSEnumerator *enumerator = [results objectEnumerator];
-		
 		theMenu = [[[NSMenu alloc] initWithTitle:[NSString string]] autorelease];
-		
-		while ( anEntry = [enumerator nextObject] )
+        NSSize size = NSMakeSize(0,0);
+
+        for ( JournlerEntry *anEntry in results )
 		{
 			NSMenuItem *anItem = [anEntry menuItemRepresentation:size];
 			if ( anItem != nil )
@@ -496,11 +493,8 @@ indexOfToken:(int)tokenIndex indexOfSelectedItem:(int)selectedIndex
 	//NSLog(@"%s - %@",__PRETTY_FUNCTION__,tokens);
 	
 	NSMutableArray *modifiedArray = [NSMutableArray array];
-	
-	NSString *aString;
-	NSEnumerator *enumerator = [tokens objectEnumerator];
-	
-	while ( aString = [enumerator nextObject] )
+
+    for ( NSString *aString in tokens )
 	{
 		if ( ![aString isOnlyWhitespace] )
 			//[modifiedArray addObject:[aString lowercaseString]];

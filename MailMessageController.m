@@ -272,10 +272,8 @@ static NSString *kMediabarItemComposeMessage = @"kMediabarItemComposeMessage";
 	
 	[self setSearchString:aString];
 	
-	NSString *aComponent;
-	NSEnumerator *enumerator = [[aString componentsSeparatedByString:@" "] objectEnumerator];
-	
-	while ( aComponent = [enumerator nextObject] )
+    NSArray *components = [aString componentsSeparatedByString:@" "];
+    for ( NSString *aComponent in components )
 	{
 		// find the occurrence of this string and break if it's available - thus iterating through all the strings
 		if ( [webView searchFor:aComponent direction:YES caseSensitive:NO wrap:YES] )

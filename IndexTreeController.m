@@ -107,11 +107,9 @@
 	id outlineDelegate = [anOutlineView delegate];
 	if ( [outlineDelegate respondsToSelector:@selector(outlineView:writeItems:toPasteboard:)] )
 	{
-		id anItem;
-		NSEnumerator *enumerator = [items objectEnumerator];
 		NSMutableArray *actualItems = [NSMutableArray arrayWithCapacity:[items count]];
 		
-		while ( anItem = [enumerator nextObject] )
+        for ( id anItem in items )
 		{
 			id representedObject = nil;
 			if ( [anItem respondsToSelector:@selector(representedObject)] )
@@ -138,11 +136,9 @@
 	id outlineDelegate = [anOutlineView delegate];
 	if ( [outlineDelegate respondsToSelector:@selector(outlineView:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:)] )
 	{
-		id anItem;
-		NSEnumerator *enumerator = [items objectEnumerator];
 		NSMutableArray *actualItems = [NSMutableArray arrayWithCapacity:[items count]];
 		
-		while ( anItem = [enumerator nextObject] )
+        for ( id anItem in items )
 		{
 			id representedObject = nil;
 			if ( [anItem respondsToSelector:@selector(representedObject)] )

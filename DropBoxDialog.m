@@ -200,11 +200,9 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 + (NSArray*) contentForFilenames:(NSArray*)filenames
 {
 	// load the files
-	NSString *aFilename;
-	NSEnumerator *enumerator = [filenames objectEnumerator];
 	NSMutableArray *fileObjects = [NSMutableArray arrayWithCapacity:[filenames count]];
-	
-	while ( aFilename = [enumerator nextObject] )
+
+    for ( NSString *aFilename in filenames )
 	{
 	// keys: title, filename, icon, description
 		NSMutableDictionary *objectDictionary = [NSMutableDictionary dictionary];
@@ -226,11 +224,9 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 
 + (NSArray*) contentForEntries:(NSArray*)entries
 {
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [entries objectEnumerator];
 	NSMutableArray *entryObjects = [NSMutableArray arrayWithCapacity:[entries count]];
-	
-	while ( anEntry = [enumerator nextObject] )
+    
+    for ( JournlerEntry *anEntry in entries )
 	{
 		// keys: title, filename, icon, description
 		NSMutableDictionary *objectDictionary = [NSMutableDictionary dictionary];

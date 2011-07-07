@@ -618,9 +618,6 @@ bail:
 	NSString *styleDefinition = nil;
 	NSArray *styleDefinitions = nil;
 	
-	NSString *aStyleDefinition = nil;
-	NSEnumerator *stylesEnumerator = nil;
-	
 	static NSString *styleBegin = @"<style type=\"text/css\">";
 	static NSString *styleEnd = @"</style>";
 	
@@ -652,11 +649,10 @@ bail:
 	htmlInline = [[bodyOnly mutableCopyWithZone:[self zone]] autorelease];
 	
 	styleDefinitions = [styleDefinition componentsSeparatedByString:@"\n"];
-	stylesEnumerator = [styleDefinitions objectEnumerator];
 	
 	//NSLog([styleDefinitions description]);
 	
-	while ( aStyleDefinition = [stylesEnumerator nextObject] )
+    for ( NSString *aStyleDefinition in styleDefinitions )
 	{
 		aStyleDefinition = [aStyleDefinition stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		NSArray *styleComponents = [aStyleDefinition componentsSeparatedByString:@" {"];

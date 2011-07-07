@@ -190,11 +190,10 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 
 - (void) deepCopyChildrenToFolder:(JournlerCollection*)aFolder
 {
-	JournlerCollection *aChildFolder;
-	NSEnumerator *enumerator = [[self children] objectEnumerator];
+	
 	NSMutableArray *copiedChildren = [NSMutableArray array];
 	
-	while ( aChildFolder = [enumerator nextObject] )
+    for ( JournlerCollection *aChildFolder in [self children] )
 	{
 		JournlerCollection *aNewChildFolder = [[aChildFolder copyWithZone:[self zone]] autorelease];
 		[copiedChildren addObject:aNewChildFolder];
@@ -1124,9 +1123,6 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	// clear the dynamic predicates
 	[dynamicDatePredicates removeAllObjects];
 	
-	NSString *aCondition;
-	NSEnumerator *conditionEnumerator = [[self conditions] objectEnumerator];
-	
 	int dateTag, dateValue;
 	NSScanner *theScanner;
 	NSString *keyValue;
@@ -1136,7 +1132,8 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	NSCharacterSet *whitespaceSet = [NSCharacterSet whitespaceCharacterSet];
 	
 	// go through each condition, looking for "inthelast" or "inthenext" predicates
-	while ( aCondition = [conditionEnumerator nextObject] )
+	
+    for ( NSString *aCondition in [self conditions] )
 	{
 		//NSLog(@"%s - condition: %@", __PRETTY_FUNCTION__, aCondition);
 		
@@ -1414,10 +1411,8 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 		return NO;
 	
 	BOOL affects = NO;
-	NSString *aCondition;
-	NSEnumerator *enumerator = [[self allConditions:NO] objectEnumerator];
-	
-	while ( aCondition = [enumerator nextObject] )
+
+    for ( NSString *aCondition in [self allConditions:NO] )
 	{
 		if ( [JournlerCondition condition:aCondition affectsKey:aKey] )
 		{
@@ -1437,20 +1432,18 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 		return NO;
 	
 	NSArray *allConditions = [self allConditions:YES];
-	NSDictionary *aDictionary;
-	NSEnumerator *enumerator = [allConditions objectEnumerator];
+	
 	
 	// supported conditions:
 	// 1. title	2. category	3. keywords 4. label 5. mark
 	
-	while ( aDictionary = [enumerator nextObject] )
+    for ( NSDictionary *aDictionary in allConditions )
 	{
 		// get the conditions and the operation
 		// if the operation requires every condition met, check for that, otherwise just grab the first
 		
-		NSString *aCondition;
+		
 		NSArray *localConditions = [aDictionary objectForKey:@"conditions"];
-		NSEnumerator *localEnumerator = [localConditions objectEnumerator];
 		NSNumber *localCombination = [aDictionary objectForKey:@"combinationStyle"];
 		
 		if ( [localCombination intValue] == 0 )
@@ -1458,7 +1451,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 			// any condition that matches is good enough
 			canAutotag = NO;
 			
-			while ( aCondition = [localEnumerator nextObject] )
+            for ( NSString *aCondition in localConditions )
 			{
 				NSDictionary *conditionOp = [JournlerCondition operationForCondition:aCondition entry:anEntry];
 				#ifdef __DEBUG__
@@ -1480,8 +1473,9 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 		else if ( [localCombination intValue] == 1 )
 		{
 			// every condition must match
-			while ( aCondition = [localEnumerator nextObject] )
-			{
+			
+			for ( NSString *aCondition in localConditions )
+            {
 				NSDictionary *conditionOp = [JournlerCondition operationForCondition:aCondition entry:anEntry];
 				#ifdef __DEBUG__
 				NSLog([conditionOp description]); 
@@ -1527,27 +1521,21 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	BOOL added = YES;
 	
 	NSArray *allConditions = [self allConditions:YES];
-	#ifdef __DEBUG__
+#ifdef __DEBUG__
 	NSLog([allConditions description]);
-	#endif
+#endif
 	
-	NSDictionary *aDictionary;
-	NSEnumerator *enumerator = [allConditions objectEnumerator];
-	
-	// supported conditions:
+    // supported conditions:
 	// 1. title	2. category	3. keywords 4. label 5. mark
-	
-	while ( aDictionary = [enumerator nextObject] )
+    
+    for ( NSDictionary *aDictionary in allConditions )
 	{
-		
-		NSString *aCondition;
 		NSArray *localConditions = [aDictionary objectForKey:@"conditions"];
-		NSEnumerator *localEnumerator = [localConditions objectEnumerator];
 		NSNumber *localCombination = [aDictionary objectForKey:@"combinationStyle"];
 		
 		BOOL alreadyAddedLocal = NO;
-		
-		while ( aCondition = [localEnumerator nextObject] )
+       
+        for ( NSString *aCondition in localConditions )
 		{
 			NSDictionary *conditionOp = [JournlerCondition operationForCondition:aCondition entry:anEntry];
 			#ifdef __DEBUG_
@@ -1595,9 +1583,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 				
 				if ( [theKey isEqualToString:@"tags"] )
 				{
-					NSString *aTag;
-					NSEnumerator *enumerator = [theValue objectEnumerator];
-					while ( aTag = [enumerator nextObject] )
+                    for ( NSString *aTag in theValue )
 					{
 						if ( ![theOriginalValue containsObject:aTag] )
 							[(NSMutableArray*)theOriginalValue addObject:aTag];
@@ -2016,11 +2002,8 @@ bail:
     // returns YES if any 'node' in the array 'nodes' is an ancestor of ours.
     // For each node in nodes, if node is an ancestor return YES.  If none is an
     // ancestor, return NO.
-    
-	NSEnumerator *nodeEnum = [nodes objectEnumerator];
-    JournlerCollection *node = nil;
-	
-    while( node = [nodeEnum nextObject] ) 
+   
+    for ( JournlerCollection *node in nodes )
 	{
         if( [self isDescendantOfFolder:node]) 
 			return YES;

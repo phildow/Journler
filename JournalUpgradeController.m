@@ -88,7 +88,6 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 	//BOOL index_entries = YES;
 	
 	NSString *pname;
-	NSEnumerator *direnum;
 	NSArray	*allFiles;
 	NSString *endMessage;
 	
@@ -352,6 +351,8 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 	
 	[log117 appendString:@"Upgrading entries from 1.1 to 2.5 format.\n"];
 	
+    // DIRECTORY_ENUMERATION
+    NSEnumerator *direnum;
 	allFiles = [fm directoryContentsAtPath:[_journal entriesPath]];
 	direnum = [allFiles objectEnumerator];
 	
@@ -1765,10 +1766,7 @@ bail:
 	// 4. set the resources array to the single owner for each resource
 	//		b. set the utis conforming option as well
 	
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [[aJournal resources] objectEnumerator];
-	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in [aJournal resources] )
 	{
 		JournlerEntry *theOwner = [aResource entry];
 		if ( theOwner == nil )
@@ -1799,36 +1797,30 @@ bail:
 	
 	[aJournal setSaveEntryOptions:kEntrySaveDoNotIndex|kEntrySaveDoNotCollect];
 	
-	id anObject;
 	NSNumber *yesDirty = [NSNumber numberWithBool:YES];
 	
-	NSEnumerator *entriesEnumerator = [[aJournal entries] objectEnumerator];
-	NSEnumerator *resourcesEnumerator = [[aJournal resources] objectEnumerator];
-	NSEnumerator *blogsEnumerator = [[aJournal blogs] objectEnumerator];
-	NSEnumerator *foldersEnumerator = [[aJournal collections] objectEnumerator];
-	
-	while ( anObject = [resourcesEnumerator nextObject] )
+    for ( id anObject in [aJournal resources] )
 	{
 		[anObject setDirty:yesDirty];
 		[aJournal saveResource:anObject];
 		[NSApp runModalSession:session250];
 	}
 	
-	while ( anObject = [entriesEnumerator nextObject] )
+    for ( id anObject in [aJournal entries] )
 	{
 		[anObject setDirty:yesDirty];
 		[aJournal saveEntry:anObject];
 		[NSApp runModalSession:session250];
 	}
 	
-	while ( anObject = [foldersEnumerator nextObject] )
+    for ( id anObject in [aJournal collections] )
 	{
 		[anObject setDirty:yesDirty];
 		[aJournal saveCollection:anObject];
 		[NSApp runModalSession:session250];
 	}
 	
-	while ( anObject = [blogsEnumerator nextObject] )
+    for ( id anObject in [aJournal blogs] )
 	{
 		[anObject setDirty:yesDirty];
 		[aJournal saveBlog:anObject];
@@ -1896,12 +1888,7 @@ bail:
 	// do not index or collect entries while saving them
 	[aJournal setSaveEntryOptions:kEntrySaveDoNotIndex|kEntrySaveDoNotCollect];
 	
-	JournlerEntry *anEntry;
-	JournlerResource *aResource;
-	JournlerCollection *aFolder;
-	NSEnumerator *enumerator = [[aJournal entries] objectEnumerator];
-	
-	while ( anEntry = [enumerator nextObject] )
+    for ( JournlerEntry *anEntry in [aJournal entries] )
 	{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
@@ -1911,10 +1898,8 @@ bail:
 		[NSApp runModalSession:session253];
 		[pool release];
 	}
-
-	enumerator = [[aJournal resources] objectEnumerator];
-
-	while ( aResource = [enumerator nextObject] )
+   
+    for ( JournlerResource *aResource in [aJournal resources] )
 	{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
@@ -1925,9 +1910,7 @@ bail:
 		[pool release];
 	}
 	
-	enumerator = [[aJournal collections] objectEnumerator];
-
-	while ( aFolder = [enumerator nextObject] )
+    for ( JournlerCollection *aFolder in [aJournal collections] )
 	{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		

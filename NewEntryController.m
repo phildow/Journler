@@ -344,10 +344,8 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 	if ( ![self isWindowLoaded] ) [self window];
 	
 	BOOL firstSelection = YES;
-	JournlerCollection *aFolder;
-	NSEnumerator *enumerator = [anArray objectEnumerator];
 	
-	while ( aFolder = [enumerator nextObject] )
+    for ( JournlerCollection *aFolder in anArray )
 	{
 		if ( [aFolder isRegularFolder] || ( [aFolder isSmartFolder] && [aFolder canAutotag:nil] ) )
 		{
@@ -398,23 +396,17 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 		[self setCategory:[NSString string]];
 	}
 	
-	NSDictionary *aDictionary;
-	NSEnumerator *enumerator = [allConditions objectEnumerator];
-	
 	// supported conditions:
 	// 1. title	2. category	3. keywords 4. label 5. mark
 	
-	while ( aDictionary = [enumerator nextObject] )
+    for ( NSDictionary *aDictionary in allConditions )
 	{
-		
-		NSString *aCondition;
 		NSArray *localConditions = [aDictionary objectForKey:@"conditions"];
-		NSEnumerator *localEnumerator = [localConditions objectEnumerator];
 		NSNumber *localCombination = [aDictionary objectForKey:@"combinationStyle"];
 		
 		BOOL alreadyAddedLocal = NO;
 		
-		while ( aCondition = [localEnumerator nextObject] )
+        for ( NSString *aCondition in localConditions )
 		{
 			NSDictionary *conditionOp = [JournlerCondition operationForCondition:aCondition entry:nil];
 			#ifdef __DEBUG_
@@ -693,8 +685,6 @@ bail:
 - (NSArray *)tokenField:(NSTokenField *)tokenField completionsForSubstring:(NSString *)substring 
 	indexOfToken:(int)tokenIndex indexOfSelectedItem:(int *)selectedIndex
 {
-	//NSLog(@"%s",__PRETTY_FUNCTION__);
-	
 	//NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith[cd] %@", substring];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith %@", substring];
 	NSArray *completions = [[self tagCompletions] filteredArrayUsingPredicate:predicate];
@@ -703,14 +693,9 @@ bail:
 
 - (NSArray *)tokenField:(NSTokenField *)tokenField shouldAddObjects:(NSArray *)tokens atIndex:(unsigned)index
 {
-	//NSLog(@"%s - %@",__PRETTY_FUNCTION__,tokens);
-	
 	NSMutableArray *modifiedArray = [NSMutableArray array];
 	
-	NSString *aString;
-	NSEnumerator *enumerator = [tokens objectEnumerator];
-	
-	while ( aString = [enumerator nextObject] )
+    for ( NSString *aString in tokens )
 	{
 		if ( ![aString isOnlyWhitespace] )
 			//[modifiedArray addObject:[aString lowercaseString]];

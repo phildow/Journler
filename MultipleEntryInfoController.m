@@ -523,10 +523,7 @@
 	
 	NSMutableArray *modifiedArray = [NSMutableArray array];
 	
-	NSString *aString;
-	NSEnumerator *enumerator = [tokens objectEnumerator];
-	
-	while ( aString = [enumerator nextObject] )
+    for ( NSString *aString in tokens )
 	{
 		if ( ![aString isOnlyWhitespace] )
 			//[modifiedArray addObject:[aString lowercaseString]];
@@ -746,10 +743,8 @@
 		[entries setValue:[NSCalendarDate calendarDate] forKey:@"calDateModified"];
 	
 	// save the entries
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [entries objectEnumerator];
 	
-	while ( anEntry = [enumerator nextObject] )
+    for ( JournlerEntry *anEntry in entries )
 		[[self valueForKey:@"journal"] saveEntry:anEntry];
 	
 	// stop everything and quit

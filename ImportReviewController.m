@@ -610,11 +610,8 @@
 - (void) importReviewSourceList:(ImportReviewSourceList*)aSourceList deleteFolders:(NSNotification*)aNotification
 {
 	// #warning doesn't work, causes crash
-	
-	id anObject;
-	NSEnumerator *enumerator = [[foldersController selectedObjects] objectEnumerator];
-	
-	while ( anObject = [enumerator nextObject] )
+    
+    for ( id anObject in [foldersController selectedObjects] )
 	{
 		JournlerCollection *aFolder;
 		// necessary hack, 10.5 compatible
@@ -639,50 +636,6 @@
 {
 	NSArray *theEntries = [entriesController selectedObjects];
 	[self deleteEntries:theEntries];
-	
-	/*
-	BOOL permDelete = NO;
-	
-	// the action depends on the selected folder
-	NSArray *selectedFolders = [foldersController selectedObjects];
-	if ( [selectedFolders count] == 1 )
-	{
-		JournlerCollection *actualItem; 
-		// necessary hack to get around NSTreeController proxy object
-		if ( [item respondsToSelector:@selector(representedObject)] )
-			actualItem = [[selectedFolders objectAtIndex:0] representedObject];
-		else if ( [[selectedFolders objectAtIndex:0] respondsToSelector:@selector(observedObject)] )
-			actualItem = [[selectedFolders objectAtIndex:0] observedObject];
-		else
-			actualItem = [selectedFolders objectAtIndex:0];
-		
-		if ( [actualItem isLibrary] )
-		{
-			permDelete = YES;
-			// go through each folder, removing the entries, and remove them from the library
-			
-			JournlerCollection *aFolder;
-			NSEnumerator *folderEnumerator = [[self folders] objectEnumerator];
-			while ( aFolder = [folderEnumerator nextObject] )
-			{
-				JournlerEntry *anEntry;
-				NSEnumerator *entryEnumerator = [theEntries objectEnumerator];
-				while ( anEntry = [entryEnumerator nextObject] )
-					[aFolder removeEntry:anEntry];
-			}
-			
-			// remove the entries from the main entries list
-			NSMutableArray *myEntries = [[[self entries] mutableCopyWithZone:[self zone]] autorelease];
-			[myEntries removeObjectsInArray:theEntries];
-			[self setEntries:myEntries];
-		}
-	}
-	
-	if ( !permDelete )
-	{
-		[entriesController remove:self];
-	}
-	*/
 }
 
 #pragma mark -
@@ -702,13 +655,9 @@
 
 - (void) deleteEntries:(NSArray*)theEntries
 {
-	JournlerCollection *aFolder;
-	NSEnumerator *folderEnumerator = [[self folders] objectEnumerator];
-	while ( aFolder = [folderEnumerator nextObject] )
+	for ( JournlerCollection *aFolder in [self folders] )
 	{
-		JournlerEntry *anEntry;
-		NSEnumerator *entryEnumerator = [theEntries objectEnumerator];
-		while ( anEntry = [entryEnumerator nextObject] )
+		for ( JournlerEntry *anEntry in theEntries )
 			[aFolder removeEntry:anEntry];
 	}
 	

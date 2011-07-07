@@ -55,12 +55,9 @@
 	}
 	else 
 	{
-    
-		NSMutableArray *filteredObjects = [NSMutableArray arrayWithCapacity:[objects count]];
-		NSEnumerator *objectsEnumerator = [objects objectEnumerator];
-		id item;
-		
-		while (item = [objectsEnumerator nextObject]) {
+        NSMutableArray *filteredObjects = [NSMutableArray arrayWithCapacity:[objects count]];
+        
+        for (id item in objects) {
 			if ([[item valueForKey:@"misspelledWord"] rangeOfString:searchString options:NSCaseInsensitiveSearch].location != NSNotFound)
 				[filteredObjects addObject:item];
 			else if ([[item valueForKey:@"correctWord"] rangeOfString:searchString options:NSCaseInsensitiveSearch].location != NSNotFound)

@@ -42,10 +42,9 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
     va_list args;
     va_start(args, firstDescription);
 
-    id segment;
     NSString *description = firstDescription;
-    NSEnumerator *e = [segments objectEnumerator];
-    while ((segment = [e nextObject])) {
+
+    for ( id segment in segments ) {
         if (description != nil) {
             [segment accessibilitySetOverrideValue:description forAttribute:NSAccessibilityDescriptionAttribute];
         } else {
@@ -1616,10 +1615,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 			}
 			else
 			{
-				JournlerEntry *pasteboardEntry;
-				NSEnumerator *enumerator = [pasteboardEntries objectEnumerator];
-				while ( pasteboardEntry = [enumerator nextObject] )
-				{
+                for ( JournlerEntry *pasteboardEntry in pasteboardEntries ) {
 					[pasteboardEntry setValue:dropDate forKey:@"calDate"];
 					[[self valueForKeyPath:@"delegate.journal"] saveEntry:pasteboardEntry];
 				}
@@ -1656,10 +1652,8 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	}
 	else
 	{
-		JournlerEntry *pasteboardEntry;
-		NSEnumerator *enumerator = [pasteboardEntries objectEnumerator];
-		while ( pasteboardEntry = [enumerator nextObject] )
-		{
+        for ( JournlerEntry *pasteboardEntry in pasteboardEntries )
+        {
 			[pasteboardEntry setValue:dropDate forKey:@"calDate"];
 			[[self valueForKeyPath:@"delegate.journal"] saveEntry:pasteboardEntry];
 		}

@@ -210,11 +210,10 @@ static NSArray *DefaultDocumentsSort()
 		else
 		{
 			// filter out the entries and display the multiply selected resources
-			JournlerObject *anObject;
-			NSMutableArray *resourcesOnly = [NSMutableArray array];
-			NSEnumerator *enumerator = [selectedDocuments objectEnumerator];
 			
-			while ( anObject = [enumerator nextObject] )
+			NSMutableArray *resourcesOnly = [NSMutableArray array];
+			
+            for ( JournlerObject *anObject in selectedDocuments )
 			{
 				if ( [anObject isKindOfClass:[JournlerResource class]] )
 					[resourcesOnly addObject:anObject];
@@ -589,8 +588,7 @@ bail:
 
 - (IBAction) openDocumentInNewWindow:(id)sender
 {
-	IndexNode *aNode;
-	NSEnumerator *enumerator;
+	
 	NSArray *focusedNodes = [indexBrowser focusedNodes];
 	
 	if ( focusedNodes == nil || [focusedNodes count] == 0 )
@@ -598,8 +596,7 @@ bail:
 		NSBeep(); return;
 	}
 	
-	enumerator = [focusedNodes objectEnumerator];
-	while ( aNode = [ enumerator nextObject] )
+    for ( IndexNode *aNode in focusedNodes )
 	{
 		JournlerObject *representedObject = [aNode representedObject];
 		
@@ -613,17 +610,15 @@ bail:
 
 - (IBAction) revealDocumentInFinder:(id)sender
 {
-	IndexNode *aNode;
-	NSEnumerator *enumerator;
+	
 	NSArray *focusedNodes = [indexBrowser focusedNodes];
 	
 	if ( focusedNodes == nil || [focusedNodes count] == 0 )
 	{
 		NSBeep(); return;
 	}
-	
-	enumerator = [focusedNodes objectEnumerator];
-	while ( aNode = [ enumerator nextObject] )
+
+    for ( IndexNode *aNode in focusedNodes )
 	{
 		JournlerObject *representedObject = [aNode representedObject];
 		
@@ -642,17 +637,18 @@ bail:
 
 - (IBAction) openDocumentInFinder:(id)sender
 {
-	IndexNode *aNode;
-	NSEnumerator *enumerator;
+	
 	NSArray *focusedNodes = [indexBrowser focusedNodes];
 	
 	if ( focusedNodes == nil || [focusedNodes count] == 0 )
 	{
 		NSBeep(); return;
 	}
-	
-	enumerator = [focusedNodes objectEnumerator];
-	while ( aNode = [ enumerator nextObject] )
+	/*
+	IndexNode *aNode;
+	NSEnumerator *enumerator; = [focusedNodes objectEnumerator];
+	while ( aNode = [ enumerator nextObject] )*/
+    for ( IndexNode *aNode in focusedNodes )
 	{
 		JournlerObject *representedObject = [aNode representedObject];
 		
@@ -1130,11 +1126,9 @@ bail:
 	if ( ![aColumn canDeleteContent] )
 		return NO;
 	
-	IndexNode *aNode;
-	NSEnumerator *enumerator = [theNodes objectEnumerator];
 	NSMutableSet *stopWords = [NSMutableSet setWithCapacity:[selectedRows count]];
 	
-	while ( aNode = [enumerator nextObject] )
+    for ( IndexNode *aNode in theNodes )
 	{
 		id anObject = [aNode representedObject];
 		if ( ![anObject isKindOfClass:[NSString class]] )
@@ -1238,14 +1232,11 @@ bail:
 	BOOL wroteAnItem = NO;
 	BOOL dealingWithStrings = NO;
 	
-	id aNode;
-	NSEnumerator *enumerator = [items objectEnumerator];
-	
 	NSMutableArray *URIs = [NSMutableArray array];
 	NSMutableArray *titles = [NSMutableArray array];
 	NSMutableArray *promises = [NSMutableArray array];
 	
-	while ( aNode = [enumerator nextObject] )
+    for ( id aNode in items )
 	{
 		if ( ![aNode respondsToSelector:@selector(representedObject)] )
 			continue;
@@ -1347,9 +1338,7 @@ bail:
 	NSMutableArray *titles = [NSMutableArray array];
 	NSString *destinationPath = [dropDestination path];
 	
-	id anItem;
 	JournlerObject *anObject;
-	NSEnumerator *enumerator = [items objectEnumerator];
 	
 	int flags = kEntrySetLabelColor;
 	if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EntryExportIncludeHeader"] )
@@ -1359,7 +1348,7 @@ bail:
 	if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EntryExportSetModificationDate"] )
 		flags |= kEntrySetFileModificationDate;
 	
-	while ( anItem = [enumerator nextObject] )
+    for ( id anItem in items )
 	{
 		if ( [anItem isKindOfClass:[JournlerObject class]] )
 			anObject = anItem;

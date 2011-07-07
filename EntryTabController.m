@@ -204,10 +204,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 		// clear the current selection and force a selection on the new objects
 		[resourceTable deselectAll:self];
 		
-		JournlerResource *aResource;
-		NSEnumerator *enumerator = [resources objectEnumerator];
-		
-		while ( aResource = [enumerator nextObject] )
+        for ( JournlerResource *aResource in resources )
 			[resourceController selectResource:aResource byExtendingSelection:YES];
 	}
 
@@ -220,12 +217,9 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 
 - (BOOL) selectResources:(NSArray*)anArray
 {	
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [anArray objectEnumerator];
-	
 	[resourceTable deselectAll:self];
 	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in anArray )
 		[resourceController selectResource:aResource byExtendingSelection:NO];
 		
 	return YES;
@@ -740,11 +734,9 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 	// If it isn't there, it must be added to the selected entry
 	
 	NSArray *theResources = [resourceController resources];
-	
-	JournlerResource *aResource, *theResource = nil;
-	NSEnumerator *enumerator = [theResources objectEnumerator];
-	
-	while ( aResource = [enumerator nextObject] )
+	JournlerResource *theResource = nil;
+    
+    for ( JournlerResource *aResource in theResources )
 	{
 		if ( [aResource representsURL] && [[aResource valueForKey:@"urlString"] isEqualToString:[aURL absoluteString]] )
 		{
@@ -1170,18 +1162,9 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 	{
 		NSBeep();
 		NSLog(@"%s - problems removing the resources { %@ } from the entries { %@ }, errors: %@",
-		__PRETTY_FUNCTION__, [theResources valueForKey:@"tagID"], [theEntries valueForKey:@"tagID"], errors);
+              __PRETTY_FUNCTION__, [theResources valueForKey:@"tagID"], 
+              [theEntries valueForKey:@"tagID"], errors);
 	}
-	
-	/*
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [theResources objectEnumerator];
-	
-	// perform the deletion
-	while ( aResource = [enumerator nextObject] )
-		[[self journal] deleteResource:aResource];
-	*/
-	
 }
 
 

@@ -19,9 +19,7 @@
 {
 	NSMutableArray *uriReps = [NSMutableArray arrayWithCapacity:[self count]];
 	
-	id anObject;
-	NSEnumerator *enumerator = [self objectEnumerator];
-	while ( anObject = [enumerator nextObject] )
+    for ( id anObject in self )
 	{
 		if ( [anObject respondsToSelector:@selector(URIRepresentation)] )
 			[uriReps addObject:[anObject URIRepresentation]];
@@ -34,9 +32,7 @@
 {
 	NSMutableArray *journalObjects = [NSMutableArray arrayWithCapacity:[self count]];
 	
-	id anObject;
-	NSEnumerator *enumerator = [self objectEnumerator];
-	while ( anObject = [enumerator nextObject] )
+    for ( id anObject in self )
 	{
 		id theObject = [journal objectForURIRepresentation:anObject];
 		if ( [theObject isKindOfClass:[JournlerEntry class]] || [theObject isKindOfClass:[JournlerResource class]] ||

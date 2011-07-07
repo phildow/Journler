@@ -347,10 +347,7 @@
 	
 	
 	// add the entry to the selected folder(s)
-	JournlerCollection *aFolder;
-	NSEnumerator *enumerator = [targetFolders objectEnumerator];
-	
-	while ( aFolder = [enumerator nextObject] )
+    for ( JournlerCollection *aFolder in targetFolders )
 	{
 		if ( [aFolder isRegularFolder] )
 			[aFolder addEntry:newEntry];
@@ -382,10 +379,7 @@
 	else
 	{
 		// always put up a new window
-		JournlerEntry *anEntry;
-		NSEnumerator *enumerator = [pasteboardEntries objectEnumerator];
-		
-		while ( anEntry = [enumerator nextObject] )
+        for ( JournlerEntry *anEntry in pasteboardEntries )
 		{
 		
 			// put up an entry window for this resource

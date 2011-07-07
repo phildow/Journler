@@ -547,9 +547,7 @@
 						[newFolder evaluateAndAct:[myJournal valueForKey:@"entries"] considerChildren:YES];
 						
 						// save the affected folder's children
-						JournlerCollection *aChildFolder;
-						NSEnumerator *kidsEnumerator = [[newFolder allChildren] objectEnumerator];
-						while ( aChildFolder = [kidsEnumerator nextObject] )
+                        for ( JournlerCollection *aChildFolder in [newFolder allChildren] )
 							[[aChildFolder journal] saveCollection:aChildFolder];
 					}
 						
@@ -583,9 +581,7 @@
 						if ( adjustingIndex ) indexAdjust++;
 						
 						// save the parents folders children, which includes the affected folder
-						JournlerCollection *aChildFolder;
-						NSEnumerator *kidsEnumerator = [[aFoldersParent allChildren] objectEnumerator];
-						while ( aChildFolder = [kidsEnumerator nextObject] )
+                        for ( JournlerCollection *aChildFolder in [aFoldersParent allChildren] )
 							[[aChildFolder journal] saveCollection:aChildFolder];
 					}
 					
@@ -609,9 +605,7 @@
 							[aFolder evaluateAndAct:[myJournal valueForKey:@"entries"] considerChildren:YES];
 							
 							// save the affected folder's children
-							JournlerCollection *aChildFolder;
-							NSEnumerator *kidsEnumerator = [[aFolder allChildren] objectEnumerator];
-							while ( aChildFolder = [kidsEnumerator nextObject] )
+							for ( JournlerCollection *aChildFolder in [aFolder allChildren] )
 								[[aChildFolder journal] saveCollection:aChildFolder];
 						}
 						
@@ -633,9 +627,7 @@
 		// save the affected folder and its children
 		[[actualItem journal] saveCollection:actualItem];
 		
-		JournlerCollection *aChildFolder;
-		NSEnumerator *kidsEnumerator = [[actualItem allChildren] objectEnumerator];
-		while ( aChildFolder = [kidsEnumerator nextObject] )
+        for ( JournlerCollection *aChildFolder in [actualItem allChildren] )
 			[[aChildFolder journal] saveCollection:aChildFolder];
 		
 		// reselect the previously selected folder
@@ -819,16 +811,12 @@
 	{
 		if ( [aCollection isRegularFolder] )
 		{
-			JournlerEntry *pasteboardEntry;
-			NSEnumerator *enumerator = [pasteboardEntries objectEnumerator];
-			while ( pasteboardEntry = [enumerator nextObject] )
+			for ( JournlerEntry *pasteboardEntry in pasteboardEntries )
 				[aCollection addEntry:pasteboardEntry];
 		}
 		else if ( [aCollection isSmartFolder] )
 		{
-			JournlerEntry *pasteboardEntry;
-			NSEnumerator *enumerator = [pasteboardEntries objectEnumerator];
-			while ( pasteboardEntry = [enumerator nextObject] )
+			for ( JournlerEntry *pasteboardEntry in pasteboardEntries )
 				[aCollection autotagEntry:pasteboardEntry add:YES];
 		}
 		else
@@ -843,10 +831,7 @@
 
 - (IBAction) exposeAllFolders:(id)sender
 {
-	JournlerCollection *aFolder;
-	NSEnumerator *enumerator = [[[self rootCollection] children] objectEnumerator];
-	
-	while (aFolder = [enumerator nextObject] )
+    for ( JournlerCollection *aFolder in [[self rootCollection] children] )
 		[sourceList expandItem:[sourceList itemAtRow:[sourceList rowForOriginalItem:aFolder]] expandChildren:NO];
 }
 
@@ -987,12 +972,9 @@
 	SEL action = [menuItem action];
 	unsigned selectionCount;
 	
-	id anObject;
-	JournlerCollection *aFolder;
-	NSEnumerator *enumerator = [[self selectedObjects] objectEnumerator];
-	NSMutableArray *actualFolders = [NSMutableArray arrayWithCapacity:[[self selectedObjects] count]];
-	
-	while ( anObject = [enumerator nextObject] )
+    NSMutableArray *actualFolders = [NSMutableArray arrayWithCapacity:[[self selectedObjects] count]];
+   
+    for ( id anObject in [self selectedObjects] )
 	{
 		if ( [anObject respondsToSelector:@selector(representedObject)] )
 			[actualFolders addObject:[anObject representedObject]];
@@ -1030,8 +1012,7 @@
 			enabled = NO;
 		else
 		{
-			enumerator = [actualFolders objectEnumerator];
-			while ( aFolder = [enumerator nextObject] )
+			for ( JournlerCollection *aFolder in actualFolders )
 			{
 				if ( [aFolder isTrash] || [aFolder isLibrary] )
 				{

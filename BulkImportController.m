@@ -250,6 +250,7 @@
 			[parentFolder addChild:aFolder];
 	}
 	
+    //DIRECTORY_ENUMERATOR
 	NSString *completePath, *aPath;
 	NSEnumerator *enumerator = [[fm directoryContentsAtPath:path] objectEnumerator];
 	

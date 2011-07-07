@@ -926,10 +926,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	// open any files the user is launching the app with
 	if ( filesToOpenAtLaunch != nil )
 	{
-		NSString *aFilename;
-		NSEnumerator *enumerator = [filesToOpenAtLaunch objectEnumerator];
-		
-		while ( aFilename = [enumerator nextObject] )
+		for ( NSString *aFilename in filesToOpenAtLaunch )
 			[self openFile:aFilename];
 		
 		[filesToOpenAtLaunch release];
@@ -942,10 +939,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 		if ( defaultBool(@"NewEntryImportNewWindow") )
 		{
 			// show each entry in its own window
-			JournlerEntry *anEntry;
-			NSEnumerator *enumerator = [entriesToShowAtLaunch objectEnumerator];
-			
-			while ( anEntry = [enumerator nextObject] )
+			for ( JournlerEntry *anEntry in entriesToShowAtLaunch )
 			{
 				EntryWindowController *entryWindow = [[[EntryWindowController alloc] initWithJournal:[self journal]] autorelease];
 				[entryWindow showWindow:self];
@@ -1061,10 +1055,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	else
 	{
 		BOOL success = YES;
-		NSString *aFilename;
-		NSEnumerator *enumerator = [filenames objectEnumerator];
-		
-		while ( aFilename = [enumerator nextObject] )
+		for ( NSString *aFilename in filenames )
 			success = ( [self openFile:aFilename] && success );
 		
 		[NSApp replyToOpenOrPrint:( success ? NSApplicationDelegateReplySuccess : NSApplicationDelegateReplyFailure )];
@@ -1210,11 +1201,9 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	{
 		// a this point, dealing with a file that may need to be imported
 		// but first see if the resource is already in the journal, and if it is open it in the main viewer
-	
-		JournlerResource *aResource, *resourceToSelect = nil;
-		NSEnumerator *resourceEnumerator = [[self valueForKeyPath:@"journal.resources"] objectEnumerator];
-		
-		while ( aResource = [resourceEnumerator nextObject] )
+        JournlerResource *resourceToSelect = nil;
+        
+        for ( JournlerResource *aResource in [self valueForKeyPath:@"journal.resources"] )
 		{
 			if ( [aResource representsFile] && [[aResource originalPath] isEqualToString:filename] )
 			{
@@ -1423,7 +1412,9 @@ bail:
 		visually:(BOOL)showDialog  
 		filesAffected:(int*)newEntryCount
 {
-	int successCount = 0;
+	// DIRECTORY_ENUMERATION
+    
+    int successCount = 0;
 	BOOL completeSuccess = YES;
 	//NSFileManager *fm = [NSFileManager defaultManager];
 	NSArray *contents = [[NSFileManager defaultManager] directoryContentsAtPath:path];
@@ -1597,15 +1588,9 @@ bail:
 {
 	if ( result == NSRunAbortedResponse )
 	{
-		NSString *aCompletePath;
-		NSDictionary *aDictionary;
-		//NSEnumerator *enumerator = [[aDialog representedObject] objectEnumerator];
-		NSEnumerator *enumerator = [contents objectEnumerator];
-		
-		//while ( aCompletePath = [enumerator nextObject] )
-		while ( aDictionary = [enumerator nextObject] )
+		for ( NSDictionary *aDictionary in contents ) 
 		{
-			aCompletePath = [aDictionary objectForKey:@"representedObject"];
+			NSString *aCompletePath = [aDictionary objectForKey:@"representedObject"];
 			
 			NSString *movedPath = [NSString stringWithFormat:@"- %@",[aCompletePath lastPathComponent]];
 			NSString *completeMovedPath = [[aCompletePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:movedPath];
@@ -1634,17 +1619,13 @@ bail:
 		NSArray *targetFolders = [aDialog selectedFolders];
 		 /* = [aDialog selectedFolder];*/
 		
-		NSString *aCompletePath;
+		
 		JournlerEntry *firstSelection = nil;
-		NSDictionary *aDictionary;
-		//NSEnumerator *enumerator = [[aDialog representedObject] objectEnumerator];
-		NSEnumerator *enumerator = [contents objectEnumerator];
 		NSFileManager *fm = [NSFileManager defaultManager];
 		
-		//while ( aCompletePath = [enumerator nextObject] )
-		while ( aDictionary = [enumerator nextObject] )
+        for ( NSDictionary *aDictionary in contents )
 		{
-			aCompletePath = [aDictionary objectForKey:@"representedObject"];
+			NSString *aCompletePath = [aDictionary objectForKey:@"representedObject"];
 			JournlerEntry *anImport = [self importFile:aCompletePath operation:kNewResourceForceCopy];
 			
 			if ( anImport == nil )
@@ -1679,10 +1660,7 @@ bail:
 				
 				if ( targetFolders != nil )
 				{
-					JournlerCollection *targetFolder;
-					NSEnumerator *enumerator = [targetFolders objectEnumerator];
-					
-					while ( targetFolder = [enumerator nextObject] )
+                    for ( JournlerCollection *targetFolder in targetFolders )
 					{
 						if ( [targetFolder isRegularFolder] )
 							[targetFolder addEntry:anImport];
@@ -1745,17 +1723,12 @@ bail:
 		NSArray *targetFolders = [aDialog selectedFolders];
 		 /* = [aDialog selectedFolder];*/
 		
-		NSString *aCompletePath;
-		JournlerEntry *firstSelection = nil;
-		NSDictionary *aDictionary;
-		//NSEnumerator *enumerator = [[aDialog representedObject] objectEnumerator];
-		NSEnumerator *enumerator = [contents objectEnumerator];
-		NSFileManager *fm = [NSFileManager defaultManager];
+        JournlerEntry *firstSelection = nil;
+        NSFileManager *fm = [NSFileManager defaultManager];
 		
-		//while ( aCompletePath = [enumerator nextObject] )
-		while ( aDictionary = [enumerator nextObject] )
+		for ( NSDictionary *aDictionary in contents )
 		{
-			aCompletePath = [aDictionary objectForKey:@"representedObject"];
+			NSString *aCompletePath = [aDictionary objectForKey:@"representedObject"];
 			JournlerEntry *anImport = [self importFile:aCompletePath operation:kNewResourceForceCopy];
 			
 			if ( anImport == nil )
@@ -1782,10 +1755,7 @@ bail:
 				
 				if ( targetFolders != nil )
 				{
-					JournlerCollection *targetFolder;
-					NSEnumerator *enumerator = [targetFolders objectEnumerator];
-					
-					while ( targetFolder = [enumerator nextObject] )
+                    for ( JournlerCollection *targetFolder in targetFolders )
 					{
 						if ( [targetFolder isRegularFolder] )
 							[targetFolder addEntry:anImport];
@@ -1828,15 +1798,11 @@ bail:
 		// delete all those files anyway if we're supposed to
 		if ( [aDialog shouldDeleteOriginal] )
 		{
-		
-			NSString *aCompletePath;
-			NSDictionary *aDictionary;
-			NSEnumerator *enumerator = [contents objectEnumerator];
-			NSFileManager *fm = [NSFileManager defaultManager];
+            NSFileManager *fm = [NSFileManager defaultManager];
 			
-			while ( aDictionary = [enumerator nextObject] )
+            for ( NSDictionary *aDictionary in contents )
 			{
-				aCompletePath = [aDictionary objectForKey:@"representedObject"];
+				NSString *aCompletePath = [aDictionary objectForKey:@"representedObject"];
 				
 				if ( [fm fileExistsAtPath:aCompletePath] && ![fm removeFileAtPath:aCompletePath handler:nil] )
 					NSLog(@"%s - file could not be deleted at path %@", __PRETTY_FUNCTION__, aCompletePath);
@@ -1885,11 +1851,9 @@ bail:
 
 - (void) fadeOutAllWindows:(NSArray*)excluding
 {
-	NSWindow *aWindow;
-	NSEnumerator *enumerator = [[NSApp windows] objectEnumerator];
 	NSMutableArray *allDictionaries = [NSMutableArray array];
-	
-	while ( aWindow = [enumerator nextObject] )
+   
+    for ( NSWindow *aWindow in [NSApp windows] )
 	{
 		if ( [excluding containsObject:aWindow] )
 			continue;
@@ -1909,11 +1873,9 @@ bail:
 
 - (void) fadeInAllWindows:(NSArray*)excluding
 {
-	NSWindow *aWindow;
-	NSEnumerator *enumerator = [[NSApp windows] objectEnumerator];
 	NSMutableArray *allDictionaries = [NSMutableArray array];
-	
-	while ( aWindow = [enumerator nextObject] )
+
+    for ( NSWindow *aWindow in [NSApp windows] )
 	{
 		if ( [excluding containsObject:aWindow] )
 			continue;
@@ -1953,7 +1915,7 @@ bail:
 			[[NSFileManager defaultManager] fileExistsAtPath:[selectedFiles objectAtIndex:0] isDirectory:&dir] && dir && 
 			![[NSWorkspace sharedWorkspace] isFilePackageAtPath:[selectedFiles objectAtIndex:0]] )
 	{
-	
+        //DIRECTORY_ENUMERATION
 		// if a single directory is selected, send the directory's contents to the importer
 		NSString *aPath, *theDirectoryPath = [selectedFiles objectAtIndex:0];
 		NSMutableArray *anArray = [[[NSMutableArray alloc] init] autorelease];
@@ -2074,10 +2036,8 @@ bail:
 - (void) regenerateDynamicDatePredicates
 {
 	//#warning put up a progress indicator?
-	JournlerCollection *aFolder;
-	NSEnumerator *enumerator = [[self valueForKeyPath:@"journal.collections"] objectEnumerator];
 	
-	while ( aFolder = [enumerator nextObject] )
+    for ( JournlerCollection *aFolder in [self valueForKeyPath:@"journal.collections"] )
 	{
 		if ( [aFolder generateDynamicDatePredicates:NO] )
 		{
@@ -2095,10 +2055,8 @@ bail:
 	{
 		// first check for full screen controllers
 		BOOL hasFullScreen = NO;
-		NSWindowController *aController;
-		NSEnumerator *enumerator = [[[NSApp windows] valueForKey:@"windowController"] objectEnumerator];
 		
-		while ( aController = [enumerator nextObject] )
+        for ( NSWindowController *aController in [[NSApp windows] valueForKey:@"windowController"] )
 		{
 			if ( [aController respondsToSelector:@selector(isFullScreenController)] )
 			{
@@ -2639,9 +2597,7 @@ bail:
 				[duedateExampleEntry setCalDateDue:aDuedate];
 				
 				// reset the icons on each of the folders
-				JournlerCollection *aFolder;
-				NSEnumerator *enumerator = [[sharedJournal collections] objectEnumerator];
-				while ( aFolder = [enumerator nextObject] )
+                for ( JournlerCollection *aFolder in [sharedJournal collections] )
 					[aFolder setValue:[JournlerCollection defaultImageForID:[[aFolder valueForKey:@"typeID"] intValue]] forKey:@"icon"];
 				
 				// save the changes
@@ -2930,9 +2886,7 @@ bail:
 	[standard_defaults setObject:path forKey:@"Default Journal Location"];
 	
 	//and write out this entire temporary dictionary to user defaults
-	NSString *key;
-	NSEnumerator *enumerator = [standard_defaults keyEnumerator];
-	while ( key = [enumerator nextObject] )
+    for ( NSString *key in [standard_defaults allKeys] )
 		[[NSUserDefaults standardUserDefaults] setObject:[standard_defaults objectForKey:key] forKey:key];
 	
 	// and immediately afterwards register our initial defaults
@@ -4033,8 +3987,7 @@ bail:
 	}
 		
 	
-	NSString *aPair;
-	NSArray *wordPairs = [dictionaryList componentsSeparatedByString:@"\r"];
+    NSArray *wordPairs = [dictionaryList componentsSeparatedByString:@"\r"];
 	if ( wordPairs == nil || [wordPairs count] <= 1 )
 	{
 		wordPairs = [dictionaryList componentsSeparatedByString:@"\n"];
@@ -4043,11 +3996,10 @@ bail:
 		if ( wordPairs == nil || [wordPairs count] <= 1 )
 			return [NSDictionary dictionary];
 	}
+    
+    NSMutableDictionary *pairDictionary = [NSMutableDictionary dictionaryWithCapacity:[wordPairs count]];
 	
-	NSEnumerator *pairEnumerator = [wordPairs objectEnumerator];
-	NSMutableDictionary *pairDictionary = [NSMutableDictionary dictionaryWithCapacity:[wordPairs count]];
-	
-	while ( aPair = [pairEnumerator nextObject] )
+    for ( NSString *aPair in wordPairs )
 	{
 		NSArray *theWords = [aPair componentsSeparatedByString:@","];
 		if ( [theWords count] != 2 )
@@ -4213,10 +4165,7 @@ bail:
 	
 	else if ( [command rangeOfString:kResetFolderIcons options:NSCaseInsensitiveSearch].location != NSNotFound )
 	{
-		JournlerCollection *aFolder;
-		NSEnumerator *enumerator = [[[self journal] collections] objectEnumerator];
-		
-		while ( aFolder = [enumerator nextObject] )
+        for ( JournlerCollection *aFolder in [[self journal] collections] )
 			[aFolder determineIcon];
 		
 		if ( [[self journal] save:nil] )
@@ -4232,10 +4181,7 @@ bail:
 		JournlerCollection *theLibrary = [[self journal] libraryCollection];
 		JournlerCollection *theTrash = [[self journal] trashCollection];
 		
-		JournlerCollection *aFolder;
-		NSEnumerator *enumerator = [[[self journal] collections] objectEnumerator];
-		
-		while ( aFolder = [enumerator nextObject] )
+        for ( JournlerCollection *aFolder in [[self journal] collections] )
 		{
 			if ( ( [aFolder isLibrary] && aFolder != theLibrary ) || ( [aFolder isTrash] && aFolder != theTrash ) )
 			{
@@ -4318,10 +4264,8 @@ bail:
 		if ( [orphanedResources count] > 0 )
 		{
 			NSMutableString *tempString = [NSMutableString string];
-			NSEnumerator *enumerator = [orphanedResources objectEnumerator];
-			JournlerResource *aResource;
-			
-			while ( aResource = [enumerator nextObject] )
+            
+            for ( JournlerResource *aResource in orphanedResources )
 			{
 				NSString *aTitle = [aResource valueForKey:@"title"];
 				if ( aTitle == nil ) aTitle = @"** no title **";
@@ -5434,10 +5378,7 @@ bail:
 	{
 		if ( [[self journal] isLoaded] )
 		{
-			NSString *aPath;
-			NSEnumerator *enumerator = [destinationPaths objectEnumerator];
-			
-			while ( aPath = [enumerator nextObject] )
+            for ( NSString *aPath in destinationPaths )
 			{
 			
 				// if the journal is loaded, go ahead and import the entry, launching it in its own window
@@ -5599,30 +5540,22 @@ bail:
 	NSArray *targetTags = [aDialog tags];
 	NSString *targetCategory = [aDialog category];
 	NSArray *targetFolders = [aDialog selectedFolders];
-	//JournlerCollection *targetFolder = [aDialog selectedFolder];
-	
-	JournlerEntry *anEntry;
-	NSDictionary *aDictionary;
-	//NSEnumerator *enumerator = [[aDialog representedObject] objectEnumerator];
-	NSEnumerator *enumerator = [contents objectEnumerator];
 	
 	if ( result == NSRunAbortedResponse )
 	{
 		// user canceled, completely remove the import having just created it
-		//while ( anEntry = [enumerator nextObject] )
-		while ( aDictionary = [enumerator nextObject] )
-		{
-			anEntry = [aDictionary objectForKey:@"representedObject"];
+		for ( NSDictionary *aDictionary in contents )
+        {
+			JournlerEntry *anEntry = [aDictionary objectForKey:@"representedObject"];
 			[[self journal] deleteEntry:anEntry];
 		}
 	}
 	
 	else if ( result == NSRunStoppedResponse )
 	{
-		//while ( anEntry = [enumerator nextObject] )
-		while ( aDictionary = [enumerator nextObject] )
-		{
-			anEntry = [aDictionary objectForKey:@"representedObject"];
+		for ( NSDictionary *aDictionary in contents )
+        {
+			JournlerEntry *anEntry = [aDictionary objectForKey:@"representedObject"];
 			
 			// the title
 			NSString *aTitle = [aDictionary objectForKey:@"title"];
@@ -5656,10 +5589,7 @@ bail:
 				
 			if ( targetFolders != nil )
 			{
-				JournlerCollection *targetFolder;
-				NSEnumerator *enumerator = [targetFolders objectEnumerator];
-				
-				while ( targetFolder = [enumerator nextObject] )
+                for ( JournlerCollection *targetFolder in targetFolders )
 				{
 					if ( [targetFolder isRegularFolder] )
 						[targetFolder addEntry:anEntry];
@@ -7081,11 +7011,9 @@ bail:
 	}
 	else if ( [fileParameter isKindOfClass:[NSArray class]] )
 	{
-		id aFilename;
-		NSEnumerator *enumerator = [(NSArray*)fileParameter objectEnumerator];
 		filenames = [NSMutableArray arrayWithCapacity:[fileParameter count]];
-		
-		while ( aFilename = [enumerator nextObject] )
+	
+        for ( id aFilename in (NSArray*)fileParameter )
 		{
 			if ( [aFilename isKindOfClass:[NSString class]] )
 				[(NSMutableArray*)filenames addObject:aFilename];

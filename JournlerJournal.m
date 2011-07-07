@@ -858,10 +858,7 @@
 	
 	// go through the resources and establish the resource -> entry relationships as well as the owner
 	
-	JournlerResource *aResource;
-	NSEnumerator *resourceEnumerator = [resources objectEnumerator];
-	
-	while ( aResource = [resourceEnumerator nextObject] )
+    for ( JournlerResource *aResource in resources )
 	{
 		// establish the resource -> entry relationship for each resource here
 		NSNumber *owningEntryID = [aResource owningEntryID];
@@ -936,10 +933,7 @@
 		else
 		{
 			NSArray *actualEntries = [self entriesForTagIDs:[aNode entryIDs]];
-			JournlerEntry *anEntry;
-			NSEnumerator *entryEnumerator = [actualEntries objectEnumerator];
-			
-			while ( anEntry = [entryEnumerator nextObject] )
+            for ( JournlerEntry *anEntry in actualEntries )
 			{
 				NSMutableArray *entryFolders = [[[anEntry valueForKey:@"collections"] mutableCopyWithZone:[self zone]] autorelease];
 				if ( entryFolders == nil )
@@ -1341,7 +1335,7 @@
 	NSMutableArray *tempResources = [[[NSMutableArray alloc] init] autorelease];
 	
 	NSFileManager *fm = [NSFileManager defaultManager];
-	
+	// DIRECTORY_ENUMERATION
 	NSEnumerator *contentsEnumerator;
 	
 	// LOAD THE BLOGS
@@ -1627,11 +1621,8 @@
 		NSLog(@"%s - updating the title on %i resources", __PRETTY_FUNCTION__, [filteredArray count]);
 		#endif
 		
-		JournlerResource *aResources;
-		NSEnumerator *enumerator = [filteredArray objectEnumerator];
-		
-		while ( aResources = [enumerator nextObject] )
-			[aResources setValue:[anEntry valueForKey:@"title"] forKey:@"title"];
+        for ( JournlerResource *aResource in filteredArray )
+			[aResource setValue:[anEntry valueForKey:@"title"] forKey:@"title"];
 	}
 }
 
@@ -1651,13 +1642,10 @@
 	[removedItems minusSet:currentTags];
 	
 	[entryTags unionSet:addedItems];
-	
-	NSString *aTag;
-	NSEnumerator *enumerator = [removedItems objectEnumerator];
-	
-	while ( aTag = [[enumerator nextObject] lowercaseString] )
+    for ( NSString *aTag in removedItems )
 	{
-		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ in tags.lowercaseString AND markedForTrash == NO",aTag];
+		aTag = [aTag lowercaseString];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ in tags.lowercaseString AND markedForTrash == NO",aTag];
 		if ( [[[self entries] filteredArrayUsingPredicate:predicate] count] == 0 )
 			[entryTags removeObject:aTag];
 	}
@@ -1839,9 +1827,8 @@
 	}
 	
 	// rederive the textual representations
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [[self resources] objectEnumerator];
-	while ( aResource = [enumerator nextObject] )
+	
+    for ( JournlerResource *aResource in [self resources] )
 		[aResource _deriveTextRepresentation:nil];
 	
 	// Rebuild the indexes
@@ -1880,10 +1867,8 @@
 	// parse each entry for file:// style links and create
 	
 	BOOL completeSuccess = YES;
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [[self entries] objectEnumerator];
 	
-	while ( anEntry = [enumerator nextObject] )
+    for ( JournlerEntry *anEntry in [self entries] )
 	{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		NSMutableAttributedString *mutableContent = [[[anEntry attributedContent] mutableCopyWithZone:[self zone]] autorelease];
@@ -1964,10 +1949,7 @@
 	NSPredicate *typePredicate = [NSPredicate predicateWithFormat:@"type == %i", kResourceTypeJournlerObject];
 	NSArray *filteredResources = [[self resources] filteredArrayUsingPredicate:typePredicate];
 	
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [filteredResources objectEnumerator];
-	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in filteredResources )
 	{
 		JournlerEntry *representedEntry = [aResource journlerObject];
 		if ( representedEntry == nil )
@@ -1984,10 +1966,7 @@
 
 - (BOOL) resetResourceText
 {
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [[self resources] objectEnumerator];
-	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in [self resources] )
 		[aResource _deriveTextRepresentation:nil];
 	
 	return [self save:nil];
@@ -1996,10 +1975,8 @@
 - (BOOL) resetRelativePaths
 {
 	BOOL completeSucces = YES;
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [[self resources] objectEnumerator];
 	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in [self resources] )
 	{
 		if ( [aResource type] != kResourceTypeFile )
 			continue;
@@ -2027,10 +2004,8 @@
 {
 	// returns an array of resources that don't have any owner
 	NSMutableArray *orphanedResources = [NSMutableArray array];
-	NSEnumerator *enumerator = [[self resources] objectEnumerator];
-	JournlerResource *aResource;
 	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in [self resources] )
 	{
 		if ( [aResource entry] == nil )
 			[orphanedResources addObject:aResource];
@@ -2045,10 +2020,9 @@
 - (BOOL) deleteOrphanedResources:(NSArray*)theResources
 {
 	BOOL completeSuccess = YES;
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = ( theResources != nil ? [theResources objectEnumerator] : [[self orphanedResources] objectEnumerator] );
-	
-	while ( aResource = [enumerator nextObject] )
+    NSArray *rez = ( theResources != nil ? theResources : [self orphanedResources] );
+    
+    for ( JournlerResource *aResource in rez )
 	{
 		BOOL localSuccess = [self deleteResource:aResource];
 		completeSuccess = ( completeSuccess && localSuccess );
@@ -3370,12 +3344,10 @@ bail:
 	{
 		NSSet *thisEntrysTags = [NSSet setWithArray:[anEntry valueForKey:@"tags"]];
 				
-		NSString *aTag;
-		NSEnumerator *enumerator = [thisEntrysTags objectEnumerator];
-		
-		while ( aTag = [[enumerator nextObject] lowercaseString] )
+        for ( NSString *aTag in thisEntrysTags )
 		{
-			NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ in tags.lowercaseString AND markedForTrash == NO",aTag];
+			aTag = [aTag lowercaseString];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ in tags.lowercaseString AND markedForTrash == NO",aTag];
 			if ( [[[self entries] filteredArrayUsingPredicate:predicate] count] == 0 )
 				[entryTags removeObject:aTag];
 		}
@@ -3440,10 +3412,7 @@ bail:
 			{
 				NSString *myEntryURIString = [[[aResource valueForKey:@"entry"] URIRepresentation] absoluteString];
 				
-				JournlerResource *aReverseResource;
-				NSEnumerator *reverseEntryResourceEnumerator = [[theReverseEntry valueForKey:@"resources"] objectEnumerator];
-				
-				while ( aReverseResource = [reverseEntryResourceEnumerator nextObject] )
+                for ( JournlerResource *aReverseResource in [theReverseEntry valueForKey:@"resources"] )
 				{
 					if ( [aReverseResource representsJournlerObject] && 
 							[myEntryURIString isEqualToString:[aReverseResource valueForKey:@"uriString"]] )
@@ -3635,10 +3604,7 @@ bail:
 			// first have a look at any entries still registed with the resource
 			NSArray *allOwners = [aResource entries];
 			
-			JournlerEntry *anEntry;
-			NSEnumerator *entryEnumerator = [allOwners objectEnumerator];
-			
-			while ( anEntry = [entryEnumerator nextObject] )
+            for ( JournlerEntry *anEntry in allOwners )
 			{
 				if ( [anEntry resourcesIncludeFile:[aResource filename]] )
 				{
@@ -3650,9 +3616,9 @@ bail:
 			
 			// at this point, bestOwner could still be nil, so go through the entire journal looking for an entry
 			
-			entryEnumerator = [[self entries] objectEnumerator];
-			
-			while ( anEntry = [entryEnumerator nextObject] )
+			/*entryEnumerator = [[self entries] objectEnumerator];
+			while ( anEntry = [entryEnumerator nextObject] )*/
+            for ( JournlerEntry *anEntry in [self entries] )
 			{
 				if ( [anEntry resourcesIncludeFile:[aResource filename]] )
 				{
@@ -3679,10 +3645,7 @@ bail:
 			{
 				// the resource isn't seeing any other owners, so comb the entries looking for one that might contain this resource
 				
-				JournlerEntry *anEntry;
-				NSEnumerator *entryEnumerator = [[self entries] objectEnumerator];
-				
-				while ( anEntry = [entryEnumerator nextObject] )
+                for ( JournlerEntry *anEntry in [self entries] )
 				{
 					if ( [[anEntry resources] containsObject:aResource] )
 					{
@@ -3772,10 +3735,7 @@ bail:
 	
 	else if ( type == kResourceTypeFile )
 	{
-		JournlerResource *aResource;
-		NSEnumerator *enumerator = [potentialMatches objectEnumerator];
-		
-		while ( aResource = [enumerator nextObject] )
+        for ( JournlerResource *aResource in potentialMatches )
 		{
 			if ( [[aResource originalPath] isEqualToString:anObject] 
 					&& ( ( [aResource isAlias] && command == kNewResourceForceLink ) || ( ![aResource isAlias] && command == kNewResourceForceCopy ) ) )
@@ -3799,10 +3759,7 @@ bail:
 		{
 			[activity appendFormat:@"There were potential matches for the new resources.\n"];
 			
-			JournlerResource *aResource;
-			NSEnumerator *enumerator = [potentialMatches objectEnumerator];
-			
-			while ( aResource = [enumerator nextObject] )
+            for ( JournlerResource *aResource in potentialMatches )
 				[activity appendFormat:@"\t-- Name: %@\n\t-- ID: %@\n\t-- Path: %@\n", [aResource title], [aResource tagID], [aResource originalPath]];
 		}
 	}
@@ -3828,10 +3785,7 @@ bail:
 	NSLog(@"%s", __PRETTY_FUNCTION__);
 	#endif
 	
-	JournlerResource *aResource;
-	NSEnumerator *resourceEnumerator = [resourceArray objectEnumerator];
-	
-	while ( aResource = [resourceEnumerator nextObject] )
+    for ( JournlerResource *aResource in resourceArray )
 	{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
@@ -3952,10 +3906,8 @@ bail:
 	}
 	
 	// save all of the entries
-	JournlerEntry *anEntry;
-	NSEnumerator *entrySaveEnumerator = [entriesArray objectEnumerator];
 	
-	while ( anEntry = [entrySaveEnumerator nextObject] )
+    for ( JournlerEntry *anEntry in entriesArray )
 	{
 		if ( ![self saveEntry:anEntry] )
 		{
@@ -4087,14 +4039,11 @@ bail:
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSFileManager *fm = [NSFileManager defaultManager];
 	
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [[self resources] objectEnumerator];
-	
 	#ifdef __DEBUG__
 	NSLog(@"%s - beginning at %@",__PRETTY_FUNCTION__,[NSDate date]);
 	#endif
 	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in [self resources] )
 	{
 		if ( [aResource representsFile] )
 		{

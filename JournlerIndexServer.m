@@ -80,13 +80,11 @@ static NSArray *DefaultDocumentsSort()
 		return NO;
 	
 	// load this guy up
-	NSString *aTerm;
-	NSArray *allTerms = [searchManager allTerms:kIgnoreNumericTerms];
-	NSEnumerator *enumerator = [allTerms objectEnumerator];
 	
+	NSArray *allTerms = [searchManager allTerms:kIgnoreNumericTerms];
 	NSMutableArray *termRootArray = [NSMutableArray arrayWithCapacity:[allTerms count]];
 	
-	while ( aTerm = [enumerator nextObject] )
+    for ( NSString *aTerm in allTerms )
 	{
 		unsigned count = [searchManager countOfDocumentsForTerm:aTerm options:kIgnoreNumericTerms];
 		
@@ -141,11 +139,10 @@ static NSArray *DefaultDocumentsSort()
 		
 	if ( objectTermDictionaries == nil )
 	{
-		NSString *aTerm;
+		
 		NSArray *terms = [searchManager termsForJournlerObject:anObject options:kIgnoreNumericTerms];
-		NSEnumerator *enumerator = [terms objectEnumerator];
-
-		while ( aTerm = [enumerator nextObject] )
+		
+        for ( NSString *aTerm in terms )
 		{
 						
 			unsigned count = [searchManager countOfDocumentsForTerm:aTerm options:kIgnoreNumericTerms];
@@ -186,13 +183,9 @@ static NSArray *DefaultDocumentsSort()
 	NSMutableArray *content = [NSMutableArray array];
 	NSMutableArray *multiArray = [NSMutableArray array];
 	
-	id anObject;
-	IndexNode *selectedNode;
-	NSEnumerator *nodesEnumerator = [anArray objectEnumerator];
-	
-	while ( selectedNode = [nodesEnumerator nextObject] )
+    for ( IndexNode *selectedNode in anArray )
 	{
-		anObject = [selectedNode representedObject];
+		id anObject = [selectedNode representedObject];
 		if ( ![anObject isKindOfClass:[NSString class]] )
 			continue;
 		
@@ -211,10 +204,7 @@ static NSArray *DefaultDocumentsSort()
 			journlerObjects = [[searchManager journlerObjectsForTerm:theTerm options:kIgnoreNumericTerms]
 					sortedArrayUsingDescriptors:DefaultDocumentsSort()];
 			
-			JournlerObject *aJournlerObject;
-			NSEnumerator *enumerator = [journlerObjects objectEnumerator];
-			
-			while ( aJournlerObject = [enumerator nextObject] )
+            for ( JournlerObject *aJournlerObject in journlerObjects )
 			{
 				IndexNode *aNode = [[[IndexNode alloc] init] autorelease];
 				
@@ -231,10 +221,7 @@ static NSArray *DefaultDocumentsSort()
 				else if ( [aJournlerObject isKindOfClass:[JournlerEntry class]] )
 					children = [(JournlerEntry*)aJournlerObject resources];
 				
-				JournlerObject *aChildObject;
-				NSEnumerator *childEnumerator = [children objectEnumerator];
-				
-				while ( aChildObject = [childEnumerator nextObject] )
+                for ( JournlerObject *aChildObject in children )
 				{
 					IndexNode *aChildNode = [[[IndexNode alloc] init] autorelease];
 				
@@ -266,10 +253,8 @@ static NSArray *DefaultDocumentsSort()
 			//[content setArray:journlerObjects];
 			
 			// only add objects that have not been added already
-			IndexNode *aCachedNode;
-			NSEnumerator *journlerObjectsEnumerator = [journlerObjects objectEnumerator];
 			
-			while ( aCachedNode = [journlerObjectsEnumerator nextObject] )
+            for ( IndexNode *aCachedNode in journlerObjects )
 			{
 				if ( ![alreadyRepresented containsObject:[aCachedNode representedObject]] )
 					[multiArray addObject:aCachedNode];
@@ -279,7 +264,8 @@ static NSArray *DefaultDocumentsSort()
 	}
 	
 	// reset the count on this node
-	[selectedNode setCount:[content count]];
+	//[selectedNode setCount:[content count]];
+#warning what is this doing here? when selectedNode is part of a while / forin loop?
 	
 	// set the returned content to our parsed-for-duplicates multi array
 	[content setArray:multiArray];

@@ -248,10 +248,8 @@
 	
 	[[self callingController] selectTabAtIndex:[self selectedTabIndex] force:YES];
 	[[[self callingController] window] makeFirstResponder:theFirstResponder];
-	
-	TabController *aTab;
-	NSEnumerator *enumerator = [[[self callingController] tabControllers] objectEnumerator];
-	while ( aTab = [enumerator nextObject] )
+    
+    for ( TabController *aTab in [[self callingController] tabControllers] )
 		[aTab setFullScreen:NO];
 	
 	[[self callingController] showWindow:self];

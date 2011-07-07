@@ -491,10 +491,7 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 			forced = YES;
 			[resourceTable deselectAll:self];
 			
-			JournlerResource *aResource;
-			NSEnumerator *enumerator = [resources objectEnumerator];
-			
-			while ( aResource = [enumerator nextObject] )
+            for ( JournlerResource *aResource in resources )
 				[resourceController selectResource:aResource byExtendingSelection:YES];
 		}
 	}
@@ -516,10 +513,7 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 		forced = YES;
 		[sourceList deselectAll:self];
 		
-		JournlerCollection *aFolder;
-		NSEnumerator *enumerator = [folders objectEnumerator];
-		
-		while ( aFolder = [enumerator nextObject] )
+        for ( JournlerCollection *aFolder in folders )
 			[sourceListController selectCollection:aFolder byExtendingSelection:YES];
 
 	}
@@ -550,10 +544,7 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 		// clear the current selection and force a selection on the new objects
 		[sourceList deselectAll:self];
 		
-		JournlerCollection *aFolder;
-		NSEnumerator *enumerator = [folders objectEnumerator];
-		
-		while ( aFolder = [enumerator nextObject] )
+        for ( JournlerCollection *aFolder in folders )
 			[sourceListController selectCollection:aFolder byExtendingSelection:YES];
 	}
 	
@@ -589,10 +580,7 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 		
 		[resourceTable deselectAll:self];
 		
-		JournlerResource *aResource;
-		NSEnumerator *enumerator = [resources objectEnumerator];
-		
-		while ( aResource = [enumerator nextObject] )
+        for ( JournlerResource *aResource in resources )
 			[resourceController selectResource:aResource byExtendingSelection:YES];
 	}
 	
@@ -617,9 +605,6 @@ bail:
 		[resourceTable deselectAll:self];
 	else
 	{
-		JournlerResource *aResource;
-		NSEnumerator *enumerator = [anArray objectEnumerator];
-		
 		// ensure the appropriate entries are selected
 		
 		// 1. select the library if necessary
@@ -633,7 +618,7 @@ bail:
 		// and finally select the resources
 		[resourceTable deselectAll:self];
 		
-		while ( aResource = [enumerator nextObject] )
+        for ( JournlerResource *aResource in anArray )
 			[resourceController selectResource:aResource byExtendingSelection:YES];
 	}
 	
@@ -650,12 +635,9 @@ bail:
 		[sourceList deselectAll:self];
 	else
 	{
-		JournlerCollection *aFolder;
-		NSEnumerator *enumerator = [anArray objectEnumerator];
-		
 		[sourceList deselectAll:self];
-		
-		while ( aFolder = [enumerator nextObject] )
+       
+        for ( JournlerCollection *aFolder in anArray )
 			[sourceListController selectCollection:aFolder byExtendingSelection:YES];
 	}
 	
@@ -1769,11 +1751,9 @@ bail:
 	// If it isn't there, it must be added to the selected entry
 	
 	NSArray *theResources = [resourceController resources];
-	
-	JournlerResource *aResource, *theResource = nil;
-	NSEnumerator *enumerator = [theResources objectEnumerator];
-	
-	while ( aResource = [enumerator nextObject] )
+	JournlerResource *theResource = nil;
+   
+    for ( JournlerResource *aResource in theResources )
 	{
 		if ( [aResource representsURL] && [[aResource valueForKey:@"urlString"] isEqualToString:[aURL absoluteString]] )
 		{
@@ -1896,10 +1876,7 @@ bail:
 	// add the entry to the selected folder(s)
 	BOOL alreadyAutotagged = NO;
 	
-	JournlerCollection *aFolder;
-	NSEnumerator *enumerator = [[self selectedFolders] objectEnumerator];
-	
-	while ( aFolder = [enumerator nextObject] )
+    for ( JournlerCollection *aFolder in [self selectedFolders] )
 	{
 		if ( [aFolder isRegularFolder] )
 			[aFolder addEntry:newEntry];
@@ -2034,10 +2011,7 @@ bail:
 	// add the entry to the selected folder(s)
 	BOOL alreadyAutotagged;
 	
-	JournlerCollection *aFolder;
-	NSEnumerator *enumerator = [[self selectedFolders] objectEnumerator];
-	
-	while ( aFolder = [enumerator nextObject] )
+    for ( JournlerCollection *aFolder in [self selectedFolders] )
 	{
 		if ( [aFolder isRegularFolder] )
 			[aFolder addEntry:newEntry];
@@ -2724,10 +2698,8 @@ bail:
 	
 	
 	// add the entry to the selected folder(s)
-	JournlerCollection *aFolder;
-	NSEnumerator *enumerator = [targetFolders objectEnumerator];
-	
-	while ( aFolder = [enumerator nextObject] )
+   
+    for ( JournlerCollection *aFolder in targetFolders )
 	{
 		if ( [aFolder isRegularFolder] )
 			[aFolder addEntry:newEntry];
@@ -2793,10 +2765,7 @@ bail:
 		
 		if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"NewEntryNewWindow"] && !_forceNewEntryToMainWindow )
 		{
-			JournlerEntry *anEntry;
-			NSEnumerator *enumerator = [pasteboardEntries objectEnumerator];
-			
-			while ( anEntry = [enumerator nextObject] )
+            for ( JournlerEntry *anEntry in pasteboardEntries )
 			{
 			
 				// put up an entry window for this resource
@@ -2863,9 +2832,7 @@ bail:
 	NSArray *theSelectedEntries = [self selectedEntries];
 	if ( [theSelectedEntries count] > 1 )
 	{
-		JournlerEntry *anEntry;
-		NSEnumerator *enumerator = [theSelectedEntries objectEnumerator];
-		while ( anEntry = [enumerator nextObject] )
+        for ( JournlerEntry *anEntry in theSelectedEntries )
 			[newFolder addEntry:anEntry];
 	}
 	
@@ -2989,11 +2956,9 @@ bail:
 		NSBeep(); return;
 	}
 	
-	JournlerCollection *aFolder;
-	NSEnumerator *enumerator = [[sourceListController selectedObjects] reverseObjectEnumerator];
-	
-	// make sure the trash and the library aren't selected
-	while ( aFolder = [enumerator nextObject] )
+    // make sure the trash and the library aren't selected
+  
+    for ( JournlerCollection *aFolder in [[sourceListController selectedObjects] reverseObjectEnumerator] )
 	{
 		if ( [aFolder isLibrary] || [aFolder isTrash] )
 		{
@@ -3005,16 +2970,18 @@ bail:
 	if ( [[NSAlert confirmFolderDelete] runModal] != NSAlertFirstButtonReturn )
 		return;
 	
-	// reset the enumerator
-	enumerator = [[sourceListController selectedObjects] reverseObjectEnumerator];
-	
 	// deselect
 	[sourceList deselectAll:sender];
 	
 	recordNavigationEvent = NO;
 	[sourceListController remove:self];
 	
+    /*
+    // reset the enumerator
+	enumerator = [[sourceListController selectedObjects] reverseObjectEnumerator];
 	while ( aFolder = [enumerator nextObject] )
+     */
+    for ( JournlerCollection *aFolder in [[sourceListController selectedObjects] reverseObjectEnumerator] )
 	{
 		if ( ![aFolder isLibrary] && ![aFolder isTrash] )
 			[[self journal] deleteCollection:aFolder deleteChildren:YES];
@@ -3125,15 +3092,6 @@ bail:
 		__PRETTY_FUNCTION__, [theResources valueForKey:@"tagID"], [theEntries valueForKey:@"tagID"], errors);
 	}
 	
-	/*
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [theResources objectEnumerator];
-	
-	// perform the deletion
-	while ( aResource = [enumerator nextObject] )
-		[[self journal] deleteResource:aResource];
-	*/
-	
 	// save the changes
 	[[self journal] setSaveEntryOptions:(kEntrySaveDoNotIndex|kEntrySaveDoNotCollect)];
 	[[NSApp delegate] performSelector:@selector(save:) withObject:self];
@@ -3156,14 +3114,12 @@ bail:
 		NSBeep(); return;
 	}
 	
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [theSelectedEntries objectEnumerator];
-	
 	// deselect
 	[entriesTable deselectAll:self];
 	
 	// peform the trashing
-	while ( anEntry = [enumerator nextObject] )
+  
+    for ( JournlerEntry *anEntry in theSelectedEntries )
 		[[self valueForKey:@"journal"] markEntryForTrash:anEntry];
 	
 	[datesController updateSelectedObjects:self];
@@ -3195,11 +3151,8 @@ bail:
 	}
 	else
 	{
-		JournlerCollection *aFolder;
-		NSEnumerator *enumerator = [theSelectedFolders objectEnumerator];
-		
 		// make sure the folders selected are all normal folders, otherwise bail
-		while ( aFolder = [enumerator nextObject] )
+        for ( JournlerCollection *aFolder in theSelectedFolders )
 		{
 			if ( [[aFolder valueForKey:@"typeID"] intValue] != PDCollectionTypeIDFolder )
 			{
@@ -3207,19 +3160,18 @@ bail:
 			}
 		}
 		
-		// re-establish the enumerator
-		enumerator = [theSelectedFolders objectEnumerator];
-		
 		// deselect
 		[entriesTable deselectAll:self];
 		
-		// iterate through each selected folder, removing the selected entries
+        // iterate through each selected folder, removing the selected entries
+        /*
+        // re-establish the enumerator
+		enumerator = [theSelectedFolders objectEnumerator];
 		while ( aFolder = [enumerator nextObject] )
+         */
+        for ( JournlerCollection *aFolder in theSelectedFolders )
 		{
-			JournlerEntry *anEntry;
-			NSEnumerator *entryEnumerator = [theSelectedEntries objectEnumerator];
-			
-			while ( anEntry = [entryEnumerator nextObject] )
+			for ( JournlerEntry *anEntry in theSelectedEntries )
 			{
 				//#warning this is slow! could be faster removing the entries as an array at one go
 				[aFolder removeEntry:anEntry];
@@ -3248,14 +3200,11 @@ bail:
 		NSBeep(); return;
 	}
 	
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [theSelectedEntries objectEnumerator];
-	
 	// deselect
 	[entriesTable deselectAll:self];
 	
 	// perform the deletion
-	while ( anEntry = [enumerator nextObject] )
+    for ( JournlerEntry *anEntry in theSelectedEntries )
 		[[self valueForKey:@"journal"] deleteEntry:anEntry];
 	
 	//[datesController updateSelectedObjects:self];
@@ -3279,14 +3228,11 @@ bail:
 		NSBeep(); return;
 	}
 	
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [theSelectedEntries objectEnumerator];
-	
 	// deselect
 	[entriesTable deselectAll:self];
 	
 	// perform the untrashing
-	while ( anEntry = [enumerator nextObject] )
+    for ( JournlerEntry *anEntry in theSelectedEntries )
 	{
 		[[self valueForKey:@"journal"] unmarkEntryForTrash:anEntry];
 		[[self valueForKey:@"journal"] updateIndexAndCollections:anEntry];
@@ -3393,11 +3339,8 @@ bail:
 	if ( [[NSAlert confirmEmptyTrash] runModal] != NSAlertFirstButtonReturn )
 		return;
 	
-	JournlerEntry *anEntry;
 	NSArray *trashedEntries = [NSArray arrayWithArray:[self valueForKeyPath:@"journal.trashCollection.entries"]];
-	NSEnumerator *enumerator = [trashedEntries objectEnumerator];
-	
-	while ( anEntry = [enumerator nextObject] )
+	for ( JournlerEntry *anEntry in trashedEntries )
 		[[self valueForKey:@"journal"] deleteEntry:anEntry];
 }
 
@@ -3636,10 +3579,7 @@ bail:
 	NSPredicate *regularFolders = [NSPredicate predicateWithFormat:@"isRegularFolder == YES"];
 	NSArray *theFolders = [[self selectedFolders] filteredArrayUsingPredicate:regularFolders];
 	
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [theEntries objectEnumerator];
-	
-	while ( anEntry = [enumerator nextObject] )
+    for ( JournlerEntry *anEntry in theEntries )
 	{
 		// #warning does not duplicate media contents
 		JournlerEntry *duplicated = [[anEntry copyWithZone:[self zone]] autorelease];
@@ -4446,10 +4386,7 @@ bail:
 	else if ( action == @selector( removeSelectedEntriesFromFolder: ) )
 	{
 		BOOL onlyRegularFolders = YES;
-		JournlerCollection *aFolder;
-		NSEnumerator *enumerator = [[self selectedFolders] objectEnumerator];
-		
-		while ( aFolder = [enumerator nextObject] )
+		for ( JournlerCollection *aFolder in [self selectedFolders] )
 		{
 			if ( ![aFolder isRegularFolder] )
 			{

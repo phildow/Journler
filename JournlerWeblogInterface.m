@@ -162,9 +162,6 @@ typedef void (*JournlerWeblogInterfaceDidChoosePreferredEditorIMP)(id, SEL, id, 
 		error:(id*)anError
 {
 	BOOL success = YES;
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [theEntries objectEnumerator];
-	
 	NSString *dummyLink = @"http://remove.this.link/";
 	
 	// launch the application
@@ -176,7 +173,7 @@ typedef void (*JournlerWeblogInterfaceDidChoosePreferredEditorIMP)(id, SEL, id, 
 				launchIdentifier:nil];
 	}
 	
-	while ( anEntry = [enumerator nextObject] )
+    for ( JournlerEntry *anEntry in theEntries )
 	{
 		NSAppleEventDescriptor * eventRecord;
 		NSAppleEventDescriptor * target;
@@ -242,10 +239,8 @@ typedef void (*JournlerWeblogInterfaceDidChoosePreferredEditorIMP)(id, SEL, id, 
 		error:(id*)anError
 {
 	BOOL success = YES;
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [theEntries objectEnumerator];
 	
-	while ( anEntry = [enumerator nextObject] )
+    for ( JournlerEntry *anEntry in theEntries )
 	{
 		NSString *tempDirectory = TempDirectory();
 		NSString *filename = [[tempDirectory stringByAppendingPathComponent:[[anEntry pathSafeTitle] 

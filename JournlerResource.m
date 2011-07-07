@@ -1322,14 +1322,11 @@ bail:
 				originalPath = nil;
 			else
 			{
-				NSString *mountPoint;
-				NSEnumerator *enumerator = [localVolumes objectEnumerator];
-				
 				// nil the path assuming we cannot find it
 				originalPath = nil;
 				
 				// try each volume
-				while ( mountPoint = [enumerator nextObject] )
+                for ( NSString *mountPoint in localVolumes )
 				{
 					NSString *aPath = [[mountPoint stringByAppendingPathComponent:strippedPath] stringByStandardizingPath];
 					if ( [[NSFileManager defaultManager] fileExistsAtPath:aPath] )

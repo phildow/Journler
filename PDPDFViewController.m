@@ -330,8 +330,6 @@ enum JournlerPDFDisplayOption {
 	autoselectSearchResults = YES;
 	
 	//BOOL schonMatched = NO;
-	NSString *aComponent;
-	NSEnumerator *enumerator = [[aString componentsSeparatedByString:@" "] objectEnumerator];
 	
 	// run a search but without showing the panel
 	[searchResults removeAllObjects];
@@ -342,7 +340,8 @@ enum JournlerPDFDisplayOption {
 	
 	[self setOutlineState:kPDFMediaSearchOutline];
 	
-	while ( aComponent = [enumerator nextObject] )
+    NSArray *components = [aString componentsSeparatedByString:@" "];
+    for ( NSString *aComponent in components )
 	{
 		// lock and search
 		//[searchLock lock];

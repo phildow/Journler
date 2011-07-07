@@ -362,10 +362,8 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 	else if ( [type isEqualToString:PDResourceIDPboardType] || [type isEqualToString:PDEntryIDPboardType] 
 			|| [type isEqualToString:PDFolderIDPboardType] )
 	{
-		NSString *aURIString;
-		NSEnumerator *uriEnumerator = [[pboard propertyListForType:type] objectEnumerator];
 		
-		while ( aURIString = [uriEnumerator nextObject] )
+        for ( NSString *aURIString in [pboard propertyListForType:type] )
 			success = ( [self addJournlerObjectWithURIToText:[NSURL URLWithString:aURIString]] && success );
 	}
 	
@@ -3260,14 +3258,10 @@ bail:
 	}
 	
 	int operation = [sender tag];
-	//NSArray *ranges = [self rangesForUserTextChange];
-
-	NSValue *rangeValue;
-	NSEnumerator *enumerator = [[self rangesForUserTextChange] objectEnumerator];
 	
-	[[self textStorage] beginEditing];
-	
-	while ( rangeValue = [enumerator nextObject] )
+    [[self textStorage] beginEditing];
+    
+    for ( NSValue *rangeValue in [self rangesForUserTextChange] )
 	{
 		NSRange aRange = [rangeValue rangeValue];
 		

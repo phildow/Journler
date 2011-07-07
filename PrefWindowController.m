@@ -564,11 +564,9 @@ typedef enum {
 		}
 		else
 		{
-			NSString *aKey;
-			NSEnumerator *enumerator = [wordlist keyEnumerator];
 			NSMutableArray *tempArray = [NSMutableArray arrayWithCapacity:[wordlist count]];
 			
-			while ( aKey = [enumerator nextObject] )
+            for ( NSString *aKey in [wordlist keyEnumerator] )
 			{
 				AutoCorrectWordPair *aPair = [[[AutoCorrectWordPair alloc] 
 						initWithMisspelledWord:aKey correctWord:[wordlist objectForKey:aKey]] autorelease];
@@ -671,11 +669,9 @@ typedef enum {
 		return;
 	}
 	
-	NSString *aKey;
-	NSEnumerator *enumerator = [wordlist keyEnumerator];
 	NSMutableArray *tempArray = [NSMutableArray arrayWithCapacity:[wordlist count]];
 	
-	while ( aKey = [enumerator nextObject] )
+    for ( NSString *aKey in [wordlist keyEnumerator] )
 	{
 		AutoCorrectWordPair *aPair = [[[AutoCorrectWordPair alloc] 
 				initWithMisspelledWord:aKey correctWord:[wordlist objectForKey:aKey]] autorelease];
@@ -707,11 +703,8 @@ typedef enum {
 			return;
 		}
 		
-		NSString *aKey;
-		NSEnumerator *enumerator = [wordlist keyEnumerator];
 		NSMutableArray *tempArray = [NSMutableArray arrayWithCapacity:[wordlist count]];
-		
-		while ( aKey = [enumerator nextObject] )
+        for ( NSString *aKey in [wordlist keyEnumerator] )
 		{
 			AutoCorrectWordPair *aPair = [[[AutoCorrectWordPair alloc] 
 					initWithMisspelledWord:aKey correctWord:[wordlist objectForKey:aKey]] autorelease];

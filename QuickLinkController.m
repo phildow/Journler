@@ -156,10 +156,7 @@
 
 - (IBAction) _openEntryInNewWindow:(id)sender
 {
-	JournlerEntry *anEntry;
-	NSEnumerator *enumerator = [[entryController selectedObjects] objectEnumerator];
-	
-	while ( anEntry = [enumerator nextObject] )
+    for ( JournlerEntry *anEntry in [entryController selectedObjects] )
 	{
 		// put the fullscreen controller up
 		EntryWindowController *entryWindow = [[[EntryWindowController alloc] initWithJournal:[self journal]] autorelease];

@@ -384,10 +384,8 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 	if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"ResourceTableShowFolders"] && intersectSet == nil )
 	{
 		NSMutableArray *theFolders = [NSMutableArray array];
-		JournlerCollection *aFolder;
-		NSEnumerator *folderEnumerator = [[self folders] objectEnumerator];
 		
-		while ( aFolder = [folderEnumerator nextObject] )
+        for ( JournlerCollection *aFolder in [self folders] )
 		{
 			// create a temporary resurce - should deallocate when the node is no longer in use
 			JournlerResource *aFolderResource = [[[JournlerResource alloc] initJournalObjectResource:[aFolder URIRepresentation]] autorelease];
@@ -447,11 +445,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 	}
 	*/
 	
-	// add the resources
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [[self resources] objectEnumerator];
-	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in [self resources] )
 	{
 		// if the intersect set is available but doesn't contain this object, skip it
 		if ( intersectSet != nil && ![intersectSet member:aResource] )
@@ -463,9 +457,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 		// add representations for each entry this resources is associated with, when associated with more than one
 		if ( [[aResource entries] count] > 1 )
 		{
-			JournlerEntry *anEntry;
 			JournlerEntry *owningEntry = [aResource entry];
-			NSEnumerator *entryEnumerator = [[aResource entries] objectEnumerator];
 			NSMutableArray *resourcesEntryChildren = [NSMutableArray arrayWithCapacity:[[aResource entries] count]];
 			
 			// create a temporary resurce for the parent, always first - should deallocate when the node is no longer in use
@@ -481,7 +473,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 			
 			[resourcesEntryChildren addObject:owningEntryNode];
 			
-			while ( anEntry = [entryEnumerator nextObject] )
+            for ( JournlerEntry *anEntry in [aResource entries] )
 			{
 				#warning huh, neither of these continue conditionals seems to be working
 				
@@ -997,10 +989,9 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 			
 			// as well as any entries this resource is linked to
 			int i = 1;
-			JournlerEntry *anEntry;
-			NSEnumerator *enumerator = [[[actualItem resource] entries] objectEnumerator];
-			
-			while ( anEntry = [enumerator nextObject] )
+#warning iterate i here?
+        
+            for ( JournlerEntry *anEntry in [[actualItem resource] entries] )
 				[theTooltip appendFormat:@"\n%i. %@", i, [anEntry title]];
 		}
 		
@@ -1523,16 +1514,13 @@ bail:
 
 - (BOOL) restoreStateFromDictionary:(NSDictionary*)aDictionary
 {	
-	NSString *aKey;
-	NSEnumerator *enumerator = [aDictionary keyEnumerator];
-	
 	if ( stateDictionary != aDictionary )
 	{
 		[stateDictionary release];
 		stateDictionary = [aDictionary mutableCopyWithZone:[self zone]];
 	}
-	
-	while ( aKey = [enumerator nextObject] )
+    
+    for ( NSString *aKey in [aDictionary keyEnumerator] )
 	{
 		// contacts
 		if ( [aKey isEqualToString:[contactsNode labelTitle]] && [resourceTable rowForItem:contactsNode] != -1 )
@@ -1692,16 +1680,12 @@ bail:
 - (ResourceNode*) _nodeForResource:(JournlerResource*)aResource
 {
 	// returns the node associated with the specified resources
-	ResourceNode *aNode = nil;
-	ResourceNode *foundNode = nil;
-	NSEnumerator *enumerator = [[self resourceNodes] objectEnumerator];
 	
-	while ( aNode = [enumerator nextObject] )
+	ResourceNode *foundNode = nil;
+    
+    for ( ResourceNode *aNode in [self resourceNodes] )
 	{
-		ResourceNode *innerNode = nil;
-		NSEnumerator *innerEnumerator = [[aNode children] objectEnumerator];
-		
-		while ( innerNode = [innerEnumerator nextObject] )
+        for ( ResourceNode *innerNode in [aNode children] )
 		{
 			if ( [innerNode resource] == aResource )
 			{
@@ -1798,9 +1782,8 @@ bail:
 		BOOL willSearch = ![[[theResources objectAtIndex:0] valueForKey:@"searches"] boolValue];
 		
 		// remove or add the items to the search index as needed
-		JournlerResource *aResource;
-		NSEnumerator *enumerator = [theResources objectEnumerator];
-		while ( aResource = [enumerator nextObject] )
+		
+        for ( JournlerResource *aResource in theResources )
 		{
 			if ( willSearch )
 				[searchManager indexResource:aResource owner:[aResource valueForKey:@"entry"]];
@@ -1816,12 +1799,10 @@ bail:
 - (IBAction) deleteSelectedResources:(id)sender
 {
 	BOOL canDelete = YES;
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [[self selectedResources] objectEnumerator];
 	
-	while ( aResource = [enumerator nextObject] )
+    for ( JournlerResource *aResource in [self selectedResources] )
 	{
-		if ( [aResource representsJournlerObject] && [[aResource URIRepresentation] isJournlerFolder] 
+		if ( ([aResource representsJournlerObject] && [[aResource URIRepresentation] isJournlerFolder]) 
 			|| [[aResource tagID] intValue] < 0 )
 		{
 			canDelete = NO;
@@ -1900,21 +1881,6 @@ bail:
 		[delegate performSelector:@selector(rescanResourceIcon:) withObject:sender];
 	else
 		NSBeep();
-		
-	/*
-	if ( [[self selectedResources] count] == 0 )
-	{
-		NSBeep(); return;
-	}
-	
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [[self selectedResources] objectEnumerator];
-	while ( aResource = [enumerator nextObject] )
-	{
-		[aResource setValue:nil forKey:@"icon"];
-		[aResource loadIcon];
-	}
-	*/
 }
 
 - (IBAction) rescanResourceUTI:(id)sender
@@ -1923,21 +1889,6 @@ bail:
 		[delegate performSelector:@selector(rescanResourceUTI:) withObject:sender];
 	else
 		NSBeep();
-	
-	/*
-	if ( [[self selectedResources] count] == 0 )
-	{
-		NSBeep(); return;
-	}
-	
-	JournlerResource *aResource;
-	NSEnumerator *enumerator = [[self selectedResources] objectEnumerator];
-	while ( aResource = [enumerator nextObject] )
-	{
-		if ( [aResource representsFile] )
-			[aResource setValue:[[NSWorkspace sharedWorkspace] UTIForFile:[aResource originalPath]] forKey:@"uti"];
-	}
-	*/
 }
 
 - (IBAction) editResourceLabel:(id)sender
@@ -2069,10 +2020,7 @@ bail:
 
 - (IBAction) exposeAllResources:(id)sender
 {
-	ResourceNode *aNode;
-	NSEnumerator *theNodes = [[self resourceNodes] objectEnumerator];
-	
-	while (aNode = [theNodes nextObject] )
+    for ( ResourceNode *aNode in [self resourceNodes] )
 		[resourceTable expandItem:[resourceTable itemAtRow:[resourceTable rowForOriginalItem:aNode]] expandChildren:NO];
 }
 
@@ -2085,17 +2033,11 @@ bail:
 		
 		NSArray *theResourceNodes = [self resourceNodes];
 		
-		ResourceNode *aNode;
-		NSEnumerator *enumerator = [theResourceNodes objectEnumerator];
-		
-		while ( aNode = [enumerator nextObject] )
+        for ( ResourceNode *aNode in theResourceNodes )
 		{
 			NSArray *nodeChildren = [aNode children];
 			
-			ResourceNode *childNode;
-			NSEnumerator *childEnumerator = [nodeChildren objectEnumerator];
-			
-			while ( childNode = [childEnumerator nextObject] )
+            for ( ResourceNode *childNode in nodeChildren )
 			{
 				if ( [[childNode resource] isEqual:aResource] )
 				{
@@ -2214,10 +2156,7 @@ bail:
 			NSArray *doesSearch = [selectedObjects valueForKey:@"searches"];
 			[anItem setState:[[doesSearch objectAtIndex:0] boolValue]];
 			
-			JournlerResource *aResource;
-			NSEnumerator *enumerator = [selectedObjects objectEnumerator];
-			
-			while ( aResource = [enumerator nextObject] )
+            for ( JournlerResource *aResource in selectedObjects )
 			{
 				if ( [aResource representsJournlerObject] )
 				{
@@ -2229,10 +2168,7 @@ bail:
 		
 		else if ( action == @selector(renameResource:) )
 		{
-			JournlerResource *aResource;
-			NSEnumerator *enumerator = [selectedObjects objectEnumerator];
-			
-			while ( aResource = [enumerator nextObject] )
+            for ( JournlerResource *aResource in selectedObjects )
 			{
 				if ( [aResource representsJournlerObject] )
 				{
@@ -2244,10 +2180,7 @@ bail:
 		
 		else if ( action == @selector(revealResource:) || action == @selector(launchResource:) )
 		{
-			JournlerResource *aResource;
-			NSEnumerator *enumerator = [selectedObjects objectEnumerator];
-			
-			while ( aResource = [enumerator nextObject] )
+            for ( JournlerResource *aResource in selectedObjects )
 			{
 				if ( [aResource representsJournlerObject] )
 				{
@@ -2271,12 +2204,9 @@ bail:
 		
 		else if ( action == @selector(deleteSelectedResources:) )
 		{
-			JournlerResource *aResource;
-			NSEnumerator *enumerator = [selectedObjects objectEnumerator];
-			
-			while ( aResource = [enumerator nextObject] )
+            for ( JournlerResource *aResource in selectedObjects )
 			{
-				if ( [aResource representsJournlerObject] && [[aResource URIRepresentation] isJournlerFolder] 
+				if ( ([aResource representsJournlerObject] && [[aResource URIRepresentation] isJournlerFolder]) 
 					|| [[aResource tagID] intValue] < 0 )
 				{
 					enabled = NO;

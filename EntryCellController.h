@@ -117,7 +117,6 @@
 - (NSColor*) headerTextColor;
 - (void) setHeaderTextColor:(NSColor*)aColor;
 
-//- (void) showContentForMultipleEntries:(NSArray*)anArray;
 - (IBAction) performFindPanelAction:(id)sender;
 - (IBAction) printDocument:(id)sender;
 

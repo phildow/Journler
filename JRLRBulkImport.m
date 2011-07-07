@@ -281,7 +281,7 @@
 	BOOL added = YES;
 	
 	NSArray *allConditions = [theFolder allConditions:YES];
-	#ifdef __DEBUG __
+	#ifdef __DEBUG__
 	NSLog([allConditions description]);
 	#endif
 	
@@ -292,23 +292,17 @@
 		[self setCategory:[NSString string]];
 	}
 	
-	NSDictionary *aDictionary;
-	NSEnumerator *enumerator = [allConditions objectEnumerator];
-	
 	// supported conditions:
 	// 1. title	2. category	3. keywords 4. label 5. mark
 	
-	while ( aDictionary = [enumerator nextObject] )
+    for ( NSDictionary *aDictionary in allConditions )
 	{
-		
-		NSString *aCondition;
 		NSArray *localConditions = [aDictionary objectForKey:@"conditions"];
-		NSEnumerator *localEnumerator = [localConditions objectEnumerator];
 		NSNumber *localCombination = [aDictionary objectForKey:@"combinationStyle"];
 		
 		BOOL alreadyAddedLocal = NO;
 		
-		while ( aCondition = [localEnumerator nextObject] )
+        for ( NSString *aCondition in localConditions )
 		{
 			NSDictionary *conditionOp = [JournlerCondition operationForCondition:aCondition entry:nil];
 			#ifdef __DEBUG_

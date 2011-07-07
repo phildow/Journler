@@ -421,10 +421,8 @@ static NSString *kAndSeparatorString = @" && ";
 		{
 			NSArray *thePieces = [condition componentsSeparatedByString:kAndSeparatorString];
 			NSScanner *scanner;
-			NSString *aPiece;
-			NSEnumerator *enumerator = [thePieces objectEnumerator];
 			
-			while ( aPiece = [enumerator nextObject] )
+            for ( NSString *aPiece in thePieces )
 			{
 				NSString *aToken = nil;
 				scanner = [NSScanner scannerWithString:aPiece];
@@ -1098,12 +1096,10 @@ static NSString *kAndSeparatorString = @" && ";
 				
 			else
 			{
-				NSEnumerator *enumerator = [[tagsField objectValue] objectEnumerator];
-				NSMutableArray *tagConditions = [NSMutableArray array];
-				NSString *aTag;
 				
-				//while ( aTag = [[enumerator nextObject] lowercaseString] )
-				while ( aTag = [enumerator nextObject] )
+				NSMutableArray *tagConditions = [NSMutableArray array];
+               
+                for ( NSString *aTag in [tagsField objectValue] )
 				{
 					NSString *aTagCondition = nil;
 					switch ( [[tagsOperationPop selectedItem] tag] ) {
@@ -1765,10 +1761,7 @@ static NSString *kAndSeparatorString = @" && ";
 {
 	NSMutableArray *modifiedArray = [NSMutableArray array];
 	
-	NSString *aString;
-	NSEnumerator *enumerator = [tokens objectEnumerator];
-	
-	while ( aString = [enumerator nextObject] )
+    for ( NSString *aString in tokens )
 	{
 		if ( ![aString isOnlyWhitespace] )
 			//[modifiedArray addObject:[aString lowercaseString]];

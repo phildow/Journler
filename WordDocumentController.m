@@ -159,11 +159,11 @@
 		return NO;
 	
 	BOOL schonScrolled = NO;
-	NSString *aComponent;
-	NSEnumerator *enumerator = [[aString componentsSeparatedByString:@" "] objectEnumerator];
-	NSMutableArray *allRanges = [NSMutableArray array];
 	
-	while ( aComponent = [enumerator nextObject] )
+    NSMutableArray *allRanges = [NSMutableArray array];
+    NSArray *components = [aString componentsSeparatedByString:@" "];
+   
+    for ( NSString *aComponent in components )
 	{
 		// get the range of the string and highlight it
 		NSArray *ranges = [[textView string] rangesOfString:aComponent options:NSCaseInsensitiveSearch range:NSMakeRange(0,[[textView string] length])];

@@ -68,10 +68,8 @@
 	else {
     
 		NSMutableArray *filteredObjects = [NSMutableArray arrayWithCapacity:[objects count]];
-		NSEnumerator *objectsEnumerator = [objects objectEnumerator];
-		id item;
 		
-		while (item = [objectsEnumerator nextObject]) {
+        for ( id item in objects ) {
 			if ([[item valueForKeyPath:filterKey] rangeOfString:searchString options:NSCaseInsensitiveSearch].location != NSNotFound)
 				[filteredObjects addObject:item];
 		}

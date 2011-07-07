@@ -152,10 +152,7 @@ static NSString *kAndSeparatorString = @" && ";
 			NSMutableArray *theTokens = [NSMutableArray array];
 			NSScanner *scanner;
 			
-			NSString *aPiece;
-			NSEnumerator *enumerator = [thePieces objectEnumerator];
-			
-			while ( aPiece = [enumerator nextObject] )
+            for ( NSString *aPiece in thePieces )
 			{
 				NSString *aToken = nil;
 				scanner = [NSScanner scannerWithString:aPiece];
@@ -437,16 +434,12 @@ static NSString *kAndSeparatorString = @" && ";
 		BOOL notOperation = NO;
 		NSMutableArray *theTokens = [NSMutableArray array];
 		
-		NSString *aTag;
+		
 		NSMutableArray *tagConditions = [NSMutableArray array];
-		
-		NSString *aPiece;
 		NSArray *thePieces = [tagCondition componentsSeparatedByString:kAndSeparatorString];
-		NSEnumerator *enumerator = [thePieces objectEnumerator];
-		
 		NSScanner *scanner;
-				
-		while ( aPiece = [enumerator nextObject] )
+       
+        for (NSString *aPiece in thePieces )
 		{
 			NSString *aToken = nil;
 			scanner = [NSScanner scannerWithString:aPiece];
@@ -466,11 +459,12 @@ static NSString *kAndSeparatorString = @" && ";
 		}
 		
 		// with the tokens extracted and the not operation determine, build the normalized string
-		enumerator = [theTokens objectEnumerator];
-		while ( (aTag = [[enumerator nextObject] lowercaseString]) )
+		
+        for ( NSString *aTag in theTokens )
 		{
 			NSString *aTagCondition = nil;
-			
+			aTag = [aTag lowercaseString];
+            
 			if ( notOperation == YES )
 				aTagCondition = [NSString stringWithFormat:@"not '%@' in tags.lowercaseString", aTag];
 			else

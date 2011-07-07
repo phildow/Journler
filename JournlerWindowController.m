@@ -129,9 +129,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 
 - (void) startObservingTab:(TabController*)aTab paths:(NSArray*)keyPaths
 {
-	NSString *aPath = nil;
-	NSEnumerator *enumerator = [keyPaths objectEnumerator];
-	while ( aPath = [enumerator nextObject] )
+    for ( NSString *aPath in keyPaths )
 		[aTab addObserver:self 
 				forKeyPath:aPath 
 				options:0 
@@ -140,9 +138,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 
 - (void) stopObservingTab:(TabController*)aTab paths:(NSArray*)keyPaths
 {
-	NSString *aPath = nil;
-	NSEnumerator *enumerator = [keyPaths objectEnumerator];
-	while ( aPath = [enumerator nextObject] )
+    for ( NSString *aPath in keyPaths )
 		[aTab removeObserver:self forKeyPath:aPath];
 }
 
@@ -604,7 +600,8 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 
 - (void) restoreStateFromArray:(NSArray*)anArray 
 {	
-	NSData *aStateData;
+#warning woah, what the hell is going on here? does the info come in className / stateData pairs
+    NSData *aStateData;
 	NSString *tabClassName;
 	NSEnumerator *enumerator = [anArray objectEnumerator];
 	//BOOL firstTab = YES;
@@ -1309,9 +1306,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	
 	[fullScreenController selectTabAtIndex:[self selectedTabIndex] force:YES];
 	
-	TabController *aTab;
-	NSEnumerator *enumerator = [[fullScreenController tabControllers] objectEnumerator];
-	while ( aTab = [enumerator nextObject] )
+    for ( TabController *aTab in [fullScreenController tabControllers] )
 		[aTab setFullScreen:YES];
 	
 	[fullScreenController showWindow:self];

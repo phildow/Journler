@@ -68,10 +68,7 @@ void    UKFileSubscriptionProc(FNMessage message, OptionBits flags, void *refcon
 
 -(void) dealloc
 {
-    NSEnumerator*   enny = [subscriptions objectEnumerator];
-    NSValue*        subValue = nil;
-    
-    while( (subValue = [enny nextObject]) )
+    for ( NSValue *subValue in subscriptions )
     {
         FNSubscriptionRef   subscription = [subValue pointerValue];
         FNUnsubscribe( subscription );
