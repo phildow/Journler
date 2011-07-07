@@ -91,7 +91,7 @@ static NSString *referenceIndexFile = @"Index References";
 	
 	if ( ![[NSFileManager defaultManager] fileExistsAtPath:path] || ![[NSFileManager defaultManager] fileExistsAtPath:referenceIndexPath] ) 
 	{
-		NSLog(@"%@ %s - no search index at path %@", [self className], _cmd, path);
+		NSLog(@"%s - no search index at path %@", __PRETTY_FUNCTION__, path);
 		return NO;
 	}
 	
@@ -100,7 +100,7 @@ static NSString *referenceIndexFile = @"Index References";
 	
 	if ( entryIndexURL == nil || referenceIndexURL == nil ) 
 	{
-		NSLog(@"%@ %s - unable to create entries index, invalid index path for url %@", [self className], _cmd, path);
+		NSLog(@"%s - unable to create entries index, invalid index path for url %@", __PRETTY_FUNCTION__, path);
 		return NO;
 	}
 	
@@ -112,7 +112,7 @@ static NSString *referenceIndexFile = @"Index References";
 		return YES;
 	else 
 	{
-		NSLog(@"%@ %s - unable to load index, nil index", [self className], _cmd);
+		NSLog(@"%s - unable to load index, nil index", __PRETTY_FUNCTION__);
 		return NO;
 	}
 }
@@ -130,19 +130,19 @@ static NSString *referenceIndexFile = @"Index References";
 	
 	if ( entryIndexURL == nil || referenceIndexURL == nil ) 
 	{
-		NSLog(@"%@ %s - unable to create entries index, invalid index at path %@", [self className], _cmd, path);
+		NSLog(@"%s - unable to create entries index, invalid index at path %@", __PRETTY_FUNCTION__, path);
 		return NO;
 	}
 	
 	if ( [[NSFileManager defaultManager] fileExistsAtPath:entryIndexPath] ) 
 	{
-		NSLog(@"%@ %s - index already exists at path, overwriting %@", [self className], _cmd, entryIndexPath);
+		NSLog(@"%s - index already exists at path, overwriting %@", __PRETTY_FUNCTION__, entryIndexPath);
 		[[NSFileManager defaultManager] removeFileAtPath:entryIndexPath handler:nil];
 	}
 	
 	if ( [[NSFileManager defaultManager] fileExistsAtPath:referenceIndexPath] ) 
 	{
-		NSLog(@"%@ %s - index already exists at path, overwriting %@", [self className], _cmd, referenceIndexPath);
+		NSLog(@"%s - index already exists at path, overwriting %@", __PRETTY_FUNCTION__, referenceIndexPath);
 		[[NSFileManager defaultManager] removeFileAtPath:referenceIndexPath handler:nil];
 	}
 	
@@ -162,7 +162,7 @@ static NSString *referenceIndexFile = @"Index References";
 			
 	if ( entryIndex == NULL ) 
 	{
-		NSLog(@"%@ %s - unable to create entry search index at path %@", [self className], _cmd, entryIndexPath);
+		NSLog(@"%s - unable to create entry search index at path %@", __PRETTY_FUNCTION__, entryIndexPath);
 		success = NO;
 	}
 	else 
@@ -173,7 +173,7 @@ static NSString *referenceIndexFile = @"Index References";
 	
 	if ( referenceIndex == NULL )
 	{
-		NSLog(@"%@ %s - unable to create reference search index at path %@", [self className], _cmd, referenceIndexPath);
+		NSLog(@"%s - unable to create reference search index at path %@", __PRETTY_FUNCTION__, referenceIndexPath);
 		success = NO;
 	}
 	else
@@ -245,8 +245,8 @@ static NSString *referenceIndexFile = @"Index References";
 	// is the owner still nil?
 	if ( owner == nil )
 	{
-		NSLog(@"%@ %s - the resource %@ : %@ does not seem to have an owner, not indexing", 
-				[self className], _cmd, [aResource valueForKey:@"tagID"], [aResource valueForKey:@"title"]);
+		NSLog(@"%s - the resource %@ : %@ does not seem to have an owner, not indexing", 
+				__PRETTY_FUNCTION__, [aResource valueForKey:@"tagID"], [aResource valueForKey:@"title"]);
 	}
 	else
 	{
@@ -264,7 +264,7 @@ static NSString *referenceIndexFile = @"Index References";
 	
 	if ( entryIndex == NULL ) 
 	{
-		NSLog(@"%@ %s - unable to index entry, no search index available", [self className], _cmd);
+		NSLog(@"%s - unable to index entry, no search index available", __PRETTY_FUNCTION__);
 		[pool release];
 		[indexLock unlock];
 		return;
@@ -280,7 +280,7 @@ static NSString *referenceIndexFile = @"Index References";
 	
 	if ( entryDocumentRef == NULL ) 
 	{
-		NSLog(@"%@ %s - problem preparing entry for indexing: %@", [self className], _cmd, [anEntry valueForKey:@"tagID"]);
+		NSLog(@"%s - problem preparing entry for indexing: %@", __PRETTY_FUNCTION__, [anEntry valueForKey:@"tagID"]);
 		[pool release];
 		[indexLock unlock];
 		return;
@@ -288,7 +288,7 @@ static NSString *referenceIndexFile = @"Index References";
 	
 	if ( !SKIndexAddDocumentWithText(entryIndex,entryDocumentRef,(CFStringRef)entryText,YES) ) 
 	{
-		NSLog(@"%@ %s - unable to add entry to index: %@", [self className], _cmd, [anEntry valueForKey:@"tagID"]);
+		NSLog(@"%s - unable to add entry to index: %@", __PRETTY_FUNCTION__, [anEntry valueForKey:@"tagID"]);
 		
 		SKIndexRemoveDocument(entryIndex,entryDocumentRef);
 		CFRelease(entryDocumentRef);
@@ -323,7 +323,7 @@ static NSString *referenceIndexFile = @"Index References";
 	// make sure the index is available
 	if ( referenceIndex == NULL ) 
 	{
-		NSLog(@"%@ %s - unable to index reference, no search index available", [self className], _cmd);
+		NSLog(@"%s - unable to index reference, no search index available", __PRETTY_FUNCTION__);
 		return NO;
 	}
 	
@@ -360,21 +360,21 @@ static NSString *referenceIndexFile = @"Index References";
 			NSString *originalPath = [aResource originalPath];
 			
 			if ( originalPath == nil )
-				NSLog(@"%@ %s - unable to determine original path for resource %@", [self className], _cmd, [aResource valueForKey:@"tagID"]);
+				NSLog(@"%s - unable to determine original path for resource %@", __PRETTY_FUNCTION__, [aResource valueForKey:@"tagID"]);
 			else
 			{
 				NSString *uti = [[NSWorkspace sharedWorkspace] UTIForFile:originalPath];
 				
 				// note the path and uti for the file if search debug is abled
 				if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"JournlerSearchDebug"] )
-					NSLog(@"%@ %s - indexing file %@, uti: %@", [self className], _cmd, originalPath, uti); 
+					NSLog(@"%s - indexing file %@, uti: %@", __PRETTY_FUNCTION__, originalPath, uti); 
 				
 				if ( UTTypeConformsTo((CFStringRef)uti, (CFStringRef)kPDUTTypeMailEmail) )
 				{
 					// a bug in SpotlightTextContentRetriever crashes when extracting mail files if mail tags is installed
 					MailMessageParser *parser = [[[MailMessageParser alloc] initWithFile:originalPath] autorelease];
 					if ( parser == nil )
-						NSLog(@"%@ %s - unable to parse message at path %@", [self className], _cmd, originalPath);
+						NSLog(@"%s - unable to parse message at path %@", __PRETTY_FUNCTION__, originalPath);
 					else
 						textRepresentation = [parser body:NO];
 				}
@@ -386,8 +386,8 @@ static NSString *referenceIndexFile = @"Index References";
 						textRepresentation = [SpotlightTextContentRetriever textContentOfFileAtPath:originalPath];
 					}
 					@catch (NSException *localException) {
-						NSLog(@"%@ %s - exception encountered while trying to index file based resource, file: %@, exception: %@",
-						[self className], _cmd, [aResource originalPath], [localException description]);
+						NSLog(@"%s - exception encountered while trying to index file based resource, file: %@, exception: %@",
+						__PRETTY_FUNCTION__, [aResource originalPath], [localException description]);
 					}
 					@finally {
 						
@@ -413,7 +413,7 @@ static NSString *referenceIndexFile = @"Index References";
 		// this is not the kind of resources that's indexed. No worries.
 		return NO;
 		
-		//NSLog(@"%@ %s - problem preparing reference identifier for indexing %@-%@", [self className], _cmd, 
+		//NSLog(@"%s - problem preparing reference identifier for indexing %@-%@", __PRETTY_FUNCTION__, 
 		//		[anEntry valueForKey:@"tagID"], [aResource valueForKey:@"tagID"]);
 	}
 	
@@ -421,7 +421,7 @@ static NSString *referenceIndexFile = @"Index References";
 	SKDocumentRef referenceDocumentRef = SKDocumentCreateWithURL((CFURLRef)referenceIdentifier);
 	if ( referenceDocumentRef == NULL ) 
 	{
-		NSLog(@"%@ %s - problem preparing reference for indexing %@-%@", [self className], _cmd, 
+		NSLog(@"%s - problem preparing reference for indexing %@-%@", __PRETTY_FUNCTION__, 
 		[anEntry valueForKey:@"tagID"], [aResource valueForKey:@"tagID"]);
 		return NO;
 	}
@@ -439,23 +439,23 @@ static NSString *referenceIndexFile = @"Index References";
 				indexed = SKIndexAddDocument(referenceIndex,referenceDocumentRef,NULL,YES);
 			 }
 			@catch (NSException *localException) {
-				NSLog(@"%@ %s - exception encountered while trying to index file based resource, file: %@, exception: %@",
-				[self className], _cmd, [aResource originalPath], [localException description]);
+				NSLog(@"%s - exception encountered while trying to index file based resource, file: %@, exception: %@",
+				__PRETTY_FUNCTION__, [aResource originalPath], [localException description]);
 				//CFRelease(referenceDocumentRef);
 				return NO;
 			}
 			@catch (id undefinedException)
 			{
-				NSLog(@"%@ %s - undefined exception encountered while trying to index file based resource, file: %@, exception: %@",
-				[self className], _cmd, [aResource originalPath], [undefinedException description]);
+				NSLog(@"%s - undefined exception encountered while trying to index file based resource, file: %@, exception: %@",
+				__PRETTY_FUNCTION__, [aResource originalPath], [undefinedException description]);
 				//CFRelease(referenceDocumentRef);
 				return NO;
 			}
 			@finally {
 				if ( !indexed ) 
 				{
-					NSLog(@"%@ %s - SKIndexAddDocument() problem adding reference to index %@-%@ %@, SKDocumentRef: %@",
-					 [self className], _cmd,
+					NSLog(@"%s - SKIndexAddDocument() problem adding reference to index %@-%@ %@, SKDocumentRef: %@",
+					 __PRETTY_FUNCTION__,
 					 [anEntry valueForKey:@"tagID"], 
 					 [aResource valueForKey:@"tagID"], [aResource valueForKey:@"title"], referenceIdentifier);
 					 
@@ -468,7 +468,7 @@ static NSString *referenceIndexFile = @"Index References";
 		else
 		{
 			#ifdef __DEBUG__
-			NSLog(@"%@ %s - using text representation",[self className],_cmd);
+			NSLog(@"%s - using text representation",__PRETTY_FUNCTION__);
 			#endif
 			
 			// add the resource's filename to the searchable contents
@@ -480,7 +480,7 @@ static NSString *referenceIndexFile = @"Index References";
 			//if ( !SKIndexAddDocumentWithText(referenceIndex,referenceDocumentRef,(CFStringRef)textRepresentation,YES) ) 
 			if ( !SKIndexAddDocumentWithText(referenceIndex,referenceDocumentRef,(CFStringRef)enhancedRepresentation,YES) ) 
 			{
-				NSLog(@"%@ %s - unable to add ABResource to index: %@-%@", [self className], _cmd, 
+				NSLog(@"%s - unable to add ABResource to index: %@-%@", __PRETTY_FUNCTION__, 
 				 [anEntry valueForKey:@"tagID"], [aResource valueForKey:@"tagID"]);
 				
 				SKIndexRemoveDocument(referenceIndex,referenceDocumentRef);
@@ -495,7 +495,7 @@ static NSString *referenceIndexFile = @"Index References";
 		NSString *referenceText = [aResource searchContentForABRecord];
 		if ( referenceText == nil )
 		{
-			NSLog(@"%@ %s - unable to derive searchable text for ABRecord resource %@-%@", [self className], _cmd,
+			NSLog(@"%s - unable to derive searchable text for ABRecord resource %@-%@", __PRETTY_FUNCTION__,
 			[anEntry valueForKey:@"tagID"], [aResource valueForKey:@"tagID"]);
 			CFRelease(referenceDocumentRef);
 			return NO;
@@ -503,7 +503,7 @@ static NSString *referenceIndexFile = @"Index References";
 		
 		if ( !SKIndexAddDocumentWithText(referenceIndex,referenceDocumentRef,(CFStringRef)referenceText,YES) ) 
 		{
-			NSLog(@"%@ %s - unable to add ABResource to index: %@-%@", [self className], _cmd, 
+			NSLog(@"%s - unable to add ABResource to index: %@-%@", __PRETTY_FUNCTION__, 
 			 [anEntry valueForKey:@"tagID"], [aResource valueForKey:@"tagID"]);
 			
 			SKIndexRemoveDocument(referenceIndex,referenceDocumentRef);
@@ -517,7 +517,7 @@ static NSString *referenceIndexFile = @"Index References";
 		NSString *referenceText = [aResource searchContentForURL];
 		if ( referenceText == nil )
 		{
-			NSLog(@"%@ %s - unable to derive searchable text for ABRecord resource %@-%@", [self className], _cmd,
+			NSLog(@"%s - unable to derive searchable text for ABRecord resource %@-%@", __PRETTY_FUNCTION__,
 			 [anEntry valueForKey:@"tagID"], [aResource valueForKey:@"tagID"]);
 			CFRelease(referenceDocumentRef);
 			return NO;
@@ -525,7 +525,7 @@ static NSString *referenceIndexFile = @"Index References";
 		
 		if ( !SKIndexAddDocumentWithText(referenceIndex,referenceDocumentRef,(CFStringRef)referenceText,YES) ) 
 		{
-			NSLog(@"%@ %s - unable to add ABResource to index: %@-%@", [self className], _cmd, 
+			NSLog(@"%s - unable to add ABResource to index: %@-%@", __PRETTY_FUNCTION__, 
 			 [anEntry valueForKey:@"tagID"], [aResource valueForKey:@"tagID"]);
 			
 			SKIndexRemoveDocument(referenceIndex,referenceDocumentRef);
@@ -550,19 +550,19 @@ static NSString *referenceIndexFile = @"Index References";
 	
 	if ( entryDocumentRef == NULL ) 
 	{
-		NSLog(@"%@ %s - problem preparing entry for indexing: %@", [self className], _cmd, [anEntry valueForKey:@"tagID"]);
+		NSLog(@"%s - problem preparing entry for indexing: %@", __PRETTY_FUNCTION__, [anEntry valueForKey:@"tagID"]);
 		return NO;
 	}
 	
 	if ( entryIndex == NULL )
 	{
-		NSLog(@"%@ %s - no entry index available, entry was not removed from index: %@", [self className], _cmd, [anEntry valueForKey:@"tagID"]);
+		NSLog(@"%s - no entry index available, entry was not removed from index: %@", __PRETTY_FUNCTION__, [anEntry valueForKey:@"tagID"]);
 		return NO;
 	}
 	
 	if ( !SKIndexRemoveDocument(entryIndex,entryDocumentRef) ) 
 	{
-		NSLog(@"%@ %s - unable to remove entry from search index", [self className], _cmd);
+		NSLog(@"%s - unable to remove entry from search index", __PRETTY_FUNCTION__);
 		return NO;
 	}
 	
@@ -598,26 +598,26 @@ static NSString *referenceIndexFile = @"Index References";
 	SKDocumentRef referenceDocumentRef = SKDocumentCreateWithURL((CFURLRef)referenceIdentifier);
 	if ( referenceDocumentRef == NULL ) 
 	{
-		NSLog(@"%@ %s - problem preparing reference for indexing %@-%@", [self className], _cmd, 
+		NSLog(@"%s - problem preparing reference for indexing %@-%@", __PRETTY_FUNCTION__, 
 		[anEntry valueForKey:@"tagID"], [aResource valueForKey:@"tagID"]);
 		return NO;
 	}
 	
 	if ( referenceIndex == NULL )
 	{
-		NSLog(@"%@ %s - no entry index available, resource was not removed from index:  %@-%@", [self className], _cmd, 
+		NSLog(@"%s - no entry index available, resource was not removed from index:  %@-%@", __PRETTY_FUNCTION__, 
 		[anEntry valueForKey:@"tagID"], [aResource valueForKey:@"tagID"]);
 		return NO;
 	}
 	
 	if ( !SKIndexRemoveDocument(referenceIndex, referenceDocumentRef) ) 
 	{
-		NSLog(@"%@ %s - unable to remove resource with identifier %@ from search index", [self className], _cmd, [referenceIdentifier absoluteString]);
+		NSLog(@"%s - unable to remove resource with identifier %@ from search index", __PRETTY_FUNCTION__, [referenceIdentifier absoluteString]);
 		
 		if ( [aResource representsFile] )
 		{
 			BOOL fileSuccess = NO;
-			NSLog(@"%@ %s - resource is a file, trying a file based reference identifier", [self className], _cmd);
+			NSLog(@"%s - resource is a file, trying a file based reference identifier", __PRETTY_FUNCTION__);
 			
 			// derive the reference identifier for a file
 			NSString *originalPath = [aResource originalPath];
@@ -635,7 +635,7 @@ static NSString *referenceIndexFile = @"Index References";
 					if ( referenceDocumentRef == NULL ) 
 					{
 						// same error checking
-						NSLog(@"%@ %s - problem preparing file based reference for indexing %@-%@", [self className], _cmd, 
+						NSLog(@"%s - problem preparing file based reference for indexing %@-%@", __PRETTY_FUNCTION__, 
 						[anEntry valueForKey:@"tagID"], [aResource valueForKey:@"tagID"]);
 						return NO;
 					}
@@ -647,7 +647,7 @@ static NSString *referenceIndexFile = @"Index References";
 			}
 			
 			if ( fileSuccess == NO )
-				NSLog(@"%@ %s - still unable to remove file based resource from index, file identifier: %@", [self className], _cmd, referenceIdentifier);
+				NSLog(@"%s - still unable to remove file based resource from index, file identifier: %@", __PRETTY_FUNCTION__, referenceIdentifier);
 		}
 	}
 	
@@ -672,14 +672,14 @@ static NSString *referenceIndexFile = @"Index References";
 	
 	if ( entryIndex == nil || referenceIndex == nil ) 
 	{
-		NSLog(@"%@ %s - unable to perform search, search index is nil", [self className], _cmd);
+		NSLog(@"%s - unable to perform search, search index is nil", __PRETTY_FUNCTION__);
 		goto bail;
 	}
 	
 	// flush the index
 	if ( !SKIndexFlush(entryIndex) || !SKIndexFlush(referenceIndex) ) 
 	{
-		NSLog(@"%@ %s - could not flush one of the indexes", [self className], _cmd);
+		NSLog(@"%s - could not flush one of the indexes", __PRETTY_FUNCTION__);
 		goto bail;
 	}
 	
@@ -703,7 +703,7 @@ static NSString *referenceIndexFile = @"Index References";
 		searchQuery = SKSearchCreate(entryIndex,(CFStringRef)query,options);
 		if ( searchQuery == nil ) 
 		{
-			NSLog(@"%@ %s - unable to perform search, SKSearchRef is not valid", [self className], _cmd);
+			NSLog(@"%s - unable to perform search, SKSearchRef is not valid", __PRETTY_FUNCTION__);
 			free(entryDocumentIDs);
 			free(entryScores);
 			goto bail;
@@ -736,7 +736,7 @@ static NSString *referenceIndexFile = @"Index References";
 			NSURL *documentURI = (NSURL*)SKDocumentCopyURL(entryDocumentRefs[i]);
 			if ( documentURI == nil )
 			{
-				NSLog(@"%@ %s - nil document uri for a document ref", [self className], _cmd);
+				NSLog(@"%s - nil document uri for a document ref", __PRETTY_FUNCTION__);
 				continue;
 			}
 			
@@ -746,7 +746,7 @@ static NSString *referenceIndexFile = @"Index References";
 			
 			if ( theEntry == nil ) 
 			{
-				NSLog(@"%@ %s - entry object id returned nil entry: %@", [self className], _cmd, documentURI);
+				NSLog(@"%s - entry object id returned nil entry: %@", __PRETTY_FUNCTION__, documentURI);
 				continue;
 			}
 			
@@ -786,7 +786,7 @@ static NSString *referenceIndexFile = @"Index References";
 		searchQuery = SKSearchCreate(referenceIndex,(CFStringRef)query,options);
 		if ( searchQuery == nil ) 
 		{
-			NSLog(@"%@ %s - unable to perform search, SKSearchRef is not valid", [self className], _cmd);
+			NSLog(@"%s - unable to perform search, SKSearchRef is not valid", __PRETTY_FUNCTION__);
 			free(referenceScores);
 			free(referenceDocumentIDs);
 			goto bail;
@@ -820,14 +820,14 @@ static NSString *referenceIndexFile = @"Index References";
 			NSURL *documentURI = (NSURL*)SKDocumentCopyURL(referenceDocumentRefs[i]);
 			if ( documentURI == nil )
 			{
-				NSLog(@"%@ %s - nil document uri for a reference document ref", [self className], _cmd);
+				NSLog(@"%s - nil document uri for a reference document ref", __PRETTY_FUNCTION__);
 				continue;
 			}
 			
 			NSDictionary *documentProperties = (NSDictionary*)SKIndexCopyDocumentProperties(referenceIndex,referenceDocumentRefs[i]);
 			if ( documentProperties == nil )
 			{
-				NSLog(@"%@ %s - nil document properties for a document ref with uri %@", [self className], _cmd, documentURI);
+				NSLog(@"%s - nil document properties for a document ref with uri %@", __PRETTY_FUNCTION__, documentURI);
 				continue;
 			}
 			
@@ -847,14 +847,14 @@ static NSString *referenceIndexFile = @"Index References";
 			
 			if ( theReference == nil ) 
 			{
-				NSLog(@"%@ %s - reference managed object id returned nil reference: %@", [self className], _cmd, referenceURI);
+				NSLog(@"%s - reference managed object id returned nil reference: %@", __PRETTY_FUNCTION__, referenceURI);
 				[documentProperties release];
 				continue;
 			}
 			
 			if ( theEntry == nil ) 
 			{
-				NSLog(@"%@ %s - entry managed object id for reference returned nil reference: %@", [self className], _cmd, entryURI);
+				NSLog(@"%s - entry managed object id for reference returned nil reference: %@", __PRETTY_FUNCTION__, entryURI);
 				[documentProperties release];
 				continue;
 			}
@@ -918,7 +918,7 @@ bail:
 	{
 		BOOL result = SKIndexFlush(entryIndex);
 		if ( !result ) 
-			NSLog(@"%@ %s - Could not flush the entry index", [self className], _cmd);
+			NSLog(@"%s - Could not flush the entry index", __PRETTY_FUNCTION__);
 		
 		completeSuccess = ( completeSuccess && result );
 	}
@@ -927,7 +927,7 @@ bail:
 	{
 		BOOL result = SKIndexFlush(referenceIndex);
 		if ( !result ) 
-			NSLog(@"%@ %s - Could not flush the resource index", [self className], _cmd);
+			NSLog(@"%s - Could not flush the resource index", __PRETTY_FUNCTION__);
 
 		completeSuccess = ( completeSuccess && result );
 	}
@@ -946,16 +946,16 @@ bail:
 	}
 	
 	[indexLock lock];
-	NSLog(@"%@ %s - beginning at %@", [self className], _cmd, [NSDate date]);
+	NSLog(@"%s - beginning at %@", __PRETTY_FUNCTION__, [NSDate date]);
 	
 	if ( !SKIndexCompact(entryIndex) || !SKIndexCompact(referenceIndex)) 
 	{
-		NSLog(@"%@ %s - Unable to compact index or compacting not necessary", [self className], _cmd);
+		NSLog(@"%s - Unable to compact index or compacting not necessary", __PRETTY_FUNCTION__);
 		[indexLock unlock];	
 		return NO;
 	}
 	
-	NSLog(@"%@ %s - finished at %@", [self className], _cmd, [NSDate date]);
+	NSLog(@"%s - finished at %@", __PRETTY_FUNCTION__, [NSDate date]);
 	[indexLock unlock];
 
 	return YES;
@@ -968,12 +968,12 @@ bail:
 	
 	BOOL threadedIndex = [self indexesOnSeparateThread];
 	[self setIndexesOnSeparateThread:NO];
-	NSLog(@"%@ %s - beginning at %@", [self className], _cmd, [NSDate date]);
+	NSLog(@"%s - beginning at %@", __PRETTY_FUNCTION__, [NSDate date]);
 	
 	while ( anEntry = [enumerator nextObject] )
 		[self indexEntry:anEntry];
 	
-	NSLog(@"%@ %s - finished at %@", [self className], _cmd, [NSDate date]);
+	NSLog(@"%s - finished at %@", __PRETTY_FUNCTION__, [NSDate date]);
 	[self setIndexesOnSeparateThread:threadedIndex];
 	
 	return [self writeIndexToDisk];
@@ -1008,7 +1008,7 @@ bail:
 
 - (BOOL)fileManager:(NSFileManager *)manager shouldProceedAfterError:(NSDictionary *)errorInfo 
 {
-	NSLog(@"\n%@ %s - file manager error: %@\n", [self className], _cmd, [errorInfo description]);
+	NSLog(@"\n%s - file manager error: %@\n", __PRETTY_FUNCTION__, [errorInfo description]);
 	return NO;
 }
 
@@ -1045,7 +1045,7 @@ bail:
 	
 	if ( entryIndex == NULL )
 	{
-		NSLog(@"%@ %s - entry index is null", [self className], _cmd);
+		NSLog(@"%s - entry index is null", __PRETTY_FUNCTION__);
 		return nil;
 	}
 	
@@ -1062,7 +1062,7 @@ bail:
 		CFStringRef aTerm = SKIndexCopyTermStringForTermID( entryIndex, aTermID );
 		if ( aTerm == NULL )
 		{
-			NSLog(@"%@ %s - unable to get term for term index %i", [self className], _cmd, aTermID);
+			NSLog(@"%s - unable to get term for term index %ld", __PRETTY_FUNCTION__, aTermID);
 			continue;
 		}
 		
@@ -1082,7 +1082,7 @@ bail:
 	
 	if ( referenceIndex == NULL )
 	{
-		NSLog(@"%@ %s - resource index is null", [self className], _cmd);
+		NSLog(@"%s - resource index is null", __PRETTY_FUNCTION__);
 		return nil;
 	}
 	
@@ -1099,7 +1099,7 @@ bail:
 		CFStringRef aTerm = SKIndexCopyTermStringForTermID( referenceIndex, aTermID );
 		if ( aTerm == NULL )
 		{
-			NSLog(@"%@ %s - unable to get term for term index %i", [self className], _cmd, aTermID);
+			NSLog(@"%s - unable to get term for term index %ld", __PRETTY_FUNCTION__, aTermID);
 			continue;
 		}
 		
@@ -1203,13 +1203,13 @@ bail:
 	
 	if ( entryIndex == NULL || referenceIndex == NULL )
 	{
-		NSLog(@"%@ %s - entry index or resources index is null", [self className], _cmd);
+		NSLog(@"%s - entry index or resources index is null", __PRETTY_FUNCTION__);
 		return nil;
 	}
 	
 	if ( ![self writeIndexToDisk] )
 	{
-		NSLog(@"%@ %s - unable to flush the indexes to disk", [self className], _cmd);
+		NSLog(@"%s - unable to flush the indexes to disk", __PRETTY_FUNCTION__);
 	}
 	
 	NSArray *allTerms = [self allTerms:options];
@@ -1227,7 +1227,7 @@ bail:
 		NSArray *journlerObjects = [self journlerObjectsForTerm:aTerm options:options];
 		
 		if ( [journlerObjects count] == 0 )
-			NSLog(theTerm);
+			NSLog(@"%@",theTerm);
 		else
 		{
 			// once done, prepare the dictionary
@@ -1257,7 +1257,7 @@ bail:
 	
 	if ( entryIndex == NULL || referenceIndex == NULL )
 	{
-		NSLog(@"%@ %s - indexes unavailable", [self className], _cmd);
+		NSLog(@"%s - indexes unavailable", __PRETTY_FUNCTION__);
 		return journlerObjects;
 	}
 	
@@ -1276,7 +1276,7 @@ bail:
 			
 			if ( entryDocumentNumbers == NULL )
 			{
-				NSLog(@"%@ %s - unable to get entry document ids for term %@ term id %i", [self className], _cmd, aTerm, entryTermID);
+				NSLog(@"%s - unable to get entry document ids for term %@ term id %ld", __PRETTY_FUNCTION__, aTerm, entryTermID);
 			}
 			else
 			{
@@ -1293,7 +1293,7 @@ bail:
 					SKDocumentID aDocumentID;
 					if ( !CFNumberGetValue( (CFNumberRef)CFArrayGetValueAtIndex(entryDocumentNumbers,y), kCFNumberSInt32Type, &aDocumentID ) )
 					{
-						NSLog(@"%@ %s - unable to get document id for document number", [self className], _cmd);
+						NSLog(@"%s - unable to get document id for document number", __PRETTY_FUNCTION__);
 					}
 					else
 					{
@@ -1312,7 +1312,7 @@ bail:
 					
 					if ( documentURI == nil )
 					{
-						NSLog(@"%@ %s - unable to get url for document ref", [self className], _cmd);
+						NSLog(@"%s - unable to get url for document ref", __PRETTY_FUNCTION__);
 					}
 					else
 					{
@@ -1323,7 +1323,7 @@ bail:
 						if ( theEntry == nil ) 
 						{
 							//there are potentially many of these if the index is not compacted
-							//NSLog(@"%@ %s - entry object id returned nil entry: %@", [self className], _cmd, documentURI);
+							//NSLog(@"%s - entry object id returned nil entry: %@", __PRETTY_FUNCTION__, documentURI);
 							[documentURI release];
 						}
 						else
@@ -1361,7 +1361,7 @@ bail:
 			
 			if ( resourceDocumentNumbers == NULL )
 			{
-				NSLog(@"%@ %s - unable to get resource document ids for term %@ term id %i", [self className], _cmd, aTerm, resourceTermID);
+				NSLog(@"%s - unable to get resource document ids for term %@ term id %ld", __PRETTY_FUNCTION__, aTerm, resourceTermID);
 			}
 			else
 			{
@@ -1378,7 +1378,7 @@ bail:
 					SKDocumentID aDocumentID;
 					if ( !CFNumberGetValue( (CFNumberRef)CFArrayGetValueAtIndex(resourceDocumentNumbers,y), kCFNumberSInt32Type, &aDocumentID ) )
 					{
-						NSLog(@"%@ %s - unable to get document id for document number", [self className], _cmd);
+						NSLog(@"%s - unable to get document id for document number", __PRETTY_FUNCTION__);
 					}
 					else
 					{
@@ -1397,7 +1397,7 @@ bail:
 					
 					if ( documentProperties == nil )
 					{
-						NSLog(@"%@ %s - unable to get properties for resource document ref", [self className], _cmd);
+						NSLog(@"%s - unable to get properties for resource document ref", __PRETTY_FUNCTION__);
 					}
 					else
 					{
@@ -1410,7 +1410,7 @@ bail:
 						if ( theResource == nil ) 
 						{
 							//there are potentially many of these if the index is not compacted
-							//NSLog(@"%@ %s - entry object id returned nil entry: %@", [self className], _cmd, documentURI);
+							//NSLog(@"%s - entry object id returned nil entry: %@", __PRETTY_FUNCTION__, documentURI);
 							[documentProperties release];
 						}
 						else
@@ -1487,7 +1487,7 @@ bail:
 		
 		if ( !CFNumberGetValue(aNumberRef,kCFNumberSInt32Type,&aTermID) )
 		{
-			NSLog(@"%@ %s - problem getting term id from number ref", [self className], _cmd);
+			NSLog(@"%s - problem getting term id from number ref", __PRETTY_FUNCTION__);
 			continue;
 		}
 		
@@ -1498,7 +1498,7 @@ bail:
 		CFStringRef aTerm = SKIndexCopyTermStringForTermID( anIndex, aTermID );
 		if ( aTerm == NULL )
 		{
-			NSLog(@"%@ %s - unable to get term for term index %i", [self className], _cmd, aTermID);
+			NSLog(@"%s - unable to get term for term index %ld", __PRETTY_FUNCTION__, aTermID);
 			continue;
 		}
 		
@@ -1529,13 +1529,13 @@ bail:
 		SKDocumentRef entryDocumentRef = SKDocumentCreateWithURL((CFURLRef)entryIdentifier);
 		if ( entryDocumentRef == NULL ) 
 		{
-			NSLog(@"%@ %s - problem getting document ref for entry object: %@", [self className], _cmd, [anObject valueForKey:@"tagID"]);
+			NSLog(@"%s - problem getting document ref for entry object: %@", __PRETTY_FUNCTION__, [anObject valueForKey:@"tagID"]);
 			return kCFNotFound;
 		}
 		
 		if ( entryIndex == NULL ) 
 		{
-			NSLog(@"%@ %s - unable to get document id for entry, no search index available", [self className], _cmd);
+			NSLog(@"%s - unable to get document id for entry, no search index available", __PRETTY_FUNCTION__);
 			return kCFNotFound;
 		}
 		
@@ -1553,7 +1553,7 @@ bail:
 		// make sure the index is available
 		if ( referenceIndex == NULL ) 
 		{
-			NSLog(@"%@ %s - unable to get document id reference, no search index available", [self className], _cmd);
+			NSLog(@"%s - unable to get document id reference, no search index available", __PRETTY_FUNCTION__);
 			return kCFNotFound;
 		}
 		
@@ -1580,7 +1580,7 @@ bail:
 		
 		if ( referenceIdentifier == nil )
 		{
-			NSLog(@"%@ %s - problem getting url identifier for reference %@-%@", [self className], _cmd, 
+			NSLog(@"%s - problem getting url identifier for reference %@-%@", __PRETTY_FUNCTION__, 
 					[anEntry valueForKey:@"tagID"], [anObject valueForKey:@"tagID"]);
 			return kCFNotFound;
 		}
@@ -1589,7 +1589,7 @@ bail:
 		SKDocumentRef referenceDocumentRef = SKDocumentCreateWithURL((CFURLRef)referenceIdentifier);
 		if ( referenceDocumentRef == NULL ) 
 		{
-			NSLog(@"%@ %s - problem getting document reference for reference %@-%@", [self className], _cmd, 
+			NSLog(@"%s - problem getting document reference for reference %@-%@", __PRETTY_FUNCTION__, 
 					[anEntry valueForKey:@"tagID"], [anObject valueForKey:@"tagID"]);
 			return kCFNotFound;
 		}

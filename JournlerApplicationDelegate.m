@@ -575,7 +575,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	if ( pantomimePath != nil )
 		[pantomimeBundle load];
 	else
-		NSLog(@"%@ %s - unable to locate pantomime bundle, email preview unavailable", [self className], _cmd);
+		NSLog(@"%s - unable to locate pantomime bundle, email preview unavailable", __PRETTY_FUNCTION__);
 	
 	// load the rbsplitview bundle before the imedia bundle has a chance
 	/*
@@ -584,7 +584,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	if ( mediaFrameworkBundle != nil )
 		[mediaFrameworkBundle load];
 	else
-		NSLog(@"%@ %s - unable to locate iMedia bundle, this could be bad!", [self className], _cmd);
+		NSLog(@"%s - unable to locate iMedia bundle, this could be bad!", __PRETTY_FUNCTION__);
 	*/
 	
 	// recieve power up/down notifications - the date may have changed, re-evaluate dynamic date folders
@@ -655,7 +655,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	if ( tempLoc == nil ) 
 	{
 	
-		NSLog(@"%@ %s - default journal unavailable", [self className], _cmd);
+		NSLog(@"%s - default journal unavailable", __PRETTY_FUNCTION__);
 		
 		NSString *actualSetupPath = nil;
 		NSString *defaultSetupPath = [[self documentsFolder] stringByAppendingPathComponent:@"Journler"];
@@ -678,7 +678,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 			// critical setup error - cannot procede as there will not be a journal
 			NSString *errorString = @"setup error";
 			NSRunCriticalAlertPanel(@"Critical Error", NSLocalizedString( errorString, @""), nil,nil,nil);
-			NSLog(@"%@ %s - Critical error on first run, unable to setup the journal", [self className], _cmd);
+			NSLog(@"%s - Critical error on first run, unable to setup the journal", __PRETTY_FUNCTION__);
 			
 		}
 		
@@ -696,7 +696,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 			[[NSFileManager defaultManager] fileExistsAtPath:journalProtectedPath] ) 
 	{
 	
-		//NSLog(@"%@ %s -- have a password, beginning",[self className],_cmd);
+		//NSLog(@"%s -- have a password, beginning",__PRETTY_FUNCTION__);
 		
 		BOOL confirmed;
 		NSString *password, *confirmedPassword;
@@ -709,45 +709,45 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 		
 		if ( password != nil )
 		{
-			//NSLog(@"%@ %s -- keychain password, beginning",[self className],_cmd);
+			//NSLog(@"%s -- keychain password, beginning",__PRETTY_FUNCTION__);
 			
 			lockoutController = [[[LockoutController alloc] initWithPassword:password] autorelease];
 			confirmed = [lockoutController confirmPassword];
 			confirmedPassword = [lockoutController validatedPassword];
 			
-			//NSLog(@"%@ %s -- keychain password, ending",[self className],_cmd);
+			//NSLog(@"%s -- keychain password, ending",__PRETTY_FUNCTION__);
 		}
 		else
 		{
-			//NSLog(@"%@ %s -- file password, beginning",[self className],_cmd);
+			//NSLog(@"%s -- file password, beginning",__PRETTY_FUNCTION__);
 			
 			NSError *error = nil;
 			NSString *md5checksum = [NSString stringWithContentsOfFile:journalProtectedPath encoding:NSUnicodeStringEncoding error:&error];
 			if ( md5checksum == nil || [md5checksum length] == 0 )
 			{
-				NSLog(@"%@ %s - no checksum for file at path %@, error %@", [self className], _cmd, journalProtectedPath, error);
+				NSLog(@"%s - no checksum for file at path %@, error %@", __PRETTY_FUNCTION__, journalProtectedPath, error);
 				confirmed = YES;
 			}
 			else
 			{
-				//NSLog(@"%@ %s -- showing the controller, beginning",[self className],_cmd);
+				//NSLog(@"%s -- showing the controller, beginning",__PRETTY_FUNCTION__);
 				
 				lockoutController = [[[LockoutController alloc] initWithChecksum:md5checksum] autorelease];
 				confirmed = [lockoutController confirmChecksum];
 				confirmedPassword = [lockoutController validatedPassword];
 				
-				//NSLog(@"%@ %s -- showing the controller, ending",[self className],_cmd);
+				//NSLog(@"%s -- showing the controller, ending",__PRETTY_FUNCTION__);
 			}
 			
-			//NSLog(@"%@ %s -- file password, ending",[self className],_cmd);
+			//NSLog(@"%s -- file password, ending",__PRETTY_FUNCTION__);
 		}
 		
 		if ( confirmed )
 		{
-			//NSLog(@"%@ %s -- confirmed password, loading journal, beginning",[self className],_cmd);
+			//NSLog(@"%s -- confirmed password, loading journal, beginning",__PRETTY_FUNCTION__);
 			
 			// indicate that the journal is being loaded -- freezes entire system on 10.5.2 with large journals
-			//NSLog(@"%@ %s -- [lockoutController showProgressIndicator:self]",[self className],_cmd);
+			//NSLog(@"%s -- [lockoutController showProgressIndicator:self]",__PRETTY_FUNCTION__);
 			//if ( lockoutController != nil )
 			//	[lockoutController showProgressIndicator:self];
 			
@@ -760,10 +760,10 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 			}
 			
 			// load the journal with the password (password for 2.0 encryption support)
-			//NSLog(@"%@ %s -- [[self journal] setPassword:confirmedPassword]",[self className],_cmd);
+			//NSLog(@"%s -- [[self journal] setPassword:confirmedPassword]",__PRETTY_FUNCTION__);
 			[[self journal] setPassword:confirmedPassword];
 			
-			//NSLog(@"%@ %s -- [self loadJournal]",[self className],_cmd);
+			//NSLog(@"%s -- [self loadJournal]",__PRETTY_FUNCTION__);
 			journalLoadResult = [self loadJournal];
 			
 			// close the notice window
@@ -777,7 +777,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 			// close the lockout window
 			if ( lockoutController != nil )
 			{
-				//NSLog(@"%@ %s -- confirmed password, hiding lockout controller, beginning",[self className],_cmd);
+				//NSLog(@"%s -- confirmed password, hiding lockout controller, beginning",__PRETTY_FUNCTION__);
 				
 				//[lockoutController hideProgressIndicator:self];
 				[lockoutController close];
@@ -785,17 +785,17 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 				
 				lockout = NO;
 				
-				//NSLog(@"%@ %s -- confirmed password, hiding lockout controller, ending",[self className],_cmd);
+				//NSLog(@"%s -- confirmed password, hiding lockout controller, ending",__PRETTY_FUNCTION__);
 			}
 			
-			//NSLog(@"%@ %s -- confirmed password, loading journal, ending",[self className],_cmd);
+			//NSLog(@"%s -- confirmed password, loading journal, ending",__PRETTY_FUNCTION__);
 		}
 		else
 		{
 			[NSApp terminate:self];
 		}
 		
-		//NSLog(@"%@ %s -- have a password, ending",[self className],_cmd);
+		//NSLog(@"%s -- have a password, ending",__PRETTY_FUNCTION__);
 	}
 	
 	else 
@@ -840,7 +840,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 			if ( wordlist == nil )
 			{
 				// #warning let the user know
-				NSLog(@"%@ %s - unable to load wordlist from path %@", [self className], _cmd, wordlistPath);
+				NSLog(@"%s - unable to load wordlist from path %@", __PRETTY_FUNCTION__, wordlistPath);
 			}
 			else
 			{
@@ -849,7 +849,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 		}
 		else
 		{
-			NSLog(@"%@ %s - no wordlist for auto-correct spelling", [self className], _cmd);
+			NSLog(@"%s - no wordlist for auto-correct spelling", __PRETTY_FUNCTION__);
 		}
 	}
 	
@@ -860,14 +860,14 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 		NSArray *theStopwordsArray = [theStopwords componentsSeparatedByString:@" "];
 		if ( theStopwordsArray == nil )
 		{
-			NSLog(@"%@ %s - unable to derive stopwords array from string %@", [self className], _cmd, theStopwords);
+			NSLog(@"%s - unable to derive stopwords array from string %@", __PRETTY_FUNCTION__, theStopwords);
 		}
 		else
 		{
 			NSSet *theStopwordsSet = [NSSet setWithArray:theStopwordsArray];
 			if ( theStopwordsSet == nil )
 			{
-				NSLog(@"%@ %s - unable to derive stopwords set from array %@", [self className], _cmd, theStopwordsArray);
+				NSLog(@"%s - unable to derive stopwords set from array %@", __PRETTY_FUNCTION__, theStopwordsArray);
 			}
 			else
 			{
@@ -930,7 +930,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	// open any files the user is launching the app with
 	if ( filesToOpenAtLaunch != nil )
 	{
-		LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s - opening files %@", [self className], _cmd, filesToOpenAtLaunch]));
+		LogIfDebugging(50,([NSString stringWithFormat:@"%s - opening files %@", __PRETTY_FUNCTION__, filesToOpenAtLaunch]));
 		
 		NSString *aFilename;
 		NSEnumerator *enumerator = [filesToOpenAtLaunch objectEnumerator];
@@ -944,7 +944,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	
 	if ( [entriesToShowAtLaunch count] != 0 )
 	{
-		LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s - showing files %@", [self className], _cmd, entriesToShowAtLaunch]));
+		LogIfDebugging(50,([NSString stringWithFormat:@"%s - showing files %@", __PRETTY_FUNCTION__, entriesToShowAtLaunch]));
 		
 		// open the imported entry in a new window or into the main window, depending on preference
 		if ( defaultBool(@"NewEntryImportNewWindow") )
@@ -1064,7 +1064,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	
 	if ( ![sharedJournal isLoaded] )
 	{
-		LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s - journal is not loaded, storing files %@", [self className],_cmd,filenames]));
+		LogIfDebugging(50,([NSString stringWithFormat:@"%s - journal is not loaded, storing files %@", __PRETTY_FUNCTION__,filenames]));
 		
 		// the open must be handled after the application launches
 		filesToOpenAtLaunch = [filenames retain];
@@ -1072,7 +1072,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	}
 	else
 	{
-		LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s - loading the files %@", [self className],_cmd,filenames]));
+		LogIfDebugging(50,([NSString stringWithFormat:@"%s - loading the files %@", __PRETTY_FUNCTION__,filenames]));
 		
 		BOOL success = YES;
 		NSString *aFilename;
@@ -1094,7 +1094,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 - (BOOL) openFile:(NSString*)filename
 {
 	LogIfDebugging(99,MethodEntryDescription());
-	LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s - filename: %@", [self className],_cmd,filename]));
+	LogIfDebugging(50,([NSString stringWithFormat:@"%s - filename: %@", __PRETTY_FUNCTION__,filename]));
 		
 	// check to see if the file is a journler kind of file: entry, folder, metadata, blog, etc.
 	// if not, check to see if the file is already a resource
@@ -1111,11 +1111,11 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 		findString = [findBoard stringForType:NSStringPboardType];
 	
 	NSString *fileUTI = [[NSWorkspace sharedWorkspace] UTIForFile:[[NSWorkspace sharedWorkspace] resolveForAliases:filename]];
-	LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s - file uti: %@", [self className],_cmd,fileUTI]));
+	LogIfDebugging(50,([NSString stringWithFormat:@"%s - file uti: %@", __PRETTY_FUNCTION__,fileUTI]));
 	
 	if ( fileUTI == nil )
 	{
-		NSLog(@"%@ %s - unable to derive uti for file, cannot process it: %@", [self className], _cmd, filename);
+		NSLog(@"%s - unable to derive uti for file, cannot process it: %@", __PRETTY_FUNCTION__, filename);
 		return NO;
 	}
 	
@@ -1124,21 +1124,21 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 		JournlerEntry *anEntry = [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
 		if ( anEntry == nil )
 		{
-			NSLog(@"%@ %s - unable to decode entry at path %@", [self className], _cmd, filename);
+			NSLog(@"%s - unable to decode entry at path %@", __PRETTY_FUNCTION__, filename);
 			return NO;
 		}
 		
 		JournlerEntry *actualEntry = [sharedJournal objectForURIRepresentation:[anEntry URIRepresentation]];
 		if ( actualEntry == nil )
 		{
-			NSLog(@"%@ %s - unable to derive actual entry for file at path %@", [self className], _cmd, filename);
+			NSLog(@"%s - unable to derive actual entry for file at path %@", __PRETTY_FUNCTION__, filename);
 			return NO;
 		}
 		
 		if ( journalWindowController == nil )
 		{
 			[entriesToShowAtLaunch addObject:actualEntry];
-			LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s - no main controller, storing entry %@", [self className],_cmd,[actualEntry URIRepresentation]]));
+			LogIfDebugging(50,([NSString stringWithFormat:@"%s - no main controller, storing entry %@", __PRETTY_FUNCTION__,[actualEntry URIRepresentation]]));
 		}
 		else
 		{
@@ -1177,14 +1177,14 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 		JournlerCollection *aCollection = [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
 		if ( aCollection == nil )
 		{
-			NSLog(@"%@ %s - unable to decode folder at path %@", [self className], _cmd, filename);
+			NSLog(@"%s - unable to decode folder at path %@", __PRETTY_FUNCTION__, filename);
 			return NO;
 		}
 		
 		JournlerCollection *actualCollection = [sharedJournal objectForURIRepresentation:[aCollection URIRepresentation]];
 		if ( actualCollection == nil )
 		{
-			NSLog(@"%@ %s - unable to derive actual entry for file at path %@", [self className], _cmd, filename);
+			NSLog(@"%s - unable to derive actual entry for file at path %@", __PRETTY_FUNCTION__, filename);
 			return NO;
 		}
 		
@@ -1201,14 +1201,14 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 		BlogPref *aBlog = [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
 		if ( aBlog == nil )
 		{
-			NSLog(@"%@ %s - unable to decode blog at path %@", [self className], _cmd, filename);
+			NSLog(@"%s - unable to decode blog at path %@", __PRETTY_FUNCTION__, filename);
 			return NO;
 		}
 		
 		BlogPref *actualBlog = [sharedJournal objectForURIRepresentation:[aBlog URIRepresentation]];
 		if ( actualBlog == nil )
 		{
-			NSLog(@"%@ %s - unable to derive actual blog for file at path %@", [self className], _cmd, filename);
+			NSLog(@"%s - unable to derive actual blog for file at path %@", __PRETTY_FUNCTION__, filename);
 			return NO;
 		}
 		
@@ -1288,7 +1288,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 			{
 				NSBeep();
 				[[NSAlert importError] runModal];
-				NSLog(@"%@ %s - unable to import file with path %@", [self className], _cmd, filename);
+				NSLog(@"%s - unable to import file with path %@", __PRETTY_FUNCTION__, filename);
 				return NO;
 			}
 			
@@ -1353,7 +1353,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	importedEntry = [[JournlerEntry alloc] initWithImportAtPath:filename options:importOptions maxPreviewSize:maxPreviewSize];
 	if ( importedEntry == nil ) 
 	{
-		NSLog(@"%@ %s - unable to create entry from file at %@", [self className], _cmd, filename);
+		NSLog(@"%s - unable to create entry from file at %@", __PRETTY_FUNCTION__, filename);
 		goto bail;
 	}
 	
@@ -1368,7 +1368,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	// save the import to guarantee a file location
 	if ( ![[self journal] saveEntry:importedEntry] )
 	{
-		NSLog(@"%@ %s - unable to save entry imported from file at %@", [self className], _cmd, filename);
+		NSLog(@"%s - unable to save entry imported from file at %@", __PRETTY_FUNCTION__, filename);
 		[[self journal] setSaveEntryOptions:kEntrySaveIndexAndCollect];
 		goto bail;
 	}
@@ -1376,7 +1376,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	// attempt to complete the import
 	if ( ![importedEntry completeImport:importOptions operation:operation maxPreviewSize:maxPreviewSize] )
 	{
-		NSLog(@"%@ %s - unable to complete entry imported from file at %@", [self className], _cmd, filename);
+		NSLog(@"%s - unable to complete entry imported from file at %@", __PRETTY_FUNCTION__, filename);
 		[[self journal] setSaveEntryOptions:kEntrySaveIndexAndCollect];
 		[[self journal] deleteEntry:importedEntry];
 		goto bail;
@@ -1404,7 +1404,7 @@ bail:
 		receivedNotification:(NSString*)nm 
 		forPath:(NSString*)fpath
 {
-	LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s\n\t%@\n\t%@",[self className],_cmd, nm, fpath]));
+	LogIfDebugging(50,([NSString stringWithFormat:@"%s\n\t%@\n\t%@",__PRETTY_FUNCTION__, nm, fpath]));
 	
 	if ( !dropBoxing && [nm isEqualToString:UKFileWatcherWriteNotification] )
 	{
@@ -1433,7 +1433,7 @@ bail:
 			if ( !success )
 			{
 				// put up an alert
-				NSLog(@"%@ %s - problems importing some items from the drop box", [self className], _cmd);
+				NSLog(@"%s - problems importing some items from the drop box", __PRETTY_FUNCTION__);
 				NSBeep();
 				[[NSAlert dropboxError] runModal];
 			}
@@ -1455,7 +1455,7 @@ bail:
 	NSEnumerator *enumerator;
 	NSMutableArray *validPaths;
 	
-	LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s - contents: %@",[self className], _cmd, [contents description]]));
+	LogIfDebugging(50,([NSString stringWithFormat:@"%s - contents: %@",__PRETTY_FUNCTION__, [contents description]]));
 	
 	// first derive the valid paths
 	enumerator = [contents objectEnumerator];
@@ -1553,14 +1553,14 @@ bail:
 			if ( anImport == nil )
 			{
 				completeSuccess = NO;
-				NSLog(@"%@ %s - unable to produce entry for file at path %@", [self className], _cmd, aCompletePath);
+				NSLog(@"%s - unable to produce entry for file at path %@", __PRETTY_FUNCTION__, aCompletePath);
 				
 				// note the problem with a minus sign
 				NSString *movedPath = [NSString stringWithFormat:@"- %@",[aCompletePath lastPathComponent]];
 				NSString *completeMovedPath = [[aCompletePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:movedPath];
 				
 				if ( [fm fileExistsAtPath:aCompletePath] && ![fm movePath:aCompletePath toPath:completeMovedPath handler:nil] )
-					NSLog(@"%@ %s - file still existed after import and could not be removed", [self className], _cmd);
+					NSLog(@"%s - file still existed after import and could not be removed", __PRETTY_FUNCTION__);
 				
 			}
 			else
@@ -1586,7 +1586,7 @@ bail:
 				NSString *completeMovedPath = [[aCompletePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:movedPath];
 				
 				if ( [fm fileExistsAtPath:aCompletePath] && ![fm movePath:aCompletePath toPath:completeMovedPath handler:nil] )
-					NSLog(@"%@ %s - file still existed after import and could not be removed", [self className], _cmd);
+					NSLog(@"%s - file still existed after import and could not be removed", __PRETTY_FUNCTION__);
 				
 				// note the first selection
 				if ( firstSelection == nil )
@@ -1620,7 +1620,7 @@ bail:
 - (void) dropboxImport:(DropBoxDialog*)aDialog didEndDialog:(int)result contents:(NSArray*)contents
 {
 	LogIfDebugging(99,MethodEntryDescription());
-	LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s - content:", [self className], _cmd, contents]));
+	LogIfDebugging(50,([NSString stringWithFormat:@"%s - content:", __PRETTY_FUNCTION__, contents]));
 	
 	if ( result == NSRunAbortedResponse )
 	{
@@ -1638,7 +1638,7 @@ bail:
 			NSString *completeMovedPath = [[aCompletePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:movedPath];
 			
 			if ( [[NSFileManager defaultManager] fileExistsAtPath:aCompletePath] && ![[NSFileManager defaultManager] movePath:aCompletePath toPath:completeMovedPath handler:nil] )
-				NSLog(@"%@ %s - file still existed after import and could not be removed", [self className], _cmd);
+				NSLog(@"%s - file still existed after import and could not be removed", __PRETTY_FUNCTION__);
 		}
 	}
 	
@@ -1677,14 +1677,14 @@ bail:
 			if ( anImport == nil )
 			{
 				completeSuccess = NO;
-				NSLog(@"%@ %s - unable to produce entry for file at path %@", [self className], _cmd, aCompletePath);
+				NSLog(@"%s - unable to produce entry for file at path %@", __PRETTY_FUNCTION__, aCompletePath);
 				
 				// note the problem with a minus sign
 				NSString *movedPath = [NSString stringWithFormat:@"- %@",[aCompletePath lastPathComponent]];
 				NSString *completeMovedPath = [[aCompletePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:movedPath];
 				
 				if ( [fm fileExistsAtPath:aCompletePath] && ![fm movePath:aCompletePath toPath:completeMovedPath handler:nil] )
-					NSLog(@"%@ %s - file still existed after import and could not be removed", [self className], _cmd);
+					NSLog(@"%s - file still existed after import and could not be removed", __PRETTY_FUNCTION__);
 				
 			}
 			else
@@ -1723,7 +1723,7 @@ bail:
 				NSString *completeMovedPath = [[aCompletePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:movedPath];
 				
 				if ( [fm fileExistsAtPath:aCompletePath] && ![fm movePath:aCompletePath toPath:completeMovedPath handler:nil] )
-					NSLog(@"%@ %s - file still existed after import and could not be removed", [self className], _cmd);
+					NSLog(@"%s - file still existed after import and could not be removed", __PRETTY_FUNCTION__);
 				
 				// note the first selection
 				if ( firstSelection == nil )
@@ -1753,7 +1753,7 @@ bail:
 - (void) dropboxScriptCommand:(DropBoxDialog*)aDialog didEndDialog:(int)result contents:(NSArray*)contents
 {
 	LogIfDebugging(99,MethodEntryDescription());
-	LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s - content:", [self className], _cmd, contents]));
+	LogIfDebugging(50,([NSString stringWithFormat:@"%s - content:", __PRETTY_FUNCTION__, contents]));
 		
 	// return to the previous application
 	if ( ![[[aDialog activeApplication] objectForKey:@"NSApplicationName"] isEqualToString:@"Journler"] )
@@ -1791,7 +1791,7 @@ bail:
 			if ( anImport == nil )
 			{
 				completeSuccess = NO;
-				NSLog(@"%@ %s - unable to produce entry for file at path %@", [self className], _cmd, aCompletePath);
+				NSLog(@"%s - unable to produce entry for file at path %@", __PRETTY_FUNCTION__, aCompletePath);
 			}
 			else
 			{
@@ -1829,7 +1829,7 @@ bail:
 				//NSString *completeMovedPath = [[aCompletePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:movedPath];
 				
 				if ( [fm fileExistsAtPath:aCompletePath] && deleteOriginalFile && ![fm removeFileAtPath:aCompletePath handler:nil] )
-					NSLog(@"%@ %s - file could not be deleted at path %@", [self className], _cmd, aCompletePath);
+					NSLog(@"%s - file could not be deleted at path %@", __PRETTY_FUNCTION__, aCompletePath);
 				
 				// note the first selection
 				if ( firstSelection == nil )
@@ -1869,7 +1869,7 @@ bail:
 				aCompletePath = [aDictionary objectForKey:@"representedObject"];
 				
 				if ( [fm fileExistsAtPath:aCompletePath] && ![fm removeFileAtPath:aCompletePath handler:nil] )
-					NSLog(@"%@ %s - file could not be deleted at path %@", [self className], _cmd, aCompletePath);
+					NSLog(@"%s - file could not be deleted at path %@", __PRETTY_FUNCTION__, aCompletePath);
 			}
 		}
 	}
@@ -2101,7 +2101,7 @@ bail:
 		autosaveTimer = [[NSTimer scheduledTimerWithTimeInterval:( 60 * saveInterval ) 
 		target:self selector:@selector(performAutosave:) userInfo:nil repeats:YES] retain];
 		
-		LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s - reset autosave timer, new value: %i", [self className], _cmd, saveInterval]));
+		LogIfDebugging(50,([NSString stringWithFormat:@"%s - reset autosave timer, new value: %i", __PRETTY_FUNCTION__, saveInterval]));
 	}
 }
 
@@ -2245,7 +2245,7 @@ bail:
 		
 	if ( ![[self journal] save:&error] )
 	{
-		NSLog(@"%@ %s - error saving journal", [self className], _cmd);
+		NSLog(@"%s - error saving journal", __PRETTY_FUNCTION__);
 		NSBeep();
 		if ( error != nil )
 			[journalWindowController presentError:error];
@@ -2288,19 +2288,19 @@ bail:
 		}
 		else 
 		{
-			NSLog(@"%@ %s - encountered entries index error, requesting action", [self className], _cmd);
+			NSLog(@"%s - encountered entries index error, requesting action", __PRETTY_FUNCTION__);
 			NSBeep();
 			int result = [[NSAlert noSearchIndex] runModal];
 			
 			if ( result == NSAlertFirstButtonReturn ) 
 			{
-				NSLog(@"%@ %s - resetting search index per user request", [self className], _cmd);
+				NSLog(@"%s - resetting search index per user request", __PRETTY_FUNCTION__);
 				//#warning put up a progress indicator
 				[sharedJournal resetSearchManager];
 			}
 			else 
 			{
-				NSLog(@"%@ %s - search disabled per user request", [self className], _cmd);
+				NSLog(@"%s - search disabled per user request", __PRETTY_FUNCTION__);
 			}
 		}
 	}
@@ -2309,7 +2309,7 @@ bail:
 	{
 		if ( jError & kJournalWants250Upgrade )
 		{
-			NSLog(@"%@ %s - journal wants 250 upgrade", [self className], _cmd);
+			NSLog(@"%s - journal wants 250 upgrade", __PRETTY_FUNCTION__);
 			
 			JournalUpgradeController *upgrader = [[JournalUpgradeController alloc] init];
 			[upgrader run210To250Upgrade:[self journal]];
@@ -2328,7 +2328,7 @@ bail:
 		//	PDJournalStoreAndPathFailure	- screwed somewhere, but not sure what happened
 		
 		// encountered an error loading the journal
-		NSLog(@"%@ %s - unable to load journal, asking user to locate journal or create a new one", [self className], _cmd);
+		NSLog(@"%s - unable to load journal, asking user to locate journal or create a new one", __PRETTY_FUNCTION__);
 		
 		if  ( jError & PDJournalFormatTooOld )
 		{
@@ -2346,7 +2346,7 @@ bail:
 		
 		if ( result == JournlerLoadErrorQuit ) 
 		{
-			NSLog(@"%@ %s - quitting after error", [self className], _cmd);
+			NSLog(@"%s - quitting after error", __PRETTY_FUNCTION__);
 			[NSApp terminate:self];
 			return loadResult;
 		}
@@ -2359,24 +2359,24 @@ bail:
 			//NSString *newPath = [[self applicationSupportFolder] stringByAppendingPathComponent:@"Journler"];
 			NSString *newPath = [[self documentsFolder] stringByAppendingPathComponent:@"Journler"];
 			
-			NSLog(@"%@ %s - attempting to create journal at path %@", [self className], _cmd, newPath);
+			NSLog(@"%s - attempting to create journal at path %@", __PRETTY_FUNCTION__, newPath);
 			
 			// make sure the user wants to proceeed of that path exists
 			if ( [[NSFileManager defaultManager] fileExistsAtPath:newPath] ) 
 			{
-				NSLog(@"%@ %s - found old journal at this path, asking user for further instructions", [self className], _cmd);
+				NSLog(@"%s - found old journal at this path, asking user for further instructions", __PRETTY_FUNCTION__);
 				
 				NSBeep();
 				int result = [[NSAlert overwritePreviousJournal] runModal];
 				
 				if ( result != NSAlertFirstButtonReturn ) 
 				{
-					NSLog(@"%@ %s - user chose not to overwrite the old journal, quitting", [self className], _cmd);
+					NSLog(@"%s - user chose not to overwrite the old journal, quitting", __PRETTY_FUNCTION__);
 					[NSApp terminate:self];
 					return loadResult;
 				}
 				
-				NSLog(@"%@ %s - user chose to overwrite the old journal, proceeding with setup", [self className], _cmd);
+				NSLog(@"%s - user chose to overwrite the old journal, proceeding with setup", __PRETTY_FUNCTION__);
 				
 			}
 			
@@ -2384,7 +2384,7 @@ bail:
 			//NSString	*oldPrefsPath = [@"~/Library/Preferences/com.phildow.journler.plist" stringByExpandingTildeInPath];
 			//if ( [[NSFileManager defaultManager] fileExistsAtPath:oldPrefsPath] ) 
 			//{
-			//	NSLog(@"%@ %s - found old preferences, removing them", [self className], _cmd);
+			//	NSLog(@"%s - found old preferences, removing them", __PRETTY_FUNCTION__);
 			//	[[NSFileManager defaultManager] removeFileAtPath:oldPrefsPath handler:nil];
 			//}
 		
@@ -2392,7 +2392,7 @@ bail:
 			// destroy the journal at the old path if it exists
 			if ( [[NSFileManager defaultManager] fileExistsAtPath:newPath] ) 
 			{
-				NSLog(@"%@ %s - found old journal, removing it", [self className], _cmd);
+				NSLog(@"%s - found old journal, removing it", __PRETTY_FUNCTION__);
 				[[NSFileManager defaultManager] removeFileAtPath:newPath handler:nil];
 			}
 			
@@ -2403,7 +2403,7 @@ bail:
 				// yet another error! at this point, it's too critical
 				NSString *errorString = @"setup error";
 				NSRunCriticalAlertPanel(@"Critical Error", NSLocalizedString( errorString, @""), nil,nil,nil);
-				NSLog(@"%@ %s - critical error setuping up journal, must quit", [self className], _cmd);
+				NSLog(@"%s - critical error setuping up journal, must quit", __PRETTY_FUNCTION__);
 				[NSApp terminate:self];
 				
 			}
@@ -2421,7 +2421,7 @@ bail:
 			{
 				
 				// yet another error! at this point, it's too critical
-				NSLog(@"%@ %s could't load journal, user requested new journal, still unable to load journal, quitting", [self className], _cmd);
+				NSLog(@"%s could't load journal, user requested new journal, still unable to load journal, quitting", __PRETTY_FUNCTION__);
 				NSString *errorString = [NSString stringWithFormat:@"creation error %i", newError];
 				NSRunCriticalAlertPanel(@"Critical Error", NSLocalizedString( errorString, @""), nil,nil,nil);
 				[NSApp terminate:self];
@@ -2432,7 +2432,7 @@ bail:
 			[[NSUserDefaults standardUserDefaults] setObject:[newPath stringByStandardizingPath] forKey:@"Default Journal Location"];
 			[[NSUserDefaults standardUserDefaults] setObject:[sharedJournal title] forKey:@"Journler Journal Title"];
 			
-			NSLog(@"%@ %s - setup completed with new journal", [self className], _cmd);
+			NSLog(@"%s - setup completed with new journal", __PRETTY_FUNCTION__);
 			
 		}
 		
@@ -2457,7 +2457,7 @@ bail:
 			
 			if ( result == NSCancelButton )
 			{
-				NSLog(@"%@ %s - quitting after user cancelled locate request", [self className], _cmd);
+				NSLog(@"%s - quitting after user cancelled locate request", __PRETTY_FUNCTION__);
 				[NSApp terminate:self];
 				return loadResult;
 			}
@@ -2465,20 +2465,20 @@ bail:
 			filenames = [op filenames];
 			if ( !filenames || [filenames count] == 0 )
 			{
-				NSLog(@"%@ %s - quitting after user cancelled locate request", [self className], _cmd);
+				NSLog(@"%s - quitting after user cancelled locate request", __PRETTY_FUNCTION__);
 				[NSApp terminate:self];
 				return loadResult;
 			}
 			
 			NSString *newPath = [filenames objectAtIndex:0];
-			NSLog(@"%@ %s - attempting to load journal at path %@", [self className], _cmd, newPath);
+			NSLog(@"%s - attempting to load journal at path %@", __PRETTY_FUNCTION__, newPath);
 			
 			// initialize a new journal
 			[sharedJournal loadFromPath:newPath error:&newError];
 			if ( newError ) 
 			{
 				// yet another error! at this point, it's too critical
-				NSLog(@"%@ %s - could't load journal, user specified different location, still unable to load journal, quitting", [self className], _cmd);
+				NSLog(@"%s - could't load journal, user specified different location, still unable to load journal, quitting", __PRETTY_FUNCTION__);
 				NSString *errorString = [NSString stringWithFormat:@"creation error %i", newError];
 				NSRunCriticalAlertPanel(@"Critical Error", NSLocalizedString( errorString, @""), nil,nil,nil);
 				[NSApp terminate:self];
@@ -2489,7 +2489,7 @@ bail:
 			[[NSUserDefaults standardUserDefaults] setObject:[newPath stringByStandardizingPath] forKey:@"Default Journal Location"];
 			[[NSUserDefaults standardUserDefaults] setObject:[sharedJournal title] forKey:@"Journler Journal Title"];
 			
-			NSLog(@"%@ %s - setup completed with old journal at user defined location", [self className], _cmd);
+			NSLog(@"%s - setup completed with old journal at user defined location", __PRETTY_FUNCTION__);
 			
 		}
 	}
@@ -2525,24 +2525,24 @@ bail:
 
 - (BOOL)fileManager:(NSFileManager *)fileManager shouldProceedAfterError:(NSError *)error movingItemAtPath:(NSString *)srcPath toPath:(NSString *)dstPath
 {
-	NSLog(@"%@ %s - error moving at from %@ to %@, error: %@", [self className], _cmd, srcPath, dstPath, error);
+	NSLog(@"%s - error moving at from %@ to %@, error: %@", __PRETTY_FUNCTION__, srcPath, dstPath, error);
 	return NO;
 }
 
 - (BOOL)fileManager:(NSFileManager *)manager shouldProceedAfterError:(NSDictionary *)errorInfo
 {
-	NSLog(@"%@ %s - file manager error: %@", [self className], _cmd, errorInfo);
+	NSLog(@"%s - file manager error: %@", __PRETTY_FUNCTION__, errorInfo);
 	return NO;
 }
 
 - (BOOL) handleSetup:(NSString*)path 
 {
-	NSLog(@"%@ %s - running Journler setup...", [self className], _cmd);
+	NSLog(@"%s - running Journler setup...", __PRETTY_FUNCTION__);
 	
 	// do nothing on a nil path
 	if ( path == nil )
 	{
-		NSLog(@"%@ %s - nil path, bailing", [self className], _cmd);
+		NSLog(@"%s - nil path, bailing", __PRETTY_FUNCTION__);
 		return NO;
 	}
 	
@@ -2618,7 +2618,7 @@ bail:
 	// create the new journal data, but only if no data already exists at this location
 	if ( [[NSFileManager defaultManager] fileExistsAtPath:path] ) 
 	{
-		NSLog(@"%@ %s - journal data already exists at %@, will attempt to load from that information", [self className], _cmd, path);
+		NSLog(@"%s - journal data already exists at %@, will attempt to load from that information", __PRETTY_FUNCTION__, path);
 		
 		// I should really split this into two functions:
 		//	a. initialize the journal
@@ -2636,14 +2636,14 @@ bail:
 			if ( ![ZipUtilities unzipPath:zippedDefaultJournalPath toPath:[path stringByDeletingLastPathComponent]] )
 			{
 				zipInstalSuccess = NO;
-				NSLog(@"%@ %s - unable to unzip default journal to default installation directory", [self className], _cmd);
+				NSLog(@"%s - unable to unzip default journal to default installation directory", __PRETTY_FUNCTION__);
 			}
 			else
 			{
 				int anError;
 				
 				zipInstalSuccess = YES;
-				NSLog(@"%@ %s - successfully installed default journal", [self className], _cmd);
+				NSLog(@"%s - successfully installed default journal", __PRETTY_FUNCTION__);
 				
 				unique_id = [NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]];
 				
@@ -2664,7 +2664,7 @@ bail:
 				if ( wordlistSource != nil && wordlistDestination != nil && 
 						![[NSFileManager defaultManager] copyPath:wordlistSource toPath:wordlistDestination handler:self] )
 				{
-					NSLog(@"%@ %s - unable to copy wordlist from %@ to %@\n\n", [self className], _cmd, wordlistSource, wordlistDestination);
+					NSLog(@"%s - unable to copy wordlist from %@ to %@\n\n", __PRETTY_FUNCTION__, wordlistSource, wordlistDestination);
 				}
 				
 				// a few entries will need modifying
@@ -2699,7 +2699,7 @@ bail:
 		if ( zipInstalSuccess == NO )
 		{
 			// fall back on the default installation
-			NSLog(@"%@ %s - unable to locate DefaultJournal.zip in application bundle", [self className], _cmd);
+			NSLog(@"%s - unable to locate DefaultJournal.zip in application bundle", __PRETTY_FUNCTION__);
 		
 			BOOL didLoadSearchIndex;
 			JournlerEntry *general_entry = nil;
@@ -2712,7 +2712,7 @@ bail:
 			if ( ![[NSFileManager defaultManager] createDirectoryAtPath:path attributes:nil] ) 
 			{
 				// unable to create the journler directory at the application support folder - ask the user where
-				NSLog(@"%@ %s - Could not create support directory at path %@", [self className], _cmd, path);
+				NSLog(@"%s - Could not create support directory at path %@", __PRETTY_FUNCTION__, path);
 				return NO;
 				
 			}
@@ -2720,28 +2720,28 @@ bail:
 			// entries directory
 			if ( ![[NSFileManager defaultManager] createDirectoryAtPath:[sharedJournal entriesPath] attributes:nil] ) 
 			{
-				NSLog(@"%@ %s - Could not create entries directory at path %@", [self className], _cmd, [sharedJournal entriesPath]);
+				NSLog(@"%s - Could not create entries directory at path %@", __PRETTY_FUNCTION__, [sharedJournal entriesPath]);
 				return NO;
 			}
 			
 			// collections directory
 			if ( ![[NSFileManager defaultManager] createDirectoryAtPath:[sharedJournal collectionsPath] attributes:nil] ) 
 			{
-				NSLog(@"%@ %s - Could not create collections directory at path %@", [self className], _cmd, [sharedJournal collectionsPath]);
+				NSLog(@"%s - Could not create collections directory at path %@", __PRETTY_FUNCTION__, [sharedJournal collectionsPath]);
 				return NO;
 			}
 			
 			// the blogs directory
 			if ( ![[NSFileManager defaultManager] createDirectoryAtPath:[sharedJournal blogsPath] attributes:nil] ) 
 			{
-				NSLog(@"%@ %s - Could not create blogs directory at path %@", [self className], _cmd, [sharedJournal blogsPath]);
+				NSLog(@"%s - Could not create blogs directory at path %@", __PRETTY_FUNCTION__, [sharedJournal blogsPath]);
 				return NO;
 			}
 			
 			// the resources directory
 			if ( ![[NSFileManager defaultManager] createDirectoryAtPath:[sharedJournal resourcesPath] attributes:nil] )
 			{
-				NSLog(@"%@ %s - Could not create resources directory at path %@", [self className], _cmd, [sharedJournal resourcesPath]);
+				NSLog(@"%s - Could not create resources directory at path %@", __PRETTY_FUNCTION__, [sharedJournal resourcesPath]);
 				return NO;
 			}
 			
@@ -2776,7 +2776,7 @@ bail:
 			
 			if ( general_content == nil )
 			{
-				NSLog(@"%@ %s - Could not load TutorialGeneral.rtfd", [self className], _cmd);
+				NSLog(@"%s - Could not load TutorialGeneral.rtfd", __PRETTY_FUNCTION__);
 			}
 			else 
 			{
@@ -2786,7 +2786,7 @@ bail:
 			general_entry = [[[JournlerEntry alloc] initWithProperties:tutorial_general_dic] autorelease];
 			if ( general_entry == nil ) 
 			{
-				NSLog(@"%@ %s - could not create the general tutorial entry", [self className], _cmd);
+				NSLog(@"%s - could not create the general tutorial entry", __PRETTY_FUNCTION__);
 			}
 			else
 			{
@@ -2795,9 +2795,9 @@ bail:
 				
 				// add a couple of resources to the entry
 				//if ( ( websiteResource = [general_entry resourceForURL:@"http://journler.com" title:@"journler.com"] ) == nil )
-				//	NSLog(@"%@ %s - could not create journler.com resource for general entry", [self className], _cmd);
+				//	NSLog(@"%s - could not create journler.com resource for general entry", __PRETTY_FUNCTION__);
 				//if ( ( purchaseResource = [general_entry resourceForURL:@"http://journler.com/purchase/" title:@"donate/purchase"] ) == nil )
-				//	NSLog(@"%@ %s - could not create donations and licensing resource for general entry", [self className], _cmd);
+				//	NSLog(@"%s - could not create donations and licensing resource for general entry", __PRETTY_FUNCTION__);
 			}
 			
 			// prepare the two resources, "editing entries" and "using media" - not added until the directories have all been created
@@ -2812,7 +2812,7 @@ bail:
 			journal_collection = [[[JournlerCollection alloc] initWithProperties:journal_collection_dic] autorelease];
 			if ( journal_collection == nil ) 
 			{
-				NSLog(@"%@ %s - could not create the journal collection", [self className], _cmd);
+				NSLog(@"%s - could not create the journal collection", __PRETTY_FUNCTION__);
 			}
 			else
 			{
@@ -2830,7 +2830,7 @@ bail:
 			trash_collection = [[[JournlerCollection alloc] initWithProperties:trash_collection_dic] autorelease];
 			if ( trash_collection == nil ) 
 			{
-				NSLog(@"%@ %s - could not create the trash collection", [self className], _cmd);
+				NSLog(@"%s - could not create the trash collection", __PRETTY_FUNCTION__);
 			}
 			else
 			{
@@ -2847,7 +2847,7 @@ bail:
 			NSMutableDictionary *journal_plist_dic = [NSMutableDictionary dictionaryWithContentsOfFile:journal_plist_path];
 			if ( journal_plist_dic == nil ) 
 			{
-				NSLog(@"%@ %s- could not create the journal property list", [self className], _cmd);
+				NSLog(@"%s- could not create the journal property list", __PRETTY_FUNCTION__);
 			}
 			
 			// set the title and the identifier
@@ -2868,14 +2868,14 @@ bail:
 			// the search index
 			if ( ![[sharedJournal searchManager] createIndexAtPath:path] ) 
 			{
-				NSLog(@"%@ %s - Could not create journal search index at path %@", [self className], _cmd, path);
+				NSLog(@"%s - Could not create journal search index at path %@", __PRETTY_FUNCTION__, path);
 			}
 			else 
 			{
 				if ( ![[sharedJournal searchManager] loadIndexAtPath:path] )
 				{
 					didLoadSearchIndex = NO;
-					NSLog(@"%@ %s - Could not load journal search index at path %@", [self className], _cmd, path);
+					NSLog(@"%s - Could not load journal search index at path %@", __PRETTY_FUNCTION__, path);
 				}
 				else
 				{
@@ -2887,7 +2887,7 @@ bail:
 			if ( wordlistSource != nil && wordlistDestination != nil && 
 					![[NSFileManager defaultManager] copyPath:wordlistSource toPath:wordlistDestination handler:self] )
 			{
-				NSLog(@"%@ %s - unable to copy wordlist from %@ to %@\n\n", [self className], _cmd, wordlistSource, wordlistDestination);
+				NSLog(@"%s - unable to copy wordlist from %@ to %@\n\n", __PRETTY_FUNCTION__, wordlistSource, wordlistDestination);
 			}
 			
 			// save the entry
@@ -2895,11 +2895,11 @@ bail:
 			
 			// add those two tutorial resources
 			//if ( termsOfUsePath == nil || ( termsResource = [general_entry resourceForFile:termsOfUsePath operation:kNewResourceForceCopy] ) == nil )
-			//	NSLog(@"%@ %s - problem creating terms of use resource", [self className], _cmd);
+			//	NSLog(@"%s - problem creating terms of use resource", __PRETTY_FUNCTION__);
 			//if ( entriesTutorialPath == nil || ( entriesResource = [general_entry resourceForFile:entriesTutorialPath operation:kNewResourceForceCopy] ) == nil )
-			//	NSLog(@"%@ %s - problem creating entries tutorial resource", [self className], _cmd);
+			//	NSLog(@"%s - problem creating entries tutorial resource", __PRETTY_FUNCTION__);
 			//if ( mediaTutorialPath == nil || ( mediaResource = [general_entry resourceForFile:mediaTutorialPath operation:kNewResourceForceCopy] ) == nil )
-			//	NSLog(@"%@ %s - problem creating media tutorial resource", [self className], _cmd);
+			//	NSLog(@"%s - problem creating media tutorial resource", __PRETTY_FUNCTION__);
 			
 			// save the resources
 			//[sharedJournal saveResource:websiteResource];
@@ -2931,13 +2931,13 @@ bail:
 		if ( standard_defaults == nil )
 		{
 			standard_defaults = [NSMutableDictionary dictionary];
-			NSLog(@"%@ %s - problem initializing the standard defaults from path %@", [self className], _cmd, path_to_defaults);
+			NSLog(@"%s - problem initializing the standard defaults from path %@", __PRETTY_FUNCTION__, path_to_defaults);
 		}
 	}
 	else
 	{
 		standard_defaults = [NSMutableDictionary dictionary];
-		NSLog(@"%@ %s - unable to locate the standard defaults file \"defaults.xml\"", [self className], _cmd);
+		NSLog(@"%s - unable to locate the standard defaults file \"defaults.xml\"", __PRETTY_FUNCTION__);
 	}
 	
 	[standard_defaults setObject:journal_title forKey:@"Journler Journal Title"];
@@ -2978,7 +2978,7 @@ bail:
 	[[NSUserDefaults standardUserDefaults] registerDefaults:standard_defaults];
 	//[[NSUserDefaults standardUserDefaults] synchronize];
 	
-	NSLog(@"%@ %s - completed Journler setup", [self className], _cmd);
+	NSLog(@"%s - completed Journler setup", __PRETTY_FUNCTION__);
 	return YES;
 }
 
@@ -3195,7 +3195,7 @@ bail:
 	NSString *journalProtectedPath = [[[self journal] journalPath] stringByAppendingPathComponent:PDJournalPasswordProtectedLoc];
 	if ( ![[NSFileManager defaultManager] fileExistsAtPath:journalProtectedPath] )
 	{
-		NSLog(@"%@ %s - no password protection file at expected path %@", [self className], _cmd, journalProtectedPath);
+		NSLog(@"%s - no password protection file at expected path %@", __PRETTY_FUNCTION__, journalProtectedPath);
 		NSBeep();
 		return;
 	}
@@ -3204,7 +3204,7 @@ bail:
 	NSString *md5checksum = [NSString stringWithContentsOfFile:journalProtectedPath encoding:NSUnicodeStringEncoding error:&error];
 	if ( md5checksum == nil || [md5checksum length] == 0 )
 	{
-		NSLog(@"%@ %s - no checksum for file at path %@, error %@", [self className], _cmd, journalProtectedPath, error);
+		NSLog(@"%s - no checksum for file at path %@, error %@", __PRETTY_FUNCTION__, journalProtectedPath, error);
 		NSBeep();
 		return;
 	}
@@ -3281,7 +3281,7 @@ bail:
 			if ( !success )
 			{
 				// put up an alert
-				NSLog(@"%@ %s - problems importing some items from the drop box", [self className], _cmd);
+				NSLog(@"%s - problems importing some items from the drop box", __PRETTY_FUNCTION__);
 				NSBeep();
 				[[NSAlert dropboxError] runModal];
 			}
@@ -3650,7 +3650,7 @@ bail:
 				}
 				else
 				{
-					NSLog(@"%@ %s - Unable to save entry: %@ %@", [self className], _cmd, [anEntry valueForKey:@"tagID"], [anEntry title]);
+					NSLog(@"%s - Unable to save entry: %@ %@", __PRETTY_FUNCTION__, [anEntry valueForKey:@"tagID"], [anEntry title]);
 				}
 				
 				[innerpool release];
@@ -3822,7 +3822,7 @@ bail:
 				
 				if ( ![archiveWrapper writeToFile:saveWithExtension atomically:YES updateFilenames:YES] )
 				{
-					NSLog(@"%@ %s - unable to write entry as webarchive to location '%@'", [self className], _cmd, saveWithExtension);
+					NSLog(@"%s - unable to write entry as webarchive to location '%@'", __PRETTY_FUNCTION__, saveWithExtension);
 					success = NO;
 				}
 				
@@ -4063,7 +4063,7 @@ bail:
 
 		if ( dictionaryList == nil )
 		{
-			NSLog(@"%@ %s - problem reading the autocorrect ditionary at path %@, error %@", [self className], _cmd, filename, error);
+			NSLog(@"%s - problem reading the autocorrect ditionary at path %@, error %@", __PRETTY_FUNCTION__, filename, error);
 			return nil;
 		}
 	}
@@ -4088,7 +4088,7 @@ bail:
 		NSArray *theWords = [aPair componentsSeparatedByString:@","];
 		if ( [theWords count] != 2 )
 		{
-			NSLog(@"%@ %s - word pair count not equal to 2: %@", [self className], _cmd, aPair);
+			NSLog(@"%s - word pair count not equal to 2: %@", __PRETTY_FUNCTION__, aPair);
 			continue;
 		}
 		
@@ -4097,13 +4097,13 @@ bail:
 	
 		if ( [incorrectWord rangeOfString:@","].location != NSNotFound )
 		{
-			NSLog(@"%@ %s - word pair contains extraneous commas: %@", [self className], _cmd, aPair);
+			NSLog(@"%s - word pair contains extraneous commas: %@", __PRETTY_FUNCTION__, aPair);
 			continue;
 		}
 		
 		if ( [correctWord rangeOfString:@","].location != NSNotFound )
 		{
-			NSLog(@"%@ %s - word pair contains extraneous commas: %@", [self className], _cmd, aPair);
+			NSLog(@"%s - word pair contains extraneous commas: %@", __PRETTY_FUNCTION__, aPair);
 			continue;
 		}
 		
@@ -4573,7 +4573,7 @@ bail:
 {
 	if ( path == nil )
 	{
-		NSLog(@"%@ %s - script path is nil", [self className], _cmd);
+		NSLog(@"%s - script path is nil", __PRETTY_FUNCTION__);
 		return;
 	}
 	
@@ -4639,7 +4639,7 @@ bail:
 			success = [fileManager createDirectoryAtPath:pdfServiceDirectoryPath attributes:nil]; 
 			if (!success) 
 			{ 
-				NSLog(@"%@ %s - Unable to create PDF Services directory at %@", [self className], _cmd, pdfServiceDirectoryPath);
+				NSLog(@"%s - Unable to create PDF Services directory at %@", __PRETTY_FUNCTION__, pdfServiceDirectoryPath);
 			} 
 		} 
 		
@@ -4661,7 +4661,7 @@ bail:
 			myAppPath = [[NSBundle mainBundle] pathForResource:@"Save PDF to Journler" ofType:@"app"];
 			if ( myAppPath == nil )
 			{
-				NSLog(@"%@ %s - unable to locate Save PDF to Journler.app in Journler bundle", [self className], _cmd);
+				NSLog(@"%s - unable to locate Save PDF to Journler.app in Journler bundle", __PRETTY_FUNCTION__);
 				success = NO;
 			}
 			else
@@ -4670,7 +4670,7 @@ bail:
 				success = [fileManager copyPath:myAppPath toPath:myAppPDFAppPath handler:nil];
 				if ( success ) // hide the extension if successful
 				{
-					NSLog(@"%@ %s - installed self as pdf service to %@", [self className], _cmd, myAppPDFAppPath);
+					NSLog(@"%s - installed self as pdf service to %@", __PRETTY_FUNCTION__, myAppPDFAppPath);
 					[fileManager changeFileAttributes:[NSDictionary dictionaryWithObject:
 					 [NSNumber numberWithBool:YES] forKey:NSFileExtensionHidden] atPath:myAppPDFAppPath];
 				}
@@ -4679,7 +4679,7 @@ bail:
 	}
 	else
 	{
-		NSLog(@"%@ %s - unable to install self as pdf service to %@", [self className], _cmd, myAppPDFAppPath);
+		NSLog(@"%s - unable to install self as pdf service to %@", __PRETTY_FUNCTION__, myAppPDFAppPath);
 	}
 	
 	return success;
@@ -4701,14 +4701,14 @@ bail:
 		if ( ![[NSFileManager defaultManager] fileExistsAtPath:scriptsDirectory] 
 			&& ![[NSFileManager defaultManager] createDirectoryAtPath:scriptsDirectory attributes:nil] )
 		{
-			NSLog(@"%@ %s - unable to create scripts directory at path %@", [self className], _cmd, scriptsDirectory);
+			NSLog(@"%s - unable to create scripts directory at path %@", __PRETTY_FUNCTION__, scriptsDirectory);
 			goto bail;
 		}
 		
 		if ( ![[NSFileManager defaultManager] fileExistsAtPath:journlerScriptsDirectory]
 			&& ![[NSFileManager defaultManager] createDirectoryAtPath:journlerScriptsDirectory attributes:nil] )
 		{
-			NSLog(@"%@ %s - unable to create journler scripts directory at path %@", [self className], _cmd, scriptsDirectory);
+			NSLog(@"%s - unable to create journler scripts directory at path %@", __PRETTY_FUNCTION__, scriptsDirectory);
 			goto bail;
 		}
 		
@@ -4725,21 +4725,21 @@ bail:
 		if ( ![[NSFileManager defaultManager] fileExistsAtPath:scriptsDirectory] 
 			&& ![[NSFileManager defaultManager] createDirectoryAtPath:scriptsDirectory attributes:nil] )
 		{
-			NSLog(@"%@ %s - unable to create scripts directory at path %@", [self className], _cmd, scriptsDirectory);
+			NSLog(@"%s - unable to create scripts directory at path %@", __PRETTY_FUNCTION__, scriptsDirectory);
 			goto bail;
 		}
 		
 		if ( ![[NSFileManager defaultManager] fileExistsAtPath:applicationScriptsDirectory] 
 			&& ![[NSFileManager defaultManager] createDirectoryAtPath:applicationScriptsDirectory attributes:nil] )
 		{
-			NSLog(@"%@ %s - unable to create scripts directory at path %@", [self className], _cmd, scriptsDirectory);
+			NSLog(@"%s - unable to create scripts directory at path %@", __PRETTY_FUNCTION__, scriptsDirectory);
 			goto bail;
 		}
 		
 		if ( ![[NSFileManager defaultManager] fileExistsAtPath:journlerScriptsDirectory]
 			&& ![[NSFileManager defaultManager] createDirectoryAtPath:journlerScriptsDirectory attributes:nil] )
 		{
-			NSLog(@"%@ %s - unable to create journler scripts directory at path %@", [self className], _cmd, scriptsDirectory);
+			NSLog(@"%s - unable to create journler scripts directory at path %@", __PRETTY_FUNCTION__, scriptsDirectory);
 			goto bail;
 		}
 		
@@ -4776,7 +4776,7 @@ bail:
 			success = [fileManager createDirectoryAtPath:contextualItemsDirectoryPath attributes:nil]; 
 			if (!success) 
 			{ 
-				NSLog(@"%@ %s - Unable to create Contextual Menu Items directory at %@", [self className], _cmd, contextualItemsDirectoryPath);
+				NSLog(@"%s - Unable to create Contextual Menu Items directory at %@", __PRETTY_FUNCTION__, contextualItemsDirectoryPath);
 			} 
 		} 
 
@@ -4790,17 +4790,17 @@ bail:
 			success = [fileManager copyPath:bundledContextualItemPath toPath:installedItemPath handler:nil]; 
 			if (success) 
 			{ 
-				NSLog(@"%@ %s - successfully installed contextual menu item", [self className], _cmd);
+				NSLog(@"%s - successfully installed contextual menu item", __PRETTY_FUNCTION__);
 			}
 			else 
 			{ 
-				NSLog(@"%@ %s - unable to install contextual menu item to %@", [self className], _cmd, installedItemPath);
+				NSLog(@"%s - unable to install contextual menu item to %@", __PRETTY_FUNCTION__, installedItemPath);
 			} 
 		} 
 	}
 	else
 	{
-		NSLog(@"%@ %s - unable to install contextual menu item to %@", [self className], _cmd, installedItemPath);
+		NSLog(@"%s - unable to install contextual menu item to %@", __PRETTY_FUNCTION__, installedItemPath);
 	}
 	
 	return success;
@@ -4816,10 +4816,10 @@ bail:
 	if ( ![[NSFileManager defaultManager] fileExistsAtPath:dropBoxPath] )
 	{
 		if ( ![[NSFileManager defaultManager] createDirectoryAtPath:dropBoxPath attributes:nil] )
-			NSLog(@"%@ %s - no dropbox and unable to create at path %@", [self className], _cmd, dropBoxPath);
+			NSLog(@"%s - no dropbox and unable to create at path %@", __PRETTY_FUNCTION__, dropBoxPath);
 		else
 		{
-			//NSLog(@"%@ %s - created drop box at path %@", [self className], _cmd, dropBoxPath);
+			//NSLog(@"%s - created drop box at path %@", __PRETTY_FUNCTION__, dropBoxPath);
 			
 			// set the icon
 			NSImage *dropboxIcon = [NSImage imageNamed:@"DropBox"];
@@ -4831,9 +4831,9 @@ bail:
 			
 			if ( ![[NSFileManager defaultManager] fileExistsAtPath:desktopDropBox]
 				&& ![[NSWorkspace sharedWorkspace] createAliasForPath:dropBoxPath toPath:desktopDropBox] )
-				NSLog(@"%@ %s - unable to create desktop alias to drop box from %@ at %@", [self className], _cmd, dropBoxPath, desktopDropBox);
+				NSLog(@"%s - unable to create desktop alias to drop box from %@ at %@", __PRETTY_FUNCTION__, dropBoxPath, desktopDropBox);
 			//else
-			//	NSLog(@"%@ %s - created drop box alias at path %@", [self className], _cmd, desktopDropBox);
+			//	NSLog(@"%s - created drop box alias at path %@", __PRETTY_FUNCTION__, desktopDropBox);
 			
 			// watch the path
 			dropBoxWatcher = [[JournlerKQueue alloc] init];
@@ -4854,7 +4854,7 @@ bail:
 		if ( !success )
 		{
 			// put up an alert
-			NSLog(@"%@ %s - problems importing some items from the drop box", [self className], _cmd);
+			NSLog(@"%s - problems importing some items from the drop box", __PRETTY_FUNCTION__);
 			NSBeep();
 			[[NSAlert dropboxError] runModal];
 		}
@@ -4880,7 +4880,7 @@ bail:
 	{
 		NSBeep();
 		[[NSAlert uriError] runModal];
-		NSLog(@"%@ %s - url does not refer to Journler object %@", [self className], _cmd, [url absoluteString]);
+		NSLog(@"%s - url does not refer to Journler object %@", __PRETTY_FUNCTION__, [url absoluteString]);
 		return;
 	}
 	
@@ -4968,7 +4968,7 @@ bail:
 		{
 			NSBeep();
 			[[NSAlert uriError] runModal];
-			NSLog(@"%@ %s - unable to location Journler object for url %@", [self className], _cmd, [url absoluteString]);
+			NSLog(@"%s - unable to location Journler object for url %@", __PRETTY_FUNCTION__, [url absoluteString]);
 			return;
 		}
 		
@@ -4997,7 +4997,7 @@ bail:
 	static NSString *selectionIDsSource = @"tell application \"Mail\"\nset mailSelection to the selection\nset allIDs to {}\nrepeat with aMail in mailSelection\nset allIDs to allIDs & {{the id of aMail, the subject of aMail}}\nend repeat\nreturn allIDs\nend tell";
 	
 	NSString *mboxPath = [pboard stringForType:kMailMessagePboardType];
-	LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s - mailbox path: %@", [self className],_cmd,mboxPath]));
+	LogIfDebugging(50,([NSString stringWithFormat:@"%s - mailbox path: %@", __PRETTY_FUNCTION__,mboxPath]));
 		
 	NSDictionary *errorDictionary;
 	NSAppleEventDescriptor *eventDescriptor;
@@ -5013,7 +5013,7 @@ bail:
 	
 	if ( script == nil )
 	{
-		NSLog(@"%@ %s - unable to initialize the mail message script: %@", [self className], _cmd, errorDictionary);
+		NSLog(@"%s - unable to initialize the mail message script: %@", __PRETTY_FUNCTION__, errorDictionary);
 		messagePaths = nil;
 	}
 	else
@@ -5022,7 +5022,7 @@ bail:
 		eventDescriptor = [script executeAndReturnError:&errorDictionary];
 		if ( eventDescriptor == nil && [[errorDictionary objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError ) 
 		{
-			NSLog(@"%@ %s - problem compiling mail message selection script: %@", [self className], _cmd, errorDictionary);
+			NSLog(@"%s - problem compiling mail message selection script: %@", __PRETTY_FUNCTION__, errorDictionary);
 			
 			id theSource = [script richTextSource];
 			if ( theSource == nil ) theSource = [script source];
@@ -5035,18 +5035,18 @@ bail:
 		}
 		else if ( [eventDescriptor numberOfItems] == 0 )
 		{
-			NSLog(@"%@ %s - mail messasge drag, the return event descriptor contains no items: %@", [self className], _cmd, eventDescriptor);
+			NSLog(@"%s - mail messasge drag, the return event descriptor contains no items: %@", __PRETTY_FUNCTION__, eventDescriptor);
 			messagePaths = nil;
 		}
 		else
 		{
-			LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s - event descriptor: %@", [self className],_cmd,[eventDescriptor description]]));
+			LogIfDebugging(50,([NSString stringWithFormat:@"%s - event descriptor: %@", __PRETTY_FUNCTION__,[eventDescriptor description]]));
 			
 			int i, totalItems = [eventDescriptor numberOfItems];
 			for ( i = 1; i <= totalItems; i++ )
 			{
 				NSAppleEventDescriptor *itemDescriptor = [eventDescriptor descriptorAtIndex:i];
-				LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s - item descriptor: %@", [self className],_cmd,[itemDescriptor description]]));
+				LogIfDebugging(50,([NSString stringWithFormat:@"%s - item descriptor: %@", __PRETTY_FUNCTION__,[itemDescriptor description]]));
 				
 				if ( [itemDescriptor numberOfItems] != 2 )
 					continue;
@@ -5136,7 +5136,7 @@ bail:
 		
 		if ( attributed_service == nil ) 
 		{
-			NSLog(@"%@ %s - unable to derive attributed string from pasteboard rtfd", [self className], _cmd);
+			NSLog(@"%s - unable to derive attributed string from pasteboard rtfd", __PRETTY_FUNCTION__);
 			destinationPaths = nil;
 			goto bail;
 		}
@@ -5149,7 +5149,7 @@ bail:
 
 		if ( ![attributed_wrapper writeToFile:[destinationPaths objectAtIndex:0] atomically:NO updateFilenames:YES] ) 
 		{
-			NSLog(@"%@ %s - unable to write service rtfd data to %@", [self className], _cmd, [destinationPaths objectAtIndex:0]);
+			NSLog(@"%s - unable to write service rtfd data to %@", __PRETTY_FUNCTION__, [destinationPaths objectAtIndex:0]);
 			destinationPaths = nil;
 			goto bail;
 		}
@@ -5165,7 +5165,7 @@ bail:
 		
 		if ( ![service_data writeToFile:[destinationPaths objectAtIndex:0] options:0 error:&error] )
 		{
-			NSLog(@"%@ %s - unable to write service rich text data to %@, error %@", [self className], _cmd, [destinationPaths objectAtIndex:0], error);
+			NSLog(@"%s - unable to write service rich text data to %@, error %@", __PRETTY_FUNCTION__, [destinationPaths objectAtIndex:0], error);
 			destinationPaths = nil;
 			goto bail;
 		}
@@ -5180,7 +5180,7 @@ bail:
 		
 		if ( service_image == nil ) 
 		{
-			NSLog(@"%@ %s - unable to derive image from pasteboard image data", [self className], _cmd);
+			NSLog(@"%s - unable to derive image from pasteboard image data", __PRETTY_FUNCTION__);
 			destinationPaths = nil;
 			goto bail;
 		}
@@ -5191,7 +5191,7 @@ bail:
 		
 		if ( ![tiff_rep writeToFile:[destinationPaths objectAtIndex:0] options:0 error:&error] )
 		{
-			NSLog(@"%@ %s - unable to write service tiff data to %@, error %@", [self className], _cmd, [destinationPaths objectAtIndex:0], error);
+			NSLog(@"%s - unable to write service tiff data to %@, error %@", __PRETTY_FUNCTION__, [destinationPaths objectAtIndex:0], error);
 			destinationPaths = nil;
 			goto bail;
 		}
@@ -5209,7 +5209,7 @@ bail:
 		
 		if ( ![service_string writeToFile:[destinationPaths objectAtIndex:0] atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
 		{
-			NSLog(@"%@ %s - unable to write service plain text data to %@, error %@", [self className], _cmd, [destinationPaths objectAtIndex:0], error);
+			NSLog(@"%s - unable to write service plain text data to %@, error %@", __PRETTY_FUNCTION__, [destinationPaths objectAtIndex:0], error);
 			destinationPaths = nil;
 			goto bail;
 		}
@@ -5262,7 +5262,7 @@ bail:
 			{
 				url = nil;
 				iIntegration = YES;
-				NSLog(@"%@ %s - requesting import of iLife or Message file, only single items accepted", [self className], _cmd);
+				NSLog(@"%s - requesting import of iLife or Message file, only single items accepted", __PRETTY_FUNCTION__);
 				
 				NSArray *filenames = [pboard propertyListForType:NSFilenamesPboardType];
 				destinationPaths = filenames;
@@ -5364,7 +5364,7 @@ bail:
 		// otherwise, a nil url is a serious problem
 		else if ( url == nil  )
 		{
-			NSLog(@"%@ %s - unable to derive url from pasteboard", [self className], _cmd);
+			NSLog(@"%s - unable to derive url from pasteboard", __PRETTY_FUNCTION__);
 			destinationPaths = nil;
 			goto bail;
 		}
@@ -5391,7 +5391,7 @@ bail:
 			if ( [[[web_view mainFrame] dataSource] isLoading] )
 			{
 				[[web_view mainFrame] stopLoading];
-				NSLog(@"%@ %s - operation timed out loading url %@", [self className], _cmd, [url absoluteString] );
+				NSLog(@"%s - operation timed out loading url %@", __PRETTY_FUNCTION__, [url absoluteString] );
 				destinationPaths = nil;
 				goto bail;
 			}
@@ -5405,7 +5405,7 @@ bail:
 			
 			if ( services_archive == nil ) 
 			{
-				NSLog(@"%@ %s - unable to derive webarchive from url %@", [self className], _cmd, [url absoluteString] );
+				NSLog(@"%s - unable to derive webarchive from url %@", __PRETTY_FUNCTION__, [url absoluteString] );
 				destinationPaths = nil;
 				goto bail;
 			}
@@ -5415,7 +5415,7 @@ bail:
 			
 			if ( ![[services_archive data] writeToFile:[destinationPaths objectAtIndex:0] options:NSAtomicWrite error:&error] ) 
 			{
-				NSLog(@"%@ %s - unable to write webarchive to %@, error %@", [self className], _cmd, [destinationPaths objectAtIndex:0], error);
+				NSLog(@"%s - unable to write webarchive to %@, error %@", __PRETTY_FUNCTION__, [destinationPaths objectAtIndex:0], error);
 				destinationPaths = nil;
 				goto bail;
 			}
@@ -5436,7 +5436,7 @@ bail:
 			
 			if ( ![weblocFile writeToFile:theDestination] )
 			{
-				NSLog(@"%@ %s - unable to write webloc to %@", [self className], _cmd, theDestination);
+				NSLog(@"%s - unable to write webloc to %@", __PRETTY_FUNCTION__, theDestination);
 				destinationPaths = nil;
 				goto bail;
 			}
@@ -5484,7 +5484,7 @@ bail:
 				JournlerEntry *servicedEntry = [self importFile:aPath];
 				if ( servicedEntry == nil )
 				{
-					NSLog(@"%@ %s - unable to produce entry for serviced content at path %@", [self className], _cmd, aPath);
+					NSLog(@"%s - unable to produce entry for serviced content at path %@", __PRETTY_FUNCTION__, aPath);
 					goto bail;
 				}
 				
@@ -5641,7 +5641,7 @@ bail:
 - (void) servicesImport:(DropBoxDialog*)aDialog didEndDialog:(int)result contents:(NSArray*)contents
 {
 	LogIfDebugging(99,MethodEntryDescription());
-	LogIfDebugging(50,([NSString stringWithFormat:@"%@ %s - contents: %@", [self className], _cmd, contents]));
+	LogIfDebugging(50,([NSString stringWithFormat:@"%s - contents: %@", __PRETTY_FUNCTION__, contents]));
 	
 	NSArray *targetTags = [aDialog tags];
 	NSString *targetCategory = [aDialog category];
@@ -5995,14 +5995,14 @@ bail:
 			if ( !mailtoURL )
 			{
 				success = NO;
-				NSLog(@"%@ %s - unable to create URL from encoded string %@", [self className], _cmd, encodedURLString);
+				NSLog(@"%s - unable to create URL from encoded string %@", __PRETTY_FUNCTION__, encodedURLString);
 			}
 			
 			//send it off to default mail client
 			if ( ![[NSWorkspace sharedWorkspace] openURL:mailtoURL] )
 			{
 				success = NO;
-				NSLog(@"%@ %s - unable to launch URL %@", [self className], _cmd, mailtoURL);
+				NSLog(@"%s - unable to launch URL %@", __PRETTY_FUNCTION__, mailtoURL);
 			}
 			
 			//clean up
@@ -6644,7 +6644,7 @@ bail:
 	// a rather complex process verifying the validity of the resource - everything must be set at the get go
 	// actually, we may never make it this far
 	
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 }
 
 

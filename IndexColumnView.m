@@ -85,7 +85,7 @@
 			
 			//deltaWidth = new_local_point.x - local_point.x;
 			deltaWidth = new_global_point.x - original_global_point.x;
-			NSLog(@"%@ %s - delta: %f", [self className], _cmd, deltaWidth);
+			NSLog(@"%s - delta: %f", __PRETTY_FUNCTION__, deltaWidth);
 			
 			if ( deltaWidth < 0 )
 			{

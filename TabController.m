@@ -95,9 +95,9 @@
 
 - (void) dealloc 
 {	
-	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
-	#endif
+#ifdef __DEBUG__
+	NSLog(@"%s",__PRETTY_FUNCTION__);
+#endif
 	
 	[navigationManager release];
 	[selectedEntries release];
@@ -108,9 +108,9 @@
 	// release the nib's top level objects
 	[tabContent release];
 	
-	#ifdef __DEBUG__
-	NSLog(@"%@ %s - ending",[self className],_cmd);
-	#endif
+#ifdef __DEBUG__
+	NSLog(@"%s - ending",__PRETTY_FUNCTION__);
+#endif
 	
 	[super dealloc];
 }
@@ -273,28 +273,28 @@
 - (BOOL) selectDate:(NSDate*)aDate
 {
 	// subclasses should override the "select" messages to provide any necessary, custom mechanism
-	NSLog(@"%@ %s - ** concrete subclasses must override **", [self className], _cmd);
+	NSLog(@"%s - ** concrete subclasses must override **", __PRETTY_FUNCTION__);
 	return NO;
 }
 
 - (BOOL) selectFolders:(NSArray*)anArray
 {
 	// subclasses should override the "select" messages to provide any necessary, custom mechanism
-	NSLog(@"%@ %s - ** concrete subclasses must override **", [self className], _cmd);
+	NSLog(@"%s - ** concrete subclasses must override **", __PRETTY_FUNCTION__);
 	return NO;
 }
 
 - (BOOL) selectEntries:(NSArray*)anArray
 {
 	// subclasses should override the "select" messages to provide any necessary, custom mechanism
-	NSLog(@"%@ %s - ** concrete subclasses must override **", [self className], _cmd);
+	NSLog(@"%s - ** concrete subclasses must override **", __PRETTY_FUNCTION__);
 	return NO;
 }
 
 - (BOOL) selectResources:(NSArray*)anArray
 {
 	// subclasses should override the "select" messages to provide any necessary, custom mechanism
-	NSLog(@"%@ %s - ** concrete subclasses must override **", [self className], _cmd);
+	NSLog(@"%s - ** concrete subclasses must override **", __PRETTY_FUNCTION__);
 	return NO;
 }
 
@@ -362,17 +362,17 @@
 
 - (void) sproutedVideoRecorder:(SproutedRecorder*)recorder insertRecording:(NSString*)path title:(NSString*)title
 {
-	NSLog(@"%@ %s - **** subclasses must override ****", [self className], _cmd);
+	NSLog(@"%s - **** subclasses must override ****", __PRETTY_FUNCTION__);
 }
 
 - (void) sproutedAudioRecorder:(SproutedRecorder*)recorder insertRecording:(NSString*)path title:(NSString*)title
 {
-	NSLog(@"%@ %s - **** subclasses must override ****", [self className], _cmd);
+	NSLog(@"%s - **** subclasses must override ****", __PRETTY_FUNCTION__);
 }
 
 - (void) sproutedSnapshot:(SproutedRecorder*)recorder insertRecording:(NSString*)path title:(NSString*)title
 {
-	NSLog(@"%@ %s - **** subclasses must override ****", [self className], _cmd);
+	NSLog(@"%s - **** subclasses must override ****", __PRETTY_FUNCTION__);
 }
 
 #pragma mark -
@@ -767,7 +767,7 @@
 		if (runResult == NSOKButton) 
 		{
 			if ( ![exportController commitEditing] )
-				NSLog(@"%@ %s - unable to commit editing", [self className], _cmd);
+				NSLog(@"%s - unable to commit editing", __PRETTY_FUNCTION__);
 			
 			int flags = kEntrySetLabelColor;
 			if ( [exportController includeHeader] )
@@ -783,7 +783,7 @@
 			{
 				NSBeep();
 				[[NSAlert entryExportError] runModal];
-				NSLog(@"%@ %s - error writing file to %@", [self className], _cmd, [sp filename]);
+				NSLog(@"%s - error writing file to %@", __PRETTY_FUNCTION__, [sp filename]);
 			}
 		}
 	}
@@ -811,7 +811,7 @@
 		if (runResult == NSOKButton) 
 		{
 			if ( ![exportController commitEditing] )
-				NSLog(@"%@ %s - unable to commit editing", [self className], _cmd);
+				NSLog(@"%s - unable to commit editing", __PRETTY_FUNCTION__);
 			
 			BOOL include_header = [exportController includeHeader];
 			BOOL mods_creation_date = [exportController modifiesFileCreationDate];
@@ -921,7 +921,7 @@
 
 						if ( ![rtfWrapper writeToFile:saveWithExtension atomically:YES updateFilenames:YES] ) 
 						{
-							NSLog(@"%@ %s - unable to write entries to location %@", [self className], _cmd, saveWithExtension);
+							NSLog(@"%s - unable to write entries to location %@", __PRETTY_FUNCTION__, saveWithExtension);
 							success = NO;
 						}
 						
@@ -935,7 +935,7 @@
 						
 						if ( ![docData writeToFile:saveWithExtension atomically:YES] ) 
 						{
-							NSLog(@"%@ %s - unable to write entries to location %@", [self className], _cmd, saveWithExtension);
+							NSLog(@"%s - unable to write entries to location %@", __PRETTY_FUNCTION__, saveWithExtension);
 							success = NO;
 						}
 
@@ -949,7 +949,7 @@
 
 						if ( ![rtfdWrapper writeToFile:saveWithExtension atomically:YES updateFilenames:YES] ) 
 						{
-							NSLog(@"%@ %s - unable to write entries to location %@", [self className], _cmd, saveWithExtension);
+							NSLog(@"%s - unable to write entries to location %@", __PRETTY_FUNCTION__, saveWithExtension);
 							success = NO;
 						}
 
@@ -965,7 +965,7 @@
 						
 						if ( ![printOp runOperation] ) 
 						{
-							NSLog(@"%@ %s - unable to write entries to location %@", [self className], _cmd, saveWithExtension);
+							NSLog(@"%s - unable to write entries to location %@", __PRETTY_FUNCTION__, saveWithExtension);
 							success = NO;
 						}
 						
@@ -993,7 +993,7 @@
 						if ( ![html_to_export writeToFile:saveWithExtension atomically:YES encoding:NSUTF8StringEncoding error:&error] )
 						//if ( ![processedText writeToFile:saveWithExtension atomically:YES] ) 
 						{
-							NSLog(@"%@ %s - unable to write entries to location %@, error: %@", [self className], _cmd, saveWithExtension, error);
+							NSLog(@"%s - unable to write entries to location %@, error: %@", __PRETTY_FUNCTION__, saveWithExtension, error);
 							success = NO;
 						}
 
@@ -1008,7 +1008,7 @@
 						//if ( ![textString writeToFile:saveWithExtension atomically:YES] ) 
 						if ( ![textString writeToFile:saveWithExtension atomically:YES encoding:NSUnicodeStringEncoding error:&error] )
 						{
-							NSLog(@"%@ %s - unable to write entries to location %@, error: %@", [self className], _cmd, saveWithExtension, error);
+							NSLog(@"%s - unable to write entries to location %@, error: %@", __PRETTY_FUNCTION__, saveWithExtension, error);
 							success = NO;
 						}
 						
@@ -1028,7 +1028,7 @@
 			{
 				NSBeep();
 				[[NSAlert entryExportError] runModal];
-				NSLog(@"%@ %s - errors while exporting multiple entries", [self className], _cmd);
+				NSLog(@"%s - errors while exporting multiple entries", __PRETTY_FUNCTION__);
 			}
 		}
 	}
@@ -1038,9 +1038,9 @@
 
 - (IBAction) exportResource:(id)sender
 {
-	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
-	#endif
+#ifdef __DEBUG__
+	NSLog(@"%s",__PRETTY_FUNCTION__);
+#endif
 	
 	NSOpenPanel *openPanel = [NSOpenPanel openPanel];
 	
@@ -1100,7 +1100,7 @@
 		if ( !path ) 
 		{
 			NSBeep();
-			NSLog(@"%@ %s - unable to locate SendEmailWithAttachments.scpt", [self className], _cmd);
+			NSLog(@"%s - unable to locate SendEmailWithAttachments.scpt", __PRETTY_FUNCTION__);
 			return;
 		}
 		
@@ -1108,7 +1108,7 @@
 		if ( !url ) 
 		{
 			NSBeep();
-			NSLog(@"%@ %s - unable to create URL with path %@", [self className], _cmd, path);
+			NSLog(@"%s - unable to create URL with path %@", __PRETTY_FUNCTION__, path);
 			return;
 		}
 		
@@ -1117,7 +1117,7 @@
 		if ( !script ) 
 		{
 			NSBeep();
-			NSLog(@"%@ %s - unable to create script for path %@, errors: %@", [self className], _cmd, [url path], [errors description]);
+			NSLog(@"%s - unable to create script for path %@, errors: %@", __PRETTY_FUNCTION__, [url path], [errors description]);
 			return;
 		}
 		
@@ -1141,7 +1141,7 @@
 				if ( aPath != nil )
 					[resourcePaths addObject:aPath];
 				else
-					NSLog(@"%@ %s - unable to get a path for resource %@ - %@", [self className], _cmd, [aResource tagID], [aResource title]);
+					NSLog(@"%s - unable to get a path for resource %@ - %@", __PRETTY_FUNCTION__, [aResource tagID], [aResource title]);
 			}
 			
 			if ( subject == nil )
@@ -1151,7 +1151,7 @@
 		if ( [script executeHandler:mainHandler error:&errors withParameters: content, resourcePaths, prompt, subject, nil] == nil 
 			&& [[errors objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
 		{
-			NSLog(@"%@ %s - executeHandler returned error: %@", [self className], _cmd, errors);
+			NSLog(@"%s - executeHandler returned error: %@", __PRETTY_FUNCTION__, errors);
 			
 			id theSource = [script richTextSource];
 			if ( theSource == nil ) theSource = [script source];
@@ -1206,7 +1206,7 @@
 - (IBAction) printDocument:(id)sender
 {
 	// subclasses should override, dispatching as necesary
-	NSLog(@"%@ %s - ** subclasses must override **", [self className], _cmd);
+	NSLog(@"%s - ** subclasses must override **", __PRETTY_FUNCTION__);
 }
 
 #pragma mark -
@@ -1250,7 +1250,7 @@
 		if ( !path ) 
 		{
 			NSBeep();
-			NSLog(@"%@ %s - unable to locate SendEmailWithAttachments.scpt", [self className], _cmd);
+			NSLog(@"%s - unable to locate SendEmailWithAttachments.scpt", __PRETTY_FUNCTION__);
 			return;
 		}
 		
@@ -1258,7 +1258,7 @@
 		if ( !url ) 
 		{
 			NSBeep();
-			NSLog(@"%@ %s - unable to create URL with path %@", [self className], _cmd, path);
+			NSLog(@"%s - unable to create URL with path %@", __PRETTY_FUNCTION__, path);
 			return;
 		}
 		
@@ -1267,7 +1267,7 @@
 		if ( !script ) 
 		{
 			NSBeep();
-			NSLog(@"%@ %s - unable to create script for path %@, errors: %@", [self className], _cmd, [url path], [errors description]);
+			NSLog(@"%s - unable to create script for path %@, errors: %@", __PRETTY_FUNCTION__, [url path], [errors description]);
 			return;
 		}
 		
@@ -1300,14 +1300,14 @@
 					if ( aPath != nil )
 						[resourcePaths addObject:aPath];
 					else
-						NSLog(@"%@ %s - unable to get a path for resource %@ - %@", [self className], _cmd, [aResource tagID], [aResource title]);
+						NSLog(@"%s - unable to get a path for resource %@ - %@", __PRETTY_FUNCTION__, [aResource tagID], [aResource title]);
 				}
 			}
 			
 			if ( [script executeHandler:mainHandler error:&errors withParameters: content, resourcePaths, prompt, subject, nil] == nil )
 			{
 				NSBeep();
-				NSLog(@"%@ %s - executeHandler returned error: %@", [self className], _cmd, errors);
+				NSLog(@"%s - executeHandler returned error: %@", __PRETTY_FUNCTION__, errors);
 			}
 		}
 	}
@@ -1331,7 +1331,7 @@
 - (IBAction) blogEntrySelection:(id)sender
 {
 	//NSBeep();
-	//NSLog(@"%@ %s - this method has been deprecated", [self className], _cmd);
+	//NSLog(@"%s - this method has been deprecated", __PRETTY_FUNCTION__);
 	
 	NSArray *theEntries = [self valueForKey:@"selectedEntries"];
 	if ( !theEntries || [theEntries count] == 0 ) {
@@ -1388,7 +1388,7 @@
 			else
 			{
 				// no or unknown error information
-				NSLog(@"%@ %s - an unknown error occurred while sending entries to weblog editor", [self className], _cmd);
+				NSLog(@"%s - an unknown error occurred while sending entries to weblog editor", __PRETTY_FUNCTION__);
 			}
 		}
 	}
@@ -1434,7 +1434,7 @@
 	if ( !path ) 
 	{
 		NSBeep();
-		NSLog(@"%@ %s - unable to locate SendToiWeb.scpt", [self className], _cmd);
+		NSLog(@"%s - unable to locate SendToiWeb.scpt", __PRETTY_FUNCTION__);
 		return;
 	}
 	
@@ -1442,7 +1442,7 @@
 	if ( !url ) 
 	{
 		NSBeep();
-		NSLog(@"%@ %s - unable to create URL with path %@", [self className], _cmd, path);
+		NSLog(@"%s - unable to create URL with path %@", __PRETTY_FUNCTION__, path);
 		return;
 	}
 	
@@ -1451,7 +1451,7 @@
 	if ( !script ) 
 	{
 		NSBeep();
-		NSLog(@"%@ %s - unable to create script for path %@, errors: %@", [self className], _cmd, [url path], [errors description]);
+		NSLog(@"%s - unable to create script for path %@, errors: %@", __PRETTY_FUNCTION__, [url path], [errors description]);
 		return;
 	}
 	
@@ -1509,7 +1509,7 @@
 				{
 					// #warning an alert
 					NSBeep();
-					NSLog(@"%@ %s - unable to locate the iWebPlaceholder image", [self className], _cmd);
+					NSLog(@"%s - unable to locate the iWebPlaceholder image", __PRETTY_FUNCTION__);
 					return;
 				}
 			}
@@ -1529,16 +1529,16 @@
 					{
 						// #warning an alert
 						NSBeep();
-						NSLog(@"%@ %s - unable to locate the iWebPlaceholder image", [self className], _cmd);
+						NSLog(@"%s - unable to locate the iWebPlaceholder image", __PRETTY_FUNCTION__);
 						return;
 					}
 				}
 			}
 		}
 		
-		#ifdef __DEBUG__
-		NSLog(@"%@ %s - castPath: %@", [self className], _cmd, castPath);
-		#endif
+    #ifdef __DEBUG__
+		NSLog(@"%s - castPath: %@", __PRETTY_FUNCTION__, castPath);
+    #endif
 		
 		if ( castType == 1 )
 		{
@@ -1550,7 +1550,7 @@
 			if ( ![script executeHandler:imageHandlerName error:&errors withParameters: totalCount, images, titles, contents, nil] 
 				&& [[errors objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
 			{
-				NSLog(@"%@ %s - unable to execute image handler, error %@", [self className], _cmd, errors);
+				NSLog(@"%s - unable to execute image handler, error %@", __PRETTY_FUNCTION__, errors);
 				
 				id theSource = [script richTextSource];
 				if ( theSource == nil ) theSource = [script source];
@@ -1565,7 +1565,7 @@
 			if ( ![script executeHandler:audioHandlerName error:&errors withParameters: castPath, nil] 
 				&& [[errors objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
 			{
-				NSLog(@"%@ %s - unable to execute image handler, error %@", [self className], _cmd, errors);
+				NSLog(@"%s - unable to execute image handler, error %@", __PRETTY_FUNCTION__, errors);
 				
 				id theSource = [script richTextSource];
 				if ( theSource == nil ) theSource = [script source];
@@ -1581,7 +1581,7 @@
 			if ( ![script executeHandler:videoHandlerName error:&errors withParameters: castPath, castTitle, nil]
 				&& [[errors objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
 			{
-				NSLog(@"%@ %s - unable to execute image handler, error %@", [self className], _cmd, errors);
+				NSLog(@"%s - unable to execute image handler, error %@", __PRETTY_FUNCTION__, errors);
 				
 				id theSource = [script richTextSource];
 				if ( theSource == nil ) theSource = [script source];
@@ -1778,7 +1778,7 @@
 		JournlerMediaViewer *mediaViewer = [[[JournlerMediaViewer alloc] initWithURL:mediaURL uti:[aResource valueForKey:@"uti"]] autorelease];
 		if ( mediaViewer == nil )
 		{
-			NSLog(@"%@ %s - problem allocating media viewer for url %@", [self className], _cmd, mediaURL);
+			NSLog(@"%s - problem allocating media viewer for url %@", __PRETTY_FUNCTION__, mediaURL);
 			[[NSWorkspace sharedWorkspace] openURL:mediaURL];
 		}
 		else
@@ -1890,7 +1890,7 @@
 			JournlerMediaViewer *mediaViewer = [[[JournlerMediaViewer alloc] initWithURL:mediaURL uti:[aResource valueForKey:@"uti"]] autorelease];
 			if ( mediaViewer == nil )
 			{
-				NSLog(@"%@ %s - problem allocating media viewer for url %@", [self className], _cmd, mediaURL);
+				NSLog(@"%s - problem allocating media viewer for url %@", __PRETTY_FUNCTION__, mediaURL);
 				[[NSWorkspace sharedWorkspace] openURL:mediaURL];
 			}
 			else
@@ -1989,9 +1989,9 @@
 
 - (void) ownerWillClose 
 {
-	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
-	#endif
+#ifdef __DEBUG__
+	NSLog(@"%s",__PRETTY_FUNCTION__);
+#endif
 	
 	// subclases should override this method to perform any pre-deallocation maintenance, calling super
 	// ie undoing bindings to guarantee that the object will deallocate in the first place
@@ -2026,9 +2026,9 @@
 
 - (void) ownerWillDeselectTab:(NSNotification*)aNotification
 {
-	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
-	#endif
+#ifdef __DEBUG__
+	NSLog(@"%s",__PRETTY_FUNCTION__);
+#endif
 	
 	// autosave the current selection
 	[self performAutosave:nil];
@@ -2036,9 +2036,9 @@
 
 - (void) performAutosave:(NSNotification*)aNotification
 {
-	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
-	#endif
+#ifdef __DEBUG__
+	NSLog(@"%s",__PRETTY_FUNCTION__);
+#endif
 	
 	// save the entries, save the folders
 	// if objects are contained in user info, those objects are saved. otherwise the current selection
@@ -2100,14 +2100,14 @@
 - (BOOL) highlightString:(NSString*)aString
 {
 	// subclasses should override to highlight the string in their active view
-	NSLog(@"%@ %s - *** subclasses must override ***", [self className], _cmd);
+	NSLog(@"%s - *** subclasses must override ***", __PRETTY_FUNCTION__);
 	return NO;
 }
 
 - (IBAction) newWebBrower:(id)sender
 {
 	// subclasses should override to provide a new web browser in their viewing area
-	NSLog(@"%@ %s - *** subclasses must override ***", [self className], _cmd);
+	NSLog(@"%s - *** subclasses must override ***", __PRETTY_FUNCTION__);
 	return;
 }
 
@@ -2210,13 +2210,13 @@
 	// subclasses should override to get the most viewing space out of their content area, ie removing buttons along the bottom
 	// once this operation has been executed it cannot be undone
 	
-	NSLog(@"%@ %s - *** subclasses must override ***", [self className], _cmd);
+	NSLog(@"%s - *** subclasses must override ***", __PRETTY_FUNCTION__);
 	return;
 }
 
 - (void) setFullScreen:(BOOL)inFullScreen
 {
-	NSLog(@"%@ %s - *** subclasses must override ***", [self className], _cmd);
+	NSLog(@"%s - *** subclasses must override ***", __PRETTY_FUNCTION__);
 	return;
 }
 
@@ -2259,7 +2259,7 @@
 	
 	else if ( action == @selector(editEntryLabel:) )
 	{
-		//NSLog(@"%@ %s - tag: %i",[self className],_cmd,tag);
+		//NSLog(@"%s - tag: %i",__PRETTY_FUNCTION__,tag);
 		//not called when the title is bound to user defaults!
 		
 		unsigned entryCount = [[self selectedEntries] count];
@@ -2305,7 +2305,7 @@
 - (void) performCustomFindPanelAction:(id)sender
 {
 	// subclasses should override
-	NSLog(@"%@ %s - **** not supported: subclasses must override ****", [self className], _cmd);
+	NSLog(@"%s - **** not supported: subclasses must override ****", __PRETTY_FUNCTION__);
 }
 
 - (BOOL) handlesTextSizeCommand
@@ -2317,7 +2317,7 @@
 - (void) performCustomTextSizeAction:(id)sender
 {
 	// subclasses should override
-	NSLog(@"%@ %s - **** not supported: subclasses must override ****", [self className], _cmd);
+	NSLog(@"%s - **** not supported: subclasses must override ****", __PRETTY_FUNCTION__);
 }
 
 @end

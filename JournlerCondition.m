@@ -467,7 +467,7 @@ static NSString *kAndSeparatorString = @" && ";
 		
 		// with the tokens extracted and the not operation determine, build the normalized string
 		enumerator = [theTokens objectEnumerator];
-		while ( aTag = [[enumerator nextObject] lowercaseString] )
+		while ( (aTag = [[enumerator nextObject] lowercaseString]) )
 		{
 			NSString *aTagCondition = nil;
 			

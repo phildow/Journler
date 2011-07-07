@@ -29,7 +29,7 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 
 - (void) awakeFromNib 
 {	
-	NSLog(@"%@ %s", [self className], _cmd);
+	NSLog(@"%s", __PRETTY_FUNCTION__);
 	[self doSetup];
 }
 
@@ -132,7 +132,7 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 -(void) dealloc 
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	[[self undoManager] removeAllActions];
@@ -304,7 +304,7 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 
 - (void)toggleAutomaticQuoteSubstitution:(id)sender
 {
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	//EntryTextUseSmartQuotes
 	BOOL aqsEnabled = [self isAutomaticQuoteSubstitutionEnabled];
 	[[NSUserDefaults standardUserDefaults] setBool:!aqsEnabled forKey:@"EntryTextUseSmartQuotes"];
@@ -314,7 +314,7 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 
 - (void)toggleAutomaticLinkDetection:(id)sender
 {
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	//EntryTextRecognizeURLs
 	BOOL aldEnabled = [self isAutomaticLinkDetectionEnabled];
 	[[NSUserDefaults standardUserDefaults] setBool:!aldEnabled forKey:@"EntryTextUseSmartQuotes"];
@@ -517,7 +517,7 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 			
 			if ( !URLArray || !titleArray || [URLArray count] != [titleArray count] ) 
 			{
-				NSLog(@"%@ %s - malformed WebURLsWithTitlesPboardType data", [self className], _cmd);
+				NSLog(@"%s - malformed WebURLsWithTitlesPboardType data", __PRETTY_FUNCTION__);
 				success = NO;
 			}
 			else 
@@ -949,7 +949,7 @@ bail:
 
 - (NSImage *)dragImageForSelectionWithEvent:(NSEvent *)event origin:(NSPointPointer)origin
 {
-	//NSLog(@"%@ %s",[self className],_cmd);
+	//NSLog(@"%s",__PRETTY_FUNCTION__);
 	//return [super dragImageForSelectionWithEvent:event origin:origin];
 	
 	NSImage *returnImage = nil;
@@ -1293,14 +1293,14 @@ bail:
 		script = [[[NSAppleScript alloc] initWithContentsOfURL:[NSURL fileURLWithPath:scriptPath] error:&errorInfo] autorelease];
 		if ( script == nil )
 		{
-			NSLog(@"%@ %s - error creating script from path %@, error: %@", [self className], _cmd, scriptPath, errorInfo);
+			NSLog(@"%s - error creating script from path %@, error: %@", __PRETTY_FUNCTION__, scriptPath, errorInfo);
 			script = [[[NSAppleScript alloc] initWithSource:mailSelectionPathInfoSource] autorelease];
 		}
 	}
 	
 	if ( script == nil )
 	{
-		NSLog(@"%@ %s - unable to create applscript, bailing", [self className], _cmd);
+		NSLog(@"%s - unable to create applscript, bailing", __PRETTY_FUNCTION__);
 		success = NO;
 		goto bail;
 	}
@@ -1308,7 +1308,7 @@ bail:
 	NSAppleEventDescriptor *eventDescriptor = [script executeAndReturnError:&errorInfo];
 	if (eventDescriptor == nil && [[errorInfo objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
 	{
-		NSLog(@"%@ %s - problem running script, bailing: %@", [self className], _cmd, errorInfo);
+		NSLog(@"%s - problem running script, bailing: %@", __PRETTY_FUNCTION__, errorInfo);
 		
 		id theSource = [script richTextSource];
 		if ( theSource == nil ) theSource = [script source];
@@ -1325,7 +1325,7 @@ bail:
 	
 	if ( totalCount == 0 )
 	{
-		NSLog(@"%@ %s - the returned event descriptor does not contain any items, is there a selection in mail?", [self className], _cmd);
+		NSLog(@"%s - the returned event descriptor does not contain any items, is there a selection in mail?", __PRETTY_FUNCTION__);
 		success = NO;
 		goto bail;
 	}
@@ -1334,7 +1334,7 @@ bail:
 	BOOL dir;
 	if ( ![[NSFileManager defaultManager] fileExistsAtPath:mailRootFolder isDirectory:&dir] || !dir )
 	{
-		NSLog(@"%@ %s - no mailboxes root exists at path %@", [self className], _cmd, mailRootFolder);
+		NSLog(@"%s - no mailboxes root exists at path %@", __PRETTY_FUNCTION__, mailRootFolder);
 		success = NO;
 		goto bail;
 	}
@@ -1375,7 +1375,7 @@ bail:
 					stringByAppendingPathComponent:messageFilename];
 			
 			#ifdef __DEBUG__
-			NSLog(@"%@ %s - message path: %@", [self className], _cmd, completePathToMessage);
+			NSLog(@"%s - message path: %@", __PRETTY_FUNCTION__, completePathToMessage);
 			#endif
 			
 			if ( ![[NSFileManager defaultManager] fileExistsAtPath:completePathToMessage])
@@ -1391,7 +1391,7 @@ bail:
 				
 				if ( ![[NSFileManager defaultManager] fileExistsAtPath:completePathToMessage])
 				{
-					NSLog(@"%@ %s - no message at derived path %@", [self className], _cmd, completePathToMessage);
+					NSLog(@"%s - no message at derived path %@", __PRETTY_FUNCTION__, completePathToMessage);
 					success = NO;
 					continue;
 				}
@@ -1435,7 +1435,7 @@ bail:
 					stringByAppendingPathComponent:messageFilename];
 		
 			#ifdef __DEBUG__
-			NSLog(@"%@ %s - message path: %@", [self className], _cmd, completePathToMessage);
+			NSLog(@"%s - message path: %@", __PRETTY_FUNCTION__, completePathToMessage);
 			#endif
 		
 			if ( ![[NSFileManager defaultManager] fileExistsAtPath:completePathToMessage])
@@ -1450,7 +1450,7 @@ bail:
 				
 				if ( ![[NSFileManager defaultManager] fileExistsAtPath:completePathToMessage])
 				{
-					NSLog(@"%@ %s - no message at derived path %@", [self className], _cmd, completePathToMessage);
+					NSLog(@"%s - no message at derived path %@", __PRETTY_FUNCTION__, completePathToMessage);
 					success = NO;
 					continue;
 				}
@@ -1471,7 +1471,7 @@ bail:
 		
 		else
 		{
-			NSLog(@"%@ %s - invalid descriptor for mail message path information, must contain 3 or 4 items, %@", [self className], _cmd, aPathInfoDescriptor);
+			NSLog(@"%s - invalid descriptor for mail message path information, must contain 3 or 4 items, %@", __PRETTY_FUNCTION__, aPathInfoDescriptor);
 			success = NO;
 		}
 	}
@@ -1523,7 +1523,7 @@ bail:
 	
 	if ( script == nil )
 	{
-		NSLog(@"%@ %s - unable to initialize the mail message script: %@", [self className], _cmd, errorDictionary);
+		NSLog(@"%s - unable to initialize the mail message script: %@", __PRETTY_FUNCTION__, errorDictionary);
 		success = NO;
 		goto bail;
 	}
@@ -1533,7 +1533,7 @@ bail:
 		eventDescriptor = [script executeAndReturnError:&errorDictionary];
 		if ( eventDescriptor == nil && [[errorDictionary objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
 		{
-			NSLog(@"%@ %s - problem compiling mail message selection script: %@", [self className], _cmd, errorDictionary);
+			NSLog(@"%s - problem compiling mail message selection script: %@", __PRETTY_FUNCTION__, errorDictionary);
 			
 			id theSource = [script richTextSource];
 			if ( theSource == nil ) theSource = [script source];
@@ -1547,7 +1547,7 @@ bail:
 		}
 		else if ( [eventDescriptor numberOfItems] == 0 )
 		{
-			NSLog(@"%@ %s - mail messasge drag, the return event descriptor contains no items: %@", [self className], _cmd, eventDescriptor);
+			NSLog(@"%s - mail messasge drag, the return event descriptor contains no items: %@", __PRETTY_FUNCTION__, eventDescriptor);
 			success = NO;
 			goto bail;
 		}
@@ -1580,7 +1580,7 @@ bail:
 						stringByAppendingPathComponent:[NSString stringWithFormat:@"%i.emlx", anID]];
 				
 				#ifdef __DEBUG__
-				NSLog(@"%@ %s - message path: %@", [self className], _cmd, aMessagePath);
+				NSLog(@"%s - message path: %@", __PRETTY_FUNCTION__, aMessagePath);
 				#endif
 				
 				if ( ![[NSFileManager defaultManager] fileExistsAtPath:aMessagePath] )
@@ -1625,7 +1625,7 @@ bail:
 	JournlerResource *resource = [[self entry] resourceForABPerson:aPerson];
 	if ( resource == nil )
 	{
-		NSLog(@"%@ %s - unable to create resource for ABPerson %@", [self className], _cmd, [aPerson uniqueId]);
+		NSLog(@"%s - unable to create resource for ABPerson %@", __PRETTY_FUNCTION__, [aPerson uniqueId]);
 		return NO;
 	}
 	
@@ -1665,7 +1665,7 @@ bail:
 		JournlerResource *resource = [[self entry] resourceForURL:urlString title:aTitle];
 		if ( resource == nil )
 		{
-			NSLog(@"%@ %s - unable to create resource for url %@", [self className], _cmd, urlString);
+			NSLog(@"%s - unable to create resource for url %@", __PRETTY_FUNCTION__, urlString);
 			return NO;
 		}
 		
@@ -1734,7 +1734,7 @@ bail:
 	if ( [[[web_view mainFrame] dataSource] isLoading] )
 	{
 		[[web_view mainFrame] stopLoading];
-		NSLog(@"%@ %s - operation timed out loading url %@", [self className], _cmd, [url absoluteString] );
+		NSLog(@"%s - operation timed out loading url %@", __PRETTY_FUNCTION__, [url absoluteString] );
 		destinationPath = nil;
 		goto bail;
 	}
@@ -1745,7 +1745,7 @@ bail:
 	
 	if ( services_archive == nil ) 
 	{
-		NSLog(@"%@ %s - unable to derive webarchive from url %@", [self className], _cmd, [url absoluteString] );
+		NSLog(@"%s - unable to derive webarchive from url %@", __PRETTY_FUNCTION__, [url absoluteString] );
 		destinationPath = nil;
 		goto bail;
 	}
@@ -1755,7 +1755,7 @@ bail:
 	
 	if ( ![[services_archive data] writeToFile:destinationPath options:NSAtomicWrite error:nil]	) 
 	{
-		NSLog(@"%@ %s - unable to write webarchive to %@", [self className], _cmd, destinationPath);
+		NSLog(@"%s - unable to write webarchive to %@", __PRETTY_FUNCTION__, destinationPath);
 		destinationPath = nil;
 		goto bail;
 	}
@@ -1777,7 +1777,7 @@ bail:
 		JournlerResource *theResource = [[self valueForKeyPath:@"delegate.journal"] objectForURIRepresentation:aURI];
 		if ( theResource == nil )
 		{
-			NSLog(@"%@ %s - unable to produce object for resource uri %@", [self className], _cmd, [aURI absoluteString]);
+			NSLog(@"%s - unable to produce object for resource uri %@", __PRETTY_FUNCTION__, [aURI absoluteString]);
 			return NO;
 		}
 		
@@ -1848,7 +1848,7 @@ bail:
 		id theObject = [[self valueForKeyPath:@"delegate.journal"] objectForURIRepresentation:aURI];
 		if ( theObject == nil )
 		{
-			NSLog(@"%@ %s - unable to produce object for uri %@", [self className], _cmd, [aURI absoluteString]);
+			NSLog(@"%s - unable to produce object for uri %@", __PRETTY_FUNCTION__, [aURI absoluteString]);
 			return NO;
 		}
 		
@@ -1856,7 +1856,7 @@ bail:
 		JournlerResource *resource = [[self entry] resourceForJournlerObject:theObject];
 		if ( resource == nil )
 		{
-			NSLog(@"%@ %s - unable to produce new resource for uri %@", [self className], _cmd, [aURI absoluteString]);
+			NSLog(@"%s - unable to produce new resource for uri %@", __PRETTY_FUNCTION__, [aURI absoluteString]);
 			return NO;
 		}
 		
@@ -1885,14 +1885,14 @@ bail:
 	NSImage *image = [[NSImage alloc] initWithData:data];
 	if ( !image ) 
 	{
-		NSLog(@"%@ %s - unable to create image from data", [self className], _cmd);
+		NSLog(@"%s - unable to create image from data", __PRETTY_FUNCTION__);
 		return NO;
 	}
 	
 	NSData *tiffData = [image TIFFRepresentation];
 	if ( !tiffData ) 
 	{
-		NSLog(@"%@ %s - unable to create get tiff representation for image", [self className], _cmd);
+		NSLog(@"%s - unable to create get tiff representation for image", __PRETTY_FUNCTION__);
 		return NO;
 	}
 	
@@ -1902,14 +1902,14 @@ bail:
 	NSError *error;
 	if ( ![tiffData writeToFile:temppath options:NSAtomicWrite error:&error] ) 
 	{
-		NSLog(@"%@ %s error writing tiff data to path %@", [self className], _cmd, [error localizedDescription]);
+		NSLog(@"%s error writing tiff data to path %@", __PRETTY_FUNCTION__, [error localizedDescription]);
 		return NO;
 	}
 	
 	NSURL *urlpath = [NSURL fileURLWithPath:temppath];
 	if ( !urlpath ) 
 	{
-		NSLog(@"%@ %s - unable to create url for image path", [self className], _cmd);
+		NSLog(@"%s - unable to create url for image path", __PRETTY_FUNCTION__);
 		return NO;
 	}
 	
@@ -1917,7 +1917,7 @@ bail:
 	
 	if ( resource == nil ) 
 	{
-		NSLog(@"%@ %s - unable to create resource for file at path %@", [self className], _cmd, temppath);
+		NSLog(@"%s - unable to create resource for file at path %@", __PRETTY_FUNCTION__, temppath);
 		return NO;
 	}
 	
@@ -1957,14 +1957,14 @@ bail:
 	// make sure the file exists at this path
 	if ( ![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&dir] ) 
 	{
-		NSLog(@"%@ %s - file does not exist at path %@", [self className], _cmd, path);
+		NSLog(@"%s - file does not exist at path %@", __PRETTY_FUNCTION__, path);
 		return NO;
 	}
 	
 	// get the file's type
 	if ( ![[NSWorkspace sharedWorkspace] getInfoForFile:path application:&appName type:&fileType] ) 
 	{
-		NSLog(@"%@ %s - unable to get file type at path %@", [self className], _cmd, path);
+		NSLog(@"%s - unable to get file type at path %@", __PRETTY_FUNCTION__, path);
 		//return NO;
 	}
 	
@@ -1994,7 +1994,7 @@ bail:
 
 	if ( resource == nil ) 
 	{
-		NSLog(@"%@ %s - unable to create resource for file at path %@", [self className], _cmd, path);
+		NSLog(@"%s - unable to create resource for file at path %@", __PRETTY_FUNCTION__, path);
 		return NO;
 	}
 	
@@ -2026,7 +2026,7 @@ bail:
 		}
 		else 
 		{
-			NSLog(@"%@ %s - unable to init image from path %@", [self className], _cmd, path);
+			NSLog(@"%s - unable to init image from path %@", __PRETTY_FUNCTION__, path);
 		}
 	}
 	else 
@@ -2079,7 +2079,7 @@ bail:
 		NSBitmapImageRep *bitmapRep = [[[NSBitmapImageRep alloc] initWithData:[linkedImage TIFFRepresentation]] autorelease];
 		if ( bitmapRep == nil )
 		{
-			NSLog(@"%@ %s - unable to create bitmap rep from image", [self className], _cmd);
+			NSLog(@"%s - unable to create bitmap rep from image", __PRETTY_FUNCTION__);
 		}
 		else 
 		{
@@ -2089,7 +2089,7 @@ bail:
 					
 			if ( iconWrapper == nil )
 			{
-				NSLog(@"%@ %s - unable to create icon file wrapper from bitmap", [self className], _cmd);
+				NSLog(@"%s - unable to create icon file wrapper from bitmap", __PRETTY_FUNCTION__);
 			}
 			else 
 			{
@@ -2101,7 +2101,7 @@ bail:
 				NSTextAttachment *iconAttachment = [[[NSTextAttachment alloc] initWithFileWrapper:iconWrapper] autorelease];
 				if ( iconAttachment == nil )
 				{
-					NSLog(@"%@ %s - unable to create icon text attachment from file wrapper", [self className], _cmd);
+					NSLog(@"%s - unable to create icon text attachment from file wrapper", __PRETTY_FUNCTION__);
 				}
 				else 
 				{
@@ -2990,7 +2990,7 @@ bail:
 	if ( !link || ![link isKindOfClass:[NSURL class]] )
 	{ 
 		NSBeep(); 
-		NSLog(@"%@ %s - do not understand link %@", [self className], _cmd, link);
+		NSLog(@"%s - do not understand link %@", __PRETTY_FUNCTION__, link);
 		return;
 	}
 	
@@ -3000,7 +3000,7 @@ bail:
 		if ( aResource == nil )
 		{
 			NSBeep(); 
-			NSLog(@"%@ %s - unable to derive resoure for link %@", [self className], _cmd, [(NSURL*)link absoluteString]);
+			NSLog(@"%s - unable to derive resoure for link %@", __PRETTY_FUNCTION__, [(NSURL*)link absoluteString]);
 			return;
 		}
 		
@@ -3024,7 +3024,7 @@ bail:
 	if ( !link || ![link isKindOfClass:[NSURL class]] )
 	{ 
 		NSBeep(); 
-		NSLog(@"%@ %s - do not understand link %@", [self className], _cmd, link);
+		NSLog(@"%s - do not understand link %@", __PRETTY_FUNCTION__, link);
 		return;
 	}
 	
@@ -3034,7 +3034,7 @@ bail:
 		if ( aResource == nil )
 		{
 			NSBeep(); 
-			NSLog(@"%@ %s - unable to derive resoure for link %@", [self className], _cmd, [(NSURL*)link absoluteString]);
+			NSLog(@"%s - unable to derive resoure for link %@", __PRETTY_FUNCTION__, [(NSURL*)link absoluteString]);
 			return;
 		}
 	
@@ -3327,7 +3327,7 @@ bail:
 	if ( theObject == nil || uri == nil )
 	{
 		NSBeep();
-		NSLog(@"%@ %s - unable to derive uri from menu's represented object", [self className], _cmd );
+		NSLog(@"%s - unable to derive uri from menu's represented object", __PRETTY_FUNCTION__ );
 		return;
 	}
 	
@@ -3355,7 +3355,7 @@ bail:
 	JournlerResource *resource = [[self entry] resourceForJournlerObject:theObject];
 	if ( resource == nil )
 	{
-		NSLog(@"%@ %s - unable to produce new resource for uri %@", [self className], _cmd, [uri absoluteString]);
+		NSLog(@"%s - unable to produce new resource for uri %@", __PRETTY_FUNCTION__, [uri absoluteString]);
 		return;
 	}
 }
@@ -3441,16 +3441,16 @@ bail:
 				switch ( aChar )
 				{
 				case NSTabCharacter:
-					NSLog(@"%@ %s - NSTabCharacter", [self className], _cmd);
+					NSLog(@"%s - NSTabCharacter", __PRETTY_FUNCTION__);
 					break;
 				case NSNewlineCharacter:
-					NSLog(@"%@ %s - NSNewlineCharacter", [self className], _cmd);
+					NSLog(@"%s - NSNewlineCharacter", __PRETTY_FUNCTION__);
 					break;
 				case NSCarriageReturnCharacter:
-					NSLog(@"%@ %s - NSCarriageReturnCharacter", [self className], _cmd);
+					NSLog(@"%s - NSCarriageReturnCharacter", __PRETTY_FUNCTION__);
 					break;
 				case NSEnterCharacter:
-					NSLog(@"%@ %s - NSEnterCharacter", [self className], _cmd);
+					NSLog(@"%s - NSEnterCharacter", __PRETTY_FUNCTION__);
 					break;
 				}
 				#endif

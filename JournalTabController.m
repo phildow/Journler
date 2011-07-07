@@ -291,9 +291,9 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 
 - (void) dealloc
 {
-	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
-	#endif
+#ifdef __DEBUG__
+	NSLog(@"%s",__PRETTY_FUNCTION__);
+#endif
 	
 	[entryMenu release];
 	[foldersMenu release];
@@ -325,30 +325,30 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 
 - (void) ownerWillClose 
 {
-	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
-	#endif
+#ifdef __DEBUG__
+	NSLog(@"%s",__PRETTY_FUNCTION__);
+#endif
 	
 	[super ownerWillClose];
 	
 	// commit editing
 	if ( ![entryCellController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the entries cell controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the entries cell controller", __PRETTY_FUNCTION__);
 	
 	if ( ![entriesController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the entries controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the entries controller", __PRETTY_FUNCTION__);
 	
 	if ( ![sourceListController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the folders controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the folders controller", __PRETTY_FUNCTION__);
 	
 	if ( ![resourceController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the folders controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the folders controller", __PRETTY_FUNCTION__);
 
 	
 	// if searching, restore the last sort descriptor and hide the rank column
 	if ( [searchString length] != 0 )
 	{
-		NSLog(@"%@ %s - still searching, fixing table", [self className], _cmd);
+		NSLog(@"%s - still searching, fixing table", __PRETTY_FUNCTION__);
 		
 		[entriesTable setColumnWithIdentifier:@"relevanceNumber" hidden:YES];
 		[entriesController setSortDescriptors:preSearchDescriptors];
@@ -435,7 +435,7 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 			object:nil];
 		
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s - ending",[self className],_cmd);
+	NSLog(@"%s - ending",__PRETTY_FUNCTION__);
 	#endif
 }
 
@@ -467,7 +467,7 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 	
 	// #warning check for objects that have been deleted?
 	/*
-	NSLog(@"%@ %s - date: %@ ; folders : %@ ; entries: %@ ; resources : %@", [self className], _cmd,
+	NSLog(@"%s - date: %@ ; folders : %@ ; entries: %@ ; resources : %@", __PRETTY_FUNCTION__,
 			( date ? date : @"none" ), 
 			( folders ? [folders valueForKey:@"title"] : @"none" ),
 			( entries ? [entries valueForKey:@"title"] : @"none" ),
@@ -1049,7 +1049,7 @@ bail:
 - (BOOL) performCustomKeyEquivalent:(NSEvent *)theEvent
 {
 	// hidden keyboard shortcuts baby!
-	// NSLog(@"%@ %s",[self className],_cmd);
+	// NSLog(@"%s",__PRETTY_FUNCTION__);
 	
 	BOOL handled = NO;
 	
@@ -1208,21 +1208,21 @@ bail:
 - (void) foldersController:(FoldersController*)aFoldersController willChangeSelection:(NSArray*)currentSelection
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
+	NSLog(@"%s", __PRETTY_FUNCTION__);
 	#endif
 	
 	// commit editing
 	if ( ![entryCellController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the entries cell controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the entries cell controller", __PRETTY_FUNCTION__);
 		
 	if ( ![entriesController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the entries controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the entries controller", __PRETTY_FUNCTION__);
 	
 	if ( ![sourceListController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the folders controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the folders controller", __PRETTY_FUNCTION__);
 	
 	if ( ![resourceController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the folders controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the folders controller", __PRETTY_FUNCTION__);
 	
 	// autosave - could lead to redundancy, but only dirty objects are saved anyway
 	
@@ -1244,21 +1244,21 @@ bail:
 - (void) entryController:(EntriesController*)anEntriesController willChangeSelection:(NSArray*)currentSelection
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
+	NSLog(@"%s", __PRETTY_FUNCTION__);
 	#endif
 	
 	// commit editing
 	if ( ![entryCellController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the entries cell controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the entries cell controller", __PRETTY_FUNCTION__);
 		
 	if ( ![entriesController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the entries controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the entries controller", __PRETTY_FUNCTION__);
 	
 	if ( ![sourceListController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the folders controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the folders controller", __PRETTY_FUNCTION__);
 	
 	if ( ![resourceController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the folders controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the folders controller", __PRETTY_FUNCTION__);
 	
 	// autosave - could lead to redundancy, but only dirty objects are saved anyway
 	
@@ -1280,21 +1280,21 @@ bail:
 - (void) resourceController:(ResourceController*)aController willChangeSelection:(NSArray*)currentSelection
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
+	NSLog(@"%s", __PRETTY_FUNCTION__);
 	#endif
 	
 	// commit editing
 	if ( ![entryCellController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the entries cell controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the entries cell controller", __PRETTY_FUNCTION__);
 		
 	if ( ![entriesController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the entries controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the entries controller", __PRETTY_FUNCTION__);
 	
 	if ( ![sourceListController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the folders controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the folders controller", __PRETTY_FUNCTION__);
 	
 	if ( ![resourceController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the folders controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the folders controller", __PRETTY_FUNCTION__);
 	
 	NSArray *folderSelection = [self selectedFolders];
 	NSArray *entrySelection = [self selectedEntries];
@@ -1314,21 +1314,21 @@ bail:
 - (void) datesController:(DatesController*)aDatesController willChangeDate:(NSDate*)aDate
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
+	NSLog(@"%s", __PRETTY_FUNCTION__);
 	#endif
 	
 	// commit editing
 	if ( ![entryCellController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the entries cell controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the entries cell controller", __PRETTY_FUNCTION__);
 		
 	if ( ![entriesController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the entries controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the entries controller", __PRETTY_FUNCTION__);
 	
 	if ( ![sourceListController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the folders controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the folders controller", __PRETTY_FUNCTION__);
 	
 	if ( ![resourceController commitEditing] )
-		NSLog(@"%@ %s - problem with committing changes with the folders controller", [self className], _cmd);
+		NSLog(@"%s - problem with committing changes with the folders controller", __PRETTY_FUNCTION__);
 	
 	// autosave - could lead to redundancy, but only dirty objects are saved anyway
 	[self performAutosave:nil];
@@ -1340,14 +1340,14 @@ bail:
 - (void) datesController:(DatesController*)aDatesController didChangeDate:(NSCalendarDate*)aDate 
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
+	NSLog(@"%s", __PRETTY_FUNCTION__);
 	#endif
 	
 	id observed = [[entriesController infoForBinding:@"contentArray"] valueForKey:NSObservedObjectKey];
 	if ( observed != datesController ) 
 	{
 		#ifdef __DEBUG__
-		NSLog(@"%@ %s - inside", [self className], _cmd);
+		NSLog(@"%s - inside", __PRETTY_FUNCTION__);
 		#endif
 		
 		NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -1374,7 +1374,7 @@ bail:
 - (void) foldersController:(FoldersController*)aFoldersController didChangeSelection:(NSArray*)newSelection 
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
+	NSLog(@"%s", __PRETTY_FUNCTION__);
 	#endif
 
 	id observed = [[entriesController infoForBinding:@"contentArray"] valueForKey:NSObservedObjectKey];
@@ -1383,7 +1383,7 @@ bail:
 		// #warning don't like the newSelection check, bit of a hack - why in the fist place?
 	
 		#ifdef __DEBUG__
-		NSLog(@"%@ %s - inside", [self className], _cmd);
+		NSLog(@"%s - inside", __PRETTY_FUNCTION__);
 		#endif
 		
 		[entriesController unbind:@"contentArray"];
@@ -1518,7 +1518,7 @@ bail:
 
 - (void) _updateResourceToggleImage
 {
-	//NSLog(@"%@ %s",[self className],_cmd);
+	//NSLog(@"%s",__PRETTY_FUNCTION__);
 	
 	if ( [[contentResourceSplit subviewAtPosition:1] isHidden] )
 	{
@@ -1805,7 +1805,7 @@ bail:
 			JournlerMediaViewer *mediaViewer = [[[JournlerMediaViewer alloc] initWithURL:mediaURL uti:(NSString*)kUTTypeURL] autorelease];
 			if ( mediaViewer == nil )
 			{
-				NSLog(@"%@ %s - problem allocating media viewer for url %@", [self className], _cmd, mediaURL);
+				NSLog(@"%s - problem allocating media viewer for url %@", __PRETTY_FUNCTION__, mediaURL);
 				[[NSWorkspace sharedWorkspace] openURL:mediaURL];
 			}
 			else
@@ -1857,7 +1857,7 @@ bail:
 			JournlerMediaViewer *mediaViewer = [[[JournlerMediaViewer alloc] initWithURL:mediaURL uti:(NSString*)kUTTypeURL] autorelease];
 			if ( mediaViewer == nil )
 			{
-				NSLog(@"%@ %s - problem allocating media viewer for url %@", [self className], _cmd, mediaURL);
+				NSLog(@"%s - problem allocating media viewer for url %@", __PRETTY_FUNCTION__, mediaURL);
 				[[NSWorkspace sharedWorkspace] openURL:mediaURL];
 			}
 			else
@@ -2188,7 +2188,7 @@ bail:
 - (void) tableView:(NSTableView*)aTableView leftNavigationEvent:(NSEvent*)anEvent
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
+	NSLog(@"%s", __PRETTY_FUNCTION__);
 	#endif
 	
 	if ( aTableView == entriesTable )
@@ -2198,7 +2198,7 @@ bail:
 - (void) tableView:(NSTableView*)aTableView rightNavigationEvent:(NSEvent*)anEvent
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
+	NSLog(@"%s", __PRETTY_FUNCTION__);
 	#endif
 	
 	if ( aTableView == entriesTable )
@@ -2208,7 +2208,7 @@ bail:
 - (void) outlineView:(NSOutlineView*)anOutlineView leftNavigationEvent:(NSEvent*)anEvent
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
+	NSLog(@"%s", __PRETTY_FUNCTION__);
 	#endif
 
 	if ( anOutlineView == resourceTable )
@@ -2218,7 +2218,7 @@ bail:
 - (void) outlineView:(NSOutlineView*)anOutlineView rightNavigationEvent:(NSEvent*)anEvent
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
+	NSLog(@"%s", __PRETTY_FUNCTION__);
 	#endif
 	
 	if ( anOutlineView == sourceList )
@@ -2884,7 +2884,7 @@ bail:
 
 - (IBAction) newSmartFolder:(id)sender
 {
-	//NSLog(@"%@ %s - beginning",[self className],_cmd);
+	//NSLog(@"%s - beginning",__PRETTY_FUNCTION__);
 	
 	int result;
 	
@@ -2963,7 +2963,7 @@ bail:
 	// select the new folder
 	[sourceListController selectCollection:newFolder byExtendingSelection:NO];
 	
-	//NSLog(@"%@ %s - ending",[self className],_cmd);
+	//NSLog(@"%s - ending",__PRETTY_FUNCTION__);
 }
 
 #pragma mark -
@@ -3121,8 +3121,8 @@ bail:
 	if ( !success )
 	{
 		NSBeep();
-		NSLog(@"%@ %s - problems removing the resources { %@ } from the entries { %@ }, errors: %@",
-		[self className], _cmd, [theResources valueForKey:@"tagID"], [theEntries valueForKey:@"tagID"], errors);
+		NSLog(@"%s - problems removing the resources { %@ } from the entries { %@ }, errors: %@",
+		__PRETTY_FUNCTION__, [theResources valueForKey:@"tagID"], [theEntries valueForKey:@"tagID"], errors);
 	}
 	
 	/*
@@ -3146,7 +3146,7 @@ bail:
 - (IBAction) trashSelectedEntries:(id)sender
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	// make sure entries are selected to be deleted
@@ -3177,7 +3177,7 @@ bail:
 - (IBAction) removeSelectedEntriesFromFolder:(id)sender
 {	
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	// make sure entries are selected to be deleted
@@ -3269,7 +3269,7 @@ bail:
 - (IBAction) untrashSelectedEntries:(id)sender
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	// make sure entries are selected to be deleted
@@ -3669,7 +3669,7 @@ bail:
 - (IBAction) insertNewResource:(id)sender
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s - %i",[self className],_cmd,[sender tag]);
+	NSLog(@"%s - %i",__PRETTY_FUNCTION__,[sender tag]);
 	#endif
 	
 	switch ( [sender tag] )
@@ -3705,7 +3705,7 @@ bail:
 - (IBAction) addFileFromFinder:(id)sender 
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	int result;
@@ -4209,7 +4209,7 @@ bail:
 - (void) sproutedVideoRecorder:(SproutedRecorder*)recorder insertRecording:(NSString*)path title:(NSString*)title
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s %@",[self className],_cmd,path);
+	NSLog(@"%s %@",__PRETTY_FUNCTION__,path);
 	#endif
 	
 	NSArray *theEntries = [self selectedEntries];
@@ -4231,7 +4231,7 @@ bail:
 - (void) sproutedAudioRecorder:(SproutedRecorder*)recorder insertRecording:(NSString*)path title:(NSString*)title
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s %@",[self className],_cmd,path);
+	NSLog(@"%s %@",__PRETTY_FUNCTION__,path);
 	#endif
 	
 	NSArray *theEntries = [self selectedEntries];
@@ -4253,7 +4253,7 @@ bail:
 - (void) sproutedSnapshot:(SproutedRecorder*)recorder insertRecording:(NSString*)path title:(NSString*)title
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s %@",[self className],_cmd,path);
+	NSLog(@"%s %@",__PRETTY_FUNCTION__,path);
 	#endif
 	
 	// make sure an entry is available for it

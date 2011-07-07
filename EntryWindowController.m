@@ -143,9 +143,9 @@
 
 - (void)windowWillClose:(NSNotification *)aNotification 
 {
-	#ifdef __DEBUG__
-	NSLog(@"%@ %s", [self className], _cmd);
-	#endif __DEBUG__
+#ifdef __DEBUG__
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+#endif
 	
 	[super windowWillClose:aNotification];
 	

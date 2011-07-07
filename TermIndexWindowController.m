@@ -280,14 +280,14 @@
 		NSArray *theStopwordsArray = [theStopwords componentsSeparatedByString:@" "];
 		if ( theStopwordsArray == nil )
 		{
-			NSLog(@"%@ %s - unable to derive stopwords array from string %@", [self className], _cmd, theStopwords);
+			NSLog(@"%s - unable to derive stopwords array from string %@", __PRETTY_FUNCTION__, theStopwords);
 			return;
 		}
 		
 		NSSet *theStopwordsSet = [NSSet setWithArray:theStopwordsArray];
 		if ( theStopwordsSet == nil )
 		{
-			NSLog(@"%@ %s - unable to derive stopwords set from array %@", [self className], _cmd, theStopwordsArray);
+			NSLog(@"%s - unable to derive stopwords set from array %@", __PRETTY_FUNCTION__, theStopwordsArray);
 			return;
 		}
 		

@@ -215,14 +215,14 @@
 	NSString *urlString = [NSString stringWithFormat:@"journler://blog/%@", [self valueForKey:@"tagID"]];
 	if ( urlString == nil )
 	{
-		NSLog(@"%@ %s - unable to create string representation of entry #%@", [self className], _cmd, [self valueForKey:@"tagID"]);
+		NSLog(@"%s - unable to create string representation of entry #%@", __PRETTY_FUNCTION__, [self valueForKey:@"tagID"]);
 		return nil;
 	}
 	
 	NSURL *url = [NSURL URLWithString:urlString];
 	if ( url == nil )
 	{
-		NSLog(@"%@ %s - unable to create url representation of entry #%@", [self className], _cmd, [self valueForKey:@"tagID"]);
+		NSLog(@"%s - unable to create url representation of entry #%@", __PRETTY_FUNCTION__, [self valueForKey:@"tagID"]);
 		return nil;
 	}
 	
@@ -240,7 +240,7 @@
 {
 	if ( anObject == nil || aKey == nil ) 
 	{
-		[NSException raise:NSInvalidArgumentException format:nil];
+		[NSException raise:NSInvalidArgumentException format:@""];
 		return;
 	}
 	

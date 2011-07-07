@@ -211,7 +211,7 @@ static NSDictionary * StatusAttributes()
 - (void) dealloc
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	// no more notifications
@@ -920,9 +920,9 @@ static NSDictionary * StatusAttributes()
 	if ( [aNotification object] == textView && [self footerHidden] == NO 
 		&& [[NSUserDefaults standardUserDefaults] boolForKey:@"EntryTextShowWordCount"] )
 	{
-		#ifdef __DEBUG__
-		NSLog(@"%@ %s",[self className],_cmd);
-		#endif
+    #ifdef __DEBUG__
+		NSLog(@"%s",__PRETTY_FUNCTION__);
+    #endif
 		
 		[self updateLiveCount];
 	}
@@ -1043,7 +1043,7 @@ static NSDictionary * StatusAttributes()
 			}
 			else 
 			{
-				NSLog(@"%@ %s - unable to read entry link: %@", [self className], _cmd, [(NSURL*)link absoluteString]);
+				NSLog(@"%s - unable to read entry link: %@", __PRETTY_FUNCTION__, [(NSURL*)link absoluteString]);
 				NSBeep();
 			}
 		}
@@ -1062,7 +1062,7 @@ static NSDictionary * StatusAttributes()
 			}
 			else 
 			{
-				NSLog(@"%@ %s - unable to read folder link: %@", [self className], _cmd, [(NSURL*)link absoluteString]);
+				NSLog(@"%s - unable to read folder link: %@", __PRETTY_FUNCTION__, [(NSURL*)link absoluteString]);
 				NSBeep();
 			}
 			
@@ -1085,7 +1085,7 @@ static NSDictionary * StatusAttributes()
 			{
 				NSBeep();
 				[[NSAlert resourceNotFound] runModal];
-				NSLog(@"%@ %s - unable to read resource link: %@", [self className], _cmd, [(NSURL*)link absoluteString]);
+				NSLog(@"%s - unable to read resource link: %@", __PRETTY_FUNCTION__, [(NSURL*)link absoluteString]);
 			}
 		}
 		
@@ -1268,7 +1268,7 @@ static NSDictionary * StatusAttributes()
 - (NSArray *)textView:(NSTextView *)aTextView writablePasteboardTypesForCell:(id <NSTextAttachmentCell>)cell atIndex:(unsigned)charIndex
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	if ( aTextView != textView )
@@ -1326,7 +1326,7 @@ static NSDictionary * StatusAttributes()
 		atIndex:(unsigned)charIndex toPasteboard:(NSPasteboard *)pboard type:(NSString *)type
 {
 	#ifdef __DEBUG__
-	NSLog(@"%@ %s",[self className],_cmd);
+	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
 	if ( aTextView != textView )
@@ -1397,7 +1397,7 @@ static NSDictionary * StatusAttributes()
 	if ( [aNotification object] == [textView textStorage] && [self footerHidden] == NO && [[NSUserDefaults standardUserDefaults] boolForKey:@"EntryTextShowWordCount"] )
 	{
 		#ifdef __DEBUG__
-		NSLog(@"%@ %s",[self className],_cmd);
+		NSLog(@"%s",__PRETTY_FUNCTION__);
 		#endif
 		
 		[self updateLiveCount];
@@ -1483,7 +1483,7 @@ static NSDictionary * StatusAttributes()
 	}
 	@catch (NSException *localException)
 	{
-		NSLog(@"%@ %s - exception processing entry text %@", [self className], _cmd, localException);
+		NSLog(@"%s - exception processing entry text %@", __PRETTY_FUNCTION__, localException);
 	}
 	@finally
 	{
@@ -1598,7 +1598,7 @@ static NSDictionary * StatusAttributes()
 						}
 						else
 							url = nil;
-							//NSLog(@"%@ %s - unable to convert link attribute of class %@ to url, expected string or url", [self className], _cmd, [urlAttribute className]);
+							//NSLog(@"%s - unable to convert link attribute of class %@ to url, expected string or url", __PRETTY_FUNCTION__, [urlAttribute className]);
 						
 						if ( url != nil )
 						{
@@ -1893,13 +1893,13 @@ static NSDictionary * StatusAttributes()
 
 - (BOOL)tokenField:(NSTokenField *)tokenField hasMenuForRepresentedObject:(id)representedObject
 {
-	//NSLog(@"%@ %s",[self className],_cmd);
+	//NSLog(@"%s",__PRETTY_FUNCTION__);
 	return YES;
 }
 
 - (NSMenu *)tokenField:(NSTokenField *)tokenField menuForRepresentedObject:(id)representedObject
 {
-	//NSLog(@"%@ %s",[self className],_cmd);
+	//NSLog(@"%s",__PRETTY_FUNCTION__);
 	
 	NSMenu *theMenu = nil;
 	
@@ -1934,7 +1934,7 @@ static NSDictionary * StatusAttributes()
 	}
 	else
 	{
-		NSLog(@"%@ %s - filter returned no objects", [self className], _cmd);
+		NSLog(@"%s - filter returned no objects", __PRETTY_FUNCTION__);
 	}
 	
 	return theMenu;
@@ -1943,7 +1943,7 @@ static NSDictionary * StatusAttributes()
 - (NSArray *)tokenField:(NSTokenField *)tokenField completionsForSubstring:(NSString *)substring 
 	indexOfToken:(int)tokenIndex indexOfSelectedItem:(int *)selectedIndex
 {
-	//NSLog(@"%@ %s",[self className],_cmd);
+	//NSLog(@"%s",__PRETTY_FUNCTION__);
 	
 	NSArray *tagsArray = [[[self journal] entryTags] allObjects];
 	//NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith[cd] %@", substring];
@@ -1954,7 +1954,7 @@ static NSDictionary * StatusAttributes()
 
 - (NSArray *)tokenField:(NSTokenField *)tokenField shouldAddObjects:(NSArray *)tokens atIndex:(unsigned)index
 {
-	//NSLog(@"%@ %s - %@",[self className],_cmd,tokens);
+	//NSLog(@"%s - %@",__PRETTY_FUNCTION__,tokens);
 	
 	NSMutableArray *modifiedArray = [NSMutableArray array];
 	
@@ -1973,7 +1973,7 @@ static NSDictionary * StatusAttributes()
 
 - (void)tokenField:(PDTokenField *)tokenField didReadTokens:(NSArray*)theTokens fromPasteboard:(NSPasteboard *)pboard
 {
-	//NSLog(@"%@ %s - %@",[self className],_cmd,theTokens);
+	//NSLog(@"%s - %@",__PRETTY_FUNCTION__,theTokens);
 	[[self selectedEntry] setValue:theTokens forKey:@"tags"];
 }
 
@@ -2030,7 +2030,7 @@ static NSDictionary * StatusAttributes()
 	// if there is a single selection without any length (no selection)
 	if ( selectedText == nil || [selectedText length] == 0 )
 	{
-		//NSLog(@"%@ %s - new word counting method",[self className],_cmd);
+		//NSLog(@"%s - new word counting method",__PRETTY_FUNCTION__);
 		
 		NSString *selected_text;
 		NSMutableString *paragraph_text;
