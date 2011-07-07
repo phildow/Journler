@@ -538,8 +538,6 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification 
 {
-	LogIfDebugging(99,MethodEntryDescription());
-	
 	// initiate the shared journal
 	sharedJournal = [[JournlerJournal alloc] init];
 	[sharedJournal setOwner:self];
@@ -819,8 +817,6 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification 
 {
-	LogIfDebugging(99,MethodEntryDescription());
-	
 	// initialize the ignored words list from the wikilinks
 	NSArray *allwikikeys = [[self valueForKeyPath:@"journal.entryWikisDictionary"] allKeys];
 	[[NSSpellChecker sharedSpellChecker] setIgnoredWords:allwikikeys inSpellDocumentWithTag:[self spellDocumentTag]];
@@ -930,8 +926,6 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	// open any files the user is launching the app with
 	if ( filesToOpenAtLaunch != nil )
 	{
-		LogIfDebugging(50,([NSString stringWithFormat:@"%s - opening files %@", __PRETTY_FUNCTION__, filesToOpenAtLaunch]));
-		
 		NSString *aFilename;
 		NSEnumerator *enumerator = [filesToOpenAtLaunch objectEnumerator];
 		
@@ -944,8 +938,6 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	
 	if ( [entriesToShowAtLaunch count] != 0 )
 	{
-		LogIfDebugging(50,([NSString stringWithFormat:@"%s - showing files %@", __PRETTY_FUNCTION__, entriesToShowAtLaunch]));
-		
 		// open the imported entry in a new window or into the main window, depending on preference
 		if ( defaultBool(@"NewEntryImportNewWindow") )
 		{
@@ -1060,20 +1052,14 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 
 - (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames 
 {
-	LogIfDebugging(99,MethodEntryDescription());
-	
 	if ( ![sharedJournal isLoaded] )
 	{
-		LogIfDebugging(50,([NSString stringWithFormat:@"%s - journal is not loaded, storing files %@", __PRETTY_FUNCTION__,filenames]));
-		
 		// the open must be handled after the application launches
 		filesToOpenAtLaunch = [filenames retain];
 		[NSApp replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
 	}
 	else
 	{
-		LogIfDebugging(50,([NSString stringWithFormat:@"%s - loading the files %@", __PRETTY_FUNCTION__,filenames]));
-		
 		BOOL success = YES;
 		NSString *aFilename;
 		NSEnumerator *enumerator = [filenames objectEnumerator];
@@ -1087,15 +1073,11 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 
 - (BOOL)application:(NSApplication *)theApplication openTempFile:(NSString *)filename 
 {
-	LogIfDebugging(99,MethodEntryDescription());
 	return [self openFile:filename];
 }
 
 - (BOOL) openFile:(NSString*)filename
 {
-	LogIfDebugging(99,MethodEntryDescription());
-	LogIfDebugging(50,([NSString stringWithFormat:@"%s - filename: %@", __PRETTY_FUNCTION__,filename]));
-		
 	// check to see if the file is a journler kind of file: entry, folder, metadata, blog, etc.
 	// if not, check to see if the file is already a resource
 	// if not, import the file
@@ -1111,7 +1093,6 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 		findString = [findBoard stringForType:NSStringPboardType];
 	
 	NSString *fileUTI = [[NSWorkspace sharedWorkspace] UTIForFile:[[NSWorkspace sharedWorkspace] resolveForAliases:filename]];
-	LogIfDebugging(50,([NSString stringWithFormat:@"%s - file uti: %@", __PRETTY_FUNCTION__,fileUTI]));
 	
 	if ( fileUTI == nil )
 	{
@@ -1138,8 +1119,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 		if ( journalWindowController == nil )
 		{
 			[entriesToShowAtLaunch addObject:actualEntry];
-			LogIfDebugging(50,([NSString stringWithFormat:@"%s - no main controller, storing entry %@", __PRETTY_FUNCTION__,[actualEntry URIRepresentation]]));
-		}
+        }
 		else
 		{
 			// if we made it this far, launch the entry in a new window or open it into the main window
@@ -1404,8 +1384,6 @@ bail:
 		receivedNotification:(NSString*)nm 
 		forPath:(NSString*)fpath
 {
-	LogIfDebugging(50,([NSString stringWithFormat:@"%s\n\t%@\n\t%@",__PRETTY_FUNCTION__, nm, fpath]));
-	
 	if ( !dropBoxing && [nm isEqualToString:UKFileWatcherWriteNotification] )
 	{
 		if ( lockout == YES )
@@ -1454,8 +1432,6 @@ bail:
 	NSString *aCompletePath;
 	NSEnumerator *enumerator;
 	NSMutableArray *validPaths;
-	
-	LogIfDebugging(50,([NSString stringWithFormat:@"%s - contents: %@",__PRETTY_FUNCTION__, [contents description]]));
 	
 	// first derive the valid paths
 	enumerator = [contents objectEnumerator];
@@ -1619,9 +1595,6 @@ bail:
 
 - (void) dropboxImport:(DropBoxDialog*)aDialog didEndDialog:(int)result contents:(NSArray*)contents
 {
-	LogIfDebugging(99,MethodEntryDescription());
-	LogIfDebugging(50,([NSString stringWithFormat:@"%s - content:", __PRETTY_FUNCTION__, contents]));
-	
 	if ( result == NSRunAbortedResponse )
 	{
 		NSString *aCompletePath;
@@ -1752,9 +1725,6 @@ bail:
 
 - (void) dropboxScriptCommand:(DropBoxDialog*)aDialog didEndDialog:(int)result contents:(NSArray*)contents
 {
-	LogIfDebugging(99,MethodEntryDescription());
-	LogIfDebugging(50,([NSString stringWithFormat:@"%s - content:", __PRETTY_FUNCTION__, contents]));
-		
 	// return to the previous application
 	if ( ![[[aDialog activeApplication] objectForKey:@"NSApplicationName"] isEqualToString:@"Journler"] )
 	[[NSWorkspace sharedWorkspace] launchApplication:[[aDialog activeApplication] objectForKey:@"NSApplicationName"]];
@@ -2072,7 +2042,6 @@ bail:
 
 - (void) dayDidChange:(NSTimer*)aTimer
 {
-	LogIfDebugging(99,MethodEntryDescription());
 	[self regenerateDynamicDatePredicates];
 }
 
@@ -2080,7 +2049,6 @@ bail:
 {
 	if ( [[[aNotification userInfo] objectForKey:PDPowerManagementMessage] intValue] == PDPowerManagementPoweredOn )
 	{
-		LogIfDebugging(99,MethodEntryDescription());
 		[self regenerateDynamicDatePredicates];
 	}
 }
@@ -2100,9 +2068,7 @@ bail:
 		
 		autosaveTimer = [[NSTimer scheduledTimerWithTimeInterval:( 60 * saveInterval ) 
 		target:self selector:@selector(performAutosave:) userInfo:nil repeats:YES] retain];
-		
-		LogIfDebugging(50,([NSString stringWithFormat:@"%s - reset autosave timer, new value: %i", __PRETTY_FUNCTION__, saveInterval]));
-	}
+    }
 }
 
 - (void) regenerateDynamicDatePredicates
@@ -2200,14 +2166,11 @@ bail:
 
 - (BOOL)exceptionHandler:(NSExceptionHandler *)sender shouldHandleException:(NSException *)exception mask:(unsigned int)aMask
 {
-	LogIfDebugging(99,MethodEntryDescription());
 	return YES;
 }
 
 - (BOOL)exceptionHandler:(NSExceptionHandler *)sender shouldLogException:(NSException *)exception mask:(unsigned int)aMask
 {
-	LogIfDebugging(99,MethodEntryDescription());
-	
 	#warning see about emailing this trace
 	[exception printStackTrace];
 	return YES;
@@ -2256,7 +2219,6 @@ bail:
 
 - (void) performAutosave:(NSTimer*)aTimer
 {
-	LogIfDebugging(99,MethodEntryDescription());
 	[[NSNotificationCenter defaultCenter] postNotificationName:PDAutosaveNotification object:self userInfo:nil];
 }
 
@@ -4999,7 +4961,6 @@ bail:
 	static NSString *selectionIDsSource = @"tell application \"Mail\"\nset mailSelection to the selection\nset allIDs to {}\nrepeat with aMail in mailSelection\nset allIDs to allIDs & {{the id of aMail, the subject of aMail}}\nend repeat\nreturn allIDs\nend tell";
 	
 	NSString *mboxPath = [pboard stringForType:kMailMessagePboardType];
-	LogIfDebugging(50,([NSString stringWithFormat:@"%s - mailbox path: %@", __PRETTY_FUNCTION__,mboxPath]));
 		
 	NSDictionary *errorDictionary;
 	NSAppleEventDescriptor *eventDescriptor;
@@ -5042,13 +5003,10 @@ bail:
 		}
 		else
 		{
-			LogIfDebugging(50,([NSString stringWithFormat:@"%s - event descriptor: %@", __PRETTY_FUNCTION__,[eventDescriptor description]]));
-			
 			int i, totalItems = [eventDescriptor numberOfItems];
 			for ( i = 1; i <= totalItems; i++ )
 			{
 				NSAppleEventDescriptor *itemDescriptor = [eventDescriptor descriptorAtIndex:i];
-				LogIfDebugging(50,([NSString stringWithFormat:@"%s - item descriptor: %@", __PRETTY_FUNCTION__,[itemDescriptor description]]));
 				
 				if ( [itemDescriptor numberOfItems] != 2 )
 					continue;
@@ -5569,8 +5527,6 @@ bail:
 		userData:(NSString *)userData 
 		error:(NSString **)error
 {
-	LogIfDebugging(99,MethodEntryDescription());
-	
 	static NSString *kPDUTTypeURLName = @"public.url-name";
 	NSArray *types = [NSArray arrayWithObjects: kMailMessagePboardType, NSFilenamesPboardType, 
 			NSTIFFPboardType, NSPICTPboardType, 
@@ -5626,8 +5582,6 @@ bail:
 
 - (void)appendSelection:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
 {
-	LogIfDebugging(99,MethodEntryDescription());
-	
 	NSArray *types = [NSArray arrayWithObjects: NSTIFFPboardType, NSPICTPboardType, 
 			NSRTFDPboardType, NSRTFPboardType, WebURLsWithTitlesPboardType, NSURLPboardType, NSStringPboardType, nil];
 	
@@ -5642,9 +5596,6 @@ bail:
 
 - (void) servicesImport:(DropBoxDialog*)aDialog didEndDialog:(int)result contents:(NSArray*)contents
 {
-	LogIfDebugging(99,MethodEntryDescription());
-	LogIfDebugging(50,([NSString stringWithFormat:@"%s - contents: %@", __PRETTY_FUNCTION__, contents]));
-	
 	NSArray *targetTags = [aDialog tags];
 	NSString *targetCategory = [aDialog category];
 	NSArray *targetFolders = [aDialog selectedFolders];

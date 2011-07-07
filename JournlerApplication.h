@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-// http://journler.com/purchase/calculate.php?src=journler&g_name=Evan%20Agee&g_email=evanagee@gmail.com&g_license=xxxx-xxxx-xxxx-xxxx
+// http://journler.com/purchase/calculate.php?src=journler&g_name=Philip%20Dow&g_email=phil@getsprouted.com&g_license=xxxx-xxxx-xxxx-xxxx
 // replace spaces in the name with characters
 
 @interface JournlerApplication : NSApplication {
