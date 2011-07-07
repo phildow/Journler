@@ -62,8 +62,9 @@
 	int selectionRow = [outlineView rowForOriginalItem:theSelection];
 	if ( selectionRow != - 1)
 	{
-		[outlineView selectRow:selectionRow byExtendingSelection:NO];
-		[outlineView scrollRowToVisible:selectionRow];
+		//[outlineView selectRow:selectionRow byExtendingSelection:NO]; DEPRECATED
+		[outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:selectionRow] byExtendingSelection:NO];
+        [outlineView scrollRowToVisible:selectionRow];
 	}
 	else
 	{

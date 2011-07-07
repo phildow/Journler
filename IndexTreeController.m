@@ -51,8 +51,9 @@
 	unsigned targetRow = [outlineView rowForOriginalItem:theSelection];
 	if ( targetRow != -1 ) 
 	{
-		[outlineView selectRow:targetRow byExtendingSelection:NO];
-		[outlineView scrollRowToVisible:targetRow];
+		//[outlineView selectRow:targetRow byExtendingSelection:NO]; DEPRECATED
+		[outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:targetRow] byExtendingSelection:NO];
+        [outlineView scrollRowToVisible:targetRow];
 	}
 	
 	[theSelection release];

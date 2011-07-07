@@ -4173,21 +4173,27 @@ bail:
 
 - (IBAction) selectNextFolder:(id)sender
 {
-	if ( [sourceList selectedRow] == [sourceList numberOfRows] - 1 )
+/*	DEPRECATED
+    if ( [sourceList selectedRow] == [sourceList numberOfRows] - 1 )
 		[sourceList selectRow:0 byExtendingSelection:NO];
 	else
 		[sourceList selectRow:[sourceList selectedRow]+1 byExtendingSelection:NO];
-		
+*/
+    NSUInteger desiredIndex = ( [sourceList selectedRow]==[sourceList numberOfRows]-1 ? 0 : [sourceList selectedRow]+1 );
+    [sourceList selectRowIndexes:[NSIndexSet indexSetWithIndex:desiredIndex] byExtendingSelection:NO];
 	[sourceList scrollRowToVisible:[sourceList selectedRow]];
 }
 
 - (IBAction) selectPreviousFolder:(id)sender
 {
-	if ( [sourceList selectedRow] == 0 )
+/*	DEPRECATED
+    if ( [sourceList selectedRow] == 0 )
 		[sourceList selectRow:[sourceList numberOfRows]-1 byExtendingSelection:NO];
 	else
 		[sourceList selectRow:[sourceList selectedRow]-1 byExtendingSelection:NO];
-	
+*/
+	NSUInteger desiredIndex = ([sourceList selectedRow]==0 ? [sourceList numberOfRows]-1 : [sourceList selectedRow]-1 );
+    [sourceList selectRowIndexes:[NSIndexSet indexSetWithIndex:desiredIndex] byExtendingSelection:NO];
 	[sourceList scrollRowToVisible:[sourceList selectedRow]];
 }
 

@@ -442,7 +442,8 @@ enum JournlerPDFDisplayOption {
 	if ( autoselectSearchResults && [searchResults count] == 1 )
 	{
 		[outline deselectAll:self];
-		[outline selectRow:0 byExtendingSelection:NO];
+		[outline selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
+        //[outline selectRow:0 byExtendingSelection:NO]; DEPRECATED
 	}
 }
 
@@ -559,14 +560,16 @@ enum JournlerPDFDisplayOption {
 				[[pdfView document] indexForPage: [[outlineItem destination] page]] == index) 
 		{
             newlySelectedRow = i;
-            [outline selectRow: newlySelectedRow byExtendingSelection: NO];
+            [outline selectRowIndexes:[NSIndexSet indexSetWithIndex:newlySelectedRow] byExtendingSelection:NO];
+            //[outline selectRow: newlySelectedRow byExtendingSelection: NO]; DEPRECATED
             break;
         }
         else if ( [[outlineItem destination] page] != nil && 
 				[[pdfView document] indexForPage: [[outlineItem destination] page]] > index) 
 		{
             newlySelectedRow = i - 1;
-            [outline selectRow: newlySelectedRow byExtendingSelection: NO];
+            [outline selectRowIndexes:[NSIndexSet indexSetWithIndex:newlySelectedRow] byExtendingSelection:NO];
+            //[outline selectRow: newlySelectedRow byExtendingSelection: NO]; DEPRECATED
             break;
         }
     }

@@ -63,7 +63,8 @@
 {
 	BOOL became = [super becomeFirstResponder];
 	if ( became == YES && [self selectedRow] == -1 && [self numberOfRows] != 0 )
-		[self selectRow:0 byExtendingSelection:NO];
+		[self selectRowIndexes:[NSIndexSet indexSetWithIndex:0] byExtendingSelection:NO];
+        //[self selectRow:0 byExtendingSelection:NO]; DEPRECATED
 	
 	return became;
 }
