@@ -181,7 +181,7 @@
 				[NSColor blackColor], NSForegroundColorAttributeName, nil];
 
 	// center the text and take into account the required inset
-	int textHeight = [[self stringValue] sizeWithAttributes:attrs].height;
+	NSInteger textHeight = [[self stringValue] sizeWithAttributes:attrs].height;
 	textFrame.origin.y = textFrame.origin.y + (textFrame.size.height/2 - textHeight/2);
 	textFrame.size.height = textHeight;
 	
@@ -207,7 +207,7 @@
 				[NSColor blackColor], NSForegroundColorAttributeName, nil];
 	
 	// center the text and take into account the required inset
-	int textHeight = [[self stringValue] sizeWithAttributes:attrs].height;
+	NSInteger textHeight = [[self stringValue] sizeWithAttributes:attrs].height;
 	textFrame.origin.y = textFrame.origin.y + (textFrame.size.height/2 - textHeight/2);
 	textFrame.size.height = textHeight;
 	
@@ -446,7 +446,7 @@
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
 	
-	int textHeight;
+	NSInteger textHeight;
 	
 	NSRect inset = cellFrame;
 	NSMutableDictionary *attrs;
@@ -568,7 +568,7 @@
 		
 		NSBezierPath *clipPath = [NSBezierPath bezierPath];
 		
-		int i;
+		NSInteger i;
 		for ( i = 1; i < distance; i+=2 )
 		{
 			[clipPath moveToPoint:NSMakePoint(rankRect.origin.x+i, rankRect.origin.y)];

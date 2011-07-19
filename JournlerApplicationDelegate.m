@@ -968,7 +968,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	entriesToShowAtLaunch = nil;
 	
 	// launch the autosave timer - saves individual entries, not the store
-	int saveInterval = [[NSUserDefaults standardUserDefaults] integerForKey:@"Auto Save Time"];
+	NSInteger saveInterval = [[NSUserDefaults standardUserDefaults] integerForKey:@"Auto Save Time"];
 	if ( saveInterval == 0 )
 		saveInterval = 8;
 	
@@ -1010,7 +1010,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	// build a menu based on the currently visible items, tabbed and windowed	
 	NSMenu *dockMenu = [[NSMenu alloc] initWithTitle:@"Dock Menu"];
 	
-	int i;
+	NSInteger i;
 	NSArray *allWindows = [NSApp windows];
 	
 	for ( i = 0; i < [allWindows count]; i++ )
@@ -1305,8 +1305,8 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 
 - (JournlerEntry*) importFile:(NSString*)filename operation:(NewResourceCommand)operation
 {
-	int importOptions = 0;
-	int kMaxWidth = ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EmbeddedImageUseFullSize"] 
+	NSInteger importOptions = 0;
+	NSInteger kMaxWidth = ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EmbeddedImageUseFullSize"] 
 			? 0 
 			: [[NSUserDefaults standardUserDefaults] integerForKey:@"EmbeddedImageMaxWidth"] );
 	
@@ -1392,7 +1392,7 @@ bail:
 		}
 		else
 		{
-			int fileCount;
+			NSInteger fileCount;
 			dropBoxing = YES;
 			BOOL visually = defaultBool(@"UseVisualAidWherePossibleWhenImporting");
 			BOOL success = [self _importContentsOfDropBox:fpath visually:visually filesAffected:&fileCount];
@@ -1414,7 +1414,7 @@ bail:
 {
 	// DIRECTORY_ENUMERATION
     
-    int successCount = 0;
+    NSInteger successCount = 0;
 	BOOL completeSuccess = YES;
 	//NSFileManager *fm = [NSFileManager defaultManager];
 	NSArray *contents = [[NSFileManager defaultManager] directoryContentsAtPath:path];
@@ -1502,7 +1502,7 @@ bail:
 		[notice setNoticeText:NSLocalizedString(@"reading dropbox",@"")];
 		[notice runNotice];
 		
-		int successCount;
+		NSInteger successCount;
 		BOOL completeSuccess = YES;
 		NSString *targetTags = nil;
 		NSString *targetCategory = NSLocalizedString(@"dropbox category",@"");
@@ -1612,7 +1612,7 @@ bail:
 		[notice setNoticeText:NSLocalizedString(@"reading dropbox",@"")];
 		[notice runNotice];
 		
-		int successCount;
+		NSInteger successCount;
 		BOOL completeSuccess = YES;
 		NSArray *targetTags = [aDialog tags];
 		NSString *targetCategory = [aDialog category];
@@ -1715,7 +1715,7 @@ bail:
 		[notice setNoticeText:NSLocalizedString(@"reading dropbox",@"")];
 		[notice runNotice];
 		
-		int successCount;
+		NSInteger successCount;
 		BOOL completeSuccess = YES;
 		BOOL deleteOriginalFile = [aDialog shouldDeleteOriginal];
 		NSArray *targetTags = [aDialog tags];
@@ -1897,7 +1897,7 @@ bail:
 - (IBAction) runFileImporter:(id)sender
 {
 	BOOL dir;
-	int result;
+	NSInteger result;
 	NSOpenPanel *oPanel = [NSOpenPanel openPanel];
 	
 	[oPanel setCanChooseDirectories:YES];
@@ -1946,7 +1946,7 @@ bail:
 
 - (BOOL) importFilesWithImporter:(NSArray*)filenames folder:(JournlerCollection*)targetFolder userInteraction:(BOOL)visual 
 {
-	int result;
+	NSInteger result;
 		
 	BulkImportController *importer;
 	ImportReviewController *reviewer;
@@ -2019,7 +2019,7 @@ bail:
 {
 	// get the new value, compare it to the old value, reset the timer if necessary
 	
-	int saveInterval = [[NSUserDefaults standardUserDefaults] integerForKey:@"Auto Save Time"];
+	NSInteger saveInterval = [[NSUserDefaults standardUserDefaults] integerForKey:@"Auto Save Time"];
 	if ( saveInterval == 0 )
 		saveInterval = 8;
 	
@@ -2190,7 +2190,7 @@ bail:
 	// checking of course for password and encryption protection
 	//
 	
-	int jError = 0;
+	NSInteger jError = 0;
 	JournalLoadFlag loadResult;
 	
 	//#warning check error codes
@@ -2210,7 +2210,7 @@ bail:
 		{
 			NSLog(@"%s - encountered entries index error, requesting action", __PRETTY_FUNCTION__);
 			NSBeep();
-			int result = [[NSAlert noSearchIndex] runModal];
+			NSInteger result = [[NSAlert noSearchIndex] runModal];
 			
 			if ( result == NSAlertFirstButtonReturn ) 
 			{
@@ -2253,7 +2253,7 @@ bail:
 		if  ( jError & PDJournalFormatTooOld )
 		{
 			NSBeep();
-			int aResult = [[NSAlert journalFormatPre117] runModal];
+			NSInteger aResult = [[NSAlert journalFormatPre117] runModal];
 			
 			if ( aResult == NSAlertSecondButtonReturn ) // load the download page
 				[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://journler.com/download/"]];
@@ -2262,7 +2262,7 @@ bail:
 			return loadResult;
 		}
 		
-		int result = [[NSAlert criticalLoadError] runModal];
+		NSInteger result = [[NSAlert criticalLoadError] runModal];
 		
 		if ( result == JournlerLoadErrorQuit ) 
 		{
@@ -2287,7 +2287,7 @@ bail:
 				NSLog(@"%s - found old journal at this path, asking user for further instructions", __PRETTY_FUNCTION__);
 				
 				NSBeep();
-				int result = [[NSAlert overwritePreviousJournal] runModal];
+				NSInteger result = [[NSAlert overwritePreviousJournal] runModal];
 				
 				if ( result != NSAlertFirstButtonReturn ) 
 				{
@@ -2360,8 +2360,8 @@ bail:
 		{
 			// release the old journal, load with a new path, setup, make sure to set the shared journals like wake from nib
 			
-			int result;
-			int newError;
+			NSInteger result;
+			NSInteger newError;
 			NSArray *filenames;
 			NSOpenPanel *op = [NSOpenPanel openPanel];
 			
@@ -2466,7 +2466,7 @@ bail:
 		return NO;
 	}
 	
-	int c;
+	NSInteger c;
 	
 	NSNumber *unique_id;
 	NSString *user_name = nil, *journal_title;
@@ -2560,7 +2560,7 @@ bail:
 			}
 			else
 			{
-				int anError;
+				NSInteger anError;
 				
 				zipInstalSuccess = YES;
 				NSLog(@"%s - successfully installed default journal", __PRETTY_FUNCTION__);
@@ -3104,7 +3104,7 @@ bail:
 	NSString *confirmedPassword;
 	lockoutController = nil;
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *visibleWindows;
 	NSWindow *keyWindow;
 	
@@ -3189,7 +3189,7 @@ bail:
 		// if files are waiting in the drop box, run it
 		if ( dropBoxIsWaiting == YES )
 		{
-			int fileCount;
+			NSInteger fileCount;
 			dropBoxing = YES;
 			BOOL visually = defaultBool(@"UseVisualAidWherePossibleWhenImporting");
 			BOOL success = [self _importContentsOfDropBox:waitingDropBoxPaths visually:visually filesAffected:&fileCount];
@@ -3360,7 +3360,7 @@ bail:
 
 - (IBAction) printJournal:(id)sender
 {
-	int result;
+	NSInteger result;
 	PrintJournalController *printController = [[[PrintJournalController alloc] init] autorelease];
 	
 	[printController setDateFrom:[NSCalendarDate calendarDate]];
@@ -3371,7 +3371,7 @@ bail:
 		return;
 	
 	// the user set a few preferences for printing the journal
-	int printMode = [printController printMode];
+	NSInteger printMode = [printController printMode];
 	NSDate *fromDate = [printController dateFrom];
 	NSDate *toDate = [printController dateTo];
 	
@@ -3388,8 +3388,8 @@ bail:
 		[[sharedPI dictionary] setValue:[NSNumber numberWithBool:YES] forKey:NSPrintHeaderAndFooter];
 	
 	// determine view size
-	int width = [sharedPI paperSize].width - ( [sharedPI rightMargin] + [sharedPI leftMargin] );
-	int height = [sharedPI paperSize].height - ( [sharedPI topMargin] + [sharedPI bottomMargin] );
+	NSInteger width = [sharedPI paperSize].width - ( [sharedPI rightMargin] + [sharedPI leftMargin] );
+	NSInteger height = [sharedPI paperSize].height - ( [sharedPI topMargin] + [sharedPI bottomMargin] );
 	
 	// create a view with that information
 	PDPrintTextView *printView = [[[PDPrintTextView alloc] initWithFrame:NSMakeRect(0,0,width,height)] autorelease];
@@ -3410,7 +3410,7 @@ bail:
 	BOOL wCategory = [[NSUserDefaults standardUserDefaults] boolForKey:@"PrintEntryCategory"];
 	BOOL wDate = [[NSUserDefaults standardUserDefaults] boolForKey:@"PrintEntryDate"];
 	
-	int i;
+	NSInteger i;
 	NSSortDescriptor *descriptor = [[[NSSortDescriptor alloc] initWithKey:@"calDate" ascending:YES] autorelease];
 	NSArray *entriesArray = [[self valueForKeyPath:@"journal.entries"] sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]];
 	
@@ -3456,7 +3456,7 @@ bail:
 - (IBAction) exportJournal:(id)sender
 {
 	NSOpenPanel *sp;
-	int runResult;
+	NSInteger runResult;
 	
 	ExportJournalController *exportController = [[ExportJournalController alloc] init];
 	
@@ -3489,10 +3489,10 @@ bail:
 		BOOL mods_modification_date = [exportController modifiesFileModifiedDate];
 		BOOL include_header = [exportController includeHeader];
 				
-		int dataFormat = [exportController dataFormat];
-		int folderPref = [exportController fileMode];
+		NSInteger dataFormat = [exportController dataFormat];
+		NSInteger folderPref = [exportController fileMode];
 		
-		int flags = kEntrySetLabelColor|kEntryDoNotOverwrite;
+		NSInteger flags = kEntrySetLabelColor|kEntryDoNotOverwrite;
 		if ( include_header )
 			flags |= kEntryIncludeHeader;
 		if ( mods_creation_date )
@@ -3506,7 +3506,7 @@ bail:
 		NSArray *monthNames = [[NSUserDefaults standardUserDefaults] objectForKey:NSMonthNameArray];
 		NSFileManager *fileManager = [NSFileManager defaultManager];
 		
-		int i;
+		NSInteger i;
 		NSSortDescriptor *descriptor = [[[NSSortDescriptor alloc] initWithKey:@"calDate" ascending:YES] autorelease];
 		NSPredicate *dateFilter = [NSPredicate predicateWithFormat:@"calDate > %@ && calDate < %@", fromDate, toDate];
 		
@@ -3595,8 +3595,8 @@ bail:
 			[[printInfo dictionary] setValue:[NSNumber numberWithBool:NO] forKey:NSPrintHeaderAndFooter];
 			
 			//should give me the width and height
-			int width = [printInfo paperSize].width - ( [printInfo rightMargin] + [printInfo leftMargin] );
-			int height = [printInfo paperSize].height - ( [printInfo topMargin] + [printInfo bottomMargin] );
+			NSInteger width = [printInfo paperSize].width - ( [printInfo rightMargin] + [printInfo leftMargin] );
+			NSInteger height = [printInfo paperSize].height - ( [printInfo topMargin] + [printInfo bottomMargin] );
 			
 			PDPrintTextView *printView = [[[PDPrintTextView alloc] initWithFrame:NSMakeRect(0,0,width,height)] autorelease];
 			
@@ -3969,7 +3969,7 @@ bail:
 	if ( dictionaryList == nil )
 	{
 		// try forcing the encoding
-		int i;
+		NSInteger i;
 		NSStringEncoding encodings[2] = { NSMacOSRomanStringEncoding, NSUnicodeStringEncoding };
 		
 		for ( i = 0; i < 2; i++ )
@@ -4323,7 +4323,7 @@ bail:
 	NSString *userApplicationsScripts = @"Library/Scripts/Applications/Journler";
 	
 	BOOL dir;
-	int indexLoc = 0;
+	NSInteger indexLoc = 0;
 	
 	BOOL gotScripts = NO;
 	NSMenu *theMenu = *aMenu;
@@ -4339,7 +4339,7 @@ bail:
 		// for each item in the menu, add it to the scripts menu
 		if ( aMenu && [[aMenu itemArray] count] != 0 ) 
 		{
-			int i;
+			NSInteger i;
 			NSArray *items = [aMenu itemArray];
 			for ( i = 0; i < [items count]; i++ )
 				[theMenu insertItem:[[[items objectAtIndex:i] copyWithZone:[self zone]] autorelease] atIndex:indexLoc++];
@@ -4363,7 +4363,7 @@ bail:
 			// for each item in the menu, add it to the scripts menu
 			if ( aMenu && [[aMenu itemArray] count] != 0 ) 
 			{
-				int i;
+				NSInteger i;
 				NSArray *items = [aMenu itemArray];
 				for ( i = 0; i < [items count]; i++ )
 					[theMenu insertItem:[[[items objectAtIndex:i] copyWithZone:[self zone]] autorelease] atIndex:indexLoc++];
@@ -4596,7 +4596,7 @@ bail:
 - (BOOL) installScriptMenu
 {
 	BOOL success = NO;
-	int installOption = [[NSUserDefaults standardUserDefaults] integerForKey:@"ScriptsInstallationDirectory"];
+	NSInteger installOption = [[NSUserDefaults standardUserDefaults] integerForKey:@"ScriptsInstallationDirectory"];
 	
 	NSString *theDirectory = nil;
 	
@@ -4752,7 +4752,7 @@ bail:
 	
 	else if ( !dropBoxing )
 	{
-		int fileCount;
+		NSInteger fileCount;
 		BOOL visually = defaultBool(@"UseVisualAidWherePossibleWhenImporting"); 
 		// && !( (GetCurrentKeyModifiers() & shiftKey) && (GetCurrentKeyModifiers() & controlKey) ) );
 		
@@ -4947,7 +4947,7 @@ bail:
 		}
 		else
 		{
-			int i, totalItems = [eventDescriptor numberOfItems];
+			NSInteger i, totalItems = [eventDescriptor numberOfItems];
 			for ( i = 1; i <= totalItems; i++ )
 			{
 				NSAppleEventDescriptor *itemDescriptor = [eventDescriptor descriptorAtIndex:i];
@@ -4956,7 +4956,7 @@ bail:
 					continue;
 				
 				// each event descriptor is itself an array of two items: id, subject
-				int anID = [[itemDescriptor descriptorAtIndex:1] int32Value];
+				NSInteger anID = [[itemDescriptor descriptorAtIndex:1] int32Value];
 				//NSString *aSubject = [[itemDescriptor descriptorAtIndex:2] stringValue];
 				
 				NSString *aMessagePath = [[mboxPath stringByAppendingPathComponent:@"Messages"] 
@@ -5349,7 +5349,7 @@ bail:
 	
 	else if ( [desiredType isEqualToString:NSFilenamesPboardType] )
 	{
-		int i;
+		NSInteger i;
 		BOOL isDirectory = NO;
 		NSArray *filenames = [pboard propertyListForType:NSFilenamesPboardType];
 		
@@ -5359,7 +5359,7 @@ bail:
 			{
 				// let the user know that there's a folder, it's contents won't be imported, etc.
 				NSBeep();
-				int result = [[NSAlert pasteboardFolderWarning] runModal];
+				NSInteger result = [[NSAlert pasteboardFolderWarning] runModal];
 				if ( result != NSAlertFirstButtonReturn )
 				{
 					destinationPaths = nil;
@@ -5403,8 +5403,8 @@ bail:
 					NSString *content = [[servicedEntry valueForKey:@"attributedContent"] string];
 					if ( content != nil && [content length] > 0 )
 					{
-						int i;// ,whitespaceIndex = -1;
-						int startingIndex = ( 50 < [content length] ? 50 : [content length] - 1 );
+						NSInteger i;// ,whitespaceIndex = -1;
+						NSInteger startingIndex = ( 50 < [content length] ? 50 : [content length] - 1 );
 						NSCharacterSet *whitespaceSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
 						NSCharacterSet *controlSet = [NSCharacterSet controlCharacterSet];
 						
@@ -5639,7 +5639,7 @@ bail:
 - (BOOL)validateMenuItem:(NSMenuItem*)menuItem
 {
 	BOOL enabled = YES;
-	//int tag = [menuItem tag];
+	//NSInteger tag = [menuItem tag];
 	SEL action = [menuItem action];
 	
 	if ( action == @selector(toggleContinuousSpellcheckingAppwide:) )
@@ -5829,7 +5829,7 @@ bail:
 	
 	if ( !success ) {
 		
-		int result = NSAlertFirstButtonReturn;
+		NSInteger result = NSAlertFirstButtonReturn;
 		
 		if ( wM ) {
 			
@@ -5909,7 +5909,7 @@ bail:
 {
 	// recursive construction of a menu based on the contents of the folder at path
 	
-	int i;
+	NSInteger i;
 	BOOL dir;
 	NSArray *pathContents;
 	NSFileManager *fm = [NSFileManager defaultManager];

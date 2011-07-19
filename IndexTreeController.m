@@ -27,7 +27,7 @@
 	//NSArray *theSelection = [outlineView allSelectedItems];
 	id theSelection = [[outlineView originalItemAtRow:[outlineView selectedRow]] retain];
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *expandedItems = [NSMutableArray array];
 	
 	// note the expanded items

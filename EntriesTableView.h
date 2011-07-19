@@ -31,7 +31,7 @@
 	NSMutableString *_searchString;
 	
 	BOOL drawsLabelBackground;
-	int _shortcutRow;
+	NSInteger _shortcutRow;
 	NSArray *_stateArray;
 }
 

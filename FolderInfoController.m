@@ -64,7 +64,7 @@
 	if ( collection != nil )
 		[labelPicker setLabelSelection:[[collection valueForKey:@"label"] intValue]];
 	
-	int borders[4] = {0,0,0,0};
+	NSInteger borders[4] = {0,0,0,0};
 	[gradient setBordered:NO];
 	[gradient setBorders:borders];
 	
@@ -213,7 +213,7 @@
 
 - (IBAction) searchImage:(id)sender
 {
-	int result;
+	NSInteger result;
 	NSArray *fileTypes = [NSImage imageFileTypes];
 	NSOpenPanel *openPanel = [NSOpenPanel openPanel];
  

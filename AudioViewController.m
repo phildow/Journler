@@ -87,13 +87,13 @@
 			{
 				NSString *durationValue;
 				
-				int totalSeconds = (int)(floor([duration floatValue]));
+				NSInteger totalSeconds = (NSInteger)(floor([duration floatValue]));
 		
-				int hours = (int)(floor(totalSeconds / 3600));
-				int hoursLeftover = (int)(floor(totalSeconds % 3600));
+				NSInteger hours = (NSInteger)(floor(totalSeconds / 3600));
+				NSInteger hoursLeftover = (NSInteger)(floor(totalSeconds % 3600));
 				
-				int minutes = (int)(floor(hoursLeftover / 60 ));
-				int seconds = (int)floor(hoursLeftover) % 60;
+				NSInteger minutes = (NSInteger)(floor(hoursLeftover / 60 ));
+				NSInteger seconds = (NSInteger)floor(hoursLeftover) % 60;
 
 				if ( hours != 0 )
 					durationValue = [NSString stringWithFormat:@"%i%i:%i%i'%i%i",

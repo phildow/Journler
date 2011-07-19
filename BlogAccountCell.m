@@ -180,7 +180,7 @@
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
 	
-	int textHeight;
+	CGFloat textHeight;
 	
 	NSRect inset = cellFrame;
 	NSMutableDictionary *attrs;

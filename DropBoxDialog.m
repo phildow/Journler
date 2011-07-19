@@ -54,8 +54,8 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 	if ( ![gradientBackground respondsToSelector:@selector(addTrackingArea:)] )
 	{
 		// on 10.4 change the appearance of the buttons and window
-		static int kBottomBarHeight = 42;
-		static int kMinButtonWidth = 96;
+		static NSInteger kBottomBarHeight = 42;
+		static NSInteger kMinButtonWidth = 96;
 		[[self window] setBackgroundColor:[NSColor colorWithCalibratedWhite:0.98 alpha:0.98]];
 		
 		[returnButton setBezelStyle:NSRoundedBezelStyle]; //NSRegularSquareBezelStyle
@@ -487,7 +487,7 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 #pragma mark JournlerConditionController Delegate (NSTokenField)
 
 - (NSArray *)tokenField:(NSTokenField *)tokenField completionsForSubstring:(NSString *)substring 
-	indexOfToken:(int)tokenIndex indexOfSelectedItem:(int *)selectedIndex
+	indexOfToken:(NSInteger)tokenIndex indexOfSelectedItem:(NSInteger *)selectedIndex
 {
 	//NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith[cd] %@", substring];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith %@", substring];

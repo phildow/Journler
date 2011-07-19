@@ -56,7 +56,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 
 - (void) windowDidLoad 
 {	
-	int borders[4] = {0,0,0,0};
+	NSInteger borders[4] = {0,0,0,0};
 	[container210 setBorders:borders];
 	[container210 setBordered:NO];
 	
@@ -80,11 +80,11 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 	[[self window] display];
 	[NSApp runModalSession:session210];
 		
-	int i;
-	int lastFolderTag = 0;
-	int lastEntryTag = 0;
+	NSInteger i;
+	NSInteger lastFolderTag = 0;
+	NSInteger lastEntryTag = 0;
 	
-	int serious_error = 0;
+	NSInteger serious_error = 0;
 	//BOOL index_entries = YES;
 	
 	NSString *pname;
@@ -513,7 +513,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 		
 		if ( blog_preferences && [blog_preferences count] != 0 ) 
 		{
-			int b;
+			NSInteger b;
 			for ( b = 0; b < [blog_preferences count]; b++ ) 
 			{
 				NSAutoreleasePool *innerPool = [[NSAutoreleasePool alloc] init];
@@ -959,7 +959,7 @@ bail:
 	//
 	// utility for turning an array of entry ids into the entries themselves
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *entries = [[NSMutableArray alloc] initWithCapacity:[tagIDs count]];
 	for ( i = 0; i < [tagIDs count]; i++ ) {
 		id anEntry = [entriesDictionary objectForKey:[tagIDs objectAtIndex:i]];
@@ -986,7 +986,7 @@ bail:
 	//		c. metadata saved to separate location
 	// 5. reset the search index, creating a resource index as well
 	
-	int result;
+	NSInteger result;
 	BOOL completeSuccess = YES;
 	_journal = journal;
 	upgradeMode = 1;
@@ -1109,7 +1109,7 @@ bail:
 	//[[_journal searchManager] setIndexesOnSeparateThread:NO];
 	
 	// process the entries and their resources
-	int i;
+	NSInteger i;
 	NSArray *entries = [journal valueForKey:@"entries"];
 	
 	[progressIndicator210 stopAnimation:self];
@@ -1422,7 +1422,7 @@ bail:
 	if ( resources == nil || [resources count] == 0 )
 		return YES;
 	
-	int i;
+	NSInteger i;
 	for ( i = 0; i < [resources count]; i++ )
 	{
 		JournlerResource *aResource = nil;
@@ -1505,7 +1505,7 @@ bail:
 				// prepare the string for editing
 				NSString *originalURLString = [[theURL absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 				
-				int i;
+				NSInteger i;
 				JournlerResource *theResource = nil;
 				NSString *filename = [originalURLString lastPathComponent];
 				

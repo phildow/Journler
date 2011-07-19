@@ -11,9 +11,9 @@
 @interface ImageTextAndRankCell : NSTextFieldCell {
 	
 	float minRank, maxRank, rank;
-	int additionalIndent;
+	NSInteger additionalIndent;
 	
-	int count;
+	NSInteger count;
 	BOOL label;
 	BOOL selected;
 	

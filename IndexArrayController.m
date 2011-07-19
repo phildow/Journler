@@ -31,7 +31,7 @@
 	[treeController setContent:nil];
 	[treeController unbind:@"contentArray"];
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *expandedItems = [NSMutableArray array];
 	
 	// note the expanded items
@@ -50,7 +50,7 @@
 	// re-expand the still visible items
 	for ( i = 0; i < [expandedItems count]; i++ )
 	{
-		int aRow = [outlineView rowForOriginalItem:[expandedItems objectAtIndex:i]];
+		NSInteger aRow = [outlineView rowForOriginalItem:[expandedItems objectAtIndex:i]];
 		if ( aRow != -1 ) [outlineView expandItem:[outlineView itemAtRow:aRow] expandChildren:NO];
 	}
 	
@@ -59,7 +59,7 @@
 	//[outlineView reloadData]; 
 	
 	// re-select the last selection if it is availble, otherwise select the first item - or just deselect all
-	int selectionRow = [outlineView rowForOriginalItem:theSelection];
+	NSInteger selectionRow = [outlineView rowForOriginalItem:theSelection];
 	if ( selectionRow != - 1)
 	{
 		//[outlineView selectRow:selectionRow byExtendingSelection:NO]; DEPRECATED

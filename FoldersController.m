@@ -360,7 +360,7 @@
 		writeItems:(NSArray *)items 
 		toPasteboard:(NSPasteboard *)pboard 
 {	
-	int i;
+	NSInteger i;
 	BOOL canWrite = YES;
 	NSMutableArray *folderURIs = [NSMutableArray array];
 	NSMutableArray *folderTitles = [NSMutableArray array];
@@ -446,7 +446,7 @@
 	if ( ![dropDestination isFileURL] ) 
 		return nil;
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *titles = [[NSMutableArray alloc] init];
 	NSString *destinationPath = [dropDestination path];
 	
@@ -501,7 +501,7 @@
 	if ( [types containsObject:PDFolderIDPboardType] || [info draggingSource] == sourceList ) 
 	{
 		// grab the folders from the pasteboard and make them children of the targeted folder
-		int i;
+		NSInteger i;
 		NSArray *folderURIs = [pboard propertyListForType:PDFolderIDPboardType];
 		NSArray *selectedFolders = [NSArray arrayWithArray:[self selectedObjects]];
 		
@@ -642,7 +642,7 @@
 		// the entry ids as strings from the pboard
 		NSArray *entryURIs = [pboard propertyListForType:PDEntryIDPboardType];
 		
-		int i;
+		NSInteger i;
 		for ( i = 0; i < [entryURIs count]; i++ ) 
 		{
 			// conver the ids to actual entries
@@ -855,7 +855,7 @@
 				break;
 		}
 		
-		int i;
+		NSInteger i;
 		for ( i = [nodesToExpand count] - 1; i >= 0; i-- )
 		{
 			unsigned aRow = [sourceList rowForOriginalItem:[nodesToExpand objectAtIndex:i]];
@@ -957,7 +957,7 @@
 	if ( [theObject isKindOfClass:[JournlerCollection class]] 
 		&& [[[aNotification userInfo] objectForKey:JournlerObjectAttributeKey] isEqualToString:JournlerObjectAttributeLabelKey] )
 	{
-		int theRow = [sourceList rowForOriginalItem:theObject];
+		NSInteger theRow = [sourceList rowForOriginalItem:theObject];
 		if ( theRow != -1 )
 			[sourceList setNeedsDisplayInRect:[sourceList rectOfRow:theRow]];
 	}
@@ -968,7 +968,7 @@
 - (BOOL)validateMenuItem:(NSMenuItem*)menuItem
 {
 	BOOL enabled = YES;
-	int tag = [menuItem tag];
+	NSInteger tag = [menuItem tag];
 	SEL action = [menuItem action];
 	unsigned selectionCount;
 	
@@ -1055,7 +1055,7 @@
 - (void) _smartFolderBeganEvaluation:(NSNotification*)aNotification
 {
 	JournlerCollection *theFolder = [aNotification object];
-	int theRow = [sourceList rowForOriginalItem:theFolder];
+	NSInteger theRow = [sourceList rowForOriginalItem:theFolder];
 	
 	if ( theRow != -1 )
 	{
@@ -1069,7 +1069,7 @@
 - (void) _smartFolderCompletedEvalutation:(NSNotification*)aNotification
 {
 	JournlerCollection *theFolder = [aNotification object];
-	int theRow = [sourceList rowForOriginalItem:theFolder];
+	NSInteger theRow = [sourceList rowForOriginalItem:theFolder];
 	
 	if ( theRow != -1 )
 	{
@@ -1083,7 +1083,7 @@
 - (void) _folderDidChangeEntryContent:(NSNotification*)aNotification
 {
 	JournlerCollection *theFolder = [aNotification object];
-	int theRow = [sourceList rowForOriginalItem:theFolder];
+	NSInteger theRow = [sourceList rowForOriginalItem:theFolder];
 	
 	if ( theRow != -1 )
 	{

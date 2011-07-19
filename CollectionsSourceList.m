@@ -115,7 +115,7 @@ static NSString *kMailMessagePboardType = @"MV Super-secret message transfer pas
 			}
 			else 
 			{
-				int i;
+				NSInteger i;
 				NSArray *objects = [[self dataSource] allObjects];
 				[_searchString appendString:new_characters];
 				
@@ -146,7 +146,7 @@ static NSString *kMailMessagePboardType = @"MV Super-secret message transfer pas
     NSNumber *textMovement;
     textMovement = [userInfo objectForKey: @"NSTextMovement"];
 
-    int movementCode;
+    NSInteger movementCode;
     movementCode = [textMovement intValue];
 
     // see if this a 'pressed-return' instance
@@ -299,7 +299,7 @@ static NSString *kMailMessagePboardType = @"MV Super-secret message transfer pas
 {
 	NSPoint window_point = [theEvent locationInWindow];
 	NSPoint table_point = [self convertPoint:window_point fromView:nil];
-	unsigned int row_selection = [self rowAtPoint:table_point];
+	NSUInteger row_selection = [self rowAtPoint:table_point];
 	
 	if ( [theEvent clickCount] == 1 && row_selection == [self selectedRow] 
 			&& [[self delegate] respondsToSelector:@selector(sourceList:didSelectRowAlreadySelected:event:)] )
@@ -323,7 +323,7 @@ static NSString *kMailMessagePboardType = @"MV Super-secret message transfer pas
 {
 	NSMutableArray *state_array = [[[NSMutableArray alloc] initWithCapacity:[self numberOfRows]] autorelease];
 	
-	int i;
+	NSInteger i;
 	for ( i = 0; i < [self numberOfRows]; i++ )
 		[state_array addObject:[NSNumber numberWithBool:[self isItemExpanded:[self itemAtRow:i]]]];
 	
@@ -335,7 +335,7 @@ static NSString *kMailMessagePboardType = @"MV Super-secret message transfer pas
 	if ( anArray == nil )
 		return;
 		
-	int i;
+	NSInteger i;
 	for ( i = 0; i < [anArray count]; i++ ) 
 	{
 		if ( [[anArray objectAtIndex:i] boolValue] && i < [self numberOfRows] )
@@ -360,9 +360,9 @@ static NSString *kMailMessagePboardType = @"MV Super-secret message transfer pas
 
 #pragma mark -
 
-//- (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)isLocal
+//- (NSUInteger)draggingSourceOperationMaskForLocal:(BOOL)isLocal
 //{
-//	unsigned int mask;
+//	NSUInteger mask;
 //	mask = ( isLocal ? NSDragOperationCopy | NSDragOperationMove : NSDragOperationCopy );
 //	return mask;
 //}

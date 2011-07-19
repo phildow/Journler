@@ -837,13 +837,13 @@ bail:
 		if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"CalendarUseButton"] )
 		{
 			NSView *datePickerView = [calController datePickerContainer];
-			int datePickerHeight = [datePickerView frame].size.height;
+			NSInteger datePickerHeight = [datePickerView frame].size.height;
 			
 			NSRect calendarContainerFrame = [calContainer frame];
 			NSRect sourceListContainerFrame = [[sourceList enclosingScrollView] frame];
 			
-			int originalHeight = calendarContainerFrame.size.height;
-			int originalWidth = calendarContainerFrame.size.width;
+			NSInteger originalHeight = calendarContainerFrame.size.height;
+			NSInteger originalWidth = calendarContainerFrame.size.width;
 			
 			calendarContainerFrame.size.height = datePickerHeight;
 			calendarContainerFrame.origin.y = calendarContainerFrame.origin.y + originalHeight - datePickerHeight;
@@ -858,13 +858,13 @@ bail:
 		}
 		else
 		{
-			static int kCalRequiredHeight = 170;
+			static NSInteger kCalRequiredHeight = 170;
 			
 			NSRect calendarContainerFrame = [calContainer frame];
 			NSRect sourceListContainerFrame = [[sourceList enclosingScrollView] frame];
 			
-			int originalWidth = calendarContainerFrame.size.width;
-			int originalHeight = calendarContainerFrame.size.height;
+			NSInteger originalWidth = calendarContainerFrame.size.width;
+			NSInteger originalHeight = calendarContainerFrame.size.height;
 			
 			calendarContainerFrame.size.height = kCalRequiredHeight;
 			calendarContainerFrame.origin.y = calendarContainerFrame.origin.y + originalHeight - kCalRequiredHeight;
@@ -1674,7 +1674,7 @@ bail:
 		
 			// locate the resource
 			// action depends on the user's preferences
-			int mediaAction = [[NSUserDefaults standardUserDefaults] integerForKey:@"OpenMediaInto"];
+			NSInteger mediaAction = [[NSUserDefaults standardUserDefaults] integerForKey:@"OpenMediaInto"];
 			
 			if ( mediaAction == kOpenMediaIntoWindow )
 			{
@@ -1819,7 +1819,7 @@ bail:
 	{
 		// act according to the user's media preference
 		
-		int mediaAction = [[NSUserDefaults standardUserDefaults] integerForKey:@"OpenMediaInto"];
+		NSInteger mediaAction = [[NSUserDefaults standardUserDefaults] integerForKey:@"OpenMediaInto"];
 		
 		if ( mediaAction == kOpenMediaIntoWindow )
 		{
@@ -1927,7 +1927,7 @@ bail:
 	{
 		// edit the row/column
 		NSPoint tablePoint = [entriesTable convertPoint:[mouseEvent locationInWindow] fromView:nil];
-		int targetColumn = [entriesTable columnAtPoint:tablePoint];
+		NSInteger targetColumn = [entriesTable columnAtPoint:tablePoint];
 		
 		if ( targetColumn != -1 && [[[entriesTable tableColumns] objectAtIndex:targetColumn] isEditable] )
 		{
@@ -1952,7 +1952,7 @@ bail:
 	{
 		// edit the row/column
 		NSPoint tablePoint = [aSourceList convertPoint:[mouseEvent locationInWindow] fromView:nil];
-		int targetColumn = [aSourceList columnAtPoint:tablePoint];
+		NSInteger targetColumn = [aSourceList columnAtPoint:tablePoint];
 		
 		if ( targetColumn != -1 && [[[aSourceList tableColumns] objectAtIndex:targetColumn] isEditable] )
 		{
@@ -2058,8 +2058,8 @@ bail:
 
 - (void) showLexiconSelection:(JournlerObject*)anObject forTerm:(NSString*)aTerm
 {
-	int eventModifiers = 0;
-	int modifiers = GetCurrentKeyModifiers();
+	NSInteger eventModifiers = 0;
+	NSInteger modifiers = GetCurrentKeyModifiers();
 	
 	if ( modifiers & shiftKey ) eventModifiers |= NSShiftKeyMask;
 	if ( modifiers & optionKey ) eventModifiers |= NSAlternateKeyMask;
@@ -2093,8 +2093,8 @@ bail:
 {
 	JournlerObject *anObject = [aMenuItem representedObject];
 	
-	int eventModifiers = 0;
-	int modifiers = GetCurrentKeyModifiers();
+	NSInteger eventModifiers = 0;
+	NSInteger modifiers = GetCurrentKeyModifiers();
 	
 	if ( modifiers & shiftKey ) eventModifiers |= NSShiftKeyMask;
 	if ( modifiers & optionKey ) eventModifiers |= NSAlternateKeyMask;
@@ -2205,7 +2205,7 @@ bail:
 
 - (IBAction) performToolbarSearch:(id)sender
 {
-	static int kMinTermLength = 0;
+	static NSInteger kMinTermLength = 0;
 	
 	NSSet *entries = nil, *references = nil;
 	NSString *preSearchString = [sender stringValue];
@@ -2247,7 +2247,7 @@ bail:
 	{
 		// perform the search
 		SKSearchOptions searchOptions;
-		int entryHits, referenceHits;
+		NSInteger entryHits, referenceHits;
 		BOOL success;
 			
 		// change the string for searching - put an asterisk after any space and at the end
@@ -2302,7 +2302,7 @@ bail:
 			
 			// show the search column
 			[entriesTable setColumnWithIdentifier:@"relevanceNumber" hidden:NO];
-			int relevanceIndex = [entriesTable columnWithIdentifier:@"relevanceNumber"];
+			NSInteger relevanceIndex = [entriesTable columnWithIdentifier:@"relevanceNumber"];
 			[entriesTable moveColumn:relevanceIndex toColumn:0];
 			
 			// ensure that the entries table is sorting by rank
@@ -2386,7 +2386,7 @@ bail:
 - (void) entryFilterController:(EntryFilterController*)filterController frameDidChange:(NSRect)filterFrame 
 {
 	// the search bar frame changed because of filtering, so change the browse frame
-	int kDeltaHeight = filterFrame.size.height;
+	NSInteger kDeltaHeight = filterFrame.size.height;
 	
 	// calculate the frame for the entries table
 	NSRect entriesTableFrame = [[entriesTable enclosingScrollView] frame];
@@ -2412,8 +2412,8 @@ bail:
 
 - (NSArray *)tokenField:(NSTokenField *)tokenField 
 		completionsForSubstring:(NSString *)substring 
-		indexOfToken:(int)tokenIndex 
-		indexOfSelectedItem:(int *)selectedIndex
+		indexOfToken:(NSInteger )tokenIndex 
+		indexOfSelectedItem:(NSInteger *)selectedIndex
 {
 	//NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith[cd] %@", substring];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith %@", substring];
@@ -2436,7 +2436,7 @@ bail:
 	if ( [selectedObjects count] == 1 )	
 	{
 		targetFolder = [selectedObjects objectAtIndex:0];
-		int type = [[targetFolder valueForKey:@"typeID"] intValue];
+		NSInteger type = [[targetFolder valueForKey:@"typeID"] intValue];
 		if ( type == PDCollectionTypeIDLibrary || type == PDCollectionTypeIDTrash )
 			targetFolder = [[self journal] rootCollection];
 	}
@@ -2496,7 +2496,7 @@ bail:
 	if ( [selectedObjects count] == 1 )	
 	{
 		targetFolder = [selectedObjects objectAtIndex:0];
-		int type = [[targetFolder valueForKey:@"typeID"] intValue];
+		NSInteger type = [[targetFolder valueForKey:@"typeID"] intValue];
 		if ( type == PDCollectionTypeIDLibrary || type == PDCollectionTypeIDTrash )
 			targetFolder = [[self journal] rootCollection];
 	}
@@ -2627,7 +2627,7 @@ bail:
 	}
 	else
 	{
-		int result;
+		NSInteger result;
 		NewEntryController *entryCreator = [[[NewEntryController alloc] initWithJournal:[self valueForKey:@"journal"]] autorelease];
 		
 		// the date depends on the preference
@@ -2812,7 +2812,7 @@ bail:
 	if ( [selectedObjects count] == 1 )	
 	{
 		targetFolder = [selectedObjects objectAtIndex:0];
-		int type = [[targetFolder valueForKey:@"typeID"] intValue];
+		NSInteger type = [[targetFolder valueForKey:@"typeID"] intValue];
 		if ( type == PDCollectionTypeIDLibrary || type == PDCollectionTypeIDTrash )
 			targetFolder = [[self journal] rootCollection];
 	}
@@ -2853,7 +2853,7 @@ bail:
 {
 	//NSLog(@"%s - beginning",__PRETTY_FUNCTION__);
 	
-	int result;
+	NSInteger result;
 	
 	//NSLog(@"[IntelligentCollectionController alloc]");
 	IntelligentCollectionController *smartCreator = [[[IntelligentCollectionController alloc] init] autorelease];
@@ -2883,7 +2883,7 @@ bail:
 		//NSLog(@"if ( [selectedObjects count] == 1 )	-- beginning");
 		
 		targetFolder = [selectedObjects objectAtIndex:0];
-		int type = [[targetFolder valueForKey:@"typeID"] intValue];
+		NSInteger type = [[targetFolder valueForKey:@"typeID"] intValue];
 		if ( type == PDCollectionTypeIDLibrary || type == PDCollectionTypeIDTrash )
 			targetFolder = [[self journal] rootCollection];
 		
@@ -2957,8 +2957,10 @@ bail:
 	}
 	
     // make sure the trash and the library aren't selected
-  
-    for ( JournlerCollection *aFolder in [[sourceListController selectedObjects] reverseObjectEnumerator] )
+    
+    NSArray *theSelectedFolders = [[[sourceListController selectedObjects] copy] autorelease];
+    
+    for ( JournlerCollection *aFolder in [theSelectedFolders reverseObjectEnumerator] )
 	{
 		if ( [aFolder isLibrary] || [aFolder isTrash] )
 		{
@@ -2981,7 +2983,7 @@ bail:
 	enumerator = [[sourceListController selectedObjects] reverseObjectEnumerator];
 	while ( aFolder = [enumerator nextObject] )
      */
-    for ( JournlerCollection *aFolder in [[sourceListController selectedObjects] reverseObjectEnumerator] )
+    for ( JournlerCollection *aFolder in [theSelectedFolders reverseObjectEnumerator] )
 	{
 		if ( ![aFolder isLibrary] && ![aFolder isTrash] )
 			[[self journal] deleteCollection:aFolder deleteChildren:YES];
@@ -3296,7 +3298,7 @@ bail:
 		NSBeep(); return;
 	}
 	
-	int result;
+	NSInteger result;
 	JournlerCollection *aFolder = [theFolders objectAtIndex:0];
 	IntelligentCollectionController *smartCreator = [[[IntelligentCollectionController alloc] init] autorelease];
 	
@@ -3432,7 +3434,7 @@ bail:
 	
 	while ( trashed )
 	{
-		int r = ( random() % [[self valueForKeyPath:@"journal.entries"] count] );
+		NSInteger r = ( random() % [[self valueForKeyPath:@"journal.entries"] count] );
 		JournlerEntry *theEntry = [[self valueForKeyPath:@"journal.entries"] objectAtIndex:r];
 		if ( [[theEntry valueForKey:@"markedForTrash"] boolValue] )
 			continue;
@@ -3468,7 +3470,7 @@ bail:
 
 - (IBAction) editEntryPropertyInTable:(id)sender
 {
-	int rowIndex = [entriesTable selectedRow];
+	NSInteger rowIndex = [entriesTable selectedRow];
 	if ( rowIndex == -1 )
 	{
 		NSBeep(); return;
@@ -3498,7 +3500,7 @@ bail:
 	
 	if ( identifier != nil )
 	{
-		int columnIndex = [entriesTable columnWithIdentifier:identifier];
+		NSInteger columnIndex = [entriesTable columnWithIdentifier:identifier];
 		[entriesTable editColumn:columnIndex row:rowIndex withEvent:nil select:YES];
 	}
 	else 
@@ -3648,7 +3650,7 @@ bail:
 	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
-	int result;
+	NSInteger result;
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
 	
 	[oPanel setAllowsMultipleSelection:YES];
@@ -3670,7 +3672,7 @@ bail:
 			NSBeep();
 		else
 		{
-			int j;
+			NSInteger j;
 			NSArray *files = [oPanel filenames];
 			
 			// add the files to the entry
@@ -3704,7 +3706,7 @@ bail:
 				NSBeep();
 			else
 			{
-				int i;
+				NSInteger i;
 				
 				for ( i = 0; i < [contacts count]; i++ )
 				{
@@ -4008,7 +4010,7 @@ bail:
 - (IBAction) previousDayWithEntries:(id)sender
 {
 	#warning seems to jump to before the currently selected date when searching
-	int i;
+	NSInteger i;
 	BOOL found = NO;
 	
 	// every entry sorted by date
@@ -4046,7 +4048,7 @@ bail:
 
 - (IBAction) nextDayWithEntries:(id)sender
 {
-	int i;
+	NSInteger i;
 	BOOL found = NO;
 	
 	// every entry sorted by date
@@ -4272,7 +4274,7 @@ bail:
 - (BOOL)validateMenuItem:(NSMenuItem*)menuItem
 {
 	BOOL enabled = YES;
-	int tag = [menuItem tag];
+	NSInteger tag = [menuItem tag];
 	SEL action = [menuItem action];
 	
 	

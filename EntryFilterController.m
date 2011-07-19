@@ -99,7 +99,7 @@
 		
 		//
 		// rebuild the predicate and send it
-		int i;
+		NSInteger i;
 		
 		NSMutableString *predicateString;
 		NSString *firstPredicateString = [[_conditions objectAtIndex:0] predicateString];
@@ -135,7 +135,7 @@
 }
 
 - (NSArray *)tokenField:(NSTokenField *)tokenField completionsForSubstring:(NSString *)substring 
-	indexOfToken:(int)tokenIndex indexOfSelectedItem:(int *)selectedIndex
+	indexOfToken:(NSInteger )tokenIndex indexOfSelectedItem:(NSInteger *)selectedIndex
 {
 	NSArray *theCompletions = nil;
 	
@@ -150,7 +150,7 @@
 - (void) updateConditionsView 
 {
 	
-	int i;
+	NSInteger i;
 	
 	// note the current first responder
 	NSResponder *currentResponder = [[_filters window] firstResponder];
@@ -200,7 +200,7 @@
 	NSView *lastView = ( [_conditions count] > 0 ? [[_conditions lastObject] selectableView] : nil );
 	NSView *lastInResponderLoop = firstView;
 	
-	int i;
+	NSInteger i;
 	// and add what's left or more according to our internal array
 	for ( i = 1; i < [_conditions count]; i++ ) 
 	{
@@ -245,7 +245,7 @@
 	if ( sender != self ) {
 	
 		NSRect contentRect = [_filters frame];
-		int newHeight = contentRect.size.height + kConditionViewHeight;
+		NSInteger newHeight = contentRect.size.height + kConditionViewHeight;
 		
 		contentRect.origin.y = contentRect.origin.y + contentRect.size.height - newHeight;
 		contentRect.size.height = newHeight;
@@ -278,11 +278,11 @@
 	[self updateConditionsView];
 	
 	// resize the window and the conditions view with it
-	//int newHeight = [[self window] frame].size.height - kConditionViewHeight;
+	//NSInteger newHeight = [[self window] frame].size.height - kConditionViewHeight;
 
 	NSRect contentRect = [_filters frame];
 	
-	int newHeight = contentRect.size.height - kConditionViewHeight;
+	NSInteger newHeight = contentRect.size.height - kConditionViewHeight;
 	
 	contentRect.origin.y = contentRect.origin.y + contentRect.size.height - newHeight;
 	contentRect.size.height = newHeight;
@@ -297,7 +297,7 @@
 
 - (NSArray*) conditions { 
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *allPredicates = [[NSMutableArray alloc] init];
 	
 	for ( i = 0; i < [_conditions count]; i++ ) {

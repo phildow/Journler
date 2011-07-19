@@ -56,9 +56,9 @@
 	}
 }
 
-- (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(int *)index 
+- (NSArray *)completionsForPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index 
 {
-	int i;
+	NSInteger i;
 	NSMutableArray *returnArray = [[NSMutableArray alloc] initWithCapacity:[_completions count]];
 	NSString *potential = [[self string] substringWithRange:charRange];
 	

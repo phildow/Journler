@@ -12,8 +12,8 @@
 
 @interface IndexNode : NSObject <NSCopying> {
 	
-	int count;
-	int frequency;
+	NSInteger count;
+	NSInteger frequency;
 	NSString *title;
 	
 	IndexNode *parent;

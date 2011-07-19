@@ -31,7 +31,7 @@
 
 - (void) awakeFromNib 
 {
-	int i;
+	NSInteger i;
 	NSArray *columns = [self tableColumns];
 	//NSLog(@"%@",[columns valueForKey:@"identifier"]);
 	
@@ -393,7 +393,7 @@
 	// returns an array of data objects describing the state of the table's columns:
 	// a) identifier b) position c) width
 	
-	int i;
+	NSInteger i;
 	NSArray *columns = [self tableColumns];
 	
 	[_stateArray release];
@@ -432,7 +432,7 @@
 - (void) restoreStateWithArray:(NSArray*)anArray 
 {	
 	// #warning buggy getting the right sizes down
-	int i;
+	NSInteger i;
 	
 	// remove the columns that are not part of the restored estate
 	//NSArray *myColumns = [self tableColumns];
@@ -441,7 +441,7 @@
 	
 	for ( i = 0; i < [myColumns count]; i++ )
 	{
-		int j;
+		NSInteger j;
 		BOOL found = NO;
 		for ( j = 0; j < [anArray count]; j++ )
 		{
@@ -460,10 +460,10 @@
 		NSDictionary *columnState = [anArray objectAtIndex:i];
 		
 		NSString *identifier = [columnState valueForKey:@"identifier"];
-		int position = [[columnState valueForKey:@"position"] intValue];
+		NSInteger position = [[columnState valueForKey:@"position"] intValue];
 		float width = [[columnState valueForKey:@"width"] floatValue];
 		
-		int existingPosition = [self columnWithIdentifier:identifier];
+		NSInteger existingPosition = [self columnWithIdentifier:identifier];
 		NSTableColumn *existingColumn = [self tableColumnWithIdentifier:identifier];
 		
 		if ( existingPosition != -1 && existingColumn != nil ) 
@@ -484,7 +484,7 @@
 
 - (void) mouseDown:(NSEvent*)theEvent 
 {	
-	unsigned int mods = [theEvent modifierFlags];
+	NSUInteger mods = [theEvent modifierFlags];
 	
 	if ( (mods & NSCommandKeyMask) && (mods & NSShiftKeyMask) )
 	{
@@ -493,7 +493,7 @@
 		NSPoint table_point = [self convertPoint:window_point fromView:nil];
 		
 		JournlerEntry *anEntry;
-		unsigned int row_selection = [self rowAtPoint:table_point];
+		NSUInteger row_selection = [self rowAtPoint:table_point];
 		
 		if ( row_selection != -1 && ( anEntry = [[[self dataSource] arrangedObjects] objectAtIndex:row_selection] ) &&
 				[[self delegate] respondsToSelector:@selector(openAnEntryInNewTab:)] )
@@ -518,7 +518,7 @@
 		NSPoint table_point = [self convertPoint:window_point fromView:nil];
 		
 		JournlerEntry *anEntry;
-		unsigned int row_selection = [self rowAtPoint:table_point];
+		NSInteger row_selection = [self rowAtPoint:table_point];
 		
 		if ( row_selection != -1 && ( anEntry = [[[self dataSource] arrangedObjects] objectAtIndex:row_selection] ) &&
 				[[self delegate] respondsToSelector:@selector(openAnEntryInNewWindow:)] )
@@ -538,7 +538,7 @@
 	{
 		NSPoint window_point = [theEvent locationInWindow];
 		NSPoint table_point = [self convertPoint:window_point fromView:nil];
-		unsigned int row_selection = [self rowAtPoint:table_point];
+		NSInteger row_selection = [self rowAtPoint:table_point];
 		
 		if ( [theEvent clickCount] == 1 && row_selection == [self selectedRow] 
 				&& [[self delegate] respondsToSelector:@selector(tableView:didSelectRowAlreadySelected:event:)] )
@@ -607,7 +607,7 @@
 			}
 			else 
 			{
-				int i;
+				NSInteger i;
 				NSArray *objects = [[self dataSource] arrangedObjects];
 				[_searchString appendString:new_characters];
 				
@@ -702,7 +702,7 @@
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *textMovement = [userInfo objectForKey: @"NSTextMovement"];
 	
-    int movementCode = [textMovement intValue];
+    NSInteger movementCode = [textMovement intValue];
 	_editingCategory = NO;
 
     // see if this a 'pressed-return' instance

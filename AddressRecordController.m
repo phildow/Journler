@@ -101,8 +101,8 @@ static NSString *kMediabarItemOpenHomepage = @"kMediabarItemOpenHomepage";
 	[[modifiedInfo dictionary] setValue:[NSNumber numberWithBool:NO] forKey:NSPrintHeaderAndFooter];
 	
 	//should give me the width and height
-	int width = [modifiedInfo paperSize].width - ( [modifiedInfo rightMargin] + [modifiedInfo leftMargin] );
-	int height = [modifiedInfo paperSize].height - ( [modifiedInfo topMargin] + [modifiedInfo bottomMargin] );
+	CGFloat width = [modifiedInfo paperSize].width - ( [modifiedInfo rightMargin] + [modifiedInfo leftMargin] );
+	CGFloat height = [modifiedInfo paperSize].height - ( [modifiedInfo topMargin] + [modifiedInfo bottomMargin] );
 	
 	PDPersonViewer *printViewer = [[[PDPersonViewer alloc] initWithFrame:NSMakeRect(0,0,width,height)] autorelease];
 	[printViewer setPerson:[self person]];

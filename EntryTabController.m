@@ -680,7 +680,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 		
 			// locate the resource
 			// action depends on the user's preferences
-			int mediaAction = [[NSUserDefaults standardUserDefaults] integerForKey:@"OpenMediaInto"];
+			NSInteger mediaAction = [[NSUserDefaults standardUserDefaults] integerForKey:@"OpenMediaInto"];
 			
 			if ( mediaAction == kOpenMediaIntoWindow )
 			{
@@ -802,7 +802,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 	{
 		// act according to the user's media preference
 		
-		int mediaAction = [[NSUserDefaults standardUserDefaults] integerForKey:@"OpenMediaInto"];
+		NSInteger mediaAction = [[NSUserDefaults standardUserDefaults] integerForKey:@"OpenMediaInto"];
 		
 		if ( mediaAction == kOpenMediaIntoWindow )
 		{
@@ -881,8 +881,8 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 {
 	JournlerObject *anObject = [aMenuItem representedObject];
 	
-	int eventModifiers = 0;
-	int modifiers = GetCurrentKeyModifiers();
+	NSInteger eventModifiers = 0;
+	NSInteger modifiers = GetCurrentKeyModifiers();
 	
 	if ( modifiers & shiftKey ) eventModifiers |= NSShiftKeyMask;
 	if ( modifiers & optionKey ) eventModifiers |= NSAlternateKeyMask;
@@ -986,7 +986,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 				NSBeep();
 			else
 			{
-				int i;
+				NSInteger i;
 				
 				for ( i = 0; i < [contacts count]; i++ )
 				{
@@ -1259,7 +1259,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
-	int result;
+	NSInteger result;
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
 	
 	[oPanel setAllowsMultipleSelection:YES];
@@ -1281,7 +1281,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 			NSBeep();
 		else
 		{
-			int j;
+			NSInteger j;
 			NSArray *files = [oPanel filenames];
 			
 			// add the files to the entry
@@ -1333,7 +1333,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 - (BOOL)validateMenuItem:(NSMenuItem*)menuItem
 {
 	BOOL enabled = YES;
-	//int tag = [menuItem tag];
+	//NSInteger tag = [menuItem tag];
 	SEL action = [menuItem action];
 	
 	if ( action == @selector(toggleHeader:) )

@@ -186,7 +186,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	//even though locally (myMonth) 1 is january and 12 is december
 	
 	BOOL leap = NO;
-	static int daysInMonth[] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
+	static NSInteger daysInMonth[] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
 	
 	if ( year % 4 == 0 ) {
 		leap = YES;
@@ -296,8 +296,8 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	}
 	
 	//and update our date integers for easy access
-	int newYear = [(NSCalendarDate*)selectedDate yearOfCommonEra];
-	int newMonth = [(NSCalendarDate*)selectedDate monthOfYear];
+	NSInteger newYear = [(NSCalendarDate*)selectedDate yearOfCommonEra];
+	NSInteger newMonth = [(NSCalendarDate*)selectedDate monthOfYear];
 	
 	if ( myMonth == newMonth && myYear == newYear )
 		entireDisplayNeedsUpdate = NO;
@@ -534,8 +534,8 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	if ( [sender tag] >= 501 && [sender tag] <= 512 ) {
 		
 		// acquire a month from 01 to 12 for January to February
-		int targetMonth = [sender tag] - 500;
-		int highestDay = [Calendar lastDayOfMonth:targetMonth year:myYear];
+		NSInteger targetMonth = [sender tag] - 500;
+		NSInteger highestDay = [Calendar lastDayOfMonth:targetMonth year:myYear];
 		
 		NSCalendarDate *newDate = [NSCalendarDate dateWithYear:myYear month:targetMonth day:(myDay<=highestDay?myDay:highestDay) 
 				hour:0 minute:0 second:0 timeZone:nil];
@@ -548,8 +548,8 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 		
 		// requesting a year change
 		
-		int newYear = [sender intValue];
-		int highestDay = [Calendar lastDayOfMonth:myMonth year:newYear];
+		NSInteger newYear = [sender intValue];
+		NSInteger highestDay = [Calendar lastDayOfMonth:myMonth year:newYear];
 		
 		NSCalendarDate *newDate = [NSCalendarDate dateWithYear:newYear month:myMonth day:(myDay<=highestDay?myDay:highestDay) 
 				hour:0 minute:0 second:0 timeZone:nil];
@@ -575,7 +575,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	if ( [anItem tag] >= 501 && [anItem tag] <= 512 ) {
 		
 		// acquire a month from 01 to 12 for January to February
-		int targetMonth = [anItem tag] - 500;
+		NSInteger targetMonth = [anItem tag] - 500;
 		if ( targetMonth == myMonth )
 			[anItem setState:NSOnState];
 		else
@@ -610,7 +610,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	NSMutableDictionary *tempAttributes = [NSMutableDictionary dictionary];
 	
 	NSRect bds = [self bounds];
-	int total_offset = kWidthOffset + ( bds.size.width/2 - kCalendarRequiredWidth/2 );
+	NSInteger total_offset = kWidthOffset + ( bds.size.width/2 - kCalendarRequiredWidth/2 );
 	
 	[backgroundColor set];
 	NSRectFill(bds);
@@ -626,16 +626,16 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 		//[[NSBezierPath bezierPathWithLineFrom:NSMakePoint(0,bds.size.height-1) to:NSMakePoint(bds.size.width,bds.size.height-1) lineWidth:1] stroke];
 	}
 	
-	int col, row, offset, i;
+	NSInteger col, row, offset, i;
 	
 	//draw my days
 	[tempAttributes setObject:[NSFont boldSystemFontOfSize:11.0] forKey:NSFontAttributeName];
 	[tempAttributes setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
 	
-	int start_day = [[NSUserDefaults standardUserDefaults] integerForKey:@"CalendarStartDay"];
+	NSInteger start_day = [[NSUserDefaults standardUserDefaults] integerForKey:@"CalendarStartDay"];
 	// 0 indicates Sunday, 6 indicates Monday
 	
-	int day_id = start_day;
+	NSInteger day_id = start_day;
 	NSArray *weekDays = [[NSUserDefaults standardUserDefaults] objectForKey:NSShortWeekDayNameArray];
 	if ( !weekDays || [weekDays count] < 7 ) weekDays = [Calendar englishWeekDays];
 	
@@ -665,9 +665,9 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	// if the original column due to offset is seven or more, adjust
 	if ( col < 0 ) col+= 7;
 	
-	int todaysDay = [todaysDate dayOfMonth];
-	int todaysMonth = [todaysDate monthOfYear];
-	int todaysYear = [todaysDate yearOfCommonEra];
+	NSInteger todaysDay = [todaysDate dayOfMonth];
+	NSInteger todaysMonth = [todaysDate monthOfYear];
+	NSInteger todaysYear = [todaysDate yearOfCommonEra];
 	
 	// draw the buttons
 	[self drawButtons];
@@ -816,7 +816,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 - (void) drawButtons {
 	
 	NSRect bds = [self bounds];
-	int third = ceil(bds.size.width / 3.0);
+	NSInteger third = ceil(bds.size.width / 3.0);
 	
 	NSRect monthBack = NSMakeRect(0,0,third,kButtonCellHeight);
 	NSRect monthToday = NSMakeRect(third,0,third,kButtonCellHeight);
@@ -874,11 +874,11 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 		return NSZeroRect;
 	else
 	{
-		int col, row, offset, i;
-		int start_day = [[NSUserDefaults standardUserDefaults] integerForKey:@"CalendarStartDay"];
+		NSInteger col, row, offset, i;
+		NSInteger start_day = [[NSUserDefaults standardUserDefaults] integerForKey:@"CalendarStartDay"];
 		
 		NSRect bds = [self bounds];
-		int total_offset = kWidthOffset + ( bds.size.width/2 - kCalendarRequiredWidth/2 );
+		NSInteger total_offset = kWidthOffset + ( bds.size.width/2 - kCalendarRequiredWidth/2 );
 		
 		NSRect theFrame = NSZeroRect;
 		
@@ -945,9 +945,9 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	// calendar as first responder, mouse events change date
 	
 	NSRect bds = [self bounds];
-	int total_offset = kWidthOffset + ( bds.size.width/2 - kCalendarRequiredWidth/2 );
+	NSInteger total_offset = kWidthOffset + ( bds.size.width/2 - kCalendarRequiredWidth/2 );
 	
-	int myX, myY, i, j, offset, dayHit;
+	NSInteger myX, myY, i, j, offset, dayHit;
 	NSPoint mouseLoc = [self convertPoint:[theEvent locationInWindow] fromView:nil];
 	
 	// git rid of first responder so that the year field won't highlight ( fr goes away otherwise anyway? )
@@ -959,7 +959,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	// check to see if the user is clicking one of the buttons
 	if ( NSPointInRect(mouseLoc,navRect) ) {
 		
-		int third = ceil(bds.size.width / 3.0);
+		NSInteger third = ceil(bds.size.width / 3.0);
 		
 		NSRect monthBack = NSMakeRect(0,0,third,kButtonCellHeight);
 		NSRect monthToday = NSMakeRect(third,0,third,kButtonCellHeight);
@@ -1000,7 +1000,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	// check to see if the mouse went down in the month/year field
 	else if ( NSPointInRect(mouseLoc,monthYearRect) ) {
 		
-		int i;
+		NSInteger i;
 		NSArray *months = [monthYearCell months];
 		NSMenu *monthsMenu = [[NSMenu alloc] initWithTitle:[NSString string]];
 		
@@ -1025,7 +1025,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 		myY = mouseLoc.y - kDaysOffset;
 		
 		//I must know the day of the week, so construct a date and grab that information
-		int start_day = [[NSUserDefaults standardUserDefaults] integerForKey:@"CalendarStartDay"];
+		NSInteger start_day = [[NSUserDefaults standardUserDefaults] integerForKey:@"CalendarStartDay"];
 		offset = [[NSCalendarDate dateWithYear:myYear month:myMonth day:1 hour:1 minute:1 second:1 timeZone:nil] dayOfWeek];
 		
 		//set up my offset, taking account that sunday is a 0 for the date but a 6 for me, while monday is a 0
@@ -1088,9 +1088,9 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 
 - (void) updateDaysWithEntries {
 	
-	int i;
-	int maxDays = [Calendar lastDayOfMonth:[selectedDate monthOfYear] year:[selectedDate yearOfCommonEra]];
-	int	dateInt = [[selectedDate descriptionWithCalendarFormat:@"%Y%m%d" timeZone:nil locale:nil] intValue];
+	NSInteger i;
+	NSInteger maxDays = [Calendar lastDayOfMonth:[selectedDate monthOfYear] year:[selectedDate yearOfCommonEra]];
+	NSInteger dateInt = [[selectedDate descriptionWithCalendarFormat:@"%Y%m%d" timeZone:nil locale:nil] intValue];
 	
 	dateInt-=([selectedDate dayOfMonth]-1);
 	
@@ -1099,7 +1099,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 		//NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ANY dateCreatedInt == %i && markedForTrash == NO", dateInt];
 		//dayOfMonthHasEntry[i] = ( [[content filteredArrayUsingPredicate:predicate] count] != 0 );
 		
-		int j;
+		NSInteger j;
 		BOOL entryAtDate = NO;
 		if ( content != nil )
 		{
@@ -1129,7 +1129,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 /*
 - (void) setDaysWithEntriesArray:(BOOL[])toSet {
 
-	int i;
+	NSInteger i;
 	for ( i = 1; i <= 31; i++ ) { dayOfMonthHasEntry[i] = toSet[i]; }
 	//marked date information has changed, we need to redraw
 	[self setNeedsDisplay:YES];
@@ -1151,7 +1151,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
-	int col, row, offset, i;
+	NSInteger col, row, offset, i;
 	NSRect visRect = [self visibleRect];
 	NSRect cursRect;
 	
@@ -1160,10 +1160,10 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	
 	//I must know the day of the week, so construct a date and grab that information then calc the offset
 	offset = [[NSCalendarDate dateWithYear:myYear month:myMonth day:1 hour:1 minute:1 second:1 timeZone:nil] dayOfWeek];
-	int start_day = [[NSUserDefaults standardUserDefaults] integerForKey:@"CalendarStartDay"];
+	NSInteger start_day = [[NSUserDefaults standardUserDefaults] integerForKey:@"CalendarStartDay"];
 	
 	NSRect bds = [self bounds];
-	int total_offset = kWidthOffset + ( bds.size.width/2 - kCalendarRequiredWidth/2 );
+	NSInteger total_offset = kWidthOffset + ( bds.size.width/2 - kCalendarRequiredWidth/2 );
 	
 	//set up my offset, taking account that sunday is a 0 for the date but a 6 for me, while monday is a 0
 	col = offset - start_day;
@@ -1220,11 +1220,11 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 
 - (IBAction) selectMonth:(id)sender {
 	
-	int index = [[sender menu] indexOfItem:sender];
-	int targetMonth = index + 1;
+	NSInteger index = [[sender menu] indexOfItem:sender];
+	NSInteger targetMonth = index + 1;
 	
 	// acquire a month from 01 to 12 for January to February
-	int highestDay = [Calendar lastDayOfMonth:targetMonth year:myYear];
+	NSInteger highestDay = [Calendar lastDayOfMonth:targetMonth year:myYear];
 	
 	NSCalendarDate *newDate = [NSCalendarDate dateWithYear:myYear month:targetMonth day:(myDay<=highestDay?myDay:highestDay) 
 			hour:0 minute:0 second:0 timeZone:nil];
@@ -1278,9 +1278,9 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 		NSPoint mouseLoc;
 		NSRect bds = [self bounds];
 		
-		int start_day = [[NSUserDefaults standardUserDefaults] integerForKey:@"CalendarStartDay"];
-		int total_offset = kWidthOffset + ( bds.size.width/2 - kCalendarRequiredWidth/2 );
-		int myX, myY, i, j, offset, dayHit;
+		NSInteger start_day = [[NSUserDefaults standardUserDefaults] integerForKey:@"CalendarStartDay"];
+		NSInteger total_offset = kWidthOffset + ( bds.size.width/2 - kCalendarRequiredWidth/2 );
+		NSInteger myX, myY, i, j, offset, dayHit;
 		
 		mouseLoc = [self convertPoint:[sender draggingLocation] fromView:nil];
 		
@@ -1291,7 +1291,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 		
 			operation = NSDragOperationNone;
 			
-			int third = ceil(bds.size.width / 3.0);
+			NSInteger third = ceil(bds.size.width / 3.0);
 			
 			NSRect monthBack = NSMakeRect(0,0,third,kButtonCellHeight);
 			NSRect monthToday = NSMakeRect(third,0,third,kButtonCellHeight);
@@ -1394,9 +1394,9 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 		NSPoint mouseLoc;
 		NSRect bds = [self bounds];
 		
-		int start_day = [[NSUserDefaults standardUserDefaults] integerForKey:@"CalendarStartDay"];
-		int total_offset = kWidthOffset + ( bds.size.width/2 - kCalendarRequiredWidth/2 );
-		int myX, myY, i, j, offset, dayHit;
+		NSInteger start_day = [[NSUserDefaults standardUserDefaults] integerForKey:@"CalendarStartDay"];
+		NSInteger total_offset = kWidthOffset + ( bds.size.width/2 - kCalendarRequiredWidth/2 );
+		NSInteger myX, myY, i, j, offset, dayHit;
 		
 		mouseLoc = [self convertPoint:[sender draggingLocation] fromView:nil];
 		
@@ -1407,7 +1407,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 		
 			operation = NSDragOperationNone;
 			
-			int third = ceil(bds.size.width / 3.0);
+			NSInteger third = ceil(bds.size.width / 3.0);
 			
 			NSRect monthBack = NSMakeRect(0,0,third,kButtonCellHeight);
 			NSRect monthToday = NSMakeRect(third,0,third,kButtonCellHeight);
@@ -1531,9 +1531,9 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	NSPoint mouseLoc;
 	NSRect bds = [self bounds];
 	
-	int start_day = [[NSUserDefaults standardUserDefaults] integerForKey:@"CalendarStartDay"];
-	int total_offset = kWidthOffset + ( bds.size.width/2 - kCalendarRequiredWidth/2 );
-	int myX, myY, i, j, offset, dayHit;
+	NSInteger start_day = [[NSUserDefaults standardUserDefaults] integerForKey:@"CalendarStartDay"];
+	NSInteger total_offset = kWidthOffset + ( bds.size.width/2 - kCalendarRequiredWidth/2 );
+	NSInteger myX, myY, i, j, offset, dayHit;
 	
 	mouseLoc = [self convertPoint:[sender draggingLocation] fromView:nil];
 	
@@ -1572,7 +1572,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 			NSArray *entryURIs = [[sender draggingPasteboard] propertyListForType:PDEntryIDPboardType];
 			success = YES;
 			
-			int i;
+			NSInteger i;
 			for ( i = 0; i < [entryURIs count]; i++ ) 
 			{
 				// conver the ids to actual entries

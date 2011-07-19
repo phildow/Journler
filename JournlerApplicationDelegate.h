@@ -44,7 +44,7 @@ extern NSString *JournlerDidFinishImportNotification;
 	BOOL wasFirstRun;
 	BOOL displayInverted;
 	BOOL dropBoxIsWaiting;
-	int spellDocumentTag;
+	NSInteger spellDocumentTag;
 	
 	JournalLoadFlag journalLoadResult;
 	JournlerJournal *sharedJournal;

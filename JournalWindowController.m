@@ -493,7 +493,7 @@
 - (BOOL)validateMenuItem:(NSMenuItem*)menuItem
 {
 	BOOL enabled = YES;
-	int tag = [menuItem tag];
+	NSInteger tag = [menuItem tag];
 	SEL action = [menuItem action];
 	
 	if ( action == @selector(toggleUsesAlternatingRows:) )
@@ -1264,7 +1264,7 @@ static NSString	*kLockoutToolbarItem			= @"kLockoutToolbarItem";
 
 - (void) toolbarDidChangeSizeMode:(PDToolbar*)aToolbar
 {
-	int sizeTeil = ( [aToolbar sizeMode] == NSToolbarSizeModeSmall ? 24 : 32 );
+	NSInteger sizeTeil = ( [aToolbar sizeMode] == NSToolbarSizeModeSmall ? 24 : 32 );
 	[dateTimeButton setIconSize:NSMakeSize(sizeTeil,sizeTeil)];
 	[highlightButton setIconSize:NSMakeSize(sizeTeil,sizeTeil)];
 }

@@ -29,7 +29,7 @@
 	// - assumes that the beforeObject value is on a scale from 0 to 100
 	//
 	
-	int int_value = [beforeObject intValue];
+	NSInteger int_value = [beforeObject intValue];
 	
 	if ( int_value == 1 )
 		return [NSImage imageNamed:@"flagged.tif"];

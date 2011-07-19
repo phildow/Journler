@@ -88,7 +88,7 @@ static NSDictionary * StatusAttributes()
 	// create the text view by hand
 	[self installTextSystem];
 	
-	int statusBorders[4] = {1,0,0,0};
+	NSInteger statusBorders[4] = {1,0,0,0};
 	[statusBar setBordered:YES];
 	[statusBar setBorders:statusBorders];
 	
@@ -97,7 +97,7 @@ static NSDictionary * StatusAttributes()
 	[headerView setGradientStartColor:[NSColor whiteColor]];
 	[headerView setGradientEndColor:[NSColor whiteColor]];
 	
-	int contentBorders[4] = {0,0,0,0};
+	NSInteger contentBorders[4] = {0,0,0,0};
 	[contentView setBorders:contentBorders];
 	
 	[self setHeaderHidden:NO];
@@ -111,7 +111,7 @@ static NSDictionary * StatusAttributes()
 	[[marginPop cell] setArrowPosition:NSPopUpNoArrow];
 	
 	// set the scale on the text view - depends on fullscreen status
-	int scale = ( [self respondsToSelector:@selector(textViewIsInFullscreenMode:)] && [self textViewIsInFullscreenMode:textView]
+	NSInteger scale = ( [self respondsToSelector:@selector(textViewIsInFullscreenMode:)] && [self textViewIsInFullscreenMode:textView]
 			? [[NSUserDefaults standardUserDefaults] integerForKey:@"EntryTextFullscreenZoom"]
 			: [[NSUserDefaults standardUserDefaults] integerForKey:@"EntryTextDefaultZoom"] );
 	
@@ -123,7 +123,7 @@ static NSDictionary * StatusAttributes()
 	}
 	
 	// set the margin on the text view - depends on fullscreen status
-	int margin = ( [self respondsToSelector:@selector(textViewIsInFullscreenMode:)] && [self textViewIsInFullscreenMode:textView] 
+	NSInteger margin = ( [self respondsToSelector:@selector(textViewIsInFullscreenMode:)] && [self textViewIsInFullscreenMode:textView] 
 			? [[NSUserDefaults standardUserDefaults] integerForKey:@"EntryTextHorizontalInsetFullscreen"]
 			: [[NSUserDefaults standardUserDefaults] integerForKey:@"EntryTextHorizontalInset"] );
 		
@@ -139,7 +139,7 @@ static NSDictionary * StatusAttributes()
 	stylesBar = [[PDStylesBar allocWithZone:[self zone]] initWithTextView:textView];
 	
 	// the header
-	int borders[4] = {1,0,0,0};
+	NSInteger borders[4] = {1,0,0,0};
 	[headerView setBorders:borders];
 	[headerView setBordered:YES];
 	
@@ -435,7 +435,7 @@ static NSDictionary * StatusAttributes()
 	[textView setFullScreen:isFullScreen];
 	
 	// reset our scale value
-	int scale;
+	NSInteger scale;
 	
 	if ( isFullScreen == YES )
 		scale = [[NSUserDefaults standardUserDefaults] integerForKey:@"EntryTextFullscreenZoom"];
@@ -450,7 +450,7 @@ static NSDictionary * StatusAttributes()
 	}
 	
 	// set the margin on the text view - depends on fullscreen status
-	int margin = ( isFullScreen 
+	NSInteger margin = ( isFullScreen 
 			? [[NSUserDefaults standardUserDefaults] integerForKey:@"EntryTextHorizontalInsetFullscreen"]
 			: [[NSUserDefaults standardUserDefaults] integerForKey:@"EntryTextHorizontalInset"] );
 		
@@ -471,7 +471,7 @@ static NSDictionary * StatusAttributes()
 
 - (void) setHeaderHidden:(BOOL)hidden
 {
-	static int kHeaderHeight = 80;
+	static NSInteger kHeaderHeight = 80;
 	
 	if ( headerHidden != hidden )
 	{
@@ -487,7 +487,7 @@ static NSDictionary * StatusAttributes()
 			[headerView retain];
 			[headerView removeFromSuperview];
 			
-			int contentBorders[4] = {1,0,0,0};
+			NSInteger contentBorders[4] = {1,0,0,0};
 			[contentView setBorders:contentBorders];
 		}
 		else
@@ -504,7 +504,7 @@ static NSDictionary * StatusAttributes()
 			[headerView setFrame:headerFrame];
 			[contentView addSubview:headerView];
 			
-			int contentBorders[4] = {0,0,0,0};
+			NSInteger contentBorders[4] = {0,0,0,0};
 			[contentView setBorders:contentBorders];
 
 		}
@@ -860,7 +860,7 @@ static NSDictionary * StatusAttributes()
 
 - (IBAction) scaleText:(id)sender
 {
-	int scale = [sender tag];
+	NSInteger scale = [sender tag];
 	[[NSUserDefaults standardUserDefaults] setInteger:scale forKey:([textView inFullScreen] ? @"EntryTextFullscreenZoom" : @"EntryTextDefaultZoom" )];
 	[textView scaleText:sender];
 }
@@ -1088,8 +1088,8 @@ static NSDictionary * StatusAttributes()
 {
 	// simulate a resource or entry selection and then set the term highlight
 	
-	int eventModifiers = 0;
-	int modifiers = GetCurrentKeyModifiers();
+	NSInteger eventModifiers = 0;
+	NSInteger modifiers = GetCurrentKeyModifiers();
 	
 	if ( modifiers & shiftKey ) eventModifiers |= NSShiftKeyMask;
 	if ( modifiers & optionKey ) eventModifiers |= NSAlternateKeyMask;
@@ -1407,7 +1407,7 @@ static NSDictionary * StatusAttributes()
 				NSMutableAttributedString *editedStringReplacement = nil;
 				NSCharacterSet *whiteSpaceSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
 				
-				int i;
+				NSInteger i;
 				for ( i = 0; i < [editedString length]; i++ )
 				{
 					UniChar aCharacter = CFStringGetCharacterFromInlineBuffer(&buffer,i);
@@ -1481,10 +1481,10 @@ static NSDictionary * StatusAttributes()
     NSString *string = [textStorage string];
 	
     NSRange area = editedRange;
-    unsigned int length = [string length];
+    NSUInteger length = [string length];
     NSRange start, end;
     NSCharacterSet *whiteSpaceSet;
-    unsigned int areamax = NSMaxRange(area);
+    NSUInteger areamax = NSMaxRange(area);
 	NSRange found;
 	NSString *word;
 	
@@ -1808,7 +1808,7 @@ static NSDictionary * StatusAttributes()
 	NSDictionary *attributes = [[self textView] typingAttributes];
 	
 	[[self textView] setSelectedRange:NSMakeRange([[[self textView] textStorage] length],0)];
-	int loc = [[self textView] selectedRange].location;
+	NSInteger loc = [[self textView] selectedRange].location;
 	
 	if ( [[self textView] readSelectionFromPasteboard:pboard] )
 	{
@@ -1826,7 +1826,7 @@ static NSDictionary * StatusAttributes()
 	NSDictionary *attributes = [[self textView] typingAttributes];
 	
 	[[self textView] setSelectedRange:NSMakeRange([[[self textView] textStorage] length],0)];
-	int loc = [[self textView] selectedRange].location;
+	NSInteger loc = [[self textView] selectedRange].location;
 	
 	if ( [[self textView] readSelectionFromPasteboard:pboard] )
 	{
@@ -1849,7 +1849,7 @@ static NSDictionary * StatusAttributes()
 	NSArray *urls = [webURLs objectAtIndex:0];
 	NSArray *titles = [webURLs objectAtIndex:1];
 	
-	int i;
+	NSInteger i;
 	for ( i = 0; i < [urls count]; i++ )
 	{
 		[[self textView] setSelectedRange:NSMakeRange([[[self textView] textStorage] length],0)];
@@ -1908,7 +1908,7 @@ static NSDictionary * StatusAttributes()
 }
 
 - (NSArray *)tokenField:(NSTokenField *)tokenField completionsForSubstring:(NSString *)substring 
-	indexOfToken:(int)tokenIndex indexOfSelectedItem:(int *)selectedIndex
+	indexOfToken:(NSInteger )tokenIndex indexOfSelectedItem:(NSInteger *)selectedIndex
 {
 	//NSLog(@"%s",__PRETTY_FUNCTION__);
 	
@@ -1985,7 +1985,7 @@ static NSDictionary * StatusAttributes()
 {
 	//NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	int totalParagraphCount = 0, totalWordCount = 0, totalCharacterCount = 0;
+	NSInteger totalParagraphCount = 0, totalWordCount = 0, totalCharacterCount = 0;
 	
 	NSString *selectedText = [[textView string] substringWithRange:[textView selectedRange]];
 	
@@ -2016,12 +2016,12 @@ static NSDictionary * StatusAttributes()
 	
 	else 
 	{
-		int i;
+		NSInteger i;
 		NSArray *selections = [textView selectedRanges];
 		
 		for ( i = 0; i < [selections count]; i++ )
 		{
-			int paragraphCount, wordCount, characterCount;
+			NSInteger paragraphCount, wordCount, characterCount;
 			NSString *selected_text;
 			NSMutableString *paragraph_text;
 			

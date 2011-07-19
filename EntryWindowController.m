@@ -284,7 +284,7 @@
 	}
 	else
 	{
-		int result;
+		NSInteger result;
 		NewEntryController *entryCreator = [[[NewEntryController alloc] initWithJournal:[self valueForKey:@"journal"]] autorelease];
 		
 		// the date depends on the preference -- no, takes today's date.
@@ -1053,7 +1053,7 @@ static NSString *kLexiconToolbarItem = @"kLexiconToolbarItem";
 
 - (void) toolbarDidChangeSizeMode:(PDToolbar*)aToolbar
 {
-	int sizeTeil = ( [aToolbar sizeMode] == NSToolbarSizeModeSmall ? 24 : 32 );
+	NSInteger sizeTeil = ( [aToolbar sizeMode] == NSToolbarSizeModeSmall ? 24 : 32 );
 	[dateTimeButton setIconSize:NSMakeSize(sizeTeil,sizeTeil)];
 	[highlightButton setIconSize:NSMakeSize(sizeTeil,sizeTeil)];
 }

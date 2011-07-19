@@ -44,7 +44,7 @@
 	[optionsPlace addSubview:[importOptions view]];
 	[[importOptions view] setFrameOrigin:NSZeroPoint];
 	
-	int borders[4] = {0,0,0,0};
+	NSInteger borders[4] = {0,0,0,0};
 	[gradient setBorders:borders];
 	[gradient setBordered:NO];
 
@@ -131,7 +131,7 @@
 		files:(NSArray*)filenames folders:(NSArray**)importedFolders entries:(NSArray**)importedEntries;
 {
 	BOOL dir;
-	int i, result = NSRunStoppedResponse;
+	NSInteger i, result = NSRunStoppedResponse;
 	
 	if ( _userInteraction ) 
 	{
@@ -289,8 +289,8 @@
 {
 	// import the entry, adding it to the specified folder
 	
-	int entryImportOptions = 0;
-	int kMaxWidth = ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EmbeddedImageUseFullSize"] ? 0
+	NSInteger entryImportOptions = 0;
+	NSInteger kMaxWidth = ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EmbeddedImageUseFullSize"] ? 0
 	: [[NSUserDefaults standardUserDefaults] integerForKey:@"EmbeddedImageMaxWidth"] );
 	
 	NSSize maxPreviewSize = NSMakeSize(kMaxWidth,kMaxWidth);

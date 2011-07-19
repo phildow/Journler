@@ -141,7 +141,7 @@
 	if ( [self updatesFileExtension] )
 	{
 		NSString *extension = nil;
-		int senderTag = [sender tag];
+		NSInteger senderTag = [sender tag];
 		
 		switch ( senderTag )
 		{
@@ -181,7 +181,7 @@
 	[self setDataFormat:[sender tag]];
 	
 	// update user defaults
-	//int tag = [sender tag];
+	//NSInteger tag = [sender tag];
 	//[[NSUserDefaults standardUserDefaults] setInteger:[sender tag] forKey:@"EntryExportFormat"];
 }
 

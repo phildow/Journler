@@ -100,7 +100,7 @@
 	//[textObj setTextColor:[NSColor blackColor] range:NSMakeRange(0,[[textObj string] length])];	
 	
 	// center the text and take into account the required inset
-	int textHeight = [[self stringValue] sizeWithAttributes:attrs].height;
+	NSInteger textHeight = [[self stringValue] sizeWithAttributes:attrs].height;
 	textFrame.origin.y = textFrame.origin.y + (textFrame.size.height/2 - textHeight/2);
 	textFrame.size.height = textHeight;
 	textFrame.size.width -= 4;
@@ -127,7 +127,7 @@
 	//[textObj setTextColor:[NSColor blackColor] range:NSMakeRange(0,[[textObj string] length])];		
 	
 	// center the text and take into account the required inset
-	int textHeight = [[self stringValue] sizeWithAttributes:attrs].height;
+	NSInteger textHeight = [[self stringValue] sizeWithAttributes:attrs].height;
 	textFrame.origin.y = textFrame.origin.y + (textFrame.size.height/2 - textHeight/2);
 	textFrame.size.height = textHeight;
 	textFrame.size.width -= 4;
@@ -220,7 +220,7 @@
 	else
 	{
 	
-	int textHeight;
+	NSInteger textHeight;
 	
 	NSRect inset = cellFrame;
 	NSMutableDictionary *attrs;

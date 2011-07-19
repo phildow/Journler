@@ -68,13 +68,13 @@
 
 - (void) setInitialConditions:(NSArray*)initialConditions {
 	
-	int i;
+	NSInteger i;
 	NSRect contentRect;
 	
 	// size our window to the appropriate height
 	contentRect = [[[self window] contentView] frame];
 	
-	int newHeight = contentRect.size.height 
+	NSInteger newHeight = contentRect.size.height 
 			+ ( kConditionViewHeight * ([initialConditions count]-1));
 	contentRect.size.height = newHeight;
 	
@@ -160,7 +160,7 @@
 #pragma mark JournlerConditionController Delegate (NSTokenField)
 
 - (NSArray *)tokenField:(NSTokenField *)tokenField completionsForSubstring:(NSString *)substring 
-	indexOfToken:(int)tokenIndex indexOfSelectedItem:(int *)selectedIndex
+	indexOfToken:(NSInteger )tokenIndex indexOfSelectedItem:(NSInteger *)selectedIndex
 {
 	//NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith[cd] %@", substring];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith %@", substring];
@@ -179,7 +179,7 @@
 - (IBAction)createFolder:(id)sender
 {
 	
-	int i;
+	NSInteger i;
 	BOOL valid = YES;
 	
 	//
@@ -206,7 +206,7 @@
 
 - (int) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet {
 	
-	int result;
+	NSInteger result;
 	
 	[self updateConditionsView];
 	
@@ -218,7 +218,7 @@
     
 	// calculate the predicates
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *allPredicates = [[NSMutableArray alloc] init];
 	
 	for ( i = 0; i < [conditions count]; i++ ) 
@@ -251,7 +251,7 @@
 	// save our responder so we don't lose track of it
 	NSResponder *theResponder = [[self window] firstResponder];
 	
-	int i;
+	NSInteger i;
 	
 	// make sure the predicates view knows how many rows to draw
 	[predicatesView setNumConditions:[conditions count]];
@@ -301,7 +301,7 @@
 	// save our responder so we don't lose track of it
 	NSResponder *theResponder = [[self window] firstResponder];
 
-	int i;
+	NSInteger i;
 	// and add what's left or more according to our internal array
 	for ( i = 0; i < [conditions count]; i++ ) 
 	{
@@ -353,11 +353,11 @@
 	// and resize
 	if ( sender != self ) {
 	
-		//int newHeight = [[self window] frame].size.height + kConditionViewHeight;
+		//NSInteger newHeight = [[self window] frame].size.height + kConditionViewHeight;
 
 		NSRect contentRect = [[self window] contentRectForFrameRect:[[self window] frame]];
 		
-		int newHeight = contentRect.size.height + kConditionViewHeight;
+		NSInteger newHeight = contentRect.size.height + kConditionViewHeight;
 		
 		contentRect.origin.y = contentRect.origin.y + contentRect.size.height - newHeight;
 		contentRect.size.height = newHeight;
@@ -385,11 +385,11 @@
 	[self updateConditionsView];
 	
 	// resize the window and the conditions view with it
-	//int newHeight = [[self window] frame].size.height - kConditionViewHeight;
+	//NSInteger newHeight = [[self window] frame].size.height - kConditionViewHeight;
 
 	NSRect contentRect = [[self window] contentRectForFrameRect:[[self window] frame]];
 	
-	int newHeight = contentRect.size.height - kConditionViewHeight;
+	NSInteger newHeight = contentRect.size.height - kConditionViewHeight;
 	
 	contentRect.origin.y = contentRect.origin.y + contentRect.size.height - newHeight;
 	contentRect.size.height = newHeight;

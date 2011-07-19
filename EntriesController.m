@@ -116,7 +116,7 @@
 	if ( [theObject isKindOfClass:[JournlerEntry class]] 
 		&& [[[aNotification userInfo] objectForKey:JournlerObjectAttributeKey] isEqualToString:JournlerObjectAttributeLabelKey] )
 	{
-		int theRow = [[self arrangedObjects] indexOfObjectIdenticalTo:theObject];
+		NSInteger theRow = [[self arrangedObjects] indexOfObjectIdenticalTo:theObject];
 		if ( theRow != -1 )
 			[entriesTable setNeedsDisplayInRect:[entriesTable rectOfRow:theRow]];
 	}
@@ -147,7 +147,7 @@
 	JournlerEntry *anEntry = [[self arrangedObjects] objectAtIndex:row];
 	
 	BOOL tipDiscovered = NO;
-	int columnIndex = [aTableView columnAtPoint:mouseLocation];
+	NSInteger columnIndex = [aTableView columnAtPoint:mouseLocation];
 	NSArray *tableColumns = [aTableView tableColumns];
 	
 	if ( columnIndex != -1 && columnIndex < [tableColumns count] )
@@ -157,7 +157,7 @@
 			NSArray *resourceTitles = [anEntry valueForKeyPath:@"resources.title"];
 			if ( [resourceTitles count] != 0  )
 			{
-				int i;
+				NSInteger i;
 				NSMutableString *resourcesTip = [NSMutableString string];
 				for ( i = 0; i < [resourceTitles count]; i++ )
 				{
@@ -352,7 +352,7 @@
 	
 	NSArray *entries = [[self arrangedObjects] objectsAtIndexes:rowIndexes];
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *entryURIs = [NSMutableArray array];
 	NSMutableArray *entryTitles = [NSMutableArray array];
 	NSMutableArray *entryPromises = [NSMutableArray array];
@@ -398,12 +398,12 @@
 	if ( ![dropDestination isFileURL] ) 
 		return nil;
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *titles = [[NSMutableArray alloc] init];
 	NSArray *entries = [[self arrangedObjects] objectsAtIndexes:indexSet];
 	NSString *destinationPath = [dropDestination path];
 	
-	int flags = kEntrySetLabelColor;
+	NSInteger flags = kEntrySetLabelColor;
 	if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EntryExportIncludeHeader"] )
 		flags |= kEntryIncludeHeader;
 	if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EntryExportSetCreationDate"] )
@@ -559,7 +559,7 @@ indexOfToken:(int)tokenIndex indexOfSelectedItem:(int)selectedIndex
 - (BOOL)validateMenuItem:(NSMenuItem*)menuItem
 {
 	BOOL enabled = YES;
-	int tag = [menuItem tag];
+	NSInteger tag = [menuItem tag];
 	SEL action = [menuItem action];
 	unsigned selectionCount = [[self selectedObjects] count];
 	

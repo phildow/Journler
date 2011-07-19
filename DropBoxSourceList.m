@@ -31,7 +31,7 @@
 	static unichar kUnicharKeyReturn = '\r';
 	static unichar kUnicharKeyNewline = '\n';
 	
-	//unsigned int flags = [event modifierFlags];
+	//NSUInteger flags = [event modifierFlags];
 	unichar key = [[event charactersIgnoringModifiers] characterAtIndex:0];
 	
 	if ( key == kUnicharKeyReturn || key == kUnicharKeyNewline || [event keyCode] == 53 )

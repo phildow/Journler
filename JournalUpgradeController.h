@@ -28,7 +28,7 @@
 	NSMutableString *log210;
 	NSMutableString	*log117;
 	
-	int upgradeMode;
+	NSInteger  upgradeMode;
 	JournlerJournal		*_journal;
 	
 	NSMutableDictionary *entriesDictionary;

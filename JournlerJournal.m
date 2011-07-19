@@ -3306,7 +3306,7 @@ bail:
 			object:self userInfo:[NSDictionary dictionaryWithObject:anEntry forKey:@"entry"]];
 
 	// remove the entries from this resource, relocating them if necessary
-	NSArray *errors;
+	NSArray *errors = nil;
 	if ( ![self removeResources:[anEntry resources] fromEntries:[NSArray arrayWithObject:anEntry] errors:&errors] )
 	{
 		// need a way of getting these entries to the user

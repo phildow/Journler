@@ -123,7 +123,7 @@
 
 - (void)drawRect:(NSRect)aRect
 {
-	int i, offset = 10;
+	NSInteger i, offset = 10;
 	float requiredWidth;
 	float addedSpacePerLetter = 0;
 	NSRect bds = [self bounds];
@@ -176,7 +176,7 @@
 
 - (void)resetCursorRects
 {
-	int i, offset = 10;
+	NSInteger i, offset = 10;
 	NSRect bds = [self bounds];
 	
 	NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -207,7 +207,7 @@
 
 - (float) requiredWidthForFont:(NSFont*)aFont
 {
-	int i, offset = 10;
+	NSInteger i, offset = 10;
 	
 	NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:
 		[self font], NSFontAttributeName, 
@@ -230,7 +230,7 @@
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-	int i, offset = 10;
+	NSInteger i, offset = 10;
 	NSRect bds = [self bounds];
 	NSPoint localPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
 	

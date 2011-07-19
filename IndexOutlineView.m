@@ -82,7 +82,7 @@
 			}
 			else 
 			{
-				int i;
+				NSInteger i;
 				NSArray *objects = [rootController arrangedObjects];
 				[_searchString appendString:new_characters];
 				

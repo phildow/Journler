@@ -31,7 +31,7 @@
 
 - (void) awakeFromNib
 {
-	int borders[4] = {0,0,0,0};
+	NSInteger borders[4] = {0,0,0,0};
 	[gradient setBordered:NO];
 	[gradient setBorders:borders];
 	
@@ -157,7 +157,7 @@
 
 - (void) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet location:(NSRect)frame 
 {	
-	int result = NSRunAbortedResponse;
+	NSInteger result = NSRunAbortedResponse;
 	isSheet = sheet;
 	
 	id originalDelegate = [window delegate];

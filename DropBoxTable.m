@@ -38,7 +38,7 @@
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *textMovement = [userInfo objectForKey: @"NSTextMovement"];
 	
-    int movementCode = [textMovement intValue];
+    NSInteger movementCode = [textMovement intValue];
 
     // see if this a 'pressed-return' instance
     if (movementCode == NSReturnTextMovement && [self numberOfRows] == 1 ) 
@@ -74,7 +74,7 @@
 	static unichar kUnicharKeyReturn = '\r';
 	static unichar kUnicharKeyNewline = '\n';
 	
-	unsigned int flags = [event modifierFlags];
+	NSUInteger flags = [event modifierFlags];
 	unichar key = [[event charactersIgnoringModifiers] characterAtIndex:0];
 
 	if ( [event keyCode] == 53 )

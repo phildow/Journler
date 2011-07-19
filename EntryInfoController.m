@@ -47,7 +47,7 @@
 {
 	
 	// go ahead and add our blog types and names to the combo box
-	int i;
+	NSInteger i;
 	
 	NSArray *blogArray = [self valueForKeyPath:@"journal.blogs"];
 	
@@ -157,7 +157,7 @@
 	// --------- 1.0.2 compatability: clear out old blogs ----------
 	// - sorry!
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *tempBlogArray = [[NSMutableArray alloc] init];
 	
 	for ( i = 0; i < [[object blogs] count]; i++ ) {
@@ -246,7 +246,7 @@
 #pragma mark NSTokenField Delegation
 
 - (NSArray *)tokenField:(NSTokenField *)tokenField completionsForSubstring:(NSString *)substring 
-	indexOfToken:(int)tokenIndex indexOfSelectedItem:(int *)selectedIndex
+	indexOfToken:(NSInteger )tokenIndex indexOfSelectedItem:(NSInteger *)selectedIndex
 {
 	//NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith[cd] %@", substring];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith %@", substring];
@@ -341,8 +341,8 @@
 
 - (IBAction)editBlogList:(id)sender
 {
-	int clickedSegment = [sender selectedSegment];
-    int clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
+	NSInteger clickedSegment = [sender selectedSegment];
+    NSInteger clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
 	
 	switch ( clickedSegmentTag ) 
 	{

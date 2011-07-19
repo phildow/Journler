@@ -23,9 +23,9 @@
 	NSCursor			*pointCursor;
 	
 	BOOL				dayOfMonthHasEntry[32];
-	int myDay, myMonth, myYear;
+	NSInteger myDay, myMonth, myYear;
 
-	int _dropDate;
+	NSInteger _dropDate;
 	BOOL drawsBorder;
 	
 	id delegate;

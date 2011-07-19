@@ -52,7 +52,7 @@ static NSString *kIndexColumnObserver = @"IndexColumnObserver";
 	[outlineView sizeToFit];
 	[outlineController setSortDescriptors:[NSArray arrayWithObject:titleSort]];
 	
-	int borders[4] = {0,1,0,1};
+	NSInteger borders[4] = {0,1,0,1};
 	[footer setBordered:YES];
 	[footer setBorders:borders];
 	[header setBordered:YES];
@@ -422,7 +422,7 @@ static NSString *kIndexColumnObserver = @"IndexColumnObserver";
 
 - (BOOL) selectNode:(IndexNode*)aNode
 {
-	int row = [outlineView rowForOriginalItem:aNode];
+	NSInteger row = [outlineView rowForOriginalItem:aNode];
 	
 	if ( row == -1 )
 		return NO;
@@ -444,7 +444,7 @@ static NSString *kIndexColumnObserver = @"IndexColumnObserver";
 
 - (BOOL) scrollNodeToVisible:(IndexNode*)aNode
 {
-	int row = [outlineView rowForOriginalItem:aNode];
+	NSInteger row = [outlineView rowForOriginalItem:aNode];
 	
 	if ( row == -1 )
 		return NO;

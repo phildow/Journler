@@ -95,10 +95,10 @@
 
 - (void) updateSelectedObjects:(id)sender 
 {
-	int i;
+	NSInteger i;
 	NSArray *objects = [self arrangedObjects];
 	NSMutableArray *newSelection = [NSMutableArray array];
-	int dateInt = [[selectedDate descriptionWithCalendarFormat:@"%Y%m%d" timeZone:nil locale:nil] intValue];
+	NSInteger dateInt = [[selectedDate descriptionWithCalendarFormat:@"%Y%m%d" timeZone:nil locale:nil] intValue];
 	
 	for ( i = 0; i < CFArrayGetCount((CFArrayRef)objects); i++ )
 	{

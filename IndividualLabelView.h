@@ -11,10 +11,10 @@
 
 @interface IndividualLabelView : NSView {
 	
-	int tag;
+	NSInteger tag;
 }
 
-- (int) tag;
-- (void) setTag:(int)aTag;
+- (NSInteger) tag;
+- (void) setTag:(NSInteger)aTag;
 
 @end

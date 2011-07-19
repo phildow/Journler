@@ -40,7 +40,7 @@
 	NSArray *content;
 	NSDictionary *activeApplication;
 	
-	int mode;
+	NSInteger mode;
 	SEL didEndSelector;
 	
 	NSArray *tags;

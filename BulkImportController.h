@@ -12,7 +12,7 @@
 {
     
 	BOOL _userInteraction;
-	int datePreference;
+	NSInteger datePreference;
 	
 	NSFileManager *fm;
 	JRLRBulkImport		*importOptions;

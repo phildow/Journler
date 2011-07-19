@@ -50,8 +50,8 @@
 	NSString *countSuffix;
 	NSPredicate *filterPredicate;
 	
-	int minCount;
-	int maxCount;
+	NSInteger minCount;
+	NSInteger maxCount;
 	
 	BOOL canDeleteContent;
 	BOOL canFilterCount;

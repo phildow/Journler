@@ -56,7 +56,7 @@
 	[browseTableFieldEditor retain];
 	[browseTableFieldEditor setFieldEditor:YES];
 	
-	int borders[4] = {0,0,0,0};
+	NSInteger borders[4] = {0,0,0,0};
 	[gradient setBorders:borders];
 	[gradient setBordered:NO];
 	
@@ -196,7 +196,7 @@
 
 - (int) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet targetCollection:(JournlerCollection*)aFolder 
 {
-	int result = NSRunStoppedResponse;
+	NSInteger result = NSRunStoppedResponse;
 	_targetFolder = aFolder;
 	
 	if ( _userInteraction ) 
@@ -356,7 +356,7 @@
 
 - (void) _performImport:(id)anObject {
 	
-	int i;
+	NSInteger i;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
 	if ( _userInteraction ) {
@@ -366,8 +366,8 @@
 		[[self window] display];
 	}
 	
-	int entryImportOptions = 0;
-	int kMaxWidth = ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EmbeddedImageUseFullSize"] ? 0
+	NSInteger entryImportOptions = 0;
+	NSInteger kMaxWidth = ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EmbeddedImageUseFullSize"] ? 0
 	: [[NSUserDefaults standardUserDefaults] integerForKey:@"EmbeddedImageMaxWidth"] );
 	
 	NSSize maxPreviewSize = NSMakeSize(kMaxWidth,kMaxWidth);
@@ -511,7 +511,7 @@
 	[[self journal] saveCollection:aFolder];
 	
 	// do the same for the folder's children
-	int i;
+	NSInteger i;
 	NSArray *kids = [aFolder children];
 	for ( i = 0; i < [kids count]; i++ )
 		[self addFolderToJournal:[kids objectAtIndex:i]];
@@ -642,7 +642,7 @@
 #pragma mark NSTokenFieldCell Delegation
 
 - (NSArray *)tokenFieldCell:(NSTokenFieldCell *)tokenFieldCell completionsForSubstring:(NSString *)substring 
-	indexOfToken:(int)tokenIndex indexOfSelectedItem:(int *)selectedIndex
+	indexOfToken:(NSInteger )tokenIndex indexOfSelectedItem:(NSInteger *)selectedIndex
 {
 	//NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith[cd] %@", substring];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith %@", substring];

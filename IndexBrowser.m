@@ -202,7 +202,7 @@
 	
 	else 
 	{
-		int i;
+		NSInteger i;
 		// remove every visible column but the first
 		for ( i = 1; i < columnCount; i++ )
 		{
@@ -405,7 +405,7 @@
 	// or get rid of extraneous columns
 	else if ( columnCount > indexOfColumn + 2 )
 	{
-		int i;
+		NSInteger i;
 		for ( i = indexOfColumn + 2; i < columnCount; i++ )
 			[self removeColumn:self];
 	}
@@ -530,7 +530,7 @@
 		return;
 	else if ( location + 1 < [[self columns] count] )
 	{
-		int i;
+		NSInteger i;
 		for ( i = location + 1; i < [[self columns] count]; i++ )
 			[[[[self columns] objectAtIndex:i] columnView] setAutoresizingMask:NSViewHeightSizable|NSViewMinXMargin];
 	}

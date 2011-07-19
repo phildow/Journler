@@ -30,8 +30,8 @@ typedef enum {
 	
 	BOOL updatesFileExtension;
 	
-	int fileMode;
-	int dataFormat;
+	NSInteger fileMode;
+	NSInteger dataFormat;
 	BOOL includeHeader;
 	BOOL modifiesFileCreationDate;
 	BOOL modifiesFileModifiedDate;
