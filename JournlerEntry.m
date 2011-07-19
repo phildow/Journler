@@ -364,7 +364,7 @@ static NSArray *JObjectValues()
 
 - (NSArray*) resources
 {
-	return resources;
+	return [[resources copy] autorelease];
 }
 
 - (void) setResources:(NSArray*)anArray
