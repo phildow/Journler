@@ -337,7 +337,7 @@
 {
 	BOOL enabled = NO;
 	
-	if ( [menuItem tag] == 841 && [[entriesController selectedObjects] count] == 1);
+	if ( [menuItem tag] == 841 && [[entriesController selectedObjects] count] == 1)
 		enabled = YES;
 	
 	return enabled;

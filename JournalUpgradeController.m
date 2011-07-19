@@ -193,7 +193,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 		
 		NSError *error = nil;
 		if ( ![log117 writeToFile:upgradeLogPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-			NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
+			NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, upgradeLogPath, error);
 					
 		[log117 release];
 		[self quit210Upgrade:self];
@@ -796,7 +796,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 	
 	NSError *error = nil;
 	if ( ![log117 writeToFile:upgradeLogPath atomically:NO encoding:NSUnicodeStringEncoding error:&error] )
-		NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, error);
+		NSLog(@"%s - unable to write upgrade log to %@, error %@", __PRETTY_FUNCTION__, upgradeLogPath, error);
 						
 	[log117 release];
 	[NSApp relaunch:self];
@@ -1432,7 +1432,7 @@ bail:
 		NSString *extension = [path pathExtension];
 		
 		// if the resource path is an address book record, create the appropriate resource and delete the file
-		if ( uti != nil && UTTypeEqual((CFStringRef)uti,(CFStringRef)kJournlerABFileUTI) || [extension isEqualToString:kJournlerABFileExtension] )
+		if ( (uti != nil && UTTypeEqual((CFStringRef)uti,(CFStringRef)kJournlerABFileUTI) ) || [extension isEqualToString:kJournlerABFileExtension] )
 		{
 			NSError *error = nil;
 			NSString *uniqueId = [NSString stringWithContentsOfFile:path usedEncoding:NULL error:&error];

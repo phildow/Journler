@@ -645,7 +645,7 @@
 		|| action == @selector(openInNewWindowFromPhotoView:) )
 	{
 		NSUInteger theIndex = [photoView indexForMenuEvent];
-		if ( theIndex < 0 || theIndex >= [[self selectedResources] count] )
+		if ( theIndex >= [[self selectedResources] count] )
 			enabled = NO;
 		else
 			enabled = YES;
@@ -1038,7 +1038,7 @@
 - (IBAction) jumpToEntryFromPhotoView:(id)sender
 {
 	NSUInteger theIndex = [photoView indexForMenuEvent];
-	if ( theIndex < 0 || theIndex >= [[self selectedResources] count] )
+	if ( theIndex >= [[self selectedResources] count] )
 	{
 		NSBeep(); return;
 	}
@@ -1053,7 +1053,7 @@
 - (IBAction) openInFinderFromPhotoView:(id)sender
 {
 	NSUInteger theIndex = [photoView indexForMenuEvent];
-	if ( theIndex < 0 || theIndex >= [[self selectedResources] count] )
+	if ( theIndex >= [[self selectedResources] count] )
 	{
 		NSBeep(); return;
 	}
@@ -1065,7 +1065,7 @@
 - (IBAction) revealInFinderFromPhotoView:(id)sender
 {
 	NSUInteger theIndex = [photoView indexForMenuEvent];
-	if ( theIndex < 0 || theIndex >= [[self selectedResources] count] )
+	if ( theIndex >= [[self selectedResources] count] )
 	{
 		NSBeep(); return;
 	}
@@ -1077,7 +1077,7 @@
 - (IBAction) openInNewTabFromPhotoView:(id)sender
 {
 	NSUInteger theIndex = [photoView indexForMenuEvent];
-	if ( theIndex < 0 || theIndex >= [[self selectedResources] count] )
+	if ( theIndex >= [[self selectedResources] count] )
 	{
 		NSBeep(); return;
 	}
@@ -1092,7 +1092,7 @@
 - (IBAction) openInNewWindowFromPhotoView:(id)sender
 {
 	NSUInteger theIndex = [photoView indexForMenuEvent];
-	if ( theIndex < 0 || theIndex >= [[self selectedResources] count] )
+	if ( theIndex >= [[self selectedResources] count] )
 	{
 		NSBeep(); return;
 	}
@@ -1107,7 +1107,7 @@
 - (IBAction) getInfoFromPhotoView:(id)sender
 {
 	NSUInteger theIndex = [photoView indexForMenuEvent];
-	if ( theIndex < 0 || theIndex >= [[self selectedResources] count] )
+	if ( theIndex >= [[self selectedResources] count] )
 	{
 		NSBeep(); return;
 	}
@@ -1218,7 +1218,7 @@
 		{
 			success = NO;
 			NSBeep();
-			NSLog(@"%s - no media url %@", __PRETTY_FUNCTION__);
+			NSLog(@"%s - no media url", __PRETTY_FUNCTION__);
 			return;
 		}
 		

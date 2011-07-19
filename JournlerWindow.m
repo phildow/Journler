@@ -7,6 +7,8 @@
 //
 
 #import "JournlerWindow.h"
+#import "JournlerWindowController.h"
+
 #import "TabController.h"
 #import "JournlerApplicationDelegate.h"
 #import "EntriesTableView.h"

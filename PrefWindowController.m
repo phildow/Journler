@@ -861,7 +861,7 @@ typedef enum {
 		// derive an md5 digest for the given password
 		NSString *md5Digest = [[passA stringValue] journlerMD5Digest];
 		
-		NSLog([md5Digest className]);
+		//NSLog(@"%@",[md5Digest className]);
 		
 		//check the state of the enable button
 		if ( [enablePassword state] == NSOnState ) 
