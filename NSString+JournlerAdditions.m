@@ -28,14 +28,14 @@
 	return returnString;
 }
 
-- (NSString*) formattedMD5DigestForLicense:(int)licenseType version:(int)licenseVersion
+- (NSString*) formattedMD5DigestForLicense:(NSInteger)licenseType version:(NSInteger)licenseVersion
 {
 	// generates the journler license
 	NSString *digest;
 	
 	if ( licenseVersion == 210 || licenseVersion == 260 )
 	{
-		int i;
+		NSInteger i;
 		BOOL negate = NO;
 		unichar characters[200]; //max lenth is two hu
 		for ( i = 0; i < [self length]; i++ )

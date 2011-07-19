@@ -170,7 +170,7 @@
 	return YES;
 }
 
-- (void) addTab:(TabController*)aTab atIndex:(unsigned int)index
+- (void) addTab:(TabController*)aTab atIndex:(NSUInteger)index
 {
 	[aTab setFullScreen:YES];
 	[super addTab:aTab atIndex:index];

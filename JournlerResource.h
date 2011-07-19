@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <AddressBook/AddressBook.h>
 
-typedef unsigned int JournlerResourceType;
+typedef NSUInteger JournlerResourceType;
 
 enum {
 	kResourceTypeFile = 1,
@@ -22,7 +22,7 @@ enum {
 	kResourceTypeRecording = 101,
 };
 
-typedef unsigned int NewResourceCommand;
+typedef NSUInteger NewResourceCommand;
 
 enum {
 	kNewResourceUseDefaults = NSDragOperationGeneric,
@@ -73,7 +73,7 @@ enum {
 	float relevance;
 	
 	// icon memory management
-	int _previewRetainCount;
+	NSInteger _previewRetainCount;
 	NSTimeInterval _lastPreviewAccess;
 }
 
@@ -164,7 +164,7 @@ enum {
 
 - (void) retainPreview;
 - (void) releasePreview;
-- (int) previewRetainCount;
+- (NSInteger) previewRetainCount;
 - (NSTimeInterval) lastPreviewAccess;
 - (void) unloadPreview;
 - (NSImage*) previewIfLoaded;
@@ -269,9 +269,9 @@ enum {
 
 #pragma mark -
 
-- (int) indexOfObjectInJSEntries:(JournlerEntry*)anEntry;
-- (unsigned int) countOfJSEntries;
-- (JournlerEntry*) objectInJSEntriesAtIndex:(unsigned int)i;
+- (NSInteger) indexOfObjectInJSEntries:(JournlerEntry*)anEntry;
+- (NSUInteger) countOfJSEntries;
+- (JournlerEntry*) objectInJSEntriesAtIndex:(NSUInteger)i;
 - (JournlerEntry*) valueInJSEntriesWithUniqueID:(NSNumber*)idNum;
 
 //- (NSScriptObjectSpecifier *)objectSpecifier;

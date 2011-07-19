@@ -15,7 +15,7 @@
 #import <SproutedUtilities/SproutedUtilities.h>
 
 static NSString *stopWordsString = @"a all am an and any are as at be but by can could did do does etc for from goes got had has have he her him his how if in is it let me more much must my nor not now of off on or our own see set shall she should so some than that the them then there these this those though to too us was way we what when where which who why will would yes yet you";
-static int kMinTermLength = 1;
+static NSInteger kMinTermLength = 1;
 
 #define kSearchMax 1000
 
@@ -148,11 +148,11 @@ static NSString *referenceIndexFile = @"Index References";
 	
 	// 10.4 dictionary
 	analysisDict = [NSDictionary dictionaryWithObjectsAndKeys:
-			[NSNumber numberWithInt:kMinTermLength], (NSString *)kSKMinTermLength, 
+			[NSNumber numberWithInteger:kMinTermLength], (NSString *)kSKMinTermLength, 
 			[self stopWords], (NSString*)kSKStopWords,
 			[NSNumber numberWithBool:YES], (NSString *)kSKProximityIndexing, 
 			/*kCFBooleanTrue, kSKProximityIndexing,*/
-			[NSNumber numberWithInt:0], (NSString *)kSKMaximumTerms, nil];
+			[NSNumber numberWithInteger:0], (NSString *)kSKMaximumTerms, nil];
 	
 	entryIndex = SKIndexCreateWithURL((CFURLRef)entryIndexURL,
 			(CFStringRef)@"Entry Index",kSKIndexInvertedVector,(CFDictionaryRef)analysisDict);
@@ -656,11 +656,11 @@ static NSString *referenceIndexFile = @"Index References";
 		journlerSearchOptions:(JournlerSearchOptions)journlerOptions
 		maximumTime:(CFTimeInterval)maxTime maximumHits:(CFIndex)maxCount 
 		entries:(NSSet**)entryMatches resources:(NSSet**)resourceMatches 
-		entryHits:(int*)entryHits referenceHits:(int*)referenceHits 
+		entryHits:(NSInteger*)entryHits referenceHits:(NSInteger*)referenceHits 
 {
 
-	*entryHits = (int) 0;
-	*referenceHits = (int) 0;
+	*entryHits = (NSInteger) 0;
+	*referenceHits = (NSInteger) 0;
 	
 	NSMutableSet *entriesSet = [NSMutableSet set];
 	NSMutableSet *referencesSet = [NSMutableSet set];
@@ -706,7 +706,7 @@ static NSString *referenceIndexFile = @"Index References";
 
 		// run the search
 		exhausted = SKSearchFindMatches(searchQuery,maxCount,entryDocumentIDs,entryScores,maxTime,&numberOfHits);
-		*entryHits = (int) numberOfHits;
+		*entryHits = (NSInteger) numberOfHits;
 		
 		entryDocumentRefs = calloc(numberOfHits,sizeof(SKDocumentRef));
 		
@@ -716,7 +716,7 @@ static NSString *referenceIndexFile = @"Index References";
 		SKIndexCopyDocumentRefsForDocumentIDs(entryIndex,numberOfHits,entryDocumentIDs,entryDocumentRefs);
 		
 		// get the max score for relevance ranked display
-		int i;
+		NSInteger i;
 		float maxScore = 0.0;
 		for ( i = 0; i < numberOfHits; i++ ) 
 		{
@@ -789,7 +789,7 @@ static NSString *referenceIndexFile = @"Index References";
 
 		// run the search
 		exhausted = SKSearchFindMatches(searchQuery,maxCount,referenceDocumentIDs,referenceScores,maxTime,&numberOfHits);
-		*referenceHits = (int) numberOfHits;
+		*referenceHits = (NSInteger) numberOfHits;
 		
 		referenceDocumentRefs = calloc(numberOfHits,sizeof(SKDocumentRef));
 		
@@ -799,7 +799,7 @@ static NSString *referenceIndexFile = @"Index References";
 		SKIndexCopyDocumentRefsForDocumentIDs(referenceIndex,numberOfHits,referenceDocumentIDs,referenceDocumentRefs);
 		
 		// get the max score for relevance ranked display
-		int i;
+		NSInteger i;
 		float maxScore = 0.0;
 		for ( i = 0; i < numberOfHits; i++ ) 
 		{
@@ -1011,7 +1011,7 @@ bail:
 
 @implementation JournlerSearchManager (TermIndexSupport)
 
-- (NSArray*) allTerms:(unsigned)options
+- (NSArray*) allTerms:(NSUInteger)options
 {
 	// flush the index before calling - (BOOL) writeIndexToDisk
 	NSMutableSet *allTermsSet = [NSMutableSet set];
@@ -1026,7 +1026,7 @@ bail:
 	//return [allTermsSet allObjects];
 }
 
-- (NSArray*) entryTerms:(unsigned)options
+- (NSArray*) entryTerms:(NSUInteger)options
 {
 	// flush the index before calling - (BOOL) writeIndexToDisk
 	NSMutableArray *entryTerms = [NSMutableArray array];
@@ -1063,7 +1063,7 @@ bail:
 	return entryTerms;
 }
 
-- (NSArray*) resourceTerms:(unsigned)options
+- (NSArray*) resourceTerms:(NSUInteger)options
 {
 	// flush the index before calling - (BOOL) writeIndexToDisk
 	NSMutableArray *resourceTerms = [NSMutableArray array];
@@ -1102,7 +1102,7 @@ bail:
 
 #pragma mark -
 
-- (int) countOfDocumentsForTerm:(NSString*)aTerm options:(unsigned)options
+- (NSInteger) countOfDocumentsForTerm:(NSString*)aTerm options:(NSUInteger)options
 {
 	//aTerm = [aTerm lowercaseString];
 	
@@ -1113,7 +1113,7 @@ bail:
 	return ( [self countOfEntriesForTerm:aTerm options:options] + [self countOfResourcesForTerm:aTerm options:options] );
 }
 
-- (int) countOfEntriesForTerm:(NSString*)aTerm options:(unsigned)options
+- (NSInteger) countOfEntriesForTerm:(NSString*)aTerm options:(NSUInteger)options
 {
 	//aTerm = [aTerm lowercaseString];
 	
@@ -1129,7 +1129,7 @@ bail:
 	return documentCount;
 }
 
-- (int) countOfResourcesForTerm:(NSString*)aTerm options:(unsigned)options
+- (NSInteger) countOfResourcesForTerm:(NSString*)aTerm options:(NSUInteger)options
 {
 	//aTerm = [aTerm lowercaseString];
 	
@@ -1147,7 +1147,7 @@ bail:
 
 #pragma mark -
 
-- (int) frequenceyOfTerm:(NSString*)aTerm forDocument:(JournlerObject*)anObject options:(unsigned)options
+- (NSInteger) frequenceyOfTerm:(NSString*)aTerm forDocument:(JournlerObject*)anObject options:(NSUInteger)options
 {
 	//aTerm = [aTerm lowercaseString];
 	
@@ -1185,7 +1185,7 @@ bail:
 
 #pragma mark -
 
-- (NSArray*) termsAndDocumentsArray:(unsigned)options
+- (NSArray*) termsAndDocumentsArray:(NSUInteger)options
 {
 	// "term" and "journlerObjects"
 	
@@ -1218,7 +1218,7 @@ bail:
 			// once done, prepare the dictionary
 			NSDictionary *aTermDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
 					theTerm, @"term", 
-					[NSNumber numberWithInt:[journlerObjects count]], @"objectCount",
+					[NSNumber numberWithInteger:[journlerObjects count]], @"objectCount",
 					journlerObjects, @"journlerObjects", nil];
 			
 			// and add it to the main array
@@ -1231,7 +1231,7 @@ bail:
 
 #pragma mark -
 
-- (NSArray*) journlerObjectsForTerm:(NSString*)aTerm options:(unsigned)options
+- (NSArray*) journlerObjectsForTerm:(NSString*)aTerm options:(NSUInteger)options
 {	
 	//aTerm = [aTerm lowercaseString];
 	NSMutableArray *journlerObjects = [NSMutableArray array];
@@ -1271,7 +1271,7 @@ bail:
 				SKDocumentID *entryDocumentIDs = calloc(documentCount,sizeof(SKDocumentID));
 				SKDocumentRef *entryDocumentRefs = calloc(documentCount,sizeof(SKDocumentRef));
 				
-				int y, x = -1;
+				NSInteger y, x = -1;
 				// convert the array of numbers to actual documet ids
 				for ( y = 0; y < CFArrayGetCount(entryDocumentNumbers); y++ ) 
 				{
@@ -1356,7 +1356,7 @@ bail:
 				SKDocumentID *resourceDocumentIDs = calloc(documentCount,sizeof(SKDocumentID));
 				SKDocumentRef *resourceDocumentRefs = calloc(documentCount,sizeof(SKDocumentRef));
 				
-				int y, x = -1;
+				NSInteger y, x = -1;
 				// convert the array of numbers to actual documet ids
 				for ( y = 0; y < CFArrayGetCount(resourceDocumentNumbers); y++ ) 
 				{
@@ -1423,7 +1423,7 @@ bail:
 	return journlerObjects;
 }
 
-- (NSArray*) termsForJournlerObject:(JournlerObject*)anObject options:(unsigned)options
+- (NSArray*) termsForJournlerObject:(JournlerObject*)anObject options:(NSUInteger)options
 {
 	SKIndexRef targetIndex = NULL;
 	
@@ -1455,7 +1455,7 @@ bail:
 
 #pragma mark -
 
-- (NSArray*) termsForTermIDRefs:(CFArrayRef)termIDs index:(SKIndexRef)anIndex options:(unsigned)options
+- (NSArray*) termsForTermIDRefs:(CFArrayRef)termIDs index:(SKIndexRef)anIndex options:(NSUInteger)options
 {
 	if ( termIDs == NULL )
 		return nil;
@@ -1502,7 +1502,7 @@ bail:
 	//return actualTerms;
 }
 
-- (SKDocumentID) documentIDForJournlerObject:(JournlerObject*)anObject options:(unsigned)options
+- (SKDocumentID) documentIDForJournlerObject:(JournlerObject*)anObject options:(NSUInteger)options
 {
 	if ( anObject == nil )
 		return kCFNotFound;

@@ -40,7 +40,7 @@
 			@"New Blog", @"http://", 
 			@"Blogger", [NSString string], 
 			[NSString string], [NSString string], 
-			[NSString stringWithString:@"1"], [NSNumber numberWithInt:-1], 
+			[NSString stringWithString:@"1"], [NSNumber numberWithInteger:-1], 
 			[NSString string], [NSString string], nil] autorelease];  /* for backwards compatbility */
 			
 	NSDictionary *defaults = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
@@ -92,16 +92,16 @@
 
 #pragma mark -
 
-- (unsigned) hash 
+- (NSUInteger) hash 
 {	
 	// return the tag id, guaranteed to be unique
-	return [[self tagID] unsignedIntValue];
+	return [[self tagID] unsignedIntegerValue];
 }
 
 - (BOOL)isEqual:(id)anObject 
 {	
 	// tests for the class and then the int tag id
-	return ( [anObject isMemberOfClass:[self class]] && [[self tagID] intValue] == [[anObject tagID] intValue] );
+	return ( [anObject isMemberOfClass:[self class]] && [[self tagID] integerValue] == [[anObject tagID] integerValue] );
 }
 
 #pragma mark -

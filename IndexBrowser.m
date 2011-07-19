@@ -105,10 +105,10 @@
     NSRect boxRect = [self bounds];
     NSRect bgRect = NSMakeRect(0,0,boxRect.size.width,18);
   
-	int minX = NSMinX(bgRect);
-    int maxX = NSMaxX(bgRect);
-    int minY = NSMinY(bgRect);
-    int maxY = NSMaxY(bgRect);
+	CGFloat minX = NSMinX(bgRect);
+    CGFloat maxX = NSMaxX(bgRect);
+    CGFloat minY = NSMinY(bgRect);
+    CGFloat maxY = NSMaxY(bgRect);
 	
 	NSBezierPath *bgPath = [NSBezierPath bezierPathWithRect:rect];
 	
@@ -186,7 +186,7 @@
 
 - (void) setInitialContent:(NSArray*)anArray
 {
-	unsigned columnCount = [[self columns] count];
+	NSUInteger columnCount = [[self columns] count];
 	
 	if ( columnCount == 0 )
 	{
@@ -213,12 +213,12 @@
 
 - (void) setContentAtIndex:(NSDictionary*)aDictionary
 {
-	[self setContent:[aDictionary objectForKey:@"content"] forColumnAtIndex:[[aDictionary objectForKey:@"index"] intValue]];
+	[self setContent:[aDictionary objectForKey:@"content"] forColumnAtIndex:[[aDictionary objectForKey:@"index"] integerValue]];
 }
 
-- (BOOL) setContent:(NSArray*)anArray forColumnAtIndex:(unsigned)index
+- (BOOL) setContent:(NSArray*)anArray forColumnAtIndex:(NSUInteger)index
 {
-	unsigned total = [[self columns] count] - 1;
+	NSUInteger total = [[self columns] count] - 1;
 	if ( index > total )
 	{
 		NSLog(@"%s - index %i beyond bounds %i", __PRETTY_FUNCTION__, index, total);
@@ -389,8 +389,8 @@
 	BOOL allowsDeletion = NO;
 	
 	// determine if a new column is needed
-	unsigned columnCount = [[self columns] count];
-	unsigned indexOfColumn = [[self columns] indexOfObjectIdenticalTo:aColumn];
+	NSUInteger columnCount = [[self columns] count];
+	NSUInteger indexOfColumn = [[self columns] indexOfObjectIdenticalTo:aColumn];
 	
 	// ask the delegate for the content of the selection
 	if ( [[self delegate] respondsToSelector:@selector(browser:contentForNodes:atColumnIndex:)] )
@@ -522,7 +522,7 @@
 - (void) columnWillResize:(NSNotification*)aNotification
 {
 	IndexColumn *theColumn = [(IndexColumnView*)[aNotification object] indexColumn];
-	unsigned location = [[self columns] indexOfObjectIdenticalTo:theColumn];
+	NSUInteger location = [[self columns] indexOfObjectIdenticalTo:theColumn];
 	
 	[[theColumn columnView] setAutoresizingMask:NSViewHeightSizable];
 	
@@ -547,7 +547,7 @@
 - (void) outlineView:(IndexOutlineView*)anOutlineView leftKeyDown:(NSEvent*)anEvent
 {
 	IndexColumn *theColumn = [anOutlineView indexColumn];
-	unsigned newColumnIndex, columnIndex = [[self columns] indexOfObjectIdenticalTo:theColumn];
+	NSUInteger newColumnIndex, columnIndex = [[self columns] indexOfObjectIdenticalTo:theColumn];
 	
 	if ( columnIndex == 0 )
 		newColumnIndex = [[self columns] count] - 1;
@@ -565,8 +565,8 @@
 - (void) outlineView:(IndexOutlineView*)anOutlineView rightKeyDown:(NSEvent*)anEvent
 {
 	IndexColumn *theColumn = [anOutlineView indexColumn];
-	unsigned columnIndex = [[self columns] indexOfObjectIdenticalTo:theColumn];
-	unsigned newColumnIndex = columnIndex;
+	NSUInteger columnIndex = [[self columns] indexOfObjectIdenticalTo:theColumn];
+	NSUInteger newColumnIndex = columnIndex;
 	
 	if ( columnIndex == [[self columns] count] - 1 )
 		newColumnIndex = 0;

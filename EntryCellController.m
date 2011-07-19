@@ -853,7 +853,7 @@ static NSDictionary * StatusAttributes()
 	[self _setMargin:[sender tag]];
 }
 
-- (void) _setMargin:(int)margin
+- (void) _setMargin:(NSInteger)margin
 {
 	[[NSUserDefaults standardUserDefaults] setInteger:margin forKey:([textView inFullScreen] ? @"EntryTextHorizontalInsetFullscreen" : @"EntryTextHorizontalInset" )];
 }
@@ -923,7 +923,7 @@ static NSDictionary * StatusAttributes()
 		return NO;
 }
 
-- (void)textView:(NSTextView *)aTextView clickedOnCell:(id <NSTextAttachmentCell>)cell inRect:(NSRect)cellFrame atIndex:(unsigned)charIndex 
+- (void)textView:(NSTextView *)aTextView clickedOnCell:(id <NSTextAttachmentCell>)cell inRect:(NSRect)cellFrame atIndex:(NSUInteger)charIndex 
 {
 	// checks for a checkbox and reverses the value and picture
 	
@@ -971,7 +971,7 @@ static NSDictionary * StatusAttributes()
 
 - (BOOL)textView:(NSTextView *)aTextView 
 		clickedOnLink:(id)link 
-		atIndex:(unsigned)charIndex 
+		atIndex:(NSUInteger)charIndex 
 {
 	static NSString *http_scheme = @"http";
 
@@ -1134,7 +1134,7 @@ static NSDictionary * StatusAttributes()
 
 /*
 - (NSString *)textView:(NSTextView *)aTextView 
-		willDisplayToolTip:(NSString *)tooltip forCharacterAtIndex:(unsigned)characterIndex
+		willDisplayToolTip:(NSString *)tooltip forCharacterAtIndex:(NSUInteger)characterIndex
 {
 	if ( aTextView != textView )
 		return tooltip;
@@ -1235,7 +1235,7 @@ static NSDictionary * StatusAttributes()
 	return returnImage;
 }
 
-- (NSArray *)textView:(NSTextView *)aTextView writablePasteboardTypesForCell:(id <NSTextAttachmentCell>)cell atIndex:(unsigned)charIndex
+- (NSArray *)textView:(NSTextView *)aTextView writablePasteboardTypesForCell:(id <NSTextAttachmentCell>)cell atIndex:(NSUInteger)charIndex
 {
 	#ifdef __DEBUG__
 	NSLog(@"%s",__PRETTY_FUNCTION__);
@@ -1293,7 +1293,7 @@ static NSDictionary * StatusAttributes()
 }
 
 - (BOOL)textView:(NSTextView *)aTextView writeCell:(id <NSTextAttachmentCell>)cell 
-		atIndex:(unsigned)charIndex toPasteboard:(NSPasteboard *)pboard type:(NSString *)type
+		atIndex:(NSUInteger)charIndex toPasteboard:(NSPasteboard *)pboard type:(NSString *)type
 {
 	#ifdef __DEBUG__
 	NSLog(@"%s",__PRETTY_FUNCTION__);
@@ -1919,7 +1919,7 @@ static NSDictionary * StatusAttributes()
 	return completions;
 }
 
-- (NSArray *)tokenField:(NSTokenField *)tokenField shouldAddObjects:(NSArray *)tokens atIndex:(unsigned)index
+- (NSArray *)tokenField:(NSTokenField *)tokenField shouldAddObjects:(NSArray *)tokens atIndex:(NSUInteger)index
 {
 	//NSLog(@"%s - %@",__PRETTY_FUNCTION__,tokens);
 	

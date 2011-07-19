@@ -147,7 +147,7 @@ static NSString *kMailMessagePboardType = @"MV Super-secret message transfer pas
     textMovement = [userInfo objectForKey: @"NSTextMovement"];
 
     NSInteger movementCode;
-    movementCode = [textMovement intValue];
+    movementCode = [textMovement integerValue];
 
     // see if this a 'pressed-return' instance
 
@@ -155,7 +155,7 @@ static NSString *kMailMessagePboardType = @"MV Super-secret message transfer pas
         // hijack the notification and pass a different textMovement
         // value
 
-        textMovement = [NSNumber numberWithInt: NSIllegalTextMovement];
+        textMovement = [NSNumber numberWithInteger: NSIllegalTextMovement];
 
         NSDictionary *newUserInfo;
         newUserInfo = [NSDictionary dictionaryWithObject: textMovement
@@ -172,7 +172,7 @@ static NSString *kMailMessagePboardType = @"MV Super-secret message transfer pas
 } // textDidEndEditing
 
 
--(void)_drawDropHighlightOnRow:(int)rowIndex
+-(void)_drawDropHighlightOnRow:(NSInteger)rowIndex
 {
 	
 	static float widthOffset = 5.0;
@@ -213,7 +213,7 @@ static NSString *kMailMessagePboardType = @"MV Super-secret message transfer pas
 }
 
 
-- (void)drawRow:(int)rowIndex clipRect:(NSRect)clipRect {
+- (void)drawRow:(NSInteger)rowIndex clipRect:(NSRect)clipRect {
 	
 	JournlerCollection *actualItem;
 	id anObject = [self itemAtRow:rowIndex];
@@ -242,10 +242,10 @@ static NSString *kMailMessagePboardType = @"MV Super-secret message transfer pas
 		
 	}
 	
-	else if ( labelColorVal && [labelColorVal intValue] != 0 )
+	else if ( labelColorVal && [labelColorVal integerValue] != 0 )
 	{
-		NSColor *gradientStart = [NSColor colorForLabel:[labelColorVal intValue] gradientEnd:NO];
-		NSColor *gradientEnd = [NSColor colorForLabel:[labelColorVal intValue] gradientEnd:YES];
+		NSColor *gradientStart = [NSColor colorForLabel:[labelColorVal integerValue] gradientEnd:NO];
+		NSColor *gradientEnd = [NSColor colorForLabel:[labelColorVal integerValue] gradientEnd:YES];
 		
 		if ( gradientStart != nil && gradientEnd != nil )
 		{
@@ -403,7 +403,7 @@ static NSString *kMailMessagePboardType = @"MV Super-secret message transfer pas
 				[NSFont systemFontOfSize:[NSFont smallSystemFontSize]], NSFontAttributeName,
 				[NSColor colorWithCalibratedWhite:1.0 alpha:1.0], NSForegroundColorAttributeName, nil];
 		
-		NSString *countString = [[NSNumber numberWithInt:[dragRows count]] stringValue];
+		NSString *countString = [[NSNumber numberWithInteger:[dragRows count]] stringValue];
 		NSSize countSize = [countString sizeWithAttributes:countAttributes];
 		
 		[dragBadge lockFocus];

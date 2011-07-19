@@ -22,11 +22,11 @@
 	id representedObject;
 }
 
-- (int) count;
-- (void) setCount:(int)aCount;
+- (NSInteger) count;
+- (void) setCount:(NSInteger)aCount;
 
-- (int) frequency;
-- (void) setFrequency:(int)aFrequency;
+- (NSInteger) frequency;
+- (void) setFrequency:(NSInteger)aFrequency;
 
 - (NSString*) title;
 - (void) setTitle:(NSString*)aString;
@@ -40,7 +40,7 @@
 - (NSArray*) children;
 - (void) setChildren:(NSArray*)anArray;
 
-- (unsigned) childCount;
+- (NSUInteger) childCount;
 - (BOOL) isLeaf;
 
 @end

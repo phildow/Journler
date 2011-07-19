@@ -62,22 +62,22 @@
 
 #pragma mark -
 
-- (int) count
+- (NSInteger) count
 {
 	return count;
 }
 
-- (void) setCount:(int)aCount
+- (void) setCount:(NSInteger)aCount
 {
 	count = aCount;
 }
 
-- (int) frequency
+- (NSInteger) frequency
 {
 	return frequency;
 }
 
-- (void) setFrequency:(int)aFrequency
+- (void) setFrequency:(NSInteger)aFrequency
 {
 	frequency = aFrequency;
 }
@@ -147,9 +147,9 @@
 
 #pragma mark -
 
-- (unsigned) childCount
+- (NSUInteger) childCount
 {
-	return (unsigned)[children count];
+	return (NSUInteger)[children count];
 }
 
 - (BOOL) isLeaf

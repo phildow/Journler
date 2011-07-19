@@ -32,12 +32,12 @@
 	return _contentView; 
 }
 
-- (int) dataFormat 
+- (NSInteger) dataFormat 
 { 
 	return [[_dataFormat selectedItem] tag];
 }
 
-- (void) setDataFormat:(int)format 
+- (void) setDataFormat:(NSInteger)format 
 {
 	[_dataFormat selectItemWithTag:format];
 }
@@ -62,12 +62,12 @@
 	[_dateTo setDateValue:date];
 }
 
-- (int) fileMode 
+- (NSInteger) fileMode 
 { 
 	return [[_fileMode selectedCell] tag]; 
 }
 
-- (void) setFileMode:(int)mode 
+- (void) setFileMode:(NSInteger)mode 
 {
 	[_fileMode selectCellWithTag:mode];
 }

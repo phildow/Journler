@@ -44,7 +44,7 @@
 
 - (void) awakeFromNib
 {
-	int borders[4] = {0,0,0,0};
+	NSInteger borders[4] = {0,0,0,0};
 	[gradient setBorders:borders];
 	[gradient setBordered:NO];
 }

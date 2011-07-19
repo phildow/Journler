@@ -227,7 +227,7 @@
 - (void) prepareTitleBar
 {
 	// subclasses may override to provide special behavior
-	int whichBorders[4] = {1,0,1,0};
+	NSInteger whichBorders[4] = {1,0,1,0};
 	[bar setBordered:YES];
 	[bar setBorderColor:[NSColor colorWithCalibratedRed:155.0/255.0 green:155.0/255.0 blue:155.0/255.0 alpha:1.0]];
 	[bar setBorders:whichBorders];
@@ -392,7 +392,7 @@
 	
 	// subclasses may override although it isn't necessary
 	
-	if ( [[anItem typeIdentifier] intValue] == kMenubarItemURI )
+	if ( [[anItem typeIdentifier] integerValue] == kMenubarItemURI )
 	{
 		// throw the uri at the workspace
 		NSURL *applicationURI = [anItem targetURI];
@@ -411,7 +411,7 @@
 		}
 	}
 	
-	else if ( [[anItem typeIdentifier] intValue] == kMenubarItemAppleScript )
+	else if ( [[anItem typeIdentifier] integerValue] == kMenubarItemAppleScript )
 	{
 		NSDictionary *errorDictionary;
 		NSString *scriptSource = [[anItem targetScript] string];
@@ -448,7 +448,7 @@
 		}
 		
 		if ( ![script executeHandler:perform_action_handler error:&errorDictionary withParameters: resourceURI, theRepresentedObject, nil] 
-			 && [[errorDictionary objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
+			 && [[errorDictionary objectForKey:NSAppleScriptErrorNumber] integerValue] != kScriptWasCancelledError )
 		{
 			success = NO;
 			NSLog(@"%s - unable to execute handler of script %@, error: %@", __PRETTY_FUNCTION__, scriptSource, errorDictionary);
@@ -487,7 +487,7 @@ bail:
 		[anItem setTitle:NSLocalizedStringFromTableInBundle(@"get info title",@"Mediabar",myBundle,@"")];
 		[anItem setToolTip:NSLocalizedStringFromTableInBundle(@"get info tip",@"Mediabar",myBundle,@"")];
 		[anItem setTag:kMediaBarGetInfo];
-		[anItem setTypeIdentifier:[NSNumber numberWithInt:kMenubarItemDefault]];
+		[anItem setTypeIdentifier:[NSNumber numberWithInteger:kMenubarItemDefault]];
 		
 		NSImage *theImage = [[[NSImage alloc] initWithContentsOfFile:[myBundle pathForImageResource:@"InfoBarSmall.png"]] autorelease];
 		[anItem setImage:theImage];
@@ -501,7 +501,7 @@ bail:
 		[anItem setTitle:NSLocalizedStringFromTableInBundle(@"reveal in finder title",@"Mediabar",myBundle,@"")];
 		[anItem setToolTip:NSLocalizedStringFromTableInBundle(@"reveal in finder tip",@"Mediabar",myBundle,@"")];
 		[anItem setTag:kMediaBarShowInFinder];
-		[anItem setTypeIdentifier:[NSNumber numberWithInt:kMenubarItemDefault]];
+		[anItem setTypeIdentifier:[NSNumber numberWithInteger:kMenubarItemDefault]];
 		
 		NSImage *theImage = [[[NSImage alloc] initWithContentsOfFile:[myBundle pathForImageResource:@"RevealInFinderBarSmall.png"]] autorelease];
 		[anItem setImage:theImage];
@@ -514,7 +514,7 @@ bail:
 	{
 		[anItem setTitle:NSLocalizedStringFromTableInBundle(@"open in finder title",@"Mediabar",myBundle,@"")];
 		[anItem setTag:kMediaBarOpenWithFinder];
-		[anItem setTypeIdentifier:[NSNumber numberWithInt:kMenubarItemDefault]];
+		[anItem setTypeIdentifier:[NSNumber numberWithInteger:kMenubarItemDefault]];
 		[anItem setToolTip:NSLocalizedStringFromTableInBundle(@"open in finder tip",@"Mediabar",myBundle,@"")];
 		
 		[anItem setTarget:self];

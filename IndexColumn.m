@@ -342,23 +342,23 @@ static NSString *kIndexColumnObserver = @"IndexColumnObserver";
 
 #pragma mark -
 
-- (int) minCount
+- (NSInteger) minCount
 {
 	return minCount;
 }
 
-- (void) setMinCount:(int)aCount
+- (void) setMinCount:(NSInteger)aCount
 {
 	minCount = aCount;
 	[self setCountRestriction:nil];
 }
 
-- (int) maxCount
+- (NSInteger) maxCount
 {
 	return maxCount;
 }
 
-- (void) setMaxCount:(int)aCount
+- (void) setMaxCount:(NSInteger)aCount
 {
 	maxCount = aCount;
 	[self setCountRestriction:nil];
@@ -437,7 +437,7 @@ static NSString *kIndexColumnObserver = @"IndexColumnObserver";
 		// re-target the outline view - the selection created a new one that took focus
 		[[outlineView window] makeFirstResponder:outlineView];
 		
-		//[outlineView scrollRowToVisible:<#(int)row#>
+		//[outlineView scrollRowToVisible:<#(NSInteger)row#>
 		return YES;
 	}
 }
@@ -457,7 +457,7 @@ static NSString *kIndexColumnObserver = @"IndexColumnObserver";
 		// re-target the outline view - the selection created a new one that took focus
 		[[outlineView window] makeFirstResponder:outlineView];
 		
-		//[outlineView scrollRowToVisible:<#(int)row#>
+		//[outlineView scrollRowToVisible:<#(NSInteger)row#>
 		return YES;
 	}
 }

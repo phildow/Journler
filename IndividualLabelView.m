@@ -55,12 +55,12 @@
 	[[NSGraphicsContext currentContext] restoreGraphicsState];
 }
 
-- (int) tag
+- (NSInteger) tag
 {
 	return tag;
 }
 
-- (void) setTag:(int)aTag
+- (void) setTag:(NSInteger)aTag
 {
 	tag = aTag;
 }

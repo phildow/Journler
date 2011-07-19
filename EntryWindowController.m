@@ -306,7 +306,7 @@
 		newEntry = [[[JournlerEntry alloc] init] autorelease];
 		[newEntry setJournal:[self journal]];
 		
-		[newEntry setValue:[NSNumber numberWithInt:[[self journal] newEntryTag]] forKey:@"tagID"];
+		[newEntry setValue:[NSNumber numberWithInteger:[[self journal] newEntryTag]] forKey:@"tagID"];
 		[newEntry setValue:[NSCalendarDate calendarDate] forKey:@"calDateModified"];
 		[newEntry setValue:[entryCreator valueForKey:@"category"] forKey:@"category"];
 		[newEntry setValue:[entryCreator valueForKey:@"tags"] forKey:@"tags"];

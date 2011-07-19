@@ -63,7 +63,7 @@
 - (void) deleteEntries:(NSArray*)theEntries;
 - (void) deleteFolder:(JournlerCollection*)aFolder;
 
-- (int) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet targetCollection:(JournlerCollection*)aFolder;
+- (NSInteger) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet targetCollection:(JournlerCollection*)aFolder;
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)okay:(id)sender;

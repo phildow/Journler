@@ -67,6 +67,6 @@
 @interface NSObject (EntriesTableViewDelegate)
 
 // the delegate should return yes if it handles this action
-- (BOOL) tableView:(EntriesTableView*)aTableView didSelectRowAlreadySelected:(int)aRow event:(NSEvent*)mouseEvent;
+- (BOOL) tableView:(EntriesTableView*)aTableView didSelectRowAlreadySelected:(NSInteger)aRow event:(NSEvent*)mouseEvent;
 
 @end

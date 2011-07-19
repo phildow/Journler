@@ -48,7 +48,7 @@
 	
 	// reselect the old selection
 	//[outlineView selectItems:theSelection byExtendingSelection:NO];
-	unsigned targetRow = [outlineView rowForOriginalItem:theSelection];
+	NSUInteger targetRow = [outlineView rowForOriginalItem:theSelection];
 	if ( targetRow != -1 ) 
 	{
 		//[outlineView selectRow:targetRow byExtendingSelection:NO]; DEPRECATED
@@ -76,7 +76,7 @@
 #pragma mark Dummy NSOutlineView Data Source
 
 
-- (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item 
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item 
 {
 	return 0;
 }
@@ -86,7 +86,7 @@
 	return NO;
 }
 
-- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item 
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item 
 {
 	return nil;
 }

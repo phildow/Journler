@@ -56,7 +56,7 @@
 
 - (void) windowDidLoad 
 {
-	int i;
+	NSInteger i;
 	NSArray *blogArray = [self valueForKeyPath:@"journal.blogs"];
 	
 	for ( i = 0; i < [blogArray count]; i++ ) 
@@ -146,9 +146,9 @@
 - (void) updateViewValues 
 {
 	// looks at the content of the entries array and determines what values will be reflected by the view
-	int i;
-	int labelSelection;
-	int markedSelection;
+	NSInteger i;
+	NSInteger labelSelection;
+	NSInteger markedSelection;
 	NSString *aString;
 	NSCalendarDate *aDate;
 	NSArray *someBlogs;
@@ -383,12 +383,12 @@
 	}
 }
 
-- (int) marked 
+- (NSInteger) marked 
 { 
 	return marked; 
 }
 
-- (void) setMarked:(int)newMark 
+- (void) setMarked:(NSInteger)newMark 
 {
 	marked = newMark;
 }
@@ -509,7 +509,7 @@
 #pragma mark NSTokenField Delegation
 
 - (NSArray *)tokenField:(NSTokenField *)tokenField completionsForSubstring:(NSString *)substring 
-	indexOfToken:(int)tokenIndex indexOfSelectedItem:(int *)selectedIndex
+	indexOfToken:(NSInteger)tokenIndex indexOfSelectedItem:(NSInteger*)selectedIndex
 {
 	//NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith[cd] %@", substring];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith %@", substring];
@@ -517,7 +517,7 @@
 	return completions;
 }
 
-- (NSArray *)tokenFieldCell:(NSTokenFieldCell *)tokenFieldCell shouldAddObjects:(NSArray *)tokens atIndex:(unsigned)index
+- (NSArray *)tokenFieldCell:(NSTokenFieldCell *)tokenFieldCell shouldAddObjects:(NSArray *)tokens atIndex:(NSUInteger)index
 {
 	//NSLog(@"%s - %@",__PRETTY_FUNCTION__,tokens);
 	
@@ -555,8 +555,8 @@
 - (IBAction)editBlogList:(id)sender
 {
 	
-	int clickedSegment = [sender selectedSegment];
-    int clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
+	NSInteger clickedSegment = [sender selectedSegment];
+    NSInteger clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
 	
 	switch ( clickedSegmentTag ) {
 		
@@ -716,10 +716,10 @@
 		[entries setValue:tags forKey:@"tags"];
 	
 	if ( modifiedLabel )
-		[entries setValue:[NSNumber numberWithInt:[label labelSelection]] forKey:@"label"];
+		[entries setValue:[NSNumber numberWithInteger:[label labelSelection]] forKey:@"label"];
 			
 	if ( modifiedMarked )
-		[entries setValue:[NSNumber numberWithInt:marked] forKey:@"marked"];
+		[entries setValue:[NSNumber numberWithInteger:marked] forKey:@"marked"];
 	
 	if ( modifiedBlogs )
 		[entries setValue:blogs forKey:@"blogs"];

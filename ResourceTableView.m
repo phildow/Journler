@@ -25,7 +25,7 @@
 
 - (void) awakeFromNib
 {
-	int i;
+	NSInteger i;
 	NSArray *columns = [self tableColumns];
 	
 	for ( i = 0; i < [columns count]; i++ )
@@ -110,7 +110,7 @@
 #pragma mark -
 #pragma mark Dragging
 
-- (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)isLocal 
+- (NSUInteger)draggingSourceOperationMaskForLocal:(BOOL)isLocal 
 {
 	if ( isLocal )
 		return ( NSDragOperationLink );
@@ -151,7 +151,7 @@
 				[NSFont systemFontOfSize:[NSFont smallSystemFontSize]], NSFontAttributeName,
 				[NSColor colorWithCalibratedWhite:1.0 alpha:1.0], NSForegroundColorAttributeName, nil];
 		
-		NSString *countString = [[NSNumber numberWithInt:[dragRows count]] stringValue];
+		NSString *countString = [[NSNumber numberWithInteger:[dragRows count]] stringValue];
 		NSSize countSize = [countString sizeWithAttributes:countAttributes];
 		
 		[dragBadge lockFocus];
@@ -207,7 +207,7 @@
 
 - (void) mouseDown:(NSEvent*)theEvent 
 {	
-	unsigned int mods = [theEvent modifierFlags];
+	NSUInteger mods = [theEvent modifierFlags];
 	
 	if ( (mods & NSCommandKeyMask) && (mods & NSShiftKeyMask) )
 	{
@@ -216,7 +216,7 @@
 		NSPoint table_point = [self convertPoint:window_point fromView:nil];
 		
 		JournlerResource *aResource;
-		unsigned int row_selection = [self rowAtPoint:table_point];
+		NSInteger row_selection = [self rowAtPoint:table_point];
 		
 		if ( row_selection != -1 && ( aResource = [[self itemAtRow:row_selection] resource] ) && 
 				[[self delegate] respondsToSelector:@selector(openAResourceInNewTab:)] )
@@ -237,7 +237,7 @@
 		NSPoint table_point = [self convertPoint:window_point fromView:nil];
 		
 		JournlerResource *aResource;
-		unsigned int row_selection = [self rowAtPoint:table_point];
+		NSInteger row_selection = [self rowAtPoint:table_point];
 		
 		if ( row_selection != -1 && ( aResource = [[self itemAtRow:row_selection] resource] ) && 
 				[[self delegate] respondsToSelector:@selector(openAResourceInNewWindow:)] )
@@ -258,7 +258,7 @@
 		NSPoint table_point = [self convertPoint:window_point fromView:nil];
 		
 		JournlerResource *aResource;
-		unsigned int row_selection = [self rowAtPoint:table_point];
+		NSInteger row_selection = [self rowAtPoint:table_point];
 		
 		if ( row_selection != -1 && ( aResource = [[self itemAtRow:row_selection] resource] ) && 
 				[[self delegate] respondsToSelector:@selector(openAResourceWithFinder:)] )
@@ -337,7 +337,7 @@
 			}
 			else 
 			{
-				int i;
+				NSInteger i;
 				NSArray *objects = ( [[self dataSource] respondsToSelector:@selector(resourceNodes)] ? [[self dataSource] resourceNodes] : [[self dataSource] arrangedObjects] );
 				[_searchString appendString:new_characters];
 				
@@ -352,8 +352,8 @@
 					{
 						NSLog(@"%s - object %i title %@", __PRETTY_FUNCTION__, i, [aNode valueForKeyPath:@"resource.title"] );
 						
-						//int targetRow = [self rowForItem:[objects objectAtIndex:i]];
-						int targetRow = i;
+						//NSInteger targetRow = [self rowForItem:[objects objectAtIndex:i]];
+						NSInteger targetRow = i;
 						if ( targetRow != 1 )
 						{
 							[self scrollRowToVisible:targetRow];
@@ -376,7 +376,7 @@
 
 #pragma mark -
 
-- (void)drawRow:(int)rowIndex clipRect:(NSRect)clipRect {
+- (void)drawRow:(NSInteger)rowIndex clipRect:(NSRect)clipRect {
 	
 	JournlerResource *aResource;
 	id anObject = [self itemAtRow:rowIndex];
@@ -416,10 +416,10 @@
 
 	}
 	
-	else if ( labelColorVal && [labelColorVal intValue] != 0 )
+	else if ( labelColorVal && [labelColorVal integerValue] != 0 )
 	{
-		NSColor *gradientStart = [NSColor colorForLabel:[labelColorVal intValue] gradientEnd:NO];
-		NSColor *gradientEnd = [NSColor colorForLabel:[labelColorVal intValue] gradientEnd:YES];
+		NSColor *gradientStart = [NSColor colorForLabel:[labelColorVal integerValue] gradientEnd:NO];
+		NSColor *gradientEnd = [NSColor colorForLabel:[labelColorVal integerValue] gradientEnd:YES];
 				
 		if ( gradientStart != nil && gradientEnd != nil )
 		{		

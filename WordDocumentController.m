@@ -118,8 +118,8 @@
 	[modifiedInfo setVerticallyCentered:NO];
 	[[modifiedInfo dictionary] setValue:[NSNumber numberWithBool:NO] forKey:NSPrintHeaderAndFooter];
 	
-	int width = [modifiedInfo paperSize].width - ( [modifiedInfo rightMargin] + [modifiedInfo leftMargin] );
-	int height = [modifiedInfo paperSize].height - ( [modifiedInfo topMargin] + [modifiedInfo bottomMargin] );
+	CGFloat width = [modifiedInfo paperSize].width - ( [modifiedInfo rightMargin] + [modifiedInfo leftMargin] );
+	CGFloat height = [modifiedInfo paperSize].height - ( [modifiedInfo topMargin] + [modifiedInfo bottomMargin] );
 	
 	// create a view based on that information
 	PDPrintTextView *printView = [[[PDPrintTextView alloc] initWithFrame:NSMakeRect(0,0,width,height)] autorelease];
@@ -212,10 +212,10 @@
 	// zoom the text but taking into account last text size
 	// 3 = larger, 4 = smaller, 5 = equal
 	
-	int i;
-	int theTag = [sender tag];
+	NSInteger i;
+	NSInteger theTag = [sender tag];
 	float scaleValue = -1;
-	int theLastScale = (int)[self lastScale];
+	NSInteger theLastScale = (NSInteger)[self lastScale];
 	static float scale[10] = { 10, 25, 50, 75, 100, 125, 150, 200, 400, 800 };
 	
 	if ( theTag == 99 )

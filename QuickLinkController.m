@@ -48,7 +48,7 @@
 	[_collections_pop setMenu:collectionsMenu];
 	[self selectCollection:[[_collections_pop menu] itemAtIndex:0]];
 	
-	int borders[4] = {0,0,0,0};
+	NSInteger borders[4] = {0,0,0,0};
 	[gradient setBorders:borders];
 	[gradient setBordered:NO];
 	

@@ -157,7 +157,7 @@ static NSString *kMediabarItemOpenHomepage = @"kMediabarItemOpenHomepage";
 	}
 }
 
-- (void)alertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	[[alert window] orderOut:self];
 }
@@ -349,7 +349,7 @@ static NSString *kMediabarItemOpenHomepage = @"kMediabarItemOpenHomepage";
 	}
 	
 	NSAppleEventDescriptor *script_result = [apple_script executeAndReturnError:&error_dic];
-	if ( script_result == nil && [[error_dic objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
+	if ( script_result == nil && [[error_dic objectForKey:NSAppleScriptErrorNumber] integerValue] != kScriptWasCancelledError )
 	{
 		NSLog(@"AddressRecordController callWithSkype: error executing script %@", [error_dic description]);
 		
@@ -517,7 +517,7 @@ static NSString *kMediabarItemOpenHomepage = @"kMediabarItemOpenHomepage";
 		[anItem setTitle:NSLocalizedStringFromTableInBundle(@"address record show title",@"Mediabar",sproutedInterfaceBundle,@"")];
 		[anItem setToolTip:NSLocalizedStringFromTableInBundle(@"address record show tip",@"Mediabar",sproutedInterfaceBundle,@"")];
 		[anItem setTag:0];
-		[anItem setTypeIdentifier:[NSNumber numberWithInt:kMenubarItemDefault]];
+		[anItem setTypeIdentifier:[NSNumber numberWithInteger:kMenubarItemDefault]];
 		
 		NSImage *theImage = BundledImageWithName(@"ABBarSmall.png", @"com.sprouted.interface");
 		[anItem setImage:theImage];
@@ -533,7 +533,7 @@ static NSString *kMediabarItemOpenHomepage = @"kMediabarItemOpenHomepage";
 		[anItem setTitle:NSLocalizedStringFromTableInBundle(@"address record email title",@"Mediabar",sproutedInterfaceBundle,@"")];
 		[anItem setToolTip:NSLocalizedStringFromTableInBundle(@"address record email tip",@"Mediabar",sproutedInterfaceBundle,@"")];
 		[anItem setTag:1];
-		[anItem setTypeIdentifier:[NSNumber numberWithInt:kMenubarItemDefault]];
+		[anItem setTypeIdentifier:[NSNumber numberWithInteger:kMenubarItemDefault]];
 		
 		NSImage *theImage = BundledImageWithName(@"ComposeMailBarSmall.png", @"com.sprouted.interface");
 		[anItem setImage:theImage];
@@ -549,7 +549,7 @@ static NSString *kMediabarItemOpenHomepage = @"kMediabarItemOpenHomepage";
 		[anItem setTitle:NSLocalizedStringFromTableInBundle(@"address record browse title",@"Mediabar",sproutedInterfaceBundle,@"")];
 		[anItem setToolTip:NSLocalizedStringFromTableInBundle(@"address record browse tip",@"Mediabar",sproutedInterfaceBundle,@"")];
 		[anItem setTag:2];
-		[anItem setTypeIdentifier:[NSNumber numberWithInt:kMenubarItemDefault]];
+		[anItem setTypeIdentifier:[NSNumber numberWithInteger:kMenubarItemDefault]];
 		
 		NSImage *theImage = BundledImageWithName(@"SafariBarSmall.png", @"com.sprouted.interface");
 		[anItem setImage:theImage];

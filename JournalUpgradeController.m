@@ -240,7 +240,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 		JournlerCollection *aNode = [[[JournlerCollection alloc] initWithProperties:[oldCollectionDics objectAtIndex:i]] autorelease];
 		
 		// explicity set the parent to root
-		[aNode setParentID:[NSNumber numberWithInt:-1]];
+		[aNode setParentID:[NSNumber numberWithInteger:-1]];
 		
 		// set the entry ids to what is in the entry field -- already tags
 		[aNode setEntryIDs:[[aNode properties] objectForKey:PDCollectionEntries]];
@@ -249,7 +249,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 		[aNode setChildrenIDs:[NSArray array]];
 		
 		// set the journal id and version
-		[aNode setVersion:[NSNumber numberWithInt:250]];
+		[aNode setVersion:[NSNumber numberWithInteger:250]];
 		[aNode setJournalID:[_journal identifier]];
 		
 		// establish a relationship to the journal
@@ -258,15 +258,15 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 		// convert the type to a typeID
 		NSString *oldType = [aNode pureType];
 		if ( [oldType isEqualToString:PDCollectionTypeFolder] )
-			[aNode setTypeID:[NSNumber numberWithInt:PDCollectionTypeIDFolder]];
+			[aNode setTypeID:[NSNumber numberWithInteger:PDCollectionTypeIDFolder]];
 		else if ( [oldType isEqualToString:PDCollectionTypeSmart] )
-			[aNode setTypeID:[NSNumber numberWithInt:PDCollectionTypeIDSmart]];
+			[aNode setTypeID:[NSNumber numberWithInteger:PDCollectionTypeIDSmart]];
 		else if ( [oldType isEqualToString:PDCollectionTypeLibrary] )
-			[aNode setTypeID:[NSNumber numberWithInt:PDCollectionTypeIDLibrary]];
+			[aNode setTypeID:[NSNumber numberWithInteger:PDCollectionTypeIDLibrary]];
 		else if ( [oldType isEqualToString:PDCollectionTypeTrash] )
-			[aNode setTypeID:[NSNumber numberWithInt:PDCollectionTypeIDTrash]];
+			[aNode setTypeID:[NSNumber numberWithInteger:PDCollectionTypeIDTrash]];
 		else
-			[aNode setTypeID:[NSNumber numberWithInt:PDCollectionTypeIDFolder]];
+			[aNode setTypeID:[NSNumber numberWithInteger:PDCollectionTypeIDFolder]];
 		
 		// update the image to a standard value
 		[aNode determineIcon];
@@ -276,8 +276,8 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 		[aNode updateForTwoZero];
 		
 		// update last tag and count
-		if ( lastFolderTag  < [[aNode tagID] intValue] )
-			lastFolderTag = [[aNode tagID] intValue];
+		if ( lastFolderTag  < [[aNode tagID] integerValue] )
+			lastFolderTag = [[aNode tagID] integerValue];
 		
 		// store in the array for sorting and ordering
 		[journalFolders addObject:aNode];
@@ -314,7 +314,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 		JournlerCollection *aNode = [journalFolders objectAtIndex:i];
 		
 		// set the index on the node, now ordered in its proper place
-		[aNode setValue:[NSNumber numberWithInt:i] forKey:@"index"];
+		[aNode setValue:[NSNumber numberWithInteger:i] forKey:@"index"];
 		
 		// autorelease and run the modal session
 		[progressIndicator210 incrementBy:1.0];
@@ -392,7 +392,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 					[anEntry setJournal:_journal];
 					
 					// upgrade the entry's internal format
-					[anEntry setValue:[NSNumber numberWithInt:250] forKey:@"version"];
+					[anEntry setValue:[NSNumber numberWithInteger:250] forKey:@"version"];
 					
 					// perform maintenance on the entry (remove deprecated properties)
 					[anEntry perform210Maintenance];
@@ -407,8 +407,8 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 					[entriesDictionary setObject:anEntry forKey:[anEntry valueForKey:@"tagID"]];
 					
 					// increment the tag and count
-					if ( lastEntryTag < [[anEntry tagID] intValue] )
-						lastEntryTag = [[anEntry tagID] intValue];
+					if ( lastEntryTag < [[anEntry tagID] integerValue] )
+						lastEntryTag = [[anEntry tagID] integerValue];
 				
 				}
 				else 
@@ -523,7 +523,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 					continue;
 				
 				// give the blog a unique id
-				[aBlog setValue:[NSNumber numberWithInt:b] forKey:@"tagID"];
+				[aBlog setValue:[NSNumber numberWithInteger:b] forKey:@"tagID"];
 
 				// write the blog to disk
 				if ( ![_journal saveBlog:aBlog] )
@@ -695,13 +695,13 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 	[ud setObject:[NSNumber numberWithBool:NO] forKey:@"SourceListUseSmallIcons"];
 	[ud setObject:[NSNumber numberWithBool:NO] forKey:@"CommandWClosesWindow"];
 	
-	[ud setObject:[NSNumber numberWithInt:0] forKey:@"OpenMediaInto"];
-	[ud setObject:[NSNumber numberWithInt:0] forKey:@"MediaPolicyFiles"];
-	[ud setObject:[NSNumber numberWithInt:0] forKey:@"MediaPolicyDirectories"];
-	[ud setObject:[NSNumber numberWithInt:0] forKey:@"DefaultVideoCodec"];
-	[ud setObject:[NSNumber numberWithInt:0] forKey:@"CalendarStartDay"];
-	[ud setObject:[NSNumber numberWithInt:0] forKey:@"LaunchToOption"];
-	[ud setObject:[NSNumber numberWithInt:200] forKey:@"EmbeddedImageMaxWidth"];
+	[ud setObject:[NSNumber numberWithInteger:0] forKey:@"OpenMediaInto"];
+	[ud setObject:[NSNumber numberWithInteger:0] forKey:@"MediaPolicyFiles"];
+	[ud setObject:[NSNumber numberWithInteger:0] forKey:@"MediaPolicyDirectories"];
+	[ud setObject:[NSNumber numberWithInteger:0] forKey:@"DefaultVideoCodec"];
+	[ud setObject:[NSNumber numberWithInteger:0] forKey:@"CalendarStartDay"];
+	[ud setObject:[NSNumber numberWithInteger:0] forKey:@"LaunchToOption"];
+	[ud setObject:[NSNumber numberWithInteger:200] forKey:@"EmbeddedImageMaxWidth"];
 	[ud setBool:NO forKey:@"EmbeddedImageUseFullSize"];
 	
 	[ud removeObjectForKey:@"BrowseSortIdentifier"];
@@ -726,7 +726,7 @@ static NSString *kJournlerABFileExtension = @"jaduid";
 	
 	// update the journal plist file -- WikiLinks, Blogs
 	[_journal performOneTwoMaintenance];
-	[_journal setVersion:[NSNumber numberWithInt:250]];
+	[_journal setVersion:[NSNumber numberWithInteger:250]];
 	
 	// remove unneeded values from the properties dictionary
 	NSMutableDictionary *properties = [[[_journal properties] mutableCopyWithZone:[self zone]] autorelease];
@@ -947,9 +947,9 @@ bail:
 	NSString *objectType = [[abs stringByDeletingLastPathComponent] lastPathComponent];
 	
 	if ( [objectType isEqualToString:@"entry"] )
-		object = [entriesDictionary objectForKey:[NSNumber numberWithInt:[tagID intValue]]];
+		object = [entriesDictionary objectForKey:[NSNumber numberWithInteger:[tagID integerValue]]];
 	else if ( [objectType isEqualToString:@"folder"] )
-		object = [foldersDictionary objectForKey:[NSNumber numberWithInt:[tagID intValue]]];
+		object = [foldersDictionary objectForKey:[NSNumber numberWithInteger:[tagID integerValue]]];
 	
 	return object;
 }
@@ -974,7 +974,7 @@ bail:
 #pragma mark -
 #pragma mark 2.0 -> 2.5 upgrade
 
-- (int) run200To210Upgrade:(JournlerJournal*)journal
+- (NSInteger) run200To210Upgrade:(JournlerJournal*)journal
 {
 	//
 	// 1. backup the journal
@@ -993,7 +993,7 @@ bail:
 	
 	
 	// before doing anything, check if the user's journal is encrypted and let them know that encryption is no longer supported
-	if ( [[_journal encryptionState] intValue] != PDEncryptionNone )
+	if ( [[_journal encryptionState] integerValue] != PDEncryptionNone )
 	{
 		[[NSAlert upgradeEncryptionNoLongerSupported] runModal];
 		[self quit210Upgrade:self];
@@ -1152,7 +1152,7 @@ bail:
 		}
 		
 		// upgrade the entry's internal format
-		[anEntry setValue:[NSNumber numberWithInt:250] forKey:@"version"];
+		[anEntry setValue:[NSNumber numberWithInteger:250] forKey:@"version"];
 		
 		// perform maintenance on the entry (remove deprecated properties)
 		[anEntry perform210Maintenance];
@@ -1213,7 +1213,7 @@ bail:
 	//[[_journal valueForKey:@"collections"] setValue:[NSNumber numberWithBool:NO] forKey:@"dirty"];
 	
 	// update the journal's version info
-	[_journal setValue:[NSNumber numberWithInt:250] forKey:@"version"];
+	[_journal setValue:[NSNumber numberWithInteger:250] forKey:@"version"];
 	
 	// remove unneeded values from the properties dictionary
 	NSMutableDictionary *properties = [[[_journal properties] mutableCopyWithZone:[self zone]] autorelease];
@@ -1449,7 +1449,7 @@ bail:
 				[log210 appendFormat:@"****\n%s - unknown uti for file at path %@\n****\n", __PRETTY_FUNCTION__, path];
 			
 			aResource = [[JournlerResource alloc] initFileResource:path];				
-			[aResource setValue:[NSNumber numberWithInt:[_journal newResourceTag]] forKey:@"tagID"];
+			[aResource setValue:[NSNumber numberWithInteger:[_journal newResourceTag]] forKey:@"tagID"];
 			
 			[anEntry addResource:aResource];
 			[[anEntry valueForKey:@"journal"] addResource:aResource];
@@ -1510,7 +1510,7 @@ bail:
 				NSString *filename = [originalURLString lastPathComponent];
 				
 				// take care to make sure this resource belongs to the entry in question
-				NSNumber *urlTag = [NSNumber numberWithInt:[[[[theURL absoluteString] stringByDeletingLastPathComponent] lastPathComponent] intValue]];
+				NSNumber *urlTag = [NSNumber numberWithInteger:[[[[theURL absoluteString] stringByDeletingLastPathComponent] lastPathComponent] integerValue]];
 				
 				NSArray *entryResources;
 				JournlerEntry *targetEntry;
@@ -1758,7 +1758,7 @@ bail:
 	
 	// 2. set the journal version
 	
-	[aJournal setVersion:[NSNumber numberWithInt:250]];
+	[aJournal setVersion:[NSNumber numberWithInteger:250]];
 	
 	// disable threaded indexing
 	//[[aJournal searchManager] setIndexesOnSeparateThread:NO];
@@ -1930,7 +1930,7 @@ bail:
 	}
 	
 	// save the journal
-	[aJournal setVersion:[NSNumber numberWithInt:253]];
+	[aJournal setVersion:[NSNumber numberWithInteger:253]];
 	[aJournal setValue:[NSNumber numberWithBool:YES] forKey:@"shutDownProperly"];
 	[aJournal save:nil];
 	

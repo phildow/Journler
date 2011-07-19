@@ -98,7 +98,7 @@
 	NSInteger i;
 	NSArray *objects = [self arrangedObjects];
 	NSMutableArray *newSelection = [NSMutableArray array];
-	NSInteger dateInt = [[selectedDate descriptionWithCalendarFormat:@"%Y%m%d" timeZone:nil locale:nil] intValue];
+	NSInteger dateInt = [[selectedDate descriptionWithCalendarFormat:@"%Y%m%d" timeZone:nil locale:nil] integerValue];
 	
 	for ( i = 0; i < CFArrayGetCount((CFArrayRef)objects); i++ )
 	{

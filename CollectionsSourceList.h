@@ -23,6 +23,6 @@
 @interface NSObject (CollectionsSourceListDelegate)
 
 // the delegate should return yes if it handles this action
-- (BOOL) sourceList:(CollectionsSourceList*)aSourceList didSelectRowAlreadySelected:(int)aRow event:(NSEvent*)mouseEvent;
+- (BOOL) sourceList:(CollectionsSourceList*)aSourceList didSelectRowAlreadySelected:(NSInteger)aRow event:(NSEvent*)mouseEvent;
 
 @end

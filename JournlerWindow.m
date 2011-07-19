@@ -32,24 +32,24 @@
 
 #pragma mark -
 
-- (int) indexOfObjectInJSTabs:(TabController*)aTab
+- (NSInteger) indexOfObjectInJSTabs:(TabController*)aTab
 {
 	return [[self delegate] indexOfObjectInJSTabs:aTab];
 }
 
-- (unsigned int) countOfJSTabs
+- (NSUInteger) countOfJSTabs
 {
 	return [[self delegate] countOfJSTabs];
 }
 
-- (TabController*) objectInJSTabsAtIndex:(unsigned int)i
+- (TabController*) objectInJSTabsAtIndex:(NSUInteger)i
 {
 	return [[self delegate] objectInJSTabsAtIndex:i];
 }
 
 #pragma mark -
 
-- (void) insertObject:(TabController*)aTab inJSTabsAtIndex:(unsigned int)index
+- (void) insertObject:(TabController*)aTab inJSTabsAtIndex:(NSUInteger)index
 {
 	[[self delegate] insertObject:aTab inJSTabsAtIndex:index];
 }
@@ -62,12 +62,12 @@
 
 #pragma mark -
 
-- (void) removeObjectFromJSTabsAtIndex:(unsigned int)index
+- (void) removeObjectFromJSTabsAtIndex:(NSUInteger)index
 {
 	[[self delegate] removeObjectFromJSTabsAtIndex:index];
 }
 
-- (void) removeFromJSTabsAtIndex:(unsigned int)index
+- (void) removeFromJSTabsAtIndex:(NSUInteger)index
 {
 	[[self delegate] removeFromJSTabsAtIndex:index];
 }

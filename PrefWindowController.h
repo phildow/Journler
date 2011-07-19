@@ -133,8 +133,8 @@ typedef enum {
 	
 	NSString							*shortFormJournalLoc;
 	
-	int passed;
-	int licenseType;
+	NSInteger passed;
+	NSInteger licenseType;
 	
 	JournlerJournal *journal;
 	NSArray *autoCorrectWordPairs;
@@ -201,8 +201,8 @@ typedef enum {
 
 - (void) setShortFormJournalLoc:(NSString*)jloc;
 
-- (int) passed;
-- (void) setPassed:(int)newVal;
+- (NSInteger) passed;
+- (void) setPassed:(NSInteger)newVal;
 
 - (void) cleanup:(NSNotification*)aNotification;
 

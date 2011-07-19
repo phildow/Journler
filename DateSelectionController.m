@@ -204,7 +204,7 @@
 	[window setDelegate:originalDelegate];
 }
 
-- (void) sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo 
+- (void) sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void  *)contextInfo 
 {	
 	if ( ![objectController commitEditing] )
 		NSLog(@"%s - unable to commit editing", __PRETTY_FUNCTION__);

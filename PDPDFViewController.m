@@ -81,7 +81,7 @@ enum JournlerPDFDisplayOption {
 	
 	_outlineIndentation = [outline indentationPerLevel];
 	
-	int borders[4] = { 0,1,0,0 };
+	NSInteger borders[4] = { 0,1,0,0 };
 	[unlockView setDrawsGradient:NO];
 	[unlockView setBackgroundColor:[NSColor whiteColor]];
 	[unlockView setBordered:YES];
@@ -502,8 +502,8 @@ enum JournlerPDFDisplayOption {
 
 - (IBAction) goToNextOrPreviousPage:(id)sender
 {
-	int clickedSegment = [sender selectedSegment];
-    int clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
+	NSInteger clickedSegment = [sender selectedSegment];
+    NSInteger clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
 	
 	if ( clickedSegmentTag == 0 ) [pdfView goToPreviousPage:sender];
 	else if ( clickedSegmentTag == 1 ) [pdfView goToNextPage:sender];
@@ -512,7 +512,7 @@ enum JournlerPDFDisplayOption {
 
 - (IBAction) gotoPage:(id)sender 
 {
-	unsigned int index = [sender intValue] - 1;
+	NSUInteger index = [sender integerValue] - 1;
 	if ( index >= [[pdfView document] pageCount] ) 
 	{
 		index = [[pdfView document] pageCount] - 1;
@@ -531,14 +531,14 @@ enum JournlerPDFDisplayOption {
 - (void) pageChanged:(NSNotification*)aNotification 
 {
 	
-    int             numRows;
-    int             i;
-    int             newlySelectedRow;
+    NSInteger numRows;
+    NSInteger i;
+    NSInteger newlySelectedRow;
 	
-	unsigned int index = [(PDFDocument*)[(PDFView*)[aNotification object] document] 
+	NSUInteger index = [(PDFDocument*)[(PDFView*)[aNotification object] document] 
 			indexForPage:[(PDFView*)[aNotification object] currentPage]];
 	
-	[pageNum setIntValue:++index];
+	[pageNum setIntegerValue:++index];
 	[self updateNavButtons];
 	
 	//
@@ -670,7 +670,7 @@ enum JournlerPDFDisplayOption {
 - (BOOL)validateMenuItem:(NSMenuItem*)menuItem 
 {
 	BOOL enabled = YES;
-	int theTag = [menuItem tag];
+	NSInteger theTag = [menuItem tag];
 	SEL action = [menuItem action];
 	PDFDisplayMode dp = [pdfView displayMode];
 	
@@ -758,8 +758,8 @@ enum JournlerPDFDisplayOption {
 
 - (IBAction) zoomInOrOut:(id)sender
 {
-	int clickedSegment = [sender selectedSegment];
-    int clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
+	NSInteger clickedSegment = [sender selectedSegment];
+    NSInteger clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
 	
 	if ( clickedSegmentTag == 0 ) [pdfView zoomOut:self];
 	else if ( clickedSegmentTag == 1 ) [pdfView zoomIn:self];
@@ -960,7 +960,7 @@ enum JournlerPDFDisplayOption {
 #pragma mark Outline View Data Source
 
 // This method is called repeatedly when the table view is displaying it self. 
-- (id)outlineView:(NSOutlineView *)ov child:(int)index ofItem:(id)item
+- (id)outlineView:(NSOutlineView *)ov child:(NSInteger)index ofItem:(id)item
 {	
 	if ( [self outlineState] == kPDFMediaDocumentOutline ) 
 	{
@@ -1018,7 +1018,7 @@ enum JournlerPDFDisplayOption {
 }
 
 // Called repeatedly when the table view is displaying itself
-- (int)outlineView:(NSOutlineView *)ov numberOfChildrenOfItem:(id)item
+- (NSInteger)outlineView:(NSOutlineView *)ov numberOfChildrenOfItem:(id)item
 {
     if ( [self outlineState] == kPDFMediaDocumentOutline ) 
 	{
@@ -1089,7 +1089,7 @@ enum JournlerPDFDisplayOption {
 {
 	_outlineChange = YES;
 	
-	int selectedRow = [outline selectedRow];
+	NSInteger selectedRow = [outline selectedRow];
 	id selection = [outline itemAtRow:selectedRow];
 	
 	if ( [self outlineState] == kPDFMediaSearchOutline ) 

@@ -108,7 +108,7 @@
 	[super editWithFrame: textFrame inView: controlView editor:textObj delegate:anObject event: theEvent];
 }
 
-- (void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject start:(int)selStart length:(int)selLength {
+- (void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject start:(NSInteger)selStart length:(NSInteger)selLength {
    
 	NSRect textFrame, imageFrame;
    	NSDivideRect (aRect, &imageFrame, &textFrame, 3 + [self imageSize].width, NSMinXEdge);

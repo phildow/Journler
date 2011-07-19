@@ -163,7 +163,7 @@ static NSString *JournlerObjectDefaultIconKey = @"icon";
 
 - (void) setJournalID:(NSNumber*)jID 
 {
-	[_properties setObject:(jID?jID:[NSNumber numberWithInt:0]) forKey:PDJournalIdentifier];
+	[_properties setObject:(jID?jID:[NSNumber numberWithInteger:0]) forKey:PDJournalIdentifier];
 	[self setDirty:BooleanNumber(YES)];
 }
 
@@ -255,7 +255,7 @@ static NSString *JournlerObjectDefaultIconKey = @"icon";
 
 #pragma mark -
 
-- (unsigned)hash 
+- (NSUInteger)hash 
 {
 	// ** concrete subclasses must override	**
 	NSLog(@"%s - ** concrete subclasses must override **", __PRETTY_FUNCTION__);
@@ -306,7 +306,7 @@ static NSString *JournlerObjectDefaultIconKey = @"icon";
 
 - (void) setTagID:(NSNumber*)aNumber
 {
-	[_properties setObject:( aNumber != nil ? aNumber : [NSNumber numberWithInt:0] ) forKey:[[self class] tagIDKey]];
+	[_properties setObject:( aNumber != nil ? aNumber : [NSNumber numberWithInteger:0] ) forKey:[[self class] tagIDKey]];
 	[self setValue:BooleanNumber(YES) forKey:@"dirty"];
 }
 

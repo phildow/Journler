@@ -254,7 +254,7 @@
 	return completions;
 }
 
-- (NSArray *)tokenFieldCell:(NSTokenFieldCell *)tokenFieldCell shouldAddObjects:(NSArray *)tokens atIndex:(unsigned)index
+- (NSArray *)tokenFieldCell:(NSTokenFieldCell *)tokenFieldCell shouldAddObjects:(NSArray *)tokens atIndex:(NSUInteger)index
 {
 	//NSLog(@"%s - %@",__PRETTY_FUNCTION__,tokens);
 	
@@ -310,7 +310,7 @@
 	[entry setBlogs:[self blogs]];
 	
 	// grab the label - 1.1.5
-	[entry setLabel:[NSNumber numberWithInt:[label labelSelection]]];
+	[entry setLabel:[NSNumber numberWithInteger:[label labelSelection]]];
 	
 	// date modified
 	if ( ![JournlerEntry modsDateModdedOnlyOnTextualChange] )

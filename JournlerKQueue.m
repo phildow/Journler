@@ -161,7 +161,7 @@ static JournlerKQueue * gUKKQueueSharedQueueSingleton = nil;
 	
     for ( NSNumber *fdNum in watchedFDs )
 	{
-    	if( close( [fdNum intValue] ) == -1 )
+    	if( close( [fdNum integerValue] ) == -1 )
             NSLog(@"dealloc: Couldn't close file descriptor (%d)", errno);
     }
 	
@@ -185,7 +185,7 @@ static JournlerKQueue * gUKKQueueSharedQueueSingleton = nil;
 //		2004-03-13	UK	Documented.
 // -----------------------------------------------------------------------------
 
--(int)  queueFD
+-(NSInteger)  queueFD
 {
 	return queueFD;
 }
@@ -243,7 +243,7 @@ static JournlerKQueue * gUKKQueueSharedQueueSingleton = nil;
         AT_SYNCHRONIZED( self )
         {
             [watchedPaths addObject: path];
-            [watchedFDs addObject: [NSNumber numberWithInt: fd]];
+            [watchedFDs addObject: [NSNumber numberWithInteger: fd]];
             kevent( queueFD, &ev, 1, NULL, 0, &nullts );
         }
     }
@@ -278,7 +278,7 @@ static JournlerKQueue * gUKKQueueSharedQueueSingleton = nil;
         if( index == NSNotFound )
             return;
         
-        fd = [[watchedFDs objectAtIndex: index] intValue];
+        fd = [[watchedFDs objectAtIndex: index] integerValue];
         
         [watchedFDs removeObjectAtIndex: index];
         [watchedPaths removeObjectAtIndex: index];
@@ -304,7 +304,7 @@ static JournlerKQueue * gUKKQueueSharedQueueSingleton = nil;
     {
        
         for ( NSNumber *anFD in watchedFDs )
-            close( [anFD intValue] );
+            close( [anFD integerValue] );
 
         [watchedFDs removeAllObjects];
         [watchedPaths removeAllObjects];

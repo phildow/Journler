@@ -12,7 +12,7 @@
 @interface NSString (JournlerAdditions)
 
 - (NSString*) journlerMD5Digest;
-- (NSString*) formattedMD5DigestForLicense:(int)licenseType version:(int)licenseVersion;
+- (NSString*) formattedMD5DigestForLicense:(NSInteger)licenseType version:(NSInteger)licenseVersion;
 
 - (BOOL) isWellformedURL;
 

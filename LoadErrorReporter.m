@@ -75,12 +75,12 @@
 
 #pragma mark -
 
-- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	if ( [[aTableColumn identifier] isEqualToString:@"objectType"] )
 	{
 		NSString *typeString = nil;
-		switch ( [[[[errorController arrangedObjects] objectAtIndex:rowIndex] objectForKey:@"objectType"] intValue] )
+		switch ( [[[[errorController arrangedObjects] objectAtIndex:rowIndex] objectForKey:@"objectType"] integerValue] )
 		{
 			case 0:
 				typeString = @"Entry";
@@ -101,7 +101,7 @@
 }
 
 - (NSString *)tableView:(NSTableView *)aTableView toolTipForCell:(NSCell *)aCell 
-		rect:(NSRectPointer)rect tableColumn:(NSTableColumn *)aTableColumn row:(int)row mouseLocation:(NSPoint)mouseLocation 
+		rect:(NSRectPointer)rect tableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)row mouseLocation:(NSPoint)mouseLocation 
 {
 	NSDictionary *aReport = [[errorController arrangedObjects] objectAtIndex:row];
 	return [[aReport objectForKey:@"localException"] description];

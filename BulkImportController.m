@@ -127,7 +127,7 @@
 
 #pragma mark -
 
-- (int) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet 
+- (NSInteger) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet 
 		files:(NSArray*)filenames folders:(NSArray**)importedFolders entries:(NSArray**)importedEntries;
 {
 	BOOL dir;
@@ -240,8 +240,8 @@
 		aFolder = [[[JournlerCollection alloc] init] autorelease];
 		
 		[aFolder setTitle:[fm displayNameAtPath:path]];
-		[aFolder setValue:[NSNumber numberWithInt:PDCollectionTypeIDFolder] forKey:@"typeID"];
-		[aFolder setValue:[NSNumber numberWithInt:[[self journal] newFolderTag]] forKey:@"tagID"];
+		[aFolder setValue:[NSNumber numberWithInteger:PDCollectionTypeIDFolder] forKey:@"typeID"];
+		[aFolder setValue:[NSNumber numberWithInteger:[[self journal] newFolderTag]] forKey:@"tagID"];
 		[aFolder determineIcon];
 		
 		if ( parentFolder == nil )
@@ -313,7 +313,7 @@
 		NSNumber *theMarking = [importOptions marking];
 		
 		// set a tag
-		[newEntry setValue:[NSNumber numberWithInt:[[self journal] newEntryTag]] forKey:@"tagID"];
+		[newEntry setValue:[NSNumber numberWithInteger:[[self journal] newEntryTag]] forKey:@"tagID"];
 		
 		// set a category
 		if ( [[newEntry category] length] == 0 )
@@ -328,7 +328,7 @@
 			[newEntry setValue:tags forKey:@"tags"];
 		
 		// set the label and marking
-		if ( [[newEntry label] intValue] == 0 )
+		if ( [[newEntry label] integerValue] == 0 )
 			[newEntry setLabel:theLabel];
 		
 		[newEntry setMarked:theMarking];

@@ -22,7 +22,7 @@
 	// call super
 	[super drawInteriorWithFrame:cellFrame inView:controlView];
 	
-	int offset = ( [self image] == nil ? 0 : 1 );
+	NSInteger offset = ( [self image] == nil ? 0 : 1 );
 	
 	// but then cover over one line from the top
 	NSGraphicsContext *context = [NSGraphicsContext currentContext];

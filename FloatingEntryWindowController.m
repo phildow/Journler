@@ -179,7 +179,7 @@
 		[super closeTab:sender];
 }
 
-- (void) addTab:(TabController*)aTab atIndex:(unsigned int)index 
+- (void) addTab:(TabController*)aTab atIndex:(NSUInteger)index 
 {
 	[super addTab:aTab atIndex:index];
 	[aTab maximizeViewingArea];

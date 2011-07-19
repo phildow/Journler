@@ -66,7 +66,7 @@ typedef enum {
 		panelTemporary = [[NSView alloc] initWithFrame:NSMakeRect(0,0,100,100)];
 		
 		/*
-		int borders[4] = { 1,0,0,0 };
+		NSInteger borders[4] = { 1,0,0,0 };
 		NSColor *borderColor = [NSColor colorWithCalibratedWhite:0.3 alpha:1.0];
 		NSColor *fillColor = [NSColor colorWithCalibratedWhite:230.0/255.0 alpha:1.0];
 		
@@ -138,8 +138,8 @@ typedef enum {
 	[self loadLicenseViewer];
 	
 	// select the appropriate pane
-	int selectedPane = [[NSUserDefaults standardUserDefaults] integerForKey:@"SelectedPreferencesPane"];
-	[self selectPanel:[NSNumber numberWithInt: ( selectedPane == 0 ? ( licenseType != kJournlerLicenseFull && licenseType != kJournlerLicenseSpecial ? kPrefDonations : kPrefGeneral ) : selectedPane )]];
+	NSInteger selectedPane = [[NSUserDefaults standardUserDefaults] integerForKey:@"SelectedPreferencesPane"];
+	[self selectPanel:[NSNumber numberWithInteger: ( selectedPane == 0 ? ( licenseType != kJournlerLicenseFull && licenseType != kJournlerLicenseSpecial ? kPrefDonations : kPrefGeneral ) : selectedPane )]];
 		
 	// center the window
 	[[self window] center];
@@ -262,11 +262,11 @@ typedef enum {
 	}
 }
 
-- (void) setPassed:(int)newVal {
+- (void) setPassed:(NSInteger)newVal {
 	passed = newVal;
 }
 
-- (int) passed {
+- (NSInteger) passed {
 	return passed;
 }
 
@@ -279,14 +279,14 @@ typedef enum {
 
 - (IBAction) tabPanel:(id)sender 
 {
-	[self selectPanel:[NSNumber numberWithInt:[sender tag]]];
+	[self selectPanel:[NSNumber numberWithInteger:[sender tag]]];
 }
 
 
 - (void) selectPanel:(NSNumber*)tagNum 
 {
 	
-	int tag = [tagNum intValue];
+	NSInteger tag = [tagNum integerValue];
 	NSView *newView = nil;
 	
 	switch (tag) {
@@ -319,7 +319,7 @@ typedef enum {
 	if ( newView && newView != [[self window] contentView] ) 
 	{
 		/*
-		int borders[4] = { 1,0,0,0 };
+		NSInteger borders[4] = { 1,0,0,0 };
 		NSColor *borderColor = [NSColor colorWithCalibratedWhite:0.3 alpha:1.0];
 		[(PDGradientView*)newView setBordered:YES];
 		[(PDGradientView*)newView setBorders:borders];		
@@ -327,7 +327,7 @@ typedef enum {
 		*/
 		
 		NSRect contentRect, newFrame;
-		int newViewFrameHeight = [newView frame].size.height;
+		NSInteger newViewFrameHeight = [newView frame].size.height;
 		
 		// if the license view is shown, change the target height
 		if ( newView == panelDonations )
@@ -378,7 +378,7 @@ typedef enum {
 	[self setPassed:[[NSFileManager defaultManager] fileExistsAtPath:encryptedFilename]];
 	
 	// email setting
-	int mailPreference = [[NSUserDefaults standardUserDefaults] integerForKey:@"UseMailForEmailing"];
+	NSInteger mailPreference = [[NSUserDefaults standardUserDefaults] integerForKey:@"UseMailForEmailing"];
 	[useAppleMailCheck setState:( mailPreference == 1 ? NSOnState : NSOffState )];
 	
 	//clean up
@@ -586,7 +586,7 @@ typedef enum {
 
 }
 
-- (void) wordListSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo
+- (void) wordListSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void  *)contextInfo
 {
 	if ( returnCode == NSRunStoppedResponse )
 	{
@@ -599,7 +599,7 @@ typedef enum {
 		
 		NSArray *sortedMisspellings = [misspellings sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 				
-		int i;
+		NSInteger i;
 		NSMutableString *csvRep = [NSMutableString string];
 		for ( i = 0; i < CFArrayGetCount((CFArrayRef)sortedMisspellings); i++ )
 		{
@@ -752,7 +752,7 @@ typedef enum {
 	
 	//grab the item and remove it from the user defaults array
 	NSString *toRemove = [deleteCatPop titleOfSelectedItem];
-	//int iR= [deleteCatPop indexOfSelectedItem];
+	//NSInteger iR= [deleteCatPop indexOfSelectedItem];
 	
 	//if ( [toRemove isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:@"Journler Default Category"]] )
 		//[[NSUserDefaults standardUserDefaults] setObject:[[deleteCatPop itemAtIndex:( iR > 0 ? 0 : 1 )] title]
@@ -969,7 +969,7 @@ typedef enum {
 	//changes certain text fields depending on the type
 	
 	BOOL enable = NO;
-	int tag = [[sender selectedItem] tag];
+	NSInteger tag = [[sender selectedItem] tag];
 	
 	if ( tag >= 10 && tag < 20 )
 		enable = NO;
@@ -987,7 +987,7 @@ typedef enum {
 	[self blogTypeChange:blogTypes];
 }
 
-- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	[(BlogAccountCell*)aCell setImageSize:NSMakeSize(28,28)];
 	[(BlogAccountCell*)aCell setImage:[NSImage imageNamed:@"ToolbarItemLink.tif"]];
@@ -1024,7 +1024,7 @@ typedef enum {
 - (void) selectBlog:(BlogPref*)aBlog
 {
 	if ( [[self window] contentView] != panelBlogs )
-		[self selectPanel:[NSNumber numberWithInt:kPrefBlogging]];
+		[self selectPanel:[NSNumber numberWithInteger:kPrefBlogging]];
 	
 	[blogPrefsController setSelectedObjects:[NSArray arrayWithObject:aBlog]];
 }
@@ -1034,7 +1034,7 @@ typedef enum {
 	NSBeep();
 	NSLog(@"%s - this method is deprecated", __PRETTY_FUNCTION__);
 	
-	int result;
+	NSInteger result;
 	BlogAccountWizardController *account_creator = [[BlogAccountWizardController alloc] init];
 	
 	result = [account_creator runAsSheetForWindow:[self window] attached:YES];
@@ -1053,7 +1053,7 @@ typedef enum {
 
 - (IBAction) changeEmailSetting:(id)sender
 {
-	int mailPreference = ( [sender state] == NSOnState ? 1 : 2 );
+	NSInteger mailPreference = ( [sender state] == NSOnState ? 1 : 2 );
 	[[NSUserDefaults standardUserDefaults] setInteger:mailPreference forKey:@"UseMailForEmailing"];
 }
 
@@ -1063,7 +1063,7 @@ typedef enum {
 	[webInterface choosePreferredEditor:self didEndSelector:@selector(didChoosePreferredEditor:returnCode:editor:) modalForWindow:[self window]];
 }
 
-- (void) didChoosePreferredEditor:(JournlerWeblogInterface*)weblogInterface returnCode:(int)returnCode editor:(NSString*)filename
+- (void) didChoosePreferredEditor:(JournlerWeblogInterface*)weblogInterface returnCode:(NSInteger)returnCode editor:(NSString*)filename
 {
 	if ( returnCode == NSOKButton )
 	{
@@ -1126,7 +1126,7 @@ typedef enum {
 		
 		// adjust the size of the license panel
 		NSRect contentRect, newFrame;
-		int newViewFrameHeight = 422;
+		NSInteger newViewFrameHeight = 422;
 		
 		contentRect = [[self window] contentRectForFrameRect:[[self window] frame]];
 		contentRect.origin.y = contentRect.origin.y + contentRect.size.height - newViewFrameHeight;
@@ -1213,7 +1213,7 @@ typedef enum {
 	[NSApp endSheet:licenseSheet returnCode:NSRunAbortedResponse];
 }
 
-- (void) licenseSheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo
+- (void) licenseSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void  *)contextInfo
 {	
 	// close the window
 	[licenseSheet orderOut:self];
@@ -1224,7 +1224,7 @@ typedef enum {
 		if ( licenseType == kJournlerLicenseFull || licenseType == kJournlerLicenseSpecial )
 		{
 			NSRect contentRect, newFrame;
-			int newViewFrameHeight = ( licenseType == kJournlerLicenseFull ? 200 : 250 );
+			NSInteger newViewFrameHeight = ( licenseType == kJournlerLicenseFull ? 200 : 250 );
 			
 			contentRect = [[self window] contentRectForFrameRect:[[self window] frame]];
 			contentRect.origin.y = contentRect.origin.y + contentRect.size.height - newViewFrameHeight;
@@ -1279,7 +1279,7 @@ typedef enum {
 	
 	else if ( anObject == imageWidthField )
 	{
-		if ( [anObject intValue] == 0 && [[anObject stringValue] length] != 0 )
+		if ( [anObject integerValue] == 0 && [[anObject stringValue] length] != 0 )
 			[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"EmbeddedImageUseFullSize"];
 	}
 }

@@ -53,7 +53,7 @@
 - (void) setClearDateHidden:(BOOL)hidden;
 
 - (void) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet location:(NSRect)frame;
-- (void) sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo;
+- (void) sheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void  *)contextInfo;
 
 - (IBAction) saveDate:(id)sender;
 - (IBAction) cancelDate:(id)sender;

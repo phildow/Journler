@@ -96,7 +96,7 @@
 - (IBAction)help:(id)sender;
 - (IBAction)okay:(id)sender;
 
-- (int) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet;
+- (NSInteger) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet;
 
 @end
 

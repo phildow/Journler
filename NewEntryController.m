@@ -50,7 +50,7 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 		tags = [[NSArray alloc] init];
 		date = [[NSDate date] retain];
 		dateDue = [[NSDate date] retain];
-		marking = [NSNumber numberWithInt:0];
+		marking = [NSNumber numberWithInteger:0];
 		
 		alreadyEditedCategory = NO;
 		
@@ -73,22 +73,22 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 	[collectionsMenu setAutoenablesItems:NO];
 	
 	// go through the menu and disable anything that isn't a folder
-	int i;
+	NSInteger i;
 	for ( i = [collectionsMenu numberOfItems]-1; i >= 0; i-- ) 
 	{
 		if ( [[collectionsMenu itemAtIndex:i] representedObject] == nil )
 			[[collectionsMenu itemAtIndex:i] setEnabled:NO];
 		
-		//else if ( [[[[collectionsMenu itemAtIndex:i] representedObject] valueForKey:@"typeID"] intValue] != PDCollectionTypeIDFolder )
+		//else if ( [[[[collectionsMenu itemAtIndex:i] representedObject] valueForKey:@"typeID"] integerValue] != PDCollectionTypeIDFolder )
 		//	[[collectionsMenu itemAtIndex:i] setEnabled:NO];
 		
 		if ( [[[collectionsMenu itemAtIndex:i] representedObject] isSmartFolder] && ![[[collectionsMenu itemAtIndex:i] representedObject] canAutotag:nil] )
 			[[collectionsMenu itemAtIndex:i] setEnabled:NO];
 		
-		if ( [[[[collectionsMenu itemAtIndex:i] representedObject] valueForKey:@"typeID"] intValue] == PDCollectionTypeIDLibrary )
+		if ( [[[[collectionsMenu itemAtIndex:i] representedObject] valueForKey:@"typeID"] integerValue] == PDCollectionTypeIDLibrary )
 			[collectionsMenu removeItemAtIndex:i];
 			
-		else if ( [[[[collectionsMenu itemAtIndex:i] representedObject] valueForKey:@"typeID"] intValue] == PDCollectionTypeIDTrash )
+		else if ( [[[[collectionsMenu itemAtIndex:i] representedObject] valueForKey:@"typeID"] integerValue] == PDCollectionTypeIDTrash )
 			[collectionsMenu removeItemAtIndex:i];
 	}
 	
@@ -289,12 +289,12 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 
 - (NSNumber*) labelValue
 { 
-	return [NSNumber numberWithInt:[labelPicker labelSelection]];
+	return [NSNumber numberWithInteger:[labelPicker labelSelection]];
 }
 
 - (void) setLabelValue:(NSNumber*)aNumber
 {
-	[labelPicker setLabelSelection:[aNumber intValue]];
+	[labelPicker setLabelSelection:[aNumber integerValue]];
 	[labelPicker setNeedsDisplay:YES];
 }
 
@@ -328,7 +328,7 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 	
 	if ( aCollection ) 
 	{
-		[collectionField selectItemWithTag:[[aCollection valueForKey:@"tagID"] intValue]];
+		[collectionField selectItemWithTag:[[aCollection valueForKey:@"tagID"] integerValue]];
 		[self selectFolder:[collectionField selectedItem]];
 	}
 }
@@ -416,11 +416,11 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 			if ( conditionOp == nil )
 			{
 				// don't worry about it, a later condition will suffice (we already checked for canAutotag, so it should be there)
-				if ( [localCombination intValue] == 0 )
+				if ( [localCombination integerValue] == 0 )
 					continue;
 				
 				// otherwise, we're finished
-				else if ( [localCombination intValue] == 1 )
+				else if ( [localCombination integerValue] == 1 )
 				{
 					added = NO;
 					goto bail;
@@ -428,14 +428,14 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 			}
 			
 			// we're finished if one of the conditions from this set has already been added and the op is any
-			else if ( alreadyAddedLocal == YES && [localCombination intValue] == 0 )
+			else if ( alreadyAddedLocal == YES && [localCombination integerValue] == 0 )
 				continue;
 		
 			id theOriginalValue;
 			
 			id theValue = [conditionOp objectForKey:kOperationDictionaryKeyValue];
 			NSString *theKey = [conditionOp objectForKey:kOperationDictionaryKeyKey];
-			int theOperation = [[conditionOp objectForKey:kOperationDictionaryKeyOperation] intValue];
+			NSInteger theOperation = [[conditionOp objectForKey:kOperationDictionaryKeyOperation] integerValue];
 			
 			// make some modifications to the key to support our keys
 			//if ( [theKey isEqualToString:@"keywords"] )
@@ -587,9 +587,9 @@ bail:
 
 #pragma mark -
 
-- (int) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet
+- (NSInteger) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet
 {
-	int result;
+	NSInteger result;
 	
 	if ( sheet )
 		[NSApp beginSheet: [self window] modalForWindow: window modalDelegate: nil
@@ -683,7 +683,7 @@ bail:
 }
 
 - (NSArray *)tokenField:(NSTokenField *)tokenField completionsForSubstring:(NSString *)substring 
-	indexOfToken:(int)tokenIndex indexOfSelectedItem:(int *)selectedIndex
+	indexOfToken:(NSInteger)tokenIndex indexOfSelectedItem:(NSInteger*)selectedIndex
 {
 	//NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith[cd] %@", substring];
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self beginswith %@", substring];
@@ -691,7 +691,7 @@ bail:
 	return completions;
 }
 
-- (NSArray *)tokenField:(NSTokenField *)tokenField shouldAddObjects:(NSArray *)tokens atIndex:(unsigned)index
+- (NSArray *)tokenField:(NSTokenField *)tokenField shouldAddObjects:(NSArray *)tokens atIndex:(NSUInteger)index
 {
 	NSMutableArray *modifiedArray = [NSMutableArray array];
 	

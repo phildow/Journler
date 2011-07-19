@@ -124,12 +124,12 @@ static NSString *kAndSeparatorString = @" && ";
 
 #pragma mark -
 
-- (int) tag 
+- (NSInteger) tag 
 { 
 	return tag; 
 }
 
-- (void) setTag:(int)newTag 
+- (void) setTag:(NSInteger)newTag 
 {
 	tag = newTag;
 }
@@ -404,7 +404,7 @@ static NSString *kAndSeparatorString = @" && ";
 		//	'%@' in[cd] tags
 		//	not '%@' in[cd] tags
 		
-		int tokenOperation = -1;
+		NSInteger tokenOperation = -1;
 		NSMutableArray *theTokens = [NSMutableArray array];
 		
 		if ( [condition isEqualToString:@"tags.@count == 0"] )
@@ -497,7 +497,7 @@ static NSString *kAndSeparatorString = @" && ";
 		{
 			
 			NSScanner *scanner;
-			int dateValue;
+			NSInteger dateValue;
 			
 			if ( [condition rangeOfString:@"after"].location != NSNotFound || [condition rangeOfString:@">="].location != NSNotFound )
 				[dateOperationPop selectItemWithTag:PDConditionAfter];
@@ -513,7 +513,7 @@ static NSString *kAndSeparatorString = @" && ";
 			}
 			
 			[dateConditionAValue setDateValue:[NSCalendarDate dateWithString:
-					[[NSNumber numberWithInt:dateValue] stringValue] calendarFormat:@"%Y%m%d"]];
+					[[NSNumber numberWithInteger:dateValue] stringValue] calendarFormat:@"%Y%m%d"]];
 			
 			newDetailsView = dateDatedView;
 				
@@ -527,7 +527,7 @@ static NSString *kAndSeparatorString = @" && ";
 			else if ( [condition rangeOfString:@"inthenext" options:NSLiteralSearch range:NSMakeRange(0,[condition length])].location != NSNotFound )
 				[dateOperationPop selectItemWithTag:PDConditionInTheNext];
 			
-			int dateTag, dateValue;
+			NSInteger dateTag, dateValue;
 			NSScanner *theScanner = [NSScanner scannerWithString:condition];
 			
 			[theScanner scanUpToCharactersFromSet:[NSCharacterSet decimalDigitCharacterSet] intoString:nil];
@@ -536,7 +536,7 @@ static NSString *kAndSeparatorString = @" && ";
 			[theScanner scanInt:&dateValue];
 			
 			[dateNumberedPop selectItemWithTag:dateTag];
-			[dateNumberedValue setIntValue:dateValue];
+			[dateNumberedValue setIntegerValue:dateValue];
 			
 			newDetailsView = dateNumberedView;
 		}
@@ -589,7 +589,7 @@ static NSString *kAndSeparatorString = @" && ";
 					|| [condition rangeOfString:@"before"].location != NSNotFound || [condition rangeOfString:@"<="].location != NSNotFound ) 
 		{
 			NSScanner *scanner;
-			int dateValue;
+			NSInteger dateValue;
 			
 			if ( [condition rangeOfString:@"after"].location != NSNotFound || [condition rangeOfString:@">="].location != NSNotFound )
 				[dateOperationPop selectItemWithTag:PDConditionAfter];
@@ -605,7 +605,7 @@ static NSString *kAndSeparatorString = @" && ";
 			}
 			
 			[dateConditionAValue setDateValue:[NSCalendarDate dateWithString:
-			[[NSNumber numberWithInt:dateValue] stringValue] calendarFormat:@"%Y%m%d"]];
+			[[NSNumber numberWithInteger:dateValue] stringValue] calendarFormat:@"%Y%m%d"]];
 			
 			newDetailsView = dateDatedView;
 				
@@ -619,7 +619,7 @@ static NSString *kAndSeparatorString = @" && ";
 			else if ( [condition rangeOfString:@"inthenext" options:NSLiteralSearch range:NSMakeRange(0,[condition length])].location != NSNotFound )
 				[dateOperationPop selectItemWithTag:PDConditionInTheNext];
 			
-			int dateTag, dateValue;
+			NSInteger dateTag, dateValue;
 			NSScanner *theScanner = [NSScanner scannerWithString:condition];
 			
 			[theScanner scanUpToCharactersFromSet:[NSCharacterSet decimalDigitCharacterSet] intoString:nil];
@@ -628,7 +628,7 @@ static NSString *kAndSeparatorString = @" && ";
 			[theScanner scanInt:&dateValue];
 			
 			[dateNumberedPop selectItemWithTag:dateTag];
-			[dateNumberedValue setIntValue:dateValue];
+			[dateNumberedValue setIntegerValue:dateValue];
 			
 			newDetailsView = dateNumberedView;
 			
@@ -682,7 +682,7 @@ static NSString *kAndSeparatorString = @" && ";
 					|| [condition rangeOfString:@"before"].location != NSNotFound || [condition rangeOfString:@"<="].location != NSNotFound ) 
 		{
 			NSScanner *scanner;
-			int dateValue;
+			NSInteger dateValue;
 			
 			if ( [condition rangeOfString:@"after"].location != NSNotFound || [condition rangeOfString:@">="].location != NSNotFound )
 				[dateOperationPop selectItemWithTag:PDConditionAfter];
@@ -698,7 +698,7 @@ static NSString *kAndSeparatorString = @" && ";
 			}
 			
 			[dateConditionAValue setDateValue:[NSCalendarDate dateWithString:
-					[[NSNumber numberWithInt:dateValue] stringValue] calendarFormat:@"%Y%m%d"]];
+					[[NSNumber numberWithInteger:dateValue] stringValue] calendarFormat:@"%Y%m%d"]];
 			
 			newDetailsView = dateDatedView;
 				
@@ -711,7 +711,7 @@ static NSString *kAndSeparatorString = @" && ";
 			else if ( [condition rangeOfString:@"inthenext" options:NSLiteralSearch range:NSMakeRange(0,[condition length])].location != NSNotFound )
 				[dateOperationPop selectItemWithTag:PDConditionInTheNext];
 			
-			int dateTag, dateValue;
+			NSInteger dateTag, dateValue;
 			NSScanner *theScanner = [NSScanner scannerWithString:condition];
 			
 			[theScanner scanUpToCharactersFromSet:[NSCharacterSet decimalDigitCharacterSet] intoString:nil];
@@ -720,7 +720,7 @@ static NSString *kAndSeparatorString = @" && ";
 			[theScanner scanInt:&dateValue];
 			
 			[dateNumberedPop selectItemWithTag:dateTag];
-			[dateNumberedValue setIntValue:dateValue];
+			[dateNumberedValue setIntegerValue:dateValue];
 			
 			newDetailsView = dateNumberedView;
 		}
@@ -787,7 +787,7 @@ static NSString *kAndSeparatorString = @" && ";
 	else if ( [condition rangeOfString:@"labelInt"].location == 0 ) 
 	{
 		NSScanner *scanner;
-		int labelVal = 0;
+		NSInteger labelVal = 0;
 		
 		replacingView = labelConditionView;
 		
@@ -1132,21 +1132,21 @@ static NSString *kAndSeparatorString = @" && ";
 				case PDConditionBefore:
 					returnString = [NSString stringWithFormat:@"dateInt <= %i", 
 							[[[dateConditionAValue dateValue] descriptionWithCalendarFormat:
-							@"%Y%m%d" timeZone:nil locale:nil] intValue]];
+							@"%Y%m%d" timeZone:nil locale:nil] integerValue]];
 					break;
 				
 				case PDConditionAfter:
 					returnString = [NSString stringWithFormat:@"dateInt >= %i", 
 							[[[dateConditionAValue dateValue] descriptionWithCalendarFormat:
-							@"%Y%m%d" timeZone:nil locale:nil] intValue]];
+							@"%Y%m%d" timeZone:nil locale:nil] integerValue]];
 					break;
 				
 				case PDConditionBetween:
 					returnString = [NSString stringWithFormat:@"dateInt between { %i , %i }", 
 							[[[dateConditionAValue dateValue] descriptionWithCalendarFormat:
-							@"%Y%m%d" timeZone:nil locale:nil] intValue],
+							@"%Y%m%d" timeZone:nil locale:nil] integerValue],
 							[[[dateConditionBValue dateValue] descriptionWithCalendarFormat:
-							@"%Y%m%d" timeZone:nil locale:nil] intValue]];
+							@"%Y%m%d" timeZone:nil locale:nil] integerValue]];
 					break;
 				
 				// dynamically updated
@@ -1158,20 +1158,20 @@ static NSString *kAndSeparatorString = @" && ";
 						todayString = [today descriptionWithCalendarFormat:@"%Y%m%d"];
 						
 						if ( [[dateNumberedPop selectedItem] tag] == 0 )
-							targetString = [[today dateByAddingYears:0 months:0 days:-[dateNumberedValue intValue] hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:0 days:-[dateNumberedValue integerValue] hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						else if ( [[dateNumberedPop selectedItem] tag] == 1 )
-							targetString = [[today dateByAddingYears:0 months:0 days:-[dateNumberedValue intValue]*7 hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:0 days:-[dateNumberedValue integerValue]*7 hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						else if ( [[dateNumberedPop selectedItem] tag] == 2 )
-							targetString = [[today dateByAddingYears:0 months:-[dateNumberedValue intValue] days:0 hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:-[dateNumberedValue integerValue] days:0 hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						
 						returnString = [NSString stringWithFormat:@"dateInt between { %@, %@ }", targetString, todayString];
 					}
 					else
 						returnString = [NSString stringWithFormat:@"dateInt inthelast %i %i", 
-								[[dateNumberedPop selectedItem] tag], [dateNumberedValue intValue]];
+								[[dateNumberedPop selectedItem] tag], [dateNumberedValue integerValue]];
 					break;
 				
 				// dynamically updated
@@ -1183,20 +1183,20 @@ static NSString *kAndSeparatorString = @" && ";
 						todayString = [today descriptionWithCalendarFormat:@"%Y%m%d"];
 						
 						if ( [[dateNumberedPop selectedItem] tag] == 0 )
-							targetString = [[today dateByAddingYears:0 months:0 days:[dateNumberedValue intValue] hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:0 days:[dateNumberedValue integerValue] hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						else if ( [[dateNumberedPop selectedItem] tag] == 1 )
-							targetString = [[today dateByAddingYears:0 months:0 days:[dateNumberedValue intValue]*7 hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:0 days:[dateNumberedValue integerValue]*7 hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						else if ( [[dateNumberedPop selectedItem] tag] == 2 )
-							targetString = [[today dateByAddingYears:0 months:[dateNumberedValue intValue] days:0 hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:[dateNumberedValue integerValue] days:0 hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						
 						returnString = [NSString stringWithFormat:@"dateInt between { %@, %@ }", todayString, targetString];
 					}
 					else
 						returnString = [NSString stringWithFormat:@"dateInt inthenext %i %i", 
-								[[dateNumberedPop selectedItem] tag], [dateNumberedValue intValue]];
+								[[dateNumberedPop selectedItem] tag], [dateNumberedValue integerValue]];
 					break;
 			}
 			
@@ -1209,21 +1209,21 @@ static NSString *kAndSeparatorString = @" && ";
 				case PDConditionBefore:
 					returnString = [NSString stringWithFormat:@"dateModifiedInt <= %i", 
 							[[[dateConditionAValue dateValue] descriptionWithCalendarFormat:
-							@"%Y%m%d" timeZone:nil locale:nil] intValue]];
+							@"%Y%m%d" timeZone:nil locale:nil] integerValue]];
 					break;
 				
 				case PDConditionAfter:
 					returnString = [NSString stringWithFormat:@"dateModifiedInt >= %i", 
 							[[[dateConditionAValue dateValue] descriptionWithCalendarFormat:
-							@"%Y%m%d" timeZone:nil locale:nil] intValue]];
+							@"%Y%m%d" timeZone:nil locale:nil] integerValue]];
 					break;
 				
 				case PDConditionBetween:
 					returnString = [NSString stringWithFormat:@"dateModifiedInt between { %i , %i }", 
 							[[[dateConditionAValue dateValue] descriptionWithCalendarFormat:
-							@"%Y%m%d" timeZone:nil locale:nil] intValue],
+							@"%Y%m%d" timeZone:nil locale:nil] integerValue],
 							[[[dateConditionBValue dateValue] descriptionWithCalendarFormat:
-							@"%Y%m%d" timeZone:nil locale:nil] intValue]];
+							@"%Y%m%d" timeZone:nil locale:nil] integerValue]];
 					break;
 				
 				// dynamically updated
@@ -1235,20 +1235,20 @@ static NSString *kAndSeparatorString = @" && ";
 						
 						todayString = [today descriptionWithCalendarFormat:@"%Y%m%d"];
 						if ( [[dateNumberedPop selectedItem] tag] == 0 )
-							targetString = [[today dateByAddingYears:0 months:0 days:-[dateNumberedValue intValue] hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:0 days:-[dateNumberedValue integerValue] hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						else if ( [[dateNumberedPop selectedItem] tag] == 1 )
-							targetString = [[today dateByAddingYears:0 months:0 days:-[dateNumberedValue intValue]*7 hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:0 days:-[dateNumberedValue integerValue]*7 hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						else if ( [[dateNumberedPop selectedItem] tag] == 2 )
-							targetString = [[today dateByAddingYears:0 months:-[dateNumberedValue intValue] days:0 hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:-[dateNumberedValue integerValue] days:0 hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						
 						returnString = [NSString stringWithFormat:@"dateModifiedInt between { %@, %@ }", targetString, todayString];
 					}
 					else
 						returnString = [NSString stringWithFormat:@"dateModifiedInt inthelast %i %i", 
-								[[dateNumberedPop selectedItem] tag], [dateNumberedValue intValue]];
+								[[dateNumberedPop selectedItem] tag], [dateNumberedValue integerValue]];
 					break;
 				
 				// dynamically updated
@@ -1260,20 +1260,20 @@ static NSString *kAndSeparatorString = @" && ";
 						todayString = [today descriptionWithCalendarFormat:@"%Y%m%d"];
 						
 						if ( [[dateNumberedPop selectedItem] tag] == 0 )
-							targetString = [[today dateByAddingYears:0 months:0 days:[dateNumberedValue intValue] hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:0 days:[dateNumberedValue integerValue] hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						else if ( [[dateNumberedPop selectedItem] tag] == 1 )
-							targetString = [[today dateByAddingYears:0 months:0 days:[dateNumberedValue intValue]*7 hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:0 days:[dateNumberedValue integerValue]*7 hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						else if ( [[dateNumberedPop selectedItem] tag] == 2 )
-							targetString = [[today dateByAddingYears:0 months:[dateNumberedValue intValue] days:0 hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:[dateNumberedValue integerValue] days:0 hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						
 						returnString = [NSString stringWithFormat:@"dateModifiedInt between { %@, %@ }", todayString, targetString];
 					}
 					else
 						returnString = [NSString stringWithFormat:@"dateModifiedInt inthenext %i %i", 
-								[[dateNumberedPop selectedItem] tag], [dateNumberedValue intValue]];
+								[[dateNumberedPop selectedItem] tag], [dateNumberedValue integerValue]];
 					break;
 			}
 			
@@ -1286,21 +1286,21 @@ static NSString *kAndSeparatorString = @" && ";
 				case PDConditionBefore:
 					returnString = [NSString stringWithFormat:@"dateDueInt <= %i", 
 							[[[dateConditionAValue dateValue] descriptionWithCalendarFormat:
-							@"%Y%m%d" timeZone:nil locale:nil] intValue]];
+							@"%Y%m%d" timeZone:nil locale:nil] integerValue]];
 					break;
 				
 				case PDConditionAfter:
 					returnString = [NSString stringWithFormat:@"dateDueInt >= %i", 
 							[[[dateConditionAValue dateValue] descriptionWithCalendarFormat:
-							@"%Y%m%d" timeZone:nil locale:nil] intValue]];
+							@"%Y%m%d" timeZone:nil locale:nil] integerValue]];
 					break;
 				
 				case PDConditionBetween:
 					returnString = [NSString stringWithFormat:@"dateDueInt between { %i , %i }", 
 							[[[dateConditionAValue dateValue] descriptionWithCalendarFormat:
-							@"%Y%m%d" timeZone:nil locale:nil] intValue],
+							@"%Y%m%d" timeZone:nil locale:nil] integerValue],
 							[[[dateConditionBValue dateValue] descriptionWithCalendarFormat:
-							@"%Y%m%d" timeZone:nil locale:nil] intValue]];
+							@"%Y%m%d" timeZone:nil locale:nil] integerValue]];
 					break;
 				
 				// dynamically updated
@@ -1312,20 +1312,20 @@ static NSString *kAndSeparatorString = @" && ";
 						
 						todayString = [today descriptionWithCalendarFormat:@"%Y%m%d"];
 						if ( [[dateNumberedPop selectedItem] tag] == 0 )
-							targetString = [[today dateByAddingYears:0 months:0 days:-[dateNumberedValue intValue] hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:0 days:-[dateNumberedValue integerValue] hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						else if ( [[dateNumberedPop selectedItem] tag] == 1 )
-							targetString = [[today dateByAddingYears:0 months:0 days:-[dateNumberedValue intValue]*7 hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:0 days:-[dateNumberedValue integerValue]*7 hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						else if ( [[dateNumberedPop selectedItem] tag] == 2 )
-							targetString = [[today dateByAddingYears:0 months:-[dateNumberedValue intValue] days:0 hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:-[dateNumberedValue integerValue] days:0 hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						
 						returnString = [NSString stringWithFormat:@"dateDueInt between { %@, %@ }", targetString, todayString];
 					}
 					else
 						returnString = [NSString stringWithFormat:@"dateDueInt inthelast %i %i", 
-								[[dateNumberedPop selectedItem] tag], [dateNumberedValue intValue]];
+								[[dateNumberedPop selectedItem] tag], [dateNumberedValue integerValue]];
 					break;
 				
 				// dynamically updated
@@ -1337,20 +1337,20 @@ static NSString *kAndSeparatorString = @" && ";
 						todayString = [today descriptionWithCalendarFormat:@"%Y%m%d"];
 						
 						if ( [[dateNumberedPop selectedItem] tag] == 0 )
-							targetString = [[today dateByAddingYears:0 months:0 days:[dateNumberedValue intValue] hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:0 days:[dateNumberedValue integerValue] hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						else if ( [[dateNumberedPop selectedItem] tag] == 1 )
-							targetString = [[today dateByAddingYears:0 months:0 days:[dateNumberedValue intValue]*7 hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:0 days:[dateNumberedValue integerValue]*7 hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						else if ( [[dateNumberedPop selectedItem] tag] == 2 )
-							targetString = [[today dateByAddingYears:0 months:[dateNumberedValue intValue] days:0 hours:0 minutes:0 seconds:0] 
+							targetString = [[today dateByAddingYears:0 months:[dateNumberedValue integerValue] days:0 hours:0 minutes:0 seconds:0] 
 									descriptionWithCalendarFormat:@"%Y%m%d"];
 						
 						returnString = [NSString stringWithFormat:@"dateDueInt between { %@, %@ }", todayString, targetString];
 					}
 					else
 						returnString = [NSString stringWithFormat:@"dateDueInt inthenext %i %i", 
-								[[dateNumberedPop selectedItem] tag], [dateNumberedValue intValue]];
+								[[dateNumberedPop selectedItem] tag], [dateNumberedValue integerValue]];
 					break;
 			}
 			
@@ -1498,8 +1498,8 @@ static NSString *kAndSeparatorString = @" && ";
 
 - (IBAction) addOrRemoveCondition:(id)sender
 {
-	int clickedSegment = [sender selectedSegment];
-    int clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
+	NSInteger clickedSegment = [sender selectedSegment];
+    NSInteger clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
 	
 	if ( clickedSegmentTag == 0 ) [self removeCondition:self];
 	else if ( clickedSegmentTag == 1 ) [self addCondition:self];
@@ -1621,7 +1621,7 @@ static NSString *kAndSeparatorString = @" && ";
 	if ( [sender isKindOfClass:[NSPopUpButton class]] )
 		[sender setTag:[[sender selectedItem] tag]];
 	
-	int senderTag = [sender tag];
+	NSInteger senderTag = [sender tag];
 	NSView *newDetailsView = nil;
 	
 	if ( senderTag == PDConditionBefore || senderTag == PDConditionAfter || senderTag == PDConditionBetween )
@@ -1636,7 +1636,7 @@ static NSString *kAndSeparatorString = @" && ";
 	{
 		newDetailsView = dateNumberedView;
 		[dateNumberedPop selectItemWithTag:PDConditionDay];
-		//[dateNumberedValue setIntValue:1];
+		//[dateNumberedValue setIntegerValue:1];
 	}
 	
 	if ( newDetailsView != dateDetailsView )
@@ -1694,7 +1694,7 @@ static NSString *kAndSeparatorString = @" && ";
 
 - (IBAction) changeTagsCondition:(id)sender
 {
-	int sendersTag = ( [sender isKindOfClass:[NSPopUpButton class]] ? [[sender selectedItem] tag] : [sender tag] );
+	NSInteger sendersTag = ( [sender isKindOfClass:[NSPopUpButton class]] ? [[sender selectedItem] tag] : [sender tag] );
 	[tagsField setEnabled:( sendersTag != PDConditionIsEmpty && sendersTag != PDConditionIsNotEmpty )];
 	
 	[self _sendUpdateIfRequested];
@@ -1714,7 +1714,7 @@ static NSString *kAndSeparatorString = @" && ";
 {
 	// return the text field if that's the kind of condition I am, otherwise nil
 	NSView *theView = nil;
-	int selTag = [[keyPop selectedItem] tag];
+	NSInteger selTag = [[keyPop selectedItem] tag];
 	
 	if ( selTag == PDConditionTitle || selTag == PDConditionKeywords || selTag == PDConditionCategory 
 			|| selTag == PDConditionContent || selTag == PDConditionEntire )
@@ -1746,7 +1746,7 @@ static NSString *kAndSeparatorString = @" && ";
 }
 
 - (NSArray *)tokenField:(NSTokenField *)tokenField completionsForSubstring:(NSString *)substring 
-	indexOfToken:(int)tokenIndex indexOfSelectedItem:(int *)selectedIndex
+	indexOfToken:(NSInteger)tokenIndex indexOfSelectedItem:(NSInteger*)selectedIndex
 {
 	NSArray *completions = nil;
 	
@@ -1757,7 +1757,7 @@ static NSString *kAndSeparatorString = @" && ";
 	return completions;
 }
 
-- (NSArray *)tokenField:(NSTokenField *)tokenField shouldAddObjects:(NSArray *)tokens atIndex:(unsigned)index
+- (NSArray *)tokenField:(NSTokenField *)tokenField shouldAddObjects:(NSArray *)tokens atIndex:(NSUInteger)index
 {
 	NSMutableArray *modifiedArray = [NSMutableArray array];
 	

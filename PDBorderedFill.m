@@ -41,9 +41,9 @@
 
 #pragma mark -
 
-- (int*) borders { return _borders; }
+- (NSInteger*) borders { return _borders; }
 
-- (void) setBorders:(int*)sides {
+- (void) setBorders:(NSInteger*)sides {
 	_borders[0] = sides[0];
 	_borders[1] = sides[1];
 	_borders[2] = sides[2];

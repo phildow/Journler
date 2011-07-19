@@ -38,7 +38,7 @@
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *textMovement = [userInfo objectForKey: @"NSTextMovement"];
 	
-    NSInteger movementCode = [textMovement intValue];
+    NSInteger movementCode = [textMovement integerValue];
 
     // see if this a 'pressed-return' instance
     if (movementCode == NSReturnTextMovement && [self numberOfRows] == 1 ) 
@@ -46,7 +46,7 @@
         // hijack the notification and pass a different textMovement
         // value
 
-        textMovement = [NSNumber numberWithInt: NSCancelTextMovement];
+        textMovement = [NSNumber numberWithInteger: NSCancelTextMovement];
         NSDictionary *newUserInfo = [NSDictionary dictionaryWithObject: textMovement forKey: @"NSTextMovement"];
         notification = [NSNotification notificationWithName: [notification name] object: [notification object] userInfo: newUserInfo];
 		

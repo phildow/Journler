@@ -26,7 +26,7 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 
 @implementation DropBoxDialog
 
-- (id) initWithJournal:(JournlerJournal*)aJournal delegate:(id)aDelegate mode:(int)dropboxMode didEndSelector:(SEL)aSelector
+- (id) initWithJournal:(JournlerJournal*)aJournal delegate:(id)aDelegate mode:(NSInteger)dropboxMode didEndSelector:(SEL)aSelector
 {
 	if ( self = [super initWithWindowNibName:@"DropBoxDialog"] )
 	{
@@ -372,7 +372,7 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 	[self _endWithCode:NSRunStoppedResponse];
 }
 
-- (void) _endWithCode:(int)code
+- (void) _endWithCode:(NSInteger)code
 {
 	DropBoxDidEndIMP didEnd;
 	didEnd = (DropBoxDidEndIMP)[delegate methodForSelector:didEndSelector];
@@ -455,12 +455,12 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 #pragma mark -
 #pragma mark Table View Delegation
 
-- (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(int)rowIndex
+- (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(NSInteger)rowIndex
 {
 	return YES;
 }
 
-- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	// keys: title, filename, icon, description
 	[(ImageAndTextCell*)aCell setImageSize:NSMakeSize(32,32)];
@@ -471,7 +471,7 @@ static NSSortDescriptor *FoldersByIndexSortPrototype()
 }
 
 - (NSString *)tableView:(NSTableView *)aTableView toolTipForCell:(NSCell *)aCell 
-			rect:(NSRectPointer)rect tableColumn:(NSTableColumn *)aTableColumn row:(int)row mouseLocation:(NSPoint)mouseLocation
+			rect:(NSRectPointer)rect tableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)row mouseLocation:(NSPoint)mouseLocation
 {
 	NSString *tooltip;
 	NSString *description = [[[filesController arrangedObjects] objectAtIndex:row] valueForKey:@"description"];

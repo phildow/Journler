@@ -23,7 +23,6 @@ static NSString *kTextClippingExtension = @"textClipping";
 static NSString *kWeblocExtension = @"webloc";
 static NSString *kPDUTTypeWordDocument = @"com.microsoft.word.doc";
 
-
 static NSArray *JObjectKeys() 
 {
 	static NSArray *array = nil;
@@ -56,13 +55,13 @@ static NSArray *JObjectValues()
 			[NSString string],									// title
 			/*[NSString string],*/									// category
 			/*[NSString string],*/									// keywords
-			[NSNumber numberWithInt:0],							// tag
+			[NSNumber numberWithInteger:0],							// tag
 			/*[NSArray array],*/									// blogs
-			/*[NSNumber numberWithInt:0],*/							// marked (flagged)
-			/*[NSNumber numberWithInt:0],*/							// label color
+			/*[NSNumber numberWithInteger:0],*/							// marked (flagged)
+			/*[NSNumber numberWithInteger:0],*/							// label color
 			[NSCalendarDate calendarDate],						// date as date
 			[NSCalendarDate calendarDate],						// date modified as date
-			[NSNumber numberWithInt:1],							// entry version format
+			[NSNumber numberWithInteger:1],							// entry version format
 			[NSNumber numberWithDouble:0],						// journal identifier
 			/*[NSNumber numberWithBool:NO],*/						// marked for trash
 			nil];		// selected ranges			
@@ -154,7 +153,7 @@ static NSArray *JObjectValues()
 	[newObject setScriptContainer:[self scriptContainer]];
 	
 	// tag and journal
-	[newObject setTagID:[NSNumber numberWithInt:[[self journal] newEntryTag]]];
+	[newObject setTagID:[NSNumber numberWithInteger:[[self journal] newEntryTag]]];
 	[[self journal] addEntry:newObject];
 	
 	[newObject setValue:dateModified forKey:@"calDateModified"];
@@ -259,7 +258,7 @@ static NSArray *JObjectValues()
 			[theResources makeObjectsPerformSelector:@selector(setEntry:) withObject:self];
 			// the journal will re-establish the relationship between itself and the resources
 			
-			if ( [lastResourceID intValue] != NSNotFound )
+			if ( [lastResourceID integerValue] != NSNotFound )
 			{
 				NSArray *objectHits = [theResources objectsWithValue:lastResourceID forKey:@"tagID"];
 				if ( [objectHits count] == 1 )
@@ -294,7 +293,7 @@ static NSArray *JObjectValues()
 	NSNumber *lastResourceID;
 	JournlerResource *lastResourceSelection = [encodableProperties objectForKey:PDEntryLastSelectedResource];
 	if ( lastResourceSelection == nil )
-		lastResourceID = [NSNumber numberWithInt:NSNotFound];
+		lastResourceID = [NSNumber numberWithInteger:NSNotFound];
 	else
 		lastResourceID = [lastResourceSelection tagID];
 	
@@ -305,7 +304,7 @@ static NSArray *JObjectValues()
 	NSArray *theResourceIDs = [self valueForKeyPath:@"resources.tagID"];
 	
 	// collections keep only the ids : unused
-	//int i;
+	//NSInteger i;
 	//NSArray *theCollections = [self valueForKey:@"collections"];
 	//NSMutableArray *collectionIDs = [NSMutableArray arrayWithCapacity:[theCollections count]];
 	
@@ -317,7 +316,7 @@ static NSArray *JObjectValues()
 	[encoder encodeObject:lastResourceID forKey:@"LastResourceID"];
 	
 	// encode the resource only if we're version 210
-	if ( [(NSNumber*)[[self journal] version] intValue] < 250 )
+	if ( [(NSNumber*)[[self journal] version] integerValue] < 250 )
 		[encoder encodeObject:theResources forKey:@"Resources"];
 	
 	// otherwise encode the ids
@@ -645,7 +644,7 @@ static NSArray *JObjectValues()
 	_contentRetainCount--;
 }
 
-- (int) contentRetainCount
+- (NSInteger) contentRetainCount
 {
 	return _contentRetainCount;
 }
@@ -679,7 +678,7 @@ static NSArray *JObjectValues()
 
 - (void) setVersion:(NSNumber*)verNum 
 {
-	[_properties setObject:(verNum?verNum:[NSNumber numberWithInt:1]) forKey:PDEntryVersion];
+	[_properties setObject:(verNum?verNum:[NSNumber numberWithInteger:1]) forKey:PDEntryVersion];
 }
 
 #pragma mark -
@@ -771,7 +770,7 @@ static NSArray *JObjectValues()
 
 - (void) setLabel:(NSNumber*)val 
 {
-	[_properties setObject:(val?val:[NSNumber numberWithInt:0]) forKey:PDEntryLabelColor];	
+	[_properties setObject:(val?val:[NSNumber numberWithInteger:0]) forKey:PDEntryLabelColor];	
 	[self setValue:BooleanNumber(YES) forKey:@"dirty"];
 	
 	if ( ![JournlerEntry modsDateModdedOnlyOnTextualChange] )
@@ -826,52 +825,52 @@ static NSArray *JObjectValues()
 
 - (NSNumber*) relevanceNumber 
 {
-	//return [NSNumber numberWithInt:(int)(relevance*100)];
+	//return [NSNumber numberWithInteger:(NSInteger)(relevance*100)];
 	return [NSNumber numberWithFloat:relevance];
 }
 
 #pragma mark -
 
-- (int) dateModifiedInt 
+- (NSInteger) dateModifiedInt 
 {
 	// a simple cheat to enable smart folders with date conditions
-	int returnValue;
-	returnValue = [[[self calDateModified] descriptionWithCalendarFormat:@"%Y%m%d" timeZone:nil locale:nil] intValue];
+	NSInteger returnValue;
+	returnValue = [[[self calDateModified] descriptionWithCalendarFormat:@"%Y%m%d" timeZone:nil locale:nil] integerValue];
 	return returnValue;
 }
 
-- (int) dateDueInt
+- (NSInteger) dateDueInt
 {
-	int returnValue;
-	returnValue = [[[self calDateDue] descriptionWithCalendarFormat:@"%Y%m%d" timeZone:nil locale:nil] intValue];
+	NSInteger returnValue;
+	returnValue = [[[self calDateDue] descriptionWithCalendarFormat:@"%Y%m%d" timeZone:nil locale:nil] integerValue];
 	return returnValue;
 }
 
-- (int) dateInt
+- (NSInteger) dateInt
 {
 	// a simple cheat to enable smart folders with date conditions
 	return _dateInt;	// -- _dateInt is generated and cached at the appropriate moments
 }
 
-- (int) dateCreatedInt
+- (NSInteger) dateCreatedInt
 {
 	return [self dateInt];
 }
 
-- (int) labelInt 
+- (NSInteger) labelInt 
 {
 	// a simple cheat to enable smart folders with label condition : probably unnecessary
-	return [[self label] intValue];
+	return [[self label] integerValue];
 }
 
-- (int) markedInt 
+- (NSInteger) markedInt 
 {
-	return [[self marked] intValue];
+	return [[self marked] integerValue];
 }
 
-- (void) setMarkedInt:(int)aValue 
+- (void) setMarkedInt:(NSInteger)aValue 
 {
-	[self setMarked:[NSNumber numberWithInt:aValue]];
+	[self setMarked:[NSNumber numberWithInteger:aValue]];
 }
 
 - (BOOL) blogged 
@@ -888,7 +887,7 @@ static NSArray *JObjectValues()
 
 - (BOOL) flaggedBool 
 {
-	return ( [[self marked] intValue] == 1 );
+	return ( [[self marked] integerValue] == 1 );
 }
 
 - (void) setFlaggedBool:(BOOL)flagValue 
@@ -898,7 +897,7 @@ static NSArray *JObjectValues()
 
 - (BOOL) checkedBool 
 {
-	return ( [[self marked] intValue] == 2 );
+	return ( [[self marked] integerValue] == 2 );
 }
 
 - (void) setCheckedBool:(BOOL)aValue 
@@ -1076,16 +1075,16 @@ static NSArray *JObjectValues()
 #pragma mark -
 #pragma mark Set Requirements
 
-- (unsigned)hash 
+- (NSUInteger)hash 
 {
 	// returns the entry's ID number, guaranteed to be unique to the entry
-	return [[self tagID] unsignedIntValue];
+	return [[self tagID] unsignedIntegerValue];
 }
 
 - (BOOL)isEqual:(id)anObject 
 {
 	// tests for the class and then the int tag id
-	return ( [anObject isMemberOfClass:[self class]] && [[self tagID] intValue] == [[anObject tagID] intValue] );	
+	return ( [anObject isMemberOfClass:[self class]] && [[self tagID] integerValue] == [[anObject tagID] integerValue] );	
 }
 
 #pragma mark -
@@ -1107,12 +1106,12 @@ static NSArray *JObjectValues()
 	return ( [[self blogs] indexOfObjectIdenticalTo:whichBlog] != NSNotFound );
 }
 
-- (int) numberOfResources
+- (NSInteger) numberOfResources
 {
 	return [[self resources] count];
 }
 
-- (void) setNumberOfResources:(int)numResources
+- (void) setNumberOfResources:(NSInteger)numResources
 {
 	// stand-in for key-value observing
 	return;
@@ -1141,15 +1140,15 @@ static NSArray *JObjectValues()
 	
 	if ( [_properties objectForKey:PDEntryFlagged] && [[_properties objectForKey:PDEntryFlagged] isKindOfClass:[NSString class]] ) {
 		// convert flag as string to flag as number
-		[_properties setObject:[NSNumber numberWithInt:[[_properties objectForKey:PDEntryFlagged] intValue]] forKey:PDEntryFlagged];
+		[_properties setObject:[NSNumber numberWithInteger:[[_properties objectForKey:PDEntryFlagged] integerValue]] forKey:PDEntryFlagged];
 	}
 	if ( [_properties objectForKey:PDEntryFlagged] && [[_properties objectForKey:PDEntryLabelColor] isKindOfClass:[NSString class]] ) {
 		// convert flag as string to flag as number
-		[_properties setObject:[NSNumber numberWithInt:[[_properties objectForKey:PDEntryLabelColor] intValue]] forKey:PDEntryLabelColor];
+		[_properties setObject:[NSNumber numberWithInteger:[[_properties objectForKey:PDEntryLabelColor] integerValue]] forKey:PDEntryLabelColor];
 	}
 	if ( [_properties objectForKey:PDEntryTag] && [[_properties objectForKey:PDEntryTag] isKindOfClass:[NSString class]] ) {
 		// convert tagID as string to tagID as number
-		[_properties setObject:[NSNumber numberWithInt:[[_properties objectForKey:PDEntryTag] intValue]] forKey:PDEntryTag];
+		[_properties setObject:[NSNumber numberWithInteger:[[_properties objectForKey:PDEntryTag] integerValue]] forKey:PDEntryTag];
 	}
 	
 	//
@@ -1311,7 +1310,7 @@ static NSArray *JObjectValues()
 		//
 		// convert them to type BlogPref
 		
-		int b;
+		NSInteger b;
 		NSArray *blogs = [self blogs];
 		NSMutableArray *converted_blogs = [[NSMutableArray alloc] initWithCapacity:[blogs count]];
 		for ( b = 0; b < [blogs count]; b++ ) {
@@ -1332,7 +1331,7 @@ static NSArray *JObjectValues()
 	
 	//
 	// upgrade the version number
-	[self setValue:[NSNumber numberWithInt:120] forKey:@"version"];
+	[self setValue:[NSNumber numberWithInteger:120] forKey:@"version"];
 	
 	// restore the date modified
 	[self setCalDateModified:preservedDateModified];
@@ -1355,10 +1354,10 @@ static NSArray *JObjectValues()
 
 - (void) perform253Maintenance
 {
-	if ( [[_properties objectForKey:PDEntryLabelColor] intValue] == 0 )
+	if ( [[_properties objectForKey:PDEntryLabelColor] integerValue] == 0 )
 		[_properties removeObjectForKey:PDEntryLabelColor];
 		
-	if ( [[_properties objectForKey:PDEntryFlagged] intValue] == 0 )
+	if ( [[_properties objectForKey:PDEntryFlagged] integerValue] == 0 )
 		[_properties removeObjectForKey:PDEntryFlagged];
 		
 	if ( [[_properties objectForKey:PDEntryCategory] length] == 0 )
@@ -1379,8 +1378,8 @@ static NSArray *JObjectValues()
 {
 	// a simple cheat to enable smart folders with date conditions
 
-	int returnValue;
-	returnValue = [[[self calDate] descriptionWithCalendarFormat:@"%Y%m%d" timeZone:nil locale:nil] intValue];
+	NSInteger returnValue;
+	returnValue = [[[self calDate] descriptionWithCalendarFormat:@"%Y%m%d" timeZone:nil locale:nil] integerValue];
 	_dateInt = returnValue;
 }
 
@@ -1543,7 +1542,7 @@ static NSArray *JObjectValues()
 		
 		// create a resource that encapsulates this information
 		JournlerResource *resource = [[[JournlerResource alloc] initFileResource:fullLocalPath] autorelease];
-		[resource setValue:[NSNumber numberWithInt:[[self journal] newResourceTag]] forKey:@"tagID"];
+		[resource setValue:[NSNumber numberWithInteger:[[self journal] newResourceTag]] forKey:@"tagID"];
 		
 		// add the resource to myself
 		returnResource = [self addResource:resource];
@@ -1575,7 +1574,7 @@ static NSArray *JObjectValues()
 	{
 		// create a resource that encapsulates this information
 		JournlerResource *resource = [[[JournlerResource alloc] initABPersonResource:aPerson] autorelease];
-		[resource setValue:[NSNumber numberWithInt:[[self journal] newResourceTag]] forKey:@"tagID"];
+		[resource setValue:[NSNumber numberWithInteger:[[self journal] newResourceTag]] forKey:@"tagID"];
 		
 		// add the resource to myself
 		returnResource = [self addResource:resource];
@@ -1607,7 +1606,7 @@ static NSArray *JObjectValues()
 	{
 		// create a resource that encapsulates this information
 		JournlerResource *resource = [[[JournlerResource alloc] initURLResource:[NSURL URLWithString:urlString]] autorelease];
-		[resource setValue:[NSNumber numberWithInt:[[self journal] newResourceTag]] forKey:@"tagID"];
+		[resource setValue:[NSNumber numberWithInteger:[[self journal] newResourceTag]] forKey:@"tagID"];
 		[resource setValue:( title ? title : urlString ) forKey:@"title"];
 		
 		// add the resource to myself
@@ -1645,7 +1644,7 @@ static NSArray *JObjectValues()
 		// create a resource that encapsulates this information
 		JournlerResource *resource = [[[JournlerResource alloc] initJournalObjectResource:[anObject URIRepresentation]] autorelease];
 		
-		[resource setValue:[NSNumber numberWithInt:[[self journal] newResourceTag]] forKey:@"tagID"];
+		[resource setValue:[NSNumber numberWithInteger:[[self journal] newResourceTag]] forKey:@"tagID"];
 		[resource setValue:[anObject valueForKey:@"title"] forKey:@"title"];
 		[resource setValue:[NSNumber numberWithBool:NO] forKey:@"searches"];
 		
@@ -1671,7 +1670,7 @@ static NSArray *JObjectValues()
 			if ( [anObject isKindOfClass:[JournlerEntry class]] )
 			{
 				JournlerResource *selfAsResource = [[[JournlerResource alloc] initJournalObjectResource:[self URIRepresentation]] autorelease];
-				[selfAsResource setValue:[NSNumber numberWithInt:[[self journal] newResourceTag]] forKey:@"tagID"];
+				[selfAsResource setValue:[NSNumber numberWithInteger:[[self journal] newResourceTag]] forKey:@"tagID"];
 				[selfAsResource setValue:[self valueForKey:@"title"] forKey:@"title"];
 				[selfAsResource setValue:[self icon] forKey:@"icon"];
 				[selfAsResource setValue:[NSNumber numberWithBool:NO] forKey:@"searches"];
@@ -1694,7 +1693,7 @@ static NSArray *JObjectValues()
 			if ( [anObject isKindOfClass:[JournlerEntry class]] )
 			{
 				JournlerResource *selfAsResource = [[[JournlerResource alloc] initJournalObjectResource:[self URIRepresentation]] autorelease];
-				[selfAsResource setValue:[NSNumber numberWithInt:[[self journal] newResourceTag]] forKey:@"tagID"];
+				[selfAsResource setValue:[NSNumber numberWithInteger:[[self journal] newResourceTag]] forKey:@"tagID"];
 				[selfAsResource setValue:[self valueForKey:@"title"] forKey:@"title"];
 				[selfAsResource setValue:[self icon] forKey:@"icon"];
 				[selfAsResource setValue:[NSNumber numberWithBool:NO] forKey:@"searches"];
@@ -1720,7 +1719,7 @@ static NSArray *JObjectValues()
 		return nil;
 	
 	JournlerResource *returnResource = nil;
-	unsigned resourceIndex = [[self valueForKey:@"resources"] indexOfObjectIdenticalToResource:aResource];
+	NSUInteger resourceIndex = [[self valueForKey:@"resources"] indexOfObjectIdenticalToResource:aResource];
 
 	if ( resourceIndex == NSNotFound )
 	{
@@ -1777,7 +1776,7 @@ static NSArray *JObjectValues()
 	if ( aResource == nil )
 		return NO;
 	
-	unsigned resourceIndex = [[self valueForKey:@"resources"] indexOfObjectIdenticalToResource:aResource];
+	NSUInteger resourceIndex = [[self valueForKey:@"resources"] indexOfObjectIdenticalToResource:aResource];
 	
 	//if ( [entryResources indexOfObject:aResource] != NSNotFound )
 	if ( resourceIndex != NSNotFound )
@@ -1900,8 +1899,8 @@ static NSArray *JObjectValues()
 	if ( !attrStr )
 		return [links autorelease];	// no links
 	
-	int i;
-	unsigned int length;
+	NSInteger i;
+	NSUInteger length;
 	NSRange effectiveRange;
 	id attributeValue;
 	 
@@ -1941,7 +1940,7 @@ static NSArray *JObjectValues()
 	// The function parses the resource directory and returns urls for the resources in pairs
 	// The first item is the textual link, the second item is the full path url
 	
-	int i;
+	NSInteger i;
 	BOOL dir;
 	
 	NSArray *contents;
@@ -2205,7 +2204,7 @@ static NSArray *JObjectValues()
 	return can_import;
 }
 
-- (id) initWithImportAtPath:(NSString*)fullpath options:(int)importOptions maxPreviewSize:(NSSize)maxSize {
+- (id) initWithImportAtPath:(NSString*)fullpath options:(NSInteger)importOptions maxPreviewSize:(NSSize)maxSize {
 	
 	//#warning - don't convert mail messages to actual entries - display them instead?
 	
@@ -2383,7 +2382,7 @@ static NSArray *JObjectValues()
 		if ( plainText == nil )
 		{
 			// let's try with a couple different encodings
-			int i;
+			NSInteger i;
 			NSStringEncoding encodings[2] = { NSMacOSRomanStringEncoding, NSUnicodeStringEncoding };
 			
 			for ( i = 0; i < 2; i++ )
@@ -2493,7 +2492,7 @@ static NSArray *JObjectValues()
 	return self;			
 }
 
-- (BOOL) completeImport:(int)importOptions operation:(NewResourceCommand)operation maxPreviewSize:(NSSize)maxSize
+- (BOOL) completeImport:(NSInteger)importOptions operation:(NewResourceCommand)operation maxPreviewSize:(NSSize)maxSize
 {	
 	BOOL success = YES;
 	BOOL includeIcon = ( importOptions & kEntryImportIncludeIcon );
@@ -2754,7 +2753,7 @@ static NSArray *JObjectValues()
 #pragma mark -
 #pragma mark Saving an entry to file
 
-- (BOOL)writeToFile:(NSString*)path as:(int)saveType flags:(int)saveFlags
+- (BOOL)writeToFile:(NSString*)path as:(NSInteger)saveType flags:(NSInteger)saveFlags
 {	
 	//this guy takes an entry, preps a text with all the releveant information, then saves it to filepath
 	//with either rtf or rtfd, perhaps doc, html, or pdf later
@@ -2878,8 +2877,8 @@ static NSArray *JObjectValues()
 		[[printInfo dictionary] setValue:[NSNumber numberWithBool:NO] forKey:NSPrintHeaderAndFooter];
 		
 		//should give me the width and height
-		int width = [printInfo paperSize].width - ( [printInfo rightMargin] + [printInfo leftMargin] );
-		int height = [printInfo paperSize].height - ( [printInfo topMargin] + [printInfo bottomMargin] );
+		CGFloat width = [printInfo paperSize].width - ( [printInfo rightMargin] + [printInfo leftMargin] );
+		CGFloat height = [printInfo paperSize].height - ( [printInfo topMargin] + [printInfo bottomMargin] );
 		
 		// prepare a text view that overrides the header and footer that is now on by default
 		PDPrintTextView *pdfView = [[PDPrintTextView alloc] initWithFrame:NSMakeRect(0,0,width,height)];
@@ -3007,7 +3006,7 @@ static NSArray *JObjectValues()
 		[fileAttributes setObject:[self calDateModified] forKey:NSFileModificationDate];
 		
 	if ( setLabel )
-		[[NSWorkspace sharedWorkspace] setLabel:kFinderLabelForEntryLabel[ [[self label] intValue] ] forFile:saveWithExtension];
+		[[NSWorkspace sharedWorkspace] setLabel:kFinderLabelForEntryLabel[ [[self label] integerValue] ] forFile:saveWithExtension];
 		
 	[[NSFileManager defaultManager] changeFileAttributes:fileAttributes atPath:saveWithExtension];
 
@@ -3153,7 +3152,7 @@ static NSArray *JObjectValues()
 			withString:[NSString string] options:NSLiteralSearch range:NSMakeRange(0, [mutable_string length])];
 
 	
-	static int kMaxChars = 2000;
+	static NSInteger kMaxChars = 2000;
 	NSString *baseTitle = [NSString stringWithFormat:@"%@ %@", [self pathSafeTitle], [self tagID]];
 	static NSString *pathExtension = @"txt";
 	
@@ -3176,8 +3175,8 @@ static NSArray *JObjectValues()
 		{
 
 			// the entry must be broken up into pieces and they must be connected
-			int additionalFiles = 1;
-			unsigned int startIndex, endIndex;
+			NSInteger additionalFiles = 1;
+			NSUInteger startIndex, endIndex;
 			NSRange lineRange;
 			NSRange currentRange = NSMakeRange(0, kMaxChars);
 			NSMutableString *workingContents = mutable_string;
@@ -3492,7 +3491,7 @@ static NSArray *JObjectValues()
 		{
 			// file urls, journler urls, web urls
 			
-			unsigned int length;
+			NSUInteger length;
 			NSRange effectiveRange;
 			NSURL *aURL;
 			 
@@ -3597,7 +3596,7 @@ static NSArray *JObjectValues()
 {
 	OSType scriptLabel = 'lcCE';
 	
-	switch ( [[self valueForKey:@"label"] intValue] )
+	switch ( [[self valueForKey:@"label"] integerValue] )
 	{
 	case 0:
 		scriptLabel = 'lcCE';
@@ -3633,7 +3632,7 @@ static NSArray *JObjectValues()
 
 - (void) setScriptLabel:(OSType)osType
 {
-	int label = 0;
+	NSInteger label = 0;
 	
 	switch ( osType )
 	{
@@ -3667,14 +3666,14 @@ static NSArray *JObjectValues()
 
 	}
 	
-	[self setValue:[NSNumber numberWithInt:label] forKey:@"label"];
+	[self setValue:[NSNumber numberWithInteger:label] forKey:@"label"];
 }
 
 - (OSType) scriptMark
 {
 	OSType scriptMark = 'emUM';
 	
-	switch ( [[self marked] intValue] )
+	switch ( [[self marked] integerValue] )
 	{
 	case 0:
 		scriptMark = 'emUM';
@@ -3696,7 +3695,7 @@ static NSArray *JObjectValues()
 
 - (void) setScriptMark:(OSType)osType
 {
-	int mark = 0;
+	NSInteger mark = 0;
 	
 	switch ( osType )
 	{
@@ -3715,7 +3714,7 @@ static NSArray *JObjectValues()
 		break;
 	}
 	
-	[self setMarked:[NSNumber numberWithInt:mark]];
+	[self setMarked:[NSNumber numberWithInteger:mark]];
 }
 
 - (NSDate*) dateCreated
@@ -3808,17 +3807,17 @@ static NSArray *JObjectValues()
 #pragma mark -
 #pragma mark Handling References
 
-- (int) indexOfObjectInJSReferences:(JournlerResource*)aReference
+- (NSInteger) indexOfObjectInJSReferences:(JournlerResource*)aReference
 {
 	return [[self valueForKey:@"resources"] indexOfObject:aReference];
 }
 
-- (unsigned int) countOfJSReferences
+- (NSUInteger) countOfJSReferences
 { 
 	return [[self valueForKey:@"resources"] count];
 }
 
-- (JournlerResource*) objectInJSReferencesAtIndex:(unsigned int)i
+- (JournlerResource*) objectInJSReferencesAtIndex:(NSUInteger)i
 {
 	if ( i >= [[self valueForKey:@"resources"] count] ) 
 	{
@@ -3839,17 +3838,17 @@ static NSArray *JObjectValues()
 #pragma mark -
 #pragma mark Handling Folders
 
-- (int) indexOfObjectInJSFolders:(JournlerCollection*)aFolder 
+- (NSInteger) indexOfObjectInJSFolders:(JournlerCollection*)aFolder 
 {
 	return [[self valueForKey:@"collections"] indexOfObject:aFolder];
 }
 
-- (unsigned int) countOfJSFolders
+- (NSUInteger) countOfJSFolders
 { 
 	return [[self valueForKey:@"collections"] count];
 }
 
-- (JournlerCollection*) objectInJSFoldersAtIndex:(unsigned int)i 
+- (JournlerCollection*) objectInJSFoldersAtIndex:(NSUInteger)i 
 {
 	if ( i >= [[self valueForKey:@"collections"] count] ) 
 	{
@@ -3882,7 +3881,7 @@ static NSArray *JObjectValues()
 	NSDictionary *args = [command evaluatedArguments];
 	
 	BOOL dir, includeHeader = YES;
-	unsigned int fileType;
+	NSUInteger fileType;
 	OSType formatKeyCode = 'etRT';
 	
 	NSString *path;
@@ -3904,7 +3903,7 @@ static NSArray *JObjectValues()
 	
 	// default to rtfd if no format is specified
 	if ( formatArg != nil )
-		formatKeyCode = (OSType)[formatArg unsignedIntValue];
+		formatKeyCode = (OSType)[formatArg unsignedIntegerValue];
 	
 	// include the headers? default is yes
 	if ( headerArg != nil && [headerArg isKindOfClass:[NSNumber class]] )
@@ -3939,7 +3938,7 @@ static NSArray *JObjectValues()
 	}
 	
 	// write the file, error checking on the way
-	int flags = (kEntrySetLabelColor|kEntrySetFileCreationDate|kEntrySetFileModificationDate);
+	NSInteger flags = (kEntrySetLabelColor|kEntrySetFileCreationDate|kEntrySetFileModificationDate);
 	if ( includeHeader )
 		flags |= kEntryIncludeHeader;
 	

@@ -23,9 +23,9 @@
 	if ( [NSApp modalWindow] == [self window] ) [NSApp abortModal];
 }
 
-- (int) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet {
+- (NSInteger) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet {
 	
-	int result;
+	NSInteger result;
 
 	if ( sheet )
 		[NSApp beginSheet:[self window] modalForWindow:window modalDelegate:nil
@@ -55,7 +55,7 @@
 	[_dateTo setDateValue:date];
 }
 
-- (int) printMode {
+- (NSInteger) printMode {
 	return [[_printMode selectedCell] tag];
 }
 

@@ -123,7 +123,7 @@
 - (IBAction) scaleText:(id)sender;
 - (IBAction) setMargin:(id)sender;
 
-- (IBAction) _setMargin:(int)margin;
+- (IBAction) _setMargin:(NSInteger)margin;
 
 - (BOOL) highlightString:(NSString*)aString;
 - (void) servicesMenuAppendSelection:(NSPasteboard*)pboard desiredType:(NSString*)type;
@@ -145,21 +145,21 @@
 
 - (void) entryCellController:(EntryCellController*)aController 
 		clickedOnEntry:(JournlerEntry*)anEntry 
-		modifierFlags:(unsigned int)flags 
+		modifierFlags:(NSUInteger)flags 
 		highlight:(NSString*)aTerm;
 
 - (void) entryCellController:(EntryCellController*)aController 
 		clickedOnResource:(JournlerResource*)aResource 
-		modifierFlags:(unsigned int)flags 
+		modifierFlags:(NSUInteger)flags 
 		highlight:(NSString*)aTerm;
 
 - (void) entryCellController:(EntryCellController*)aController 
 		clickedOnFolder:(JournlerCollection*)aFolder 
-		modifierFlags:(unsigned int)flags;
+		modifierFlags:(NSUInteger)flags;
 		
 - (void) entryCellController:(EntryCellController*)aController 
 		clickedOnURL:(NSURL*)aURL 
-		modifierFlags:(unsigned int)flags;
+		modifierFlags:(NSUInteger)flags;
 
 - (BOOL) entryCellController:(EntryCellController*)aController 
 		newDefaultEntry:(NSNotification*)aNotification;

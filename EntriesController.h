@@ -43,7 +43,7 @@
 @interface NSObject (EntriesControllerDelegate)
 
 - (void) entryController:(EntriesController*)anEntriesController willChangeSelection:(NSArray*)currentSelection;
-- (BOOL) entryController:(EntriesController*)anEntriesController tableDidSelectRowAlreadySelected:(int)aRow event:(NSEvent*)mouseEvent;
+- (BOOL) entryController:(EntriesController*)anEntriesController tableDidSelectRowAlreadySelected:(NSInteger)aRow event:(NSEvent*)mouseEvent;
 
 - (BOOL) entryController:(EntriesController*)aController shouldDeleteEntries:(NSArray*)theEntries;
 - (BOOL) entryController:(EntriesController*)aController didDeleteEntries:(NSArray*)theEntries; 

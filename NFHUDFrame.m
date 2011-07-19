@@ -14,7 +14,7 @@
 
 @implementation NFHUDFrame
 
-- (id)initWithFrame:(NSRect)frame styleMask:(unsigned int)style owner:(id)owner
+- (id)initWithFrame:(NSRect)frame styleMask:(NSUInteger)style owner:(id)owner
 {
 	if([super initWithFrame:frame styleMask:style owner:owner])
 	{
@@ -136,7 +136,7 @@
 	[self _drawTitleBar: titleBarRect];
 }
 
-- (NSRect)contentRectForFrameRect:(NSRect)frameRect styleMask:(unsigned int)aStyle
+- (NSRect)contentRectForFrameRect:(NSRect)frameRect styleMask:(NSUInteger)aStyle
 {
 	frameRect.size.width -= 2;
 	frameRect.origin.x += 1;
@@ -145,7 +145,7 @@
 }
 
 
-- (NSRect)frameRectForContentRect:(NSRect)windowContent styleMask:(unsigned int)aStyle
+- (NSRect)frameRectForContentRect:(NSRect)windowContent styleMask:(NSUInteger)aStyle
 {
 	windowContent.size.width += 2;
 	windowContent.origin.x -= 1;

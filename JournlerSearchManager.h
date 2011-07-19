@@ -66,7 +66,7 @@ enum JournlerTermIndexOption {
 		journlerSearchOptions:(JournlerSearchOptions)journlerOptions
 		maximumTime:(CFTimeInterval)maxTime maximumHits:(CFIndex)maxCount 
 		entries:(NSSet**)entryMatches resources:(NSSet**)resourceMatches 
-		entryHits:(int*)entryHits referenceHits:(int*)referenceHits;
+		entryHits:(NSInteger*)entryHits referenceHits:(NSInteger*)referenceHits;
 
 - (BOOL) writeIndexToDisk;
 - (BOOL) compactIndex;
@@ -77,28 +77,28 @@ enum JournlerTermIndexOption {
 
 @interface JournlerSearchManager (TermIndexSupport)
 
-- (NSArray*) allTerms:(unsigned)options;
-- (NSArray*) entryTerms:(unsigned)options;
-- (NSArray*) resourceTerms:(unsigned)options;
+- (NSArray*) allTerms:(NSUInteger)options;
+- (NSArray*) entryTerms:(NSUInteger)options;
+- (NSArray*) resourceTerms:(NSUInteger)options;
 
-- (int) countOfDocumentsForTerm:(NSString*)aTerm options:(unsigned)options;
-- (int) countOfEntriesForTerm:(NSString*)aTerm options:(unsigned)options;
-- (int) countOfResourcesForTerm:(NSString*)aTerm options:(unsigned)options;
+- (NSInteger) countOfDocumentsForTerm:(NSString*)aTerm options:(NSUInteger)options;
+- (NSInteger) countOfEntriesForTerm:(NSString*)aTerm options:(NSUInteger)options;
+- (NSInteger) countOfResourcesForTerm:(NSString*)aTerm options:(NSUInteger)options;
 
 // returns the number of occurrence of a term within a specified document
-- (int) frequenceyOfTerm:(NSString*)aTerm forDocument:(JournlerObject*)anObject options:(unsigned)options;
+- (NSInteger) frequenceyOfTerm:(NSString*)aTerm forDocument:(JournlerObject*)anObject options:(NSUInteger)options;
 
 // returns an array of dictionaries with keys "term" and "journlerObjects" the one a string, the other an array of journler objects
-- (NSArray*) termsAndDocumentsArray:(unsigned)options;
+- (NSArray*) termsAndDocumentsArray:(NSUInteger)options;
 
 // these methods should also accept arrays
-- (NSArray*) journlerObjectsForTerm:(NSString*)aTerm options:(unsigned)options;
-- (NSArray*) termsForJournlerObject:(JournlerObject*)anObject options:(unsigned)options;
+- (NSArray*) journlerObjectsForTerm:(NSString*)aTerm options:(NSUInteger)options;
+- (NSArray*) termsForJournlerObject:(JournlerObject*)anObject options:(NSUInteger)options;
 
-- (NSArray*) termsForTermIDRefs:(CFArrayRef)termIDs index:(SKIndexRef)anIndex options:(unsigned)options;
+- (NSArray*) termsForTermIDRefs:(CFArrayRef)termIDs index:(SKIndexRef)anIndex options:(NSUInteger)options;
 
 // do the same for the document reference
-- (SKDocumentID) documentIDForJournlerObject:(JournlerObject*)anObject options:(unsigned)options;
+- (SKDocumentID) documentIDForJournlerObject:(JournlerObject*)anObject options:(NSUInteger)options;
 
 @end
 

@@ -12,14 +12,14 @@
 @implementation NFHUDWindow
 
 
-+ (Class)frameViewClassForStyleMask:(unsigned int)styleMask
++ (Class)frameViewClassForStyleMask:(NSUInteger)styleMask
 {
 	return [NFHUDFrame class];
 }
 
 
 - (id)initWithContentRect:(NSRect)contentRect 
-                styleMask:(unsigned int)styleMask 
+                styleMask:(NSUInteger)styleMask 
                   backing:(NSBackingStoreType)bufferingType 
                     defer:(BOOL)flag
 {

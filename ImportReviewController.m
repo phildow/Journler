@@ -194,7 +194,7 @@
 
 #pragma mark -
 
-- (int) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet targetCollection:(JournlerCollection*)aFolder 
+- (NSInteger) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet targetCollection:(JournlerCollection*)aFolder 
 {
 	NSInteger result = NSRunStoppedResponse;
 	_targetFolder = aFolder;
@@ -330,7 +330,7 @@
 		NSBeep(); return;
 	}
 	
-	[theEntries setValue:[NSNumber numberWithInt:[sender tag]] forKey:@"label"];
+	[theEntries setValue:[NSNumber numberWithInteger:[sender tag]] forKey:@"label"];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem*)menuItem 
@@ -453,7 +453,7 @@
 		/*
 		if ( _targetFolder ) {
 		
-			if ( [[_targetFolder valueForKey:@"tagID"] intValue] == PDCollectionTypeIDTrash ) 
+			if ( [[_targetFolder valueForKey:@"tagID"] integerValue] == PDCollectionTypeIDTrash ) 
 				[[self journal] markEntryForTrash:anEntry];
 			else
 				[_targetFolder addEntry:anEntry];

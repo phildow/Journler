@@ -110,7 +110,7 @@ static NSImage* AlertBadge()
 	BOOL searchesByDefault = [[NSUserDefaults standardUserDefaults] boolForKey:@"SearchMediaByDefault"];
 	
 	NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
-			[NSNumber numberWithInt:0], ResourceTagIDKey,
+			[NSNumber numberWithInteger:0], ResourceTagIDKey,
 			[NSNumber numberWithBool:searchesByDefault], ResourceSearchesKey,
 			[NSNumber numberWithBool:NO], ResourceIsGlobalKey, nil];
 	
@@ -144,7 +144,7 @@ static NSImage* AlertBadge()
 	[newObject setDeleted:[self deleted]];
 	
 	// tag and journal
-	[newObject setTagID:[NSNumber numberWithInt:[[self journal] newResourceTag]]];
+	[newObject setTagID:[NSNumber numberWithInteger:[[self journal] newResourceTag]]];
 	[[self journal] addResource:newObject];
 		
 	return newObject;
@@ -224,10 +224,10 @@ static NSImage* AlertBadge()
 
 #pragma mark -
 
-- (unsigned) hash 
+- (NSUInteger) hash 
 {	
 	// return the tag id, guaranteed to be unique
-	return [[self tagID] unsignedIntValue];
+	return [[self tagID] unsignedIntegerValue];
 }
 
 - (BOOL)isEqual:(id)anObject 
@@ -236,14 +236,14 @@ static NSImage* AlertBadge()
 		return NO;
 	
 	// tests for the class and then the int tag id
-	if ( [[self tagID] intValue] == -1 ) // -1 for on the fly resource generation
+	if ( [[self tagID] integerValue] == -1 ) // -1 for on the fly resource generation
 		return ( [[self URIRepresentation] isEqual:[anObject URIRepresentation]] );
 	
-	else if ( [[self tagID] intValue] < 0 ) // < 0 for on the fly resource generation
+	else if ( [[self tagID] integerValue] < 0 ) // < 0 for on the fly resource generation
 		return ( [[self URIRepresentation] isEqual:[anObject URIRepresentation]] );
 	
 	else
-		return ( [[self tagID] intValue] == [[anObject tagID] intValue] );
+		return ( [[self tagID] integerValue] == [[anObject tagID] integerValue] );
 }
 
 - (BOOL) isEqualToResource:(JournlerResource*)aResource
@@ -256,7 +256,7 @@ static NSImage* AlertBadge()
 		return YES;
 	
 	// tests for the class and then the int tag id
-	else if ( [[self tagID] intValue] == -1 ) // -1 for on the fly resource generation
+	else if ( [[self tagID] integerValue] == -1 ) // -1 for on the fly resource generation
 		return ( [[self URIRepresentation] isEqual:[aResource URIRepresentation]] );
 	
 	// equality depends on object type - could have unintended consequences
@@ -273,7 +273,7 @@ static NSImage* AlertBadge()
 		return ( [[self originalPath] isEqual:[aResource originalPath]] || ( [self originalPath] == nil && [aResource originalPath] == nil ) );
 		
 	else
-		return ( [aResource isMemberOfClass:[self class]] && [[self tagID] intValue] == [[aResource tagID] intValue] );
+		return ( [aResource isMemberOfClass:[self class]] && [[self tagID] integerValue] == [[aResource tagID] integerValue] );
 }
 
 #pragma mark -
@@ -370,12 +370,12 @@ static NSImage* AlertBadge()
 
 - (JournlerResourceType) type
 {
-	return [[_properties valueForKey:ResourceTypeKey] intValue];
+	return [[_properties valueForKey:ResourceTypeKey] integerValue];
 }
 
 - (void) setType:(JournlerResourceType)aResourceType
 {
-	[_properties setValue:[NSNumber numberWithInt:aResourceType] forKey:ResourceTypeKey];	
+	[_properties setValue:[NSNumber numberWithInteger:aResourceType] forKey:ResourceTypeKey];	
 	[self setValue:BooleanNumber(YES) forKey:@"dirty"];
 }
 
@@ -429,7 +429,7 @@ static NSImage* AlertBadge()
 
 - (void) setLabel:(NSNumber*)aNumber
 {
-	[_properties setValue:( aNumber ? aNumber : [NSNumber numberWithInt:0] ) forKey:ResourceLabelKey];	
+	[_properties setValue:( aNumber ? aNumber : [NSNumber numberWithInteger:0] ) forKey:ResourceLabelKey];	
 	[self setValue:BooleanNumber(YES) forKey:@"dirty"];
 	
 	// post a notification that this attribute has changed
@@ -1027,7 +1027,7 @@ bail:
 			NSString *destination = [[path stringByAppendingPathComponent:
 					[(JournlerEntry*)anObject pathSafeTitle]] pathWithoutOverwritingSelf];
 			
-			int flags = kEntrySetLabelColor;
+			NSInteger flags = kEntrySetLabelColor;
 			if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EntryExportIncludeHeader"] )
 				flags |= kEntryIncludeHeader;
 			if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EntryExportSetCreationDate"] )
@@ -1129,7 +1129,7 @@ bail:
 	_previewRetainCount--;
 }
 
-- (int) previewRetainCount
+- (NSInteger) previewRetainCount
 {
 	return _previewRetainCount;
 }
@@ -1156,7 +1156,7 @@ bail:
 - (void) perform253Maintenance
 {
 	// remove unused labels
-	if ( [[_properties objectForKey:ResourceLabelKey] intValue] == 0 )
+	if ( [[_properties objectForKey:ResourceLabelKey] integerValue] == 0 )
 		[_properties removeObjectForKey:ResourceLabelKey];
 	
 	// note the date modified and relative path of the underlying data
@@ -1535,7 +1535,7 @@ bail:
 	if ( myPerson == nil )
 		return nil;
 	
-	int i;
+	NSInteger i;
 	NSString *note;
 	ABMultiValue *phoneRecords, *emailRecords, *urlRecords, *addressRecords;
 	NSMutableString *searchContent = [NSMutableString string];
@@ -1745,7 +1745,7 @@ bail:
 {
 	OSType scriptLabel = 'lcCE';
 	
-	switch ( [[self valueForKey:@"label"] intValue] )
+	switch ( [[self valueForKey:@"label"] integerValue] )
 	{
 	case 0:
 		scriptLabel = 'lcCE';
@@ -1781,7 +1781,7 @@ bail:
 
 - (void) setScriptLabel:(OSType)osType
 {
-	int label = 0;
+	NSInteger label = 0;
 	
 	switch ( osType )
 	{
@@ -1815,7 +1815,7 @@ bail:
 
 	}
 	
-	[self setValue:[NSNumber numberWithInt:label] forKey:@"label"];
+	[self setValue:[NSNumber numberWithInteger:label] forKey:@"label"];
 
 }
 
@@ -1841,17 +1841,17 @@ bail:
 #pragma mark -
 #pragma mark Entries
 
-- (int) indexOfObjectInJSEntries:(JournlerEntry*)anEntry 
+- (NSInteger) indexOfObjectInJSEntries:(JournlerEntry*)anEntry 
 {
 	return [[self valueForKeyPath:@"entries"] indexOfObject:anEntry];
 }
 
-- (unsigned int) countOfJSEntries 
+- (NSUInteger) countOfJSEntries 
 {
 	return [[self valueForKeyPath:@"entries"] count];
 }
 
-- (JournlerEntry*) objectInJSEntriesAtIndex:(unsigned int)i 
+- (JournlerEntry*) objectInJSEntriesAtIndex:(NSUInteger)i 
 {
 	if ( i >= [[self valueForKeyPath:@"entries"] count] ) 
 	{

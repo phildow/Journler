@@ -38,7 +38,7 @@
 
 #pragma mark -
 
-- (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)isLocal {
+- (NSUInteger)draggingSourceOperationMaskForLocal:(BOOL)isLocal {
 	
 	if ( isLocal )
 		return ( NSDragOperationDelete | NSDragOperationCopy );
@@ -56,7 +56,7 @@
 	// I mean, let's be fancy about it!
 	//
 	
-	//JournlerEntry *entry = [[[self dataSource] arrangedObjects] objectAtIndex:[[dragRows objectAtIndex:0] intValue]];
+	//JournlerEntry *entry = [[[self dataSource] arrangedObjects] objectAtIndex:[[dragRows objectAtIndex:0] integerValue]];
 	JournlerEntry *entry = [[[self dataSource] arrangedObjects] objectAtIndex:[dragRows firstIndex]];
 	if ( !entry )
 		return nil;
@@ -91,7 +91,7 @@
 				[NSFont systemFontOfSize:[NSFont smallSystemFontSize]], NSFontAttributeName,
 				[NSColor colorWithCalibratedWhite:1.0 alpha:1.0], NSForegroundColorAttributeName, nil];
 		
-		NSString *countString = [[NSNumber numberWithInt:[dragRows count]] stringValue];
+		NSString *countString = [[NSNumber numberWithInteger:[dragRows count]] stringValue];
 		NSSize countSize = [countString sizeWithAttributes:countAttributes];
 		
 		[dragBadge lockFocus];

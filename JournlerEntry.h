@@ -114,7 +114,7 @@ enum {
 	// the date integer is an integer representation of an entry's date,
 	// cached to speed up the calendar and smart folders. It is regenerated
 	// whenever the date changes
-	int _dateInt;
+	NSInteger _dateInt;
 	
 	// used internally during file imports, necessary in Journler 2.0 due to
 	// the way Journler packages entries
@@ -125,7 +125,7 @@ enum {
 	NSString *_resourceTypesCached;
 	
 	
-	int _contentRetainCount;
+	NSInteger _contentRetainCount;
 	NSTimeInterval _lastContentAccess;
 	
 	// indicates whether an entry is encrypted or not. 
@@ -276,7 +276,7 @@ enum {
 // at an unspecified interval
 - (void) retainContent;
 - (void) releaseContent;
-- (int) contentRetainCount;
+- (NSInteger) contentRetainCount;
 - (NSTimeInterval) lastContentAccess;
 - (void) unloadAttributedContent;
 
@@ -332,8 +332,8 @@ enum {
 - (NSNumber*) marked;
 - (void) setMarked:(NSNumber*)aValue;
 
-- (int) markedInt;
-- (void) setMarkedInt:(int)aValue;
+- (NSInteger) markedInt;
+- (void) setMarkedInt:(NSInteger)aValue;
 
 - (NSNumber*) flagged;
 - (void) setFlagged:(NSNumber*)flagValue;
@@ -397,14 +397,14 @@ enum {
 //		// the dateInt value is cached because it is used so often
 //
 
-- (int) dateInt;
-- (int) dateModifiedInt;
-- (int) dateCreatedInt;
-- (int) dateDueInt;
+- (NSInteger) dateInt;
+- (NSInteger) dateModifiedInt;
+- (NSInteger) dateCreatedInt;
+- (NSInteger) dateDueInt;
 
 - (void) generateDateInt;
 
-- (int) labelInt;
+- (NSInteger) labelInt;
 
 //
 // The boolean blogged quickly indicates whether an entry has been blogged or not
@@ -439,8 +439,8 @@ enum {
 //		// setNumberOfResources: does nothing but provides a cheat for key-value observing
 //
 
-- (int) numberOfResources;
-- (void) setNumberOfResources:(int)numResources;
+- (NSInteger) numberOfResources;
+- (void) setNumberOfResources:(NSInteger)numResources;
 
 //
 // The content value is the same as returned by stringValue
@@ -546,10 +546,10 @@ enum {
 @interface JournlerEntry (InterfaceSupport)
 
 + (BOOL) canImportFile:(NSString*)fullpath;
-- (id) initWithImportAtPath:(NSString*)fullpath options:(int)importOptions maxPreviewSize:(NSSize)maxSize;
-- (BOOL) completeImport:(int)importOptions operation:(NewResourceCommand)operation maxPreviewSize:(NSSize)maxSize;
+- (id) initWithImportAtPath:(NSString*)fullpath options:(NSInteger)importOptions maxPreviewSize:(NSSize)maxSize;
+- (BOOL) completeImport:(NSInteger)importOptions operation:(NewResourceCommand)operation maxPreviewSize:(NSSize)maxSize;
 
-- (BOOL) writeToFile:(NSString*)path as:(int)saveType flags:(int)saveFlags;
+- (BOOL) writeToFile:(NSString*)path as:(NSInteger)saveType flags:(NSInteger)saveFlags;
 //- (BOOL) createFolderAtDestination:(NSString*)path;
 
 - (NSAttributedString*) prepWithTitle:(BOOL)wTitle category:(BOOL)wCategory smallDate:(BOOL)wDate;
@@ -613,9 +613,9 @@ enum {
 
 #pragma mark -
 
-- (int) indexOfObjectInJSReferences:(JournlerResource*)aReference;
-- (unsigned int) countOfJSReferences;
-- (JournlerResource*) objectInJSReferencesAtIndex:(unsigned int)i;
+- (NSInteger) indexOfObjectInJSReferences:(JournlerResource*)aReference;
+- (NSUInteger) countOfJSReferences;
+- (JournlerResource*) objectInJSReferencesAtIndex:(NSUInteger)i;
 - (JournlerResource*) valueInJSReferencesWithUniqueID:(NSNumber*)idNum;
 
 #pragma mark -

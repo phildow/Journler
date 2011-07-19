@@ -30,22 +30,22 @@ extern NSString *kPDAppleScriptErrorDictionaryScriptSource;
 
 - (BOOL) sendEntries:(NSArray*)theEntries 
 		toPreferredEditor:(NSString*)editorFilename 
-		options:(int)options 
+		options:(NSInteger)options 
 		error:(id*)anError;
 		
 - (BOOL) sendEntries:(NSArray*)theEntries 
 		toWeblogProtocolPreferredEditor:(NSString*)editorBundleIdentifier 
-		options:(int)options 
+		options:(NSInteger)options 
 		error:(id*)anError;
 		
 - (BOOL) sendEntries:(NSArray*)theEntries 
 		toApplicationPreferredEditor:(NSString*)editorFilename 
-		options:(int)options 
+		options:(NSInteger)options 
 		error:(id*)anError;
 		
 - (BOOL) sendEntries:(NSArray*)theEntries 
 		toAppleScriptPreferredEditor:(NSString*)editorFilename 
-		options:(int)options 
+		options:(NSInteger)options 
 		error:(id*)anError;
 
 @end

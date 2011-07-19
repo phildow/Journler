@@ -46,9 +46,9 @@ static NSArray * BannedLicenseNames()
 	return licenseType;
 }
 
-- (int) licenseTypeForName:(NSString*)licenseName digest:(NSString*)proposedDigest
+- (NSInteger) licenseTypeForName:(NSString*)licenseName digest:(NSString*)proposedDigest
 {
-	int myLicense;
+	NSInteger myLicense;
 	
 	if ( [BannedLicenseNames() containsObject:licenseName] )
 	{

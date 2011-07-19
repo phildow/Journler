@@ -154,14 +154,14 @@ typedef enum {
 	JournlerIndexServer		*indexServer;
 	
 	//to keep track of our entries in the simplest way possible
-	int lastTag;
-	int lastFolderTag;
-	int lastBlogTag;
-	int lastResourceTag;
+	NSInteger lastTag;
+	NSInteger lastFolderTag;
+	NSInteger lastBlogTag;
+	NSInteger lastResourceTag;
 	
 	//internal usage
 	BOOL	_loaded;
-	int error;
+	NSInteger error;
 	
 	// encyrption (v1.0.3)
 	NSString			*password;
@@ -191,9 +191,9 @@ typedef enum {
 + (NSString*) defaultJournalPath;
 
 //loading entries and topics into the model
-- (JournalLoadFlag) loadFromPath:(NSString*)path error:(int*)err;
-- (JournalLoadFlag) loadFromStore:(int*)err;
-- (JournalLoadFlag) loadFromDirectoryIgnoringEntryFolders:(BOOL)ignore210Entries error:(int*)err;
+- (JournalLoadFlag) loadFromPath:(NSString*)path error:(NSInteger*)err;
+- (JournalLoadFlag) loadFromStore:(NSInteger*)err;
+- (JournalLoadFlag) loadFromDirectoryIgnoringEntryFolders:(BOOL)ignore210Entries error:(NSInteger*)err;
 
 #pragma mark -
 
@@ -212,8 +212,8 @@ typedef enum {
 - (NSNumber*) dirty;
 - (void) setDirty:(NSNumber*)aNumber;
 
-- (int) error;
-- (void) setError:(int)err;
+- (NSInteger) error;
+- (void) setError:(NSInteger)err;
 
 - (NSArray*) entries;
 - (void) setEntries:(NSArray*)newEntries;
@@ -279,13 +279,13 @@ typedef enum {
 - (BlogPref*) blogForTagID:(NSNumber*)tagNumber;
 
 //return a new entry or topic tag number
-- (int) newEntryTag;
-- (int) newFolderTag;
-- (int) newBlogTag;
-- (int) newResourceTag;
+- (NSInteger) newEntryTag;
+- (NSInteger) newFolderTag;
+- (NSInteger) newBlogTag;
+- (NSInteger) newResourceTag;
 
 //for constructing the table of entries at a given date
-- (BOOL) calIntHasEntries:(int)dayAsInt;
+- (BOOL) calIntHasEntries:(NSInteger)dayAsInt;
 
 - (BOOL) writeJournalCollection:(id)collection;
 
@@ -299,7 +299,7 @@ typedef enum {
 - (void) _updateIndex:(JournlerEntry*)entry;
 - (void) _updateCollections:(JournlerEntry*)entry;
 
-- (NSArray*) collectionsForTypeID:(int)type;
+- (NSArray*) collectionsForTypeID:(NSInteger)type;
 
 - (JournlerCollection*) libraryCollection;
 - (JournlerCollection*) trashCollection;
@@ -418,6 +418,6 @@ typedef enum {
 
 @interface NSObject (JournalSpellChecking)
 
-- (int) spellDocumentTag;
+- (NSInteger) spellDocumentTag;
 
 @end

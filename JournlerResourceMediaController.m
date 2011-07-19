@@ -27,7 +27,7 @@
 
 - (void) awakeFromNib
 {
-	int borders[4] = {1,0,0,0};
+	NSInteger borders[4] = {1,0,0,0};
 	PDBorderedView *borderedContent = (PDBorderedView*)[self contentView];
 	[borderedContent setBorders:borders];
 }

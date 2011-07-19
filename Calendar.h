@@ -39,7 +39,7 @@
 }
 
 + (NSArray*) englishWeekDays;
-+ (int) lastDayOfMonth:(int)month year:(int)year;
++ (NSInteger) lastDayOfMonth:(NSInteger)month year:(NSInteger)year;
 
 - (id) delegate;
 - (void) setDelegate:(id)anObject;
@@ -92,7 +92,7 @@
 
 - (void) computerDidWake:(NSNotification*)aNotification;
 
-- (NSBezierPath*) bezierPathForSelectedDateAtColumn:(int)column row:(int)row offset:(int)offset;
+- (NSBezierPath*) bezierPathForSelectedDateAtColumn:(NSInteger)column row:(NSInteger)row offset:(NSInteger)offset;
 - (void) drawButtons;
 
 - (IBAction) selectMonth:(id)sender;
@@ -102,7 +102,7 @@
 
 - (BOOL) importPasteboardToDateWithDictionary:(NSDictionary*)aDictionary;
 
-- (NSRect) frameOfDateWithDay:(int)aDay month:(int)aMonth year:(int)aYear;
+- (NSRect) frameOfDateWithDay:(NSInteger)aDay month:(NSInteger)aMonth year:(NSInteger)aYear;
 
 @end
 

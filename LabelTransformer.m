@@ -109,7 +109,7 @@
 	// - assumes that the beforeObject value is on a scale from 0 to 100
 	//
 	
-	int val = [beforeObject intValue];
+	NSInteger val = [beforeObject integerValue];
 	NSImage *returnImage = nil;
 	
 	if ( val != 0 && val <= [labelImages count] )

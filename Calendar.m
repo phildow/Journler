@@ -180,7 +180,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 			@"Thursday", @"Friday", @"Saturday", nil];
 }
 
-+ (int) lastDayOfMonth:(int)month year:(int)year {
++ (NSInteger) lastDayOfMonth:(NSInteger)month year:(NSInteger)year {
 	
 	//0 is january, 11 is december
 	//even though locally (myMonth) 1 is january and 12 is december
@@ -359,7 +359,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 - (void) computerDidWake:(NSNotification*)aNotification {
 	
 	// just make sure that today's date is corrected if the computer was asleep during a midnight date change
-	if ( [[[aNotification userInfo] objectForKey:PDPowerManagementMessage] intValue] == PDPowerManagementPoweredOn )
+	if ( [[[aNotification userInfo] objectForKey:PDPowerManagementMessage] integerValue] == PDPowerManagementPoweredOn )
 		[self resetToday:self];
 	
 }
@@ -548,7 +548,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 		
 		// requesting a year change
 		
-		NSInteger newYear = [sender intValue];
+		NSInteger newYear = [sender integerValue];
 		NSInteger highestDay = [Calendar lastDayOfMonth:myMonth year:newYear];
 		
 		NSCalendarDate *newDate = [NSCalendarDate dateWithYear:newYear month:myMonth day:(myDay<=highestDay?myDay:highestDay) 
@@ -828,7 +828,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 
 }
 
-- (NSBezierPath*) bezierPathForSelectedDateAtColumn:(int)column row:(int)row offset:(int)offset {
+- (NSBezierPath*) bezierPathForSelectedDateAtColumn:(NSInteger)column row:(NSInteger)row offset:(NSInteger)offset {
 	
 	NSBezierPath *path;
 	
@@ -868,7 +868,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	return path;
 }
 
-- (NSRect) frameOfDateWithDay:(int)aDay month:(int)aMonth year:(int)aYear
+- (NSRect) frameOfDateWithDay:(NSInteger)aDay month:(NSInteger)aMonth year:(NSInteger)aYear
 {
 	if ( aMonth != myMonth || aYear != myYear )
 		return NSZeroRect;
@@ -917,7 +917,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	// calendar as first responder, keyboard events change date
 	
 	unichar key = [[theEvent charactersIgnoringModifiers] characterAtIndex:0];
-	unsigned flags = [theEvent modifierFlags];
+	NSUInteger flags = [theEvent modifierFlags];
 	
 	if ( key == NSLeftArrowFunctionKey && !(flags & NSShiftKeyMask) )
 		[self dayToLeft];
@@ -1090,7 +1090,7 @@ static void SetSegmentDescriptions(NSSegmentedControl *control, NSString *firstD
 	
 	NSInteger i;
 	NSInteger maxDays = [Calendar lastDayOfMonth:[selectedDate monthOfYear] year:[selectedDate yearOfCommonEra]];
-	NSInteger dateInt = [[selectedDate descriptionWithCalendarFormat:@"%Y%m%d" timeZone:nil locale:nil] intValue];
+	NSInteger dateInt = [[selectedDate descriptionWithCalendarFormat:@"%Y%m%d" timeZone:nil locale:nil] integerValue];
 	
 	dateInt-=([selectedDate dayOfMonth]-1);
 	

@@ -30,7 +30,7 @@ const AEKeyword DataItemSourceFeedURL = 'furl';
 NSString *kPDAppleScriptErrorDictionaryScriptSource = @"PDAppleScriptErrorDictionaryScriptSource";
 
 typedef void (*JournlerWeblogInterfaceDidChoosePreferredEditorIMP)(id, SEL, id, int, id);
-//- (void) didChoosePreferredEditor:(JournlerWeblogInterface*)weblogInterface returnCode:(int)returnCode editor:(NSString*)filename;
+//- (void) didChoosePreferredEditor:(JournlerWeblogInterface*)weblogInterface returnCode:(NSInteger)returnCode editor:(NSString*)filename;
 
 @implementation JournlerWeblogInterface
 
@@ -86,7 +86,7 @@ typedef void (*JournlerWeblogInterfaceDidChoosePreferredEditorIMP)(id, SEL, id, 
 }
 
 - (void)weblogEditorOpenPanelDidEnd:(NSOpenPanel *)sheet 
-		returnCode:(int)returnCode  
+		returnCode:(NSInteger)returnCode  
 		contextInfo:(void  *)contextInfo
 {
 	NSString *filename = nil;
@@ -103,7 +103,7 @@ typedef void (*JournlerWeblogInterfaceDidChoosePreferredEditorIMP)(id, SEL, id, 
 
 - (BOOL) sendEntries:(NSArray*)theEntries 
 		toPreferredEditor:(NSString*)editorFilename 
-		options:(int)options error:(id*)anError
+		options:(NSInteger)options error:(id*)anError
 {
 	// what kind of file do we have at the path?
 	BOOL success = NO;
@@ -158,7 +158,7 @@ typedef void (*JournlerWeblogInterfaceDidChoosePreferredEditorIMP)(id, SEL, id, 
 
 - (BOOL) sendEntries:(NSArray*)theEntries 
 		toWeblogProtocolPreferredEditor:(NSString*)editorBundleIdentifier 
-		options:(int)options 
+		options:(NSInteger)options 
 		error:(id*)anError
 {
 	BOOL success = YES;
@@ -235,7 +235,7 @@ typedef void (*JournlerWeblogInterfaceDidChoosePreferredEditorIMP)(id, SEL, id, 
 
 - (BOOL) sendEntries:(NSArray*)theEntries 
 		toApplicationPreferredEditor:(NSString*)editorFilename 
-		options:(int)options 
+		options:(NSInteger)options 
 		error:(id*)anError
 {
 	BOOL success = YES;
@@ -264,7 +264,7 @@ typedef void (*JournlerWeblogInterfaceDidChoosePreferredEditorIMP)(id, SEL, id, 
 
 - (BOOL) sendEntries:(NSArray*)theEntries 
 		toAppleScriptPreferredEditor:(NSString*)editorFilename 
-		options:(int)options 
+		options:(NSInteger)options 
 		error:(id*)anError
 {
 	BOOL success = YES;

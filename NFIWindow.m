@@ -11,7 +11,7 @@
 
 @implementation NFIWindow
 
-+ (Class)frameViewClassForStyleMask:(unsigned int)styleMask
++ (Class)frameViewClassForStyleMask:(NSUInteger)styleMask
 {
 	return [NFIFrame class];
 }

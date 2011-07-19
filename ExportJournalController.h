@@ -16,8 +16,8 @@
 
 - (NSView*) contentView;
 
-- (int) dataFormat;
-- (void) setDataFormat:(int)format;
+- (NSInteger) dataFormat;
+- (void) setDataFormat:(NSInteger)format;
 
 - (NSDate*) dateFrom;
 - (void) setDateFrom:(NSDate*)date;
@@ -25,8 +25,8 @@
 - (NSDate*) dateTo;
 - (void) setDateTo:(NSDate*)date;
 
-- (int) fileMode;
-- (void) setFileMode:(int)mode;
+- (NSInteger) fileMode;
+- (void) setFileMode:(NSInteger)mode;
 
 - (BOOL) modifiesFileCreationDate;
 - (void) setModifiesFileCreationDate:(BOOL)modifies;

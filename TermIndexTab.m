@@ -112,7 +112,7 @@ static NSArray *DefaultDocumentsSort()
 		NSLog(@"%s - unable to locate lexiconinlexicon.html in Journler Help Files/html", __PRETTY_FUNCTION__);
 	}
 	
-	//int borders[4] = {1,1,1,1};
+	//NSInteger borders[4] = {1,1,1,1};
 	//[contentPlaceholder setBordered:YES];
 	//[contentPlaceholder setDrawsGradient:YES];
 	//[contentPlaceholder setBorders:borders];
@@ -280,7 +280,7 @@ static NSArray *DefaultDocumentsSort()
 	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	unsigned anIndex = [[aDictionary objectForKey:@"index"] intValue];
+	NSUInteger anIndex = [[aDictionary objectForKey:@"index"] integerValue];
 	NSArray *documentNodes = [aDictionary objectForKey:@"documents"];
 	
 	if ( loadingDocuments != nil )
@@ -299,7 +299,7 @@ static NSArray *DefaultDocumentsSort()
 	{
 		NSDictionary *contentDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
 				content, @"content", 
-				[NSNumber numberWithUnsignedInt:anIndex], @"index", nil];
+				[NSNumber numberWithUnsignedInteger:anIndex], @"index", nil];
 				
 		[indexBrowser performSelectorOnMainThread:@selector(setContentAtIndex:) withObject:contentDictionary waitUntilDone:YES];
 	}
@@ -316,7 +316,7 @@ static NSArray *DefaultDocumentsSort()
 		goto bail;
 	
 	JournlerObject *anObject = [documents objectAtIndex:0];
-	unsigned anIndex = [[aDictionary objectForKey:@"index"] intValue];
+	NSUInteger anIndex = [[aDictionary objectForKey:@"index"] integerValue];
 	
 	NSMutableArray *content = [NSMutableArray array];
 	NSArray *objectTermDictionaries = [documentToTermsDictionary objectForKey:anObject];
@@ -342,8 +342,8 @@ static NSArray *DefaultDocumentsSort()
 				//[NSThread exit];
 			}
 			
-			unsigned count = [searchManager countOfDocumentsForTerm:aTerm options:kIgnoreNumericTerms];
-			unsigned frequency = [searchManager frequenceyOfTerm:aTerm forDocument:anObject options:kIgnoreNumericTerms];
+			NSUInteger count = [searchManager countOfDocumentsForTerm:aTerm options:kIgnoreNumericTerms];
+			NSUInteger frequency = [searchManager frequenceyOfTerm:aTerm forDocument:anObject options:kIgnoreNumericTerms];
 			
 			IndexNode *aNode = [[[IndexNode alloc] init] autorelease];
 		
@@ -372,7 +372,7 @@ bail:
 		#ifdef __DEBUG__
 		NSLog(@"%s - setting content", __PRETTY_FUNCTION__);
 		#endif
-		NSDictionary *contentDictionary = [NSDictionary dictionaryWithObjectsAndKeys:content, @"content", [NSNumber numberWithUnsignedInt:anIndex], @"index", nil];
+		NSDictionary *contentDictionary = [NSDictionary dictionaryWithObjectsAndKeys:content, @"content", [NSNumber numberWithUnsignedInteger:anIndex], @"index", nil];
 		[indexBrowser performSelectorOnMainThread:@selector(setContentAtIndex:) withObject:contentDictionary waitUntilDone:YES];
 		//[indexBrowser setContent:content forColumnAtIndex:anIndex];
 	}
@@ -447,7 +447,7 @@ bail:
 
 #pragma mark -
 
-- (BOOL) canPerformNavigation:(int)direction 
+- (BOOL) canPerformNavigation:(NSInteger)direction 
 {
 	// overridden because subclass does not support navigation
 	return NO;
@@ -502,7 +502,7 @@ bail:
 - (BOOL)validateMenuItem:(NSMenuItem*)menuItem
 {
 	BOOL enabled = YES;
-	//int tag = [menuItem tag];
+	//NSInteger tag = [menuItem tag];
 	SEL action = [menuItem action];
 	
 	if ( action == @selector(performCustomFindPanelAction:) )
@@ -742,7 +742,7 @@ bail:
 #pragma mark -
 #pragma mark Browser Delegation and Selection
 
-- (NSArray*) browser:(IndexBrowser*)aBrowser contentForNodes:(NSArray*)selectedNodes atColumnIndex:(unsigned)anIndex
+- (NSArray*) browser:(IndexBrowser*)aBrowser contentForNodes:(NSArray*)selectedNodes atColumnIndex:(NSUInteger)anIndex
 {
 	NSArray *content = nil;
 	//NSMutableArray *content = [[[NSMutableArray alloc] init] autorelease];
@@ -879,7 +879,7 @@ bail:
 		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 		
 		// fork the term loading to another thread
-		NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:anObject,nil], @"documents", [NSNumber numberWithInt:anIndex+1], @"index", nil];
+		NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSArray arrayWithObjects:anObject,nil], @"documents", [NSNumber numberWithInteger:anIndex+1], @"index", nil];
 		[NSThread detachNewThreadSelector:@selector(loadTermsForObjectAtIndex:) toTarget:self withObject:dictionary];
 		
 		// give this thread priority
@@ -913,7 +913,7 @@ bail:
 	}
 	else if ( [anObject isKindOfClass:[JournlerObject class]] )
 	{
-		unsigned indexOfColumn = [[aBrowser columns] indexOfObjectIdenticalTo:aColumn];
+		NSUInteger indexOfColumn = [[aBrowser columns] indexOfObjectIdenticalTo:aColumn];
 		if ( indexOfColumn > 0 )
 		{
 			id selectedTerm = [[[[aBrowser columns] objectAtIndex:indexOfColumn-1] selectedObject] representedObject];
@@ -936,7 +936,7 @@ bail:
 
 #pragma mark -
 
-- (BOOL) browser:(IndexBrowser*)aBrowser columnForNodeDrawsIcon:(IndexNode*)selectedNode atColumnIndex:(unsigned)anIndex
+- (BOOL) browser:(IndexBrowser*)aBrowser columnForNodeDrawsIcon:(IndexNode*)selectedNode atColumnIndex:(NSUInteger)anIndex
 {
 	// the represented object is the selection whose contents are going to be displayed
 	id representedObject = [selectedNode representedObject];
@@ -947,7 +947,7 @@ bail:
 		return NO;
 }
 
-- (BOOL) browser:(IndexBrowser*)aBrowser columnForNodeShowsCount:(IndexNode*)selectedNode atColumnIndex:(unsigned)anIndex
+- (BOOL) browser:(IndexBrowser*)aBrowser columnForNodeShowsCount:(IndexNode*)selectedNode atColumnIndex:(NSUInteger)anIndex
 {
 	// the represented object is the selection whose contents are going to be displayed
 	id representedObject = [selectedNode representedObject];
@@ -958,7 +958,7 @@ bail:
 		return YES;
 }
 
-- (BOOL) browser:(IndexBrowser*)aBrowser columnForNodeShowsFrequency:(IndexNode*)selectedNode atColumnIndex:(unsigned)anIndex
+- (BOOL) browser:(IndexBrowser*)aBrowser columnForNodeShowsFrequency:(IndexNode*)selectedNode atColumnIndex:(NSUInteger)anIndex
 {
 	// the represented object is the selection whose contents are going to be displayed
 	
@@ -973,7 +973,7 @@ bail:
 		return YES;
 }
 
-- (BOOL) browser:(IndexBrowser*)aBrowser columnForNodeAllowsMultipleSelection:(IndexNode*)selectedNode atColumnIndex:(unsigned)anIndex
+- (BOOL) browser:(IndexBrowser*)aBrowser columnForNodeAllowsMultipleSelection:(IndexNode*)selectedNode atColumnIndex:(NSUInteger)anIndex
 {
 	if ( selectedNode == nil )
 		return YES;
@@ -986,7 +986,7 @@ bail:
 		return YES;
 }
 
-- (BOOL) browser:(IndexBrowser*)aBrowser columnForNodeCanDeleteContent:(IndexNode*)selectedNode atColumnIndex:(unsigned)anIndex
+- (BOOL) browser:(IndexBrowser*)aBrowser columnForNodeCanDeleteContent:(IndexNode*)selectedNode atColumnIndex:(NSUInteger)anIndex
 {
 	if ( selectedNode == nil )
 		return YES;
@@ -1001,7 +1001,7 @@ bail:
 
 #pragma mark -
 
-- (NSString*) browser:(IndexBrowser*)aBrowser titleForNode:(IndexNode*)selectedNode atColumnIndex:(unsigned)anIndex
+- (NSString*) browser:(IndexBrowser*)aBrowser titleForNode:(IndexNode*)selectedNode atColumnIndex:(NSUInteger)anIndex
 {
 	// the represented object is the Node whose contents are going to be displayed
 	if ( selectedNode == nil ) // first column
@@ -1017,7 +1017,7 @@ bail:
 		return nil;
 }
 
-- (NSString*) browser:(IndexBrowser*)aBrowser headerTitleForNode:(IndexNode*)selectedNode atColumnIndex:(unsigned)anIndex
+- (NSString*) browser:(IndexBrowser*)aBrowser headerTitleForNode:(IndexNode*)selectedNode atColumnIndex:(NSUInteger)anIndex
 {
 	// the represented object is the Node whose contents are going to be displayed
 	if ( selectedNode == nil ) // first column
@@ -1033,7 +1033,7 @@ bail:
 		return NSLocalizedString(@"term header title",@"");
 }
 
-- (NSString*) browser:(IndexBrowser*)aBrowser countSuffixForNode:(IndexNode*)selectedNode atColumnIndex:(unsigned)anIndex
+- (NSString*) browser:(IndexBrowser*)aBrowser countSuffixForNode:(IndexNode*)selectedNode atColumnIndex:(NSUInteger)anIndex
 {
 	// the represented object is the Node whose contents are going to be displayed
 	if ( selectedNode == nil ) // first column
@@ -1049,7 +1049,7 @@ bail:
 		return nil;
 }
 
-- (NSArray*) browser:(IndexBrowser*)aBrowser sortDescriptorsForNode:(IndexNode*)selectedNode atColumnIndex:(unsigned)anIndex
+- (NSArray*) browser:(IndexBrowser*)aBrowser sortDescriptorsForNode:(IndexNode*)selectedNode atColumnIndex:(NSUInteger)anIndex
 {
 	if ( anIndex == 0 ) // use the saved sort descriptors
 		return nil;
@@ -1058,7 +1058,7 @@ bail:
 	else return nil;
 }
 
-- (BOOL) browser:(IndexBrowser*)aBrowser columnForNodeFiltersCount:(IndexNode*)selectedNode atColumnIndex:(unsigned)anIndex
+- (BOOL) browser:(IndexBrowser*)aBrowser columnForNodeFiltersCount:(IndexNode*)selectedNode atColumnIndex:(NSUInteger)anIndex
 {
 	if ( selectedNode == nil)
 		return YES;
@@ -1073,14 +1073,14 @@ bail:
 		return NO;
 }
 
-- (BOOL) browser:(IndexBrowser*)aBrowser columnForNodeFiltersTitle:(IndexNode*)selectedNode atColumnIndex:(unsigned)anIndex
+- (BOOL) browser:(IndexBrowser*)aBrowser columnForNodeFiltersTitle:(IndexNode*)selectedNode atColumnIndex:(NSUInteger)anIndex
 {
 	return YES;
 }
 
 #pragma mark -
 
-- (float) browser:(IndexBrowser*)aBrowser rowHeightForNode:(IndexNode*)selectedNode atColumnIndex:(unsigned)anIndex
+- (float) browser:(IndexBrowser*)aBrowser rowHeightForNode:(IndexNode*)selectedNode atColumnIndex:(NSUInteger)anIndex
 {	
 	if ( selectedNode == nil )
 		return kIndexColumnSmallRowHeight;
@@ -1097,7 +1097,7 @@ bail:
 	else return kIndexColumnLargeRowHeight;
 }
 
-- (NSMenu*) browser:(IndexBrowser*)aBrowser contextMenuForNode:(IndexNode*)selectedNode atColumnIndex:(unsigned)anIndex
+- (NSMenu*) browser:(IndexBrowser*)aBrowser contextMenuForNode:(IndexNode*)selectedNode atColumnIndex:(NSUInteger)anIndex
 {
 	if ( selectedNode == nil )
 		return nil;
@@ -1156,7 +1156,7 @@ bail:
 
 /*
 
-- (BOOL) browser:(IndexBrowser*)aBrowser columnForRepresentedObjectDrawsIcon:(id)anObject atColumnIndex:(unsigned)anIndex
+- (BOOL) browser:(IndexBrowser*)aBrowser columnForRepresentedObjectDrawsIcon:(id)anObject atColumnIndex:(NSUInteger)anIndex
 {
 	// the represented object is the selection whose contents are going to be displayed
 	if ( [anObject isKindOfClass:[NSString class]] )
@@ -1165,7 +1165,7 @@ bail:
 		return NO;
 }
 
-- (BOOL) browser:(IndexBrowser*)aBrowser columnForRepresentedObjectShowsCount:(id)anObject atColumnIndex:(unsigned)anIndex
+- (BOOL) browser:(IndexBrowser*)aBrowser columnForRepresentedObjectShowsCount:(id)anObject atColumnIndex:(NSUInteger)anIndex
 {
 	// the represented object is the selection whose contents are going to be displayed
 	if ( [anObject isKindOfClass:[NSString class]] )
@@ -1174,7 +1174,7 @@ bail:
 		return YES;
 }
 
-- (BOOL) browser:(IndexBrowser*)aBrowser columnForRepresentedObjectShowsFrequency:(id)anObject atColumnIndex:(unsigned)anIndex
+- (BOOL) browser:(IndexBrowser*)aBrowser columnForRepresentedObjectShowsFrequency:(id)anObject atColumnIndex:(NSUInteger)anIndex
 {
 	// the represented object is the selection whose contents are going to be displayed
 	if ( anObject == nil )
@@ -1187,7 +1187,7 @@ bail:
 
 #pragma mark -
 
-- (NSString*) browser:(IndexBrowser*)aBrowser titleForSelection:(id)anObject atColumnIndex:(unsigned)anIndex
+- (NSString*) browser:(IndexBrowser*)aBrowser titleForSelection:(id)anObject atColumnIndex:(NSUInteger)anIndex
 {
 	// the represented object is the selection whose contents are going to be displayed
 	if ( anObject == nil ) // first column
@@ -1200,7 +1200,7 @@ bail:
 		return nil;
 }
 
-- (NSString*) browser:(IndexBrowser*)aBrowser countSuffixForSelection:(id)anObject atColumnIndex:(unsigned)anIndex
+- (NSString*) browser:(IndexBrowser*)aBrowser countSuffixForSelection:(id)anObject atColumnIndex:(NSUInteger)anIndex
 {
 	// the represented object is the selection whose contents are going to be displayed
 	if ( anObject == nil ) // first column
@@ -1213,7 +1213,7 @@ bail:
 		return nil;
 }
 
-- (NSArray*) browser:(IndexBrowser*)aBrowser sortDescriptorsForSelection:(id)anObject atColumnIndex:(unsigned)anIndex
+- (NSArray*) browser:(IndexBrowser*)aBrowser sortDescriptorsForSelection:(id)anObject atColumnIndex:(NSUInteger)anIndex
 {
 	if ( anIndex == nil ) // use the saved sort descriptors
 		return nil;
@@ -1340,7 +1340,7 @@ bail:
 	
 	JournlerObject *anObject;
 	
-	int flags = kEntrySetLabelColor;
+	NSInteger flags = kEntrySetLabelColor;
 	if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EntryExportIncludeHeader"] )
 		flags |= kEntryIncludeHeader;
 	if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EntryExportSetCreationDate"] )

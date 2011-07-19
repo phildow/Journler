@@ -491,7 +491,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	return sharedJournal;
 }
 
-- (int) spellDocumentTag
+- (NSInteger) spellDocumentTag
 {
 	return spellDocumentTag;
 }
@@ -1191,7 +1191,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 			[prefsController setJournal:[self journal]];
 		}
 		[prefsController showWindow:self];
-		[prefsController selectPanel:[NSNumber numberWithInt:kPrefBlogging]];
+		[prefsController selectPanel:[NSNumber numberWithInteger:kPrefBlogging]];
 		[prefsController selectBlog:actualBlog];
 		
 	}
@@ -1330,7 +1330,7 @@ extern void QTSetProcessProperty(UInt32 type, UInt32 creator, size_t size, uint8
 	[[self journal] setSaveEntryOptions:kEntrySaveDoNotIndex|kEntrySaveDoNotCollect];
 	
 	// give the import an id
-	[importedEntry setValue:[NSNumber numberWithInt:[[self journal] newEntryTag]] forKey:@"tagID"];
+	[importedEntry setValue:[NSNumber numberWithInteger:[[self journal] newEntryTag]] forKey:@"tagID"];
 	// add the import to the journal
 	[[self journal] addEntry:importedEntry];
 	
@@ -1410,7 +1410,7 @@ bail:
 
 - (BOOL) _importContentsOfDropBox:(NSString*)path 
 		visually:(BOOL)showDialog  
-		filesAffected:(int*)newEntryCount
+		filesAffected:(NSInteger*)newEntryCount
 {
 	// DIRECTORY_ENUMERATION
     
@@ -1584,7 +1584,7 @@ bail:
 	return completeSuccess;
 }
 
-- (void) dropboxImport:(DropBoxDialog*)aDialog didEndDialog:(int)result contents:(NSArray*)contents
+- (void) dropboxImport:(DropBoxDialog*)aDialog didEndDialog:(NSInteger)result contents:(NSArray*)contents
 {
 	if ( result == NSRunAbortedResponse )
 	{
@@ -1701,7 +1701,7 @@ bail:
 	dropBoxing = NO;
 }
 
-- (void) dropboxScriptCommand:(DropBoxDialog*)aDialog didEndDialog:(int)result contents:(NSArray*)contents
+- (void) dropboxScriptCommand:(DropBoxDialog*)aDialog didEndDialog:(NSInteger)result contents:(NSArray*)contents
 {
 	// return to the previous application
 	if ( ![[[aDialog activeApplication] objectForKey:@"NSApplicationName"] isEqualToString:@"Journler"] )
@@ -1973,7 +1973,7 @@ bail:
 	// insert a library folder which contains all of the imported entries
 	JournlerCollection *libraryFolder = [[[JournlerCollection alloc] init] autorelease];
 	
-	[libraryFolder setTypeID:[NSNumber numberWithInt:PDCollectionTypeIDLibrary]];
+	[libraryFolder setTypeID:[NSNumber numberWithInteger:PDCollectionTypeIDLibrary]];
 	[libraryFolder setTitle:[[[self journal] libraryCollection] title]];
 	[libraryFolder setIcon:[[[self journal] libraryCollection] icon]];
 	[libraryFolder setEntries:importedEntries];
@@ -2009,7 +2009,7 @@ bail:
 
 - (void) computerDidWake:(NSNotification*)aNotification 
 {
-	if ( [[[aNotification userInfo] objectForKey:PDPowerManagementMessage] intValue] == PDPowerManagementPoweredOn )
+	if ( [[[aNotification userInfo] objectForKey:PDPowerManagementMessage] integerValue] == PDPowerManagementPoweredOn )
 	{
 		[self regenerateDynamicDatePredicates];
 	}
@@ -2122,12 +2122,12 @@ bail:
 /*
 #pragma mark -
 
-- (BOOL)exceptionHandler:(NSExceptionHandler *)sender shouldHandleException:(NSException *)exception mask:(unsigned int)aMask
+- (BOOL)exceptionHandler:(NSExceptionHandler *)sender shouldHandleException:(NSException *)exception mask:(NSUInteger)aMask
 {
 	return YES;
 }
 
-- (BOOL)exceptionHandler:(NSExceptionHandler *)sender shouldLogException:(NSException *)exception mask:(unsigned int)aMask
+- (BOOL)exceptionHandler:(NSExceptionHandler *)sender shouldLogException:(NSException *)exception mask:(NSUInteger)aMask
 {
 	#warning see about emailing this trace
 	[exception printStackTrace];
@@ -2415,7 +2415,7 @@ bail:
 	}
 	
 	// we made it all the way through, check for updates
-	if ( [[sharedJournal version] intValue] < 253 )
+	if ( [[sharedJournal version] integerValue] < 253 )
 	{
 		// remove unused variables, clear folder icons
 		JournalUpgradeController *upgradeController = [[[JournalUpgradeController alloc] init] autorelease];
@@ -2592,13 +2592,13 @@ bail:
 				[[sharedJournal entries] setValue:[NSCalendarDate calendarDate] forKey:@"calDateModified"];
 				
 				// the due date entry
-				JournlerEntry *duedateExampleEntry = [sharedJournal entryForTagID:[NSNumber numberWithInt:8]];
+				JournlerEntry *duedateExampleEntry = [sharedJournal entryForTagID:[NSNumber numberWithInteger:8]];
 				NSCalendarDate *aDuedate = [[NSDate dateWithTimeIntervalSinceNow:(60*60*24*4)] dateWithCalendarFormat:nil timeZone:nil];
 				[duedateExampleEntry setCalDateDue:aDuedate];
 				
 				// reset the icons on each of the folders
                 for ( JournlerCollection *aFolder in [sharedJournal collections] )
-					[aFolder setValue:[JournlerCollection defaultImageForID:[[aFolder valueForKey:@"typeID"] intValue]] forKey:@"icon"];
+					[aFolder setValue:[JournlerCollection defaultImageForID:[[aFolder valueForKey:@"typeID"] integerValue]] forKey:@"icon"];
 				
 				// save the changes
 				[sharedJournal save:nil];
@@ -4190,10 +4190,10 @@ bail:
 			}
 		}
 		
-		if ( [[theLibrary index] intValue] != 0 )
+		if ( [[theLibrary index] integerValue] != 0 )
 			[[[self journal] rootCollection] moveChild:theLibrary toIndex:0];
 		
-		if ( [[theTrash index] intValue] != 1 )
+		if ( [[theTrash index] integerValue] != 1 )
 			[[[self journal] rootCollection] moveChild:theLibrary toIndex:1];
 		
 		[[self journal] setRootFolders:[[self journal] rootFolders]];
@@ -4424,7 +4424,7 @@ bail:
 			
 			aeDescriptor = [script executeAndReturnError:&errorInfo];
 			
-			if ( aeDescriptor == nil && [[errorInfo objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )  
+			if ( aeDescriptor == nil && [[errorInfo objectForKey:NSAppleScriptErrorNumber] integerValue] != kScriptWasCancelledError )  
 			{
 				id theSource = [script richTextSource];
 				if ( theSource == nil ) theSource = [script source];
@@ -4459,7 +4459,7 @@ bail:
 	
 	aeDescriptor = [appleScript executeAndReturnError:&errorInfo];
 			
-	if ( aeDescriptor == nil && [[errorInfo objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError ) 
+	if ( aeDescriptor == nil && [[errorInfo objectForKey:NSAppleScriptErrorNumber] integerValue] != kScriptWasCancelledError ) 
 	{
 		if ( withErrors )
 		{
@@ -4507,7 +4507,7 @@ bail:
 		return;
 	}
 	
-	if ( ![script isCompiled] && ![script compileAndReturnError:&errorInfo] && [[errorInfo objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError ) 
+	if ( ![script isCompiled] && ![script compileAndReturnError:&errorInfo] && [[errorInfo objectForKey:NSAppleScriptErrorNumber] integerValue] != kScriptWasCancelledError ) 
 	{
 		id theSource = [script richTextSource];
 		if ( theSource == nil ) theSource = [script source];
@@ -4852,7 +4852,7 @@ bail:
 			
 			// show preferernces and license panel
 			[prefsController showWindow:self];
-			[prefsController selectPanel:[NSNumber numberWithInt:kPrefDonations]];
+			[prefsController selectPanel:[NSNumber numberWithInteger:kPrefDonations]];
 			
 			// fork depending on invalidating key
 			if ( invalidating == YES )
@@ -4927,7 +4927,7 @@ bail:
 	{
 	
 		eventDescriptor = [script executeAndReturnError:&errorDictionary];
-		if ( eventDescriptor == nil && [[errorDictionary objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError ) 
+		if ( eventDescriptor == nil && [[errorDictionary objectForKey:NSAppleScriptErrorNumber] integerValue] != kScriptWasCancelledError ) 
 		{
 			NSLog(@"%s - problem compiling mail message selection script: %@", __PRETTY_FUNCTION__, errorDictionary);
 			
@@ -5535,7 +5535,7 @@ bail:
 	[mainWindow servicesMenuAppendSelection:pboard desiredType:desiredType];
 }
 
-- (void) servicesImport:(DropBoxDialog*)aDialog didEndDialog:(int)result contents:(NSArray*)contents
+- (void) servicesImport:(DropBoxDialog*)aDialog didEndDialog:(NSInteger)result contents:(NSArray*)contents
 {
 	NSArray *targetTags = [aDialog tags];
 	NSString *targetCategory = [aDialog category];
@@ -6218,17 +6218,17 @@ bail:
 //
 // by implementing this kind of keyvalue coding, we prevent applescript from directly accessing the arrays 
 
-- (int) indexOfObjectInJSEntries:(JournlerEntry*)anEntry 
+- (NSInteger) indexOfObjectInJSEntries:(JournlerEntry*)anEntry 
 {
 	return [[self valueForKeyPath:@"journal.entries"] indexOfObject:anEntry];
 }
 
-- (unsigned int) countOfJSEntries 
+- (NSUInteger) countOfJSEntries 
 {
 	return [[self valueForKeyPath:@"journal.entries"] count];
 }
 
-- (JournlerEntry*) objectInJSEntriesAtIndex:(unsigned int)i 
+- (JournlerEntry*) objectInJSEntriesAtIndex:(NSUInteger)i 
 {
 	if ( i >= [[self valueForKeyPath:@"journal.entries"] count] ) 
 	{
@@ -6248,7 +6248,7 @@ bail:
 
 #pragma mark -
 
-- (void) insertObject:(JournlerEntry*)anEntry inJSEntriesAtIndex:(unsigned int)index 
+- (void) insertObject:(JournlerEntry*)anEntry inJSEntriesAtIndex:(NSUInteger)index 
 {
 	[self JSAddNewEntry:anEntry atIndex:index];
 }
@@ -6258,11 +6258,11 @@ bail:
 	[self JSAddNewEntry:anEntry atIndex:0];
 }
 
-- (void) JSAddNewEntry:(JournlerEntry*)anEntry atIndex:(unsigned int)index 
+- (void) JSAddNewEntry:(JournlerEntry*)anEntry atIndex:(NSUInteger)index 
 {
 	
 	// ensure the unique id
-	[anEntry setTagID:[NSNumber numberWithInt:[[self journal] newEntryTag]]];
+	[anEntry setTagID:[NSNumber numberWithInteger:[[self journal] newEntryTag]]];
 	
 	// check the date - will prduce incorrect date (an entry always has a date)
 	if ( ![anEntry calDate] ) 
@@ -6330,7 +6330,7 @@ bail:
 
 #pragma mark -
 
--(void) removeObjectFromJSEntriesAtIndex:(unsigned int)index 
+-(void) removeObjectFromJSEntriesAtIndex:(NSUInteger)index 
 {
 	if ( index >= [[self valueForKeyPath:@"journal.entries"] count] ) 
 	{
@@ -6342,7 +6342,7 @@ bail:
 	[self JSDeleteEntry:[[self valueForKeyPath:@"journal.entries"] objectAtIndex:index]];
 	
 } 
--(void) removeFromSJSEntriesAtIndex:(unsigned int)index 
+-(void) removeFromSJSEntriesAtIndex:(NSUInteger)index 
 { 
 	if ( index >= [[self valueForKeyPath:@"journal.entries"] count] ) 
 	{
@@ -6363,17 +6363,17 @@ bail:
 #pragma mark -
 #pragma mark Scripting Folders
 
-- (int) indexOfObjectInJSFolders:(JournlerCollection*)aFolder 
+- (NSInteger) indexOfObjectInJSFolders:(JournlerCollection*)aFolder 
 {
 	return [[self valueForKeyPath:@"journal.collections"] indexOfObject:aFolder];
 }
 
-- (unsigned int) countOfJSFolders
+- (NSUInteger) countOfJSFolders
 { 
 	return [[self valueForKeyPath:@"journal.collections"] count];
 }
 
-- (JournlerCollection*) objectInJSFoldersAtIndex:(unsigned int)i 
+- (JournlerCollection*) objectInJSFoldersAtIndex:(NSUInteger)i 
 {
 	if ( i >= [[self valueForKeyPath:@"journal.collections"] count] ) 
 	{
@@ -6393,7 +6393,7 @@ bail:
 
 #pragma mark -
 
-- (void)insertObject:(JournlerCollection*)aFolder inJSFoldersAtIndex:(unsigned int)index 
+- (void)insertObject:(JournlerCollection*)aFolder inJSFoldersAtIndex:(NSUInteger)index 
 {
 	[self JSAddNewFolder:aFolder atIndex:index];
 }
@@ -6403,19 +6403,19 @@ bail:
 	[self JSAddNewFolder:aFolder atIndex:0];
 }
 
-- (void) JSAddNewFolder:(JournlerCollection*)aFolder atIndex:(unsigned int)index 
+- (void) JSAddNewFolder:(JournlerCollection*)aFolder atIndex:(NSUInteger)index 
 {
 	// ensure the folder has a valid id
-	[aFolder setTagID:[NSNumber numberWithInt:[[self journal] newFolderTag]]];
+	[aFolder setTagID:[NSNumber numberWithInteger:[[self journal] newFolderTag]]];
 	
 	// ensure the folder's title is valid
 	if ( [aFolder title] == nil || [[aFolder title] length] == 0 )
 		[aFolder setTitle:@"New Collection"];
 		
 	// ensure the type id is valid
-	if ( [[aFolder typeID] intValue] == 0 || [[aFolder typeID] intValue] == PDCollectionTypeIDLibrary || 
-			[[aFolder typeID] intValue] == PDCollectionTypeIDTrash )
-		[aFolder setTypeID:[NSNumber numberWithInt:PDCollectionTypeIDFolder]];
+	if ( [[aFolder typeID] integerValue] == 0 || [[aFolder typeID] integerValue] == PDCollectionTypeIDLibrary || 
+			[[aFolder typeID] integerValue] == PDCollectionTypeIDTrash )
+		[aFolder setTypeID:[NSNumber numberWithInteger:PDCollectionTypeIDFolder]];
 		
 	// ensure the icon matches the type id
 	[aFolder determineIcon];
@@ -6437,7 +6437,7 @@ bail:
 
 #pragma mark -
 
-- (void) removeObjectFromJSFoldersAtIndex:(unsigned int)index 
+- (void) removeObjectFromJSFoldersAtIndex:(NSUInteger)index 
 {
 	if ( index >= [[self valueForKeyPath:@"journal.collections"] count] ) 
 	{
@@ -6450,7 +6450,7 @@ bail:
 	
 }
 
-- (void) removeFromJSFoldersAtIndex:(unsigned int)index 
+- (void) removeFromJSFoldersAtIndex:(NSUInteger)index 
 {
 	if ( index >= [[self valueForKeyPath:@"journal.collections"] count] ) 
 	{
@@ -6482,17 +6482,17 @@ bail:
 #pragma mark -
 #pragma mark Scripting References
 
-- (int) indexOfObjectInJSReferences:(JournlerResource*)aReference
+- (NSInteger) indexOfObjectInJSReferences:(JournlerResource*)aReference
 {
 	return [[self valueForKeyPath:@"journal.resources"] indexOfObject:aReference];
 }
 
-- (unsigned int) countOfJSReferences
+- (NSUInteger) countOfJSReferences
 { 
 	return [[self valueForKeyPath:@"journal.resources"] count];
 }
 
-- (JournlerResource*) objectInJSReferencesAtIndex:(unsigned int)i
+- (JournlerResource*) objectInJSReferencesAtIndex:(NSUInteger)i
 {
 	if ( i >= [[self valueForKeyPath:@"journal.resources"] count] ) 
 	{
@@ -6512,7 +6512,7 @@ bail:
 
 #pragma mark -
 
-- (void) insertObject:(JournlerResource*)aReference inJSReferencesAtIndex:(unsigned int)index
+- (void) insertObject:(JournlerResource*)aReference inJSReferencesAtIndex:(NSUInteger)index
 {
 	[self JSAddNewReference:aReference atIndex:index];
 }
@@ -6522,7 +6522,7 @@ bail:
 	[self JSAddNewReference:aReference atIndex:0];
 }
 
-- (void) JSAddNewReference:(JournlerResource*)aResource atIndex:(unsigned int)index
+- (void) JSAddNewReference:(JournlerResource*)aResource atIndex:(NSUInteger)index
 {
 	// a rather complex process verifying the validity of the resource - everything must be set at the get go
 	// actually, we may never make it this far
@@ -6533,7 +6533,7 @@ bail:
 
 #pragma mark -
 
-- (void) removeObjectFromJSReferencesAtIndex:(unsigned int)index
+- (void) removeObjectFromJSReferencesAtIndex:(NSUInteger)index
 {
 	if ( index >= [[self valueForKeyPath:@"journal.resources"] count] ) 
 	{
@@ -6546,7 +6546,7 @@ bail:
 	
 }
 
-- (void) removeFromJSReferencesAtIndex:(unsigned int)index
+- (void) removeFromJSReferencesAtIndex:(NSUInteger)index
 {
 	if ( index >= [[self valueForKeyPath:@"journal.resources"] count] ) 
 	{
@@ -6567,17 +6567,17 @@ bail:
 #pragma mark -
 #pragma mark Scripting Blogs
 
-- (int) indexOfObjectInJSBlogs:(BlogPref*)aBlog
+- (NSInteger) indexOfObjectInJSBlogs:(BlogPref*)aBlog
 {
 	return [[self valueForKeyPath:@"journal.blogs"] indexOfObject:aBlog];
 }
 
-- (unsigned int) countOfJSBlogs
+- (NSUInteger) countOfJSBlogs
 {
 	return [[self valueForKeyPath:@"journal.blogs"] count];
 }
 
-- (BlogPref*) objectInJSBlogsAtIndex:(unsigned int)i
+- (BlogPref*) objectInJSBlogsAtIndex:(NSUInteger)i
 {
 	if ( i >= [[self valueForKeyPath:@"journal.blogs"] count] ) 
 	{
@@ -6597,7 +6597,7 @@ bail:
 
 #pragma mark -
 
-- (void) insertObject:(BlogPref*)aBlog inJSBlogsAtIndex:(unsigned int)index
+- (void) insertObject:(BlogPref*)aBlog inJSBlogsAtIndex:(NSUInteger)index
 {
 	[self JSAddNewBlog:aBlog atIndex:index];
 }
@@ -6607,16 +6607,16 @@ bail:
 	[self JSAddNewBlog:aBlog  atIndex:0];
 }
 
-- (void) JSAddNewBlog:(BlogPref*)aBlog atIndex:(unsigned int)index
+- (void) JSAddNewBlog:(BlogPref*)aBlog atIndex:(NSUInteger)index
 {
-	[aBlog setTagID:[NSNumber numberWithInt:[[self journal] newBlogTag]]];
+	[aBlog setTagID:[NSNumber numberWithInteger:[[self journal] newBlogTag]]];
 	[[self journal] addBlog:aBlog];
 	[[self journal] saveBlog:aBlog];
 }
 
 #pragma mark -
 
-- (void) removeObjectFromJSBlogsAtIndex:(unsigned int)index
+- (void) removeObjectFromJSBlogsAtIndex:(NSUInteger)index
 {
 	if ( index >= [[self valueForKeyPath:@"journal.blogs"] count] ) 
 	{
@@ -6628,7 +6628,7 @@ bail:
 	[self JSDeleteBlog:[[self valueForKeyPath:@"journal.blogs"] objectAtIndex:index]];
 }
 
-- (void) removeFromJSBlogsAtIndex:(unsigned int)index
+- (void) removeFromJSBlogsAtIndex:(NSUInteger)index
 {
 	if ( index >= [[self valueForKeyPath:@"journal.blogs"] count] ) 
 	{
@@ -6773,7 +6773,7 @@ bail:
 		NSNumber *aliased;
 		NewResourceCommand resourceCommand;
 		
-		OSType osType = [typeNumber intValue];
+		OSType osType = [typeNumber integerValue];
 		switch ( osType )
 		{
 		case 'rtME': // file

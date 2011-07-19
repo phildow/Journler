@@ -105,7 +105,7 @@
     } 
 }
 
-- (void)drawRow:(int)rowIndex clipRect:(NSRect)clipRect {
+- (void)drawRow:(NSInteger)rowIndex clipRect:(NSRect)clipRect {
 	
 	// grab the draw rect
 	NSRect targetRect = [self rectOfRow:rowIndex];
@@ -170,7 +170,7 @@
 - (void)keyDown:(NSEvent *)event 
 { 
 	unichar key = [[event charactersIgnoringModifiers] characterAtIndex:0];
-	unsigned int modifierFlags = [event modifierFlags];
+	NSUInteger modifierFlags = [event modifierFlags];
 	
 	if ( key == NSLeftArrowFunctionKey && [[self delegate] respondsToSelector:@selector(outlineView:leftKeyDown:)] && ( modifierFlags & NSCommandKeyMask ) )
 		[[self delegate] outlineView:self leftKeyDown:event];
@@ -182,7 +182,7 @@
 */
 
 
-- (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)isLocal 
+- (NSUInteger)draggingSourceOperationMaskForLocal:(BOOL)isLocal 
 {
 	if ( isLocal )
 		return NSDragOperationLink;
@@ -225,7 +225,7 @@
 				[NSFont systemFontOfSize:[NSFont smallSystemFontSize]], NSFontAttributeName,
 				[NSColor colorWithCalibratedWhite:1.0 alpha:1.0], NSForegroundColorAttributeName, nil];
 		
-		NSString *countString = [[NSNumber numberWithInt:[dragRows count]] stringValue];
+		NSString *countString = [[NSNumber numberWithInteger:[dragRows count]] stringValue];
 		NSSize countSize = [countString sizeWithAttributes:countAttributes];
 		
 		[dragBadge lockFocus];

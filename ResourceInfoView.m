@@ -150,10 +150,10 @@ static NSString* NoNullString( NSString *aString )
 	NSSize cellSize = NSMakeSize(128,128);
 	NSSize stringSize;
 	NSRect stringRect;
-	unsigned int originaXOffset= ( viewAlignment == PDFileInfoAlignLeft ? 5*2 + cellSize.width + 10 : 5*2 );
+	NSInteger  originaXOffset= ( viewAlignment == PDFileInfoAlignLeft ? 5*2 + cellSize.width + 10 : 5*2 );
 	
-	//unsigned int xOffset = originaXOffset, yOffset = 20;
-	//unsigned int xOffset = 0, yOffset = [self bounds].size.height - 20;
+	//NSUInteger xOffset = originaXOffset, yOffset = 20;
+	//NSUInteger xOffset = 0, yOffset = [self bounds].size.height - 20;
 	
 	NSBundle *sproutedInterfaceBundle = [NSBundle bundleWithIdentifier:@"com.sprouted.interface"];
 	
@@ -196,8 +196,8 @@ static NSString* NoNullString( NSString *aString )
 	lwLastOpened = NSMakeSize(0, 0);
 	lwMax = NSMakeSize(0, 0);
 		
-	//unsigned int xOffset = 0, yOffset = infoRect.size.height - 20;
-	unsigned int xOffset = originaXOffset, yOffset = 35; // 30 for the image cell, 50 is a bit arbitrary
+	//NSUInteger xOffset = 0, yOffset = infoRect.size.height - 20;
+	NSInteger  xOffset = originaXOffset, yOffset = 35; // 30 for the image cell, 50 is a bit arbitrary
 	
 	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
@@ -259,7 +259,7 @@ static NSString* NoNullString( NSString *aString )
 	if ( lwLastOpened.width > lwMax.width ) lwMax.width = lwLastOpened.width;
 	
 	// max widths
-	unsigned int maxWidth = [self bounds].size.width - ( xOffset + lwMax.width + 8 + 20 );
+	NSInteger  maxWidth = [self bounds].size.width - ( xOffset + lwMax.width + 8 + 20 );
 	float greatestWidth = 0;
 	
 	// do the drawing
@@ -326,7 +326,7 @@ static NSString* NoNullString( NSString *aString )
 		{
 			if ( file_size / kBytesInGigabyte > 1 ) 
 			{
-				NSNumber *gigabytes = [NSNumber numberWithInt:(file_size / kBytesInGigabyte)];
+				NSNumber *gigabytes = [NSNumber numberWithInteger:(file_size / kBytesInGigabyte)];
 				fileSizeAsString = NoNullString( [[gigabytes stringValue] stringByAppendingString:
 				NSLocalizedStringFromTableInBundle(@"mditem size gb", @"FileInfo", sproutedInterfaceBundle, @"")] );
 			}
@@ -334,13 +334,13 @@ static NSString* NoNullString( NSString *aString )
 			{
 				if ( file_size / kBytesInMegabyte > 1 ) 
 				{
-					NSNumber *megabytes = [NSNumber numberWithInt:(file_size / kBytesInMegabyte)];
+					NSNumber *megabytes = [NSNumber numberWithInteger:(file_size / kBytesInMegabyte)];
 					fileSizeAsString = NoNullString( [[megabytes stringValue] stringByAppendingString:
 					NSLocalizedStringFromTableInBundle(@"mditem size mb", @"FileInfo", sproutedInterfaceBundle, @"")] );
 				}
 				else 
 				{
-					NSNumber *kilobytes = [NSNumber numberWithInt:(file_size / kBytesInKilobyte)];
+					NSNumber *kilobytes = [NSNumber numberWithInteger:(file_size / kBytesInKilobyte)];
 					fileSizeAsString = NoNullString( [[kilobytes stringValue] stringByAppendingString:
 					NSLocalizedStringFromTableInBundle(@"mditem size kb", @"FileInfo", sproutedInterfaceBundle, @"")] );
 				}
@@ -495,10 +495,10 @@ static NSString* NoNullString( NSString *aString )
 	NSSize cellSize = NSMakeSize(128,128);
 	NSSize stringSize;
 	
-	unsigned int originaXOffset= ( [self viewAlignment] == ResourceInfoAlignLeft ? 5*2 + cellSize.width + 10 : 5*2 );
+	NSInteger  originaXOffset= ( [self viewAlignment] == ResourceInfoAlignLeft ? 5*2 + cellSize.width + 10 : 5*2 );
 	
-	unsigned int xOffset = originaXOffset, yOffset = 20;
-	unsigned int maxWidth = [self bounds].size.width - ( 5*2 + cellSize.width + 10*2 );
+	NSInteger xOffset = originaXOffset, yOffset = 20;
+	NSInteger  maxWidth = [self bounds].size.width - ( 5*2 + cellSize.width + 10*2 );
 	
 	NSString *entryName = [person fullname];
 	if ( entryName != nil )
@@ -559,10 +559,10 @@ static NSString* NoNullString( NSString *aString )
 	NSSize cellSize = NSMakeSize(128,128);
 	NSSize stringSize;
 	
-	unsigned int originaXOffset= ( [self viewAlignment] == ResourceInfoAlignLeft ? 5*2 + cellSize.width + 10 : 5*2 );
+	NSInteger originaXOffset= ( [self viewAlignment] == ResourceInfoAlignLeft ? 5*2 + cellSize.width + 10 : 5*2 );
 	
-	unsigned int xOffset = originaXOffset, yOffset = 20;
-	unsigned int maxWidth = [self bounds].size.width - ( 5*2 + cellSize.width + 10*2 );
+	NSInteger xOffset = originaXOffset, yOffset = 20;
+	NSInteger maxWidth = [self bounds].size.width - ( 5*2 + cellSize.width + 10*2 );
 	
 	NSString *title = [[self resource] valueForKey:@"title"];
 	if ( title != nil )
@@ -607,10 +607,10 @@ static NSString* NoNullString( NSString *aString )
 	NSSize cellSize = NSMakeSize(128,128);
 	NSSize stringSize;
 	
-	unsigned int originaXOffset= ( [self viewAlignment] == ResourceInfoAlignLeft ? 5*2 + cellSize.width + 10 : 5*2 );
+	CGFloat originaXOffset= ( [self viewAlignment] == ResourceInfoAlignLeft ? 5*2 + cellSize.width + 10 : 5*2 );
 	
-	unsigned int xOffset = originaXOffset, yOffset = 20;
-	unsigned int maxWidth = [self bounds].size.width - ( 5*2 + cellSize.width + 10*2 );
+	CGFloat xOffset = originaXOffset, yOffset = 20;
+	CGFloat maxWidth = [self bounds].size.width - ( 5*2 + cellSize.width + 10*2 );
 	
 	NSString *title = [[self resource] valueForKey:@"title"];
 	if ( title != nil )

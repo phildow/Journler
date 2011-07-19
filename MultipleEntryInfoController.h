@@ -109,8 +109,8 @@
 - (NSArray*) blogs;
 - (void) setBlogs:(NSArray*)theBlogs;
 
-- (int) marked;
-- (void) setMarked:(int)newMark;
+- (NSInteger) marked;
+- (void) setMarked:(NSInteger)newMark;
 
 - (BOOL) clearsDateDue;
 - (void) setClearsDateDue:(BOOL)clears;

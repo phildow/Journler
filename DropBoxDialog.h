@@ -49,8 +49,8 @@
 	NSArray *tagCompletions;
 }
 
-- (id) initWithJournal:(JournlerJournal*)aJournal delegate:(id)aDelegate mode:(int)dropboxMode didEndSelector:(SEL)aSelector;
-- (void) _endWithCode:(int)code;
+- (id) initWithJournal:(JournlerJournal*)aJournal delegate:(id)aDelegate mode:(NSInteger)dropboxMode didEndSelector:(SEL)aSelector;
+- (void) _endWithCode:(NSInteger)code;
 
 + (NSArray*) contentForFilenames:(NSArray*)filenames;
 + (NSArray*) contentForEntries:(NSArray*)entries;

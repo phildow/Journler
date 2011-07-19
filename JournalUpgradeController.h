@@ -43,7 +43,7 @@
 
 #pragma mark -
 
-- (int) run200To210Upgrade:(JournlerJournal*)journal;
+- (NSInteger) run200To210Upgrade:(JournlerJournal*)journal;
 - (BOOL) processResourcesForEntry:(JournlerEntry*)anEntry;
 - (BOOL) processResourcesLinksForEntry:(JournlerEntry*)anEntry;
 - (BOOL) processFileLinksForEntry:(JournlerEntry*)anEntry;

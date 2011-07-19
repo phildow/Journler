@@ -8,7 +8,7 @@
 	id	delegate;
 }
 
-- (int) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet;
+- (NSInteger) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet;
 
 - (id) delegate;
 - (void) setDelegate:(id)anObject;

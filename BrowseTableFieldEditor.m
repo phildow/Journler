@@ -92,7 +92,7 @@
 		if ( [[self delegate] respondsToSelector:@selector(textShouldEndEditing:)] 
 				&& [[self delegate] textShouldEndEditing:self] && [[self delegate] respondsToSelector:@selector(textDidEndEditing:)] )
 		{
-			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:-99] forKey:@"NSTextMovement"];
+			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:-99] forKey:@"NSTextMovement"];
 			NSNotification *aNotification = [NSNotification notificationWithName:NSTextDidEndEditingNotification object:self userInfo:userInfo];
 			[[self delegate] textDidEndEditing:aNotification];
 		}

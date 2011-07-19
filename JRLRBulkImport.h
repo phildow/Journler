@@ -51,7 +51,7 @@
 - (BOOL) preserveFolderStructure;
 - (BOOL) preserveDateModified;
 
-- (int) datePreference;
+- (NSInteger) datePreference;
 
 - (NSCalendarDate*) date;
 - (void) setDate:(NSDate*)aDate;

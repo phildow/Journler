@@ -51,11 +51,11 @@ typedef enum
 	
 	NSMutableDictionary *stateDictionary;
 	
-	unsigned _dragOperation;
+	NSUInteger _dragOperation;
 	BOOL showingSearchResults;
 	BOOL usesSmallResourceIcons;
 	
-	int onTheFlyTag;
+	NSInteger onTheFlyTag;
 	BOOL dragProducedEntry;
 	
 	NSImage *defaultDisclosure;
@@ -118,7 +118,7 @@ typedef enum
 - (IBAction) setDisplayOption:(id)sender;
 - (IBAction) deleteSelectedResources:(id)sender;
 
-- (void) sortBy:(int)sortTag;
+- (void) sortBy:(NSInteger)sortTag;
 - (IBAction) sortByCommand:(id)sender;
 - (IBAction) exposeAllResources:(id)sender;
 - (BOOL) selectResource:(JournlerResource*)aResource byExtendingSelection:(BOOL)extend;
@@ -141,7 +141,7 @@ typedef enum
 - (NSString*) _mdTitleFoFileAtPath:(NSString*)fullpath;
 - (NSString*) _linkedTextForAudioFile:(NSString*)fullpath;
 
-- (unsigned) _commandForCurrentCommand:(unsigned)dragOperation fileType:(NSString*)type directory:(BOOL)dir package:(BOOL)package;
+- (NSUInteger) _commandForCurrentCommand:(NSUInteger)dragOperation fileType:(NSString*)type directory:(BOOL)dir package:(BOOL)package;
 
 - (void) _entryDidChangeResourceContent:(NSNotification*)aNotification;
 - (ResourceNode*) _nodeForResource:(JournlerResource*)aResource;

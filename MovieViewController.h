@@ -11,7 +11,7 @@
     IBOutlet QTMovieView *movieView;
 	IBOutlet NSPopUpButton *scalePop;
 	
-	int current_scale;
+	NSInteger current_scale;
 }
 
 - (IBAction) openWithQuicktime:(id)sender;

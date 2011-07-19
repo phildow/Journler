@@ -12,8 +12,8 @@
 @interface MonthAndYearCell : NSTextFieldCell {
 	
 	NSArray *months;
-	int selectedMonth;
-	int selectedYear;
+	NSInteger selectedMonth;
+	NSInteger selectedYear;
 }
 
 + (NSArray*) englishMonths;
@@ -21,10 +21,10 @@
 - (NSArray*) months;
 - (void) setMonths:(NSArray*)anArray;
 
-- (int) selectedMonth;
-- (void) setSelectedMonth:(int)month;
+- (NSInteger) selectedMonth;
+- (void) setSelectedMonth:(NSInteger)month;
 
-- (int) selectedYear;
-- (void) setSelectedYear:(int)year;
+- (NSInteger) selectedYear;
+- (void) setSelectedYear:(NSInteger)year;
 
 @end

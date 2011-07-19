@@ -53,7 +53,7 @@
 	[self autorelease];
 }
 
-- (int) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet {
+- (NSInteger) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet {
 	
 	//result = [NSApp runModalForWindow: [self window]];
 	[[self window] makeKeyAndOrderFront:self];

@@ -40,11 +40,11 @@ typedef enum {
 - (NSView*) contentView;
 - (void) ownerWillClose:(NSNotification*)aNotification;
 
-- (int) dataFormat;
-- (void) setDataFormat:(int)format;
+- (NSInteger) dataFormat;
+- (void) setDataFormat:(NSInteger)format;
 
-- (int) fileMode;
-- (void) setFileMode:(int)mode;
+- (NSInteger) fileMode;
+- (void) setFileMode:(NSInteger)mode;
 
 - (BOOL) updatesFileExtension;
 - (void) setUpdatesFileExtension:(BOOL)updates;

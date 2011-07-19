@@ -27,8 +27,8 @@ typedef enum {
 	IBOutlet NSTextField *progressLabel;
 	IBOutlet NSProgressIndicator *progress;
 	
-	unsigned int mode;
-	unsigned int numAttempts;
+	NSUInteger mode;
+	NSUInteger numAttempts;
 	
 	NSString *password;
 	NSString *checksum;

@@ -37,19 +37,19 @@ static NSString *kAndSeparatorString = @" && ";
 		[dictionary setObject:@"title" forKey:kOperationDictionaryKeyKey];
 					
 		if ( [condition rangeOfString:@"not"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationRemoveString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationRemoveString] forKey:kOperationDictionaryKeyOperation];
 			
 		else if ( [condition rangeOfString:@"contains"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationAppendString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationAppendString] forKey:kOperationDictionaryKeyOperation];
 			
 		else if ( [condition rangeOfString:@"beginswith"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationPrependString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationPrependString] forKey:kOperationDictionaryKeyOperation];
 			
 		else if ( [condition rangeOfString:@"endswith"].location != NSNotFound )
 			return nil; // not supported
 			
 		else if ( [condition rangeOfString:@"matches"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationSetString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationSetString] forKey:kOperationDictionaryKeyOperation];
 			
 		scanner = [NSScanner scannerWithString:condition];
 		while ( ![scanner isAtEnd] ) {
@@ -70,19 +70,19 @@ static NSString *kAndSeparatorString = @" && ";
 		[dictionary setObject:@"category" forKey:kOperationDictionaryKeyKey];
 		
 		if ( [condition rangeOfString:@"not"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationRemoveString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationRemoveString] forKey:kOperationDictionaryKeyOperation];
 			
 		else if ( [condition rangeOfString:@"contains"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationAppendString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationAppendString] forKey:kOperationDictionaryKeyOperation];
 			
 		else if ( [condition rangeOfString:@"beginswith"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationPrependString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationPrependString] forKey:kOperationDictionaryKeyOperation];
 			
 		else if ( [condition rangeOfString:@"endswith"].location != NSNotFound )
 			return nil; // not supported
 			
 		else if ( [condition rangeOfString:@"matches"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationSetString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationSetString] forKey:kOperationDictionaryKeyOperation];
 	
 		scanner = [NSScanner scannerWithString:condition];
 		while ( ![scanner isAtEnd] ) {
@@ -103,19 +103,19 @@ static NSString *kAndSeparatorString = @" && ";
 		[dictionary setObject:@"keywords" forKey:kOperationDictionaryKeyKey];
 		
 		if ( [condition rangeOfString:@"not"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationRemoveString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationRemoveString] forKey:kOperationDictionaryKeyOperation];
 			
 		else if ( [condition rangeOfString:@"contains"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationAppendString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationAppendString] forKey:kOperationDictionaryKeyOperation];
 			
 		else if ( [condition rangeOfString:@"beginswith"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationPrependString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationPrependString] forKey:kOperationDictionaryKeyOperation];
 			
 		else if ( [condition rangeOfString:@"endswith"].location != NSNotFound )
 			return nil; // not supported
 			
 		else if ( [condition rangeOfString:@"matches"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationSetString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationSetString] forKey:kOperationDictionaryKeyOperation];
 	
 		scanner = [NSScanner scannerWithString:condition];
 		while ( ![scanner isAtEnd] ) 
@@ -135,7 +135,7 @@ static NSString *kAndSeparatorString = @" && ";
 		if ( [condition isEqualToString:@"tags.@count == 0"] )
 		{
 			[dictionary setObject:@"tags" forKey:kOperationDictionaryKeyKey];
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationNilOut] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationNilOut] forKey:kOperationDictionaryKeyOperation];
 			[dictionary setObject:[NSNull null] forKey:kOperationDictionaryKeyValue];
 		}
 		else if ( [condition isEqualToString:@"tags.@count != 0"] )
@@ -147,7 +147,7 @@ static NSString *kAndSeparatorString = @" && ";
 		
 			[dictionary setObject:@"tags" forKey:kOperationDictionaryKeyKey];
 			
-			int tokenOperation = -1;
+			NSInteger tokenOperation = -1;
 			NSArray *thePieces = [condition componentsSeparatedByString:kAndSeparatorString];
 			NSMutableArray *theTokens = [NSMutableArray array];
 			NSScanner *scanner;
@@ -177,7 +177,7 @@ static NSString *kAndSeparatorString = @" && ";
 			if ( tokenOperation == -1 )
 				tokenOperation = kKeyOperationAddObjects;
 			
-			[dictionary setObject:[NSNumber numberWithInt:tokenOperation] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:tokenOperation] forKey:kOperationDictionaryKeyOperation];
 
 			if ( [theTokens count] != 0 )
 				[dictionary setObject:theTokens forKey:kOperationDictionaryKeyValue];
@@ -196,19 +196,19 @@ static NSString *kAndSeparatorString = @" && ";
 		[dictionary setObject:@"attributedContent" forKey:kOperationDictionaryKeyKey];
 		
 		if ( [condition rangeOfString:@"not"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationRemoveAttributedString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationRemoveAttributedString] forKey:kOperationDictionaryKeyOperation];
 			
 		else if ( [condition rangeOfString:@"contains"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationAppendAttributedString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationAppendAttributedString] forKey:kOperationDictionaryKeyOperation];
 			
 		else if ( [condition rangeOfString:@"beginswith"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationPrependAttributedString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationPrependAttributedString] forKey:kOperationDictionaryKeyOperation];
 			
 		else if ( [condition rangeOfString:@"endswith"].location != NSNotFound )
 			return nil; // not supported
 			
 		else if ( [condition rangeOfString:@"matches"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationSetAttributedString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationSetAttributedString] forKey:kOperationDictionaryKeyOperation];
 	
 		scanner = [NSScanner scannerWithString:condition];
 		while ( ![scanner isAtEnd] ) {
@@ -234,19 +234,19 @@ static NSString *kAndSeparatorString = @" && ";
 		[dictionary setObject:@"attributedContent" forKey:kOperationDictionaryKeyKey];
 		
 		if ( [condition rangeOfString:@"not"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationRemoveAttributedString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationRemoveAttributedString] forKey:kOperationDictionaryKeyOperation];
 			
 		else if ( [condition rangeOfString:@"contains"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationAppendAttributedString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationAppendAttributedString] forKey:kOperationDictionaryKeyOperation];
 			
 		else if ( [condition rangeOfString:@"beginswith"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationPrependAttributedString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationPrependAttributedString] forKey:kOperationDictionaryKeyOperation];
 			
 		else if ( [condition rangeOfString:@"endswith"].location != NSNotFound )
 			return nil; // not supported
 			
 		else if ( [condition rangeOfString:@"matches"].location != NSNotFound )
-			[dictionary setObject:[NSNumber numberWithInt:kKeyOperationSetAttributedString] forKey:kOperationDictionaryKeyOperation];
+			[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationSetAttributedString] forKey:kOperationDictionaryKeyOperation];
 	
 		scanner = [NSScanner scannerWithString:condition];
 		while ( ![scanner isAtEnd] ) {
@@ -265,13 +265,13 @@ static NSString *kAndSeparatorString = @" && ";
 		NSNumber *value = nil;
 		
 		[dictionary setObject:@"marked" forKey:kOperationDictionaryKeyKey];
-		[dictionary setObject:[NSNumber numberWithInt:kKeyOperationSetNumber] forKey:kOperationDictionaryKeyOperation];
+		[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationSetNumber] forKey:kOperationDictionaryKeyOperation];
 		
 		if ( [condition rangeOfString:@"YES"].location != NSNotFound )
-			value = [NSNumber numberWithInt:1];
+			value = [NSNumber numberWithInteger:1];
 			
 		else
-			value = [NSNumber numberWithInt:0];
+			value = [NSNumber numberWithInteger:0];
 		
 		if ( value ) [dictionary setObject:value forKey:kOperationDictionaryKeyValue];
 				
@@ -282,37 +282,37 @@ static NSString *kAndSeparatorString = @" && ";
 		NSNumber *value = nil;
 		
 		[dictionary setObject:@"marked" forKey:kOperationDictionaryKeyKey];
-		[dictionary setObject:[NSNumber numberWithInt:kKeyOperationSetNumber] forKey:kOperationDictionaryKeyOperation];
+		[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationSetNumber] forKey:kOperationDictionaryKeyOperation];
 		
 		if ( [condition rangeOfString:@"OR" options:NSCaseInsensitiveSearch].location != NSNotFound )
 		{
 			// if the value is already one or the other, go with that
-			if ( anEntry != nil && ( [[anEntry valueForKey:@"marked"] intValue] == 1 || [[anEntry valueForKey:@"marked"] intValue] == 2 ) )
+			if ( anEntry != nil && ( [[anEntry valueForKey:@"marked"] integerValue] == 1 || [[anEntry valueForKey:@"marked"] integerValue] == 2 ) )
 				value = nil;
 			else
-				value = [NSNumber numberWithInt:1]; // go with flagged
+				value = [NSNumber numberWithInteger:1]; // go with flagged
 		}
 		else if ( [condition rangeOfString:@"== 0"].location != NSNotFound )
-			value = [NSNumber numberWithInt:0];
+			value = [NSNumber numberWithInteger:0];
 		else if ( [condition rangeOfString:@"== 1"].location != NSNotFound )
-			value = [NSNumber numberWithInt:1];
+			value = [NSNumber numberWithInteger:1];
 		else if ( [condition rangeOfString:@"!= 1"].location != NSNotFound )
 		{
 			// if the value is already not flagged, go with that
-			if ( anEntry != nil && ( [[anEntry valueForKey:@"marked"] intValue] != 1 ) )
+			if ( anEntry != nil && ( [[anEntry valueForKey:@"marked"] integerValue] != 1 ) )
 				value = nil;
 			else
-				value = [NSNumber numberWithInt:0];
+				value = [NSNumber numberWithInteger:0];
 		}
 		else if ( [condition rangeOfString:@"== 2"].location != NSNotFound )
-			value = [NSNumber numberWithInt:2];
+			value = [NSNumber numberWithInteger:2];
 		else if ( [condition rangeOfString:@"!= 2"].location != NSNotFound )
 		{
 			// if the value is already not checked
-			if ( anEntry != nil && ( [[anEntry valueForKey:@"marked"] intValue] != 2 ) )
+			if ( anEntry != nil && ( [[anEntry valueForKey:@"marked"] integerValue] != 2 ) )
 				value = nil;
 			else
-				value = [NSNumber numberWithInt:0];
+				value = [NSNumber numberWithInteger:0];
 		}
 		
 		if ( value ) [dictionary setObject:value forKey:kOperationDictionaryKeyValue];
@@ -323,7 +323,7 @@ static NSString *kAndSeparatorString = @" && ";
 	{
 		/*
 		NSScanner *scanner;
-		int labelVal = 0;
+		NSInteger labelVal = 0;
 		
 		replacingView = labelConditionView;
 		
@@ -347,21 +347,21 @@ static NSString *kAndSeparatorString = @" && ";
 		
 		// not supported yet
 		
-		int intValue = 0;
+		NSInteger integerValue = 0;
 		NSNumber *value = nil;
 		NSScanner *scanner;
 		
 		[dictionary setObject:@"label" forKey:kOperationDictionaryKeyKey];
-		[dictionary setObject:[NSNumber numberWithInt:kKeyOperationSetNumber] forKey:kOperationDictionaryKeyOperation];
+		[dictionary setObject:[NSNumber numberWithInteger:kKeyOperationSetNumber] forKey:kOperationDictionaryKeyOperation];
 		
 		scanner = [NSScanner scannerWithString:condition];
 		while ( ![scanner isAtEnd] ) {
 			[scanner scanUpToString:@"=" intoString:nil];
 			[scanner scanString:@"=" intoString:nil];
-			[scanner scanInt:&intValue];
+			[scanner scanInt:&integerValue];
 		}
 		
-		value = [NSNumber numberWithInt:intValue];
+		value = [NSNumber numberWithInteger:integerValue];
 		
 		if ( [condition rangeOfString:@"=="].location != NSNotFound )
 			; // no need to do anything else, just set the label
@@ -369,7 +369,7 @@ static NSString *kAndSeparatorString = @" && ";
 		{
 			// set the label to 0 or 1 if explicity requested against the label the entry already has
 			if ( anEntry != nil && ( ![[anEntry valueForKey:@"label"] isEqualToNumber:value] ) )
-				value = [NSNumber numberWithInt:!intValue];
+				value = [NSNumber numberWithInteger:!integerValue];
 				
 		}
 		

@@ -34,20 +34,20 @@ static NSArray *CollectionValues() {
 	static NSArray *array = nil;
 	if (!array) {
 		array = [[NSArray alloc] initWithObjects:
-			[NSNumber numberWithInt:-1],							// tag
+			[NSNumber numberWithInteger:-1],							// tag
 			[NSString stringWithString:@"New Collection"],			// title
 			/*[NSArray array],*/										// predicates
-			/*[NSNumber numberWithInt:0],*/								// combination rule
-			[NSNumber numberWithInt:PDCollectionTypeIDFolder],		// typeID	-- 1.2
-			[NSNumber numberWithInt:-1],							// parentID	-- 1.1
+			/*[NSNumber numberWithInteger:0],*/								// combination rule
+			[NSNumber numberWithInteger:PDCollectionTypeIDFolder],		// typeID	-- 1.2
+			[NSNumber numberWithInteger:-1],							// parentID	-- 1.1
 			[NSArray array],										// entry ids
 			/*[NSImage imageNamed:@"FolderRegular.png"],				// large image */
-			[NSNumber numberWithInt:1],								// version number
+			[NSNumber numberWithInteger:1],								// version number
 			[NSNumber numberWithDouble:0],							// journler id
 			[NSArray array],										// childen ids
-			[NSNumber numberWithInt:0],								// location in parent collection
+			[NSNumber numberWithInteger:0],								// location in parent collection
 			[NSArray array],										// sort descriptors
-			/*[NSNumber numberWithInt:0],*/								// label
+			/*[NSNumber numberWithInteger:0],*/								// label
 			/*[NSArray array],*/										// entry table state
 			nil];
 			
@@ -72,7 +72,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 		
 		// the library
 		icon = [[NSImage imageNamed:@"NSApplicationIcon"] imageWithWidth:128 height:128 inset:9];
-		[theImageDictionary setObject:icon forKey:[NSNumber numberWithInt:PDCollectionTypeIDLibrary]];
+		[theImageDictionary setObject:icon forKey:[NSNumber numberWithInteger:PDCollectionTypeIDLibrary]];
 		
 		
 		// regular folder
@@ -85,7 +85,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 		}
 			
 		icon = [icon imageWithWidth:128 height:128 inset:9];
-		[theImageDictionary setObject:icon forKey:[NSNumber numberWithInt:PDCollectionTypeIDFolder]];
+		[theImageDictionary setObject:icon forKey:[NSNumber numberWithInteger:PDCollectionTypeIDFolder]];
 		
 		
 		// the trash
@@ -97,7 +97,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 		}
 		
 		icon = [icon imageWithWidth:128 height:128 inset:9];
-		[theImageDictionary setObject:icon forKey:[NSNumber numberWithInt:PDCollectionTypeIDTrash]];
+		[theImageDictionary setObject:icon forKey:[NSNumber numberWithInteger:PDCollectionTypeIDTrash]];
 		
 		
 		// smart folder
@@ -110,7 +110,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 		}
 		
 		icon = [icon imageWithWidth:128 height:128 inset:9];
-		[theImageDictionary setObject:icon forKey:[NSNumber numberWithInt:PDCollectionTypeIDSmart]];
+		[theImageDictionary setObject:icon forKey:[NSNumber numberWithInteger:PDCollectionTypeIDSmart]];
 	
 		// copy this all to the permanent dictionary
 		imageDictionary = [theImageDictionary copyWithZone:[theImageDictionary zone]];
@@ -158,7 +158,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 + (JournlerCollection*) separatorFolder
 {
 	JournlerCollection *aCollection = [[[JournlerCollection alloc] init] autorelease];
-	[aCollection setTypeID:[NSNumber numberWithInt:PDCollectionTypeIDSeparator]];
+	[aCollection setTypeID:[NSNumber numberWithInteger:PDCollectionTypeIDSeparator]];
 	return aCollection;
 }
 
@@ -180,7 +180,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	[newObject setDeleted:[self deleted]];
 	
 	// tag and journal
-	[newObject setValue:[NSNumber numberWithInt:[[self journal] newFolderTag]] forKey:@"tagID"];
+	[newObject setValue:[NSNumber numberWithInteger:[[self journal] newFolderTag]] forKey:@"tagID"];
 	[[self journal] addCollection:newObject];
 	
 	[entriesLock unlock];
@@ -205,16 +205,16 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 #pragma mark -
 #pragma mark Set Requirements
 
-- (unsigned)hash 
+- (NSUInteger)hash 
 {	
 	// tag guaranteed to be unique
-	return [[self tagID] unsignedIntValue];
+	return [[self tagID] unsignedIntegerValue];
 }
 
 - (BOOL)isEqual:(id)anObject 
 {
-	// tests for the class and then the int tag id
-	return ( [anObject isMemberOfClass:[self class]] && [[self tagID] intValue] == [[anObject tagID] intValue] );
+	// tests for the class and then the NSInteger tag id
+	return ( [anObject isMemberOfClass:[self class]] && [[self tagID] integerValue] == [[anObject tagID] integerValue] );
 }
 
 #pragma mark -
@@ -252,7 +252,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 {
 	// go through the dictionary and set all of our keys to the coder
 	
-	int i;	
+	NSInteger i;	
 	
 	if ( ![encoder allowsKeyedCoding] ) {
 		NSLog(@"Cannot encode Journler Collection without a keyed archiver");
@@ -298,7 +298,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 			PDCollectionParent, PDCollectionChildren, PDCollectionEntries, nil]];
 	
 	// remove the icon if it's the default icon
-	if ( [_properties objectForKey:PDCollectionImage] == [JournlerCollection defaultImageForID:[[self typeID] intValue]] )
+	if ( [_properties objectForKey:PDCollectionImage] == [JournlerCollection defaultImageForID:[[self typeID] integerValue]] )
 		[toEncode removeObjectForKey:PDCollectionImage];
 			
 	[encoder encodeObject:toEncode forKey:@"JCollProperties"];
@@ -430,7 +430,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 
 - (void) setTypeID:(NSNumber*)newType 
 {
-	[_properties setObject:(newType?newType:[NSNumber numberWithInt:PDCollectionTypeIDFolder]) forKey:PDCollectionTypeID];
+	[_properties setObject:(newType?newType:[NSNumber numberWithInteger:PDCollectionTypeIDFolder]) forKey:PDCollectionTypeID];
 	[self setDirty:BooleanNumber(YES)];
 }
 
@@ -441,7 +441,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 
 - (void) setVersion:(NSNumber*)newVersion 
 {
-	[_properties setObject:(newVersion?newVersion:[NSNumber numberWithInt:1]) forKey:PDCollectionVersion];
+	[_properties setObject:(newVersion?newVersion:[NSNumber numberWithInteger:1]) forKey:PDCollectionVersion];
 	[self setDirty:BooleanNumber(YES)];
 }
 
@@ -472,7 +472,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 
 - (void) setCombinationStyle:(NSNumber*)newStyle 
 {
-	[_properties setObject:(newStyle?newStyle:[NSNumber numberWithInt:0]) forKey:PDCollectionComb];
+	[_properties setObject:(newStyle?newStyle:[NSNumber numberWithInteger:0]) forKey:PDCollectionComb];
 	
 	// invalidate the actual predicate
 	[self invalidatePredicate:YES];
@@ -517,7 +517,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 
 - (void) setLabel:(NSNumber*)aNumber
 {
-	[_properties setObject:(aNumber?aNumber:[NSNumber numberWithInt:0]) forKey:PDCollectionLabel];
+	[_properties setObject:(aNumber?aNumber:[NSNumber numberWithInteger:0]) forKey:PDCollectionLabel];
 	[self setDirty:BooleanNumber(YES)];
 	
 	// post a notification that this attribute has changed
@@ -562,7 +562,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 
 - (void) setIndex:(NSNumber*)index 
 {
-	[_properties setObject:(index?index:[NSNumber numberWithInt:0]) forKey:PDCollectionIndex];
+	[_properties setObject:(index?index:[NSNumber numberWithInteger:0]) forKey:PDCollectionIndex];
 	[self setDirty:BooleanNumber(YES)];
 }
 
@@ -597,7 +597,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 
 - (void) setParentID:(NSNumber*)theParent 
 {
-	[_properties setObject:(theParent?theParent:[NSNumber numberWithInt:-1]) forKey:PDCollectionParentID];
+	[_properties setObject:(theParent?theParent:[NSNumber numberWithInteger:-1]) forKey:PDCollectionParentID];
 }
 
 #pragma mark -
@@ -624,7 +624,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 
 #pragma mark -
 
-+ (NSImage*) defaultImageForID:(int)type 
++ (NSImage*) defaultImageForID:(NSInteger)type 
 {
 	// utility method to set the folder's icons	
 	NSImage *icon = nil;
@@ -637,7 +637,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	case PDCollectionTypeIDFolder:
 	case PDCollectionTypeIDSmart:
 		
-		icon = DefaultImageForFolderType([NSNumber numberWithInt:type]);
+		icon = DefaultImageForFolderType([NSNumber numberWithInteger:type]);
 		break;
 		
 	case PDCollectionTypeIDWebArchive:
@@ -725,7 +725,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 
 - (NSImage*) determineIcon 
 {
-	NSImage *theIcon = [JournlerCollection defaultImageForID:[[self typeID] intValue]];
+	NSImage *theIcon = [JournlerCollection defaultImageForID:[[self typeID] integerValue]];
 	[self setValue:theIcon forKey:@"icon"];
 	return theIcon;
 }
@@ -743,7 +743,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	[self addChild:n atIndex:-1];
 }
 
-- (void) addChild:(JournlerCollection*)n atIndex:(int)index 
+- (void) addChild:(JournlerCollection*)n atIndex:(NSInteger)index 
 {
 	// get the children array
 	NSMutableArray *tempChildren = [[self children] mutableCopyWithZone:[self zone]];
@@ -762,13 +762,13 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	[n setParentID:[self tagID]];
 
 	// insert the child at the index
-	[n setValue:[NSNumber numberWithInt:index] forKey:@"index"];
+	[n setValue:[NSNumber numberWithInteger:index] forKey:@"index"];
 	[tempChildren insertObject:n atIndex:index];
 	
 	// all the children this and after must have their index values adjusted
-	int i;
+	NSInteger i;
 	for ( i = index; i < [tempChildren count]; i++ )
-		[[tempChildren objectAtIndex:i] setValue:[NSNumber numberWithInt:i] forKey:@"index"];
+		[[tempChildren objectAtIndex:i] setValue:[NSNumber numberWithInteger:i] forKey:@"index"];
 	
 	// reset the children
 	[self setChildren:tempChildren];
@@ -784,18 +784,18 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	if ( rFlag ) 
 	{
 		// also remove the n object's children
-		int i;
+		NSInteger i;
 		for ( i = 0; i < [aFolder childrenCount]; i++ )
 			[aFolder removeChild:[[aFolder children] objectAtIndex:i] recursively:YES];
 	}
 	
-	int old_index = [tempChildren indexOfObjectIdenticalTo:aFolder];
+	NSInteger old_index = [tempChildren indexOfObjectIdenticalTo:aFolder];
 	[tempChildren removeObject:aFolder];
 		
 	// all the children this and after must have their index values adjusted
-	int i;
+	NSInteger i;
 	for ( i = old_index; i < [tempChildren count]; i++ )
-		[[tempChildren objectAtIndex:i] setValue:[NSNumber numberWithInt:i] forKey:@"index"];
+		[[tempChildren objectAtIndex:i] setValue:[NSNumber numberWithInteger:i] forKey:@"index"];
 	
 	// reset the children
 	[self setChildren:tempChildren];
@@ -804,9 +804,9 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	[aFolder release];
 }
 
-- (void) moveChild:(JournlerCollection *)aFolder toIndex:(unsigned int)anIndex
+- (void) moveChild:(JournlerCollection *)aFolder toIndex:(NSUInteger)anIndex
 {
-	if ( anIndex > [[aFolder valueForKey:@"index"] intValue] )
+	if ( anIndex > [[aFolder valueForKey:@"index"] integerValue] )
 		anIndex--;
 	
 	[aFolder retain];
@@ -817,14 +817,14 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 
 #pragma mark -
 
-- (JournlerCollection *)childAtIndex:(int)i
+- (JournlerCollection *)childAtIndex:(NSInteger)i
 {
     return ( i < [[self children] count] ? [[self children] objectAtIndex:i] : nil );
 }
 
 #pragma mark -
 
-- (int)childrenCount
+- (NSInteger)childrenCount
 {
     return [[self children] count];
 }
@@ -844,7 +844,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 - (NSArray*) allChildren 
 {
 	// returns all of the children contained in this collection in no particular order
-	int i;
+	NSInteger i;
 	NSArray *kids = [[[self children] copyWithZone:[self zone]] autorelease];
 	NSMutableArray *returnArray = [[[NSMutableArray alloc] init] autorelease];
 	
@@ -883,7 +883,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	}
 	
 	// do not add the entry if it is marked for the trash, unless we're the trash
-	if ( [[entry valueForKey:@"markedForTrash"] boolValue] && [[self valueForKey:@"typeID"] intValue] != PDCollectionTypeIDTrash )
+	if ( [[entry valueForKey:@"markedForTrash"] boolValue] && [[self valueForKey:@"typeID"] integerValue] != PDCollectionTypeIDTrash )
 	{
 		[entriesLock unlock];
 		return;
@@ -895,7 +895,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	[self setValue:theEntries forKey:@"entries"];
 	
 	// add myself to the entry's collection list, but not if I'm the library or the trash
-	if ( [[self valueForKey:@"typeID"] intValue] != PDCollectionTypeIDLibrary && [[self valueForKey:@"typeID"] intValue] != PDCollectionTypeIDTrash )
+	if ( [[self valueForKey:@"typeID"] integerValue] != PDCollectionTypeIDLibrary && [[self valueForKey:@"typeID"] integerValue] != PDCollectionTypeIDTrash )
 	{
 		NSMutableArray *theCollections = [[[entry valueForKey:@"collections"] mutableCopyWithZone:[self zone]] autorelease];
 		[theCollections addObject:self];
@@ -927,7 +927,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	[self setValue:theEntries forKey:@"entries"];
 	
 	// remove myself from the entry's collection list
-	if ( [[self valueForKey:@"typeID"] intValue] != PDCollectionTypeIDLibrary && [[self valueForKey:@"typeID"] intValue] != PDCollectionTypeIDTrash )
+	if ( [[self valueForKey:@"typeID"] integerValue] != PDCollectionTypeIDLibrary && [[self valueForKey:@"typeID"] integerValue] != PDCollectionTypeIDTrash )
 	{
 		NSMutableArray *theCollections = [[[entry valueForKey:@"collections"] mutableCopyWithZone:[self zone]] autorelease];
 		[theCollections removeObject:self];
@@ -991,7 +991,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 			// grab my entries
 			NSMutableArray *myEntries = [[[self valueForKey:@"entries"] mutableCopyWithZone:[self zone]] autorelease];
 			
-			int i;
+			NSInteger i;
 			for ( i = 0; i < [underEvaluation count]; i++ ) 
 			{
 				JournlerEntry *entry = [underEvaluation objectAtIndex:i];
@@ -1040,7 +1040,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	if ( recursive ) 
 	{
 		// pass the entry on to the children
-		int i;
+		NSInteger i;
 		NSArray *theChildren = [self children];
 
 		if ( theChildren != nil ) 
@@ -1070,7 +1070,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	if ( recursive ) 
 	{
 		// perform the same operation on the children
-		int i;
+		NSInteger i;
 		NSArray *theChildren = [self children];
 
 		if ( theChildren != nil ) 
@@ -1100,7 +1100,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 		return;
 	
 	// sort the children's children
-	int i;
+	NSInteger i;
 	for ( i = 0; i < [sortedChildren count]; i++ )
 		[[sortedChildren objectAtIndex:i] sortChildrenByIndex];
 	
@@ -1123,7 +1123,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	// clear the dynamic predicates
 	[dynamicDatePredicates removeAllObjects];
 	
-	int dateTag, dateValue;
+	NSInteger dateTag, dateValue;
 	NSScanner *theScanner;
 	NSString *keyValue;
 	NSCalendarDate *today = [NSCalendarDate calendarDate];
@@ -1197,7 +1197,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	
 	if ( recursive ) 
 	{
-		int i;
+		NSInteger i;
 		NSArray *kids = [self children];
 
 		for ( i = 0; i < [kids count]; i++)
@@ -1217,7 +1217,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 	
 	if ( recursive ) 
 	{
-		int i;
+		NSInteger i;
 		NSArray *kids = [self children];
 
 		for ( i = 0; i < [kids count]; i++)
@@ -1231,12 +1231,12 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 {
 	// builds the predicate string for this node
 	
-	int i;
+	NSInteger i;
 	NSArray *predicates = [self conditions];
 	if ( !predicates || [predicates count] == 0 )
 		return [NSString string];
 	
-	NSString *combiWord = ( [[self combinationStyle] intValue] == 0 ? @"or" : @"and" );
+	NSString *combiWord = ( [[self combinationStyle] integerValue] == 0 ? @"or" : @"and" );
 	
 	// check if the first item is available as a dynamic date predicate
 	NSString *firstReplacementPref = [dynamicDatePredicates objectForKey:[predicates objectAtIndex:0]];
@@ -1310,10 +1310,10 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 		NSString *predicateFormat;
 	
 		// break out of the loop if this is the parent
-		if ( aParent == nil || [[aParent valueForKey:@"tagID"] intValue] == -1 ) break;
+		if ( aParent == nil || [[aParent valueForKey:@"tagID"] integerValue] == -1 ) break;
 		
 		// continue on if this is not a smart folder
-		if ( [[aParent valueForKey:@"typeID"] intValue] == PDCollectionTypeIDSmart ) 
+		if ( [[aParent valueForKey:@"typeID"] integerValue] == PDCollectionTypeIDSmart ) 
 		{
 			// grab this nodes predicate
 			predicateFormat = [aParent predicateString];
@@ -1368,7 +1368,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 		while ( (aParent = [aParent parent]) ) 
 		{
 			// break out of the loop if this is the parent
-			if ( aParent == nil || [[aParent valueForKey:@"tagID"] intValue] == -1 ) break;
+			if ( aParent == nil || [[aParent valueForKey:@"tagID"] integerValue] == -1 ) break;
 			
 			// continue on if this is not a smart folder
 			if ( ![aParent isSmartFolder] ) 
@@ -1391,7 +1391,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 		while ( (aParent = [aParent parent]) ) 
 		{
 			// break out of the loop if this is the parent
-			if ( aParent == nil || [[aParent valueForKey:@"tagID"] intValue] == -1 ) break;
+			if ( aParent == nil || [[aParent valueForKey:@"tagID"] integerValue] == -1 ) break;
 			
 			// continue on if this is not a smart folder
 			if ( ![aParent isSmartFolder] ) 
@@ -1446,7 +1446,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 		NSArray *localConditions = [aDictionary objectForKey:@"conditions"];
 		NSNumber *localCombination = [aDictionary objectForKey:@"combinationStyle"];
 		
-		if ( [localCombination intValue] == 0 )
+		if ( [localCombination integerValue] == 0 )
 		{
 			// any condition that matches is good enough
 			canAutotag = NO;
@@ -1470,7 +1470,7 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 				break;
 		}
 		
-		else if ( [localCombination intValue] == 1 )
+		else if ( [localCombination integerValue] == 1 )
 		{
 			// every condition must match
 			
@@ -1545,11 +1545,11 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 			if ( conditionOp == nil )
 			{
 				// don't worry about it, a later condition will suffice (we already checked for canAutotag, so it should be there)
-				if ( [localCombination intValue] == 0 )
+				if ( [localCombination integerValue] == 0 )
 					continue;
 				
 				// otherwise, we're finished
-				else if ( [localCombination intValue] == 1 )
+				else if ( [localCombination integerValue] == 1 )
 				{
 					added = NO;
 					goto bail;
@@ -1557,14 +1557,14 @@ static NSImage * DefaultImageForFolderType(NSNumber *type)
 			}
 			
 			// we're finished if one of the conditions from this set has already been added and the op is any
-			else if ( alreadyAddedLocal == YES && [localCombination intValue] == 0 )
+			else if ( alreadyAddedLocal == YES && [localCombination integerValue] == 0 )
 				continue;
 			
 			id theOriginalValue;
 			
 			id theValue = [conditionOp objectForKey:kOperationDictionaryKeyValue];
 			NSString *theKey = [conditionOp objectForKey:kOperationDictionaryKeyKey];
-			int theOperation = [[conditionOp objectForKey:kOperationDictionaryKeyOperation] intValue];
+			NSInteger theOperation = [[conditionOp objectForKey:kOperationDictionaryKeyOperation] integerValue];
 			
 			if ( [theValue isKindOfClass:[NSString class]] && [theValue length] == 1 && [theValue characterAtIndex:0] == '^' )
 				theValue = [NSString string];
@@ -1713,12 +1713,12 @@ bail:
 #pragma mark -
 #pragma mark Menu Representation
 
-- (BOOL) flatMenuRepresentation:(NSMenu**)aMenu target:(id)object action:(SEL)aSelector smallImages:(BOOL)useSmallImages inset:(int)level 
+- (BOOL) flatMenuRepresentation:(NSMenu**)aMenu target:(id)object action:(SEL)aSelector smallImages:(BOOL)useSmallImages inset:(NSInteger)level 
 {
 	NSMenu *menu = *aMenu;
 	NSArray *theChildren = [self children];
 	
-	int i;
+	NSInteger i;
 	for ( i = 0; i < [theChildren count]; i++ ) 
 	{
 		JournlerCollection *aChild = [theChildren objectAtIndex:i];
@@ -1739,7 +1739,7 @@ bail:
 			itemImage = [[aChild valueForKey:@"icon"] imageWithWidth:32 height:32 inset:0];
 		
 		[item setTarget:object];
-		[item setTag:[[aChild  valueForKey:@"tagID"] intValue]];
+		[item setTag:[[aChild  valueForKey:@"tagID"] integerValue]];
 		[item setImage:itemImage];
 		[item setRepresentedObject:aChild];
 		[item setIndentationLevel:level];
@@ -1761,7 +1761,7 @@ bail:
 	NSMenu *menu = [[[NSMenu alloc] init] autorelease];
 	NSArray *theChildren = [self children];
 	
-	int i;
+	NSInteger i;
 	for ( i = 0; i < [theChildren count]; i++ ) 
 	{
 		NSAutoreleasePool *innerPool = [[NSAutoreleasePool alloc] init];
@@ -1784,7 +1784,7 @@ bail:
 			itemImage = [[aChild valueForKey:@"icon"] imageWithWidth:32 height:32 inset:0];
 					
 		[item setTarget:target];
-		[item setTag:[[aChild valueForKey:@"tagID"] intValue]];
+		[item setTag:[[aChild valueForKey:@"tagID"] integerValue]];
 		[item setImage:itemImage];
 		[item setRepresentedObject:aChild];
 		
@@ -1875,7 +1875,7 @@ bail:
 			itemImage = [[aChild valueForKey:@"icon"] imageWithWidth:18 height:18 inset:0];
 				
 		[item setTitle:[aChild title]];
-		[item setTag:[[aChild valueForKey:@"tagID"] intValue]];
+		[item setTag:[[aChild valueForKey:@"tagID"] integerValue]];
 		[item setImage:itemImage];
 		[item setRepresentedObject:aChild];
 		
@@ -1965,7 +1965,7 @@ bail:
 - (void) updateForTwoZero 
 {
 	// handle the unnecessary timestamp condition
-	int i;
+	NSInteger i;
 	NSArray *conditions = [self conditions];
 	NSMutableArray *modifiedConditions = [[NSMutableArray alloc] initWithCapacity:[conditions count]];
 	
@@ -1992,7 +1992,7 @@ bail:
         myParent = [myParent valueForKey:@"parent"];
 		
 		// stop at the root collection
-		if ( [[myParent valueForKey:@"tagID"] intValue] == -1 )
+		if ( [[myParent valueForKey:@"tagID"] integerValue] == -1 )
 			myParent = nil;
 	}
     return NO;
@@ -2022,10 +2022,10 @@ bail:
 	JournlerCollection *aParent = self;
 	while ( (aParent = [aParent parent]) ) 
 	{
-		if ( aParent == nil || [[aParent valueForKey:@"tagID"] intValue] == -1 ) 
+		if ( aParent == nil || [[aParent valueForKey:@"tagID"] integerValue] == -1 ) 
 			break;
 		
-		if ( [[aParent valueForKey:@"typeID"] intValue] == PDCollectionTypeIDSmart ) 
+		if ( [[aParent valueForKey:@"typeID"] integerValue] == PDCollectionTypeIDSmart ) 
 		{
 			inSmart = YES;
 			break;
@@ -2054,11 +2054,11 @@ bail:
 }
 
 - (BOOL) writeEntriesToFolder:(NSString*)directoryPath 
-		format:(int)fileType 
+		format:(NSInteger)fileType 
 		considerChildren:(BOOL)recursive 
 		includeHeaders:(BOOL)headers; 
 {
-	int i;
+	NSInteger i;
 	BOOL dir;
 	BOOL completeSuccess = YES;
 	NSFileManager *fm = [NSFileManager defaultManager];
@@ -2076,7 +2076,7 @@ bail:
 		[fm createDirectoryAtPath:pathToMe attributes:nil];
 	
 	// entry save flags
-	int flags = kEntrySetLabelColor;
+	NSInteger flags = kEntrySetLabelColor;
 	if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EntryExportIncludeHeader"] )
 		flags |= kEntryIncludeHeader;
 	if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EntryExportSetCreationDate"] )
@@ -2096,7 +2096,7 @@ bail:
 	// handle the kids
 	if ( recursive ) 
 	{
-		int k;
+		NSInteger k;
 		NSArray *kids = [[self children] copyWithZone:[self zone]];
 		if ( kids != nil ) 
 		{
@@ -2117,27 +2117,27 @@ bail:
 
 - (BOOL) isRegularFolder
 {
-	return ( [[self valueForKey:@"typeID"] intValue] == PDCollectionTypeIDFolder );
+	return ( [[self valueForKey:@"typeID"] integerValue] == PDCollectionTypeIDFolder );
 }
 
 - (BOOL) isSmartFolder
 {
-	return ( [[self valueForKey:@"typeID"] intValue] == PDCollectionTypeIDSmart );
+	return ( [[self valueForKey:@"typeID"] integerValue] == PDCollectionTypeIDSmart );
 }
 
 - (BOOL) isTrash
 {
-	return ( [[self valueForKey:@"typeID"] intValue] == PDCollectionTypeIDTrash );
+	return ( [[self valueForKey:@"typeID"] integerValue] == PDCollectionTypeIDTrash );
 }
 
 - (BOOL) isLibrary
 {
-	return ( [[self valueForKey:@"typeID"] intValue] == PDCollectionTypeIDLibrary );
+	return ( [[self valueForKey:@"typeID"] integerValue] == PDCollectionTypeIDLibrary );
 }
 
 - (BOOL) isSeparatorFolder
 {
-	return ( [[self valueForKey:@"typeID"] intValue] == PDCollectionTypeIDSeparator );
+	return ( [[self valueForKey:@"typeID"] integerValue] == PDCollectionTypeIDSeparator );
 }
 
 #pragma mark -
@@ -2196,7 +2196,7 @@ bail:
 	// build the table - date created, category, tags, summary
 	
 	NSString *kindString = NSLocalizedString(@"html rep folder",@"");
-	switch ( [[self valueForKey:@"typeID"] intValue] )
+	switch ( [[self valueForKey:@"typeID"] integerValue] )
 	{
 	case PDCollectionTypeIDLibrary:
 		kindString = NSLocalizedString(@"html rep library",@"");
@@ -2215,7 +2215,7 @@ bail:
 	NSString *typeRow = [NSString stringWithFormat:row,NSLocalizedString(@"mditem kind name",@""),kindString];
 	[htmlBody appendString:typeRow];
 	
-	NSString *countRow = [NSString stringWithFormat:row,NSLocalizedString(@"html rep entries",@""),[[NSNumber numberWithInt:
+	NSString *countRow = [NSString stringWithFormat:row,NSLocalizedString(@"html rep entries",@""),[[NSNumber numberWithInteger:
 			[[self valueForKey:@"entries"] count]] descriptionWithLocale:nil]];
 	[htmlBody appendString:countRow];
 		
@@ -2233,7 +2233,7 @@ bail:
 	[_properties removeObjectForKey:@"PDCollectionEntryTableState"];
 	[_properties removeObjectForKey:PDCollectionImage];
 	
-	if ( [[_properties objectForKey:PDCollectionLabel] intValue] == 0 )
+	if ( [[_properties objectForKey:PDCollectionLabel] integerValue] == 0 )
 		[_properties removeObjectForKey:PDCollectionLabel];
 		
 	if ( [[_properties objectForKey:PDCollectionPreds] count] == 0 )
@@ -2280,7 +2280,7 @@ bail:
 {
 	OSType scriptType = 'ftFL';
 	
-	switch ( [[self valueForKey:@"typeID"] intValue] )
+	switch ( [[self valueForKey:@"typeID"] integerValue] )
 	{
 	case PDCollectionTypeIDLibrary:
 		scriptType = 'ftLI';
@@ -2301,7 +2301,7 @@ bail:
 
 - (void) setScriptType:(OSType)osType
 {
-	int type = PDCollectionTypeIDFolder;
+	NSInteger type = PDCollectionTypeIDFolder;
 	
 	switch ( osType )
 	{
@@ -2319,7 +2319,7 @@ bail:
 		break;
 	}
 	
-	[self setValue:[NSNumber numberWithInt:type] forKey:@"typeID"];
+	[self setValue:[NSNumber numberWithInteger:type] forKey:@"typeID"];
 
 }
 
@@ -2327,7 +2327,7 @@ bail:
 {
 	OSType scriptLabel = 'lcCE';
 	
-	switch ( [[self valueForKey:@"label"] intValue] )
+	switch ( [[self valueForKey:@"label"] integerValue] )
 	{
 	case 0:
 		scriptLabel = 'lcCE';
@@ -2363,7 +2363,7 @@ bail:
 
 - (void) setScriptLabel:(OSType)osType
 {
-	int label = 0;
+	NSInteger label = 0;
 	
 	switch ( osType )
 	{
@@ -2396,7 +2396,7 @@ bail:
 		break;
 	}
 	
-	[self setValue:[NSNumber numberWithInt:label] forKey:@"label"];
+	[self setValue:[NSNumber numberWithInteger:label] forKey:@"label"];
 
 }
 
@@ -2418,24 +2418,24 @@ bail:
 
 - (void) setScriptPosition:(NSNumber*)aNumber
 {
-	//NSInteger desiredIndex = [aNumber intValue];
+	//NSInteger desiredIndex = [aNumber integerValue];
 	[self returnError:OSAMessageNotUnderstood string:@"It is not possible to set the folder's position"];
 }
 
 #pragma mark -
 #pragma mark Entries
 
-- (int) indexOfObjectInJSEntries:(JournlerEntry*)anEntry 
+- (NSInteger) indexOfObjectInJSEntries:(JournlerEntry*)anEntry 
 {
 	return [[self valueForKeyPath:@"entries"] indexOfObject:anEntry];
 }
 
-- (unsigned int) countOfJSEntries 
+- (NSUInteger) countOfJSEntries 
 {
 	return [[self valueForKeyPath:@"entries"] count];
 }
 
-- (JournlerEntry*) objectInJSEntriesAtIndex:(unsigned int)i 
+- (JournlerEntry*) objectInJSEntriesAtIndex:(NSUInteger)i 
 {
 	if ( i >= [[self valueForKeyPath:@"entries"] count] ) 
 	{
@@ -2456,17 +2456,17 @@ bail:
 #pragma mark -
 #pragma mark SubFolders
 
-- (int) indexOfObjectInJSFolders:(JournlerCollection*)aFolder 
+- (NSInteger) indexOfObjectInJSFolders:(JournlerCollection*)aFolder 
 {
 	return [[self valueForKeyPath:@"children"] indexOfObject:aFolder];
 }
 
-- (unsigned int) countOfJSFolders
+- (NSUInteger) countOfJSFolders
 { 
 	return [[self valueForKeyPath:@"children"] count];
 }
 
-- (JournlerCollection*) objectInJSFoldersAtIndex:(unsigned int)i 
+- (JournlerCollection*) objectInJSFoldersAtIndex:(NSUInteger)i 
 {
 	if ( i >= [[self valueForKeyPath:@"children"] count] ) 
 	{
@@ -2493,7 +2493,7 @@ bail:
 	NSDictionary *args = [command evaluatedArguments];
 	
 	BOOL dir = NO, includeSubfolders = NO, includeHeader = YES;
-	unsigned int fileType;
+    NSUInteger fileType;
 	OSType formatKeyCode = 'etRT';
 	
 	NSString *path;
@@ -2521,7 +2521,7 @@ bail:
 	
 	// default to rtfd if no format is specified
 	if ( formatArg != nil )
-		formatKeyCode = (OSType)[formatArg unsignedIntValue];
+		formatKeyCode = (OSType)[formatArg unsignedIntegerValue];
 	
 	// include the headers? default is yes
 	if ( headerArg != nil && [headerArg isKindOfClass:[NSNumber class]] )

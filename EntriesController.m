@@ -125,13 +125,13 @@
 #pragma mark -
 #pragma mark NSTableView Dummy Data Source
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView 
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView 
 {
 	return 0;
 }
 
 - (id)tableView:(NSTableView *)aTableView 
-		objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex 
+		objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex 
 {
 	return nil;
 }
@@ -141,7 +141,7 @@
 #pragma mark NSTableView Delegate
 
 - (NSString *)tableView:(NSTableView *)aTableView toolTipForCell:(NSCell *)aCell 
-		rect:(NSRectPointer)rect tableColumn:(NSTableColumn *)aTableColumn row:(int)row mouseLocation:(NSPoint)mouseLocation 
+		rect:(NSRectPointer)rect tableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)row mouseLocation:(NSPoint)mouseLocation 
 {
 	NSString *tooltip = nil;
 	JournlerEntry *anEntry = [[self arrangedObjects] objectAtIndex:row];
@@ -267,7 +267,7 @@
 }
 
 - (BOOL) tableView:(EntriesTableView*)aTableView 
-		didSelectRowAlreadySelected:(int)aRow 
+		didSelectRowAlreadySelected:(NSInteger)aRow 
 		event:(NSEvent*)mouseEvent
 {
 	if ( [[self delegate] respondsToSelector:@selector(entryController:tableDidSelectRowAlreadySelected:event:)] )
@@ -477,7 +477,7 @@
 }
 
 - (NSArray *)tokenFieldCell:(NSTokenFieldCell *)tokenFieldCell completionsForSubstring:(NSString *)substring 
-indexOfToken:(int)tokenIndex indexOfSelectedItem:(int)selectedIndex
+indexOfToken:(NSInteger)tokenIndex indexOfSelectedItem:(NSInteger)selectedIndex
 {
 	//NSLog(@"%s",__PRETTY_FUNCTION__);
 	
@@ -488,7 +488,7 @@ indexOfToken:(int)tokenIndex indexOfSelectedItem:(int)selectedIndex
 	return completions;
 }
 
-- (NSArray *)tokenFieldCell:(NSTokenFieldCell *)tokenFieldCell shouldAddObjects:(NSArray *)tokens atIndex:(unsigned)index
+- (NSArray *)tokenFieldCell:(NSTokenFieldCell *)tokenFieldCell shouldAddObjects:(NSArray *)tokens atIndex:(NSUInteger)index
 {
 	//NSLog(@"%s - %@",__PRETTY_FUNCTION__,tokens);
 	
@@ -561,7 +561,7 @@ indexOfToken:(int)tokenIndex indexOfSelectedItem:(int)selectedIndex
 	BOOL enabled = YES;
 	NSInteger tag = [menuItem tag];
 	SEL action = [menuItem action];
-	unsigned selectionCount = [[self selectedObjects] count];
+	NSUInteger selectionCount = [[self selectedObjects] count];
 	
 	enabled = ( selectionCount != 0 );
 	
@@ -582,14 +582,14 @@ indexOfToken:(int)tokenIndex indexOfSelectedItem:(int)selectedIndex
 			{
 				if ( !areTheSame )
 				{
-					if ( [markedArray containsObject:[NSNumber numberWithInt:1]] )
+					if ( [markedArray containsObject:[NSNumber numberWithInteger:1]] )
 						[menuItem setState:NSMixedState];
 					else
 						[menuItem setState:NSOffState];
 				}
 				else
 				{
-					if ( [markedArray containsObject:[NSNumber numberWithInt:1]] )
+					if ( [markedArray containsObject:[NSNumber numberWithInteger:1]] )
 						[menuItem setState:NSOnState];
 					else
 						[menuItem setState:NSOffState];
@@ -599,14 +599,14 @@ indexOfToken:(int)tokenIndex indexOfSelectedItem:(int)selectedIndex
 			{
 				if ( !areTheSame )
 				{
-					if ( [markedArray containsObject:[NSNumber numberWithInt:2]] )
+					if ( [markedArray containsObject:[NSNumber numberWithInteger:2]] )
 						[menuItem setState:NSMixedState];
 					else
 						[menuItem setState:NSOffState];
 				}
 				else
 				{
-					if ( [markedArray containsObject:[NSNumber numberWithInt:2]] )
+					if ( [markedArray containsObject:[NSNumber numberWithInteger:2]] )
 						[menuItem setState:NSOnState];
 					else
 						[menuItem setState:NSOffState];

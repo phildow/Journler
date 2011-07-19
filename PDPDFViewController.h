@@ -6,7 +6,7 @@
 
 #import "JournlerMediaContentController.h"
 
-typedef unsigned int PDFMediaOutlineState;
+typedef NSUInteger PDFMediaOutlineState;
  
 enum {
 	kPDFMediaNoOutline = 0,

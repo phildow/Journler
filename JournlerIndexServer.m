@@ -86,7 +86,7 @@ static NSArray *DefaultDocumentsSort()
 	
     for ( NSString *aTerm in allTerms )
 	{
-		unsigned count = [searchManager countOfDocumentsForTerm:aTerm options:kIgnoreNumericTerms];
+		NSUInteger count = [searchManager countOfDocumentsForTerm:aTerm options:kIgnoreNumericTerms];
 		
 		IndexNode *aNode = [[[IndexNode alloc] init] autorelease];
 		
@@ -145,8 +145,8 @@ static NSArray *DefaultDocumentsSort()
         for ( NSString *aTerm in terms )
 		{
 						
-			unsigned count = [searchManager countOfDocumentsForTerm:aTerm options:kIgnoreNumericTerms];
-			unsigned frequency = [searchManager frequenceyOfTerm:aTerm forDocument:anObject options:kIgnoreNumericTerms];
+			NSUInteger count = [searchManager countOfDocumentsForTerm:aTerm options:kIgnoreNumericTerms];
+			NSUInteger frequency = [searchManager frequenceyOfTerm:aTerm forDocument:anObject options:kIgnoreNumericTerms];
 			
 			IndexNode *aNode = [[[IndexNode alloc] init] autorelease];
 		
@@ -289,7 +289,7 @@ static NSArray *DefaultDocumentsSort()
 #pragma mark -
 #pragma mark Built-in Support for Menu Delegation
 
-- (BOOL)menu:(NSMenu *)menu updateItem:(NSMenuItem *)item atIndex:(int)index shouldCancel:(BOOL)shouldCancel
+- (BOOL)menu:(NSMenu *)menu updateItem:(NSMenuItem *)item atIndex:(NSInteger)index shouldCancel:(BOOL)shouldCancel
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
@@ -317,7 +317,7 @@ static NSArray *DefaultDocumentsSort()
 		return YES;
 }
 
-- (int)numberOfItemsInMenu:(NSMenu *)menu
+- (NSInteger)numberOfItemsInMenu:(NSMenu *)menu
 {
 	/*
 	if ( embeddedLexiconMenuItem != nil )

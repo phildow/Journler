@@ -38,7 +38,7 @@
 - (BOOL) isLeafNode;
 - (BOOL) isExpandable;
 
-- (unsigned int) countOfChildren;
-- (ResourceNode*) childAtIndex:(unsigned int)index;
+- (NSUInteger) countOfChildren;
+- (ResourceNode*) childAtIndex:(NSUInteger)index;
 
 @end

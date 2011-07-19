@@ -319,7 +319,7 @@
 
 #pragma mark -
 
-- (BOOL) sourceList:(CollectionsSourceList*)aSourceList didSelectRowAlreadySelected:(int)aRow event:(NSEvent*)mouseEvent
+- (BOOL) sourceList:(CollectionsSourceList*)aSourceList didSelectRowAlreadySelected:(NSInteger)aRow event:(NSEvent*)mouseEvent
 {
 	if ( [[self delegate] respondsToSelector:@selector(sourceList:didSelectRowAlreadySelected:event:)] )
 		return [[self delegate] sourceList:aSourceList didSelectRowAlreadySelected:aRow event:mouseEvent];
@@ -331,7 +331,7 @@
 #pragma mark Dummy NSOutlineView Data Source
 
 
-- (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item 
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item 
 {
 	return 0;
 }
@@ -341,7 +341,7 @@
 	return NO;
 }
 
-- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item 
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item 
 {
 	return nil;
 }
@@ -480,7 +480,7 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView 
 		acceptDrop:(id <NSDraggingInfo>)info 
 		item:(id)item 
-		childIndex:(int)index 
+		childIndex:(NSInteger)index 
 {
 	BOOL accepted = YES;
 	JournlerCollection *actualItem;
@@ -572,7 +572,7 @@
 					if ( aFoldersParent == actualItem )
 					{
 						// reverse the order if we're moving this folder up and it's our first one
-						if ( i == 0 && [[aFolder index] intValue] > index )	// whoops! don't use integerValue unless Leopard only
+						if ( i == 0 && [[aFolder index] integerValue] > index )	// whoops! don't use integerValue unless Leopard only
 							adjustingIndex = YES;
 						
 						// move the folder
@@ -708,7 +708,7 @@
 
 
 - (NSDragOperation)outlineView:(NSOutlineView *)outlineView 
-	validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(int)index 
+	validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index 
 {
 	NSDragOperation operation;
 	JournlerCollection *actualItem;
@@ -858,7 +858,7 @@
 		NSInteger i;
 		for ( i = [nodesToExpand count] - 1; i >= 0; i-- )
 		{
-			unsigned aRow = [sourceList rowForOriginalItem:[nodesToExpand objectAtIndex:i]];
+			NSUInteger aRow = [sourceList rowForOriginalItem:[nodesToExpand objectAtIndex:i]];
 			id treeNode = [sourceList itemAtRow:aRow];
 			[sourceList expandItem:treeNode expandChildren:NO];
 			
@@ -970,7 +970,7 @@
 	BOOL enabled = YES;
 	NSInteger tag = [menuItem tag];
 	SEL action = [menuItem action];
-	unsigned selectionCount;
+	NSUInteger selectionCount;
 	
     NSMutableArray *actualFolders = [NSMutableArray arrayWithCapacity:[[self selectedObjects] count]];
    
@@ -1030,7 +1030,7 @@
 	
 	else if ( action == @selector(editFolderLabel:) )
 	{
-		unsigned entryCount = [[self selectedObjects] count];
+		NSUInteger entryCount = [[self selectedObjects] count];
 		enabled = ( entryCount > 0 );
 		
 		if ( tag == 0 )

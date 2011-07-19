@@ -49,7 +49,7 @@
 - (IBAction)help:(id)sender;
 - (IBAction)okay:(id)sender;
 
-- (int) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet 
+- (NSInteger) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet 
 		files:(NSArray*)filenames folders:(NSArray**)importedFolders entries:(NSArray**)importedEntries;
 
 - (BOOL) importContentsOfDirectory:(NSString*)path targetFolder:(JournlerCollection*)parentFolder;

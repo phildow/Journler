@@ -22,14 +22,14 @@
 
 - (TabController*) scriptSelectedTab;
 
-- (int) indexOfObjectInJSTabs:(TabController*)aTab;
-- (unsigned int) countOfJSTabs;
-- (TabController*) objectInJSTabsAtIndex:(unsigned int)i;
+- (NSInteger) indexOfObjectInJSTabs:(TabController*)aTab;
+- (NSUInteger) countOfJSTabs;
+- (TabController*) objectInJSTabsAtIndex:(NSUInteger)i;
 
-- (void) insertObject:(TabController*)aTab inJSTabsAtIndex:(unsigned int)index;
+- (void) insertObject:(TabController*)aTab inJSTabsAtIndex:(NSUInteger)index;
 - (void) insertInJSTabs:(TabController*)aTab;
 
-- (void) removeObjectFromJSTabsAtIndex:(unsigned int)index; 
-- (void) removeFromJSTabsAtIndex:(unsigned int)index;
+- (void) removeObjectFromJSTabsAtIndex:(NSUInteger)index; 
+- (void) removeFromJSTabsAtIndex:(NSUInteger)index;
 
 @end

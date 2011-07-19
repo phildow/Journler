@@ -38,7 +38,7 @@
 }
 
 /*
-- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
 	if ( [[aTableColumn identifier] isEqualToString:@"tags"] && [aCell respondsToSelector:@selector(_allTokenFieldAttachments)] )
 	{
@@ -57,7 +57,7 @@
 	
 	NSArray *entries = [[self arrangedObjects] objectsAtIndexes:rowIndexes];
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *entryURIs = [NSMutableArray array];
 	NSMutableArray *entryTitles = [NSMutableArray array];
 	NSMutableArray *entryPromises = [NSMutableArray array];
@@ -102,12 +102,12 @@
 	if ( ![dropDestination isFileURL] ) 
 		return nil;
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *titles = [[NSMutableArray alloc] init];
 	NSArray *entries = [[self arrangedObjects] objectsAtIndexes:indexSet];
 	NSString *destinationPath = [dropDestination path];
 	
-	int flags = kEntrySetLabelColor;
+	NSInteger flags = kEntrySetLabelColor;
 	if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EntryExportIncludeHeader"] )
 		flags |= kEntryIncludeHeader;
 	if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EntryExportSetCreationDate"] )

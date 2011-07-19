@@ -1392,7 +1392,7 @@ bail:
 #pragma mark RBSplitView Delegation
 
 // This makes it possible to drag the divider around by the dragView.
-- (unsigned int)splitView:(RBSplitView*)sender dividerForPoint:(NSPoint)point inSubview:(RBSplitSubview*)subview
+- (NSUInteger)splitView:(RBSplitView*)sender dividerForPoint:(NSPoint)point inSubview:(RBSplitSubview*)subview
 {
 	if ( [sender tag] == 0 && subview == [sender subviewAtPosition:0] ) 
 	{
@@ -1410,7 +1410,7 @@ bail:
 }
 
 // This changes the cursor when it's over the dragView.
-- (NSRect)splitView:(RBSplitView*)sender cursorRect:(NSRect)rect forDivider:(unsigned int)divider 
+- (NSRect)splitView:(RBSplitView*)sender cursorRect:(NSRect)rect forDivider:(NSUInteger)divider 
 {
 	if ( [sender tag] == 0 && divider== 0 )
 		[sender addCursorRect:[foldersDragView convertRect:[foldersDragView bounds] toView:sender]
@@ -1521,7 +1521,7 @@ bail:
 
 - (void) entryCellController:(EntryCellController*)aController 
 		clickedOnEntry:(JournlerEntry*)anEntry 
-		modifierFlags:(unsigned int)flags 
+		modifierFlags:(NSUInteger)flags 
 		highlight:(NSString*)aTerm
 {
 	if ( flags & NSCommandKeyMask )
@@ -1574,7 +1574,7 @@ bail:
 
 - (void) entryCellController:(EntryCellController*)aController 
 		clickedOnResource:(JournlerResource*)aResource
-		modifierFlags:(unsigned int)flags 
+		modifierFlags:(NSUInteger)flags 
 		highlight:(NSString*)aTerm
 {
 		
@@ -1725,7 +1725,7 @@ bail:
 	}
 }
 
-- (void) entryCellController:(EntryCellController*)aController clickedOnFolder:(JournlerCollection*)aFolder modifierFlags:(unsigned int)flags
+- (void) entryCellController:(EntryCellController*)aController clickedOnFolder:(JournlerCollection*)aFolder modifierFlags:(NSUInteger)flags
 {
 	if ( flags & NSCommandKeyMask )
 	{
@@ -1745,7 +1745,7 @@ bail:
 	}
 }
 
-- (void) entryCellController:(EntryCellController*)aController clickedOnURL:(NSURL*)aURL modifierFlags:(unsigned int)flags
+- (void) entryCellController:(EntryCellController*)aController clickedOnURL:(NSURL*)aURL modifierFlags:(NSUInteger)flags
 {
 	// the url must be located in the list of available resources. 
 	// If it isn't there, it must be added to the selected entry
@@ -1912,7 +1912,7 @@ bail:
 	return YES;
 }
 
-- (BOOL) entryController:(EntriesController*)anEntriesController tableDidSelectRowAlreadySelected:(int)aRow event:(NSEvent*)mouseEvent
+- (BOOL) entryController:(EntriesController*)anEntriesController tableDidSelectRowAlreadySelected:(NSInteger)aRow event:(NSEvent*)mouseEvent
 {
 	BOOL handled = NO;
 	
@@ -1944,7 +1944,7 @@ bail:
 #pragma mark -
 #pragma mark Folder Controller Delegation
 
-- (BOOL) sourceList:(CollectionsSourceList*)aSourceList didSelectRowAlreadySelected:(int)aRow event:(NSEvent*)mouseEvent
+- (BOOL) sourceList:(CollectionsSourceList*)aSourceList didSelectRowAlreadySelected:(NSInteger)aRow event:(NSEvent*)mouseEvent
 {
 	BOOL handled = NO;
 	
@@ -2234,8 +2234,8 @@ bail:
 		[resourceController sortBy:kSortResourcesByTitle];
 		
 		//#warning clear rank values
-		[[entriesController intersectSet] setValue:[NSNumber numberWithInt:0] forKey:@"relevance"];
-		[[resourceController intersectSet] setValue:[NSNumber numberWithInt:0] forKey:@"relevance"];
+		[[entriesController intersectSet] setValue:[NSNumber numberWithInteger:0] forKey:@"relevance"];
+		[[resourceController intersectSet] setValue:[NSNumber numberWithInteger:0] forKey:@"relevance"];
 		
 		// intersect the search results and rearrange
 		[entriesController setIntersectSet:entries];
@@ -2436,7 +2436,7 @@ bail:
 	if ( [selectedObjects count] == 1 )	
 	{
 		targetFolder = [selectedObjects objectAtIndex:0];
-		NSInteger type = [[targetFolder valueForKey:@"typeID"] intValue];
+		NSInteger type = [[targetFolder valueForKey:@"typeID"] integerValue];
 		if ( type == PDCollectionTypeIDLibrary || type == PDCollectionTypeIDTrash )
 			targetFolder = [[self journal] rootCollection];
 	}
@@ -2447,8 +2447,8 @@ bail:
 	
 	newFolder = [[[JournlerCollection alloc] init] autorelease];
 	[newFolder setValue:[sender stringValue] forKey:@"title"];
-	[newFolder setValue:[NSNumber numberWithInt:[[self journal] newFolderTag]] forKey:@"tagID"];
-	[newFolder setValue:[NSNumber numberWithInt:PDCollectionTypeIDFolder] forKey:@"typeID"];
+	[newFolder setValue:[NSNumber numberWithInteger:[[self journal] newFolderTag]] forKey:@"tagID"];
+	[newFolder setValue:[NSNumber numberWithInteger:PDCollectionTypeIDFolder] forKey:@"typeID"];
 	
 	[newFolder determineIcon];
 	[newFolder setValue:[NSArray arrayWithArray:[entriesController arrangedObjects]] forKey:@"entries"];
@@ -2496,7 +2496,7 @@ bail:
 	if ( [selectedObjects count] == 1 )	
 	{
 		targetFolder = [selectedObjects objectAtIndex:0];
-		NSInteger type = [[targetFolder valueForKey:@"typeID"] intValue];
+		NSInteger type = [[targetFolder valueForKey:@"typeID"] integerValue];
 		if ( type == PDCollectionTypeIDLibrary || type == PDCollectionTypeIDTrash )
 			targetFolder = [[self journal] rootCollection];
 	}
@@ -2508,10 +2508,10 @@ bail:
 	// create the smart folder and set its properties
 	JournlerCollection *newFolder = [[[JournlerCollection alloc] init] autorelease];
 	
-	[newFolder setValue:[NSNumber numberWithInt:[[self journal] newFolderTag]] forKey:@"tagID"];
-	[newFolder setValue:[NSNumber numberWithInt:PDCollectionTypeIDSmart] forKey:@"typeID"];
+	[newFolder setValue:[NSNumber numberWithInteger:[[self journal] newFolderTag]] forKey:@"tagID"];
+	[newFolder setValue:[NSNumber numberWithInteger:PDCollectionTypeIDSmart] forKey:@"typeID"];
 	[newFolder setValue:smartTitle forKey:@"title"];
-	[newFolder setValue:[NSNumber numberWithInt:1] forKey:@"combinationStyle"];
+	[newFolder setValue:[NSNumber numberWithInteger:1] forKey:@"combinationStyle"];
 	[newFolder setValue:conditions forKey:@"conditions"];
 	
 	[newFolder determineIcon];
@@ -2654,7 +2654,7 @@ bail:
 		newEntry = [[[JournlerEntry alloc] init] autorelease];
 		[newEntry setJournal:[self journal]];
 		
-		[newEntry setValue:[NSNumber numberWithInt:[[self journal] newEntryTag]] forKey:@"tagID"];
+		[newEntry setValue:[NSNumber numberWithInteger:[[self journal] newEntryTag]] forKey:@"tagID"];
 		[newEntry setValue:[NSCalendarDate calendarDate] forKey:@"calDateModified"];
 		[newEntry setValue:[entryCreator valueForKey:@"category"] forKey:@"category"];
 		[newEntry setValue:[entryCreator valueForKey:@"tags"] forKey:@"tags"];
@@ -2812,7 +2812,7 @@ bail:
 	if ( [selectedObjects count] == 1 )	
 	{
 		targetFolder = [selectedObjects objectAtIndex:0];
-		NSInteger type = [[targetFolder valueForKey:@"typeID"] intValue];
+		NSInteger type = [[targetFolder valueForKey:@"typeID"] integerValue];
 		if ( type == PDCollectionTypeIDLibrary || type == PDCollectionTypeIDTrash )
 			targetFolder = [[self journal] rootCollection];
 	}
@@ -2823,8 +2823,8 @@ bail:
 	
 	newFolder = [[[JournlerCollection alloc] init] autorelease];
 	[newFolder setValue:NSLocalizedString(@"untitled title",@"") forKey:@"title"];
-	[newFolder setValue:[NSNumber numberWithInt:[[self journal] newFolderTag]] forKey:@"tagID"];
-	[newFolder setValue:[NSNumber numberWithInt:PDCollectionTypeIDFolder] forKey:@"typeID"];
+	[newFolder setValue:[NSNumber numberWithInteger:[[self journal] newFolderTag]] forKey:@"tagID"];
+	[newFolder setValue:[NSNumber numberWithInteger:PDCollectionTypeIDFolder] forKey:@"typeID"];
 	
 	[newFolder determineIcon];
 	
@@ -2883,7 +2883,7 @@ bail:
 		//NSLog(@"if ( [selectedObjects count] == 1 )	-- beginning");
 		
 		targetFolder = [selectedObjects objectAtIndex:0];
-		NSInteger type = [[targetFolder valueForKey:@"typeID"] intValue];
+		NSInteger type = [[targetFolder valueForKey:@"typeID"] integerValue];
 		if ( type == PDCollectionTypeIDLibrary || type == PDCollectionTypeIDTrash )
 			targetFolder = [[self journal] rootCollection];
 		
@@ -2899,8 +2899,8 @@ bail:
 	//NSLog(@"[[[JournlerCollection alloc] init] autorelease]");
 	newFolder = [[[JournlerCollection alloc] init] autorelease];
 	
-	[newFolder setValue:[NSNumber numberWithInt:[[self journal] newFolderTag]] forKey:@"tagID"];
-	[newFolder setValue:[NSNumber numberWithInt:PDCollectionTypeIDSmart] forKey:@"typeID"];
+	[newFolder setValue:[NSNumber numberWithInteger:[[self journal] newFolderTag]] forKey:@"tagID"];
+	[newFolder setValue:[NSNumber numberWithInteger:PDCollectionTypeIDSmart] forKey:@"typeID"];
 	[newFolder setValue:[smartCreator valueForKey:@"combinationStyle"] forKey:@"combinationStyle"];
 	[newFolder setValue:[smartCreator valueForKey:@"conditions"] forKey:@"conditions"];
 	
@@ -3156,7 +3156,7 @@ bail:
 		// make sure the folders selected are all normal folders, otherwise bail
         for ( JournlerCollection *aFolder in theSelectedFolders )
 		{
-			if ( [[aFolder valueForKey:@"typeID"] intValue] != PDCollectionTypeIDFolder )
+			if ( [[aFolder valueForKey:@"typeID"] integerValue] != PDCollectionTypeIDFolder )
 			{
 				NSBeep(); return;
 			}
@@ -3587,7 +3587,7 @@ bail:
 		JournlerEntry *duplicated = [[anEntry copyWithZone:[self zone]] autorelease];
 		NSString *title = [duplicated valueForKey:@"title"];
 		
-		//[duplicated setTagID:[NSNumber numberWithInt:[[self journal] newEntryTag]]];
+		//[duplicated setTagID:[NSNumber numberWithInteger:[[self journal] newEntryTag]]];
 		//[[self journal] addEntry:duplicated];
 		
 		[duplicated setTitle:[NSString stringWithFormat:@"%@ %@", title, NSLocalizedString(@"duplicated entry", @"")]];
@@ -3727,7 +3727,7 @@ bail:
 
 - (void) showFirstRunConfiguration
 {
-	JournlerEntry *theEntry = [[self journal] entryForTagID:[NSNumber numberWithInt:1]];
+	JournlerEntry *theEntry = [[self journal] entryForTagID:[NSNumber numberWithInteger:1]];
 	JournlerCollection *libraryFolder = [self valueForKeyPath:@"journal.libraryCollection"];
 	
 	[self selectDate:[theEntry valueForKey:@"calDate"] folders:[NSArray arrayWithObject:libraryFolder] 

@@ -88,13 +88,13 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 			toObject:[NSUserDefaultsController sharedUserDefaultsController]
 			withKeyPath:@"values.EntryTextHorizontalInset" 
 			options:[NSDictionary dictionaryWithObjectsAndKeys:
-					[NSNumber numberWithInt:0], NSNullPlaceholderBindingOption, nil]];
+					[NSNumber numberWithInteger:0], NSNullPlaceholderBindingOption, nil]];
 			
 	[self bind:@"horizontalInsetFullscreen" 
 			toObject:[NSUserDefaultsController sharedUserDefaultsController]
 			withKeyPath:@"values.EntryTextHorizontalInsetFullscreen" 
 			options:[NSDictionary dictionaryWithObjectsAndKeys:
-					[NSNumber numberWithInt:100], NSNullPlaceholderBindingOption, nil]];
+					[NSNumber numberWithInteger:100], NSNullPlaceholderBindingOption, nil]];
 	
 	// reset the cursor rects for this view
 	[[self window] invalidateCursorRectsForView:self];
@@ -186,12 +186,12 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 	_lastScale = scaleValue;
 }
 
-- (unsigned int) modifierFlags
+- (NSUInteger) modifierFlags
 {
 	return modifierFlags;
 }
 
-- (void) setModifierFlags:(unsigned int)flags
+- (void) setModifierFlags:(NSUInteger)flags
 {
 	modifierFlags = flags;
 }
@@ -234,34 +234,34 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 
 #pragma mark -
 
-- (int) actualMargin
+- (NSInteger) actualMargin
 {
 	return actualMargin;
 }
 
-- (void) setActualMargin:(int)inset
+- (void) setActualMargin:(NSInteger)inset
 {
 	actualMargin = inset;
 	[self setTextContainerInset:NSMakeSize(( inset > 3 ? inset : 3 ), 3)];
 }
 
-- (int) horizontalInset
+- (NSInteger) horizontalInset
 {
 	return horizontalInset;
 }
 
-- (void) setHorizontalInset:(int)inset
+- (void) setHorizontalInset:(NSInteger)inset
 {
 	horizontalInset = inset;
 	[self setActualMargin:( inFullScreen ? [self horizontalInsetFullscreen] : [self horizontalInset] )];
 }
 
-- (int) horizontalInsetFullscreen
+- (NSInteger) horizontalInsetFullscreen
 {
 	return horizontalInsetFullscreen;
 }
 
-- (void) setHorizontalInsetFullscreen:(int)inset
+- (void) setHorizontalInsetFullscreen:(NSInteger)inset
 {
 	horizontalInsetFullscreen = inset;
 	[self setActualMargin:( inFullScreen ? [self horizontalInsetFullscreen] : [self horizontalInset] )];
@@ -348,7 +348,7 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 		success = YES;
 		NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
 		
-		int j;
+		NSInteger j;
 		for ( j = 0; j < [files count]; j++ ) 
 		{
 			NSString *fileLoc = [files objectAtIndex:j];
@@ -374,7 +374,7 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 		NSArray *urls = [webURLs objectAtIndex:0];
 		NSArray *titles = [webURLs objectAtIndex:1];
 		
-		int i;
+		NSInteger i;
 		for ( i = 0; i < [urls count]; i++ )
 		{
 			success = ( [self addURLToText:[urls objectAtIndex:0] title:[titles objectAtIndex:0]] && success );
@@ -440,7 +440,7 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 			NSStringPboardType, nil];
 	
 	id source = [sender draggingSource];
-	unsigned operation = _dragOperation;
+	NSUInteger operation = _dragOperation;
     NSString *desiredType = [pboard availableTypeFromArray:types];
 	NSArray *availableTypes = [pboard types];
 	
@@ -455,10 +455,10 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 		// add people to the text
 		if ( [desiredType isEqualToString:kABPeopleUIDsPboardType] ) 
 		{
-			unsigned charIndex = [self _charIndexForDraggingLoc:[sender draggingLocation]];
+			NSUInteger charIndex = [self _charIndexForDraggingLoc:[sender draggingLocation]];
 			[self setSelectedRange:NSMakeRange(charIndex,0)];
 			
-			int i;
+			NSInteger i;
 			NSArray *uids = [pboard propertyListForType:kABPeopleUIDsPboardType];
 			for ( i = 0; i < [uids count]; i++ ) 
 			{
@@ -474,7 +474,7 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 		else if ( [desiredType isEqualToString:kMailMessagePboardType] )
 		{
 			success = YES;
-			unsigned charIndex = [self _charIndexForDraggingLoc:[sender draggingLocation]];
+			NSUInteger charIndex = [self _charIndexForDraggingLoc:[sender draggingLocation]];
 			[self setSelectedRange:NSMakeRange(charIndex,0)];
 
 			// this takes a long time, so return and perform the copy after a short delay
@@ -485,10 +485,10 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 		else if ( [desiredType isEqualToString:NSFilenamesPboardType] ) 
 		{
 			success = YES;
-			unsigned charIndex = [self _charIndexForDraggingLoc:[sender draggingLocation]];
+			NSUInteger charIndex = [self _charIndexForDraggingLoc:[sender draggingLocation]];
 			[self setSelectedRange:NSMakeRange(charIndex,0)];
 			
-			int j;
+			NSInteger j;
 			NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
 			for ( j = 0; j < [files count]; j++ ) 
 			{
@@ -521,10 +521,10 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 			else 
 			{
 				success = YES;
-				unsigned charIndex = [self _charIndexForDraggingLoc:[sender draggingLocation]];
+				NSUInteger charIndex = [self _charIndexForDraggingLoc:[sender draggingLocation]];
 				[self setSelectedRange:NSMakeRange(charIndex,0)];
 				
-				int i;
+				NSInteger i;
 				for ( i = 0; i < [URLArray count]; i++ ) 
 				{
 					if ( iIntegration)
@@ -570,7 +570,7 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 		// add an image to the text, producing a hard copy of the image while I'm at it
 		else if ( [desiredType isEqualToString:NSTIFFPboardType] || [desiredType isEqualToString:NSPICTPboardType] ) 
 		{
-			unsigned charIndex = [self _charIndexForDraggingLoc:[sender draggingLocation]];
+			NSUInteger charIndex = [self _charIndexForDraggingLoc:[sender draggingLocation]];
 			[self setSelectedRange:NSMakeRange(charIndex,0)];
 			
 			success = [self addImageDataToText:[pboard dataForType:desiredType] dataType:desiredType fileName:nil];
@@ -581,10 +581,10 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 				[desiredType isEqualToString:PDResourceIDPboardType] )
 		{
 			success = YES;
-			unsigned charIndex = [self _charIndexForDraggingLoc:[sender draggingLocation]];
+			NSUInteger charIndex = [self _charIndexForDraggingLoc:[sender draggingLocation]];
 			[self setSelectedRange:NSMakeRange(charIndex,0)];
 			
-			int i;
+			NSInteger i;
 			NSArray *URIs = [pboard propertyListForType:desiredType];
 			
 			for ( i = 0; i < [URIs count]; i++ )
@@ -632,10 +632,10 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 	return success;
 }
 
-- (unsigned)dragOperationForDraggingInfo:(id <NSDraggingInfo>)dragInfo type:(NSString *)type 
+- (NSUInteger)dragOperationForDraggingInfo:(id <NSDraggingInfo>)dragInfo type:(NSString *)type 
 {
 	
-	unsigned operation;
+	NSUInteger operation;
 	_dragOperation = NSDragOperationNone;
 	id source = [dragInfo draggingSource];
 	
@@ -658,7 +658,7 @@ static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset 
 	//}
 	//else {
 		
-		//unsigned sourceOperation = [dragInfo draggingSourceOperationMask];
+		//NSUInteger sourceOperation = [dragInfo draggingSourceOperationMask];
 		operation = [super dragOperationForDraggingInfo:dragInfo type:type];
 		
 		if ( source == self )
@@ -847,9 +847,9 @@ bail:
 
 #pragma mark -
 
-- (unsigned) _charIndexForDraggingLoc:(NSPoint)point 
+- (NSUInteger) _charIndexForDraggingLoc:(NSPoint)point 
 {
-	unsigned charIndex;
+	NSUInteger charIndex;
 	NSPoint localPoint = [self convertPoint:point fromView:nil];
 	
 	// leopard/tiger fork
@@ -863,7 +863,7 @@ bail:
 		localPoint.y -= [self textContainerOrigin].y;
 		
 		// Convert those coordinates to the nearest glyph index
-		unsigned glyphIndex = [[self layoutManager] glyphIndexForPoint:localPoint inTextContainer:[self textContainer]];
+		NSUInteger glyphIndex = [[self layoutManager] glyphIndexForPoint:localPoint inTextContainer:[self textContainer]];
 		
 		// Check to see whether the mouse actually lies over the glyph it is nearest to
 		NSRect glyphRect = [[self layoutManager] boundingRectForGlyphRange:NSMakeRange(glyphIndex, 1) inTextContainer:[self textContainer]];
@@ -880,9 +880,9 @@ bail:
 	return charIndex;
 }
 
-- (unsigned) _commandForCurrentCommand:(unsigned)dragOperation fileType:(NSString*)type directory:(BOOL)dir package:(BOOL)package
+- (NSUInteger) _commandForCurrentCommand:(NSUInteger)dragOperation fileType:(NSString*)type directory:(BOOL)dir package:(BOOL)package
 {
-	int actualCommand = kNewResourceForceLink;
+	NSInteger actualCommand = kNewResourceForceLink;
 	
 	// determine the actual command, copy or link the file, depending on type, media policy and caller's demands
 	if ( dragOperation == kNewResourceForceLink ) 
@@ -1179,7 +1179,7 @@ bail:
 	}
 	
 	id anItem = ( [sender isKindOfClass:[NSPopUpButton class]] ? [sender selectedItem] : nil );
-	int theTag =  ( anItem == nil ? [sender tag] : [anItem tag] );
+	NSInteger theTag =  ( anItem == nil ? [sender tag] : [anItem tag] );
 	
 	switch ( theTag ) {
 		
@@ -1233,11 +1233,11 @@ bail:
 		return;
 	}
 	
-	BOOL isStruck = ( [[[self textStorage] attribute:NSStrikethroughStyleAttributeName atIndex:aRange.location effectiveRange:nil] intValue] != 0 );
+	BOOL isStruck = ( [[[self textStorage] attribute:NSStrikethroughStyleAttributeName atIndex:aRange.location effectiveRange:nil] integerValue] != 0 );
 	[self strikeSelection:nil styleMask:( isStruck ? 0 : NSUnderlineStyleSingle )];
 }
 
-- (void) strikeSelection:(NSColor*)aColor styleMask:(int)mask
+- (void) strikeSelection:(NSColor*)aColor styleMask:(NSInteger)mask
 {
 	// make sure we're allowed to change and alert the system that a change is coming
 	if ( ![self shouldChangeTextInRanges:[self rangesForUserTextChange] replacementStrings:nil] ) {
@@ -1258,7 +1258,7 @@ bail:
 		[[self textStorage] removeAttribute:NSStrikethroughStyleAttributeName 
 		ranges:[self rangesForUserTextChange]];
 	else
-		[[self textStorage] addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInt:mask] 
+		[[self textStorage] addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:mask] 
 		ranges:[self rangesForUserTextChange]];
 		
 	[[self textStorage] endEditing];
@@ -1304,7 +1304,7 @@ bail:
 	}
 	
 	NSAppleEventDescriptor *eventDescriptor = [script executeAndReturnError:&errorInfo];
-	if (eventDescriptor == nil && [[errorInfo objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
+	if (eventDescriptor == nil && [[errorInfo objectForKey:NSAppleScriptErrorNumber] integerValue] != kScriptWasCancelledError )
 	{
 		NSLog(@"%s - problem running script, bailing: %@", __PRETTY_FUNCTION__, errorInfo);
 		
@@ -1319,7 +1319,7 @@ bail:
 		goto bail;
 	}
 	
-	int i, totalCount = [eventDescriptor numberOfItems];
+	NSInteger i, totalCount = [eventDescriptor numberOfItems];
 	
 	if ( totalCount == 0 )
 	{
@@ -1343,7 +1343,7 @@ bail:
 		NSAppleEventDescriptor *aPathInfoDescriptor = [eventDescriptor descriptorAtIndex:i];
 		
 		// path information depends on the count of the descriptor
-		int pathInfoCount = [aPathInfoDescriptor numberOfItems];
+		NSInteger pathInfoCount = [aPathInfoDescriptor numberOfItems];
 		
 		if ( pathInfoCount == 3 )
 		{
@@ -1353,7 +1353,7 @@ bail:
 			NSAppleEventDescriptor *mailSubjectDescriptor = [aPathInfoDescriptor descriptorAtIndex:2];
 			NSAppleEventDescriptor *mailboxDescriptor = [aPathInfoDescriptor descriptorAtIndex:3];
 			
-			int idInt = [idDescriptor int32Value];
+			NSInteger idInt = [idDescriptor int32Value];
 			NSString *mailboxName = [mailboxDescriptor stringValue];
 			NSString *mailSubject = [mailSubjectDescriptor stringValue];
 			
@@ -1414,7 +1414,7 @@ bail:
 			NSAppleEventDescriptor *mailboxDescriptor = [aPathInfoDescriptor descriptorAtIndex:3];
 			NSAppleEventDescriptor *accountPathDescriptor = [aPathInfoDescriptor descriptorAtIndex:4];
 			
-			int idInt = [idDescriptor int32Value];
+			NSInteger idInt = [idDescriptor int32Value];
 			NSString *mailboxName = [mailboxDescriptor stringValue];
 			NSString *mailSubject = [mailSubjectDescriptor stringValue];
 			NSString *accountPath = [accountPathDescriptor stringValue];
@@ -1495,12 +1495,12 @@ bail:
 	[notice runNotice];
 	
 	BOOL success = YES;
-	unsigned operation = _dragOperation;
+	NSUInteger operation = _dragOperation;
 	NSPasteboard *pboard = [sender draggingPasteboard];
 	
 	// get the path, get the selection via applescript, build the full paths
 	
-	//unsigned charIndex = [self _charIndexForDraggingLoc:[sender draggingLocation]];
+	//NSUInteger charIndex = [self _charIndexForDraggingLoc:[sender draggingLocation]];
 	//[self setSelectedRange:NSMakeRange(charIndex,0)];
 	
 	NSString *mboxPath = [pboard stringForType:kMailMessagePboardType];
@@ -1529,7 +1529,7 @@ bail:
 	{
 	
 		eventDescriptor = [script executeAndReturnError:&errorDictionary];
-		if ( eventDescriptor == nil && [[errorDictionary objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
+		if ( eventDescriptor == nil && [[errorDictionary objectForKey:NSAppleScriptErrorNumber] integerValue] != kScriptWasCancelledError )
 		{
 			NSLog(@"%s - problem compiling mail message selection script: %@", __PRETTY_FUNCTION__, errorDictionary);
 			
@@ -1555,7 +1555,7 @@ bail:
 			NSLog([eventDescriptor description]);
 			#endif
 			
-			int i, totalItems = [eventDescriptor numberOfItems];
+			NSInteger i, totalItems = [eventDescriptor numberOfItems];
 			for ( i = 1; i <= totalItems; i++ )
 			{
 				NSAppleEventDescriptor *itemDescriptor = [eventDescriptor descriptorAtIndex:i];
@@ -1571,7 +1571,7 @@ bail:
 				}
 				
 				// each event descriptor is itself an array of two items: id, subject
-				int anID = [[itemDescriptor descriptorAtIndex:1] int32Value];
+				NSInteger anID = [[itemDescriptor descriptorAtIndex:1] int32Value];
 				NSString *aSubject = [[itemDescriptor descriptorAtIndex:2] stringValue];
 				
 				NSString *aMessagePath = [[mboxPath stringByAppendingPathComponent:@"Messages"] 
@@ -1808,7 +1808,7 @@ bail:
 			// associate an image with the resource as necessary
 			if ( [theResource representsFile] && [NSImage canInitWithFile:[theResource originalPath]] )
 			{
-				int kMaxWidth = ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EmbeddedImageUseFullSize"] ? 0
+				NSInteger kMaxWidth = ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EmbeddedImageUseFullSize"] ? 0
 				: [[NSUserDefaults standardUserDefaults] integerForKey:@"EmbeddedImageMaxWidth"] );
 				
 				NSImage *filesImage = [[[NSImage alloc] initWithContentsOfFile:[theResource originalPath]] autorelease];
@@ -1876,7 +1876,7 @@ bail:
 
 - (BOOL) addImageDataToText:(NSData*)data dataType:(NSString*)type fileName:(NSString*)name 
 {
-	int kMaxWidth = ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EmbeddedImageUseFullSize"] ? 0
+	NSInteger kMaxWidth = ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EmbeddedImageUseFullSize"] ? 0
 	: [[NSUserDefaults standardUserDefaults] integerForKey:@"EmbeddedImageMaxWidth"] );
 
 	// copy the image data to the entry
@@ -1940,15 +1940,15 @@ bail:
 	return YES;
 }
 
-- (BOOL) addFileToText:(NSString*)path fileName:(NSString*)title forceTitle:(BOOL)forceTitle resourceCommand:(int)command {
+- (BOOL) addFileToText:(NSString*)path fileName:(NSString*)title forceTitle:(BOOL)forceTitle resourceCommand:(NSInteger)command {
 	
 	//
 	// insert the specified file, linking or copying, displaying icon or image as appropriate
-	//int kMaxWidth = ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EmbeddedImageUseFullSize"] ? 0
+	//NSInteger kMaxWidth = ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EmbeddedImageUseFullSize"] ? 0
 	//: [[NSUserDefaults standardUserDefaults] integerForKey:@"EmbeddedImageMaxWidth"] );
 	
 	BOOL forceImage = NO, dir = NO, package = NO, success = NO;
-	int actualCommand = kNewResourceForceLink;
+	NSInteger actualCommand = kNewResourceForceLink;
 	NSString *displayName;
 	NSString *appName = nil, *fileType = nil;
 	
@@ -2006,7 +2006,7 @@ bail:
 	
 	// prepare the image - depends on whether the file can be displayed or not
 	NSImage *image = nil, *resizedImage = nil;
-	int kMaxWidth = ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EmbeddedImageUseFullSize"] ? 0
+	NSInteger kMaxWidth = ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EmbeddedImageUseFullSize"] ? 0
 	: [[NSUserDefaults standardUserDefaults] integerForKey:@"EmbeddedImageMaxWidth"] );
 		
 	if ( [NSImage canInitWithFile:path] )
@@ -2218,7 +2218,7 @@ bail:
 
 - (IBAction) showStats:(id)sender {
 	
-	int paragraph_count, word_count;
+	NSInteger paragraph_count, word_count;
 	NSString *selected_text;
 	NSMutableString *paragraph_text;
 	
@@ -2281,7 +2281,7 @@ bail:
 
 - (IBAction) insertLink:(id)sender {
 	
-	int result;
+	NSInteger result;
 	LinkController *insertLink;
 	
 	NSString *linkString, *urlString, *encodedURL;
@@ -2321,7 +2321,7 @@ bail:
 - (NSMenu *)menuForEvent:(NSEvent *)theEvent 
 {	
 	// the menu we will return
-	int item_index;
+	NSInteger item_index;
 	NSMenu *returnMenu = [super menuForEvent:theEvent];
 	
 	// go ahead and get out of here if this menu is already built
@@ -2329,7 +2329,7 @@ bail:
 		return returnMenu;
 
 	// find the speaking item and take it out
-	int speaking_item_index = -1;
+	NSInteger speaking_item_index = -1;
 	
 	for ( item_index = 0; item_index < [returnMenu numberOfItems]; item_index++ ) 
 	{
@@ -2353,7 +2353,7 @@ bail:
 	}
 
 	// find the spelling item
-	int spelling_item_index = -1;
+	NSInteger spelling_item_index = -1;
 	
 	for ( item_index = 0; item_index < [returnMenu numberOfItems]; item_index++ ) 
 	{
@@ -2381,7 +2381,7 @@ bail:
 	[returnMenu insertItem:[NSMenuItem separatorItem] atIndex:spelling_item_index+4];
 	
 	// find out where this event occurred to add 
-	unsigned char_index = [self _charIndexForDraggingLoc:[theEvent locationInWindow]];
+	NSUInteger char_index = [self _charIndexForDraggingLoc:[theEvent locationInWindow]];
 	if ( char_index < [[self textStorage] length] ) 
 	{
 		// add some context sensitive menu action
@@ -2389,7 +2389,7 @@ bail:
 		if ( link_attribute != nil ) 
 		{
 			// link related action
-			int edit_link_index = [returnMenu indexOfItemWithTarget:nil andAction:@selector(_openLinkFromMenu:)];
+			NSInteger edit_link_index = [returnMenu indexOfItemWithTarget:nil andAction:@selector(_openLinkFromMenu:)];
 			if ( edit_link_index != -1 && ( [link_attribute isKindOfClass:[NSURL class]] /* && [link_attribute isJournlerResource] */ ) ) 
 			{
 				NSMenu *open_sub_menu = [[[NSMenu alloc] initWithTitle:NSLocalizedString(@"menuitem open link",@"")] autorelease];
@@ -2431,7 +2431,7 @@ bail:
 	}
 	
 	// add the insert menu after the paste menu
-	int paste_link_index = [returnMenu indexOfItemWithTarget:nil andAction:@selector(paste:)];
+	NSInteger paste_link_index = [returnMenu indexOfItemWithTarget:nil andAction:@selector(paste:)];
 	if ( paste_link_index != -1 )
 	{
 		// the insert menu
@@ -2504,7 +2504,7 @@ bail:
 	}
 	
 	// find the font item and put highlight after it
-	int font_item_index = -1;
+	NSInteger font_item_index = -1;
 	for ( item_index = 0; item_index < [returnMenu numberOfItems]; item_index++ ) 
 	{
 		if ( ![[returnMenu itemAtIndex:item_index] hasSubmenu] ) 
@@ -2743,7 +2743,7 @@ bail:
 
 - (BOOL)validateMenuItem:(NSMenuItem*)menuItem 
 {
-	int theTag = [menuItem tag];
+	NSInteger theTag = [menuItem tag];
 	SEL action = [menuItem action];
 	BOOL enabled = YES;
 	
@@ -2961,8 +2961,8 @@ bail:
 
 - (IBAction) openLinkInNewTab:(id)sender
 {
-	int char_index = [self rangeForUserTextChange].location;
-	unsigned int lastModifiers = [self modifierFlags];
+	NSInteger char_index = [self rangeForUserTextChange].location;
+	NSUInteger lastModifiers = [self modifierFlags];
 		
 	[self setModifierFlags:(NSCommandKeyMask)];
 	[self clickedOnLink:[[self textStorage] attribute:NSLinkAttributeName atIndex:char_index effectiveRange:nil] atIndex:char_index];
@@ -2972,8 +2972,8 @@ bail:
 
 - (IBAction) openLinkInNewWindow:(id)sender 
 {	
-	int char_index = [self rangeForUserTextChange].location;
-	unsigned int lastModifiers = [self modifierFlags];
+	NSInteger char_index = [self rangeForUserTextChange].location;
+	NSUInteger lastModifiers = [self modifierFlags];
 		
 	[self setModifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)];
 	[self clickedOnLink:[[self textStorage] attribute:NSLinkAttributeName atIndex:char_index effectiveRange:nil] atIndex:char_index];
@@ -3072,7 +3072,7 @@ bail:
 		
 		[[self textStorage] beginEditing];
 		
-		int i;
+		NSInteger i;
 		NSArray *ranges = [self rangesForUserTextChange];
 		for ( i = 0; i < [ranges count]; i++ ) 
 		{
@@ -3257,7 +3257,7 @@ bail:
 		NSBeep(); return;
 	}
 	
-	int operation = [sender tag];
+	NSInteger operation = [sender tag];
 	
     [[self textStorage] beginEditing];
     
@@ -3290,7 +3290,7 @@ bail:
 		return;
 	}
 	
-	int operation = [sender tag];
+	NSInteger operation = [sender tag];
 		
 	NSNumber *newExpansion;
 	NSNumber *originalExpansion = [[self textStorage] attribute:NSExpansionAttributeName 
@@ -3388,7 +3388,7 @@ bail:
 	[super setSelectedRanges:ranges affinity:affinity stillSelecting:stillSelectingFlag];
 }
 
-- (int)spellCheckerDocumentTag
+- (NSInteger)spellCheckerDocumentTag
 {
 	return [[NSApp delegate] spellDocumentTag];
 }

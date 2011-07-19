@@ -154,12 +154,12 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	journal = [aJournal retain];
 }
 
-- (unsigned int ) selectedTabIndex 
+- (NSUInteger) selectedTabIndex 
 {
 	return selectedTabIndex;
 }
 
-- (void) setSelectedTabIndex:(unsigned int)theSelection 
+- (void) setSelectedTabIndex:(NSUInteger)theSelection 
 {
 	selectedTabIndex = theSelection;
 }
@@ -214,12 +214,12 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	
 	if ( bookmarksHidden )
 	{
-		int theBorders[4] = {1,0,0,0};
+		NSInteger theBorders[4] = {1,0,0,0};
 		[tabsBar setBorders:theBorders];
 	}
 	else
 	{
-		int theBorders[4] = {0,0,0,0};
+		NSInteger theBorders[4] = {0,0,0,0};
 		[tabsBar setBorders:theBorders];
 	}
 	
@@ -290,7 +290,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 		
 		[favoritesBar setNeedsDisplay:YES];
 		
-		int theBorders[4] = {0,0,0,0};
+		NSInteger theBorders[4] = {0,0,0,0};
 		[tabsBar setBorders:theBorders];
 		
 		//[favoritesBar release];
@@ -299,7 +299,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	{
 		[favoritesBar removeFromSuperview];
 		
-		int theBorders[4] = {1,0,0,0};
+		NSInteger theBorders[4] = {1,0,0,0};
 		[tabsBar setBorders:theBorders];
 	}
 }
@@ -396,7 +396,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 
 - (NSMenuItem*) dockMenuRepresentation
 {
-	int i;
+	NSInteger i;
 	NSArray *myTabs = [self tabControllers];
 	
 	NSString *myWindowTitle = [[self window] title];
@@ -409,7 +409,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 			keyEquivalent:@""] autorelease];
 	
 	[myMenuItem setTarget:self];
-	[myMenuItem setRepresentedObject:[NSNumber numberWithInt:-1]];
+	[myMenuItem setRepresentedObject:[NSNumber numberWithInteger:-1]];
 	
 	for ( i = 0; i < [myTabs count]; i++ )
 	{
@@ -423,7 +423,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 				keyEquivalent:@""] autorelease];
 		
 		[tabMenuItem setTarget:self];
-		[tabMenuItem setRepresentedObject:[NSNumber numberWithInt:i]];
+		[tabMenuItem setRepresentedObject:[NSNumber numberWithInteger:i]];
 		[subMenu addItem:tabMenuItem];
 	}
 	
@@ -437,7 +437,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	[NSApp activateIgnoringOtherApps:YES];
 	[[self window] makeKeyAndOrderFront:self];
 	
-	int tabToSelect = [[sender representedObject] intValue];
+	NSInteger tabToSelect = [[sender representedObject] integerValue];
 	if ( tabToSelect != -1 )
 		[self selectTabAtIndex:tabToSelect force:NO];
 }
@@ -535,7 +535,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	// replace array with dictionary?
 	
 	NSArray *stateArray = [self stateArray];
-	NSNumber *theSelectedTab = [NSNumber numberWithInt:[self selectedTabIndex]];
+	NSNumber *theSelectedTab = [NSNumber numberWithInteger:[self selectedTabIndex]];
 	NSDictionary *stateDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
 	 stateArray, @"stateArray",
 	 theSelectedTab, @"selectedTab", nil];
@@ -549,7 +549,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	TabController *aTab;
 	NSMutableArray *tabsStateData = [NSMutableArray arrayWithCapacity:[tabControllers count]];
 	
-	int i;
+	NSInteger i;
 	for ( i = 0; i < [[self tabControllers] count]; i++ ) 
 	{
 		aTab = [[self tabControllers] objectAtIndex:i];
@@ -581,8 +581,8 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 		
 		if ( stateArray != nil )
 			[self restoreStateFromArray:stateArray];
-		if ( theSelectedTab != nil && [theSelectedTab intValue] < [[self tabControllers] count] )
-			[self selectTabAtIndex:[theSelectedTab intValue] force:YES];
+		if ( theSelectedTab != nil && [theSelectedTab integerValue] < [[self tabControllers] count] )
+			[self selectTabAtIndex:[theSelectedTab integerValue] force:YES];
 	}
 	
 	//NSArray *tabStateArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -650,17 +650,17 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 #pragma mark -
 #pragma mark TabsView DataSource
 
-- (unsigned int) numberOfTabsInTabView:(PDTabsView*)aTabView 
+- (NSUInteger) numberOfTabsInTabView:(PDTabsView*)aTabView 
 {
 	return [tabControllers count];
 }
 
-- (unsigned int) selectedTabIndexInTabView:(PDTabsView*)aTabView
+- (NSUInteger) selectedTabIndexInTabView:(PDTabsView*)aTabView
 {
 	return [self selectedTabIndex];
 }
 
-- (NSString*) tabsView:(PDTabsView*)aTabView titleForTabAtIndex:(unsigned int)index 
+- (NSString*) tabsView:(PDTabsView*)aTabView titleForTabAtIndex:(NSUInteger)index 
 {
 	if ( index >= [tabControllers count] ) 
 	{
@@ -674,7 +674,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 #pragma mark -
 #pragma mark TabsView Delegation
 
-- (void) tabsView:(PDTabsView*)aTabView removedTabAtIndex:(int)index 
+- (void) tabsView:(PDTabsView*)aTabView removedTabAtIndex:(NSInteger)index 
 {
 	#ifdef __DEBUG__
 	NSLog(@"%s",__PRETTY_FUNCTION__);
@@ -691,7 +691,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	}
 }
 
-- (void) tabsView:(PDTabsView*)aTabView selectedTabAtIndex:(int)index 
+- (void) tabsView:(PDTabsView*)aTabView selectedTabAtIndex:(NSInteger)index 
 {	
 	#ifdef __DEBUG__
 	NSLog(@"%s",__PRETTY_FUNCTION__);
@@ -710,13 +710,13 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 #pragma mark -
 #pragma mark Favorites Bar Delegation
 
-- (int) favoritesBar:(PDFavoritesBar*)aFavoritesBar labelOfItemWithIdentifier:(id)anIdentifier
+- (NSInteger) favoritesBar:(PDFavoritesBar*)aFavoritesBar labelOfItemWithIdentifier:(id)anIdentifier
 {
 	//NSLog(@"%s - identifier: %@", __PRETTY_FUNCTION__, anIdentifier);
 	if ( [anIdentifier isKindOfClass:[NSNumber class]] )
 		anIdentifier = [NSString stringWithFormat:@"journler://entry/%@", anIdentifier];
 		
-	return [[[[self journal] objectForURIRepresentation:[NSURL URLWithString:anIdentifier]] valueForKey:@"label"] intValue];
+	return [[[[self journal] objectForURIRepresentation:[NSURL URLWithString:anIdentifier]] valueForKey:@"label"] integerValue];
 }
 
 - (void) journlerObjectValueDidChange:(NSNotification*)aNotification
@@ -724,7 +724,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	if ( [[[aNotification userInfo] objectForKey:JournlerObjectAttributeKey] isEqualToString:JournlerObjectAttributeLabelKey] )
 	{
 		PDFavorite *aFavorite = [favoritesBar favoriteWithIdentifier:[[aNotification object] URIRepresentationAsString]];
-		if ( aFavorite != nil ) [favoritesBar setLabel:[[[aNotification object] valueForKey:@"label"] intValue] forFavorite:aFavorite];
+		if ( aFavorite != nil ) [favoritesBar setLabel:[[[aNotification object] valueForKey:@"label"] integerValue] forFavorite:aFavorite];
 	}
 }
 
@@ -733,7 +733,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 
 - (void) tabController:(TabController*)aController didChangeTitle:(NSString*)newTitle
 {
-	int theIndex = [[self tabControllers] indexOfObject:aController];
+	NSInteger theIndex = [[self tabControllers] indexOfObject:aController];
 	if ( theIndex != NSNotFound )
 		[tabsBar setNeedsDisplayInRect:[tabsBar frameOfTabAtIndex:theIndex]];
 }
@@ -741,7 +741,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 #pragma mark -
 #pragma mark Managing the Interface & Tabs
 
-- (void) addTab:(TabController*)aTab atIndex:(unsigned int)index 
+- (void) addTab:(TabController*)aTab atIndex:(NSUInteger)index 
 {	
 	if ( index == -1 )
 		index = [tabControllers count];
@@ -771,13 +771,13 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 
 }
 
-- (void) removeTabAtIndex:(unsigned int)index 
+- (void) removeTabAtIndex:(NSUInteger)index 
 {	
 	#ifdef __DEBUG__
 	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
-	int tabToSelect = -99;
+	NSInteger tabToSelect = -99;
 	NSMutableArray *theTabs = [[[self tabControllers] mutableCopyWithZone:[self zone]] autorelease];
 	
 	//NSRect invalidatedRect = [tabsBar frameOfTabAtIndex:index];
@@ -788,7 +788,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	
 	if ( index == [self selectedTabIndex] )
 	{
-		int tabCount = [tabControllers count] - 1;
+		NSInteger tabCount = [tabControllers count] - 1;
 	
 		if ( index == tabCount ) 
 		{
@@ -837,7 +837,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	
 }
 
-- (void) replaceTabAtIndex:(unsigned int)index withTab:(TabController*)aTab 
+- (void) replaceTabAtIndex:(NSUInteger)index withTab:(TabController*)aTab 
 {	
 	// the current tab, checking bounds
 	if ( index > [tabControllers count] ) 
@@ -876,7 +876,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	
 }
 
-- (void) selectTabAtIndex:(unsigned int)index force:(BOOL)force
+- (void) selectTabAtIndex:(NSUInteger)index force:(BOOL)force
 {	
 	#ifdef __DEBUG__
 	NSLog(@"%s",__PRETTY_FUNCTION__);
@@ -966,7 +966,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	}
 }
 
-- (unsigned int)dragOperationForDraggingInfo:(id <NSDraggingInfo>)dragInfo type:(NSString *)type 
+- (NSUInteger)dragOperationForDraggingInfo:(id <NSDraggingInfo>)dragInfo type:(NSString *)type 
 {
 	if ( [dragInfo draggingSource] == favoritesBar ) 
 	{
@@ -1071,8 +1071,8 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	// same as navigateForward and navigateBackward
 	// except performed by a segmented cell
 	
-	int clickedSegment = [sender selectedSegment];
-    int clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
+	NSInteger clickedSegment = [sender selectedSegment];
+    NSInteger clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
 	
 	if ( clickedSegmentTag == 0 )
 	{	// navigate back
@@ -1151,7 +1151,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 
 - (IBAction) selectNextTab:(id)sender 
 {
-	unsigned int newIndex = [self selectedTabIndex] + 1;
+	NSInteger newIndex = [self selectedTabIndex] + 1;
 	if ( newIndex >= [[self tabControllers] count] )
 		newIndex = 0;
 	
@@ -1160,7 +1160,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 
 - (IBAction) selectPreviousTab:(id)sender 
 {
-	unsigned int newIndex = [self selectedTabIndex] - 1;
+	NSInteger  newIndex = [self selectedTabIndex] - 1;
 	if ( newIndex < 0 )
 		newIndex = [[self tabControllers] count] - 1;
 	
@@ -1190,7 +1190,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	}
 	
 	NSDictionary *favoritesDictionary = [sender eventFavorite];
-	unsigned int flags = [[NSApp currentEvent] modifierFlags];
+	NSUInteger flags = [[NSApp currentEvent] modifierFlags];
 	
 	NSURL *link = nil;
 	id favorite_id = [favoritesDictionary objectForKey:PDFavoriteID];
@@ -1327,7 +1327,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	// first try to open resources into full screen
 	if ( [theSelectedResources count] > 0 )
 	{
-		int i = 0;
+		NSInteger i = 0;
 		JournlerResource *aResource;
 		NSEnumerator *enumerator = [theSelectedResources objectEnumerator];
 		
@@ -1356,7 +1356,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	else if ( [theSelectedEntries count] > 0 )
 	{
 		
-		int i = 0;
+		NSInteger i = 0;
 		JournlerEntry *anEntry;
 		NSEnumerator *enumerator = [theSelectedEntries objectEnumerator];
 		
@@ -1810,7 +1810,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 - (BOOL)validateMenuItem:(NSMenuItem*)menuItem
 {
 	BOOL enabled = YES;
-	int theTag = [menuItem tag];
+	NSInteger theTag = [menuItem tag];
 	SEL action = [menuItem action];
 	
 	// check menu items that are specifically handled by me
@@ -1974,17 +1974,17 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 #pragma mark -
 #pragma mark Handling Tabs
 
-- (int) indexOfObjectInJSTabs:(TabController*)aTab
+- (NSInteger) indexOfObjectInJSTabs:(TabController*)aTab
 {
 	return [[self valueForKey:@"tabControllers"] indexOfObject:aTab];
 }
 
-- (unsigned int) countOfJSTabs
+- (NSUInteger) countOfJSTabs
 { 
 	return [[self valueForKey:@"tabControllers"] count];
 }
 
-- (TabController*) objectInJSTabsAtIndex:(unsigned int)i
+- (TabController*) objectInJSTabsAtIndex:(NSUInteger)i
 {
 	if ( i >= [[self valueForKey:@"tabControllers"] count] ) 
 	{
@@ -1999,7 +1999,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 
 #pragma mark -
 
-- (void) insertObject:(TabController*)aTab inJSTabsAtIndex:(unsigned int)index
+- (void) insertObject:(TabController*)aTab inJSTabsAtIndex:(NSUInteger)index
 {
 	[self JSAddNewTab:aTab atIndex:index];
 }
@@ -2009,14 +2009,14 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	[self JSAddNewTab:aTab atIndex:0];
 }
 
-- (void) JSAddNewTab:(TabController*)aTab atIndex:(unsigned int)index
+- (void) JSAddNewTab:(TabController*)aTab atIndex:(NSUInteger)index
 {
 	[self newTab:self];
 }
 
 #pragma mark -
 
-- (void) removeObjectFromJSTabsAtIndex:(unsigned int)index 
+- (void) removeObjectFromJSTabsAtIndex:(NSUInteger)index 
 {
 	if ( index >= [[self valueForKey:@"tabControllers"] count]  || [[self valueForKey:@"tabControllers"] count] == 1 ) 
 	{
@@ -2029,7 +2029,7 @@ static NSString *kJournlerWindowControllerObserver = @"JournlerWindowControllerO
 	
 }
 
-- (void) removeFromJSTabsAtIndex:(unsigned int)index
+- (void) removeFromJSTabsAtIndex:(NSUInteger)index
 {
 	if ( index >= [[self valueForKey:@"tabControllers"] count] || [[self valueForKey:@"tabControllers"] count] == 1 ) 
 	{

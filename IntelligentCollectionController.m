@@ -105,7 +105,7 @@
 #pragma mark Combination Style
 
 - (void) setInitialCombinationStyle:(NSNumber*)style {
-	[combinationPop selectItemWithTag:[style intValue]];
+	[combinationPop selectItemWithTag:[style integerValue]];
 }
 
 - (NSNumber*) combinationStyle { return _combinationStyle; }
@@ -204,7 +204,7 @@
 
 #pragma mark -
 
-- (int) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet {
+- (NSInteger) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet {
 	
 	NSInteger result;
 	
@@ -232,7 +232,7 @@
 	
 	[self setConditions:[allPredicates autorelease]];
 	[self setFolderTitle:[folderName stringValue]];
-	[self setCombinationStyle:[NSNumber numberWithInt:[[combinationPop selectedItem] tag]]];
+	[self setCombinationStyle:[NSNumber numberWithInteger:[[combinationPop selectedItem] tag]]];
 	
 	if ( sheet )
 		[NSApp endSheet: [self window]];

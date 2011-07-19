@@ -389,7 +389,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 		{
 			// create a temporary resurce - should deallocate when the node is no longer in use
 			JournlerResource *aFolderResource = [[[JournlerResource alloc] initJournalObjectResource:[aFolder URIRepresentation]] autorelease];
-			[aFolderResource setValue:[NSNumber numberWithInt:onTheFlyTag--] forKey:@"tagID"];
+			[aFolderResource setValue:[NSNumber numberWithInteger:onTheFlyTag--] forKey:@"tagID"];
 			[aFolderResource setValue:[aFolder valueForKey:@"title"] forKey:@"title"];
 			[aFolderResource setValue:[aFolder valueForKey:@"icon"] forKey:@"icon"];
 			[aFolderResource setValue:[self valueForKeyPath:@"delegate.journal"] forKey:@"journal"];
@@ -462,7 +462,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 			
 			// create a temporary resurce for the parent, always first - should deallocate when the node is no longer in use
 			JournlerResource *owningEntryResource = [[[JournlerResource alloc] initJournalObjectResource:[owningEntry URIRepresentation]] autorelease];
-			[owningEntryResource setValue:[NSNumber numberWithInt:onTheFlyTag--] forKey:@"tagID"];
+			[owningEntryResource setValue:[NSNumber numberWithInteger:onTheFlyTag--] forKey:@"tagID"];
 			[owningEntryResource setValue:[owningEntry valueForKey:@"title"] forKey:@"title"];
 			[owningEntryResource setValue:[owningEntry valueForKey:@"icon"] forKey:@"icon"];
 			[owningEntryResource setValue:[self valueForKeyPath:@"delegate.journal"] forKey:@"journal"];
@@ -487,7 +487,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 				
 				// create a temporary resurce - should deallocate when the node is no longer in use
 				JournlerResource *anEntryResource = [[[JournlerResource alloc] initJournalObjectResource:[anEntry URIRepresentation]] autorelease];
-				[anEntryResource setValue:[NSNumber numberWithInt:onTheFlyTag--] forKey:@"tagID"];
+				[anEntryResource setValue:[NSNumber numberWithInteger:onTheFlyTag--] forKey:@"tagID"];
 				[anEntryResource setValue:[anEntry valueForKey:@"title"] forKey:@"title"];
 				[anEntryResource setValue:[anEntry valueForKey:@"icon"] forKey:@"icon"];
 				[anEntryResource setValue:[self valueForKeyPath:@"delegate.journal"] forKey:@"journal"];
@@ -689,7 +689,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 #pragma mark NSOutlineView Data Source
 
 // This method is called repeatedly when the table view is displaying it self. 
-- (id)outlineView:(NSOutlineView *)ov child:(int)index ofItem:(id)item
+- (id)outlineView:(NSOutlineView *)ov child:(NSInteger)index ofItem:(id)item
 {
     // is the parent non-nil?
     if (item != nil)
@@ -708,7 +708,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 }
 
 // Called repeatedly when the table view is displaying itself
-- (int)outlineView:(NSOutlineView *)ov numberOfChildrenOfItem:(id)item
+- (NSInteger)outlineView:(NSOutlineView *)ov numberOfChildrenOfItem:(id)item
 {
  // The root object;
     if (item == nil) 
@@ -988,7 +988,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 			[theTooltip appendString:[actualItem valueForKeyPath:@"resource.title"]];
 			
 			// as well as any entries this resource is linked to
-			int i = 1;
+			NSInteger i = 1;
 #warning iterate i here?
         
             for ( JournlerEntry *anEntry in [[actualItem resource] entries] )
@@ -1047,7 +1047,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 	NSIndexSet *selectedRows = [resourceTable selectedRowIndexes];
 	NSMutableArray *selectedItems = [NSMutableArray arrayWithCapacity:[selectedRows count]];
 	
-	unsigned current_index = [selectedRows firstIndex];
+	NSUInteger current_index = [selectedRows firstIndex];
     while (current_index != NSNotFound)
     {
 		// grab the item at this index and act on it
@@ -1071,7 +1071,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 		writeItems:(NSArray *)items 
 		toPasteboard:(NSPasteboard *)pboard
 {
-	int i;
+	NSInteger i;
 	NSArray *objects = items;
 	
 	NSMutableArray *referenceURIs = [NSMutableArray arrayWithCapacity:[objects count]];
@@ -1124,7 +1124,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 	if ( ![dropDestination isFileURL] ) 
 		return nil;
 	
-	int i;
+	NSInteger i;
 	NSString *rootPath = [dropDestination path];
 	NSArray *objects = items;
 	NSMutableArray *titles = [NSMutableArray arrayWithCapacity:[objects count]];
@@ -1147,7 +1147,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 - (BOOL)outlineView:(NSOutlineView *)outlineView 
 		acceptDrop:(id <NSDraggingInfo>)info 
 		item:(id)item 
-		childIndex:(int)index
+		childIndex:(NSInteger)index
 {
 	BOOL success = NO;
 	static NSString *http_string = @"http://";
@@ -1164,7 +1164,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 			NSURLPboardType, NSStringPboardType, nil];
 	
 	//id source = [info draggingSource];
-	unsigned operation = _dragOperation;
+	NSUInteger operation = _dragOperation;
     NSString *desiredType = [pboard availableTypeFromArray:types];
 	NSArray *availableTypes = [pboard types];
 	
@@ -1193,7 +1193,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 	// add people to the text
 	if ( [desiredType isEqualToString:kABPeopleUIDsPboardType] ) 
 	{
-		int i;
+		NSInteger i;
 		success = YES;
 		NSArray *uids = [pboard propertyListForType:kABPeopleUIDsPboardType];
 		for ( i = 0; i < [uids count]; i++ ) 
@@ -1215,7 +1215,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 	// add files to the text
 	else if ( [desiredType isEqualToString:NSFilenamesPboardType] ) 
 	{
-		int j;
+		NSInteger j;
 		success = YES;
 		NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
 		for ( j = 0; j < [files count]; j++ ) 
@@ -1248,7 +1248,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 		{
 			success = YES;
 			
-			int i;
+			NSInteger i;
 			for ( i = 0; i < [URLArray count]; i++ ) 
 			{
 				if ( iIntegration)
@@ -1291,7 +1291,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 	// add a journler object to the text
 	else if ( [desiredType isEqualToString:PDEntryIDPboardType] || [desiredType isEqualToString:PDResourceIDPboardType] )
 	{
-		int i;
+		NSInteger i;
 		NSArray *URIs = [pboard propertyListForType:desiredType];
 		success = YES;
 		
@@ -1350,9 +1350,9 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 - (NSDragOperation)outlineView:(NSOutlineView *)outlineView 
 		validateDrop:(id <NSDraggingInfo>)info 
 		proposedItem:(id)item 
-		proposedChildIndex:(int)index
+		proposedChildIndex:(NSInteger)index
 {
-	unsigned operation;
+	NSUInteger operation;
 	_dragOperation = NSDragOperationNone;
 	//id source = [info draggingSource];
 	
@@ -1492,7 +1492,7 @@ bail:
 	#endif
 	
 	if ( [[collapsedObject valueForKey:@"label"] boolValue] == YES )
-		[stateDictionary setObject:[NSNumber numberWithInt:kResourceNodeCollapsed] forKey:[collapsedObject labelTitle]];
+		[stateDictionary setObject:[NSNumber numberWithInteger:kResourceNodeCollapsed] forKey:[collapsedObject labelTitle]];
 }
 
 - (void)outlineViewItemDidExpand:(NSNotification *)notification
@@ -1504,7 +1504,7 @@ bail:
 	#endif
 	
 	if ( [[expandedObject valueForKey:@"label"] boolValue] == YES )
-		[stateDictionary setObject:[NSNumber numberWithInt:kResourceNodeExpanded] forKey:[expandedObject valueForKey:@"labelTitle"]];
+		[stateDictionary setObject:[NSNumber numberWithInteger:kResourceNodeExpanded] forKey:[expandedObject valueForKey:@"labelTitle"]];
 }
 
 - (NSDictionary*) stateDictionary
@@ -1525,18 +1525,18 @@ bail:
 		// contacts
 		if ( [aKey isEqualToString:[contactsNode labelTitle]] && [resourceTable rowForItem:contactsNode] != -1 )
 		{
-			if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:contactsNode] )
+			if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:contactsNode] )
 				[resourceTable collapseItem:contactsNode];
-			else if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:contactsNode] )
+			else if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:contactsNode] )
 				[resourceTable expandItem:contactsNode expandChildren:NO];
 		}
 		
 		// urls
 		else if ( [aKey isEqualToString:[urlsNode labelTitle]] && [resourceTable rowForItem:urlsNode] != -1 )
 		{
-			if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:urlsNode] )
+			if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:urlsNode] )
 				[resourceTable collapseItem:urlsNode];
-			else if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:urlsNode] )
+			else if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:urlsNode] )
 				[resourceTable expandItem:urlsNode expandChildren:NO];
 		}
 
@@ -1544,72 +1544,72 @@ bail:
 		// correspondence
 		else if ( [aKey isEqualToString:[correspondenceNode labelTitle]] && [resourceTable rowForItem:correspondenceNode] != -1 )
 		{
-			if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:correspondenceNode] )
+			if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:correspondenceNode] )
 				[resourceTable collapseItem:correspondenceNode];
-			else if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:correspondenceNode] )
+			else if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:correspondenceNode] )
 				[resourceTable expandItem:correspondenceNode expandChildren:NO];
 		}
 		
 		// documents
 		else if ( [aKey isEqualToString:[documentsNode labelTitle]] && [resourceTable rowForItem:documentsNode] != -1 )
 		{
-			if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:documentsNode] )
+			if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:documentsNode] )
 				[resourceTable collapseItem:documentsNode];
-			else if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:documentsNode] )
+			else if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:documentsNode] )
 				[resourceTable expandItem:documentsNode expandChildren:NO];
 		}
 		
 		// pdfs
 		else if ( [aKey isEqualToString:[pdfsNode labelTitle]] && [resourceTable rowForItem:pdfsNode] != -1 )
 		{
-			if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:pdfsNode] )
+			if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:pdfsNode] )
 				[resourceTable collapseItem:pdfsNode];
-			else if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:pdfsNode] )
+			else if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:pdfsNode] )
 				[resourceTable expandItem:pdfsNode expandChildren:NO];
 		}
 		
 		// web archives
 		else if ( [aKey isEqualToString:[archivesNode labelTitle]] && [resourceTable rowForItem:archivesNode] != -1 )
 		{
-			if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:archivesNode] )
+			if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:archivesNode] )
 				[resourceTable collapseItem:archivesNode];
-			else if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:archivesNode] )
+			else if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:archivesNode] )
 				[resourceTable expandItem:archivesNode expandChildren:NO];
 		}
 		
 		// images
 		else if ( [aKey isEqualToString:[imagesNode labelTitle]] && [resourceTable rowForItem:imagesNode] != -1 )
 		{
-			if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:imagesNode] )
+			if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:imagesNode] )
 				[resourceTable collapseItem:imagesNode];
-			else if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:imagesNode] )
+			else if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:imagesNode] )
 				[resourceTable expandItem:imagesNode expandChildren:NO];
 		}
 		
 		// audio/visual
 		else if ( [aKey isEqualToString:[avNode labelTitle]] && [resourceTable rowForItem:avNode] != -1 )
 		{
-			if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:avNode] )
+			if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:avNode] )
 				[resourceTable collapseItem:avNode];
-			else if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:avNode] )
+			else if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:avNode] )
 				[resourceTable expandItem:avNode expandChildren:NO];
 		}
 		
 		// internal folders
 		else if ( [aKey isEqualToString:[foldersNode labelTitle]] && [resourceTable rowForItem:foldersNode] != -1 )
 		{
-			if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:foldersNode] )
+			if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:foldersNode] )
 				[resourceTable collapseItem:foldersNode];
-			else if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:foldersNode] )
+			else if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:foldersNode] )
 				[resourceTable expandItem:foldersNode expandChildren:NO];
 		}
 		
 		// internal links (entries)
 		else if ( [aKey isEqualToString:[internalNode labelTitle]] && [resourceTable rowForItem:internalNode] != -1 )
 		{
-			if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:internalNode] )
+			if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeCollapsed && [resourceTable isItemExpanded:internalNode] )
 				[resourceTable collapseItem:internalNode];
-			else if ( [[aDictionary objectForKey:aKey] intValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:internalNode] )
+			else if ( [[aDictionary objectForKey:aKey] integerValue] == kResourceNodeExpanded && ![resourceTable isItemExpanded:internalNode] )
 				[resourceTable expandItem:internalNode expandChildren:NO];
 		}
 	}
@@ -1640,7 +1640,7 @@ bail:
 				[resourceTable deselectRow:[resourceTable rowForItem:representingNode]];
 		
 			// and remove the node representing resource representing entry from this item
-			int childIndex = [[representingNode valueForKeyPath:@"children.resource.journlerObject"] indexOfObject:theEntry];
+			NSInteger childIndex = [[representingNode valueForKeyPath:@"children.resource.journlerObject"] indexOfObject:theEntry];
 			if ( childIndex != NSNotFound )
 			{
 				NSMutableArray *childNodes = [[[representingNode children] mutableCopyWithZone:[self zone]] autorelease];
@@ -1652,12 +1652,12 @@ bail:
 		else if ( [[aNotification name] isEqualToString:EntryDidAddResourceNotification] )
 		{
 			//#warning not working
-			int childIndex = [[representingNode valueForKeyPath:@"children.resource.journlerObject"] indexOfObject:theEntry];
+			NSInteger childIndex = [[representingNode valueForKeyPath:@"children.resource.journlerObject"] indexOfObject:theEntry];
 			if ( childIndex == NSNotFound )
 			{
 				// create a new dummy node representing resource representing entry for this item and add it to the children
 				JournlerResource *anEntryResource = [[[JournlerResource alloc] initJournalObjectResource:[theEntry URIRepresentation]] autorelease];
-				[anEntryResource setValue:[NSNumber numberWithInt:onTheFlyTag--] forKey:@"tagID"];
+				[anEntryResource setValue:[NSNumber numberWithInteger:onTheFlyTag--] forKey:@"tagID"];
 				[anEntryResource setValue:[theEntry valueForKey:@"title"] forKey:@"title"];
 				[anEntryResource setValue:[theEntry valueForKey:@"icon"] forKey:@"icon"];
 				[anEntryResource setValue:[self valueForKeyPath:@"delegate.journal"] forKey:@"journal"];
@@ -1707,7 +1707,7 @@ bail:
 	if ( [theObject isKindOfClass:[JournlerResource class]] 
 		&& [[[aNotification userInfo] objectForKey:JournlerObjectAttributeKey] isEqualToString:JournlerObjectAttributeLabelKey] )
 	{
-		int theRow = [resourceTable rowForOriginalItem:[self _nodeForResource:(JournlerResource*)theObject]];
+		NSInteger theRow = [resourceTable rowForOriginalItem:[self _nodeForResource:(JournlerResource*)theObject]];
 		if ( theRow != -1 )
 			[resourceTable setNeedsDisplayInRect:[resourceTable rectOfRow:theRow]];
 	}
@@ -1750,7 +1750,7 @@ bail:
 
 - (IBAction) setDisplayOption:(id)sender
 {
-	int tag = [sender tag];
+	NSInteger tag = [sender tag];
 	if ( tag >= 101 && tag <= 104 ) 
 	{
 		NSString *defaultsKey = nil;
@@ -1803,7 +1803,7 @@ bail:
     for ( JournlerResource *aResource in [self selectedResources] )
 	{
 		if ( ([aResource representsJournlerObject] && [[aResource URIRepresentation] isJournlerFolder]) 
-			|| [[aResource tagID] intValue] < 0 )
+			|| [[aResource tagID] integerValue] < 0 )
 		{
 			canDelete = NO;
 			break;
@@ -1983,7 +1983,7 @@ bail:
 
 #pragma mark -
 
-- (void) sortBy:(int)sortTag
+- (void) sortBy:(NSInteger)sortTag
 {
 	/*
 	switch ( sortTag )
@@ -2057,7 +2057,7 @@ bail:
 			[resourceTable expandItem:parentToExpand expandChildren:NO];
 			
 			// select the child
-			unsigned childIndex = [resourceTable rowForItem:childToSelect];
+			NSUInteger childIndex = [resourceTable rowForItem:childToSelect];
 			[resourceTable selectRowIndexes:[NSIndexSet indexSetWithIndex:childIndex] byExtendingSelection:extend];
 		}
 		else 
@@ -2081,10 +2081,10 @@ bail:
 				break;
 		}
 		
-		int i;
+		NSInteger i;
 		for ( i = [nodesToExpand count] - 1; i >= 0; i-- )
 		{
-			unsigned aRow = [sourceList rowForOriginalItem:[nodesToExpand objectAtIndex:i]];
+			NSUInteger aRow = [sourceList rowForOriginalItem:[nodesToExpand objectAtIndex:i]];
 			id treeNode = [sourceList itemAtRow:aRow];
 			[sourceList expandItem:treeNode expandChildren:NO];
 			
@@ -2109,7 +2109,7 @@ bail:
 {
 	BOOL enabled = YES;
 	SEL action = [anItem action];
-	int tag = [anItem tag];
+	NSInteger tag = [anItem tag];
 	NSArray *selectedObjects = [self selectedResources];
 	
 	if ( action == @selector(setDisplayOption:) )
@@ -2207,7 +2207,7 @@ bail:
             for ( JournlerResource *aResource in selectedObjects )
 			{
 				if ( ([aResource representsJournlerObject] && [[aResource URIRepresentation] isJournlerFolder]) 
-					|| [[aResource tagID] intValue] < 0 )
+					|| [[aResource tagID] integerValue] < 0 )
 				{
 					enabled = NO;
 					break;
@@ -2245,7 +2245,7 @@ bail:
 		
 		else if ( action == @selector(editResourceLabel:) )
 		{
-			unsigned entryCount = [[self selectedResources] count];
+			NSUInteger entryCount = [[self selectedResources] count];
 			enabled = ( entryCount > 0 );
 			
 			if ( tag == 0 || tag == 10 )
@@ -2293,7 +2293,7 @@ bail:
 	[notice runNotice];
 	
 	BOOL success = YES;
-	unsigned operation = _dragOperation;
+	NSUInteger operation = _dragOperation;
 	NSPasteboard *pboard = [sender draggingPasteboard];
 	
 	// get the path, get the selection via applescript, build the full paths
@@ -2333,7 +2333,7 @@ bail:
 	{
 	
 		eventDescriptor = [script executeAndReturnError:&errorDictionary];
-		if ( eventDescriptor == nil && [[errorDictionary objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
+		if ( eventDescriptor == nil && [[errorDictionary objectForKey:NSAppleScriptErrorNumber] integerValue] != kScriptWasCancelledError )
 		{
 			NSLog(@"%s - problem compiling mail message selection script: %@", __PRETTY_FUNCTION__, errorDictionary);
 			
@@ -2359,7 +2359,7 @@ bail:
 			NSLog([eventDescriptor description]);
 			#endif
 			
-			int i, totalItems = [eventDescriptor numberOfItems];
+			NSInteger i, totalItems = [eventDescriptor numberOfItems];
 			for ( i = 1; i <= totalItems; i++ )
 			{
 				NSAppleEventDescriptor *itemDescriptor = [eventDescriptor descriptorAtIndex:i];
@@ -2376,7 +2376,7 @@ bail:
 				}
 				
 				// each event descriptor is itself an array of two items: id, subject
-				int anID = [[itemDescriptor descriptorAtIndex:1] int32Value];
+				NSInteger anID = [[itemDescriptor descriptorAtIndex:1] int32Value];
 				NSString *aSubject = [[itemDescriptor descriptorAtIndex:2] stringValue];
 				
 				NSString *aMessagePath = [[mboxPath stringByAppendingPathComponent:@"Messages"] 
@@ -2590,7 +2590,7 @@ bail:
 	BOOL success = NO;
 	
 	BOOL dir, package;
-	int actualCommand = kNewResourceForceLink;
+	NSInteger actualCommand = kNewResourceForceLink;
 	//NSString *displayName;
 	NSString *appName = nil, *fileType = nil;
 	
@@ -2663,9 +2663,9 @@ bail:
 
 #pragma mark -
 
-- (unsigned) _commandForCurrentCommand:(unsigned)dragOperation fileType:(NSString*)type directory:(BOOL)dir package:(BOOL)package
+- (NSUInteger) _commandForCurrentCommand:(NSUInteger)dragOperation fileType:(NSString*)type directory:(BOOL)dir package:(BOOL)package
 {
-	int actualCommand = kNewResourceForceLink;
+	NSInteger actualCommand = kNewResourceForceLink;
 	
 	// determine the actual command, copy or link the file, depending on type, media policy and caller's demands
 	if ( dragOperation == kNewResourceForceLink ) 

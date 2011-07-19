@@ -55,7 +55,7 @@
 - (IBAction)cancelFolder:(id)sender;
 - (IBAction)createFolder:(id)sender;
 
-- (int) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet;
+- (NSInteger) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet;
 
 - (void) updateConditionsView;
 - (void) updateKeyViewLoop;

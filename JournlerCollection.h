@@ -140,12 +140,12 @@ typedef enum {
 
 // Accessors for the children
 - (void) addChild:(JournlerCollection *)n;
-- (void) addChild:(JournlerCollection*)n atIndex:(int)index;
+- (void) addChild:(JournlerCollection*)n atIndex:(NSInteger)index;
 - (void) removeChild:(JournlerCollection *)aFolder recursively:(BOOL)rFlag;
-- (void) moveChild:(JournlerCollection *)aFolder toIndex:(unsigned int)anIndex;
+- (void) moveChild:(JournlerCollection *)aFolder toIndex:(NSUInteger)anIndex;
 
-- (int) childrenCount;
-- (JournlerCollection *) childAtIndex:(int)i;
+- (NSInteger) childrenCount;
+- (JournlerCollection *) childAtIndex:(NSInteger)i;
 
 - (NSArray*) allChildren;
 
@@ -170,7 +170,7 @@ typedef enum {
 
 - (NSMenu*) menuRepresentation:(id)target action:(SEL)aSelector smallImages:(BOOL)useSmallImages includeEntries:(BOOL)wEntries;
 - (NSMenu*) undelegatedMenuRepresentation:(id)target action:(SEL)aSelector smallImages:(BOOL)useSmallImages includeEntries:(BOOL)wEntries;
-- (BOOL) flatMenuRepresentation:(NSMenu**)aMenu target:(id)object action:(SEL)aSelector smallImages:(BOOL)useSmallImages inset:(int)level;
+- (BOOL) flatMenuRepresentation:(NSMenu**)aMenu target:(id)object action:(SEL)aSelector smallImages:(BOOL)useSmallImages inset:(NSInteger)level;
 
 - (void) updateForTwoZero;
 
@@ -202,7 +202,7 @@ typedef enum {
 
 - (NSImage*) determineIcon;
 - (void) validateIcon;
-+ (NSImage*) defaultImageForID:(int)type;
++ (NSImage*) defaultImageForID:(NSInteger)type;
 
 - (void) addEntry:(JournlerEntry*)entry;
 - (void) removeEntry:(JournlerEntry*)entry;
@@ -225,7 +225,7 @@ typedef enum {
 
 - (NSString*) packagePath;
 - (NSString*) pathSafeTitle;
-- (BOOL) writeEntriesToFolder:(NSString*)directoryPath format:(int)fileType considerChildren:(BOOL)recursive includeHeaders:(BOOL)headers;
+- (BOOL) writeEntriesToFolder:(NSString*)directoryPath format:(NSInteger)fileType considerChildren:(BOOL)recursive includeHeaders:(BOOL)headers;
 
 - (NSString*) htmlRepresentationWithCache:(NSString*)cachePath;
 
@@ -246,14 +246,14 @@ typedef enum {
 
 #pragma mark -
 
-- (int) indexOfObjectInJSEntries:(JournlerEntry*)anEntry;
-- (unsigned int) countOfJSEntries;
-- (JournlerEntry*) objectInJSEntriesAtIndex:(unsigned int)i;
+- (NSInteger) indexOfObjectInJSEntries:(JournlerEntry*)anEntry;
+- (NSUInteger) countOfJSEntries;
+- (JournlerEntry*) objectInJSEntriesAtIndex:(NSUInteger)i;
 - (JournlerEntry*) valueInJSEntriesWithUniqueID:(NSNumber*)idNum;
 
-- (int) indexOfObjectInJSFolders:(JournlerCollection*)aFolder;
-- (unsigned int) countOfJSFolders;
-- (JournlerCollection*) objectInJSFoldersAtIndex:(unsigned int)i;
+- (NSInteger) indexOfObjectInJSFolders:(JournlerCollection*)aFolder;
+- (NSUInteger) countOfJSFolders;
+- (JournlerCollection*) objectInJSFoldersAtIndex:(NSUInteger)i;
 - (JournlerCollection*) valueInJSFoldersWithUniqueID:(NSNumber*)idNum;
 
 #pragma mark -

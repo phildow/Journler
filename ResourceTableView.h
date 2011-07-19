@@ -16,7 +16,7 @@
 	NSTimeInterval	_searchInterval;
 	NSMutableString *_searchString;
 	
-	int _shortcutRow;
+	NSInteger _shortcutRow;
 }
 
 - (NSTableColumn*) titleColumn;
@@ -30,6 +30,6 @@
 @interface NSObject (ResourceTableViewDelegate)
 
 // the delegate should return yes if it handles this action
-- (BOOL) resourceTable:(ResourceTableView*)aResourceTable didSelectRowAlreadySelected:(int)aRow event:(NSEvent*)mouseEvent;
+- (BOOL) resourceTable:(ResourceTableView*)aResourceTable didSelectRowAlreadySelected:(NSInteger)aRow event:(NSEvent*)mouseEvent;
 
 @end

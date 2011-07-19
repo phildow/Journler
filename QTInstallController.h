@@ -17,7 +17,7 @@
 + (BOOL) simplyInstallLameComponents;
 - (BOOL) installLameComponents;
 
-//- (int) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet;
+//- (NSInteger) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet;
 
 - (IBAction)dontInstall:(id)sender;
 - (IBAction)install:(id)sender;

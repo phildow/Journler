@@ -21,7 +21,7 @@
 @interface JournlerWindowController : NSWindowController {
 	
 	NSArray *tabControllers;
-	unsigned int selectedTabIndex;
+	NSUInteger selectedTabIndex;
 	
 	JournlerJournal *journal;
 	
@@ -46,8 +46,8 @@
 - (JournlerJournal*) journal;
 - (void) setJournal:(JournlerJournal*)aJournal;
 
-- (unsigned int ) selectedTabIndex;
-- (void) setSelectedTabIndex:(unsigned int)theSelection;
+- (NSUInteger) selectedTabIndex;
+- (void) setSelectedTabIndex:(NSUInteger)theSelection;
 
 - (NSArray*) tabControllers;
 - (void) setTabControllers:(NSArray*)anArray;
@@ -70,10 +70,10 @@
 - (NSMenuItem*) dockMenuRepresentation;
 - (IBAction) performDockRequest:(id)sender;
 
-- (void) selectTabAtIndex:(unsigned int)index force:(BOOL)force;
-- (void) removeTabAtIndex:(unsigned int)index;
-- (void) addTab:(TabController*)aTab atIndex:(unsigned int)index;
-- (void) replaceTabAtIndex:(unsigned int)index withTab:(TabController*)aTab;
+- (void) selectTabAtIndex:(NSUInteger)index force:(BOOL)force;
+- (void) removeTabAtIndex:(NSUInteger)index;
+- (void) addTab:(TabController*)aTab atIndex:(NSUInteger)index;
+- (void) replaceTabAtIndex:(NSUInteger)index withTab:(TabController*)aTab;
 
 - (void) updateNavInterface;
 - (IBAction) navigateBack:(id)sender;
@@ -156,16 +156,16 @@
 
 - (TabController*) scriptSelectedTab;
 
-- (int) indexOfObjectInJSTabs:(TabController*)aTab;
-- (unsigned int) countOfJSTabs;
-- (TabController*) objectInJSTabsAtIndex:(unsigned int)i;
+- (NSInteger) indexOfObjectInJSTabs:(TabController*)aTab;
+- (NSUInteger) countOfJSTabs;
+- (TabController*) objectInJSTabsAtIndex:(NSUInteger)i;
 
-- (void) insertObject:(TabController*)aTab inJSTabsAtIndex:(unsigned int)index;
+- (void) insertObject:(TabController*)aTab inJSTabsAtIndex:(NSUInteger)index;
 - (void) insertInJSTabs:(TabController*)aTab;
-- (void) JSAddNewTab:(TabController*)aTab atIndex:(unsigned int)index;
+- (void) JSAddNewTab:(TabController*)aTab atIndex:(NSUInteger)index;
 
-- (void) removeObjectFromJSTabsAtIndex:(unsigned int)index; 
-- (void) removeFromJSTabsAtIndex:(unsigned int)index;
+- (void) removeObjectFromJSTabsAtIndex:(NSUInteger)index; 
+- (void) removeFromJSTabsAtIndex:(NSUInteger)index;
 - (void) JSDeleteTab:(TabController*)aTab;
 
 @end

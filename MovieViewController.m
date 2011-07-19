@@ -144,7 +144,7 @@
 
 - (void) performCustomTextSizeAction:(id)sender
 {	
-	int currentIndex = [scalePop indexOfItemWithTag:current_scale];
+	NSInteger currentIndex = [scalePop indexOfItemWithTag:current_scale];
 	
 	if ( [sender tag] == 3 )
 	{
@@ -268,7 +268,7 @@
 - (BOOL)validateMenuItem:(NSMenuItem*)menuItem 
 {
 	BOOL enabled = YES;
-	int theTag = [menuItem tag];
+	NSInteger theTag = [menuItem tag];
 	SEL action = [menuItem action];
 	
 	if ( action == @selector(setScale:) )
@@ -279,7 +279,7 @@
 	
 	else if ( action == @selector(performCustomTextSizeAction:) )
 	{
-		int currentIndex = [scalePop indexOfItemWithTag:current_scale];
+		NSInteger currentIndex = [scalePop indexOfItemWithTag:current_scale];
 	
 		if ( ( theTag == 3 && currentIndex < 9 ) || ( theTag == 4 && currentIndex > 1 ) || ( theTag == 99 ) )
 			enabled = YES;

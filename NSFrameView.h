@@ -10,7 +10,7 @@
 
 @interface NSFrameView : NSView
 {
-    unsigned int styleMask;
+    NSUInteger styleMask;
     NSString *_title;
     NSCell *titleCell;
     NSButton *closeButton;
@@ -24,14 +24,14 @@
 }
 
 + (void)initialize;
-+ (void)initTitleCell:(id)fp8 styleMask:(unsigned int)fp12;
-+ (struct _NSRect)frameRectForContentRect:(struct _NSRect)fp8 styleMask:(unsigned int)fp24;
-+ (struct _NSRect)contentRectForFrameRect:(struct _NSRect)fp8 styleMask:(unsigned int)fp24;
-+ (struct _NSSize)minFrameSizeForMinContentSize:(struct _NSSize)fp8 styleMask:(unsigned int)fp16;
-+ (struct _NSSize)minContentSizeForMinFrameSize:(struct _NSSize)fp8 styleMask:(unsigned int)fp16;
-+ (float)minFrameWidthWithTitle:(id)fp8 styleMask:(unsigned int)fp12;
-+ (unsigned int)_validateStyleMask:(unsigned int)fp8;
-- (id)initWithFrame:(struct _NSRect)fp8 styleMask:(unsigned int)fp24 owner:(id)fp28;
++ (void)initTitleCell:(id)fp8 styleMask:(NSUInteger)fp12;
++ (struct _NSRect)frameRectForContentRect:(struct _NSRect)fp8 styleMask:(NSUInteger)fp24;
++ (struct _NSRect)contentRectForFrameRect:(struct _NSRect)fp8 styleMask:(NSUInteger)fp24;
++ (struct _NSSize)minFrameSizeForMinContentSize:(struct _NSSize)fp8 styleMask:(NSUInteger)fp16;
++ (struct _NSSize)minContentSizeForMinFrameSize:(struct _NSSize)fp8 styleMask:(NSUInteger)fp16;
++ (float)minFrameWidthWithTitle:(id)fp8 styleMask:(NSUInteger)fp12;
++ (NSUInteger)_validateStyleMask:(NSUInteger)fp8;
+- (id)initWithFrame:(struct _NSRect)fp8 styleMask:(NSUInteger)fp24 owner:(id)fp28;
 - (id)initWithFrame:(struct _NSRect)fp8;
 - (void)dealloc;
 - (void)finalize;
@@ -49,8 +49,8 @@
 - (void)_updateButtonState;
 - (BOOL)_isSheet;
 - (BOOL)_isUtility;
-- (void)setShadowState:(int)fp8;
-- (int)shadowState;
+- (void)setShadowState:(NSInteger)fp8;
+- (NSInteger)shadowState;
 - (BOOL)_canHaveToolbar;
 - (BOOL)_toolbarIsInTransition;
 - (BOOL)_toolbarIsShown;
@@ -58,8 +58,8 @@
 - (void)_showToolbarWithAnimation:(BOOL)fp8;
 - (void)_hideToolbarWithAnimation:(BOOL)fp8;
 - (float)_distanceFromToolbarBaseToTitlebar;
-- (int)_shadowType;
-- (unsigned int)_shadowFlags;
+- (NSInteger)_shadowType;
+- (NSUInteger)_shadowFlags;
 - (void)_setShadowParameters;
 - (void)_drawFrameShadowAndFlushContext:(id)fp8;
 - (void)setUpGState;
@@ -77,7 +77,7 @@
 - (struct _NSSize)resizeIncrements;
 - (void)setAspectRatio:(struct _NSSize)fp8;
 - (struct _NSSize)aspectRatio;
-- (unsigned int)styleMask;
+- (NSUInteger)styleMask;
 - (id)representedFilename;
 - (void)setRepresentedFilename:(id)fp8;
 - (void)setDocumentEdited:(BOOL)fp8;
@@ -97,9 +97,9 @@
 - (void)_clearDragMargins;
 - (void)_resetDragMargins;
 - (void)setTitle:(id)fp8 andDefeatWrap:(BOOL)fp12;
-- (struct _NSRect)frameRectForContentRect:(struct _NSRect)fp8 styleMask:(unsigned int)fp24;
-- (struct _NSRect)contentRectForFrameRect:(struct _NSRect)fp8 styleMask:(unsigned int)fp24;
-- (struct _NSSize)minFrameSizeForMinContentSize:(struct _NSSize)fp8 styleMask:(unsigned int)fp16;
+- (struct _NSRect)frameRectForContentRect:(struct _NSRect)fp8 styleMask:(NSUInteger)fp24;
+- (struct _NSRect)contentRectForFrameRect:(struct _NSRect)fp8 styleMask:(NSUInteger)fp24;
+- (struct _NSSize)minFrameSizeForMinContentSize:(struct _NSSize)fp8 styleMask:(NSUInteger)fp16;
 - (struct _NSRect)dragRectForFrameRect:(struct _NSRect)fp8;
 - (struct _NSRect)contentRect;
 - (struct _NSSize)minFrameSize;

@@ -105,11 +105,11 @@
 - (id) delegate;
 - (void) setDelegate:(id)anObject;
 
-- (int) minCount;
-- (void) setMinCount:(int)aCount;
+- (NSInteger) minCount;
+- (void) setMinCount:(NSInteger)aCount;
 
-- (int) maxCount;
-- (void) setMaxCount:(int)aCount;
+- (NSInteger) maxCount;
+- (void) setMaxCount:(NSInteger)aCount;
 
 #pragma mark -
 

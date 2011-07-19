@@ -62,7 +62,7 @@
 - (void) windowDidLoad
 {
 	if ( collection != nil )
-		[labelPicker setLabelSelection:[[collection valueForKey:@"label"] intValue]];
+		[labelPicker setLabelSelection:[[collection valueForKey:@"label"] integerValue]];
 	
 	NSInteger borders[4] = {0,0,0,0};
 	[gradient setBordered:NO];
@@ -156,12 +156,12 @@
 
 - (NSNumber*)label
 {
-	return [NSNumber numberWithInt:[labelPicker labelSelection]];
+	return [NSNumber numberWithInteger:[labelPicker labelSelection]];
 }
 
 - (void) setLabel:(NSNumber*)aNumber
 {
-	[labelPicker setLabelSelection:[aNumber intValue]];
+	[labelPicker setLabelSelection:[aNumber integerValue]];
 }
 
 #pragma mark -

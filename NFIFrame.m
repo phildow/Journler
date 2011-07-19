@@ -17,7 +17,7 @@
 
 @implementation NFIFrame
 
-- (id)initWithFrame:(struct _NSRect)frame styleMask:(unsigned int)style owner:(id)o
+- (id)initWithFrame:(struct _NSRect)frame styleMask:(NSUInteger)style owner:(id)o
 {
 	self = [super initWithFrame:frame styleMask:style owner:o];
 	mTitleBarHeight = 25.0f;
@@ -235,13 +235,13 @@
 	[self setNeedsDisplay:YES];
 }
 
-- (NSRect)contentRectForFrameRect:(NSRect)frameRect styleMask:(unsigned int)aStyle
+- (NSRect)contentRectForFrameRect:(NSRect)frameRect styleMask:(NSUInteger)aStyle
 {
     frameRect.size.height -= 25;//[self titleBarHeight];
     return frameRect;
 }
 
-- (NSRect)frameRectForContentRect:(NSRect)windowContent styleMask:(unsigned int)aStyle
+- (NSRect)frameRectForContentRect:(NSRect)windowContent styleMask:(NSUInteger)aStyle
 {
     windowContent.size.height += 25;//[self titleBarHeight];
     return windowContent;

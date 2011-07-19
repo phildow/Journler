@@ -120,12 +120,12 @@
 	return ( [label boolValue] || [self countOfChildren] != 0 );
 }
 
-- (unsigned int) countOfChildren
+- (NSUInteger) countOfChildren
 {
 	return [children count];
 }
 
-- (ResourceNode*) childAtIndex:(unsigned int)index
+- (ResourceNode*) childAtIndex:(NSUInteger)index
 {
 	if ( index < [children count] )
 		return [children objectAtIndex:index];

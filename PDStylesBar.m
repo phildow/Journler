@@ -81,7 +81,7 @@
 	
 	NSMutableAttributedString *strikeAttrTitle = [[[buttonStrike attributedTitle] mutableCopyWithZone:[self zone]] autorelease];
 	[strikeAttrTitle addAttribute:NSStrikethroughStyleAttributeName 
-			value:[NSNumber numberWithInt:1] 
+			value:[NSNumber numberWithInteger:1] 
 			range:NSMakeRange(0, [strikeAttrTitle length])];
 	[buttonStrike setAttributedTitle:strikeAttrTitle];
 	
@@ -161,7 +161,7 @@
 - (void) clearWithDefaultFont:(NSFont*)font color:(NSColor*)fontColor 
 {	
 	// the font name
-	NSString *button_title = [NSString stringWithFormat:@"%@ %ipt", [font displayName], (int)[font pointSize]];
+	NSString *button_title = [NSString stringWithFormat:@"%@ %ipt", [font displayName], (NSInteger)[font pointSize]];
 	[buttonFont setTitle:button_title];
 	
 	// potenially standard attributes
@@ -203,7 +203,7 @@
 	if ( font && ![font isEqual:_lastFont] ) 
 	{
 		// the font name
-		[buttonFont setTitle:[NSString stringWithFormat:@"%@ %ipt", [font displayName], (int)[font pointSize]]];
+		[buttonFont setTitle:[NSString stringWithFormat:@"%@ %ipt", [font displayName], (NSInteger)[font pointSize]]];
 		
 		// bold - why not using & operation like above?
 		if ( BitAnd(NSBoldFontMask,[fm traitsOfFont:font]) == NSBoldFontMask )
@@ -220,7 +220,7 @@
 	}
 	
 	// underline
-	if ( [attrs objectForKey:NSUnderlineStyleAttributeName] && [[attrs objectForKey:NSUnderlineStyleAttributeName] intValue] != 0 )
+	if ( [attrs objectForKey:NSUnderlineStyleAttributeName] && [[attrs objectForKey:NSUnderlineStyleAttributeName] integerValue] != 0 )
 		[buttonUnderline setState:NSOnState];
 	else
 		[buttonUnderline setState:NSOffState];
@@ -232,7 +232,7 @@
 		[buttonShadow setState:NSOffState];
 	
 	// strikethrough
-	if ( [attrs objectForKey:NSStrikethroughStyleAttributeName] && [[attrs objectForKey:NSStrikethroughStyleAttributeName] intValue] != 0 )
+	if ( [attrs objectForKey:NSStrikethroughStyleAttributeName] && [[attrs objectForKey:NSStrikethroughStyleAttributeName] integerValue] != 0 )
 		[buttonStrike setState:NSOnState];
 	else
 		[buttonStrike setState:NSOffState];
@@ -321,12 +321,12 @@
 	if ( [sender state] == NSOnState )
 		[[_associatedText textStorage]
 				addAttribute:NSStrikethroughStyleAttributeName 
-				value:[NSNumber numberWithInt:1] 
+				value:[NSNumber numberWithInteger:1] 
 				range:[_associatedText rangeForUserTextChange]];
 	else
 		[[_associatedText textStorage]
 				addAttribute:NSStrikethroughStyleAttributeName 
-				value:[NSNumber numberWithInt:0] 
+				value:[NSNumber numberWithInteger:0] 
 				range:[_associatedText rangeForUserTextChange]];				
 	
 	[[_associatedText textStorage] endEditing];

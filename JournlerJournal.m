@@ -39,7 +39,7 @@
 
 + (JournlerJournal*) defaultJournal:(NSError**)error
 {
-	int jError = 0;
+	NSInteger jError = 0;
 	JournalLoadFlag loadResult;
 	NSString *defaultPath = [JournlerJournal defaultJournalPath];
 	
@@ -204,7 +204,7 @@
 - (void) setVersion:(NSNumber*)newVersion 
 {
 	// IS THIS SUPPOSED TO BE 120?
-	[_properties setObject:(newVersion?newVersion:[NSNumber numberWithInt:120]) forKey:PDJournalVersion];
+	[_properties setObject:(newVersion?newVersion:[NSNumber numberWithInteger:120]) forKey:PDJournalVersion];
 }
 
 - (NSNumber*) shutDownProperly
@@ -248,7 +248,7 @@
 // DEPRECATED
 - (void) setEncryptionState:(NSNumber*)state 
 {
-	[_properties setObject:( state ? state : [NSNumber numberWithInt:PDEncryptionNone] ) forKey:PDJournalEncryptionState];
+	[_properties setObject:( state ? state : [NSNumber numberWithInteger:PDEncryptionNone] ) forKey:PDJournalEncryptionState];
 }
 
 - (NSData*) tabState
@@ -263,9 +263,9 @@
 
 #pragma mark -
 
-- (int) error { return error; }
+- (NSInteger) error { return error; }
 
-- (void) setError:(int)err {
+- (void) setError:(NSInteger)err {
 	error = err;
 }
 
@@ -438,13 +438,13 @@
 	NSString *objectType = [[abs stringByDeletingLastPathComponent] lastPathComponent];
 	
 	if ( [objectType isEqualToString:@"entry"] )
-		object = [_entriesDic objectForKey:[NSNumber numberWithInt:[tagID intValue]]];
+		object = [_entriesDic objectForKey:[NSNumber numberWithInteger:[tagID integerValue]]];
 	else if ( [objectType isEqualToString:@"reference"] )
-		object = [resourcesDic objectForKey:[NSNumber numberWithInt:[tagID intValue]]];
+		object = [resourcesDic objectForKey:[NSNumber numberWithInteger:[tagID integerValue]]];
 	else if ( [objectType isEqualToString:@"folder"] )
-		object = [_collectionsDic objectForKey:[NSNumber numberWithInt:[tagID intValue]]];
+		object = [_collectionsDic objectForKey:[NSNumber numberWithInteger:[tagID integerValue]]];
 	else if ( [objectType isEqualToString:@"blog"] )
-		object = [_blogsDic objectForKey:[NSNumber numberWithInt:[tagID intValue]]];
+		object = [_blogsDic objectForKey:[NSNumber numberWithInteger:[tagID integerValue]]];
 	
 	return object;
 }
@@ -456,7 +456,7 @@
 
 - (JournlerEntry*) entryForTagString:(NSString*)tagString 
 {
-	return [self entryForTagID:[NSNumber numberWithInt:[tagString intValue]]];
+	return [self entryForTagID:[NSNumber numberWithInteger:[tagString integerValue]]];
 }
 
 
@@ -469,7 +469,7 @@
 {	
 	// utility for turning an array of entry ids into the entries themselves
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *theEntries = [[NSMutableArray alloc] initWithCapacity:[tagIDs count]];
 	for ( i = 0; i < [tagIDs count]; i++ ) {
 		id anEntry = [_entriesDic objectForKey:[tagIDs objectAtIndex:i]];
@@ -484,7 +484,7 @@
 {
 	// utility for turning an array of entry ids into the entries themselves
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *theResources = [[NSMutableArray alloc] initWithCapacity:[tagIDs count]];
 	for ( i = 0; i < [tagIDs count]; i++ ) {
 		id aResource = [resourcesDic objectForKey:[tagIDs objectAtIndex:i]];
@@ -512,22 +512,22 @@
 
 #pragma mark -
 
-- (int) newEntryTag 
+- (NSInteger) newEntryTag 
 {
 	return ++lastTag;
 }
 
-- (int) newFolderTag 
+- (NSInteger) newFolderTag 
 {
 	return ++lastFolderTag;
 }
 
-- (int) newBlogTag 
+- (NSInteger) newBlogTag 
 {
 	return ++lastBlogTag;
 }
 
-- (int) newResourceTag
+- (NSInteger) newResourceTag
 {
 	return ++lastResourceTag;
 }
@@ -535,7 +535,7 @@
 #pragma mark -
 #pragma mark Loading 1.0.2 and 1.0.3 Style -> 1.2 style
 
-- (JournalLoadFlag) loadFromPath:(NSString*)path error:(int*)err 
+- (JournalLoadFlag) loadFromPath:(NSString*)path error:(NSInteger*)err 
 {	
 	//
 	// distinguish initialization and loading so that the journal can
@@ -549,7 +549,7 @@
 	
 	[activity appendFormat:@"Loading journal from path %@\n", path];
 	
-	int i;
+	NSInteger i;
 	error = 0;
 	
 	BOOL dir;
@@ -586,7 +586,7 @@
 	[self setProperties:[NSDictionary dictionaryWithContentsOfFile:[self propertiesPath]]];
 	if ( [self title] == nil ) [self setTitle:[NSString string]];
 
-	int versionNumber;
+	NSInteger versionNumber;
 	id jVersionObj = [_properties objectForKey:PDJournalVersion];
 	if ( [jVersionObj isKindOfClass:[NSString class]] ) {
 		NSMutableString *journalVersion = [[_properties objectForKey:PDJournalVersion] mutableCopy];
@@ -598,13 +598,13 @@
 		}
 		
 		[journalVersion replaceOccurrencesOfString:@"." withString:@"" options:NSLiteralSearch range:NSMakeRange(0,[journalVersion length])];
-		versionNumber = [journalVersion intValue];
+		versionNumber = [journalVersion integerValue];
 		
 		[journalVersion release];
 	}
 	else
 	{
-		versionNumber = [jVersionObj intValue];
+		versionNumber = [jVersionObj integerValue];
 	}
 	
 	if ( versionNumber < 112 ) 
@@ -641,7 +641,7 @@
 		if ( ![[self shutDownProperly] boolValue] )
 		{
 			// if the journal did not properly shut down, load from the directory
-			int directoryError;
+			NSInteger directoryError;
 			JournalLoadFlag directoryLoadResult;
 			
 			loadResult |= kJournalCrashed;
@@ -653,13 +653,13 @@
 		else
 		{
 			// if journler did shut down successfully, first try to load from the store
-			int storeError;
+			NSInteger storeError;
 			JournalLoadFlag storeLoadResult = [self loadFromStore:&storeError];
 			
 			// attempt to load from the directory if a store load fails
 			if ( storeLoadResult != kJournalLoadedNormally )
 			{
-				int directoryError;
+				NSInteger directoryError;
 				JournalLoadFlag directoryLoadResult = [self loadFromDirectoryIgnoringEntryFolders:NO error:&directoryError];
 				
 				if ( directoryLoadResult != kJournalLoadedNormally )
@@ -670,7 +670,7 @@
 	else
 	{
 		// load only those entries that are in the 200 format, in case the user runs a failed upgrade the second time
-		int directoryError;
+		NSInteger directoryError;
 		JournalLoadFlag directoryLoadResult = [self loadFromDirectoryIgnoringEntryFolders:( versionNumber < 210 ) error:&directoryError];
 		
 		if ( directoryLoadResult != kJournalLoadedNormally )
@@ -691,10 +691,10 @@
 		JournlerCollection *aNode = [_collections objectAtIndex:i];
 		
 		// note a few special collections
-		if ( [[aNode valueForKey:@"typeID"] intValue] == PDCollectionTypeIDTrash )
+		if ( [[aNode valueForKey:@"typeID"] integerValue] == PDCollectionTypeIDTrash )
 			_trashCollection = aNode;
 			
-		else if ( [[aNode valueForKey:@"typeID"] intValue] == PDCollectionTypeIDLibrary )
+		else if ( [[aNode valueForKey:@"typeID"] integerValue] == PDCollectionTypeIDLibrary )
 			_libraryCollection = aNode;
 
 		// set the collection's relationship to other collections
@@ -742,11 +742,11 @@
 		[journal_collection determineIcon];
 		
 		// set the id
-		[journal_collection setValue:[NSNumber numberWithInt:[self newFolderTag]] forKey:@"tagID"];
+		[journal_collection setValue:[NSNumber numberWithInteger:[self newFolderTag]] forKey:@"tagID"];
 		
 		// the position and parent
-		[journal_collection setValue:[NSNumber numberWithInt:0] forKey:@"index"];
-		[journal_collection setParentID:[NSNumber numberWithInt:-1]];
+		[journal_collection setValue:[NSNumber numberWithInteger:0] forKey:@"index"];
+		[journal_collection setParentID:[NSNumber numberWithInteger:-1]];
 		[journal_collection setParent:_rootCollection];
 		
 		// add it and clean up
@@ -774,11 +774,11 @@
 		[trash_collection setTitle:NSLocalizedString(@"collection trash title",@"")];
 		
 		// set the id
-		[trash_collection setValue:[NSNumber numberWithInt:[self newFolderTag]] forKey:@"tagID"];
+		[trash_collection setValue:[NSNumber numberWithInteger:[self newFolderTag]] forKey:@"tagID"];
 		
 		// the position and parent
-		[trash_collection setValue:[NSNumber numberWithInt:1] forKey:@"index"];
-		[trash_collection setParentID:[NSNumber numberWithInt:-1]];
+		[trash_collection setValue:[NSNumber numberWithInteger:1] forKey:@"index"];
+		[trash_collection setParentID:[NSNumber numberWithInteger:-1]];
 		[trash_collection setParent:_rootCollection];
 		
 		// add it and clean up
@@ -793,19 +793,19 @@
 	// sort the root node
 	[_rootCollection sortChildrenByIndex];
 	
-	int foo;
+	NSInteger foo;
 	NSMutableArray *entriesTrashed = [NSMutableArray array];
 	NSMutableArray *entriesNotTrashed = [NSMutableArray array];
 	
 	// trash/untrash entries and re-establish the relationship between the entry resources and the journal
 	for ( foo = 0; foo < [_entries count]; foo++ ) {
 		
-		int g;
+		NSInteger g;
 		JournlerEntry *anEntry = [_entries objectAtIndex:foo];
 		
 		// establish the entry -> resource relationships depending on version number
 		
-		if ( [[self version] intValue] < 250)
+		if ( [[self version] integerValue] < 250)
 		{
 			NSArray *entryResources = [anEntry valueForKey:@"resources"];
 			[entryResources setValue:self forKey:@"journal"];
@@ -815,8 +815,8 @@
 			{
 				[resourcesDic setObject:[entryResources objectAtIndex:g] forKey:[[entryResources objectAtIndex:g] valueForKey:@"tagID"]];
 				
-				if ( [[[entryResources objectAtIndex:g] valueForKey:@"tagID"] intValue] > lastResourceTag )
-					lastResourceTag = [[[entryResources objectAtIndex:g] valueForKey:@"tagID"] intValue];
+				if ( [[[entryResources objectAtIndex:g] valueForKey:@"tagID"] integerValue] > lastResourceTag )
+					lastResourceTag = [[[entryResources objectAtIndex:g] valueForKey:@"tagID"] integerValue];
 			}
 		}
 		
@@ -922,11 +922,11 @@
 		JournlerCollection *aNode = [_collections objectAtIndex:i];
 		
 		// convert the entry ids into actual entries, all entries for library
-		if ( [[aNode typeID] intValue] == PDCollectionTypeIDLibrary )
+		if ( [[aNode typeID] integerValue] == PDCollectionTypeIDLibrary )
 			[aNode setEntries:entriesNotTrashed];
 			
 		// a few entries for the trash
-		else if ( [[aNode typeID] intValue] == PDCollectionTypeIDTrash )
+		else if ( [[aNode typeID] integerValue] == PDCollectionTypeIDTrash )
 			[aNode setEntries:entriesTrashed];
 			
 		// the rest of the entries in their respective folders, noting the folder as well
@@ -1033,13 +1033,13 @@
 	
 }
 
-- (JournalLoadFlag) loadFromStore:(int*)err
+- (JournalLoadFlag) loadFromStore:(NSInteger*)err
 {	
 	#ifdef __DEBUG__
 	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
-	int i, c;
+	NSInteger i, c;
 	JournalLoadFlag storeLoadFlag = kJournalLoadedNormally;
 	
 	NSArray *encodedEntries = nil, *encodedBlogs = nil, *encodedCollections = nil, *encodedResources = nil;
@@ -1074,7 +1074,7 @@
 		return kJournalCouldNotLoad;
 	}
 	
-	if ( [[self version] intValue] >= 250 )
+	if ( [[self version] integerValue] >= 250 )
 	{
 		encodedResources = [store valueForKey:@"Resources"];
 		if ( encodedResources == nil )
@@ -1108,7 +1108,7 @@
 			anEntry = nil;
 			NSLog(@"%s - unable to unarchive entry %i in store, exception %@", __PRETTY_FUNCTION__, i, localException);
 			[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-					[NSNumber numberWithInt:0], @"objectType",
+					[NSNumber numberWithInteger:0], @"objectType",
 					[NSString stringWithFormat:@"Entry %i in Store", i], @"errorString",
 					localException, @"localException", nil]];
 		}
@@ -1132,8 +1132,8 @@
 				
 				// increment the tag and count
 				c++;
-				if ( lastTag < [[anEntry tagID] intValue] )
-					lastTag = [[anEntry tagID] intValue];
+				if ( lastTag < [[anEntry tagID] integerValue] )
+					lastTag = [[anEntry tagID] integerValue];
 			}
 		}
 	}
@@ -1158,7 +1158,7 @@
 			aCollection = nil;
 			NSLog(@"%s - unable to unarchive folder %i in store, exception %@", __PRETTY_FUNCTION__, i, localException);
 			[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-					[NSNumber numberWithInt:1], @"objectType",
+					[NSNumber numberWithInteger:1], @"objectType",
 					[NSString stringWithFormat:@"Folder %i in Store", i], @"errorString",
 					localException, @"localException", nil]];
 		}
@@ -1182,8 +1182,8 @@
 					
 				// update last tag and count
 				c++;
-				if ( lastFolderTag  < [[aCollection tagID] intValue] )
-					lastFolderTag = [[aCollection tagID] intValue];
+				if ( lastFolderTag  < [[aCollection tagID] integerValue] )
+					lastFolderTag = [[aCollection tagID] integerValue];
 			}
 		}
 	}
@@ -1193,7 +1193,7 @@
 	[self setCollections:[theCollections sortedArrayUsingDescriptors:[NSArray arrayWithObject:childSort]]];
 	
 	// DECODE THE RESOURCES
-	if ( [[self version] intValue] >= 250 )
+	if ( [[self version] integerValue] >= 250 )
 	{
 		c = 0;
 		theResources = [NSMutableArray arrayWithCapacity:[encodedResources count]];
@@ -1217,7 +1217,7 @@
 				aResource = nil;
 				NSLog(@"%s - unable to unarchive resource %i in store, exception %@", __PRETTY_FUNCTION__, i, localException);
 				[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-						[NSNumber numberWithInt:3], @"objectType",
+						[NSNumber numberWithInteger:3], @"objectType",
 						[NSString stringWithFormat:@"Resource %i in Store", i], @"errorString",
 						localException, @"localException", nil]];
 			}
@@ -1241,8 +1241,8 @@
 					
 					// increment the tag and count
 					c++;
-					if ( lastResourceTag < [[aResource tagID] intValue] )
-						lastResourceTag = [[aResource tagID] intValue];
+					if ( lastResourceTag < [[aResource tagID] integerValue] )
+						lastResourceTag = [[aResource tagID] integerValue];
 				}
 			}
 		}
@@ -1267,7 +1267,7 @@
 			aBlog = nil;
 			NSLog(@"%s - unable to unarchive blog %i in store, exception %@", __PRETTY_FUNCTION__, i, localException);
 			[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-					[NSNumber numberWithInt:2], @"objectType",
+					[NSNumber numberWithInteger:2], @"objectType",
 					[NSString stringWithFormat:@"Blog %i in Store", i], @"errorString",
 					localException, @"localException", nil]];
 		}
@@ -1305,8 +1305,8 @@
 				
 				// last count
 				c++;
-				if ( lastBlogTag < [[aBlog valueForKey:@"tagID"] intValue] )
-					lastBlogTag = [[aBlog valueForKey:@"tagID"] intValue];	
+				if ( lastBlogTag < [[aBlog valueForKey:@"tagID"] integerValue] )
+					lastBlogTag = [[aBlog valueForKey:@"tagID"] integerValue];	
 			}
 		}
 	}
@@ -1318,14 +1318,14 @@
 	return storeLoadFlag;
 }
 
-- (JournalLoadFlag) loadFromDirectoryIgnoringEntryFolders:(BOOL)ignore210Entries error:(int*)err
+- (JournalLoadFlag) loadFromDirectoryIgnoringEntryFolders:(BOOL)ignore210Entries error:(NSInteger*)err
 {
 		
 	#ifdef __DEBUG__
 	NSLog(@"%s",__PRETTY_FUNCTION__);
 	#endif
 	
-	int c;
+	NSInteger c;
 	JournalLoadFlag directoryLoadFlag = kJournalLoadedNormally;
 	
 	NSString *pname;
@@ -1376,8 +1376,8 @@
 				[_blogsDic setObject:aBlog forKey:[aBlog tagID]];
 				
 				// last count
-				if ( lastBlogTag < [[aBlog valueForKey:@"tagID"] intValue] )
-					lastBlogTag = [[aBlog valueForKey:@"tagID"] intValue];
+				if ( lastBlogTag < [[aBlog valueForKey:@"tagID"] integerValue] )
+					lastBlogTag = [[aBlog valueForKey:@"tagID"] integerValue];
 				
 				c++;
 				
@@ -1414,8 +1414,8 @@
 				[_entriesDic setObject:readEntry forKey:[readEntry tagID]];
 
 				// increment the tag and count
-				if ( lastTag < [[readEntry tagID] intValue] )
-				lastTag = [[readEntry tagID] intValue];
+				if ( lastTag < [[readEntry tagID] integerValue] )
+				lastTag = [[readEntry tagID] integerValue];
 
 				c++;
 			}
@@ -1449,7 +1449,7 @@
 				readEntry = nil;
 				NSLog(@"%s - unable to unarchive entry at path %@, exception %@", __PRETTY_FUNCTION__, [[self entriesPath] stringByAppendingPathComponent:pname], localException);
 				[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-						[NSNumber numberWithInt:0], @"objectType",
+						[NSNumber numberWithInteger:0], @"objectType",
 						[[self entriesPath] stringByAppendingPathComponent:pname], @"errorString",
 						localException, @"localException", nil]];
 			}
@@ -1468,8 +1468,8 @@
 					[_entriesDic setObject:readEntry forKey:[readEntry tagID]];
 
 					// increment the tag and count
-					if ( lastTag < [[readEntry tagID] intValue] )
-					lastTag = [[readEntry tagID] intValue];
+					if ( lastTag < [[readEntry tagID] integerValue] )
+					lastTag = [[readEntry tagID] integerValue];
 
 					c++;
 				}
@@ -1509,8 +1509,8 @@
 				[_collectionsDic setObject:aNode forKey:[aNode tagID]];
 					
 				// update last tag and count
-				if ( lastFolderTag  < [[aNode tagID] intValue] )
-					lastFolderTag = [[aNode tagID] intValue];
+				if ( lastFolderTag  < [[aNode tagID] integerValue] )
+					lastFolderTag = [[aNode tagID] integerValue];
 
 				c++;
 			}
@@ -1527,7 +1527,7 @@
 	
 	
 	// LOAD THE RESOURCES
-	if ( [[self version] intValue] >= 250 )
+	if ( [[self version] integerValue] >= 250 )
 	{
 		contentsEnumerator = [[fm directoryContentsAtPath:[self resourcesPath]] objectEnumerator];
 	
@@ -1552,8 +1552,8 @@
 					[resourcesDic setObject:aResource forKey:[aResource tagID]];
 						
 					// update last tag and count
-					if ( lastResourceTag  < [[aResource tagID] intValue] )
-						lastResourceTag = [[aResource tagID] intValue];
+					if ( lastResourceTag  < [[aResource tagID] integerValue] )
+						lastResourceTag = [[aResource tagID] integerValue];
 
 					c++;
 				}
@@ -1575,10 +1575,10 @@
 
 #pragma mark -
 
-- (BOOL) calIntHasEntries:(int)dayAsInt 
+- (BOOL) calIntHasEntries:(NSInteger)dayAsInt 
 {
-	int i;
-	int count = 0;
+	NSInteger i;
+	NSInteger count = 0;
 	
 	for ( i = [_entries count] - 1; i >= 0; i-- ) {
 		if ( dayAsInt == [[_entries objectAtIndex:i] dateInt]  && 
@@ -1673,7 +1673,7 @@
 
 - (void) saveBlogs 
 {
-	int i;
+	NSInteger i;
 	for ( i = 0; i < [_blogs count]; i++ )
 		[self saveBlog:[_blogs objectAtIndex:i]];
 }
@@ -1684,8 +1684,8 @@
 	if ( [_blogs indexOfObjectIdenticalTo:aBlog] != NSNotFound ) return;
 	
 	// make sure the blog has an approrpiate id
-	if ( [[aBlog valueForKey:@"tagID"] intValue] == -1 ) 
-		[aBlog setValue:[NSNumber numberWithInt:[self newBlogTag]] forKey:@"tagID"];
+	if ( [[aBlog valueForKey:@"tagID"] integerValue] == -1 ) 
+		[aBlog setValue:[NSNumber numberWithInteger:[self newBlogTag]] forKey:@"tagID"];
 	
 	// set its container
 	//[aBlog setMyContainer:owner];
@@ -1729,7 +1729,7 @@
 	{
 		//
 		// an array of entries, act accordingly
-		int i;
+		NSInteger i;
 		for ( i = 0; i < [object count]; i++ ) {
 			[self _updateIndex:[object objectAtIndex:i]];
 			[self _updateCollections:[object objectAtIndex:i]];
@@ -1759,15 +1759,15 @@
 
 #pragma mark -
 
-- (NSArray*) collectionsForTypeID:(int)type 
+- (NSArray*) collectionsForTypeID:(NSInteger)type 
 {	
-	int i;
+	NSInteger i;
 	NSArray *collections = [_collectionsDic allValues];
 	NSMutableArray *returnArray = [[NSMutableArray alloc] initWithCapacity:[collections count]];
 	
 	for ( i = 0; i < [collections count]; i++ ) {
 		
-		if ( [[(JournlerCollection*)[collections objectAtIndex:i] valueForKey:@"typeID"] intValue] == type )
+		if ( [[(JournlerCollection*)[collections objectAtIndex:i] valueForKey:@"typeID"] integerValue] == type )
 			[returnArray addObject:[collections objectAtIndex:i]];
 		
 	}
@@ -1790,7 +1790,7 @@
 
 - (BOOL) resetSmartFolders
 {
-	int i;
+	NSInteger i;
 	NSArray *allEntries = [self entries];
 	for ( i = 0; i < [allEntries count]; i++ )
 		[self _updateCollections:[allEntries objectAtIndex:i]];
@@ -1840,7 +1840,7 @@
 
 - (BOOL) resetEntryDateModified 
 {	
-	int i;
+	NSInteger i;
 	
 	NSLog(@"Resetting date modified property of journal entry objects");
 	
@@ -2137,8 +2137,8 @@
 	
 	//
 	// ensure the entry has an appropriate id
-	if ( [[entry valueForKey:@"tagID"] intValue] == 0 )
-		[entry setValue:[NSNumber numberWithInt:[self newEntryTag]] forKey:@"tagID"];
+	if ( [[entry valueForKey:@"tagID"] integerValue] == 0 )
+		[entry setValue:[NSNumber numberWithInteger:[self newEntryTag]] forKey:@"tagID"];
 	
 	//
 	// scriptability	-- an entry's container is always the journal collection
@@ -2178,7 +2178,7 @@
 	// Physically remove the entry when we have requested a delete
 	//
 	
-	int i;
+	NSInteger i;
 	BOOL complete_success = YES;
 	NSArray *deleteArray;
 	
@@ -2318,7 +2318,7 @@
 		unarchivedObject = nil;
 		NSLog(@"%s - unable to unarchive entry at path %@, exception %@", __PRETTY_FUNCTION__, filepath, localException);
 		[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-				[NSNumber numberWithInt:0], @"objectType",
+				[NSNumber numberWithInteger:0], @"objectType",
 				filepath, @"errorString",
 				localException, @"localException", nil]];
 	}
@@ -2510,7 +2510,7 @@ bail:
 // DEPRECATED
 - (BOOL) writeJournalCollection:(id)collection {
 	
-	int i;
+	NSInteger i;
 	BOOL success = YES;
 	NSArray *writeArray;
 	
@@ -2566,7 +2566,7 @@ bail:
 		aCollection = nil;
 		NSLog(@"%s - unable to unarchive folder at path %@, exception %@", __PRETTY_FUNCTION__, path, localException);
 		[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-				[NSNumber numberWithInt:1], @"objectType",
+				[NSNumber numberWithInteger:1], @"objectType",
 				path, @"errorString",
 				localException, @"localException", nil]];
 	}
@@ -2594,7 +2594,7 @@ bail:
 		blogPref = nil;
 		NSLog(@"%s - unable to unarchive blog at path %@, exception %@", __PRETTY_FUNCTION__, path, localException);
 		[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-				[NSNumber numberWithInt:2], @"objectType",
+				[NSNumber numberWithInteger:2], @"objectType",
 				path, @"errorString",
 				localException, @"localException", nil]];
 	}
@@ -2617,7 +2617,7 @@ bail:
 		aResource = nil;
 		NSLog(@"%s - unable to unarchive resource at path %@, exception %@", __PRETTY_FUNCTION__, path, localException);
 		[initErrors addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-				[NSNumber numberWithInt:3], @"objectType",
+				[NSNumber numberWithInteger:3], @"objectType",
 				path, @"errorString",
 				localException, @"localException", nil]];
 	}
@@ -2639,10 +2639,10 @@ bail:
 		// generate the key only if necessary
 		// remember to reset this value when loading other journals (how to handle encryption w/ multiple journals)
 		//
-		int passLength;
+		NSInteger passLength;
 		const char *passphraseChar;
 	
-		static int keySizeInBits = 256;
+		static NSInteger keySizeInBits = 256;
 		
 		CSSM_RETURN			crtn;
 		CSSM_ALGORITHMS		encrAlg = CSSM_ALGID_AES;
@@ -2713,7 +2713,7 @@ bail:
 
 - (JournlerCollection*) collectionForID:(NSNumber*)idTag 
 {
-	if ( [idTag intValue] == -1 )
+	if ( [idTag integerValue] == -1 )
 		return _rootCollection;
 	else
 		return [_collectionsDic objectForKey:idTag];
@@ -2726,7 +2726,7 @@ bail:
 	//
 	// utility for turning an array of collection ids into the collections themselves
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *collections = [[NSMutableArray alloc] initWithCapacity:[tagIDs count]];
 	for ( i = 0; i < [tagIDs count]; i++ ) {
 		id aCollection = [_collectionsDic objectForKey:[tagIDs objectAtIndex:i]];
@@ -2821,7 +2821,7 @@ bail:
 	if ( [[self valueForKey:@"dirty"] boolValue] )
 		return YES;
 	
-	int i;
+	NSInteger i;
 	
 	// or if any of the managed objects are dirty
 	for ( i = 0; i < CFArrayGetCount((CFArrayRef)_entries); i++ )
@@ -2849,7 +2849,7 @@ bail:
 {
 	// write the blogs, collections and entries to a single file
 	
-	int i;
+	NSInteger i;
 	BOOL success;
 	NSDictionary *store;
 	NSMutableArray *theBlogs, *theEntries, *theCollections, *theResources;
@@ -2887,7 +2887,7 @@ bail:
 	}
 	
 	
-	if ( [[self version] intValue] == 210 )
+	if ( [[self version] integerValue] == 210 )
 	{
 		store = [NSDictionary dictionaryWithObjectsAndKeys:
 		theBlogs, @"Blogs",
@@ -3056,10 +3056,10 @@ bail:
 
 - (BOOL) saveResource:(JournlerResource*)aResource
 {
-	if ( aResource == nil || [[aResource valueForKey:@"deleted"] boolValue] || [[aResource valueForKey:@"tagID"] intValue] < 0 )
+	if ( aResource == nil || [[aResource valueForKey:@"deleted"] boolValue] || [[aResource valueForKey:@"tagID"] integerValue] < 0 )
 		return NO;
 
-	if ( [[self version] intValue] >= 250 )
+	if ( [[self version] integerValue] >= 250 )
 	{
 		// derive a path to the colletion
 		NSString *path = [[self resourcesPath] stringByAppendingPathComponent:
@@ -3121,7 +3121,7 @@ bail:
 	
 	if ( recursive ) 
 	{
-		int i;
+		NSInteger i;
 		NSArray *kids = [aCollection children];
 		
 		if ( kids != nil && [kids count] > 0 ) 
@@ -3177,8 +3177,8 @@ bail:
 - (void) addEntry:(JournlerEntry*)anEntry 
 {	
 	// ensure the entry has an appropriate id
-	if ( [[anEntry valueForKey:@"tagID"] intValue] == 0 )
-		[anEntry setValue:[NSNumber numberWithInt:[self newEntryTag]] forKey:@"tagID"];
+	if ( [[anEntry valueForKey:@"tagID"] integerValue] == 0 )
+		[anEntry setValue:[NSNumber numberWithInteger:[self newEntryTag]] forKey:@"tagID"];
 	
 	// journal relationship and scriptability
 	[anEntry setValue:self forKey:@"journal"];
@@ -3210,8 +3210,8 @@ bail:
 - (void) addCollection:(JournlerCollection*)aCollection 
 {	
 	// ensure an appropriate id
-	if ( [[aCollection valueForKey:@"tagID"] intValue] == 0 )
-		[aCollection setValue:[NSNumber numberWithInt:[self newFolderTag]] forKey:@"tagID"];
+	if ( [[aCollection valueForKey:@"tagID"] integerValue] == 0 )
+		[aCollection setValue:[NSNumber numberWithInteger:[self newFolderTag]] forKey:@"tagID"];
 	
 	// ensure a default sort
 	if ( [[aCollection valueForKey:@"sortDescriptors"] count] == 0 )
@@ -3251,7 +3251,7 @@ bail:
 	if ( aResource == nil )
 		return nil;
 	
-	unsigned resourceIndex;
+	NSUInteger resourceIndex;
 	JournlerResource *returnResource = nil;
 	
 	resourceIndex = [[self valueForKey:@"resources"] indexOfObject:aResource];
@@ -3475,7 +3475,7 @@ bail:
 	// first the children
 	if ( children ) 
 	{
-		int i;
+		NSInteger i;
 		NSArray *kids = [[[collection children] copyWithZone:[self zone]] autorelease];
 		for ( i = 0; i < [kids count]; i++ )
 			[self deleteCollection:[kids objectAtIndex:i] deleteChildren:YES];
@@ -3491,7 +3491,7 @@ bail:
 		[(JournlerCollection*)parentNode removeChild:collection recursively:NO];
 	
 	// remove the collection each of its entries - should this be performed in the collections dealloc?
-	int i;
+	NSInteger i;
 	NSArray *entries = [collection valueForKey:@"entries"];
 	for ( i = 0; i < [entries count]; i++ )
 	{
@@ -3971,11 +3971,11 @@ bail:
 	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	int i;
+	NSInteger i;
 	NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
 	
 	// do not index or collect entries, which should already be indexed and collected
-	int lastSaveOptions = [self saveEntryOptions];
+	NSInteger lastSaveOptions = [self saveEntryOptions];
 	[self setSaveEntryOptions:(kEntrySaveDoNotIndex|kEntrySaveDoNotCollect)];
 	
 	// or if any of the managed objects are dirty

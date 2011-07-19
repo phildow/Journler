@@ -13,7 +13,7 @@
     IBOutlet NSMatrix *_printMode;
 }
 
-- (int) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet;
+- (NSInteger) runAsSheetForWindow:(NSWindow*)window attached:(BOOL)sheet;
 
 - (NSDate*) dateFrom;
 - (void) setDateFrom:(NSDate*)date;
@@ -21,7 +21,7 @@
 - (NSDate*) dateTo;
 - (void) setDateTo:(NSDate*)date;
 
-- (int) printMode;
+- (NSInteger) printMode;
 
 - (IBAction)cancelPrint:(id)sender;
 - (IBAction)changeMode:(id)sender;

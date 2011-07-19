@@ -509,7 +509,7 @@ static NSString *kMediabarItemComposeMessage = @"kMediabarItemComposeMessage";
 		[anItem setImage:theImage];
 		
 		[anItem setTag:0];
-		[anItem setTypeIdentifier:[NSNumber numberWithInt:kMenubarItemDefault]];
+		[anItem setTypeIdentifier:[NSNumber numberWithInteger:kMenubarItemDefault]];
 		
 		[anItem setTarget:self];
 		[anItem setAction:@selector(sendEmailToDefaultSender:)];

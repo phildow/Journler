@@ -36,15 +36,15 @@
 	BOOL	dragProducedEntry;
 	
 	BOOL						windowWasKey;
-	unsigned _dragOperation;
+	NSUInteger _dragOperation;
 	
 	BOOL inFullScreen;
 	BOOL continuouslyPostsSelectionNotification;
 	
-	int actualMargin;
-	int horizontalInset;
-	int horizontalInsetFullscreen;
-	unsigned int modifierFlags;
+	NSInteger actualMargin;
+	NSInteger horizontalInset;
+	NSInteger horizontalInsetFullscreen;
+	NSUInteger modifierFlags;
 }
 
 - (void) doSetup;
@@ -60,8 +60,8 @@
 - (BOOL) inFullScreen;
 - (void) setInFullScreen:(BOOL)fullscreen;
 
-- (unsigned int) modifierFlags;
-- (void) setModifierFlags:(unsigned int)flags;
+- (NSUInteger) modifierFlags;
+- (void) setModifierFlags:(NSUInteger)flags;
 
 - (NSURL*) lastURL;
 - (void) setLastURL:(NSURL*)newURL;
@@ -75,14 +75,14 @@
 - (BOOL) linkUnderlined;
 - (void) setLinkUnderlined:(BOOL)underline;
 
-- (int) actualMargin;
-- (void) setActualMargin:(int)inset;
+- (NSInteger) actualMargin;
+- (void) setActualMargin:(NSInteger)inset;
 
-- (int) horizontalInset;
-- (void) setHorizontalInset:(int)inset;
+- (NSInteger) horizontalInset;
+- (void) setHorizontalInset:(NSInteger)inset;
 
-- (int) horizontalInsetFullscreen;
-- (void) setHorizontalInsetFullscreen:(int)inset;
+- (NSInteger) horizontalInsetFullscreen;
+- (void) setHorizontalInsetFullscreen:(NSInteger)inset;
 
 - (void) setFullScreen:(BOOL)inFullScreen;
 
@@ -94,11 +94,11 @@
 - (IBAction) highlightSelection:(id) sender;
 
 - (IBAction) strikeSelection:(id)sender;
-- (void) strikeSelection:(NSColor*)aColor styleMask:(int)mask;
+- (void) strikeSelection:(NSColor*)aColor styleMask:(NSInteger)mask;
 
 #pragma mark -
 
-- (BOOL) addFileToText:(NSString*)path fileName:(NSString*)title forceTitle:(BOOL)forceTitle resourceCommand:(int)command;
+- (BOOL) addFileToText:(NSString*)path fileName:(NSString*)title forceTitle:(BOOL)forceTitle resourceCommand:(NSInteger)command;
 - (BOOL) addImageDataToText:(NSData*)data dataType:(NSString*)type fileName:(NSString*)name;
 
 - (BOOL) addURLLocToText:(NSString*)urlString http:(NSString*)httpString;
@@ -133,10 +133,10 @@
 #pragma mark -
 
 // private additions
-- (unsigned) _charIndexForDraggingLoc:(NSPoint)point;
+- (NSUInteger) _charIndexForDraggingLoc:(NSPoint)point;
 - (NSString*) _mdTitleFoFileAtPath:(NSString*)fullpath;
 - (NSString*) _linkedTextForAudioFile:(NSString*)fullpath;
-- (unsigned) _commandForCurrentCommand:(unsigned)dragOperation fileType:(NSString*)type directory:(BOOL)dir package:(BOOL)package;
+- (NSUInteger) _commandForCurrentCommand:(NSUInteger)dragOperation fileType:(NSString*)type directory:(BOOL)dir package:(BOOL)package;
 
 - (void) applyDefaultStyleAndRuler;
 - (IBAction) applyDefaultStyle:(id)sender;

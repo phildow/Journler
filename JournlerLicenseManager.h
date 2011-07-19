@@ -25,6 +25,6 @@ typedef enum {
 + (id) sharedManager;
 
 - (NSInteger) licenseType;
-- (int) licenseTypeForName:(NSString*)licenseName digest:(NSString*)proposedDigest;
+- (NSInteger) licenseTypeForName:(NSString*)licenseName digest:(NSString*)proposedDigest;
 
 @end

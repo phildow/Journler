@@ -57,11 +57,11 @@
 	activeContentView = contentPlaceholder;
 	[self setActiveContentView:defaultContent];
 	
-	static int borders[4] = {0,0,0,0};
+	static NSInteger borders[4] = {0,0,0,0};
 	[contentView setBorderColor:[NSColor blackColor]];
 	[contentView setBorders:borders];
 	
-	static int gBorders[4] = {1,0,0,0};
+	static NSInteger gBorders[4] = {1,0,0,0};
 	[defaultGradient setBordered:YES];
 	[defaultGradient setBorders:gBorders];
 	
@@ -87,7 +87,7 @@
 	//[self setupMediabar:defaultContentMediabar url:nil];
 	//[self setupMediabar:photoContainerMediabar url:nil];
 	
-	int whichBorders[4] = {1,0,1,0};
+	NSInteger whichBorders[4] = {1,0,1,0};
 	[defaultContentMediabar setBordered:YES];
 	[defaultContentMediabar setBorderColor:[NSColor colorWithCalibratedRed:155.0/255.0 green:155.0/255.0 blue:155.0/255.0 alpha:1.0]];
 	[defaultContentMediabar setBorders:whichBorders];
@@ -529,7 +529,7 @@
 	}
 }
 	
-- (void)alertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	[[alert window] orderOut:self];
 }
@@ -644,7 +644,7 @@
 		|| action == @selector(revealInFinderFromPhotoView:) || action == @selector(openInNewTabFromPhotoView:)
 		|| action == @selector(openInNewWindowFromPhotoView:) )
 	{
-		unsigned theIndex = [photoView indexForMenuEvent];
+		NSUInteger theIndex = [photoView indexForMenuEvent];
 		if ( theIndex < 0 || theIndex >= [[self selectedResources] count] )
 			enabled = NO;
 		else
@@ -706,7 +706,7 @@
 #pragma mark -
 #pragma mark PhotoView Delegation
 
-- (NSString*) photoView:(MUPhotoView*)photoView titleForObjectAtIndex:(unsigned int)index
+- (NSString*) photoView:(MUPhotoView*)photoView titleForObjectAtIndex:(NSUInteger)index
 {
 	if ( index >= [[self selectedResources] count] )
 		return nil;
@@ -714,7 +714,7 @@
 	return [[[self selectedResources] objectAtIndex:index] valueForKey:@"title"];
 }
 
-- (NSString*) photoView:(MUPhotoView*)photoView tooltipForObjectAtIndex:(unsigned int)index
+- (NSString*) photoView:(MUPhotoView*)photoView tooltipForObjectAtIndex:(NSUInteger)index
 {
 	if ( index >= [[self selectedResources] count] )
 		return nil;
@@ -774,7 +774,7 @@
 	
 }
 
-- (void)photoView:(MUPhotoView *)view doubleClickOnPhotoAtIndex:(unsigned)index withFrame:(NSRect)frame
+- (void)photoView:(MUPhotoView *)view doubleClickOnPhotoAtIndex:(NSUInteger)index withFrame:(NSRect)frame
 {
 	// do something *cool* here
 	NSLog(@"%s",__PRETTY_FUNCTION__);
@@ -786,7 +786,7 @@
 - (NSIndexSet *)photoView:(MUPhotoView *)view willSetSelectionIndexes:(NSIndexSet *)indexes
 {
 	// do something *cool* here
-	int firstIndex = [indexes firstIndex];
+	NSInteger firstIndex = [indexes firstIndex];
 	if ( firstIndex < 0 || firstIndex >= [[self selectedResources] count] )
 		return indexes;
 	
@@ -926,7 +926,7 @@
 	return nil;
 }
 
-- (void)webView:(WebView *)sender mouseDidMoveOverElement:(NSDictionary *)element modifierFlags:(unsigned int)modifierFlags
+- (void)webView:(WebView *)sender mouseDidMoveOverElement:(NSDictionary *)element modifierFlags:(NSUInteger)modifierFlags
 {
 	NSURL *targetLink = [element objectForKey:WebElementLinkURLKey];
 	
@@ -944,7 +944,7 @@
 	NSURL *targetLink = [element objectForKey:WebElementLinkURLKey];
 	//NSLog([targetLink description]);
 	
-	int i;
+	NSInteger i;
 	for ( i = [items count] - 1; i >= 0; i-- ) 
 	{
 		NSMenuItem *aMenuItem = [items objectAtIndex:i];
@@ -1037,7 +1037,7 @@
 
 - (IBAction) jumpToEntryFromPhotoView:(id)sender
 {
-	unsigned theIndex = [photoView indexForMenuEvent];
+	NSUInteger theIndex = [photoView indexForMenuEvent];
 	if ( theIndex < 0 || theIndex >= [[self selectedResources] count] )
 	{
 		NSBeep(); return;
@@ -1052,7 +1052,7 @@
 
 - (IBAction) openInFinderFromPhotoView:(id)sender
 {
-	unsigned theIndex = [photoView indexForMenuEvent];
+	NSUInteger theIndex = [photoView indexForMenuEvent];
 	if ( theIndex < 0 || theIndex >= [[self selectedResources] count] )
 	{
 		NSBeep(); return;
@@ -1064,7 +1064,7 @@
 }
 - (IBAction) revealInFinderFromPhotoView:(id)sender
 {
-	unsigned theIndex = [photoView indexForMenuEvent];
+	NSUInteger theIndex = [photoView indexForMenuEvent];
 	if ( theIndex < 0 || theIndex >= [[self selectedResources] count] )
 	{
 		NSBeep(); return;
@@ -1076,7 +1076,7 @@
 
 - (IBAction) openInNewTabFromPhotoView:(id)sender
 {
-	unsigned theIndex = [photoView indexForMenuEvent];
+	NSUInteger theIndex = [photoView indexForMenuEvent];
 	if ( theIndex < 0 || theIndex >= [[self selectedResources] count] )
 	{
 		NSBeep(); return;
@@ -1091,7 +1091,7 @@
 
 - (IBAction) openInNewWindowFromPhotoView:(id)sender
 {
-	unsigned theIndex = [photoView indexForMenuEvent];
+	NSUInteger theIndex = [photoView indexForMenuEvent];
 	if ( theIndex < 0 || theIndex >= [[self selectedResources] count] )
 	{
 		NSBeep(); return;
@@ -1106,7 +1106,7 @@
 
 - (IBAction) getInfoFromPhotoView:(id)sender
 {
-	unsigned theIndex = [photoView indexForMenuEvent];
+	NSUInteger theIndex = [photoView indexForMenuEvent];
 	if ( theIndex < 0 || theIndex >= [[self selectedResources] count] )
 	{
 		NSBeep(); return;
@@ -1188,7 +1188,7 @@
 	
 	// subclasses may override although it isn't necessary
 	
-	if ( [[anItem typeIdentifier] intValue] == kMenubarItemURI )
+	if ( [[anItem typeIdentifier] integerValue] == kMenubarItemURI )
 	{
 		// throw the uri at the workspace
 		NSURL *applicationURI = [anItem targetURI];
@@ -1206,7 +1206,7 @@
 		}
 	}
 	
-	else if ( [[anItem typeIdentifier] intValue] == kMenubarItemAppleScript )
+	else if ( [[anItem typeIdentifier] integerValue] == kMenubarItemAppleScript )
 	{
 		NSDictionary *errorDictionary;
 		NSString *scriptSource = [[anItem targetScript] string];
@@ -1255,7 +1255,7 @@
 		}
 		
 		if ( ![script executeHandler:perform_action_handler error:&errorDictionary withParameters: resourceURI, theRepresentedObject, nil] 
-			&& [[errorDictionary objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
+			&& [[errorDictionary objectForKey:NSAppleScriptErrorNumber] integerValue] != kScriptWasCancelledError )
 		{
 			success = NO;
 			NSLog(@"%s - unable to execute handler of script %@, error: %@", __PRETTY_FUNCTION__, scriptSource, errorDictionary);
@@ -1294,7 +1294,7 @@ bail:
 		[anItem setTitle:NSLocalizedStringFromTableInBundle(@"get info title",@"Mediabar",sproutedInterfaceBundle,@"")];
 		[anItem setToolTip:NSLocalizedStringFromTableInBundle(@"get info tip",@"Mediabar",sproutedInterfaceBundle,@"")];
 		[anItem setTag:kMediaBarGetInfo];
-		[anItem setTypeIdentifier:[NSNumber numberWithInt:kMenubarItemDefault]];
+		[anItem setTypeIdentifier:[NSNumber numberWithInteger:kMenubarItemDefault]];
 		
 		NSImage *theImage = BundledImageWithName(@"InfoBarSmall.png", @"com.sprouted.interface");
 		[anItem setImage:theImage];
@@ -1311,7 +1311,7 @@ bail:
 		[anItem setTitle:NSLocalizedStringFromTableInBundle(@"reveal in finder title",@"Mediabar",sproutedInterfaceBundle,@"")];
 		[anItem setToolTip:NSLocalizedStringFromTableInBundle(@"reveal in finder tip",@"Mediabar",sproutedInterfaceBundle,@"")];
 		[anItem setTag:kMediaBarShowInFinder];
-		[anItem setTypeIdentifier:[NSNumber numberWithInt:kMenubarItemDefault]];
+		[anItem setTypeIdentifier:[NSNumber numberWithInteger:kMenubarItemDefault]];
 		
 		NSImage *theImage = BundledImageWithName(@"RevealInFinderBarSmall.png", @"com.sprouted.interface");
 		[anItem setImage:theImage];
@@ -1327,7 +1327,7 @@ bail:
 	{
 		[anItem setTitle:NSLocalizedStringFromTableInBundle(@"open in finder title",@"Mediabar",sproutedInterfaceBundle,@"")];
 		[anItem setTag:kMediaBarOpenWithFinder];
-		[anItem setTypeIdentifier:[NSNumber numberWithInt:kMenubarItemDefault]];
+		[anItem setTypeIdentifier:[NSNumber numberWithInteger:kMenubarItemDefault]];
 		[anItem setToolTip:NSLocalizedStringFromTableInBundle(@"open in finder tip",@"Mediabar",sproutedInterfaceBundle,@"")];
 		
 		[anItem setTarget:self];

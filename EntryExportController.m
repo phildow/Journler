@@ -38,23 +38,23 @@
 	return _contentView; 
 }
 
-- (int) dataFormat 
+- (NSInteger) dataFormat 
 { 
 	return dataFormat;
 }
 
-- (void) setDataFormat:(int)format 
+- (void) setDataFormat:(NSInteger)format 
 {
 	dataFormat = format;
 	[[NSUserDefaults standardUserDefaults] setInteger:format forKey:@"EntryExportFormat"];
 }
 
-- (int) fileMode 
+- (NSInteger) fileMode 
 { 
 	return fileMode;
 }
 
-- (void) setFileMode:(int)mode 
+- (void) setFileMode:(NSInteger)mode 
 {
 	fileMode = mode;
 	[[NSUserDefaults standardUserDefaults] setInteger:mode forKey:@"EntryExportMode"];

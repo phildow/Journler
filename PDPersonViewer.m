@@ -305,10 +305,10 @@
 - (void)resetCursorRects 
 {
 	
-	int i;
+	NSInteger i;
 	
 	for ( i = 0; i < [trackingRects count]; i++ )
-		[self removeTrackingRect:[[trackingRects objectAtIndex:i] intValue]];
+		[self removeTrackingRect:[[trackingRects objectAtIndex:i] integerValue]];
 	
 	[trackingRects removeAllObjects];
 	
@@ -323,7 +323,7 @@
 		NSTrackingRectTag trackTag = [self addTrackingRect:[[field cell] 
 				labelBoundsForCellFrame:[field frame]] owner:self userData:field assumeInside:NO];
 				
-		[trackingRects addObject:[NSNumber numberWithInt:trackTag]];
+		[trackingRects addObject:[NSNumber numberWithInteger:trackTag]];
 	
 	}
 
@@ -338,7 +338,7 @@
 - (void) updatePropertyFieldLocations 
 {
 	
-	int i;
+	NSInteger i;
 	NSString *thisProperty, *lastProperty;
 	float totalOffset = kPropertiesOffset;
 	
@@ -418,7 +418,7 @@
 	phoneRecords = [aPerson valueForProperty:kABPhoneProperty];
 	if ( phoneRecords != nil && [phoneRecords count] != 0 ) {
 		
-		int i;
+		NSInteger i;
 		for ( i = 0; i < [phoneRecords count]; i++ ) 
 		{
 			
@@ -443,7 +443,7 @@
 	if ( emailRecords != nil && [emailRecords count] != 0 ) 
 	{
 		
-		int i;
+		NSInteger i;
 		for ( i = 0; i < [emailRecords count]; i++ ) 
 		{
 			
@@ -469,7 +469,7 @@
 	if ( urlRecords != nil && [urlRecords count] != 0 ) 
 	{
 		
-		int i;
+		NSInteger i;
 		for ( i = 0; i < [urlRecords count]; i++ ) 
 		{
 			
@@ -494,7 +494,7 @@
 	if ( addressRecords != nil && [addressRecords count] != 0 ) 
 	{
 		
-		int i;
+		NSInteger i;
 		for ( i = 0; i < [addressRecords count]; i++ ) 
 		{
 			

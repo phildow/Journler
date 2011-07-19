@@ -38,8 +38,8 @@
 - (float) maxRank;
 - (void) setMaxRank:(float)value;
 
-- (int) additionalIndent;
-- (void) setAdditionalIndent:(int)value;
+- (NSInteger) additionalIndent;
+- (void) setAdditionalIndent:(NSInteger)value;
 
 - (BOOL) isSelected;
 - (void) setSelected:(BOOL)isSelected;
@@ -47,8 +47,8 @@
 - (float) rank;
 - (void) setRank:(float)value;
 
-- (int) count;
-- (void) setCount:(int)value;
+- (NSInteger) count;
+- (void) setCount:(NSInteger)value;
 
 - (NSSize) imageSize;
 - (void) setImageSize:(NSSize)aSize;

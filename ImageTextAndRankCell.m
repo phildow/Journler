@@ -191,7 +191,7 @@
 	[super editWithFrame: textFrame inView: controlView editor:textObj delegate:anObject event: theEvent];
 }
 
-- (void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject start:(int)selStart length:(int)selLength {
+- (void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject start:(NSInteger)selStart length:(NSInteger)selLength {
    
 	NSRect textFrame, imageFrame;
    	NSDivideRect (aRect, &imageFrame, &textFrame, additionalIndent + 3 + [self imageSize].width, NSMinXEdge);
@@ -220,12 +220,12 @@
 
 #pragma mark -
 
-- (int) count
+- (NSInteger) count
 {
 	return count;
 }
 
-- (void) setCount:(int)value
+- (void) setCount:(NSInteger)value
 {
 	count = value;
 }
@@ -264,12 +264,12 @@
 	rank = value;
 }
 
-- (int) additionalIndent
+- (NSInteger) additionalIndent
 {
 	return additionalIndent;
 }
 
-- (void) setAdditionalIndent:(int)value
+- (void) setAdditionalIndent:(NSInteger)value
 {
 	additionalIndent = value;
 }

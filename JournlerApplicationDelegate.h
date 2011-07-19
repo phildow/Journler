@@ -70,7 +70,7 @@ extern NSString *JournlerDidFinishImportNotification;
 }
 
 - (JournlerJournal*) journal;
-- (int) spellDocumentTag;
+- (NSInteger) spellDocumentTag;
 - (BOOL) dropBoxing;
 - (JournalWindowController*) journalWindowController;
 
@@ -155,7 +155,7 @@ extern NSString *JournlerDidFinishImportNotification;
 - (IBAction) runConsole:(id)sender;
 - (IBAction) showActivity:(id)sender;
 
-- (BOOL) _importContentsOfDropBox:(NSString*)path visually:(BOOL)showDialog filesAffected:(int*)newEntryCount;
+- (BOOL) _importContentsOfDropBox:(NSString*)path visually:(BOOL)showDialog filesAffected:(NSInteger*)newEntryCount;
 - (void) cleanupDropBox:(NSString*)path;
 
 - (void) fadeOutAllWindows:(NSArray*)excluding;
@@ -207,62 +207,62 @@ extern NSString *JournlerDidFinishImportNotification;
 
 #pragma mark -
 
-- (int) indexOfObjectInJSEntries:(JournlerEntry*)anEntry;
-- (unsigned int) countOfJSEntries;
-- (JournlerEntry*) objectInJSEntriesAtIndex:(unsigned int)i;
+- (NSInteger) indexOfObjectInJSEntries:(JournlerEntry*)anEntry;
+- (NSUInteger) countOfJSEntries;
+- (JournlerEntry*) objectInJSEntriesAtIndex:(NSUInteger)i;
 - (JournlerEntry*) valueInJSEntriesWithUniqueID:(NSNumber*)idNum;
 
-- (void) insertObject:(JournlerEntry*)anEntry inJSEntriesAtIndex:(unsigned int)index;
+- (void) insertObject:(JournlerEntry*)anEntry inJSEntriesAtIndex:(NSUInteger)index;
 - (void) insertInJSEntries:(JournlerEntry*)anEntry;
-- (void) JSAddNewEntry:(JournlerEntry*)anEntry atIndex:(unsigned int)index;
+- (void) JSAddNewEntry:(JournlerEntry*)anEntry atIndex:(NSUInteger)index;
 
-- (void) removeObjectFromJSEntriesAtIndex:(unsigned int)index; 
-- (void) removeFromSJSEntriesAtIndex:(unsigned int)index;
+- (void) removeObjectFromJSEntriesAtIndex:(NSUInteger)index; 
+- (void) removeFromSJSEntriesAtIndex:(NSUInteger)index;
 - (void) JSDeleteEntry:(JournlerEntry*)anEntry;
 
 #pragma mark -
 
-- (int) indexOfObjectInJSFolders:(JournlerCollection*)aFolder;
-- (unsigned int) countOfJSFolders;
-- (JournlerCollection*) objectInJSFoldersAtIndex:(unsigned int)i;
+- (NSInteger) indexOfObjectInJSFolders:(JournlerCollection*)aFolder;
+- (NSUInteger) countOfJSFolders;
+- (JournlerCollection*) objectInJSFoldersAtIndex:(NSUInteger)i;
 - (JournlerCollection*) valueInJSFoldersWithUniqueID:(NSNumber*)idNum;
 
-- (void) insertObject:(JournlerCollection*)aFolders inJSFoldersAtIndex:(unsigned int)index;
+- (void) insertObject:(JournlerCollection*)aFolders inJSFoldersAtIndex:(NSUInteger)index;
 - (void) insertInJSFolders:(JournlerCollection*)aFolder;
-- (void) JSAddNewFolder:(JournlerCollection*)aFolder atIndex:(unsigned int)index;
+- (void) JSAddNewFolder:(JournlerCollection*)aFolder atIndex:(NSUInteger)index;
 
-- (void) removeObjectFromJSFoldersAtIndex:(unsigned int)index;
-- (void) removeFromJSFoldersAtIndex:(unsigned int)index;
+- (void) removeObjectFromJSFoldersAtIndex:(NSUInteger)index;
+- (void) removeFromJSFoldersAtIndex:(NSUInteger)index;
 - (void) JSDeleteFolder:(JournlerCollection*)aFolder;
 
 #pragma mark -
 
-- (int) indexOfObjectInJSReferences:(JournlerResource*)aReference;
-- (unsigned int) countOfJSReferences;
-- (JournlerResource*) objectInJSReferencesAtIndex:(unsigned int)i;
+- (NSInteger) indexOfObjectInJSReferences:(JournlerResource*)aReference;
+- (NSUInteger) countOfJSReferences;
+- (JournlerResource*) objectInJSReferencesAtIndex:(NSUInteger)i;
 - (JournlerResource*) valueInJSReferencesWithUniqueID:(NSNumber*)idNum;
 
-- (void) insertObject:(JournlerResource*)aReference inJSReferencesAtIndex:(unsigned int)index;
+- (void) insertObject:(JournlerResource*)aReference inJSReferencesAtIndex:(NSUInteger)index;
 - (void) insertInJSReferences:(JournlerResource*)aReference;
-- (void) JSAddNewReference:(JournlerResource*)aReference atIndex:(unsigned int)index;
+- (void) JSAddNewReference:(JournlerResource*)aReference atIndex:(NSUInteger)index;
 
-- (void) removeObjectFromJSReferencesAtIndex:(unsigned int)index;
-- (void) removeFromJSReferencesAtIndex:(unsigned int)index;
+- (void) removeObjectFromJSReferencesAtIndex:(NSUInteger)index;
+- (void) removeFromJSReferencesAtIndex:(NSUInteger)index;
 - (void) JSDeleteReference:(JournlerResource*)aResource;
 
 #pragma mark -
 
-- (int) indexOfObjectInJSBlogs:(BlogPref*)aBlog;
-- (unsigned int) countOfJSBlogs;
-- (BlogPref*) objectInJSBlogsAtIndex:(unsigned int)i;
+- (NSInteger) indexOfObjectInJSBlogs:(BlogPref*)aBlog;
+- (NSUInteger) countOfJSBlogs;
+- (BlogPref*) objectInJSBlogsAtIndex:(NSUInteger)i;
 - (BlogPref*) valueInJSBlogsWithUniqueID:(NSNumber*)idNum;
 
-- (void) insertObject:(BlogPref*)aBlog inJSBlogsAtIndex:(unsigned int)index;
+- (void) insertObject:(BlogPref*)aBlog inJSBlogsAtIndex:(NSUInteger)index;
 - (void) insertInJSBlogs:(BlogPref*)aBlog;
-- (void) JSAddNewBlog:(BlogPref*)aBlog atIndex:(unsigned int)index;
+- (void) JSAddNewBlog:(BlogPref*)aBlog atIndex:(NSUInteger)index;
 
-- (void) removeObjectFromJSBlogsAtIndex:(unsigned int)index;
-- (void) removeFromJSBlogsAtIndex:(unsigned int)index;
+- (void) removeObjectFromJSBlogsAtIndex:(NSUInteger)index;
+- (void) removeFromJSBlogsAtIndex:(NSUInteger)index;
 - (void) JSDeleteBlog:(BlogPref*)aBlog;
 
 @end

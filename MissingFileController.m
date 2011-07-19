@@ -31,7 +31,7 @@
 
 - (void) awakeFromNib 
 {
-	int eBorders[4] = {1,0,1,0};
+	NSInteger eBorders[4] = {1,0,1,0};
 	[errorBar setBordered:YES];
 	[errorBar setBorderColor:[NSColor colorWithCalibratedRed:155.0/255.0 green:155.0/255.0 blue:155.0/255.0 alpha:1.0]];
 	[errorBar setBorders:eBorders];
@@ -111,7 +111,7 @@
 
 - (IBAction) locateMissingFile:(id)sender
 {
-	int result;
+	NSInteger result;
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
 	
 	[oPanel setAccessoryView:locateAccessory];

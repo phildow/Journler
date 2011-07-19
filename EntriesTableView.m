@@ -174,7 +174,7 @@
 
 #pragma mark -
 
-- (void)drawRow:(int)rowIndex clipRect:(NSRect)clipRect 
+- (void)drawRow:(NSInteger)rowIndex clipRect:(NSRect)clipRect 
 {
 	// ask the data source for the entry's label
 	NSNumber *labelColorVal = [[[[self dataSource] arrangedObjects] objectAtIndex:rowIndex] valueForKey:@"label"];
@@ -198,10 +198,10 @@
 	
 	// if the label is around and this isn't the selected row
 	else if ( [self drawsLabelBackground] && labelColorVal && 
-			[labelColorVal intValue] != 0 && targetRect.size.width != 0 && [self selectedRow] != rowIndex )
+			[labelColorVal integerValue] != 0 && targetRect.size.width != 0 && [self selectedRow] != rowIndex )
 	{
-		NSColor *gradientStart = [NSColor colorForLabel:[labelColorVal intValue] gradientEnd:NO];
-		NSColor *gradientEnd = [NSColor colorForLabel:[labelColorVal intValue] gradientEnd:YES];
+		NSColor *gradientStart = [NSColor colorForLabel:[labelColorVal integerValue] gradientEnd:NO];
+		NSColor *gradientEnd = [NSColor colorForLabel:[labelColorVal integerValue] gradientEnd:YES];
 				
 		if ( gradientStart != nil && gradientEnd != nil )
 		{
@@ -278,7 +278,7 @@
 	[[NSNotificationCenter defaultCenter] postNotificationName:EntriesTableViewDidEndDragNotification object:self userInfo:nil];
 }
 
-- (unsigned int)draggingSourceOperationMaskForLocal:(BOOL)isLocal {
+- (NSUInteger)draggingSourceOperationMaskForLocal:(BOOL)isLocal {
 	
 	if ( isLocal )
 		return ( NSDragOperationDelete | NSDragOperationCopy );
@@ -296,7 +296,7 @@
 	// I mean, let's be fancy about it!
 	//
 	
-	//JournlerEntry *entry = [[[self dataSource] arrangedObjects] objectAtIndex:[[dragRows objectAtIndex:0] intValue]];
+	//JournlerEntry *entry = [[[self dataSource] arrangedObjects] objectAtIndex:[[dragRows objectAtIndex:0] integerValue]];
 	JournlerEntry *entry = [[[self dataSource] arrangedObjects] objectAtIndex:[dragRows firstIndex]];
 	if ( !entry )
 		return nil;
@@ -331,7 +331,7 @@
 				[NSFont systemFontOfSize:[NSFont smallSystemFontSize]], NSFontAttributeName,
 				[NSColor colorWithCalibratedWhite:1.0 alpha:1.0], NSForegroundColorAttributeName, nil];
 		
-		NSString *countString = [[NSNumber numberWithInt:[dragRows count]] stringValue];
+		NSString *countString = [[NSNumber numberWithInteger:[dragRows count]] stringValue];
 		NSSize countSize = [countString sizeWithAttributes:countAttributes];
 		
 		[dragBadge lockFocus];
@@ -404,7 +404,7 @@
 		NSTableColumn *aColumn = [columns objectAtIndex:i];
 		
 		NSString *identifier = [aColumn identifier];
-		NSNumber *position = [NSNumber numberWithInt:i];
+		NSNumber *position = [NSNumber numberWithInteger:i];
 		NSNumber *width = [NSNumber numberWithFloat:[aColumn width]];
 		
 		NSDictionary *columnState = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -460,7 +460,7 @@
 		NSDictionary *columnState = [anArray objectAtIndex:i];
 		
 		NSString *identifier = [columnState valueForKey:@"identifier"];
-		NSInteger position = [[columnState valueForKey:@"position"] intValue];
+		NSInteger position = [[columnState valueForKey:@"position"] integerValue];
 		float width = [[columnState valueForKey:@"width"] floatValue];
 		
 		NSInteger existingPosition = [self columnWithIdentifier:identifier];
@@ -637,7 +637,7 @@
 	return _editingCategory; 
 }
 
-- (void)editColumn:(int)columnIndex row:(int)rowIndex withEvent:(NSEvent *)theEvent select:(BOOL)flag {
+- (void)editColumn:(NSInteger)columnIndex row:(NSInteger)rowIndex withEvent:(NSEvent *)theEvent select:(BOOL)flag {
 	
 	NSString *identifier = [[[self tableColumns] objectAtIndex:columnIndex] identifier];
 	//id formatter = [[[[self tableColumns] objectAtIndex:columnIndex] dataCell] formatter];
@@ -702,7 +702,7 @@
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *textMovement = [userInfo objectForKey: @"NSTextMovement"];
 	
-    NSInteger movementCode = [textMovement intValue];
+    NSInteger movementCode = [textMovement integerValue];
 	_editingCategory = NO;
 
     // see if this a 'pressed-return' instance
@@ -711,7 +711,7 @@
         // hijack the notification and pass a different textMovement
         // value
 
-        textMovement = [NSNumber numberWithInt: NSIllegalTextMovement];
+        textMovement = [NSNumber numberWithInteger: NSIllegalTextMovement];
         NSDictionary *newUserInfo = [NSDictionary dictionaryWithObject: textMovement forKey: @"NSTextMovement"];
         notification = [NSNotification notificationWithName: [notification name] object: [notification object] userInfo: newUserInfo];
 		

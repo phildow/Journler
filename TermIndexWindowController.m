@@ -270,7 +270,7 @@
 			contextInfo: nil];
 }
 
-- (void) stopwordsSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo
+- (void) stopwordsSheet:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void  *)contextInfo
 {
 	if ( returnCode == NSRunStoppedResponse )
 	{
@@ -314,7 +314,7 @@
 - (BOOL)validateMenuItem:(NSMenuItem*)menuItem
 {
 	BOOL enabled;
-	int itemTag = [menuItem tag];
+	NSInteger itemTag = [menuItem tag];
 	SEL action = [menuItem action];
 	
 	if ( action == @selector(closeTab:) )

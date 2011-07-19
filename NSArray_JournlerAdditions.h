@@ -16,6 +16,6 @@
 - (NSArray*) arrayProducingURIRepresentations:(JournlerJournal*)journal;
 - (NSArray*) arrayProducingJournlerObjects:(JournlerJournal*)journal;
 
-- (unsigned) indexOfObjectIdenticalToResource:(JournlerResource*)aResource;
+- (NSUInteger) indexOfObjectIdenticalToResource:(JournlerResource*)aResource;
 
 @end

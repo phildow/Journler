@@ -383,7 +383,7 @@
 	return NO;
 }
 
-- (BOOL) canPerformNavigation:(int)direction {
+- (BOOL) canPerformNavigation:(NSInteger)direction {
 	
 	if ( direction == 0 )
 		return [navigationManager canUndo];
@@ -416,7 +416,7 @@
 	newEntry = [[[JournlerEntry alloc] init] autorelease];
 	[newEntry setJournal:[self journal]];
 	
-	[newEntry setValue:[NSNumber numberWithInt:[[self journal] newEntryTag]] forKey:@"tagID"];
+	[newEntry setValue:[NSNumber numberWithInteger:[[self journal] newEntryTag]] forKey:@"tagID"];
 	[newEntry setValue:[NSCalendarDate calendarDate] forKey:@"calDateModified"];
 	[newEntry setValue:[JournlerEntry defaultCategory] forKey:@"category"];
 	
@@ -464,8 +464,8 @@
 	else
 		[[sharedPI dictionary] setValue:[NSNumber numberWithBool:YES] forKey:NSPrintHeaderAndFooter];
 	
-	int width = [sharedPI paperSize].width - ( [sharedPI rightMargin] + [sharedPI leftMargin] );
-	int height = [sharedPI paperSize].height - ( [sharedPI topMargin] + [sharedPI bottomMargin] );
+	CGFloat width = [sharedPI paperSize].width - ( [sharedPI rightMargin] + [sharedPI leftMargin] );
+	CGFloat height = [sharedPI paperSize].height - ( [sharedPI topMargin] + [sharedPI bottomMargin] );
 	
 	// create a view based on that information
 	PDPrintTextView *printView = [[[PDPrintTextView alloc] initWithFrame:NSMakeRect(0,0,width,height)] autorelease];
@@ -490,7 +490,7 @@
 	NSArray *printArray = [printInfo objectForKey:@"entries"];
 	
 	//and build that view like no other
-	int i;
+	NSInteger i;
 	for ( i = 0; i < [printArray count]; i++ ) 
 	{
 		NSAutoreleasePool *innerPool = [[NSAutoreleasePool alloc] init];
@@ -572,13 +572,13 @@
 	
 	if ( [sender tag] == 331 ) // flag
 	{
-		[theEntries setValue:[NSNumber numberWithInt:
-				( [[[theEntries objectAtIndex:0] valueForKey:@"marked"] intValue] == 1 ? 0 : 1 )] forKey:@"marked"];
+		[theEntries setValue:[NSNumber numberWithInteger:
+				( [[[theEntries objectAtIndex:0] valueForKey:@"marked"] integerValue] == 1 ? 0 : 1 )] forKey:@"marked"];
 	}
 	else if ( [sender tag] == 334 ) // check
 	{
-		[theEntries setValue:[NSNumber numberWithInt:
-				( [[[theEntries objectAtIndex:0] valueForKey:@"marked"] intValue] == 2 ? 0 : 2 )] forKey:@"marked"];
+		[theEntries setValue:[NSNumber numberWithInteger:
+				( [[[theEntries objectAtIndex:0] valueForKey:@"marked"] integerValue] == 2 ? 0 : 2 )] forKey:@"marked"];
 	}
 }
 
@@ -592,7 +592,7 @@
 		NSBeep(); return;
 	}
 	
-	[theEntries setValue:[NSNumber numberWithInt:[sender tag]] forKey:@"label"];
+	[theEntries setValue:[NSNumber numberWithInteger:[sender tag]] forKey:@"label"];
 }
 
 - (IBAction) revealEntryInFinder:(id)sender
@@ -603,7 +603,7 @@
 		NSBeep(); return;
 	}
 	
-	int i;
+	NSInteger i;
 	for ( i = 0; i < [theEntries count]; i++ )
 	{
 		NSString *path = [[theEntries objectAtIndex:0] packagePath];
@@ -743,7 +743,7 @@
 	// export a single entry
 	if ( [theEntries count] == 1 ) 
 	{
-		int runResult;
+		NSInteger runResult;
 		NSSavePanel *sp = [NSSavePanel savePanel];
 		
 		// add the accessory panel
@@ -765,7 +765,7 @@
 			if ( ![exportController commitEditing] )
 				NSLog(@"%s - unable to commit editing", __PRETTY_FUNCTION__);
 			
-			int flags = kEntrySetLabelColor;
+			NSInteger flags = kEntrySetLabelColor;
 			if ( [exportController includeHeader] )
 				flags |= kEntryIncludeHeader;
 			if ( [exportController modifiesFileCreationDate] )
@@ -787,7 +787,7 @@
 	// export more than one entry
 	else
 	{
-		int runResult;
+		NSInteger runResult;
 		NSOpenPanel *sp = [NSOpenPanel openPanel];
 		
 		// set up new attributes
@@ -812,15 +812,15 @@
 			BOOL include_header = [exportController includeHeader];
 			BOOL mods_creation_date = [exportController modifiesFileCreationDate];
 			BOOL mods_modification_date = [exportController modifiesFileModifiedDate];
-			int dataFormat = [exportController dataFormat];
-			int folderPref = [exportController fileMode];
+			NSInteger dataFormat = [exportController dataFormat];
+			NSInteger folderPref = [exportController fileMode];
 			
 			BOOL success = YES;
 			NSString *rootDir = [sp directory];
 			
 			if ( folderPref == kExportByFolder ) 
 			{
-				int flags = kEntrySetLabelColor|kEntryDoNotOverwrite;
+				NSInteger flags = kEntrySetLabelColor|kEntryDoNotOverwrite;
 				if ( include_header )
 					flags |= kEntryIncludeHeader;
 				if ( mods_creation_date )
@@ -830,7 +830,7 @@
 				if ( [sp isExtensionHidden] )
 					flags |= kEntryHideExtension;
 				
-				int i;
+				NSInteger i;
 				for ( i = 0; i < [theEntries count]; i++ ) 
 				{
 					NSAutoreleasePool *innerPool = [[NSAutoreleasePool alloc] init];
@@ -870,8 +870,8 @@
 				[printInfo setVerticallyCentered:NO];
 				
 				//should give me the width and height
-				int width = [printInfo paperSize].width - ( [printInfo rightMargin] + [printInfo leftMargin] );
-				int height = [printInfo paperSize].height - ( [printInfo topMargin] + [printInfo bottomMargin] );
+				CGFloat width = [printInfo paperSize].width - ( [printInfo rightMargin] + [printInfo leftMargin] );
+				CGFloat height = [printInfo paperSize].height - ( [printInfo topMargin] + [printInfo bottomMargin] );
 				
 				PDPrintTextView *printView = [[[PDPrintTextView alloc] initWithFrame:NSMakeRect(0,0,width,height)] autorelease];
 				
@@ -884,7 +884,7 @@
 				
 				// set all the entries
 				
-				int i;
+				NSInteger i;
 				NSSortDescriptor *descriptor = [[[NSSortDescriptor alloc] initWithKey:@"calDate" ascending:YES] autorelease];
 				NSArray *sortedEntries = [theEntries sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]];
 				
@@ -1073,12 +1073,12 @@
 	}
 	
 	// do we use mail or the default mailer for emails
-	int mailPreference = [[NSUserDefaults standardUserDefaults] integerForKey:@"UseMailForEmailing"];
+	NSInteger mailPreference = [[NSUserDefaults standardUserDefaults] integerForKey:@"UseMailForEmailing"];
 	if ( mailPreference == 0 )
 	{
 		// ask the user what their preference is
 		NSBeep();
-		int result = [[NSAlert requestMailPreference] runModal];
+		NSInteger result = [[NSAlert requestMailPreference] runModal];
 		if ( result == 1000 ) mailPreference = 1;
 		else mailPreference = 2;
 		
@@ -1141,7 +1141,7 @@
 		}
 		
 		if ( [script executeHandler:mainHandler error:&errors withParameters: content, resourcePaths, prompt, subject, nil] == nil 
-			&& [[errors objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
+			&& [[errors objectForKey:NSAppleScriptErrorNumber] integerValue] != kScriptWasCancelledError )
 		{
 			NSLog(@"%s - executeHandler returned error: %@", __PRETTY_FUNCTION__, errors);
 			
@@ -1215,12 +1215,12 @@
 	}
 	
 	// do we use mail or the default mailer for emails
-	int mailPreference = [[NSUserDefaults standardUserDefaults] integerForKey:@"UseMailForEmailing"];
+	NSInteger mailPreference = [[NSUserDefaults standardUserDefaults] integerForKey:@"UseMailForEmailing"];
 	if ( mailPreference == 0 )
 	{
 		// ask the user what their preference is
 		NSBeep();
-		int result = [[NSAlert requestMailPreference] runModal];
+		NSInteger result = [[NSAlert requestMailPreference] runModal];
 		if ( result == 1000 ) mailPreference = 1;
 		else mailPreference = 2;
 		
@@ -1337,7 +1337,7 @@
 	}
 	else
 	{
-		int options = 0;
+		NSInteger options = 0;
 		id error = nil; // error can be a dictionary or an error object
 		NSDictionary *supportedEditors = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"SupportedWeblogEditorsBundleIdentifiers"];
 		
@@ -1376,7 +1376,7 @@
 	}
 }
 
-- (void) didChoosePreferredEditor:(JournlerWeblogInterface*)weblogInterface returnCode:(int)returnCode editor:(NSString*)filename
+- (void) didChoosePreferredEditor:(JournlerWeblogInterface*)weblogInterface returnCode:(NSInteger)returnCode editor:(NSString*)filename
 {
 	if ( returnCode == NSOKButton )
 	{
@@ -1396,7 +1396,7 @@
 	
 	NSDictionary *errors = [NSDictionary dictionary];
 	
-	int i;
+	NSInteger i;
 	NSArray *entries = [self selectedEntries];
 	if ( !entries || [entries count] == 0 ) 
 	{
@@ -1441,13 +1441,13 @@
 	for ( i = 0; i < [entries count]; i++ ) 
 	{
 		// 1 = photocast, 2 = podcast, 3 = videocast
-		unsigned int castType = 1;
+		NSUInteger castType = 1;
 		NSString *castPath = nil;
 		
 		// first try to get one of the entry's resources, an image resource
 		
 		
-		int j;
+		NSInteger j;
 		NSArray *entryResources = [[entries objectAtIndex:i] valueForKey:@"resources"];
 		for ( j = 0; j < [entryResources count]; j++ )
 		{
@@ -1524,13 +1524,13 @@
 		
 		if ( castType == 1 )
 		{
-			NSNumber *totalCount = [NSNumber numberWithInt:1];
+			NSNumber *totalCount = [NSNumber numberWithInteger:1];
 			NSArray *images = [NSArray arrayWithObjects:castPath,nil];
 			NSArray *titles = [NSArray arrayWithObjects:[[entries objectAtIndex:i] title], nil];
 			NSArray *contents = [NSArray arrayWithObjects:[[entries objectAtIndex:i] stringValue], nil];
 			
 			if ( ![script executeHandler:imageHandlerName error:&errors withParameters: totalCount, images, titles, contents, nil] 
-				&& [[errors objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
+				&& [[errors objectForKey:NSAppleScriptErrorNumber] integerValue] != kScriptWasCancelledError )
 			{
 				NSLog(@"%s - unable to execute image handler, error %@", __PRETTY_FUNCTION__, errors);
 				
@@ -1545,7 +1545,7 @@
 		else if ( castType == 2 )
 		{
 			if ( ![script executeHandler:audioHandlerName error:&errors withParameters: castPath, nil] 
-				&& [[errors objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
+				&& [[errors objectForKey:NSAppleScriptErrorNumber] integerValue] != kScriptWasCancelledError )
 			{
 				NSLog(@"%s - unable to execute image handler, error %@", __PRETTY_FUNCTION__, errors);
 				
@@ -1561,7 +1561,7 @@
 		{
 			NSString *castTitle = [[entries objectAtIndex:i] valueForKey:@"title"];
 			if ( ![script executeHandler:videoHandlerName error:&errors withParameters: castPath, castTitle, nil]
-				&& [[errors objectForKey:NSAppleScriptErrorNumber] intValue] != kScriptWasCancelledError )
+				&& [[errors objectForKey:NSAppleScriptErrorNumber] integerValue] != kScriptWasCancelledError )
 			{
 				NSLog(@"%s - unable to execute image handler, error %@", __PRETTY_FUNCTION__, errors);
 				
@@ -1777,7 +1777,7 @@
 		NSBeep(); return;
 	}
 	
-	[theResources setValue:[NSNumber numberWithInt:[sender tag]] forKey:@"label"];
+	[theResources setValue:[NSNumber numberWithInteger:[sender tag]] forKey:@"label"];
 }
 
 - (IBAction) revealResource:(id)sender
@@ -1938,7 +1938,7 @@
 		NSBeep(); return;
 	}
 	
-	[theFolders setValue:[NSNumber numberWithInt:[sender tag]] forKey:@"label"];
+	[theFolders setValue:[NSNumber numberWithInteger:[sender tag]] forKey:@"label"];
 }
 
 #pragma mark -
@@ -2169,7 +2169,7 @@
 - (BOOL)validateMenuItem:(NSMenuItem*)menuItem
 {
 	BOOL enabled = YES;
-	int tag = [menuItem tag];
+	NSInteger tag = [menuItem tag];
 	SEL action = [menuItem action];
 	
 	if ( action == @selector(copyLinkToJournlerObject:) )
@@ -2206,7 +2206,7 @@
 		//NSLog(@"%s - tag: %i",__PRETTY_FUNCTION__,tag);
 		//not called when the title is bound to user defaults!
 		
-		unsigned entryCount = [[self selectedEntries] count];
+		NSUInteger entryCount = [[self selectedEntries] count];
 		enabled = ( entryCount > 0 );
 		
 		if ( tag == 0 || tag == 10 )

@@ -13,10 +13,10 @@
 
 + (void)initialize;
 + (void)drawBevel:(struct _NSRect)fp8 inFrame:(struct _NSRect)fp24 topCornerRounded:(BOOL)fp40 bottomCornerRounded:(BOOL)fp44;
-+ (struct _NSSize)sizeOfTitlebarButtons:(unsigned int)fp8;
-+ (float)_minXTitlebarWidgetInset:(unsigned int)fp8;
-+ (float)_maxXTitlebarWidgetInset:(unsigned int)fp8;
-- (id)initWithFrame:(struct _NSRect)fp8 styleMask:(unsigned int)fp24 owner:(id)fp28;
++ (struct _NSSize)sizeOfTitlebarButtons:(NSUInteger)fp8;
++ (float)_minXTitlebarWidgetInset:(NSUInteger)fp8;
++ (float)_maxXTitlebarWidgetInset:(NSUInteger)fp8;
+- (id)initWithFrame:(struct _NSRect)fp8 styleMask:(NSUInteger)fp24 owner:(id)fp28;
 - (void)_setUtilityWindow:(BOOL)fp8;
 - (void)setBottomCornerRounded:(BOOL)fp8;
 - (BOOL)bottomCornerRounded;
@@ -24,11 +24,11 @@
 - (struct _NSSize)_bottomCornerSize;
 - (void)drawRect:(struct _NSRect)fp8;
 - (void)_drawTitleBar:(struct _NSRect)fp8;
-- (void)drawWindowBackgroundRect:(struct _NSRect)fp8 level:(int)fp24;
+- (void)drawWindowBackgroundRect:(struct _NSRect)fp8 level:(NSInteger)fp24;
 - (void)drawWindowBackgroundRect:(struct _NSRect)fp8;
-- (void)drawWindowBackgroundRegion:(void *)fp8 level:(int)fp12;
+- (void)drawWindowBackgroundRegion:(void *)fp8 level:(NSInteger)fp12;
 - (void)drawWindowBackgroundRegion:(void *)fp8;
-- (unsigned int)_shadowFlags;
+- (NSUInteger)_shadowFlags;
 - (id)contentFill;
 - (float)_minYTitlebarButtonsOffset;
 - (float)_minYTitlebarTitleOffset;

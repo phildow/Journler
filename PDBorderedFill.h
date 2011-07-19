@@ -18,8 +18,8 @@
 	
 }
 
-- (int*) borders;
-- (void) setBorders:(int*)sides;
+- (NSInteger*) borders;
+- (void) setBorders:(NSInteger*)sides;
 
 - (BOOL) bordered;
 - (void) setBordered:(BOOL)flag;

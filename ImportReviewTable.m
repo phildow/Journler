@@ -53,7 +53,7 @@
 	}
 }
 
-- (void)editColumn:(int)columnIndex row:(int)rowIndex withEvent:(NSEvent *)theEvent select:(BOOL)flag {
+- (void)editColumn:(NSInteger)columnIndex row:(NSInteger)rowIndex withEvent:(NSEvent *)theEvent select:(BOOL)flag {
 	
 	NSString *identifier = [[[self tableColumns] objectAtIndex:columnIndex] identifier];
 	
@@ -84,7 +84,7 @@
 	}
 }
 
-- (void)drawRow:(int)rowIndex clipRect:(NSRect)clipRect 
+- (void)drawRow:(NSInteger)rowIndex clipRect:(NSRect)clipRect 
 {
 	// ask the data source for the entry's label
 	NSNumber *labelColorVal = [[[[self dataSource] arrangedObjects] objectAtIndex:rowIndex] valueForKey:@"label"];
@@ -93,10 +93,10 @@
 	NSRect targetRect = [self rectOfRow:rowIndex];
 	
 	// if the label is around and this isn't the selected row
-	if ( [labelColorVal intValue] != 0 && targetRect.size.width != 0 && [self selectedRow] != rowIndex )
+	if ( [labelColorVal integerValue] != 0 && targetRect.size.width != 0 && [self selectedRow] != rowIndex )
 	{
-		NSColor *gradientStart = [NSColor colorForLabel:[labelColorVal intValue] gradientEnd:NO];
-		NSColor *gradientEnd = [NSColor colorForLabel:[labelColorVal intValue] gradientEnd:YES];
+		NSColor *gradientStart = [NSColor colorForLabel:[labelColorVal integerValue] gradientEnd:NO];
+		NSColor *gradientEnd = [NSColor colorForLabel:[labelColorVal integerValue] gradientEnd:YES];
 					
 		if ( gradientStart != nil && gradientEnd != nil )
 		{

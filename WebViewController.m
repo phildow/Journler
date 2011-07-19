@@ -35,7 +35,7 @@
 {
 	[super awakeFromNib];
 	
-	int statusBarBorders[4] = {1,0,0,0};
+	NSInteger statusBarBorders[4] = {1,0,0,0};
 	[statusBar setBordered:YES];
 	[statusBar setBorders:statusBarBorders];
 	
@@ -301,7 +301,7 @@
 	}
 	
 	NSRect statusFieldFrame = [statusField frame];
-	int delta = ( hidden ? 24 : -24 );
+	NSInteger delta = ( hidden ? 24 : -24 );
 	
 	statusFieldFrame.origin.x-=delta; 
 	statusFieldFrame.size.width+=delta;
@@ -315,8 +315,8 @@
 
 - (IBAction)goBackOrForward:(id)sender
 {
-	int clickedSegment = [sender selectedSegment];
-    int clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
+	NSInteger clickedSegment = [sender selectedSegment];
+    NSInteger clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
 	
 	if ( clickedSegmentTag == 0 ) [webView goBack:self];
 	else if ( clickedSegmentTag == 1 ) [webView goForward:self];
@@ -463,7 +463,7 @@
 	if ( [actionInformation objectForKey:WebActionNavigationTypeKey] == nil )
 		NSLog(@"%s - no WebActionNavigationTypeKey",__PRETTY_FUNCTION__);
 	
-	switch ( [[actionInformation objectForKey:WebActionNavigationTypeKey] intValue] )
+	switch ( [[actionInformation objectForKey:WebActionNavigationTypeKey] integerValue] )
 	{
 	case WebNavigationTypeLinkClicked:
 		NSLog(@"%s - WebNavigationTypeLinkClicked",__PRETTY_FUNCTION__);
@@ -495,7 +495,7 @@
 
 	}
 	
-	if ( [[actionInformation objectForKey:WebActionNavigationTypeKey] intValue] == WebNavigationTypeOther )
+	if ( [[actionInformation objectForKey:WebActionNavigationTypeKey] integerValue] == WebNavigationTypeOther )
 		[listener use];
 	else
 		[listener use];
@@ -510,7 +510,7 @@ request:(NSURLRequest *)request newFrameName:(NSString *)frameName decisionListe
 	if ( [actionInformation objectForKey:WebActionNavigationTypeKey] == nil )
 		NSLog(@"%s - no WebActionNavigationTypeKey",__PRETTY_FUNCTION__);
 	
-	switch ( [[actionInformation objectForKey:WebActionNavigationTypeKey] intValue] )
+	switch ( [[actionInformation objectForKey:WebActionNavigationTypeKey] integerValue] )
 	{
 	case WebNavigationTypeLinkClicked:
 		NSLog(@"%s - WebNavigationTypeLinkClicked",__PRETTY_FUNCTION__);
@@ -542,7 +542,7 @@ request:(NSURLRequest *)request newFrameName:(NSString *)frameName decisionListe
 	}
 	#endif
 	
-	//if ( [[actionInformation objectForKey:WebActionNavigationTypeKey] intValue] == WebNavigationTypeOther )
+	//if ( [[actionInformation objectForKey:WebActionNavigationTypeKey] integerValue] == WebNavigationTypeOther )
 	//	[listener ignore];
 	//else
 	blockPopup = NO;
@@ -652,7 +652,7 @@ bail:
 	//  downloadLinkToDisk: downloadImageToDisk:
 	
 	// remove a few default items that I don't implement
-	int i;
+	NSInteger i;
 	for ( i = [items count] - 1; i >= 0; i-- ) 
 	{
 		NSMenuItem *item = [items objectAtIndex:i];
@@ -677,7 +677,7 @@ bail:
 }
 
 - (void)webView:(WebView *)sender mouseDidMoveOverElement:(NSDictionary *)elementInformation 
-		modifierFlags:(unsigned int)modifierFlags
+		modifierFlags:(NSUInteger)modifierFlags
 {
 	if ( elementInformation != nil && closing == NO )
 	{
@@ -843,7 +843,7 @@ bail:
 
 }
 
-- (void)alertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	[[alert window] orderOut:self];
 }
@@ -1097,7 +1097,7 @@ bail:
 - (BOOL)validateMenuItem:(NSMenuItem*)menuItem 
 {	
 	BOOL enabled = YES;
-	int theTag = [menuItem tag];
+	NSInteger theTag = [menuItem tag];
 	SEL action = [menuItem action];
 	
 	if ( action == @selector(appendLinkToEntry:) )

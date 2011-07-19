@@ -58,8 +58,8 @@
 //	2. you should also set the target and action on the super menuitem, the lexicon uses it for each constructed item in the menu
 //	3. set the term you want the lexicon entries for to the super menuitem's represented object - but do not rely on it for anything else
 
-- (BOOL)menu:(NSMenu *)menu updateItem:(NSMenuItem *)item atIndex:(int)index shouldCancel:(BOOL)shouldCancel;
-- (int)numberOfItemsInMenu:(NSMenu *)menu;
+- (BOOL)menu:(NSMenu *)menu updateItem:(NSMenuItem *)item atIndex:(NSInteger)index shouldCancel:(BOOL)shouldCancel;
+- (NSInteger)numberOfItemsInMenu:(NSMenu *)menu;
 
 // returns the term being represented by the lexicon menu - you should have set it earlier (#3 above)
 - (NSString*) lexiconMenuRepresentedTerm;

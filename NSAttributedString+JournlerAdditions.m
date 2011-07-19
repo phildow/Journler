@@ -15,7 +15,7 @@
 
 - (NSAttributedString*) attributedStringWithoutTextAttachments
 {
-	int i, length = [self length];
+	NSInteger i, length = [self length];
 	NSMutableAttributedString *attributedString = [[self mutableCopyWithZone:[self zone]] autorelease];
 	
 	for ( i = length - 1; i > 0; i-- )
@@ -185,7 +185,7 @@
 		
 		docAttributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 				NSHTMLTextDocumentType, NSDocumentTypeDocumentAttribute, 
-				[NSNumber numberWithInt:2], NSPrefixSpacesDocumentAttribute,
+				[NSNumber numberWithInteger:2], NSPrefixSpacesDocumentAttribute,
 				excludedItems, NSExcludedElementsDocumentAttribute, nil];
 
 		//
@@ -224,7 +224,7 @@
 		
 		NSRange effectiveRange;
 		
-		int i;
+		NSInteger i;
 		for ( i = 0; i < [self length]; i++ ) {
 			
 			//grab the attributes of our current character
@@ -373,7 +373,7 @@
 		// document atttributes
 		docAttributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 				NSHTMLTextDocumentType, NSDocumentTypeDocumentAttribute, 
-				[NSNumber numberWithInt:2], NSPrefixSpacesDocumentAttribute,
+				[NSNumber numberWithInteger:2], NSPrefixSpacesDocumentAttribute,
 				excludedItems, NSExcludedElementsDocumentAttribute, nil];
 		
 		[docAttributes addEntriesFromDictionary:docAttrs];
@@ -438,7 +438,7 @@ bail:
 	
 	NSRange effectiveRange;
 	
-	int i;
+	NSInteger i;
 	for ( i = 0; i < [self length]; i++ ) {
 		
 		//grab the attributes of our current character
@@ -593,7 +593,7 @@ bail:
 	if ( html == nil || [html length] == 0 )
 		return [NSString string];
 	
-	int i;
+	NSInteger i;
 	NSMutableArray *bannedAttributesList = nil;
 	
 	if ( noList != nil && [noList length] != 0 )
@@ -672,13 +672,13 @@ bail:
 		// filter out the prohibited styles from the style declaration if requested
 		if ( bannedAttributesList != nil && [bannedAttributesList count] != 0 )
 		{
-			int i;
+			NSInteger i;
 			aStyleDeclaration = [[aStyleDeclaration mutableCopyWithZone:[self zone]] autorelease];
 			NSCharacterSet *attributeEndSet = [NSCharacterSet characterSetWithCharactersInString:@";\""];
 			
 			for ( i = 0; i < [bannedAttributesList count]; i++ )
 			{
-				int startIndex, endIndex;
+				NSInteger startIndex, endIndex;
 				NSString *bannedAttribute = [bannedAttributesList objectAtIndex:i];
 				NSScanner *bannedScanner;
 				

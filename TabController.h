@@ -81,7 +81,7 @@
 - (IBAction) navigateForward:(id)sender;
 
 - (BOOL) isFiltering;
-- (BOOL) canPerformNavigation:(int)direction;
+- (BOOL) canPerformNavigation:(NSInteger)direction;
 
 - (void) ownerWillClose;
 - (void) willDeleteEntry:(NSNotification*)aNotification;

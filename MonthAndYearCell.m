@@ -75,11 +75,11 @@
 	}
 }
 
-- (int) selectedMonth {
+- (NSInteger) selectedMonth {
 	return selectedMonth;
 }
 
-- (void) setSelectedMonth:(int)month {
+- (void) setSelectedMonth:(NSInteger)month {
 	
 	if ( month < 0 )
 		selectedMonth = 0;
@@ -89,11 +89,11 @@
 		selectedMonth = month;
 }
 
-- (int) selectedYear {
+- (NSInteger) selectedYear {
 	return selectedYear;
 }
 
-- (void) setSelectedYear:(int)year {
+- (void) setSelectedYear:(NSInteger)year {
 	selectedYear = year;
 }
 
@@ -101,7 +101,7 @@
 #pragma mark -
 
 - (void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView 
-		editor:(NSText *)textObj delegate:(id)anObject start:(int)selStart length:(int)selLength {
+		editor:(NSText *)textObj delegate:(id)anObject start:(NSInteger)selStart length:(NSInteger)selLength {
 	
 	// make sure only the year is selected
 	NSLog(@"selecting");
@@ -122,7 +122,7 @@
 	
 	// just pass this onto the interior with the correct string
 	
-	int year = [self selectedYear];
+	NSInteger year = [self selectedYear];
 	NSString *monthString = [[self months] objectAtIndex:[self selectedMonth]];
 	NSString *text = [NSString stringWithFormat:@"%@ %i", monthString, year];
 	

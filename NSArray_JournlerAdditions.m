@@ -43,11 +43,11 @@
 	return journalObjects;
 }
 
-- (unsigned) indexOfObjectIdenticalToResource:(JournlerResource*)aResource
+- (NSUInteger) indexOfObjectIdenticalToResource:(JournlerResource*)aResource
 {
 	// sends an isEqualToResource: message to each object in the receiver
 	
-	int i; unsigned foundIndex = NSNotFound;
+	NSInteger i; NSUInteger foundIndex = NSNotFound;
 	id anObject;
 	for ( i = 0; i < [self count]; i++ )
 	{

@@ -469,7 +469,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 }
 
 // This makes it possible to drag the divider around by the dragView.
-- (unsigned int)splitView:(RBSplitView*)sender 
+- (NSUInteger)splitView:(RBSplitView*)sender 
 		dividerForPoint:(NSPoint)point inSubview:(RBSplitSubview*)subview
 {
 	if ( [sender tag] == 2 && subview == [sender subviewAtPosition:1] ) 
@@ -482,7 +482,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 }
 
 // This changes the cursor when it's over the dragView.
-- (NSRect)splitView:(RBSplitView*)sender cursorRect:(NSRect)rect forDivider:(unsigned int)divider 
+- (NSRect)splitView:(RBSplitView*)sender cursorRect:(NSRect)rect forDivider:(NSUInteger)divider 
 {
 	if ( [sender tag] == 2 && divider == 0 )
 		[sender addCursorRect:[resourcesDragView convertRect:[resourcesDragView bounds] toView:sender]
@@ -542,7 +542,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 
 - (void) entryCellController:(EntryCellController*)aController 
 		clickedOnEntry:(JournlerEntry*)anEntry 
-		modifierFlags:(unsigned int)flags 
+		modifierFlags:(NSUInteger)flags 
 		highlight:(NSString*)aTerm
 {
 	if ( flags & NSCommandKeyMask )
@@ -581,7 +581,7 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 
 - (void) entryCellController:(EntryCellController*)aController 
 		clickedOnResource:(JournlerResource*)aResource 
-		modifierFlags:(unsigned int)flags 
+		modifierFlags:(NSUInteger)flags 
 		highlight:(NSString*)aTerm
 {
 		
@@ -721,14 +721,14 @@ static NSSortDescriptor *ResourceByRankSortPrototype()
 	}
 }
 
-- (void) entryCellController:(EntryCellController*)aController clickedOnFolder:(JournlerCollection*)aFolder modifierFlags:(unsigned int)flags
+- (void) entryCellController:(EntryCellController*)aController clickedOnFolder:(JournlerCollection*)aFolder modifierFlags:(NSUInteger)flags
 {
 	NSBeep();
 	return;
 }
 
 
-- (void) entryCellController:(EntryCellController*)aController clickedOnURL:(NSURL*)aURL modifierFlags:(unsigned int)flags
+- (void) entryCellController:(EntryCellController*)aController clickedOnURL:(NSURL*)aURL modifierFlags:(NSUInteger)flags
 {
 	// the url must be located in the list of available resources. 
 	// If it isn't there, it must be added to the selected entry

@@ -29,8 +29,8 @@
 	// - assumes that the beforeObject value is on a scale from 0 to 100
 	//
 	
-	if ( [beforeObject intValue] != 0 )
-		return [NSString stringWithFormat:@"%i",[beforeObject intValue]];
+	if ( [beforeObject integerValue] != 0 )
+		return [NSString stringWithFormat:@"%i",[beforeObject integerValue]];
 	else
 		return nil;
 }

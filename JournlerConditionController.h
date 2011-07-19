@@ -52,7 +52,7 @@
 	
 	//id		target;
 	
-	//int tag;
+	//NSInteger tag;
 	
 	//BOOL _allowsEmptyCondition;
 	//BOOL _autogeneratesDynamicDates;
@@ -63,8 +63,8 @@
 - (id) initWithTarget:(id)anObject;
 - (void) setInitialCondition:(NSString*)condition;
 
-- (int) tag;
-- (void) setTag:(int)newTag;
+- (NSInteger) tag;
+- (void) setTag:(NSInteger)newTag;
 
 - (BOOL) sendsLiveUpdate;
 - (void) setSendsLiveUpdate:(BOOL)updates;
@@ -110,6 +110,6 @@
 - (void) conditionDidChange:(id)condition;
 
 - (NSArray *)tokenField:(NSTokenField *)tokenField completionsForSubstring:(NSString *)substring 
-	indexOfToken:(int)tokenIndex indexOfSelectedItem:(int *)selectedIndex;
+	indexOfToken:(NSInteger)tokenIndex indexOfSelectedItem:(NSInteger*)selectedIndex;
 
 @end
