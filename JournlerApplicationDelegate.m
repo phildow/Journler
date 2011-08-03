@@ -2142,10 +2142,12 @@ bail:
 	return @"com.phildow.journler";
 }
 
+/*
 - (BOOL)iMediaBrowser:(iMediaBrowser *)browser willLoadBrowser:(NSString *)browserClassname
 {
 	return YES;
 }
+ */
 
 #pragma mark -
 
@@ -2913,7 +2915,14 @@ bail:
 
 - (IBAction) showMediaBrowser:(id)sender
 {
-	[[iMediaBrowser sharedBrowserWithDelegate:self] showWindow:self];
+	 NSBeep();
+    [[NSAlert alertWithMessageText:@"The Media Browser has been disabled but may be re-enabled in a later beta update." 
+                     defaultButton:@"OK"
+                   alternateButton:nil
+                       otherButton:nil 
+         informativeTextWithFormat:@""] runModal];
+   
+    //[[iMediaBrowser sharedBrowserWithDelegate:self] showWindow:self];
 }
 
 - (IBAction) showCorrespondenceBrowser:(id)sender

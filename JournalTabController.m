@@ -3625,6 +3625,7 @@ bail:
 	case kResourceRequestFile:
 		[self addFileFromFinder:self];
 		break;
+        /*
 	case kResourceRequestPhoto:
 		[[iMediaBrowser sharedBrowserWithDelegate:[NSApp delegate]] showWindow:self];
 		[[iMediaBrowser sharedBrowserWithDelegate:[NSApp delegate]] performSelector:@selector(showMediaBrowser:) withObject:@"iMBPhotosController" afterDelay:0.3];
@@ -3641,6 +3642,7 @@ bail:
 		[[iMediaBrowser sharedBrowserWithDelegate:[NSApp delegate]] showWindow:self];
 		[[iMediaBrowser sharedBrowserWithDelegate:[NSApp delegate]] performSelector:@selector(showMediaBrowser:) withObject:@"iMBLinksController" afterDelay:0.3];
 		break;
+        */
 	}
 }
 

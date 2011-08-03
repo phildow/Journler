@@ -13,6 +13,9 @@
 
 #import <SproutedUtilities/SproutedUtilities.h>
 #import <SproutedInterface/SproutedInterface.h>
+
+#import "NSString+JournlerUtilities.h"
+
 /*
 #import "NSWorkspace_PDCategories.h"
 #import "NSString+PDStringAdditions.h"
@@ -166,7 +169,7 @@
     for ( NSString *aComponent in components )
 	{
 		// get the range of the string and highlight it
-		NSArray *ranges = [[textView string] rangesOfString:aComponent options:NSCaseInsensitiveSearch range:NSMakeRange(0,[[textView string] length])];
+		NSArray *ranges = [[textView string] jn_rangesOfString:aComponent options:NSCaseInsensitiveSearch range:NSMakeRange(0,[[textView string] length])];
 		if ( ranges != nil && [ranges count] != 0 )
 		{
 			// put the term on the find clipboard, then highlight everywhere

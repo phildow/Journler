@@ -101,15 +101,11 @@
 		728400340CE8DC6B00B17296 /* JournlerAddressBookWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 728400330CE8DC6B00B17296 /* JournlerAddressBookWindow.m */; };
 		728401600CE95F5700B17296 /* ToolbarItemBlog.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 7284015F0CE95F5700B17296 /* ToolbarItemBlog.tiff */; };
 		7284019E0CE97F8800B17296 /* JournlerWeblogInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 7284019D0CE97F8800B17296 /* JournlerWeblogInterface.m */; };
-		728861890CC6864000733960 /* ID3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728861830CC6864000733960 /* ID3.framework */; };
-		7288618A0CC6864000733960 /* iMediaBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728861840CC6864000733960 /* iMediaBrowser.framework */; };
 		7288618B0CC6864000733960 /* Pantomime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728861850CC6864000733960 /* Pantomime.framework */; };
 		7288618C0CC6864000733960 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728861860CC6864000733960 /* Sparkle.framework */; };
 		7288618D0CC6864000733960 /* SproutedInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728861870CC6864000733960 /* SproutedInterface.framework */; };
 		7288618E0CC6864000733960 /* SproutedUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728861880CC6864000733960 /* SproutedUtilities.framework */; };
 		728862880CC6864600733960 /* SproutedUtilities.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 728861880CC6864000733960 /* SproutedUtilities.framework */; };
-		728862890CC6864600733960 /* ID3.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 728861830CC6864000733960 /* ID3.framework */; };
-		7288628A0CC6864600733960 /* iMediaBrowser.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 728861840CC6864000733960 /* iMediaBrowser.framework */; };
 		7288628B0CC6864600733960 /* Pantomime.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 728861850CC6864000733960 /* Pantomime.framework */; };
 		7288628C0CC6864600733960 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 728861860CC6864000733960 /* Sparkle.framework */; };
 		7288638D0CC6867700733960 /* SproutedInterface.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 728861870CC6864000733960 /* SproutedInterface.framework */; };
@@ -427,9 +423,12 @@
 		7290D9660DAA7DB0001B30B6 /* Journal_105.nib in Resources */ = {isa = PBXBuildFile; fileRef = 7290D9640DAA7DB0001B30B6 /* Journal_105.nib */; };
 		7290D9D20DAA8219001B30B6 /* EntryWindow_105.nib in Resources */ = {isa = PBXBuildFile; fileRef = 7290D9D00DAA8219001B30B6 /* EntryWindow_105.nib */; };
 		7290DB1F0DAAB6B2001B30B6 /* MediaBarEquals.png in Resources */ = {isa = PBXBuildFile; fileRef = 7290DB1E0DAAB6B2001B30B6 /* MediaBarEquals.png */; };
+		7296CCE213D7A45D00371D50 /* ID3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7296CCE113D7A45D00371D50 /* ID3.framework */; };
+		72976DB313D7C786008FB3EC /* ID3.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 7296CCE113D7A45D00371D50 /* ID3.framework */; };
 		729852050CD2611500BB4A53 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 729852040CD2611500BB4A53 /* libcrypto.dylib */; };
 		729852580CD26F5100BB4A53 /* HUDCloseButton.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 729852570CD26F5100BB4A53 /* HUDCloseButton.tiff */; };
 		729854520CD292F600BB4A53 /* DefaultJournal.zip in Resources */ = {isa = PBXBuildFile; fileRef = 729854510CD292F600BB4A53 /* DefaultJournal.zip */; };
+		729E2B0913E8FE59002D2561 /* NSString+JournlerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 729E2B0813E8FE59002D2561 /* NSString+JournlerUtilities.m */; };
 		729EC2950DA6AC1100E5DAE4 /* WebArchiveView_105.nib in Resources */ = {isa = PBXBuildFile; fileRef = 729EC2930DA6AC1100E5DAE4 /* WebArchiveView_105.nib */; };
 		729EC3340DA6B5C700E5DAE4 /* MovieFileView_105.nib in Resources */ = {isa = PBXBuildFile; fileRef = 729EC3320DA6B5C700E5DAE4 /* MovieFileView_105.nib */; };
 		729EC36E0DA6B88E00E5DAE4 /* PDFContentView_105.nib in Resources */ = {isa = PBXBuildFile; fileRef = 729EC36C0DA6B88E00E5DAE4 /* PDFContentView_105.nib */; };
@@ -456,10 +455,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				721DE49F0DD2AC5A00AB7438 /* SproutedAVI.framework in Copy Frameworks */,
+				72976DB313D7C786008FB3EC /* ID3.framework in Copy Frameworks */,
 				7288638D0CC6867700733960 /* SproutedInterface.framework in Copy Frameworks */,
 				728862880CC6864600733960 /* SproutedUtilities.framework in Copy Frameworks */,
-				728862890CC6864600733960 /* ID3.framework in Copy Frameworks */,
-				7288628A0CC6864600733960 /* iMediaBrowser.framework in Copy Frameworks */,
 				7288628B0CC6864600733960 /* Pantomime.framework in Copy Frameworks */,
 				7288628C0CC6864600733960 /* Sparkle.framework in Copy Frameworks */,
 			);
@@ -594,7 +592,6 @@
 		7284015F0CE95F5700B17296 /* ToolbarItemBlog.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = ToolbarItemBlog.tiff; sourceTree = "<group>"; };
 		7284019C0CE97F8800B17296 /* JournlerWeblogInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournlerWeblogInterface.h; sourceTree = "<group>"; };
 		7284019D0CE97F8800B17296 /* JournlerWeblogInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournlerWeblogInterface.m; sourceTree = "<group>"; };
-		728861830CC6864000733960 /* ID3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ID3.framework; sourceTree = "<group>"; };
 		728861840CC6864000733960 /* iMediaBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iMediaBrowser.framework; sourceTree = "<group>"; };
 		728861850CC6864000733960 /* Pantomime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pantomime.framework; sourceTree = "<group>"; };
 		728861860CC6864000733960 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -1070,8 +1067,11 @@
 		7290D9650DAA7DB0001B30B6 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Journal_105.nib; sourceTree = "<group>"; };
 		7290D9D10DAA8219001B30B6 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/EntryWindow_105.nib; sourceTree = "<group>"; };
 		7290DB1E0DAAB6B2001B30B6 /* MediaBarEquals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MediaBarEquals.png; sourceTree = "<group>"; };
+		7296CCE113D7A45D00371D50 /* ID3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ID3.framework; sourceTree = "<group>"; };
 		729852040CD2611500BB4A53 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
 		729852570CD26F5100BB4A53 /* HUDCloseButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = HUDCloseButton.tiff; sourceTree = "<group>"; };
+		729E2B0713E8FE59002D2561 /* NSString+JournlerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JournlerUtilities.h"; sourceTree = "<group>"; };
+		729E2B0813E8FE59002D2561 /* NSString+JournlerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JournlerUtilities.m"; sourceTree = "<group>"; };
 		729EC2940DA6AC1100E5DAE4 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/WebArchiveView_105.nib; sourceTree = "<group>"; };
 		729EC3330DA6B5C700E5DAE4 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MovieFileView_105.nib; sourceTree = "<group>"; };
 		729EC36D0DA6B88E00E5DAE4 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/PDFContentView_105.nib; sourceTree = "<group>"; };
@@ -1099,8 +1099,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				728861890CC6864000733960 /* ID3.framework in Frameworks */,
-				7288618A0CC6864000733960 /* iMediaBrowser.framework in Frameworks */,
 				7288618B0CC6864000733960 /* Pantomime.framework in Frameworks */,
 				7288618C0CC6864000733960 /* Sparkle.framework in Frameworks */,
 				7288618D0CC6864000733960 /* SproutedInterface.framework in Frameworks */,
@@ -1123,6 +1121,7 @@
 				728874670CC8468D00733960 /* Carbon.framework in Frameworks */,
 				729852050CD2611500BB4A53 /* libcrypto.dylib in Frameworks */,
 				721DE49D0DD2AC5700AB7438 /* SproutedAVI.framework in Frameworks */,
+				7296CCE213D7A45D00371D50 /* ID3.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1157,6 +1156,7 @@
 				72886D7C0CC7D35F00733960 /* Accessory Controllers */,
 				72886D950CC7D3F300733960 /* Journler Transformers */,
 				72886E7C0CC7D97F00733960 /* iLife Windows */,
+				729E2B0113E8FAF5002D2561 /* Sprouted Utilities */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1332,10 +1332,10 @@
 		728861800CC6862E00733960 /* 3rd Party Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7296CCE113D7A45D00371D50 /* ID3.framework */,
 				721DE49C0DD2AC5700AB7438 /* SproutedAVI.framework */,
 				728861870CC6864000733960 /* SproutedInterface.framework */,
 				728861880CC6864000733960 /* SproutedUtilities.framework */,
-				728861830CC6864000733960 /* ID3.framework */,
 				728861840CC6864000733960 /* iMediaBrowser.framework */,
 				728861850CC6864000733960 /* Pantomime.framework */,
 				728861860CC6864000733960 /* Sparkle.framework */,
@@ -2191,6 +2191,15 @@
 			name = "Polished Window";
 			sourceTree = "<group>";
 		};
+		729E2B0113E8FAF5002D2561 /* Sprouted Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				729E2B0713E8FE59002D2561 /* NSString+JournlerUtilities.h */,
+				729E2B0813E8FE59002D2561 /* NSString+JournlerUtilities.m */,
+			);
+			name = "Sprouted Utilities";
+			sourceTree = "<group>";
+		};
 		72D2A2620CD66C900065F4EC /* Journler Resource Media Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -2673,6 +2682,7 @@
 				728400340CE8DC6B00B17296 /* JournlerAddressBookWindow.m in Sources */,
 				7284019E0CE97F8800B17296 /* JournlerWeblogInterface.m in Sources */,
 				72D2E5F00DAEC897007E549F /* JournlerLicenseManager.m in Sources */,
+				729E2B0913E8FE59002D2561 /* NSString+JournlerUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3363,6 +3373,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = MACOSX;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = Journler;
 				SDKROOT = macosx10.6;
@@ -3376,6 +3387,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				SDKROOT = macosx10.6;
 			};
 			name = Debug;
@@ -3386,6 +3398,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				SDKROOT = macosx10.6;
 			};
 			name = Release;
