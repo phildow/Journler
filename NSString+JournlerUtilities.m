@@ -10,6 +10,23 @@
 
 @implementation NSString (NSString_JournlerUtilities)
 
+- (NSArray*) jn_substringsWithRanges:(NSArray*)ranges
+{
+	if ( ranges == nil ) return nil;
+	
+	NSMutableArray *substrings = [NSMutableArray arrayWithCapacity:[ranges count]];
+	
+    for ( NSValue *rangeValue in ranges ) {
+		NSRange aRange = [rangeValue rangeValue];
+		NSString *aSubstring = [self substringWithRange:aRange];
+		
+		[substrings addObject:aSubstring];
+	}
+	
+	return substrings;
+}
+
+
 - (NSArray*) jn_rangesOfString:(NSString*)aString options:(NSUInteger)mask range:(NSRange)aRange
 {
 	if ( aString == nil ) return nil;

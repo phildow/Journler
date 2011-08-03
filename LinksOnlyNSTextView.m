@@ -21,6 +21,8 @@
 #import "NSAttributedString+JournlerAdditions.h"
 #import "NSAlert+JournlerAdditions.h"
 
+#import "NSString+JournlerUtilities.h"
+
 static NSString *selectionIDsSource = @"tell application \"Mail\"\nset mailSelection to the selection\nset allIDs to {}\nrepeat with aMail in mailSelection\nset allIDs to allIDs & {{the id of aMail, the subject of aMail}}\nend repeat\nreturn allIDs\nend tell";
 static NSString *mailSelectionPathInfoSource = @"tell application \"Mail\"\nset theMessages to {}\nset selectedMessages to the selection\nrepeat with aMail in selectedMessages\nif exists (name of account of mailbox of aMail) then\nset aRecord to {the id of aMail, subject of aMail, name of mailbox of aMail, account directory of account of mailbox of aMail}\nelse\nset aRecord to {the id of aMail, subject of aMail, name of mailbox of aMail}\nend if\nset theMessages to theMessages & {aRecord}\nend repeat\nreturn theMessages\nend tell";
 
@@ -3252,7 +3254,8 @@ bail:
 
 - (IBAction) modifyCharacterCase:(id)sender
 {
-	if ( ![self shouldChangeTextInRanges:[self rangesForUserTextChange] replacementStrings:[[self string] substringsWithRanges:[self rangesForUserTextChange]]] )
+	if ( ![self shouldChangeTextInRanges:[self rangesForUserTextChange] replacementStrings:[[self string] 
+            jn_substringsWithRanges:[self rangesForUserTextChange]]] )
 	{
 		NSBeep(); return;
 	}

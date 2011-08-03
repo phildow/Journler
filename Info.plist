@@ -261,7 +261,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2.6b3</string>
+	<string>2.6b4</string>
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSMainNibFile</key>

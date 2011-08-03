@@ -10,6 +10,7 @@
 
 @interface NSString (NSString_JournlerUtilities)
 
+- (NSArray*) jn_substringsWithRanges:(NSArray*)ranges;
 - (NSArray*) jn_rangesOfString:(NSString*)aString options:(NSUInteger)mask range:(NSRange)aRange;
 
 @end
