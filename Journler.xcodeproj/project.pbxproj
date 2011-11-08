@@ -434,6 +434,7 @@
 		729EC36E0DA6B88E00E5DAE4 /* PDFContentView_105.nib in Resources */ = {isa = PBXBuildFile; fileRef = 729EC36C0DA6B88E00E5DAE4 /* PDFContentView_105.nib */; };
 		72A7E15A0CCD61EB009ED8AC /* JournlerMetadataImporter.mdimporter in Copy Spotlight Importer */ = {isa = PBXBuildFile; fileRef = 728878C20CCA935F00733960 /* JournlerMetadataImporter.mdimporter */; };
 		72A8C3E90DA284F3001B4A07 /* Condition_105.nib in Resources */ = {isa = PBXBuildFile; fileRef = 72A8C3E70DA284F3001B4A07 /* Condition_105.nib */; };
+		72BBEE4B143128FA005204D7 /* CHEmbeddedMediaQuicklookObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BBEE4A143128FA005204D7 /* CHEmbeddedMediaQuicklookObject.m */; };
 		72D2A2650CD66CB20065F4EC /* JournlerResourceMediaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D2A2640CD66CB20065F4EC /* JournlerResourceMediaController.m */; };
 		72D2A2D40CD671700065F4EC /* JournlerResourceMediaView.nib in Resources */ = {isa = PBXBuildFile; fileRef = 72D2A2D20CD671700065F4EC /* JournlerResourceMediaView.nib */; };
 		72D2A4350CD82F0B0065F4EC /* PDExportableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D2A4340CD82F0B0065F4EC /* PDExportableImageView.m */; };
@@ -1076,6 +1077,8 @@
 		729EC3330DA6B5C700E5DAE4 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MovieFileView_105.nib; sourceTree = "<group>"; };
 		729EC36D0DA6B88E00E5DAE4 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/PDFContentView_105.nib; sourceTree = "<group>"; };
 		72A8C3E80DA284F3001B4A07 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Condition_105.nib; sourceTree = "<group>"; };
+		72BBEE49143128FA005204D7 /* CHEmbeddedMediaQuicklookObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHEmbeddedMediaQuicklookObject.h; sourceTree = "<group>"; };
+		72BBEE4A143128FA005204D7 /* CHEmbeddedMediaQuicklookObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHEmbeddedMediaQuicklookObject.m; sourceTree = "<group>"; };
 		72D1248913D51B01002202F1 /* 2.6 Changelog.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "2.6 Changelog.rtf"; sourceTree = "<group>"; };
 		72D124F313D5F9EB002202F1 /* 2.6 Notes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "2.6 Notes.rtf"; sourceTree = "<group>"; };
 		72D2A2630CD66CB20065F4EC /* JournlerResourceMediaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournlerResourceMediaController.h; sourceTree = "<group>"; };
@@ -1772,6 +1775,8 @@
 				72D2E5C90DAEBD19007E549F /* QLPreviewPanel.h */,
 				72886FCC0CC7E67800733960 /* GenericMediaController.h */,
 				72886FCD0CC7E67800733960 /* GenericMediaController.m */,
+				72BBEE49143128FA005204D7 /* CHEmbeddedMediaQuicklookObject.h */,
+				72BBEE4A143128FA005204D7 /* CHEmbeddedMediaQuicklookObject.m */,
 			);
 			name = "Generic Media Controller";
 			sourceTree = "<group>";
@@ -2683,6 +2688,7 @@
 				7284019E0CE97F8800B17296 /* JournlerWeblogInterface.m in Sources */,
 				72D2E5F00DAEC897007E549F /* JournlerLicenseManager.m in Sources */,
 				729E2B0913E8FE59002D2561 /* NSString+JournlerUtilities.m in Sources */,
+				72BBEE4B143128FA005204D7 /* CHEmbeddedMediaQuicklookObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3376,7 +3382,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = Journler;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -3388,7 +3394,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx10.7;
 			};
 			name = Debug;
 		};
@@ -3399,7 +3405,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx10.7;
 			};
 			name = Release;
 		};

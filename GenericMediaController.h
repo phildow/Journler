@@ -10,14 +10,22 @@
 #import "JournlerMediaContentController.h"
 #import <SproutedInterface/SproutedInterface.h>
 
+// 10.6 / 10.7 changes
+#import <Quartz/Quartz.h> // QuickLookUI
+
+@class CHEmbeddedMediaQuicklookObject;
+
 @interface GenericMediaController : JournlerMediaContentController {
 	IBOutlet NSView *previewPlaceholder;
 	
 	PDFileInfoView *infoView;
-	NSView *previewView;
+	QLPreviewView *previewView;
 	
+    CHEmbeddedMediaQuicklookObject *quicklookItem;
 	BOOL usesQuickLook;
 }
+
+@property(copy) CHEmbeddedMediaQuicklookObject *quicklookItem;
 
 - (BOOL) usesQuickLook;
 - (void) setUsesQuickLook:(BOOL)ql;

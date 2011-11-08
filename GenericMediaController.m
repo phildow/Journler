@@ -7,8 +7,9 @@
 //
 
 #import "GenericMediaController.h"
+#import "CHEmbeddedMediaQuicklookObject.h"
 
-static NSString *kQLFrameworkPath = @"/System/Library/PrivateFrameworks/QuickLookUI.framework";
+//static NSString *kQLFrameworkPath = @"/System/Library/PrivateFrameworks/QuickLookUI.framework";
 
 @interface NSObject (GenericMediaControllerAdditions)
 
@@ -19,11 +20,14 @@ static NSString *kQLFrameworkPath = @"/System/Library/PrivateFrameworks/QuickLoo
 
 @implementation GenericMediaController
 
+@synthesize quicklookItem;
+
 - (id) init
 {	
 	if ( self = [super init] )
 	{
-		if ( [[NSFileManager defaultManager] fileExistsAtPath:kQLFrameworkPath] )
+		/*
+        if ( [[NSFileManager defaultManager] fileExistsAtPath:kQLFrameworkPath] )
 		{
 			NSBundle *qlPreviewBundle = [NSBundle bundleWithPath:kQLFrameworkPath];
 			if ( ![qlPreviewBundle isLoaded] && ![qlPreviewBundle load] )
@@ -35,8 +39,9 @@ static NSString *kQLFrameworkPath = @"/System/Library/PrivateFrameworks/QuickLoo
 		{
 			NSLog(@"%s - no quicklook framework at path %@", __PRETTY_FUNCTION__, kQLFrameworkPath);
 		}
+        */
 		
-		usesQuickLook = NO;
+		usesQuickLook = YES;
 		[NSBundle loadNibNamed:@"GenericFileContentView" owner:self];
 	}
 	
@@ -48,6 +53,8 @@ static NSString *kQLFrameworkPath = @"/System/Library/PrivateFrameworks/QuickLoo
 	[infoView release], infoView = nil;
 	[previewView release], previewView = nil;
 	
+    self.quicklookItem = nil;
+    
 	[super dealloc];
 }
 
@@ -67,7 +74,7 @@ static NSString *kQLFrameworkPath = @"/System/Library/PrivateFrameworks/QuickLoo
 
 - (BOOL) loadURL:(NSURL*)aURL 
 {
-	if ( [self usesQuickLook] && [previewPlaceholder respondsToSelector:@selector(addTrackingArea:)] )
+	if ( [self usesQuickLook] /*&& [previewPlaceholder respondsToSelector:@selector(addTrackingArea:)]*/ )
 		[self _showQLPreviewForURL:aURL];
 	else
 		[self _showFileInfoForURL:aURL];
@@ -78,7 +85,24 @@ static NSString *kQLFrameworkPath = @"/System/Library/PrivateFrameworks/QuickLoo
 
 - (void) _showQLPreviewForURL:(NSURL*)url
 {
-	Class ql_preview_view = NSClassFromString(@"QLPreviewView");
+	// set up the QLPreviewView // 10.6 & 10.7
+    previewView = [[QLPreviewView alloc] initWithFrame:[previewPlaceholder frame]];
+    
+    [previewView setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
+    [[previewPlaceholder superview] replaceSubview:previewPlaceholder with:previewView];
+    
+    // create a generic preview item for the url and load it
+    
+    NSString *title = [NSString string];
+    CHEmbeddedMediaQuicklookObject *item = [[[CHEmbeddedMediaQuicklookObject alloc] initWithURL:url title:title] autorelease];
+    self.quicklookItem = item;
+    
+    // load the item
+    
+    previewView.previewItem = self.quicklookItem;
+    
+    /*
+    Class ql_preview_view = NSClassFromString(@"QLPreviewView");
 	if ( ql_preview_view == nil )
 	{
 		NSLog(@"%s - unable to find the QLPreviewView class in the runtime", __PRETTY_FUNCTION__);
@@ -96,6 +120,7 @@ static NSString *kQLFrameworkPath = @"/System/Library/PrivateFrameworks/QuickLoo
 		[previewView setURL:url];
 		[previewView _startLoadingURL:url timeoutDate:[NSDate dateWithTimeIntervalSinceNow:30]];
 	}
+    */
 }
 
 - (void) _showFileInfoForURL:(NSURL*)url

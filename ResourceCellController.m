@@ -388,10 +388,12 @@
 		// determine if the generic view uses quicklook
 		if ( [aController isKindOfClass:[GenericMediaController class]] )
 		{
-			NSInteger licenseType = [[JournlerLicenseManager sharedManager] licenseType];
+			/* // NO LONGER RELEVANT -- DELETE
+            NSInteger licenseType = [[JournlerLicenseManager sharedManager] licenseType];
 			BOOL usesQLDisabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"QuickLookPreviewsDisabled"];
 			BOOL usesQL = ( ( licenseType == kJournlerLicenseNonPersonal || licenseType == kJournlerLicenseSpecial || licenseType == kJournlerLicenseFull) && !usesQLDisabled );
 			[(GenericMediaController*)aController setUsesQuickLook:usesQL];
+            */
 		}
 		
 		if ( [aResource representsURL] )
