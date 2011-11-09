@@ -499,6 +499,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Journler_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Journler_Prefix.pch; sourceTree = "<group>"; };
 		721DE49C0DD2AC5700AB7438 /* SproutedAVI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SproutedAVI.framework; sourceTree = "<group>"; };
+		7220B855146B206100CBFE76 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		726EC0570CCC512C008AE420 /* SmallEntryIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SmallEntryIcon.png; sourceTree = "<group>"; };
 		726EC0580CCC512C008AE420 /* SmallAltDisclosure.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SmallAltDisclosure.tif; sourceTree = "<group>"; };
 		726EC0590CCC512C008AE420 /* SmallDisclosure.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SmallDisclosure.tif; sourceTree = "<group>"; };
@@ -1210,6 +1211,7 @@
 		29B97314FDCFA39411CA2CEA /* Journler */ = {
 			isa = PBXGroup;
 			children = (
+				7220B855146B206100CBFE76 /* README.txt */,
 				72D1248913D51B01002202F1 /* 2.6 Changelog.rtf */,
 				72D124F313D5F9EB002202F1 /* 2.6 Notes.rtf */,
 				080E96DDFE201D6D7F000001 /* Classes */,
